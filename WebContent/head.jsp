@@ -6,7 +6,11 @@
 		response.sendError(400, "Acceso incorrecto"); //cambiar
 	}
 %>
+<<<<<<< HEAD
 <!-- Los Scrips deberian ir antes del </body> -->
+=======
+<!-- baia baia -->
+>>>>>>> 23d516ca1a9a61a99a7fc9e93f26eb547cd0e3ed
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="shortcut icon" href="/img/icon.ico" />
 <meta charset="utf-8">

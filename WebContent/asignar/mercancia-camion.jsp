@@ -20,7 +20,8 @@ session.setAttribute("pagina", "Asignar Mercancía a Camion");
 	<jsp:include page="/navbar.jsp" />
 	<!-- Contenido -->
 	<div class="fondo">
-	<br><br>
+		<br>
+		<br>
 		<div class="container">
 
 			<%@ page import="com.logica.*"%>
@@ -72,9 +73,16 @@ session.setAttribute("pagina", "Asignar Mercancía a Camion");
 				<button name="submit" id="submit" type="submit"
 					class="btn btn-primary">Asignar</button>
 			</form>
-			<br><br><br><br><br><br><br><br>
-		</div>	
-		<jsp:include page="/footer.jsp" />	
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+		</div>
+		<jsp:include page="/footer.jsp" />
 	</div>
 </body>
 </html>
