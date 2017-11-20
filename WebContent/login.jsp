@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 <link rel="shortcut icon" href="img/icon.ico" />
-<title>PS3C</title>
+<title>PS3C </title>
 
 <link rel="stylesheet" href="css/style-login.css">
 
