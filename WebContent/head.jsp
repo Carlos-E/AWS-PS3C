@@ -7,6 +7,7 @@
 	}
 
 %>
+<!-- baia baia -->
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="shortcut icon" href="/img/icon.ico" />
 <meta charset="utf-8">
@@ -21,4 +22,4 @@
 <link rel=stylesheet href="/css/font-awesome.css">
 <link rel=stylesheet href="/css/font-awesome.min.css">
 <link rel=stylesheet href="/css/c99e2ded004dc2eda30e2082260678e3.css">
-<!-- baia baia -->
+
