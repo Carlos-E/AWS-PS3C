@@ -12,6 +12,7 @@ session.setAttribute("pagina", "PROTORIPO SOFTWARE DE CARGA COMPARTIDA");
 <html>
 <head>
 <title>PS3C</title>
+<!-- Comment -->
 <jsp:include page="/head.jsp" />
 </head>
 <body>
