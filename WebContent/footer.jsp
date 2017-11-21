@@ -23,7 +23,7 @@ footer p {
 											<li><i class="fa fa-location-arrow"></i></li>
 										</ul>
 										<p>
-											info@info.com<br />info@info.com
+											info@ps3c.com<br />support@ps3c.com
 										</p>
 									</div>
 									<div class="col-xs-6 col-md-4">
@@ -31,7 +31,7 @@ footer p {
 											<li><i class="fa fa-map-marker"></i></li>
 										</ul>
 										<p>
-											12840 Some Road,<br />Monteria, cordoba<br />07724, US
+											Monteria, Cordoba<br />07724, Colombia
 										</p>
 									</div>
 									<div class="col-xs-6 col-md-4">
@@ -39,7 +39,7 @@ footer p {
 											<li><i class="fa fa-phone"></i></li>
 										</ul>
 										<p>
-											(800) 500 5962 or <br />(800) 600 8862
+											(300) 707 8641
 										</p>
 									</div>
 								</div>
