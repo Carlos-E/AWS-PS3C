@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="css/style-signin.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-<link rel="stylesheet" href="css/style-signin.css">
+<link rel="stylesheet" href="css/style-login.css">
 <link rel="shortcut icon" href="img/icon.ico" />
 <title>PS3C Registro</title>
 
@@ -23,8 +23,7 @@
 			<form name="form" class="form" action="signin" method="post">
 				<input name="usuario" id="usuario" type="text" placeholder="Nombre de Usuario*"> 
 				<input name="clave1" id="clave1" type="password" placeholder="Password*"> 
-				<input name="calve2" id="clave2" type="password"
-					placeholder="Repetir-Password*"> <input name="nombres"
+				<input name="calve2" id="clave2" type="password" placeholder="Repetir-Password*"> <input name="nombres"
 					id="nombres" type="text" placeholder="Nombres*"> <input
 					name="apellidos" id="apellidos" type="text" placeholder="Apellidos">
 				<input name="correo" id="correo" type="email" placeholder="E-Mail*">
