@@ -52,7 +52,6 @@
 </div>
 
 <!-- Scripts -->
-<script src="http://mymaplist.com/js/vendor/TweenLite.min.js"></script>
 <script src="js/login.js"></script>
 
 </body>
