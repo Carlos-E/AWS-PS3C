@@ -53,6 +53,7 @@ session.setAttribute("pagina", "PROTORIPO SOFTWARE DE CARGA COMPARTIDA");
 					class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 					<span class="sr-only">Next</span>
 				</a>
+				
 			</div>						
 		</div>
 		<jsp:include page="/footer.jsp" />
