@@ -33,8 +33,8 @@ session.setAttribute("pagina", "PROTORIPO SOFTWARE DE CARGA COMPARTIDA");
 						<img src="http://cemaplast.com/mantenimiento.jpg"
 							style="width: 500px; height: 400px;">
 					</div>
+					<!-- CARLOS CHUPAME LA MONDA! -->
 					<div class="item">
-					<!-- Hola puche borrame porfa -->
 						<img src="http://www.generadormemes.com/media/created/2rc2nn.jpg"
 							style="width: 500px; height: 400px;">
 					</div>
