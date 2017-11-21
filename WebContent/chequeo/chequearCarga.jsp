@@ -19,7 +19,8 @@ session.setAttribute("pagina", "Chequear Carga de Mercancía");
 	<!--  Container de la Barra de navegacion -->
 	<jsp:include page="/navbar.jsp" />
 	<!-- Contenido -->
-	<div class="fondo"> <br> <br>
+	<div class="fondo">
+		<br> <br>
 		<div class="container">
 			<%@ page import="java.util.ArrayList"%>
 			<%@ page import="com.logica.*"%>
@@ -193,7 +194,8 @@ session.setAttribute("pagina", "Chequear Carga de Mercancía");
 				session.setAttribute("busca", " ");
 			%>
 		</div>
-		<br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 
+		<br> <br> <br> <br> <br> <br> <br>
+		<br> <br> <br> <br>
 		<jsp:include page="/footer.jsp" />
 	</div>
 </body>

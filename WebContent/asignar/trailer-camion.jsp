@@ -20,8 +20,7 @@ session.setAttribute("pagina", "Asignar Trailer a Camion");
 	<!--  Container de la Barra de navegacion -->
 	<jsp:include page="/navbar.jsp" />
 	<div class="fondo">
-		<br>
-		<br>
+		<br> <br>
 		<div class="container">
 			<%@ page import="com.logica.*"%>
 			<%@ page import="java.util.ArrayList"%>
@@ -90,13 +89,7 @@ session.setAttribute("pagina", "Asignar Trailer a Camion");
 				</form>
 			</div>
 		</div>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
+		<br> <br> <br> <br> <br> <br> <br>
 		<jsp:include page="/footer.jsp" />
 	</div>
 </body>
