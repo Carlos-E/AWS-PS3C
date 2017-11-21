@@ -36,6 +36,7 @@ session.setAttribute("pagina", "PROTORIPO SOFTWARE DE CARGA COMPARTIDA");
 					</div>
 
 					<div class="item">
+					
 						<img src="http://www.generadormemes.com/media/created/2rc2nn.jpg"
 							style="width: 500px; height: 400px;">
 					</div>
