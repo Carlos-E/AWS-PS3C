@@ -26,7 +26,6 @@
 		<br />
 
 		<div class="container">
-<<<<<<< HEAD
 
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner" role="listbox">
@@ -35,8 +34,6 @@
 				</div>
 
 			</div>
-
-=======
 			<div id="myCarousel" class="carousel slide" data-ride="carousel">
 				<!-- Indicators -->
 				<ol class="carousel-indicators">
@@ -65,15 +62,10 @@
 					<span class="sr-only">Next</span>
 				</a>
 			</div>						
->>>>>>> e0f7174987395a971d6b7effc2bbff04ed203782
+
 		</div>
 		<br />
 		<jsp:include page="/footer.jsp" />
-
 	</div>
-<<<<<<< HEAD
-
-=======
->>>>>>> e0f7174987395a971d6b7effc2bbff04ed203782
 </body>
 </html>
