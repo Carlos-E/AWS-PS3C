@@ -42,7 +42,7 @@ public class cancelar extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("busca", "ninguno");
 		PrintWriter out = response.getWriter();
-		String nextURL = request.getContextPath() + "index.jsp";
+		String nextURL = request.getContextPath() + "./index.jsp";
 		com.logica.Dibujar.mensaje(out, "Operacion Cancelada", nextURL);
 		//response.sendRedirect("index.jsp");
 	}
