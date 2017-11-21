@@ -13,10 +13,8 @@
 
 </head>
 <body>
-	<script src="http://mymaplist.com/js/vendor/TweenLite.min.js"></script>
-<!-- This is a very simple parallax effect achieved by simple CSS 3 multiple backgrounds, made by http://twitter.com/msurguy -->
-<link rel=stylesheet href="css/style-login.css">
-<script src="js/login.js"></script>
+
+
 <div class="container">
   
   <div class="row" id="pwd-container">
@@ -42,25 +40,20 @@
         </form>
         
         <div class="form-links">
-          <a href="#">www.website.com</a>
+          <a href="#">www.ps3c.com</a>
         </div>
       </section>  
       </div>
       
       <div class="col-md-4"></div>
       
-
-  </div>
-  
-  <p>
-    <a href="http://validator.w3.org/check?uri=http%3A%2F%2Fbootsnipp.com%2Fiframe%2FW00op" target="_blank"><small>HTML</small><sup>5</sup></a>
-    <br>
-    <br>
-    
-  </p>     
-  
+  </div>    
   
 </div>
+
+<!-- Scripts -->
+<script src="http://mymaplist.com/js/vendor/TweenLite.min.js"></script>
+<script src="js/login.js"></script>
 
 </body>
 </html>
