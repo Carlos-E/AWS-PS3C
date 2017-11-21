@@ -29,7 +29,7 @@
 				<div class=module-content>
 					<div class=custom>
 						<ul class=top-address-bar>
-							<li class=jd-phone>
+							<!-- <li class=jd-phone>
 								<i class="fa fa-mobile"></i>
 								<%
 									if (session.getAttribute("rol") == null) {
@@ -48,7 +48,7 @@
 										out.print(usuario.getCorreo().toString());
 									}
 								%>
-							</li>
+							</li>  -->
 							<li class=jd-address>
 								<i class="fa fa-user" aria-hidden="true"></i>
 								<p>
@@ -79,7 +79,7 @@
 						<a class=item href="/index.jsp"> Home </a>
 					</li>
 					<li class="item498 parent">
-						<a class=item href="#">
+						<a class=item href=javascript:void(0);>
 							Gesti&oacuten de Env&iacuteos
 							<span class=border-fixer></span>
 						</a>
@@ -223,7 +223,7 @@
 							<div class="column col1" style="width: 250px;">
 								<ul class=l2>
 									<li class=item520>
-										<a class=item href="/disponibilidad/camiones.jsp"> Disponobilidad de Camiones </a>
+										<a class=item href="/disponibilidad/camiones.jsp"> Disponibilidad de Camiones </a>
 									</li>
 									<li class=item521>
 										<a class=item href="/disponibilidad/trailers.jsp"> Disponibilidad de Traileres </a>
@@ -238,9 +238,9 @@
 							</div>
 						</div>
 					</li>
-					<li class="item518 parent">
+					<li class="item435 active last">
 						<a class=item href="/logout">
-							Cerrar Session
+							Cerrar Sesi&oacuten
 							<span class=border-fixer></span>
 						</a>
 					</li>
