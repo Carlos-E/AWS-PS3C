@@ -23,14 +23,13 @@
 			<form name="form" class="form" action="signin" method="post">
 				<input name="usuario" id="usuario" type="text" placeholder="Nombre de Usuario*"> 
 				<input name="clave1" id="clave1" type="password" placeholder="Password*"> 
-				<input name="calve2" id="clave2" type="password" placeholder="Repetir-Password*"> <input name="nombres"
-					id="nombres" type="text" placeholder="Nombres*"> <input
-					name="apellidos" id="apellidos" type="text" placeholder="Apellidos">
+				<input name="calve2" id="clave2" type="password" placeholder="Repetir-Password*"> 
+				<input name="nombres" id="nombres" type="text" placeholder="Nombres*"> 
+				<input name="apellidos" id="apellidos" type="text" placeholder="Apellidos">
 				<input name="correo" id="correo" type="email" placeholder="E-Mail*">
-				<input name="direccion" id="direccion" type="text"
-					placeholder="Direccion"> <input name="telefono"
-					id="telefono" type="text" placeholder="Telefono"> <input
-					type="submit" value="Registrar" id="submit">
+				<input name="direccion" id="direccion" type="text" placeholder="Direccion"> 
+				<input name="telefono" id="telefono" type="text" placeholder="Telefono"> 
+				<input type="submit" value="Registrar" id="submit">
 			</form>
 		</div>
 		<ul class="bg-bubbles">
