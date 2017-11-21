@@ -18,7 +18,6 @@ import clases.*;
  */
 @WebServlet("/camion")
 public class agregarCamion extends HttpServlet {
-	
 	private static final long serialVersionUID = 1L;
 	clases.camion camion = new clases.camion();
        
