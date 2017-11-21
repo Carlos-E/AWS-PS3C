@@ -29,24 +29,27 @@
 				<div class=module-content>
 					<div class=custom>
 						<ul class=top-address-bar>
+						
+						<!-- Innecesario -->
+						
 							<!-- <li class=jd-phone>
 								<i class="fa fa-mobile"></i>
 								<%
-									if (session.getAttribute("rol") == null) {
+									/* if (session.getAttribute("rol") == null) {
 										//response.sendError(400, "Acceso incorrecto"); //cambiar
 									} else {
 										out.print(usuario.getTelefono().toString());
-									}
+									} */
 								%>
 							</li>
 							<li class=jd-emailid>
 								<i class="fa fa-envelope"></i>
 								<%
-									if (session.getAttribute("rol") == null) {
+									/* if (session.getAttribute("rol") == null) {
 										//response.sendError(400, "Acceso incorrecto"); //cambiar
 									} else {
 										out.print(usuario.getCorreo().toString());
-									}
+									} */
 								%>
 							</li>  -->
 							<li class=jd-address>
