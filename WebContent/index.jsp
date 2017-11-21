@@ -57,13 +57,9 @@
 
 			</div>
 		</div>
-		
+
 		<jsp:include page="/footer.jsp" />
 
-	</div>
-
-	<!-- Footer -->
-	<div class="fondo">
 	</div>
 
 </body>
