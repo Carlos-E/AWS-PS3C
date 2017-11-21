@@ -34,14 +34,11 @@
 				</div>
 
 			</div>
-			
-
+      
 		</div>
 		<br />
 		<jsp:include page="/footer.jsp" />
-
 	</div>
-	
 
 </body>
 </html>
