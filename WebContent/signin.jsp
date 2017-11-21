@@ -5,6 +5,7 @@
 
 <head>
 
+<link rel="stylesheet" href="css/style-signin.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 <link rel="stylesheet" href="css/style-signin.css">
@@ -52,7 +53,6 @@
 	<script
 		src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 	<script src="js/index.js"></script>
-	
-</body>
+	</body>
 
 </html>
