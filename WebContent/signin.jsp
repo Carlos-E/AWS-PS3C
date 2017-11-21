@@ -4,8 +4,13 @@
 <html>
 
 <head>
+<<<<<<< HEAD
 
 <link rel="stylesheet" href="css/style-signin.css">
+=======
+<link rel="stylesheet" href="./css/style-signin.css">
+<script src="js/controlador.js" type="text/javascript"></script>
+>>>>>>> e0f7174987395a971d6b7effc2bbff04ed203782
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 <link rel="stylesheet" href="css/style-login.css">
@@ -15,6 +20,7 @@
 </head>
 
 <body>
+<<<<<<< HEAD
 
 	<div class="wrapper">
 		<div class="container">
@@ -53,4 +59,37 @@
 	<script src="js/index.js"></script>
 	</body>
 
+=======
+<div class="wrapper">
+	<div class="container">
+		<h1>Registro</h1>
+		<form name="form" class="form" action="signin" method="post">
+			<input name="usuario" id="usuario" type="text" placeholder="Nombre de Usuario*">
+			<input name="clave1" id="clave1" type="password" placeholder="Password*">
+			<input name="calve2" id="clave2" type="password" placeholder="Repetir-Password*">
+			<input name="nombres" id="nombres" type="text" placeholder="Nombres*">
+			<input name="apellidos" id="apellidos" type="text" placeholder="Apellidos">
+			<input name="correo" id="correo" type="email" placeholder="E-Mail*">
+			<input name="direccion" id="direccion" type="text" placeholder="Direccion">
+			<input name="telefono" id="telefono" type="text" placeholder="Telefono">
+			<input type="submit" value="Registrar" id="submit">
+		</form>
+	</div>
+	<ul class="bg-bubbles">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src="js/index.js"></script>
+</body>
+>>>>>>> e0f7174987395a971d6b7effc2bbff04ed203782
 </html>
