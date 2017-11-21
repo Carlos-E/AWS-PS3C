@@ -13,7 +13,6 @@
 <div class="wrapper">
 	<div class="container">
 		<h1>Registro</h1>
-		
 		<form name="form" class="form" action="signin" method="post">
 			<input name="usuario" id="usuario" type="text" placeholder="Nombre de Usuario*">
 			<input name="clave1" id="clave1" type="password" placeholder="Password*">
@@ -40,7 +39,6 @@
 	</ul>
 </div>
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
     <script src="js/index.js"></script>
 </body>
 </html>
