@@ -20,12 +20,13 @@ session.setAttribute("pagina", "Agregar Usuario");
 	<!--  Container de la Barra de navegacion -->
 	<jsp:include page="/navbar.jsp" />
 	<div class="fondo">
-	<br><br>
-	<div class="container">
-		<form id="form" name="form" action="/empleado" method="post"
-			class="form-horizontal">
+		<br>
+		<br>
+		<div class="container">
+			<form id="form" name="form" action="/empleado" method="post"
+				class="form-horizontal">
 
-			<%
+				<%
 				//Nombre de los campos del form
 				String[] inputs = { "usuario" };
 				com.logica.Dibujar.inputs(out, inputs);
@@ -34,12 +35,12 @@ session.setAttribute("pagina", "Agregar Usuario");
 				String[] inputs3 = { "nombre", "apellidos", "correo", "direccion", "telefono", "rol" };
 				com.logica.Dibujar.inputs(out, inputs3);
 			%>
-			<div class="col-sm-2"></div>
+				<div class="col-sm-2"></div>
 
-			<button type="submit" name="submit" class="btn btn-primary">Registrar</button>
-		</form>
-	</div>
-	<jsp:include page="/footer.jsp" />
+				<button type="submit" name="submit" class="btn btn-primary">Registrar</button>
+			</form>
+		</div>
+		<jsp:include page="/footer.jsp" />
 	</div>
 </body>
 </html>

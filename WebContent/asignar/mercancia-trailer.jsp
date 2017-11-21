@@ -19,69 +19,77 @@ session.setAttribute("pagina", "Asignar Mercancía a Trailer");
 	<!--  Container de la Barra de navegacion -->
 	<jsp:include page="/navbar.jsp" />
 	<!-- Contenido -->
-   <div class="fondo">
-   <br><br>
-	<div class="container">
-		<%@ page import="com.logica.*"%>
-		<%@ page import="java.util.ArrayList"%>
-		<%@ page import="clases.*"%>
-		<%
+	<div class="fondo">
+		<br>
+		<br>
+		<div class="container">
+			<%@ page import="com.logica.*"%>
+			<%@ page import="java.util.ArrayList"%>
+			<%@ page import="clases.*"%>
+			<%
 			ArrayList<trailer> listaTrailer = ControladorBD.escanearTabla("trailers");
 		%>
-		<%
+			<%
 			ArrayList<envio> listaEnvio = ControladorBD.escanearTabla("envios");
 		%>
-		<form id="form" name="form" class="form" action="/mercanciaATrailer"
-			method="post">
-			<table class="table table-bordered">
-				<tr>
-					<td>
-						<div id="contact-form">
-							<span>Trailer: </span> <select class="form-control" id="subject"
-								name="patente" tabindex="4">
-								<%
+			<form id="form" name="form" class="form" action="/mercanciaATrailer"
+				method="post">
+				<table class="table table-bordered">
+					<tr>
+						<td>
+							<div id="contact-form">
+								<span>Trailer: </span> <select class="form-control" id="subject"
+									name="patente" tabindex="4">
+									<%
 									for (int i = 0; i < listaTrailer.size(); i++) {
 								%>
-								<option
-									value="<%out.print(listaTrailer.get(i).getPatente());%>">
-									<%
+									<option
+										value="<%out.print(listaTrailer.get(i).getPatente());%>">
+										<%
 										out.print(listaTrailer.get(i).getPatente());
 									%>
-								</option>
-								<%
+									</option>
+									<%
 									}
 								%>
-							</select>
-						</div>
-					</td>
-					<td>
-						<div id="contact-form2">
-							<span>Mercancia: </span> <select class="form-control"
-								id="subject" name="mercancia" tabindex="4">
-								<%
+								</select>
+							</div>
+						</td>
+						<td>
+							<div id="contact-form2">
+								<span>Mercancia: </span> <select class="form-control"
+									id="subject" name="mercancia" tabindex="4">
+									<%
 									for (int i = 0; i < listaEnvio.size(); i++) {
 								%>
-								<option
-									value="<%out.print(listaEnvio.get(i).getUsuario() + " : " + listaEnvio.get(i).getFecha());%>">
-									<%
+									<option
+										value="<%out.print(listaEnvio.get(i).getUsuario() + " : " + listaEnvio.get(i).getFecha());%>">
+										<%
 										out.print(listaEnvio.get(i).getUsuario() + " : " + listaEnvio.get(i).getFecha());
 									%>
-								</option>
-								<%
+									</option>
+									<%
 									}
 								%>
-							</select>
-						</div>
-					</td>
-				</tr>
-			</table>
-			<!-- <div class="col-sm-2"></div>
+								</select>
+							</div>
+						</td>
+					</tr>
+				</table>
+				<!-- <div class="col-sm-2"></div>
 			 -->
-			<button name="submit" id="submit" type="submit"
-				class="btn btn-primary">Asignar</button>
-		</form>
+				<button name="submit" id="submit" type="submit"
+					class="btn btn-primary">Asignar</button>
+			</form>
+			<br>
+		</div>
 		<br>
-		</div><br><br><br><br><br><br><br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
 		<jsp:include page="/footer.jsp" />
 	</div>
 </body>

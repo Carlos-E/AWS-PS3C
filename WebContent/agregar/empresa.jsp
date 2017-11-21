@@ -20,22 +20,23 @@ session.setAttribute("pagina", "Agregar Empresa");
 	<!--  Container de la Barra de navegacion -->
 	<jsp:include page="/navbar.jsp" />
 	<div class="fondo">
-	<div class="container">
-	<br><br>
-		<form id="form" name="form" action="/empresa" method="post"
-			class="form-horizontal">
-			<%
+		<div class="container">
+			<br>
+			<br>
+			<form id="form" name="form" action="/empresa" method="post"
+				class="form-horizontal">
+				<%
 				//Nombre de los campos del form
 				String[] inputs = { "nombre", "correo", "nit", "rut", "telefono", "direccion" };
 				com.logica.Dibujar.inputs(out, inputs);
 			%>
-			<div class="col-sm-2"></div>
-			<button type="submit" name="submit" id="submit"
-				class="btn btn-primary">Registrar</button>
+				<div class="col-sm-2"></div>
+				<button type="submit" name="submit" id="submit"
+					class="btn btn-primary">Registrar</button>
 
-		</form>
-	</div>
-	<jsp:include page="/footer.jsp" />
+			</form>
+		</div>
+		<jsp:include page="/footer.jsp" />
 	</div>
 </body>
 </html>

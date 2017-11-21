@@ -20,7 +20,8 @@ session.setAttribute("pagina", "Asignar Ruta");
 	<jsp:include page="/navbar.jsp" />
 	<!-- Contenido -->
 	<div class="fondo">
-	<br><br>
+		<br>
+		<br>
 		<div class="conter">
 			<%@ page import="com.logica.*"%>
 			<%@ page import="java.util.ArrayList"%>

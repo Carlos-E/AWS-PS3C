@@ -19,7 +19,8 @@
 	<!--  Container de la Barra de navegacion -->
 	<jsp:include page="/navbar.jsp" />
 	<!-- Contenido -->
-	<div class="fondo"> <br> <br>
+	<div class="fondo">
+		<br> <br>
 		<div class="container">
 
 			<form id="form" name="form" action="/reportarProblema" method="post"

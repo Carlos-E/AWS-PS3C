@@ -21,13 +21,14 @@ session.setAttribute("pagina", "Agregar Trailer");
 	<!--  Container de la Barra de navegacion -->
 	<jsp:include page="/navbar.jsp" />
 	<div class="fondo">
-	<br><br>
-	<div class="container">
-		<form id="form" name="form" action="/trailer" method="post"
-			class="form-horizontal">
-			<%@ page import="com.logica.ControladorBD"%>
-			<%@ page import="clases.*"%>
-			<%
+		<br>
+		<br>
+		<div class="container">
+			<form id="form" name="form" action="/trailer" method="post"
+				class="form-horizontal">
+				<%@ page import="com.logica.ControladorBD"%>
+				<%@ page import="clases.*"%>
+				<%
 				ArrayList<empresa> listaEmpresas = ControladorBD.escanearTabla("empresas");
 				ArrayList<camion> listaCamiones = ControladorBD.escanearTabla("camiones");
 
@@ -35,12 +36,12 @@ session.setAttribute("pagina", "Agregar Trailer");
 				String[] inputs = {"patente", "tipo", "capacidad", "origen", "destino"};
 				com.logica.Dibujar.inputs(out, inputs);
 			%>
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="destino">Camion:</label>
-				<div class="col-sm-9">
-					<select class="form-control" name="camion" id="camion">
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="destino">Camion:</label>
+					<div class="col-sm-9">
+						<select class="form-control" name="camion" id="camion">
 
-						<%
+							<%
 							for (int i = 0; i < listaCamiones.size(); i++) {
 								if (!ControladorBD.estaOcupado("null", listaCamiones.get(i).getPlaca())
 										&& listaCamiones.get(i).getTipo().equals("remolque")) {
@@ -48,24 +49,24 @@ session.setAttribute("pagina", "Agregar Trailer");
 											"Asignado");
 						%>
 
-						<option value="<%out.print(listaCamiones.get(i).getPlaca());%>">
-							<%
+							<option value="<%out.print(listaCamiones.get(i).getPlaca());%>">
+								<%
 								out.print(listaCamiones.get(i).getPlaca());
 							%> conducido por:
-							<%
+								<%
 								out.print(listaCamiones.get(i).getUsuario());
 							%>
-						</option>
-						<%
+							</option>
+							<%
 							}
 							}
 						%>
-					</select>
+						</select>
+					</div>
 				</div>
-			</div>
-			<script type="text/javascript"
-				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwUOXR0TZ7pyQhLJAuA6_U6Ffg92YMkLk&libraries=places"></script>
-			<script type="text/javascript">
+				<script type="text/javascript"
+					src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwUOXR0TZ7pyQhLJAuA6_U6Ffg92YMkLk&libraries=places"></script>
+				<script type="text/javascript">
 				google.maps.event.addDomListener(window, 'load', intilize);
 				function intilize() {
 					var autocomplete = new google.maps.places.Autocomplete(
@@ -89,7 +90,7 @@ session.setAttribute("pagina", "Agregar Trailer");
 									});
 				};
 			</script>
-			<script type="text/javascript">
+				<script type="text/javascript">
 				google.maps.event.addDomListener(window, 'load', intilize);
 				function intilize() {
 					var autocomplete = new google.maps.places.Autocomplete(
@@ -113,41 +114,41 @@ session.setAttribute("pagina", "Agregar Trailer");
 									});
 				};
 			</script>
-			<input type="text" id="longitud_Destino" name="longitud_Destino"
-				style="display: none"> <input type="text"
-				id="latitud_Destino" name="latitud_Destino" style="display: none">
-			<input type="text" id="latitud_Origen" name="latitud_Origen"
-				style="display: none"> <input type="text"
-				id="longitud_Origen" name="longitud_Origen" style="display: none">
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="destino">Empresa:</label>
-				<div class="col-sm-9">
-					<select class="form-control" name="empresa" id="empresa">
+				<input type="text" id="longitud_Destino" name="longitud_Destino"
+					style="display: none"> <input type="text"
+					id="latitud_Destino" name="latitud_Destino" style="display: none">
+				<input type="text" id="latitud_Origen" name="latitud_Origen"
+					style="display: none"> <input type="text"
+					id="longitud_Origen" name="longitud_Origen" style="display: none">
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="destino">Empresa:</label>
+					<div class="col-sm-9">
+						<select class="form-control" name="empresa" id="empresa">
 
-						<%
+							<%
 							for (int i = 0; i < listaEmpresas.size(); i++) {
 						%>
 
-						<option value="<%out.print(listaEmpresas.get(i).getNit());%>">
-							<%
+							<option value="<%out.print(listaEmpresas.get(i).getNit());%>">
+								<%
 								out.print(listaEmpresas.get(i).getNombre());
 							%>
-						</option>
+							</option>
 
-						<%
+							<%
 							}
 						%>
-					</select>
+						</select>
+					</div>
 				</div>
-			</div>
 
-			<div class="col-sm-2"></div>
-			<button type="submit" name="submit" id="submit"
-				class="btn btn-primary">Registrar</button>
+				<div class="col-sm-2"></div>
+				<button type="submit" name="submit" id="submit"
+					class="btn btn-primary">Registrar</button>
 
-		</form>
-	</div>
-	<jsp:include page="/footer.jsp" />
+			</form>
+		</div>
+		<jsp:include page="/footer.jsp" />
 	</div>
 </body>
 </html>
