@@ -11,9 +11,10 @@ session.setAttribute("pagina", "PROTORIPO SOFTWARE DE CARGA COMPARTIDA");
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>PS3C</title>
-<!-- Comment -->
+
 <jsp:include page="/head.jsp" />
+<title>PS3C</title>
+
 </head>
 <body>
 	<!--  Barra de navegacion -->
