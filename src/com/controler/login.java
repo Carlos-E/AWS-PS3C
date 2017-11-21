@@ -47,8 +47,8 @@ public class login extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// doGet(request, response);
-		String uname = request.getParameter("uname");
-		String pass = request.getParameter("pass");
+		String uname = request.getParameter("username");
+		String pass = request.getParameter("password");
 		if (ControladorBD.validarLogin(uname, pass)) {
 			HttpSession session = request.getSession();
 			session.setAttribute("username", uname);
