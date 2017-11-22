@@ -107,7 +107,7 @@
 							<a href="#">Listar</a>
 						</li>
 						<li>
-							<a href="#">Crear</a>
+							<a href="/agregar/camion.jsp">Crear</a>
 						</li>
 						<li class="dropdown">
 							<a href="#">
