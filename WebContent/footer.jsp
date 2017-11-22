@@ -14,7 +14,7 @@
 		<div class="col-md-3 pull-left">
 			<p class="navbar-text  " >
 				© 2017 - Sitio construido por
-				<a href="https://www.linkedin.com/in/luis-puche/" target="_blank">Luis Puche</a>
+				<a href="https://www.linkedin.com/in/luis-puche/" target="_blank">Luis A. Puche</a>
 				y
 				<a href="https://www.linkedin.com/in/carlos-e-perez-meza/" target="_blank">Carlos E. Perez</a>, 
 				esta pagina solo tiene fines academicos.
