@@ -31,135 +31,259 @@
 			<ul class="nav navbar-nav">
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-						Dropdown
+						Env&iacuteo
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu dropdownhover-bottom" role="menu" style="">
 						<li>
-							<a href="#">Action</a>
+							<a href="#">Listar</a>
 						</li>
 						<li>
-							<a href="#">Another action</a>
+							<a href="#">Crear</a>
 						</li>
-						<li>
-							<a href="#">Another action</a>
-						</li>
-						<li>
-							<a href="#">Something else here</a>
+						<li class="dropdown">
+							<a href="#">
+								Actualizar
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu dropdownhover-right">
+								<li>
+									<a href="#">Modificar</a>
+								</li>
+								<li>
+									<a href="#">Remplazar</a>
+								</li>
+							</ul>
 						</li>
 						<li class="divider"></li>
 						<li>
-							<a href="#">Separated link</a>
-						</li>
-						<li class="divider"></li>
-						<li>
-							<a href="#">One more separated link</a>
+							<a href="#">Borrar</a>
 						</li>
 					</ul>
 				</li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-						Dropdown 1
+						Usuarios
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu dropdownhover-bottom" role="menu" style="">
 						<li>
-							<a href="#">Action</a>
+							<a href="#">Listar</a>
 						</li>
 						<li>
-							<a href="#">Another action</a>
+							<a href="#">Crear</a>
 						</li>
 						<li class="dropdown">
 							<a href="#">
-								Another dropdown
+								Actualizar
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu dropdownhover-right">
 								<li>
-									<a href="#">Action</a>
+									<a href="#">Modificar</a>
 								</li>
 								<li>
-									<a href="#">Another action</a>
-								</li>
-								<li>
-									<a href="#">Something else here</a>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<a href="#">Separated link</a>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<a href="#">One more separated link</a>
+									<a href="#">Remplazar</a>
 								</li>
 							</ul>
 						</li>
-						<li class="dropdown">
-							<a href="#">
-								Another dropdown 2
-								<span class="caret"></span>
-							</a>
-							<ul class="dropdown-menu">
-								<li>
-									<a href="#">Action</a>
-								</li>
-								<li>
-									<a href="#">Another action</a>
-								</li>
-								<li>
-									<a href="#">Another action</a>
-								</li>
-								<li class="dropdown">
-									<a href="#">
-										Another dropdown
-										<span class="caret"></span>
-									</a>
-									<ul class="dropdown-menu">
-										<li>
-											<a href="#">Action</a>
-										</li>
-										<li>
-											<a href="#">Another action</a>
-										</li>
-										<li>
-											<a href="#">Something else here</a>
-										</li>
-										<li class="divider"></li>
-										<li>
-											<a href="#">Separated link</a>
-										</li>
-										<li class="divider"></li>
-										<li>
-											<a href="#">One more separated link</a>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<a href="#">Something else here</a>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<a href="#">Separated link</a>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<a href="#">One more separated link</a>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<a href="#">Something else here</a>
-						</li>
 						<li class="divider"></li>
 						<li>
-							<a href="#">Separated link</a>
-						</li>
-						<li class="divider"></li>
-						<li>
-							<a href="#">One more separated link</a>
+							<a href="#">Borrar</a>
 						</li>
 					</ul>
 				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+						Camiones
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu dropdownhover-bottom" role="menu" style="">
+						<li>
+							<a href="#">Listar</a>
+						</li>
+						<li>
+							<a href="#">Crear</a>
+						</li>
+						<li class="dropdown">
+							<a href="#">
+								Actualizar
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu dropdownhover-right">
+								<li>
+									<a href="#">Modificar</a>
+								</li>
+								<li>
+									<a href="#">Asignar Ruta</a>
+								</li>
+								<li>
+									<a href="#">Remplazar</a>
+								</li>
+							</ul>
+						</li>
+						<li class="divider"></li>
+						<li>
+							<a href="#">Borrar</a>
+						</li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+						Traileres
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu dropdownhover-bottom" role="menu" style="">
+						<li>
+							<a href="#">Listar</a>
+						</li>
+						<li>
+							<a href="#">Crear</a>
+						</li>
+						<li class="dropdown">
+							<a href="#">
+								Actualizar
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu dropdownhover-right">
+								<li>
+									<a href="#">Modificar</a>
+								</li>
+								<li>
+									<a href="#">Asignar Camion</a>
+								</li>
+								<li>
+									<a href="#">Remplazar</a>
+								</li>
+							</ul>
+						</li>
+						<li class="divider"></li>
+						<li>
+							<a href="#">Borrar</a>
+						</li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+						Traileres
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu dropdownhover-bottom" role="menu" style="">
+						<li>
+							<a href="#">Listar</a>
+						</li>
+						<li>
+							<a href="#">Crear</a>
+						</li>
+						<li class="dropdown">
+							<a href="#">
+								Actualizar
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu dropdownhover-right">
+								<li>
+									<a href="#">Modificar</a>
+								</li>
+								<li>
+									<a href="#">Asignar Camion</a>
+								</li>
+								<li>
+									<a href="#">Remplazar</a>
+								</li>
+							</ul>
+						</li>
+						<li class="divider"></li>
+						<li>
+							<a href="#">Borrar</a>
+						</li>
+					</ul>
+				</li><li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+						Empresas
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu dropdownhover-bottom" role="menu" style="">
+						<li>
+							<a href="#">Listar</a>
+						</li>
+						<li>
+							<a href="#">Crear</a>
+						</li>
+						<li class="dropdown">
+							<a href="#">
+								Actualizar
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu dropdownhover-right">
+								<li>
+									<a href="#">Modificar</a>
+								</li>
+								<li>
+									<a href="#">Remplazar</a>
+								</li>
+							</ul>
+						</li>
+						<li class="divider"></li>
+						<li>
+							<a href="#">Borrar</a>
+						</li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+						Gestion
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu dropdownhover-bottom" role="menu" style="">
+						<li class="dropdown">
+							<a href="#">
+								Reportes
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu dropdownhover-right">
+								<li>
+									<a href="#">Generar</a>
+								</li>
+								<li>
+									<a href="#">Listar</a>
+								</li>
+							</ul>
+						</li>
+						<li class="divider"></li>
+						<li class="dropdown">
+							<a href="#">
+								Chequeo de mercancia
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu dropdownhover-right">
+								<li>
+									<a href="#">Chequear Carga</a>
+								</li>
+								<li>
+									<a href="#">Chequear Descarga</a>
+								</li>
+							</ul>
+						</li>
+						<li class="divider"></li>
+						<li class="dropdown">
+							<a href="#">
+								Asignaciones
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu dropdownhover-right">
+								<li>
+									<a href="#">Asignar Camion</a>
+								</li>
+								<li>
+									<a href="#">Asignar Trailer</a>
+								</li>
+							</ul>
+						</li>
+						<li class="divider"></li>
+					</ul>
+				</li>
+				
+
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 						Dropdown 2
