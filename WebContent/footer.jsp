@@ -14,13 +14,9 @@
 				© 2017 - Sitio construido por
 				<a href="https://www.linkedin.com/in/luis-puche/" target="_blank">Luis Puche</a>
 				y
-				<a href="https://www.linkedin.com/in/carlos-e-perez-meza/" target="_blank">Carlos Perez</a>
+				<a href="https://www.linkedin.com/in/carlos-e-perez-meza/" target="_blank">Carlos E. Perez</a>
 			</p>
 
-			<a href="" class="navbar-btn btn-danger btn pull-right">
-				<span class="glyphicon glyphicon-log-out"></span>
-				  Cerrar Sesi&oacuten
-			</a>
 		</div>
 
 		<br />
