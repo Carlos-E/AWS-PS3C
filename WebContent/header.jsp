@@ -1,5 +1,5 @@
 <div>
-	<h3>
+	<h2 style="color:rgb(157, 157, 157);">
 		<%
 			out.print(session.getAttribute("pagina").toString());
 		%>
@@ -13,5 +13,5 @@
 			%>
 		</small>
 		 -->
-	</h3>
+	</h2>
 </div>
