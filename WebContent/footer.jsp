@@ -16,6 +16,12 @@
 				y
 				<a href="https://www.linkedin.com/in/carlos-e-perez-meza/" target="_blank">Carlos E. Perez</a>
 			</p>
+			
+			
+			<p class="navbar-text pull-right">
+				Esta pagina solo tiene fines academicos, 
+				<a href="https://www.unicartagena.edu.co/" target="_blank">Universidad de Cartagena</a>
+			</p>
 
 		</div>
 
