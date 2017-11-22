@@ -165,40 +165,6 @@
 				</li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-						Traileres
-						<span class="caret"></span>
-					</a>
-					<ul class="dropdown-menu dropdownhover-bottom" role="menu" style="">
-						<li>
-							<a href="#">Listar</a>
-						</li>
-						<li>
-							<a href="#">Crear</a>
-						</li>
-						<li class="dropdown">
-							<a href="#">
-								Actualizar
-								<span class="caret"></span>
-							</a>
-							<ul class="dropdown-menu dropdownhover-right">
-								<li>
-									<a href="#">Modificar</a>
-								</li>
-								<li>
-									<a href="#">Asignar Camion</a>
-								</li>
-								<li>
-									<a href="#">Remplazar</a>
-								</li>
-							</ul>
-						</li>
-						<li class="divider"></li>
-						<li>
-							<a href="#">Borrar</a>
-						</li>
-					</ul>
-				</li><li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 						Empresas
 						<span class="caret"></span>
 					</a>
