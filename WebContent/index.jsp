@@ -50,10 +50,12 @@
 	</div>
 
 	<br />
+	
+	<div class="row">
 
+		<jsp:include page="/footer.jsp" />
 
-	<jsp:include page="/footer.jsp" />
-
+	</div>
 
 </body>
 </html>
