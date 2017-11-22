@@ -23,9 +23,7 @@
 	<!-- Header -->
 	<div class="container-fluid">
 		<jsp:include page="/header.jsp" />
-	</div>
 	<!--  Barra de navegacion -->
-	<div class="container-fluid">
 		<jsp:include page="/navbar.jsp" />
 	</div>
 
