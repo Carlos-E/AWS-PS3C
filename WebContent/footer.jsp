@@ -15,6 +15,7 @@
 
 				<div class="col-md-7">
 					<br>
+
 					<p class="navbar-text">
 						© 2017 - Sitio construido por
 						<a href="https://www.linkedin.com/in/luis-puche/" target="_blank">Luis A. Puche</a>
@@ -26,6 +27,7 @@
 				</div>
 
 				<div class="col-md-5">
+
 					<a class="navbar-text pull-right" href="https://www.unicartagena.edu.co/" target="_blank">
 						<img src="https://www.unicartagena.edu.co/templates/ja_university_t3/images/logo.png" height="70" width="150" />
 					</a>
