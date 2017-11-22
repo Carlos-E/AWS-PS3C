@@ -11,6 +11,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<jsp:include page="/head.jsp" />
 <title>Mapa</title>
 
 <jsp:include page="/head.jsp" />
@@ -34,15 +35,24 @@ html, body {
 
 </head>
 
-<body>
+<body class="fondo">
 
 
+	
+	
+	
+	
+	
+	<div >
 	<!-- Header  -->
+	<div class="container-fluid">
+	<jsp:include page="/header.jsp" />
+	</div>
 	<!--  Container de la Barra de navegacion -->
+	<div class="container-fluid">
 	<jsp:include page="/navbar.jsp" />
+	</div>
 	<!-- Container del mapa -->
-	<div class="fondo">
-		<br> <br>
 		<div class="container">
 			<div class="embed-responsive embed-responsive-16by9">
 				<div id="map" class="embed-responsive-item"
@@ -66,7 +76,7 @@ html, body {
 				class="btn btn-primary">Marcadores</button>
 
 		</div>
-		<jsp:include page="/footer.jsp" />
+		
 		<!-- JavaScript del mapa -->
 		<script>
 			$.getJSON('/mapeoDeMercancia', function(data) {
@@ -94,6 +104,9 @@ html, body {
 			
 		</script>
 
+	</div>
+	<div class="container-fluid">
+	<jsp:include page="/footer.jsp" />
 	</div>
 </body>
 </html>
