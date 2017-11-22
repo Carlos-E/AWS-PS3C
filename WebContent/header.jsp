@@ -1,9 +1,9 @@
-<div class="page-header">
-	<h1>
+<div>
+	<h3>
 		<%
 			out.print(session.getAttribute("pagina").toString());
 		%>
-		<small>
+		<!--  <small>
 			<%
 				if (session.getAttribute("rol") == null) {
 					//response.sendError(400, "Acceso incorrecto"); //cambiar
@@ -12,5 +12,6 @@
 				}
 			%>
 		</small>
-	</h1>
+		 -->
+	</h3>
 </div>
