@@ -46,11 +46,14 @@
 
 		</div>
 
-		<br />
-
-		<jsp:include page="/footer.jsp" />
 
 	</div>
+
+	<br />
+
+
+	<jsp:include page="/footer.jsp" />
+
 
 </body>
 </html>
