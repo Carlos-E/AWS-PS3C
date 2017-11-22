@@ -11,7 +11,9 @@
 
 		<div class="container">
 			<p class="navbar-text pull-left">
-				© 2017 - Sitio construido por Luis Puche y
+				© 2017 - Sitio construido por
+				<a href="https://www.linkedin.com/in/luis-puche/" target="_blank">Luis Puche</a>
+				y
 				<a href="https://www.linkedin.com/in/carlos-e-perez-meza/" target="_blank">Carlos Perez</a>
 			</p>
 
@@ -20,6 +22,7 @@
 				  Cerrar Sesi&oacuten
 			</a>
 		</div>
+
 		<br />
 
 	</div>
