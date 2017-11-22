@@ -18,11 +18,19 @@
 
 <body>
 
+	<div class="fondo">
+
+	<!-- Header -->
+	<div class="container-fluid">
+		<jsp:include page="/header.jsp" />
+	</div>
 	<!--  Barra de navegacion -->
-	<jsp:include page="/navbar.jsp" />
+	<div class="container-fluid">
+		<jsp:include page="/navbar.jsp" />
+	</div>
+
 
 	<!-- Carrusel o pasador de imagenes    -->
-	<div class="fondo">
 		<br />
 
 		<div class="container">
@@ -34,12 +42,13 @@
 				</div>
 
 			</div>
-      
+
 		</div>
 		<br />
+		
 		<jsp:include page="/footer.jsp" />
+		
 	</div>
-
 
 </body>
 </html>

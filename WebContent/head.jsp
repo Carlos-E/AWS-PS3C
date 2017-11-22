@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="java.io.*,java.util.*"%>
 <%
 	if (session.getAttribute("rol") == null) {
@@ -20,9 +19,24 @@
 <!-- CSS modificado del Bootstrap para la navbar  -->
 <link rel="stylesheet" href="/css/custom.bootstrap.css">
 
+<!-- Bootstrap Dropdown Hover CSS -->
+<link href="css/animate.min.css" rel="stylesheet">
+<link href="css/bootstrap-dropdownhover.min.css" rel="stylesheet">
+
+<!-- 
 <link rel=stylesheet href="/css/font-awesome.css">
 <link rel=stylesheet href="/css/font-awesome.min.css">
 <link rel=stylesheet href="/css/stolen.css">
+ -->
 
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Bootstrap Dropdown Hover JS -->
+    <script src="js/bootstrap-dropdownhover.min.js"></script>
+
+<!-- 
 <script src="/js/jquery/3.1.1/jquery.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js"></script> -->

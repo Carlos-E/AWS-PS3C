@@ -11,26 +11,18 @@
 <html>
 <head>
 
-<jsp:include page="/head2.jsp" />
+<jsp:include page="/head.jsp" />
 <title>PS3C</title>
 
 </head>
 
 <body>
 
-	<div class="fondo">
-
-	<!-- Header -->
-	<div class="container-fluid">
-		<jsp:include page="/header.jsp" />
-	</div>
 	<!--  Barra de navegacion -->
-	<div class="container-fluid">
-		<jsp:include page="/navbar2.jsp" />
-	</div>
-
+	<jsp:include page="/navbar.jsp" />
 
 	<!-- Carrusel o pasador de imagenes    -->
+	<div class="fondo">
 		<br />
 
 		<div class="container">
@@ -42,13 +34,12 @@
 				</div>
 
 			</div>
-
+      
 		</div>
 		<br />
-		<jsp:include page="/footer2.jsp" />
-		
-		
+		<jsp:include page="/footer.jsp" />
 	</div>
+
 
 </body>
 </html>
