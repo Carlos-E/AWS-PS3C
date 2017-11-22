@@ -34,15 +34,19 @@ html, body {
 
 </head>
 
-<body>
+<body class="fondo">
 
 
 	<!-- Header  -->
 	<!--  Container de la Barra de navegacion -->
-	<jsp:include page="/navbar.jsp" />
+	
 	<!-- Container del mapa -->
-	<div class="fondo">
-		<br> <br>
+	
+	<div >
+	<jsp:include page="/head.jsp" />
+	<jsp:include page="/header.jsp" />
+	<jsp:include page="/navbar.jsp" />
+	
 		<div class="container">
 			<div class="embed-responsive embed-responsive-16by9">
 				<div id="map" class="embed-responsive-item"
@@ -66,7 +70,7 @@ html, body {
 				class="btn btn-primary">Marcadores</button>
 
 		</div>
-		<jsp:include page="/footer.jsp" />
+		
 		<!-- JavaScript del mapa -->
 		<script>
 			$.getJSON('/mapeoDeMercancia', function(data) {
@@ -95,5 +99,6 @@ html, body {
 		</script>
 
 	</div>
+	<jsp:include page="/footer.jsp" />
 </body>
 </html>
