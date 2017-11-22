@@ -252,14 +252,6 @@
 					</ul>
 				</li>
 
-				<li class="navbar-brand">
-					<a href="/index.jsp">
-						<span class="glyphicon glyphicon-globe"></span>
-					</a>
-				</li>
-
-
-
 				<!-- 
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -287,6 +279,14 @@
 					</ul>
 				</li>
 				 -->
+
+				<!-- MAPA -->
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle">
+						<span class="glyphicon glyphicon-globe"></span>
+					</a>
+				</li>
+
 			</ul>
 			<!-- 
 			<ul class="nav navbar-nav navbar-right">
