@@ -5,7 +5,6 @@
 <title>Snippet - Bootsnipp.com</title>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
 <link href="/css/style-form.css" rel="stylesheet">
-
 </head>
 <body style="">
 
