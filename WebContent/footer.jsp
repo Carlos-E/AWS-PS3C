@@ -1,6 +1,6 @@
 <style>
 .navbar.navbar-inverse.navbar-fixed-bottom {
-	background: rgba(0, 0, 0, 0.75);
+	background: rgba(0, 0, 0, 0.65);
 }
 </style>
 
