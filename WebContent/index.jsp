@@ -39,7 +39,7 @@
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner" role="listbox">
 				<div class="item active">
-					<img src="http://cemaplast.com/mantenimiento.jpg" style="width: 500px; height: 400px;">
+					<img src="http://ns2.delva.cl/sitiomantenimiento.png" style="width: 500px; height: 400px;">
 				</div>
 
 			</div>
@@ -49,14 +49,6 @@
 		<br />
 
 		<jsp:include page="/footer.jsp" />
-		
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
 
 	</div>
 

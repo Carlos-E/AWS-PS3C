@@ -15,7 +15,7 @@
 
 <nav class="navbar navbar-inverse" role="navigation">
 	<div class="container-fluid">
-	
+
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-animations">
@@ -31,7 +31,7 @@
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-animations" data-hover="dropdown" data-animations="pulse fadeInRight fadeInUp fadeInLeft">
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-animations" data-hover="dropdown" data-animations="pulse fadeInUp pulse fadeInUp">
 			<ul class="nav navbar-nav">
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -249,9 +249,15 @@
 								</li>
 							</ul>
 						</li>
-						<li class="divider"></li>
 					</ul>
 				</li>
+
+				<li class="navbar-brand">
+					<a href="/index.jsp">
+						<span class="glyphicon glyphicon-globe"></span>
+					</a>
+				</li>
+
 
 
 				<!-- 
