@@ -47,8 +47,14 @@
 		</div>
 
 		<br />
-		<jsp:include page="/footer.jsp" />
 
+		<jsp:include page="/footer.jsp" />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+		
 	</div>
 
 </body>
