@@ -5,7 +5,7 @@
 		response.sendError(400, "Acceso incorrecto"); //cambiar
 		//response.sendRedirect("/login.jsp");
 	}
-	session.setAttribute("pagina", "PROTORIPO SOFTWARE DE CARGA COMPARTIDA");
+	session.setAttribute("pagina", "PROTOTIPO SOFTWARE DE CARGA COMPARTIDA");
 %>
 <!DOCTYPE html>
 <html>
