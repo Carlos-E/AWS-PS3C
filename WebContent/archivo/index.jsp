@@ -7,7 +7,7 @@
 	}
 	session.setAttribute("pagina", "PROTORIPO SOFTWARE DE CARGA COMPARTIDA");
 %>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 
@@ -16,22 +16,13 @@
 
 </head>
 
-<body class="fondo">
+<body>
 
-	<div>
+	<!--  Barra de navegacion -->
+	<jsp:include page="/navbar.jsp" />
 
-		<!-- Header -->
-		<div class="container-fluid">
-			<jsp:include page="/header.jsp" />
-		</div>
-
-		<!--  Barra de navegacion -->
-		<div class="container-fluid">
-			<jsp:include page="/navbar.jsp" />
-		</div>
-
-
-		<!-- Carrusel o pasador de imagenes    -->
+	<!-- Carrusel o pasador de imagenes    -->
+	<div class="fondo">
 		<br />
 
 		<div class="container">
@@ -43,22 +34,12 @@
 				</div>
 
 			</div>
-
+      
 		</div>
-
 		<br />
-
 		<jsp:include page="/footer.jsp" />
-		
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-
 	</div>
+
 
 </body>
 </html>

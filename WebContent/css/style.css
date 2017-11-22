@@ -1,9 +1,6 @@
 @CHARSET "ISO-8859-1";
 
-body {
-	background-repeat: no-repeat;
-	background-size: 100%;
-}
+
 
 .carousel-inner>.item>img, .carousel-inner>.item>a>img {
 	width: 70%;
@@ -25,15 +22,11 @@ body {
 }
 
 .fondo {
-	background-image: url("../img/transporte-de-carga.jpg");
-	background-repeat: no-repeat;
-	background-position: top;
-	background-size: 100%;
-	margin-top: -20px; /* Mitad de la altura. */
-	margin: 0px;
-	padding: 0px;
-	width: 100%;
-	height: 100%;
+	background: url(http://i.imgur.com/GHr12sH.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .titulo {
