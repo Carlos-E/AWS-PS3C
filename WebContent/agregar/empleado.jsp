@@ -15,11 +15,16 @@ session.setAttribute("pagina", "Agregar Usuario");
 <jsp:include page="/head.jsp" />
 
 </head>
-<body>
+<body  class="fondo">
+
 	<!-- Header  -->
+	<div class="container-fluid">
+	<jsp:include page="/header.jsp" />
+	</div>
 	<!--  Container de la Barra de navegacion -->
+	<div class="container-fluid">
 	<jsp:include page="/navbar.jsp" />
-	<div class="fondo">
+	</div>
 		<br>
 		<br>
 		<div class="container">
@@ -39,8 +44,11 @@ session.setAttribute("pagina", "Agregar Usuario");
 
 				<button type="submit" name="submit" class="btn btn-primary">Registrar</button>
 			</form>
-		</div>
-		<jsp:include page="/footer.jsp" />
+
 	</div>
+		<div class="container"></div>
+	<br><br><br><br><br><br><br>
+
+	<jsp:include page="/footer.jsp" />
 </body>
 </html>
