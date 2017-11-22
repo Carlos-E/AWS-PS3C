@@ -42,13 +42,10 @@ session.setAttribute("pagina", "Agregar Usuario");
 
 				<button type="submit" name="submit" class="btn btn-primary">Registrar</button>
 			</form>
-			<div class="container-fluid">
-			<jsp:include page="/footer.jsp" />
-			</div>
 	</div>
-		
+	<jsp:include page="/footer.jsp" />	
 
 	
-	
+	<br><br><br><br><br><br><br>
 </body>
 </html>
