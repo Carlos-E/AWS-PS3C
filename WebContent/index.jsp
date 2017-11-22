@@ -16,9 +16,9 @@
 
 </head>
 
-<body>
+<body class="fondo">
 
-	<div class="fondo">
+	<div>
 
 		<!-- Header -->
 		<div class="container-fluid">
