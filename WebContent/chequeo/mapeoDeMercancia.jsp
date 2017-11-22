@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="java.io.*,java.util.*"%>
 <%
 	int i = 0;
@@ -37,26 +36,21 @@ html, body {
 
 <body class="fondo">
 
-
-	
-	
-	
-	
-	
-	<div >
 	<!-- Header  -->
 	<div class="container-fluid">
-	<jsp:include page="/header.jsp" />
+		<jsp:include page="/header.jsp" />
 	</div>
+
 	<!--  Container de la Barra de navegacion -->
-	<div class="container-fluid">
 	<jsp:include page="/navbar.jsp" />
-	</div>
+
+
 	<!-- Container del mapa -->
-		<div class="container">
+	<div class="container-fluid">
+
+		<div class="container-fluid">
 			<div class="embed-responsive embed-responsive-16by9">
-				<div id="map" class="embed-responsive-item"
-					style="border: 1px solid black"></div>
+				<div id="map" class="embed-responsive-item" style="border: 1px solid black"></div>
 			</div>
 
 		</div>
@@ -66,47 +60,44 @@ html, body {
 		<!-- Container de los botones -->
 		<div class="container">
 
-			<button id="botonlocalizar" onclick="localizar()"
-				class="btn btn-primary">Localizarte</button>
+			<button id="botonlocalizar" onclick="localizar()" class="btn btn-primary">Localizarte</button>
 
 		</div>
 		<div class="container">
 
-			<button id="botonlocalizar" onclick="ponerMarcadores()"
-				class="btn btn-primary">Marcadores</button>
+			<button id="botonlocalizar" onclick="ponerMarcadores()" class="btn btn-primary">Marcadores</button>
 
 		</div>
-		
-		<!-- JavaScript del mapa -->
-		<script>
+
+	</div>
+
+	<!-- Footer -->
+	<jsp:include page="/footer.jsp" />
+
+
+	<!-- JavaScript del mapa -->
+	<script>
+		$.getJSON('/mapeoDeMercancia', function(data) {
+			for (var i = 0, len = data.length; i < len; i++) {
+				console.log(data[i]);
+			}
+			ponerMarcadores(data);
+		});
+		setInterval(function() {
 			$.getJSON('/mapeoDeMercancia', function(data) {
 				for (var i = 0, len = data.length; i < len; i++) {
 					console.log(data[i]);
 				}
 				ponerMarcadores(data);
 			});
-			setInterval(function() {
-				$.getJSON('/mapeoDeMercancia', function(data) {
-					for (var i = 0, len = data.length; i < len; i++) {
-						console.log(data[i]);
-					}
-					ponerMarcadores(data);
-				});
-			}, 5000);
-		</script>
+		}, 5000);
+	</script>
 
-		<script src="/js/map.js">
-			
-		</script>
+	<script src="/js/map.js">	
+	</script>
 
-		<script async defer
-			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwUOXR0TZ7pyQhLJAuA6_U6Ffg92YMkLk&callback=initMap">
-			
-		</script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwUOXR0TZ7pyQhLJAuA6_U6Ffg92YMkLk&callback=initMap">
+	</script>
 
-	</div>
-	<div class="container-fluid">
-	<jsp:include page="/footer.jsp" />
-	</div>
 </body>
 </html>

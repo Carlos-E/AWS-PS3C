@@ -18,7 +18,6 @@
 
 <body class="fondo">
 
-	<div>
 
 		<!-- Header -->
 		<div class="container-fluid">
@@ -47,15 +46,8 @@
 		</div>
 
 
-	</div>
-
-	<br />
-	
-	<div class="row">
-
+		<!-- Footer -->
 		<jsp:include page="/footer.jsp" />
-
-	</div>
 
 </body>
 </html>

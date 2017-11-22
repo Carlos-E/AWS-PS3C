@@ -4,6 +4,8 @@
 }
 </style>
 
+
+<br><br><br><br><br><br><br>
 <footer>
 
 	<div class="navbar navbar-inverse navbar-fixed-bottom">
