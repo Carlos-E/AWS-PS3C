@@ -27,6 +27,7 @@ body {
 .fondo {
 	background-image: url("../img/transporte-de-carga.jpg");
 	background-repeat: no-repeat;
+	background-attachment: fixed;/*para que sea estático*/
 	background-position: top;
 	background-size: 100%;
 	margin-top: -20px; /* Mitad de la altura. */
