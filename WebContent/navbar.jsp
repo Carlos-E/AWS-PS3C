@@ -186,7 +186,7 @@
 							</a>
 							<ul class="dropdown-menu dropdownhover-right">
 								<li>
-									<a href="#">Modificar</a>
+									<a href="modificarDatos/empresa.jsp">Modificar</a>
 								</li>
 								<li>
 									<a href="#">Remplazar</a>
