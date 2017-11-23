@@ -5,15 +5,15 @@
 
 <head>
 <<<<<<< HEAD
-
-<link rel="stylesheet" href="css/style-signin.css">
+<jsp:include page="/head.jsp" />
+<link rel="stylesheet" href="/css/style-signin.css">
 =======
-<link rel="stylesheet" href="./css/style-signin.css">
+<link rel="stylesheet" href="/css/style-signin.css">
 <script src="js/controlador.js" type="text/javascript"></script>
 >>>>>>> e0f7174987395a971d6b7effc2bbff04ed203782
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-<link rel="stylesheet" href="css/style-login.css">
+<link rel="stylesheet" href="/css/style-login.css">
 <link rel="shortcut icon" href="img/icon.ico" />
 <title>PS3C Registro</title>
 

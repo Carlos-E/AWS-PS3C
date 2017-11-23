@@ -6,7 +6,7 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<jsp:include page="/head.jsp" />
 <link rel="shortcut icon" href="/img/icon.ico" />
 
 <!-- CSS -->
@@ -40,7 +40,7 @@
 						Ingresar
 					</button>
 					<div>
-						<a href="#">Crear cuenta</a>
+						<a href="signin.jsp">Crear cuenta</a>
 						<!--  or <a href="#">reset password</a>   -->
 					</div>
 

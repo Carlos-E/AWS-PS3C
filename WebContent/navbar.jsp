@@ -303,7 +303,7 @@
 				</li>
 
 			</ul>
-			<form class="navbar-form navbar-right">
+			<form class="navbar-form navbar-right" action="/logout" method="post">
 				<button type="submit" class="btn btn-danger">
 					<span class="glyphicon glyphicon-log-out"></span>
 					  Cerrar Sesi&oacuten
