@@ -85,11 +85,7 @@
 			%>
 		</div>
 		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
+		<div class="container-fluid">
 		<jsp:include page="/footer.jsp" />
 	</div>
 </body>

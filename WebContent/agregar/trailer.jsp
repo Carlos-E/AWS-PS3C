@@ -15,12 +15,16 @@ session.setAttribute("pagina", "Agregar Trailer");
 <jsp:include page="/head.jsp" />
 
 </head>
-<body>
+<body class="fondo">
+		<!-- Header -->
+		<div class="container-fluid">
+			<jsp:include page="/header.jsp" />
+		</div>
 
-	<!-- Header  -->
-	<!--  Container de la Barra de navegacion -->
-	<jsp:include page="/navbar.jsp" />
-	<div class="fondo">
+		<!--  Barra de navegacion -->
+		<div class="container-fluid">
+			<jsp:include page="/navbar.jsp" />
+		</div>
 		<br>
 		<br>
 		<div class="container">
@@ -145,9 +149,9 @@ session.setAttribute("pagina", "Agregar Trailer");
 				<div class="col-sm-2"></div>
 				<button type="submit" name="submit" id="submit"
 					class="btn btn-primary">Registrar</button>
-
 			</form>
 		</div>
+		<div class="container-fluid">
 		<jsp:include page="/footer.jsp" />
 	</div>
 </body>

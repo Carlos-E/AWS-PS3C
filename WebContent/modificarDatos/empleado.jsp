@@ -7,12 +7,16 @@
 
 <jsp:include page="/head.jsp" />
 </head>
-<body>
+<body class="fondo">
+<!-- Header -->
+		<div class="container-fluid">
+			<jsp:include page="/header.jsp" />
+		</div>
 
-	<!-- Header  -->
-	<!--  Container de la Barra de navegacion -->
-	<jsp:include page="/navbar.jsp" />
-	<div id="fondo">
+		<!--  Barra de navegacion -->
+		<div class="container-fluid">
+			<jsp:include page="/navbar.jsp" />
+		</div>
 		<div id="container">
 			<%@ page import="com.logica.*"%>
 			<%@ page import="clases.*"%>
@@ -75,7 +79,8 @@
 				}
 			%>
 		</div>
-	</div>
+		<div class="container-fluid">
 	<jsp:include page="/footer.jsp" />
+	</div>
 </body>
 </html>

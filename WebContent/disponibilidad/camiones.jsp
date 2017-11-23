@@ -13,12 +13,16 @@
 <jsp:include page="/head.jsp" />
 
 </head>
-<body>
-	<!-- Header  -->
-	<!--  Container de la Barra de navegacion -->
-	<jsp:include page="/navbar.jsp" />
-	<!-- Contenido -->
-	<div class="fondo"><br><br>
+<body class="fondo">
+	<!-- Header -->
+		<div class="container-fluid">
+			<jsp:include page="/header.jsp" />
+		</div>
+
+		<!--  Barra de navegacion -->
+		<div class="container-fluid">
+			<jsp:include page="/navbar.jsp" />
+		</div><br><br>
 	<style> td{color: white;}</style>
 		<div class="container">
 			<%@ page import="com.logica.*"%>
@@ -109,6 +113,7 @@
 			</table>
 
 		</div>
+		<div class="container-fluid">
 		<jsp:include page="/footer.jsp" />
 	</div>
 </body>

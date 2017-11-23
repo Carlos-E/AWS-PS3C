@@ -40,7 +40,7 @@
 					</a>
 					<ul class="dropdown-menu dropdownhover-bottom" role="menu" style="">
 						<li>
-							<a href="#">Listar</a>
+							<a href="/envios/estadoDelEnvio.jsp">Listar</a>
 						</li>
 						<li>
 							<a href="/envios/realizarNuevoEnvio.jsp">Crear</a>
@@ -186,7 +186,7 @@
 							</a>
 							<ul class="dropdown-menu dropdownhover-right">
 								<li>
-									<a href="modificarDatos/empresa.jsp">Modificar</a>
+									<a href="/modificarDatos/empresa.jsp">Modificar</a>
 								</li>
 								<li>
 									<a href="#">Remplazar</a>
@@ -212,10 +212,10 @@
 							</a>
 							<ul class="dropdown-menu dropdownhover-right">
 								<li>
-									<a href="chequeo/reportarProblema.jsp">Generar</a>
+									<a href="/chequeo/reportarProblema.jsp">Generar</a>
 								</li>
 								<li>
-									<a href="envios/ultimosReportes.jsp">Listar</a>
+									<a href="/envios/ultimosReportes.jsp">Listar</a>
 								</li>
 							</ul>
 						</li>
@@ -227,10 +227,10 @@
 							</a>
 							<ul class="dropdown-menu dropdownhover-right">
 								<li>
-									<a href="chequeo/chequearCarga.jsp">Chequear Carga</a>
+									<a href="/chequeo/chequearCarga.jsp">Chequear Carga</a>
 								</li>
 								<li>
-									<a href="chequeo/chequearDescarga.jsp">Chequear Descarga</a>
+									<a href="/chequeo/chequearDescarga.jsp">Chequear Descarga</a>
 								</li>
 							</ul>
 						</li>
@@ -248,19 +248,19 @@
 									</a>
 									<ul class="dropdown-menu dropdownhover-right">
 										<li>
-											<a href="asignar/mercancia-camion.jsp">Camion</a>
+											<a href="/asignar/mercancia-camion.jsp">Camion</a>
 										</li>
 										<li>
-											<a href="asignar/mercancia-traier.jsp">Trailer</a>
+											<a href="/asignar/mercancia-traier.jsp">Trailer</a>
 										</li>
 									</ul>
 								</li>
 								<li class="divider"></li>
 								<li>
-									<a href="asignar/destino-camion.jsp">Destino a Camion</a>
+									<a href="/asignar/destino-camion.jsp">Destino a Camion</a>
 								</li>
 								<li>
-									<a href="asignar/traier-camion.jsp">Trailer a Camion</a>
+									<a href="/asignar/trailer-camion.jsp">Trailer a Camion</a>
 								</li>
 							</ul>
 						</li>

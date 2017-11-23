@@ -13,13 +13,16 @@
 <jsp:include page="/head.jsp" />
 <% session.setAttribute("pagina", "Generar Reporte"); %>
 </head>
-<body>
+<body class="fondo">
+<!-- Header -->
+		<div class="container-fluid">
+			<jsp:include page="/header.jsp" />
+		</div>
 
-	<!-- Header  -->
-	<!--  Container de la Barra de navegacion -->
-	<jsp:include page="/navbar.jsp" />
-	<!-- Contenido -->
-	<div class="fondo">
+		<!--  Barra de navegacion -->
+		<div class="container-fluid">
+			<jsp:include page="/navbar.jsp" />
+		</div>
 		<br> <br>
 		<div class="container">
 
@@ -37,9 +40,8 @@
 				<button name="submit" id="submit" type="submit"
 					class="btn btn-primary">Reportar</button>
 			</form>
-
 		</div>
-		<br> <br> <br> <br> <br>
+		<div class="container-fluid">
 		<jsp:include page="/footer.jsp" />
 	</div>
 </body>

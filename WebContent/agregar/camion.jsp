@@ -15,11 +15,16 @@ session.setAttribute("pagina", "Agregar Camion");
 <jsp:include page="/head.jsp" />
 
 </head>
-<body>
-	<!-- Header  -->
-	<!--  Container de la Barra de navegacion -->
-	<jsp:include page="/navbar.jsp" />
-	<div class="fondo">
+<body class="fondo">
+	<!-- Header -->
+		<div class="container-fluid">
+			<jsp:include page="/header.jsp" />
+		</div>
+
+		<!--  Barra de navegacion -->
+		<div class="container-fluid">
+			<jsp:include page="/navbar.jsp" />
+		</div>
 		<br> <br>
 		<div class="container">
 			<%@ page import="com.logica.*"%>
@@ -184,6 +189,7 @@ session.setAttribute("pagina", "Agregar Camion");
 				<button type="submit" name="submit" class="btn btn-primary">Registrar</button>
 			</form>
 		</div>
+		<div class="container-fluid">
 		<jsp:include page="/footer.jsp" />
 	</div>
 </body>
