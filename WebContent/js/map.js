@@ -74,14 +74,13 @@ function ponerMarcadores(data) {
 		console.log(data[i].latitud);
 		console.log(data[i].longitud);
 
-		if (data[i].latitud == data[i].latitud
-				&& data[i].longitud == data[i].longitud) {
-
-			console.log(data[i].placa
-					+ " Ubicacion igual, pasando al siguiente");
-
-			continue;
-		}
+//		if (data[i].latitud == data[i].latitud && data[i].longitud == data[i].longitud) {
+//
+//			console.log(data[i].placa
+//					+ " Ubicacion igual, pasando al siguiente");
+//
+//			continue;
+//		}
 
 		console.log("Antes Marcador");
 
@@ -94,6 +93,7 @@ function ponerMarcadores(data) {
 			title : 'Marcador',
 			label : data[i].placa
 		});
+		
 		markers.push(marker);
 		marker.setMap(map);
 
