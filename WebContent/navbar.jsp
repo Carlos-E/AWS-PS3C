@@ -177,7 +177,7 @@
 							<a href="#">Listar</a>
 						</li>
 						<li>
-							<a href="agregar/empresa.jsp">Crear</a>
+							<a href="/agregar/empresa.jsp">Crear</a>
 						</li>
 						<li class="dropdown">
 							<a href="#">
@@ -251,7 +251,7 @@
 											<a href="/asignar/mercancia-camion.jsp">Camion</a>
 										</li>
 										<li>
-											<a href="/asignar/mercancia-traier.jsp">Trailer</a>
+											<a href="/asignar/mercancia-trailer.jsp">Trailer</a>
 										</li>
 									</ul>
 								</li>

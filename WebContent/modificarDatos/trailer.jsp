@@ -7,14 +7,17 @@
 <% session.setAttribute("pagina", "Modificar trailer"); %>
 <jsp:include page="/head.jsp" />
 </head>
-<body>
+<body class="fondo">
+		<!-- Header -->
+		<div class="container-fluid">
+			<jsp:include page="/header.jsp" />
+		</div>
 
-	<!-- Header  -->
-	<!--  Container de la Barra de navegacion -->
-	<jsp:include page="/navbar.jsp" />
-	<div class="fondo">
-		<br>
-		<br>
+		<!--  Barra de navegacion -->
+		<div class="container-fluid">
+			<jsp:include page="/navbar.jsp" />
+		</div>
+	<br><br>
 		<div class="container">
 			<%@ page import="com.logica.*"%>
 			<%@ page import="clases.*"%>
@@ -83,10 +86,9 @@
 			<%
 				}
 			%>
-		</div>
-		<br>
+	</div><br>
 		<div class="container-fluid">
-		<jsp:include page="/footer.jsp" />
+	<jsp:include page="/footer.jsp" />
 	</div>
 </body>
 </html>
