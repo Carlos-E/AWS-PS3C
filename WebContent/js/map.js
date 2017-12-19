@@ -18,9 +18,9 @@ function initMap() {
 
 function localizar() {
 
-	// var infoWindow = new google.maps.InfoWindow({
+	 var infoWindow = new google.maps.InfoWindow({
 	// map : map
-	// });
+	 });
 
 	// Try HTML5 geolocation.
 	if (navigator.geolocation) {
