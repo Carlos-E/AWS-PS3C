@@ -10,7 +10,7 @@ session.setAttribute("pagina", "Eliminar Usuario");
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Modificar Usuario</title>
+<title>Eliminar Usuario</title>
 
 <jsp:include page="/head.jsp" />
 
@@ -40,7 +40,7 @@ session.setAttribute("pagina", "Eliminar Usuario");
 			<label class="control-label col-sm-2" for="usuarios">Usuarios
 			</label>
 			<div class="col-sm-9">
-				<select class="form-control" id="subject" name="usuario"
+				<select class="form-control" id="subject" name="usuarioE"
 					tabindex="4">
 					<%
 						for (int i = 0; i < listaUsuario.size(); i++) {
@@ -73,12 +73,10 @@ session.setAttribute("pagina", "Eliminar Usuario");
 					//Nombre de los campos del form
 						String[] input = { "nombre", "rol" };
 						String[] value = { usuario.getNombre(), usuario.getRol() };
-						String[] inputsh = { "claveOld", "clave", "repita clave" };
 						String[] inputs = { "apellido", "telefono", "direccion", "correo" };
 						String[] values = { usuario.getApellido(), usuario.getTelefono(), usuario.getDireccion(),
 								usuario.getCorreo() };
 						com.logica.Dibujar.inputs(out, input, value);
-						com.logica.Dibujar.inputsHidden(out, inputsh);
 						com.logica.Dibujar.inputs(out, inputs, values);
 				%>
 			</div>
@@ -86,7 +84,7 @@ session.setAttribute("pagina", "Eliminar Usuario");
 
 			<div class="form-vertical">
 				<button name="submit" id="submit" type="submit"
-					class="btn btn-primary">Modificar</button>
+					class="btn btn-primary">Eliminar</button>
 			</div>
 		</form>
 		<div class="col-sm-2"></div>
@@ -101,7 +99,7 @@ session.setAttribute("pagina", "Eliminar Usuario");
 		%>
 	</div>
 	<br><br>
-		<div class="container-fluid">
+	<div class="container-fluid">
 	<jsp:include page="/footer.jsp" />
 	</div>
 </body>

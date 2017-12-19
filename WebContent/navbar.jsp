@@ -93,7 +93,7 @@
 						</li>
 						<li class="divider"></li>
 						<li>
-							<a href="#">Borrar</a>
+							<a href="/eliminar/usuario.jsp">Borrar</a>
 						</li>
 					</ul>
 				</li>

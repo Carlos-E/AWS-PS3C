@@ -134,6 +134,32 @@ public class buscar extends HttpServlet {
 			System.out.println("no es usuario");
 		}
 		try {
+			usuario = request.getParameter("usuarioE");
+			usuario.replaceAll(" ", "");
+			if (!usuario.equals("nada")) {
+				usuario user = new usuario();
+				user = (clases.usuario) ControladorBD.getItem("usuarios", "usuario", usuario);
+				switch (user.getRol()){
+				case "cliente":
+					session.setAttribute("busca", "cliente");
+					session.setAttribute("obj", usuario);
+					response.sendRedirect("eliminar/usuario.jsp");
+					break;
+				case "empleado":
+					session.setAttribute("busca", "empleado");
+					session.setAttribute("obj", usuario);
+					response.sendRedirect("eliminar/usuario.jsp");
+					break;
+				case "conductor":
+					session.setAttribute("busca", "empleado");
+					session.setAttribute("obj", usuario);
+					response.sendRedirect("eliminar/usuario.jsp");
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("no es usuario");
+		}
+		try {
 			nit = request.getParameter("nit");
 			nit.replaceAll(" ", "");
 			if (!nit.equals("nada")) {
