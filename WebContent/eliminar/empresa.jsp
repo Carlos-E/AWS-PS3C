@@ -3,12 +3,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Modificar Trailer</title>
-<% session.setAttribute("pagina", "Eliminar trailer"); %>
+<title>Modificar Empresa</title>
+
 <jsp:include page="/head.jsp" />
+<% session.setAttribute("pagina", "Eliminar Empresa"); %>
 </head>
 <body class="fondo">
-		<!-- Header -->
+<!-- Header -->
 		<div class="container-fluid">
 			<jsp:include page="/header.jsp" />
 		</div>
@@ -17,16 +18,16 @@
 		<div class="container-fluid">
 			<jsp:include page="/navbar.jsp" />
 		</div>
-	<br><br>
-		<div class="container">
+		<br> <br>
+		<div id="container">
 			<%@ page import="com.logica.*"%>
 			<%@ page import="clases.*"%>
 			<%@ page import="java.util.ArrayList"%>
 			<%
-				ArrayList<trailer> listaTrailer = ControladorBD.escanearTabla("trailers");
+				ArrayList<empresa> listaempresa = ControladorBD.escanearTabla("empresas");
 			%>
 			<%
-				if (session.getAttribute("busca") != "trailer") {
+				if (session.getAttribute("busca") != "empresa") {
 			%>
 			<form id="form" name="form" action="/buscar" method="post"
 				class="form-horizontal">
@@ -34,14 +35,13 @@
 					<label class="control-label col-sm-2" for="camiones">
 						Camiones </label>
 					<div class="col-sm-9">
-						<select class="form-control" id="subject" name="patenteE"
-							tabindex="4">
+						<select class="form-control" id="subject" name="nitE" tabindex="4">
 							<%
-								for (int i = 0; i < listaTrailer.size(); i++) {
+								for (int i = 0; i < listaempresa.size(); i++) {
 							%>
-							<option value="<%out.print(listaTrailer.get(i).getPatente());%>">
+							<option value="<%out.print(listaempresa.get(i).getNit());%>">
 								<%
-									out.print(listaTrailer.get(i).getPatente());
+									out.print(listaempresa.get(i).getNit());
 								%>
 							</option>
 							<%
@@ -56,17 +56,17 @@
 			</form>
 			<%
 				} else {
-					trailer trailer = (trailer) com.logica.ControladorBD.getItem("trailers", "patente",
+					empresa empresa = (empresa) com.logica.ControladorBD.getItem("empresas", "nit",
 							session.getAttribute("obj").toString());
 			%>
-			<form id="form" name="form" class="form" action="../eliminarTrailer"
+			<form id="form" name="form" class="form" action="../eliminarEmpresa"
 				method="post">
 				<div class="form-horizontal">
 					<%
 						//Nombre de los campos del form	
-							String[] inputs = { "capacidad", "espacio", "estado", "tipo", "camion" };
-							String[] values = { trailer.getCapacidad(), trailer.getEspacio(), trailer.getEstado(),
-									trailer.getTipo(), trailer.getCamion() };
+							String[] inputs = { "nombre", "telefono", "direccion", "correo" };
+							String[] values = { empresa.getNombre(), empresa.getTelefono(), empresa.getDireccion(),
+									empresa.getCorreo() };
 							com.logica.Dibujar.inputs(out, inputs, values);
 					%>
 				</div>
@@ -86,9 +86,10 @@
 			<%
 				}
 			%>
-	</div><br>
+		</div>
+		<br> <br>
 		<div class="container-fluid">
-	<jsp:include page="/footer.jsp" />
+		<jsp:include page="/footer.jsp" />
 	</div>
 </body>
 </html>

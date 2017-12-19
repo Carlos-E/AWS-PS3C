@@ -97,12 +97,34 @@ public class buscar extends HttpServlet {
 			System.out.println("no es camion");
 		}
 		try {
+			placa = request.getParameter("placaE");
+			placa.replaceAll(" ", "");
+			if (!placa.equals("nada")) {
+				session.setAttribute("busca", "camion");
+				session.setAttribute("obj", placa);
+				response.sendRedirect("eliminar/camion.jsp");
+			}
+		} catch (Exception e) {
+			System.out.println("no es camion");
+		}
+		try {
 			patente = request.getParameter("patente");
 			patente.replaceAll(" ", "");
 			if (!patente.equals("nada")) {
 				session.setAttribute("busca", "trailer");
 				session.setAttribute("obj", patente);
 				response.sendRedirect("modificarDatos/trailer.jsp");
+			}
+		} catch (Exception e) {
+			System.out.println("no es trailer");
+		}
+		try {
+			patente = request.getParameter("patenteE");
+			patente.replaceAll(" ", "");
+			if (!patente.equals("nada")) {
+				session.setAttribute("busca", "trailer");
+				session.setAttribute("obj", patente);
+				response.sendRedirect("eliminar/trailer.jsp");
 			}
 		} catch (Exception e) {
 			System.out.println("no es trailer");
@@ -171,6 +193,17 @@ public class buscar extends HttpServlet {
 			System.out.println("no es empresa");
 		}
 		try {
+			nit = request.getParameter("nitE");
+			nit.replaceAll(" ", "");
+			if (!nit.equals("nada")) {
+				session.setAttribute("busca", "empresa");
+				session.setAttribute("obj", nit);
+				response.sendRedirect("eliminar/empresa.jsp");
+			}
+		} catch (Exception e) {
+			System.out.println("no es empresa");
+		}
+		try {
 			usuarioEnvio = request.getParameter("envio");
 			if (!usuarioEnvio.equals("nada")) {
 				String[] frag = usuarioEnvio.split(" : ");
@@ -180,6 +213,20 @@ public class buscar extends HttpServlet {
 				session.setAttribute("obj2", frag2);
 				session.setAttribute("obj", usuarioEnvio);
 				response.sendRedirect("modificarDatos/mercancia.jsp");
+			}
+		} catch (Exception e) {
+			System.out.println("no es envio");
+		}
+		try {
+			usuarioEnvio = request.getParameter("envioE");
+			if (!usuarioEnvio.equals("nada")) {
+				String[] frag = usuarioEnvio.split(" : ");
+				String frag1 = frag[0], frag2 = frag[1];
+				session.setAttribute("busca", "mercancia");
+				session.setAttribute("obj1", frag1);
+				session.setAttribute("obj2", frag2);
+				session.setAttribute("obj", usuarioEnvio);
+				response.sendRedirect("eliminar/mercancia.jsp");
 			}
 		} catch (Exception e) {
 			System.out.println("no es envio");

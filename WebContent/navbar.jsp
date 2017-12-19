@@ -61,7 +61,7 @@
 						</li>
 						<li class="divider"></li>
 						<li>
-							<a href="#">Borrar</a>
+							<a href="/eliminar/mercancia.jsp">Borrar</a>
 						</li>
 					</ul>
 				</li>
@@ -128,7 +128,7 @@
 						</li>
 						<li class="divider"></li>
 						<li>
-							<a href="#">Borrar</a>
+							<a href="/eliminar/camion.jsp">Borrar</a>
 						</li>
 					</ul>
 				</li>
@@ -163,7 +163,7 @@
 						</li>
 						<li class="divider"></li>
 						<li>
-							<a href="#">Borrar</a>
+							<a href="/eliminar/trailer.jsp">Borrar</a>
 						</li>
 					</ul>
 				</li>
@@ -195,7 +195,7 @@
 						</li>
 						<li class="divider"></li>
 						<li>
-							<a href="#">Borrar</a>
+							<a href="/eliminar/empresa.jsp">Borrar</a>
 						</li>
 					</ul>
 				</li>

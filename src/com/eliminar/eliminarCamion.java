@@ -15,15 +15,15 @@ import com.logica.ControladorBD;
 /**
  * Servlet implementation class eliminarUsuario
  */
-@WebServlet("/eliminarTrailer")
-public class eliminarTrailer extends HttpServlet {
+@WebServlet("/eliminarCamion")
+public class eliminarCamion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	clases.usuario usuario = new clases.usuario();
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public eliminarTrailer() {
+    public eliminarCamion() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,11 +43,11 @@ public class eliminarTrailer extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		HttpSession session = request.getSession();
-		String patente = session.getAttribute("obj").toString();
-		System.out.println("hola" + patente);
+		String placa = session.getAttribute("obj").toString();
+		System.out.println("hola" + placa);
 		session.setAttribute("busca", "ninguno");
 		System.out.println("algo se cambio");
-		ControladorBD.borrarItem("trailers", "patente", patente);
+		ControladorBD.borrarItem("camiones", "placa", placa);
 		PrintWriter out = response.getWriter();
 		String nextURL = request.getContextPath() + "/index.jsp";
 		com.logica.Dibujar.mensaje(out, "Operacion Exitosa", nextURL);
