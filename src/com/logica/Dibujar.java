@@ -19,7 +19,7 @@ public class Dibujar {
 				out.println("<div class=\"form-group\">" + "<label class=\"control-label col-sm-2\" for=\"" + name
 						+ "\">" + upname + ":" + "</label>"
 
-						+ "<div class=\"col-sm-9\">" + "<input class=\"form-control\" name=\"" + name + "\" id=\""
+						+ "<div class=\"col-sm-10\">" + "<input class=\"form-control\" name=\"" + name + "\" id=\""
 						+ name + "\" type=\"text\" placeholder=\"" + upname + "\">" + "</div>" + "</div>");
 
 			} catch (IOException e) {
@@ -43,7 +43,7 @@ public class Dibujar {
 				out.println("<div class=\"form-group\">" + "<label class=\"control-label col-sm-2\" for=\"" + name
 						+ "\">" + upname + ":" + "</label>"
 
-						+ "<div class=\"col-sm-9\">" + "<input class=\"form-control\" name=\"" + name + "\" id=\""
+						+ "<div class=\"col-sm-10\">" + "<input class=\"form-control\" name=\"" + name + "\" id=\""
 						+ name + "\" type=\"text\" value=\"" + valu + "\">" + "</div>" + "</div>");
 
 			} catch (IOException e) {
@@ -66,7 +66,7 @@ public class Dibujar {
 				out.println("<div class=\"form-group\">" + "<label class=\"control-label col-sm-2\" for=\"" + name
 						+ "\">" + upname + ":" + "</label>"
 
-						+ "<div class=\"col-sm-9\">" + "<input class=\"form-control\" name=\"" + name + "\" id=\""
+						+ "<div class=\"col-sm-10\">" + "<input class=\"form-control\" name=\"" + name + "\" id=\""
 						+ name + "\" type=\"password\" placeholder=\"" + upname + "\">" + "</div>" + "</div>");
 
 			} catch (IOException e) {
