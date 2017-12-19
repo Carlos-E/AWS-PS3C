@@ -189,7 +189,7 @@
 									<a href="/modificarDatos/empresa.jsp">Modificar</a>
 								</li>
 								<li>
-									<a href="#">Remplazar</a>
+									<a href="/modificarDatos/empresa.jsp">Remplazar</a>
 								</li>
 							</ul>
 						</li>
