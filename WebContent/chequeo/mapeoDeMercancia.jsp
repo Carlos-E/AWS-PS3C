@@ -63,11 +63,6 @@ html, body {
 			<button id="botonlocalizar" onclick="localizar()" class="btn btn-primary">Localizarte</button>
 
 		</div>
-		<div class="container">
-
-			<button id="botonlocalizar" onclick="ponerMarcadores()" class="btn btn-primary">Marcadores</button>
-
-		</div>
 
 	</div>
 
@@ -78,14 +73,14 @@ html, body {
 	<!-- JavaScript del mapa -->
 	<script>
 		$.getJSON('/mapeoDeMercancia', function(data) {
-			for (var i = 0, len = data.length; i < len; i++) {
+			for (var i = 0; i < data.length; i++) {
 				console.log(data[i]);
 			}
 			ponerMarcadores(data);
 		});
 		setInterval(function() {
 			$.getJSON('/mapeoDeMercancia', function(data) {
-				for (var i = 0, len = data.length; i < len; i++) {
+				for (var i = 0;  i < data.length; i++) {
 					console.log(data[i]);
 				}
 				ponerMarcadores(data);

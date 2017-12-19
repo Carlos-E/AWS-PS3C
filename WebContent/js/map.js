@@ -65,10 +65,10 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 function ponerMarcadores(data) {
 	
 	console.log("Borrando Marcadores");
-
 	deleteMarkers();
-	var len = data.length;
-	for (var i = 0;  i < len; i++) {
+	
+	
+	for (var i = 0;  i < data.length; i++) {
 
 		console.log(data[i].placa);
 		console.log(data[i].latitud);

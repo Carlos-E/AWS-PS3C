@@ -3,8 +3,8 @@ package clases;
 public class ubicacion {
 
 	String placa;
-	double nlatitud, nlongitud;
-	double ulatitud, ulongitud;
+	String hora;
+	double latitud, longitud;
 	
 	public ubicacion() {
 		super();
@@ -18,44 +18,36 @@ public class ubicacion {
 	public void setPlaca(String placa) {
 		this.placa = placa;
 	}
+	
+	
 
-	public double getNlatitud() {
-		return nlatitud;
+	public String getHora() {
+		return hora;
 	}
 
-	public void setNlatitud(double nlatitud) {
-		this.nlatitud = nlatitud;
+	public void setHora(String hora) {
+		this.hora = hora;
 	}
 
-	public double getNlongitud() {
-		return nlongitud;
+	public double getLatitud() {
+		return latitud;
 	}
 
-	public void setNlongitud(double nlongitud) {
-		this.nlongitud = nlongitud;
+	public void setLatitud(double latitud) {
+		this.latitud = latitud;
 	}
 
-	public double getUlatitud() {
-		return ulatitud;
+	public double getLongitud() {
+		return longitud;
 	}
 
-	public void setUlatitud(double ulatitud) {
-		this.ulatitud = ulatitud;
-	}
-
-	public double getUlongitud() {
-		return ulongitud;
-	}
-
-	public void setUlongitud(double ulongitud) {
-		this.ulongitud = ulongitud;
+	public void setLongitud(double longitud) {
+		this.longitud = longitud;
 	}
 
 	@Override
 	public String toString() {
-		return "ubicacion [placa=" + placa + ", nlatitud=" + nlatitud + ", nlongitud=" + nlongitud + ", ulatitud="
-				+ ulatitud + ", ulongitud=" + ulongitud + "]";
+		return "ubicacion [placa=" + placa + ", hora=" + hora + ", latitud=" + latitud + ", longitud=" + longitud + "]";
 	}
-	
 
 }
