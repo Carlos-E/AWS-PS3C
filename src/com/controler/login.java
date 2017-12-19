@@ -83,9 +83,10 @@ public class login extends HttpServlet {
 			 */
 		} else {
 			//response.sendError(400, "Usuario no encontrado");
-
+			
 			PrintWriter out = response.getWriter();
 			String nextURL = request.getContextPath() + "/login.jsp";
+			response.setContentType("text/html");//
 			com.logica.Dibujar.mensaje(out, "Usuario o contraseña incorrecto", nextURL);
 		}
 	}
