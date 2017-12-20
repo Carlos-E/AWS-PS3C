@@ -43,15 +43,19 @@
 					<div class="col-sm-6"></div>
 				</div>
 				<div class="row">
-					<div class="col-sm-2"></div>
+					<div class="col-sm-1"></div>
+					<div class="col-sm-1">
+						<!-- Boton Verde -->
 						<button type="submit" name="submit" class="btn btn-primary">Registrar</button>
-						<button formaction="/cancelar" name="submit" id="cancelar" type="submit"
-						class="btn btn-danger">Cancelar</button>
-
-					<div class="col-sm-9"></div>
+					</div>
+					<div class="col-sm-1">
+						<!-- Boton Rojo -->
+						<button name="submit" id="submit" type="submit" class="btn btn-danger" formaction="/cancelar">Cancelar</button>
+					</div>
+					<div class="col-sm-8"></div>
 				</div>
 			</div>
-			
+
 		</form>
 	</div>
 	<jsp:include page="/footer.jsp" />
