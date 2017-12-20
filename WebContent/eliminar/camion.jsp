@@ -73,12 +73,12 @@
 					camion camion = new camion();
 					camion = (camion) com.logica.ControladorBD.getItem("camiones", "placa",
 							session.getAttribute("obj").toString());
+					%>
+					<form id="form" name="form" action="/eliminarCamion" method="post">
+						<div class="form-horizontal">
+							<%
 					if (camion.getTipo().equals("camion")) {
-			%>
-			<form id="form" name="form" class="form" action="/eliminarCamion"
-				method="post">
-				<div class="form-horizontal">
-					<%
+			
 						//Nombre de los campos del form
 								String[] inputs = { "capacidad", "espacio" };
 								String[] values = { camion.getCapacidad(), camion.getEspacio() };
