@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="java.io.*,java.util.*"%>
+<%@ page import="com.logica.*"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="clases.*"%>
 <%
 	if (session.getAttribute("rol") == null) {
 		response.sendError(400, "Acceso incorrecto"); //cambiar
@@ -25,40 +28,37 @@
 		<jsp:include page="/navbar.jsp" />
 	</div>
 
-		<%@ page import="com.logica.*"%>
-		<%@ page import="java.util.ArrayList"%>
-		<%@ page import="clases.*"%>
-		<%
-			ArrayList<usuario> listaUsuarios = ControladorBD.escanearTabla("usuarios");
-			ArrayList<camion> listaCamiones = ControladorBD.escanearTabla("camiones");
-			ArrayList<usuario> listaConductor = new ArrayList<usuario>();
-			ArrayList<empresa> listaEmpresas = ControladorBD.escanearTabla("empresas");
-			for (int i = 0; i < listaUsuarios.size(); i++) {
-				if (listaUsuarios.get(i).getRol().equals("conductor")) {
-					if (!ControladorBD.estaOcupado(listaUsuarios.get(i).getNombre(), "null")) {
-						listaConductor.add(listaUsuarios.get(i));
-					}
+
+	<%
+		ArrayList<usuario> listaUsuarios = ControladorBD.escanearTabla("usuarios");
+		ArrayList<camion> listaCamiones = ControladorBD.escanearTabla("camiones");
+		ArrayList<usuario> listaConductor = new ArrayList<usuario>();
+		ArrayList<empresa> listaEmpresas = ControladorBD.escanearTabla("empresas");
+		for (int i = 0; i < listaUsuarios.size(); i++) {
+			if (listaUsuarios.get(i).getRol().equals("conductor")) {
+				if (!ControladorBD.estaOcupado(listaUsuarios.get(i).getNombre(), "null")) {
+					listaConductor.add(listaUsuarios.get(i));
 				}
 			}
-		%>
+		}
+	%>
 
 	<div class="container">
-
 
 		<form id="form" name="form" action="/camion" method="post" class="form-horizontal">
 
 			<div class="row">
 
 				<div class="col-sm-6">
-				
-				<!-- INPUTS -->
+
+					<!-- INPUTS -->
 
 					<%
 						//Nombre de los campos del form
 						String[] inputs = {"destino", "placa"};
 						com.logica.Dibujar.inputs(out, inputs);
 					%>
-					
+
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="destino">Camion:</label>
 						<div class="col-sm-9">
