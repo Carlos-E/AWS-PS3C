@@ -119,12 +119,9 @@ session.setAttribute("pagina", "Envíos");
 				<div class="col-sm-2"></div>
 				<button name="submit" id="submit" type="submit"
 					class="btn btn-primary">Enviar</button>
-			</form>
-			<div class="col-sm-2"></div>
-			<form id="form" name="form" action="/cancelar" method="post" class="form-horizontal" >
-				<button name="submit" id="cancelar" type="submit"
+				<button formaction="/cancelar" name="submit" id="cancelar" type="submit"
 					class="btn btn-danger">Cancelar</button>
-			</form>			
+			</form>		
 		</div>
 		<div class="container-fluid">
 		<jsp:include page="/footer.jsp" />
