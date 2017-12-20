@@ -45,23 +45,13 @@
 						<li>
 							<a href="/envios/realizarNuevoEnvio.jsp">Crear</a>
 						</li>
-						<li class="dropdown">
-							<a href="#">
-								Actualizar
-								<span class="caret"></span>
-							</a>
-							<ul class="dropdown-menu dropdownhover-right">
-								<li>
-									<a href="/modificarDatos/mercancia.jsp">Modificar</a>
-								</li>
-								<li>
-									<a href="/modificarDatos/mercancia.jsp">Remplazar</a>
-								</li>
-							</ul>
+						<li>
+							<a href="/modificarDatos/mercancia.jsp">Modificar</a>
 						</li>
+
 						<li class="divider"></li>
 						<li>
-							<a href="/eliminar/mercancia.jsp">Borrar</a>
+							<a href="/eliminar/mercancia.jsp">Eliminar</a>
 						</li>
 					</ul>
 				</li>
@@ -77,23 +67,12 @@
 						<li>
 							<a href="/agregar/empleado.jsp">Crear</a>
 						</li>
-						<li class="dropdown">
-							<a href="#">
-								Actualizar
-								<span class="caret"></span>
-							</a>
-							<ul class="dropdown-menu dropdownhover-right">
-								<li>
-									<a href="/modificarDatos/usuario.jsp">Modificar</a>
-								</li>
-								<li>
-									<a href="/modificarDatos/usuario.jsp">Remplazar</a>
-								</li>
-							</ul>
+						<li>
+							<a href="/modificarDatos/usuario.jsp">Modificar</a>
 						</li>
 						<li class="divider"></li>
 						<li>
-							<a href="/eliminar/usuario.jsp">Borrar</a>
+							<a href="/eliminar/usuario.jsp">Eliminar</a>
 						</li>
 					</ul>
 				</li>
@@ -109,26 +88,18 @@
 						<li>
 							<a href="/agregar/camion.jsp">Crear</a>
 						</li>
-						<li class="dropdown">
-							<a href="#">
-								Actualizar
-								<span class="caret"></span>
-							</a>
-							<ul class="dropdown-menu dropdownhover-right">
-								<li>
-									<a href="/modificarDatos/camion.jsp">Modificar</a>
-								</li>
-								<li>
-									<a href="/asignar/destino-camion.jsp">Asignar Ruta</a>
-								</li>
-								<li>
-									<a href="/modificarDatos/camion.jsp">Remplazar</a>
-								</li>
-							</ul>
+						<li>
+							<a href="/modificarDatos/camion.jsp">Modificar</a>
 						</li>
 						<li class="divider"></li>
+
 						<li>
-							<a href="/eliminar/camion.jsp">Borrar</a>
+							<a href="/asignar/destino-camion.jsp">Asignar Ruta</a>
+						</li>
+
+						<li class="divider"></li>
+						<li>
+							<a href="/eliminar/camion.jsp">Eliminar</a>
 						</li>
 					</ul>
 				</li>
@@ -144,26 +115,17 @@
 						<li>
 							<a href="/agregar/trailer.jsp">Crear</a>
 						</li>
-						<li class="dropdown">
-							<a href="#">
-								Actualizar
-								<span class="caret"></span>
-							</a>
-							<ul class="dropdown-menu dropdownhover-right">
-								<li>
-									<a href="/modificarDatos/trailer.jsp">Modificar</a>
-								</li>
-								<li>
-									<a href="/asignar/trailer-camion.jsp">Asignar Camion</a>
-								</li>
-								<li>
-									<a href="/modificarDatos/trailer.jsp">Remplazar</a>
-								</li>
-							</ul>
+						<li>
+							<a href="/modificarDatos/trailer.jsp">Modificar</a>
 						</li>
 						<li class="divider"></li>
 						<li>
-							<a href="/eliminar/trailer.jsp">Borrar</a>
+							<a href="/asignar/trailer-camion.jsp">Asignar Camion</a>
+						</li>
+
+						<li class="divider"></li>
+						<li>
+							<a href="/eliminar/trailer.jsp">Eliminar</a>
 						</li>
 					</ul>
 				</li>
@@ -179,23 +141,12 @@
 						<li>
 							<a href="/agregar/empresa.jsp">Crear</a>
 						</li>
-						<li class="dropdown">
-							<a href="#">
-								Actualizar
-								<span class="caret"></span>
-							</a>
-							<ul class="dropdown-menu dropdownhover-right">
-								<li>
-									<a href="/modificarDatos/empresa.jsp">Modificar</a>
-								</li>
-								<li>
-									<a href="/modificarDatos/empresa.jsp">Remplazar</a>
-								</li>
-							</ul>
+						<li>
+							<a href="/modificarDatos/empresa.jsp">Modificar</a>
 						</li>
 						<li class="divider"></li>
 						<li>
-							<a href="/eliminar/empresa.jsp">Borrar</a>
+							<a href="/eliminar/empresa.jsp">Eliminar</a>
 						</li>
 					</ul>
 				</li>
@@ -289,4 +240,4 @@
 	<!-- /.container-fluid -->
 </nav>
 
-	<br>
+<br>
