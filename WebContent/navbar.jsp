@@ -72,7 +72,7 @@
 					</a>
 					<ul class="dropdown-menu dropdownhover-bottom" role="menu" style="">
 						<li>
-							<a href="#">Listar</a>
+							<a href="/disponibilidad/usuario.jsp">Listar</a>
 						</li>
 						<li>
 							<a href="/agregar/empleado.jsp">Crear</a>
@@ -174,7 +174,7 @@
 					</a>
 					<ul class="dropdown-menu dropdownhover-bottom" role="menu" style="">
 						<li>
-							<a href="#">Listar</a>
+							<a href="/disponibilidad/empresa.jsp">Listar</a>
 						</li>
 						<li>
 							<a href="/agregar/empresa.jsp">Crear</a>

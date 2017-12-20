@@ -9,7 +9,7 @@
 <html>
 <head>
 <title>Reporte de Envios</title>
-<% session.setAttribute("pagina", "Reportes"); %>
+<% session.setAttribute("pagina", "listaUsuario"); %>
 <jsp:include page="/head.jsp" />
 
 </head>
@@ -28,34 +28,52 @@
 			<%@ page import="java.util.ArrayList"%>
 			<%@ page import="clases.*"%>
 			<%
-				ArrayList<reporte> listaReporte = ControladorBD.escanearTabla("reportes");
+				ArrayList<empresa> listaEmpresa = ControladorBD.escanearTabla("empresas");
 			%>
 			<style> th,td{color: white;}</style>
 			<table class="table table-bordered" style="background-color: rgba(0, 0, 0, 0.75);" >
 				<thead>
 					<tr>
-						<th>Hora</th>
-						<th>Nota</th>
-						<th>Autor</th>
+						<th>Nit</th>
+						<th>Nombre</th>
+						<th>Rut</th>						
+						<th>Correo</th>
+						<th>Direccion</th>
+						<th>Telefono</th>
 					</tr>
 				</thead>
 				<tbody>
 					<%
-						for (int i = 0; i < listaReporte.size(); i++) {
+						for (int i = 0; i < listaEmpresa.size(); i++) {
 					%>
 					<tr>
 						<td><strong> <%
- 							out.println(listaReporte.get(i).getHora());
+ 							out.println(listaEmpresa.get(i).getNit());
  								%>
 						</strong></td>
 						<td>
 							<%
-								out.println(listaReporte.get(i).getNota());
+								out.println(listaEmpresa.get(i).getNombre());
 							%>
 						</td>
 						<td>
 							<%
-								out.println(listaReporte.get(i).getUsuario());
+								out.println(listaEmpresa.get(i).getRut());
+							%>
+						</td>
+						<td>
+							<%
+								out.println(listaEmpresa.get(i).getCorreo());
+							%>
+						</td>
+						<td>
+							<%
+								out.println(listaEmpresa.get(i).getDireccion());
+							%>
+						</td>
+						<td>
+							<%
+								out.println(listaEmpresa.get(i).getTelefono());
 							%>
 						</td>
 					</tr>
