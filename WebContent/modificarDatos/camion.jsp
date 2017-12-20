@@ -47,9 +47,11 @@
 
 					<div class="form-group">
 
-						<label class="control-label col-sm-2" for="camiones"> Camiones </label>
-
-						<select class="form-control col-sm-10" id="subject" name="placa" tabindex="4">
+						<div class="col-sm-2">
+							<label class="control-label" for="camiones"> Camiones: </label>
+						</div>
+						
+						<div class="col-sm-10"><select class="form-control" id="subject" name="placa" tabindex="4">
 							<%
 								for (int i = 0; i < listaCamion.size(); i++) {
 							%>
@@ -61,7 +63,7 @@
 							<%
 								}
 							%>
-						</select>
+						</select></div>
 
 					</div>
 
@@ -91,13 +93,11 @@
 				camion = (camion) com.logica.ControladorBD.getItem("camiones", "placa",
 						session.getAttribute("obj").toString());
 		%>
-		<form id="form" name="form" class="form" action="/modificarCamion" method="post">
+		<form id="form" name="form" action="/modificarCamion" method="post" class="form-horizontal">
 
 			<div class="row">
 
 				<div class="col-sm-6">
-
-					<div class="form-group">
 
 						<%
 							if (camion.getTipo().equals("camion")) {
@@ -111,8 +111,6 @@
 								String[] values = { camion.getEstado(), camion.getUsuario() };
 								com.logica.Dibujar.inputs(out, inputs, values);
 						%>
-
-					</div>
 
 				</div>
 
@@ -135,8 +133,6 @@
 			}
 		%>
 	</div>
-	
-	<br>
 
 	<div class="container-fluid">
 		<jsp:include page="/footer.jsp" />
