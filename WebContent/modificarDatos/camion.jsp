@@ -23,6 +23,7 @@
 
 </head>
 <body class="fondo">
+
 	<!-- Header -->
 	<div class="container-fluid">
 		<jsp:include page="/header.jsp" />
