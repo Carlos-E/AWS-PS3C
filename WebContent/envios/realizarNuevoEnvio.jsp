@@ -58,6 +58,7 @@
 
 						}
 					%>
+					
 
 					<%
 						com.logica.Dibujar.input(out, "tipo");
