@@ -25,7 +25,6 @@ session.setAttribute("pagina", "Eliminar Usuario");
 		<div class="container-fluid">
 			<jsp:include page="/navbar.jsp" />
 		</div>
-	<br><br>
 	<div class="container">
 		<%@ page import="com.logica.*"%>
 		<%@ page import="clases.*"%>
