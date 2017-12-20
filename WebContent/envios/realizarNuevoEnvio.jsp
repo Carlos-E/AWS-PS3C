@@ -75,14 +75,14 @@
 			</div>
 
 			<div class="row">
-				<div class="col-sm-2"></div>
+				<div class="col-sm-1"></div>
 				<div class="col-sm-1">
 					<button name="submit" id="submit" type="submit" class="btn btn-primary">Enviar</button>
 				</div>
 				<div class="col-sm-1">
 					<button name="submit" id="submit" type="submit" class="btn btn-danger" formaction="/cancelar">Cancelar</button>
 				</div>
-				<div class="col-sm-8"></div>
+				<div class="col-sm-9"></div>
 			</div>
 
 		</form>
