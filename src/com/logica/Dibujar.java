@@ -6,6 +6,26 @@ import java.io.PrintWriter;
 import javax.servlet.jsp.JspWriter;
 
 public class Dibujar {
+	
+	public static void input(JspWriter out, String input) {
+
+
+			String name = input;
+			// para que salga en mayuscula la primera letra
+			String upname = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
+
+			try {
+				out.println("<div class=\"form-group\">" + "<label class=\"control-label col-sm-2\" for=\"" + name
+						+ "\">" + upname + ":" + "</label>"
+
+						+ "<div class=\"col-sm-10\">" + "<input class=\"form-control\" name=\"" + name + "\" id=\""
+						+ name + "\" type=\"text\" placeholder=\"" + upname + "\">" + "</div>" + "</div>");
+
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}
 
 	public static void inputs(JspWriter out, String[] inputs) {
 
