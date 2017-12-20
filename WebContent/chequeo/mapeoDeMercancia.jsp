@@ -28,7 +28,7 @@ html, body {
 
 /*Propiedad de bootstrap sobreescrita aqui para la dimension del mapa*/
 .embed-responsive-16by9 {
-	padding-bottom: 40.00%;
+	padding-bottom: 35.00%;
 }
 </style>
 
@@ -41,8 +41,10 @@ html, body {
 		<jsp:include page="/header.jsp" />
 	</div>
 
-	<!--  Container de la Barra de navegacion -->
-	<jsp:include page="/navbar.jsp" />
+	<!--  Barra de navegacion -->
+	<div class="container-fluid">
+		<jsp:include page="/navbar.jsp" />
+	</div>
 
 
 	<!-- Container del mapa -->
@@ -55,9 +57,10 @@ html, body {
 
 		</div>
 
+<!-- 
+
 		<br>
 
-		<!-- Container de los botones -->
 		<div class="container">
 
 			<button id="botonlocalizar" onclick="localizar()" class="btn btn-primary">Localizarte</button>
@@ -65,10 +68,11 @@ html, body {
 		</div>
 
 	</div>
+	
+	 -->
 
 	<!-- Footer -->
 	<jsp:include page="/footer.jsp" />
-
 
 	<!-- JavaScript del mapa -->
 	<script>
@@ -80,7 +84,7 @@ html, body {
 		});
 		setInterval(function() {
 			$.getJSON('/mapeoDeMercancia', function(data) {
-				for (var i = 0;  i < data.length; i++) {
+				for (var i = 0; i < data.length; i++) {
 					console.log(data[i]);
 				}
 				ponerMarcadores(data);
@@ -88,10 +92,12 @@ html, body {
 		}, 5000);
 	</script>
 
-	<script src="/js/map.js">	
+	<script src="/js/map.js">
+		
 	</script>
 
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwUOXR0TZ7pyQhLJAuA6_U6Ffg92YMkLk&callback=initMap">
+		
 	</script>
 
 </body>
