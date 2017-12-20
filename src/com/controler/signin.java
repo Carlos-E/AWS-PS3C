@@ -54,7 +54,7 @@ public class signin extends HttpServlet {
 		persona.setCorreo(request.getParameter("correo").toLowerCase());
 		persona.setDireccion(request.getParameter("direccion").toLowerCase());
 		persona.setRol("cliente");
-		ControladorBD.registrarItem("usuario",persona);
+		ControladorBD.registrarItem("usuarios",persona);
 		response.sendRedirect("login.jsp");
 
 		 
