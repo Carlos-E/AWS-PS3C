@@ -42,7 +42,6 @@
 
 				<div class="col-sm-6">
 					<!-- Nombre de los campos del form  -->
-
 					<%
 						com.logica.Dibujar.input(out, "origen");
 					%>
