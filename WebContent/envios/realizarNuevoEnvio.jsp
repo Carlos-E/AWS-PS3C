@@ -42,11 +42,9 @@
 
 				<div class="col-sm-6">
 					<!-- Nombre de los campos del form  -->
-
 					<%
 						com.logica.Dibujar.input(out, "origen");
 					%>
-
 					<%
 						com.logica.Dibujar.input(out, "destino");
 					%>
@@ -58,8 +56,6 @@
 
 						}
 					%>
-					
-
 					<%
 						com.logica.Dibujar.input(out, "tipo");
 						com.logica.Dibujar.input(out, "espacio");
@@ -73,7 +69,6 @@
 					%>
 				</div>
 			</div>
-
 			<div class="row">
 				<div class="col-sm-1"></div>
 				<div class="col-sm-1">
@@ -84,18 +79,13 @@
 				</div>
 				<div class="col-sm-9"></div>
 			</div>
-
 		</form>
-
 		<br>
-
 	</div>
-
 	<div class="container-fluid">
 
 		<jsp:include page="/footer.jsp" />
 	</div>
-
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwUOXR0TZ7pyQhLJAuA6_U6Ffg92YMkLk&libraries=places"></script>
 	<script type="text/javascript">
 		google.maps.event.addDomListener(window, 'load', intilize);
@@ -137,6 +127,5 @@
 							});
 		};
 	</script>
-
 </body>
 </html>
