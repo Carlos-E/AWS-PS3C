@@ -68,17 +68,27 @@
 						System.out.println();
 					%>
 				</div>
+				
+				<div class="col-sm-6"></div>
+				
 			</div>
+
 			<div class="row">
+			
 				<div class="col-sm-1"></div>
+				
 				<div class="col-sm-1">
-					<button name="submit" id="submit" type="submit" class="btn btn-primary">Enviar</button>
+					<button type="submit" name="submit" class="btn btn-primary">Registrar</button>
 				</div>
+				
 				<div class="col-sm-1">
 					<button name="submit" id="submit" type="submit" class="btn btn-danger" formaction="/cancelar">Cancelar</button>
 				</div>
-				<div class="col-sm-9"></div>
+				
+				<div class="col-sm-8"></div>
+				
 			</div>
+
 		</form>
 		<br>
 	</div>
