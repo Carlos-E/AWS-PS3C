@@ -61,7 +61,7 @@
 					<button formaction="/cancelar" name="submit" id="cancelar" type="submit" class="btn btn-danger">Cancelar</button>
 
 				</div>
-				<div class="col-sm-8"></div>
+				<div class="col-sm-9"></div>
 			</div>
 
 		</form>
