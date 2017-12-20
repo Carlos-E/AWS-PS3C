@@ -74,15 +74,11 @@
 				<div class="form-vertical">
 					<button name="submit" id="submit" type="submit"
 						class="btn btn-primary">Eliminar</button>
-				</div>
-			</form>
-			<div class="col-sm-2"></div>
-			<form id="form" name="form" action="/cancelar" method="post">
-				<div class="form-vertical">
-					<button name="submit" id="cancelar" type="submit"
+				<button formaction="/cancelar" name="submit" id="cancelar" type="submit"
 						class="btn btn-danger">Cancelar</button>
 				</div>
 			</form>
+			<div class="col-sm-2"></div>
 			<%
 				}
 			%>

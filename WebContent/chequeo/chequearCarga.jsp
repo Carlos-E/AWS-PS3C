@@ -172,12 +172,10 @@ session.setAttribute("pagina", "Chequear Carga de Mercancía");
 				<div class="col-sm-2"></div>
 				<button name="submit" id="submit" type="submit"
 					class="btn btn-primary">Chequear</button>
+			<button formaction="/cancelar" name="submit" id="cancelar" type="submit"
+						class="btn btn-danger">Cancelar</button>
 			</form>
 			<div class="col-sm-2"></div>
-			<form id="form" name="form" action="/cancelar" method="post">
-				<button name="submit" id="cancelar" type="submit"
-					class="btn btn-danger">Cancelar</button>
-			</form>
 			<%
 				} else {
 			%>

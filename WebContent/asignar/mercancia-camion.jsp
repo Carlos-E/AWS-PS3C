@@ -76,6 +76,8 @@ session.setAttribute("pagina", "Asignar Mercancía a Camion");
                  -->
 				<button name="submit" id="submit" type="submit"
 					class="btn btn-primary">Asignar</button>
+					<button formaction="/cancelar" name="submit" id="cancelar" type="submit"
+						class="btn btn-danger">Cancelar</button>
 			</form>
 			<br>
 			<br>

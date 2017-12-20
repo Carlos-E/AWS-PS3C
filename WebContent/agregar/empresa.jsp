@@ -38,7 +38,8 @@ session.setAttribute("pagina", "Agregar Empresa");
 				<div class="col-sm-2"></div>
 				<button type="submit" name="submit" id="submit"
 					class="btn btn-primary">Registrar</button>
-
+				<button formaction="/cancelar" name="submit" id="cancelar" type="submit"
+						class="btn btn-danger">Cancelar</button>
 			</form>
 		</div>
 		<div class="container-fluid">

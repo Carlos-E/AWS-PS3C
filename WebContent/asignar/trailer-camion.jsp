@@ -91,6 +91,8 @@ session.setAttribute("pagina", "Asignar Trailer a Camion");
                       -->
 					<button id="subject" type="submit" name="asignar" value="Asignar"
 						class="btn btn-primary">Asignar</button>
+						<button formaction="/cancelar" name="submit" id="cancelar" type="submit"
+						class="btn btn-danger">Cancelar</button>
 				</form>
 			</div>
 		</div>

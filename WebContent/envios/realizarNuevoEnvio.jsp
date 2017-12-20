@@ -91,6 +91,7 @@
 	</div>
 
 	<div class="container-fluid">
+
 		<jsp:include page="/footer.jsp" />
 	</div>
 
