@@ -19,7 +19,7 @@
 			<jsp:include page="/navbar.jsp" />
 		</div>
 		<br> <br>
-		<div id="container">
+		<div class="container">
 			<%@ page import="com.logica.*"%>
 			<%@ page import="clases.*"%>
 			<%@ page import="java.util.ArrayList"%>
@@ -30,11 +30,11 @@
 				if (session.getAttribute("busca") != "empresa") {
 			%>
 			<form id="form" name="form" action="/buscar" method="post"
-				class="form-horizontal">
-				<div class="form-group">
+				class="form-horizontal">		
+           	 <div class="row">
+                <div class="col-sm-6">
 					<label class="control-label col-sm-2" for="camiones">
 						Camiones </label>
-					<div class="col-sm-9">
 						<select class="form-control" id="subject" name="nit" tabindex="4">
 							<%
 								for (int i = 0; i < listaempresa.size(); i++) {
@@ -48,11 +48,19 @@
 								}
 							%>
 						</select>
-					</div>
-				</div>
-				<div class="col-sm-2"></div>
-
-				<button type="submit" name="submit" class="btn btn-primary">Buscar</button>
+				 </div>
+                <div class="col-sm-6"></div>
+           		 </div>
+           		 <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-1">
+                   	<button type="submit" name="submit" class="btn btn-primary">Buscar</button>
+                </div>
+                <div class="col-sm-1">
+                    <button formaction="/cancelar" name="submit" id="cancelar" type="submit" class="btn btn-danger">Cancelar</button>
+                </div>
+                <div class="col-sm-8"></div>
+            </div>	
 			</form>
 			<%
 				} else {
@@ -61,7 +69,8 @@
 			%>
 			<form id="form" name="form" class="form" action="../modificarEmpresa"
 				method="post">
-				<div class="form-horizontal">
+				<div class="row">
+                <div class="col-sm-6">
 					<%
 						//Nombre de los campos del form	
 							String[] inputs = { "nombre", "telefono", "direccion", "correo" };
@@ -69,21 +78,22 @@
 									empresa.getCorreo() };
 							com.logica.Dibujar.inputs(out, inputs, values);
 					%>
-				</div>
-				<div class="col-sm-2"></div>
-				<div class="form-vertical">
-					<button name="submit" id="submit" type="submit"
-						class="btn btn-primary">Modificar</button>
-						<button formaction="/cancelar" name="submit" id="cancelar" type="submit"
-						class="btn btn-danger">Cancelar</button>
-				</div>
-			</form>
-			<div class="col-sm-2"></div>
-			<form id="form" name="form" action="/cancelar" method="post">
-				<div class="form-vertical">
-					<button name="submit" id="cancelar" type="submit"
-						class="btn btn-danger">Cancelar</button>
-				</div>
+				 </div>
+
+                <div class="col-sm-6"></div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-1">
+                    <button name="submit" id="submit" type="submit" class="btn btn-primary">Modificar</button>
+                </div>
+                <div class="col-sm-1">
+                    <button formaction="/cancelar" name="submit" id="cancelar" type="submit" class="btn btn-danger">Cancelar</button>
+                </div>
+                <div class="col-sm-8"></div>
+            </div>
 			</form>
 			<%
 				}
