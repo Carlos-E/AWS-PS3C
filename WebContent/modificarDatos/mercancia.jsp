@@ -9,7 +9,7 @@
 <title>Modificar Empresa</title>
 <jsp:include page="/head.jsp" />
 <%
-	session.setAttribute("pagina", "Modificar Mercancía");
+	session.setAttribute("pagina", "Modificar Envio");
 %>
 </head>
 
