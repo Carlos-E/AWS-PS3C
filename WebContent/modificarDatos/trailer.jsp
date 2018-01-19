@@ -8,7 +8,7 @@
 <head>
 <title>Modificar Trailer</title>
 <%
-	session.setAttribute("pagina", "Modificar trailer");
+	session.setAttribute("pagina", "Modificar Trailer");
 %>
 <jsp:include page="/head.jsp" />
 </head>

@@ -8,8 +8,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Reporte de Envios</title>
-<% session.setAttribute("pagina", "listaUsuario"); %>
+<title>Listar Empresas</title>
+<% session.setAttribute("pagina", "Listar Empresas"); %>
 <jsp:include page="/head.jsp" />
 
 </head>

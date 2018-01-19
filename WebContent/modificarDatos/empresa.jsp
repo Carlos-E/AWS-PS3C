@@ -5,11 +5,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Modificar Empresa</title>
+<title>Modificar Empresas</title>
 
 <jsp:include page="/head.jsp" />
 <%
-	session.setAttribute("pagina", "Modificar Empresa");
+	session.setAttribute("pagina", "Modificar Empresas");
 %>
 </head>
 <body class="fondo">
