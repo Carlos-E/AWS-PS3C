@@ -12,9 +12,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Modificar Camion</title>
+<title>Eliminar Camión</title>
 <%
-	session.setAttribute("pagina", "Eliminar Camion");
+	session.setAttribute("pagina", "Eliminar Camión");
 %>
 <jsp:include page="/head.jsp" />
 

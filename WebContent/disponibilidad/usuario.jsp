@@ -11,9 +11,9 @@
 <html>
 <head>
 
-<title>Reporte de Envios</title>
+<title>Listar Usuarios</title>
 <%
-	session.setAttribute("pagina", "listaUsuario");
+	session.setAttribute("pagina", "Listar Usuarios");
 %>
 <jsp:include page="/head.jsp" />
 

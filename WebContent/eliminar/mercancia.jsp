@@ -7,10 +7,10 @@
 
 <head>
 
-<title>Modificar Empresa</title>
+<title>Eliminar Envíos</title>
 <jsp:include page="/head.jsp" />
 <%
-	session.setAttribute("pagina", "Eliminar Mercancía");
+	session.setAttribute("pagina", "Eliminar Envíos");
 %>
 </head>
 

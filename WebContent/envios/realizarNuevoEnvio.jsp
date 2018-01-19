@@ -3,12 +3,12 @@
 	if (session.getAttribute("rol") == null) {
 		response.sendError(400, "Acceso incorrecto"); //cambiar
 	}
-	session.setAttribute("pagina", "Envíos");
+	session.setAttribute("pagina", "Crear Envíos");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Nuevo Envio</title>
+<title>Crear Envio</title>
 <jsp:include page="/head.jsp" />
 <style type="text/css">
 #map {

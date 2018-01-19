@@ -6,10 +6,10 @@
 <html>
 
 <head>
-<title>Modificar Empresa</title>
+<title>Modificar Envíos</title>
 <jsp:include page="/head.jsp" />
 <%
-	session.setAttribute("pagina", "Modificar Envio");
+	session.setAttribute("pagina", "Modificar Envíos");
 %>
 </head>
 
