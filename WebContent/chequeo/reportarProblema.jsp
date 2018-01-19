@@ -31,15 +31,17 @@
 
 				<%
 					//Nombre de los campos del form
-					String[] inputs = { "nota" };
-					com.logica.Dibujar.inputs(out, inputs);
-
-
+					//String[] inputs = { "nota" };
+					//com.logica.Dibujar.inputs(out, inputs);
 					
 					%>
 					
-					<div class="form-group"><label class="control-label col-sm-2" for="name">Nota:</label>
-					<div class="col-sm-5"><input class="form-control" name="nota" id="nota" type="text" placeholder="Nota"></div></div>
+					<div class="form-group">
+					<label class="control-label col-sm-2" for="name">Nota:</label>
+					<div class="col-sm-5">
+					  <textarea class="form-control" rows="5" id="nota" name="nota" placeholder="Nota"></textarea>
+					</div>
+					</div>
 
 				<div class="col-sm-2"></div>
 
