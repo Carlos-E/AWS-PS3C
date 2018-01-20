@@ -120,7 +120,7 @@
 						</li>
 						<li class="divider"></li>
 						<li>
-							<a href="/asignar/trailer-camion.jsp">Asignar Camion</a>
+							<a href="/asignar/trailer-camion.jsp">Asignar Cami&oacute;n</a>
 						</li>
 
 						<li class="divider"></li>
@@ -199,7 +199,7 @@
 									</a>
 									<ul class="dropdown-menu dropdownhover-right">
 										<li>
-											<a href="/asignar/mercancia-camion.jsp">Camion</a>
+											<a href="/asignar/mercancia-camion.jsp">Cami&oacute;n</a>
 										</li>
 										<li>
 											<a href="/asignar/mercancia-trailer.jsp">Trailer</a>
@@ -208,10 +208,10 @@
 								</li>
 								<li class="divider"></li>
 								<li>
-									<a href="/asignar/destino-camion.jsp">Destino a Camion</a>
+									<a href="/asignar/destino-camion.jsp">Destino a Cami&oacute;n</a>
 								</li>
 								<li>
-									<a href="/asignar/trailer-camion.jsp">Trailer a Camion</a>
+									<a href="/asignar/trailer-camion.jsp">Trailer a Cami&oacute;n</a>
 								</li>
 							</ul>
 						</li>
