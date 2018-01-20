@@ -43,9 +43,9 @@ session.setAttribute("pagina", "Asignar Mercancía a Camion");
                 %>
 			<form id="form" name="form" class="form" action="/mercanciaACamion"
 				method="post">
-				<table class="table table-bordered">
+				<table class="table">
 					<tr>
-						<td>
+						<td style="border: 0px !important;">
 							<div id="contact-form">
 								<span>Camion: </span> <select class="form-control" id="subject"
 									name="camion" tabindex="4">
@@ -57,7 +57,7 @@ session.setAttribute("pagina", "Asignar Mercancía a Camion");
 								</select>
 							</div>
 						</td>
-						<td>
+						<td style="border: 0px !important;">
 							<div id="contact-form2">
 								<span>Mercancia: </span> <select class="form-control"
 									id="subject" name="mercancia" tabindex="4">

@@ -46,8 +46,9 @@ session.setAttribute("pagina", "Asignar Trailer a Camión");
 				<form id="form" name="form" class="form" action="/trailerACamion"
 					method="post">
 					<table class="table">
-						<tr border="0">
-							<td border="0">
+					<tbody>
+						<tr>
+							<td style="border: 0px !important;">
 								<div id="contact-form">
 									<span>Trailer: </span> <select class="form-control"
 										id="subject" name="trailer" tabindex="4">
@@ -67,7 +68,7 @@ session.setAttribute("pagina", "Asignar Trailer a Camión");
 
 								</div>
 							</td>
-							<td>
+							<td style="border: 0px !important;">
 								<div id="contact-form2">
 									<span>Cami&oacute;n: </span> <select class="form-control" id="subject"
 										name="camion" tabindex="4">
@@ -86,6 +87,7 @@ session.setAttribute("pagina", "Asignar Trailer a Camión");
 								</div>
 							</td>
 						</tr>
+						</tbody>
 					</table>
 					<!--  <input class="submit" id="subject" type="submit" name="Asignar">
                       -->

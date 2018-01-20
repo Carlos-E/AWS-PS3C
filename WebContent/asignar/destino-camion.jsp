@@ -36,9 +36,9 @@ session.setAttribute("pagina", "Asignar Ruta");
 			<div id="lacosa">
 				<form id="form" name="form" class="form" action="/destinoACamion"
 					method="post">
-					<table class="table table-bordered">
+					<table class="table">
 						<tr>
-							<td>
+							<td style="border: 0px !important;">
 								<div id="contact-form">
 									<span>Trailer: </span> <select class="form-control"
 										id="subject" name="trailer">
@@ -56,7 +56,7 @@ session.setAttribute("pagina", "Asignar Ruta");
 									</select>
 								</div>
 							</td>
-							<td>
+							<td style="border: 0px !important;">
 								<div id="contact-form2">
 									<span>Destino: </span><br> <input class="form-control"
 										id="destino" type="text" name="destino">
