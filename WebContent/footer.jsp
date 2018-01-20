@@ -21,7 +21,7 @@
 			</p>
 
 			<a class="navbar-text pull-right" href="https://www.unicartagena.edu.co/" target="_blank">
-				<img src="img/logoUniversidadDeCartagena.png" height="65" width="140" />
+				<img src="/img/logoUniversidadDeCartagena.png" height="65" width="140" />
 			</a>
 
 		</div>
