@@ -48,7 +48,7 @@
 					%>
 
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="destino">Camion:</label>
+						<label class="control-label col-sm-2" for="destino">Cami&oacute;n:</label>
 						<div class="col-sm-9">
 							<select class="form-control" name="camion" id="camion">
 
