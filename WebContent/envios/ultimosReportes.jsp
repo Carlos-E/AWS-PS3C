@@ -40,7 +40,7 @@ th, td {
 	color: white;
 }
 </style>
-		<table class="table table-bordered" style="background-color: rgba(0, 0, 0, 0.75);">
+		<table class="table table-bordered" style="background-color: rgba(0, 0, 0, 0.60);">
 			<thead>
 				<tr>
 					<th>Hora</th>

@@ -23,8 +23,7 @@
 	<div class="container-fluid">
 		<jsp:include page="/navbar.jsp" />
 	</div>
-	<br>
-	<br>
+	
 	<div class="container">
 		<%@ page import="java.util.ArrayList"%>
 		<%@ page import="com.logica.*"%>
@@ -43,8 +42,8 @@
 		%>
 		<form id="form" name="form" action="/buscar" method="post" class="form-horizontal">
 			<table class="table">
-				<tr>
-					<td style="border: 0px !important;">
+				<thead>
+					<tr>
 						<div id="contact-form">
 							<span>Mercancia: </span>
 							<select class="form-control" id="subject" name="chequeoCarga" tabindex="4">
