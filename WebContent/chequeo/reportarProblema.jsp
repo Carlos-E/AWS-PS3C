@@ -23,7 +23,7 @@
 		<div class="container-fluid">
 			<jsp:include page="/navbar.jsp" />
 		</div>
-		<br> <br>
+
 		<div class="container">
 
 			<form id="form" name="form" action="/reportarProblema" method="post"
@@ -37,18 +37,18 @@
 					%>
 					
 					<div class="form-group">
-					<label class="control-label col-sm-2" for="name">Nota:</label>
+					<label class="control-label col-sm-1" for="name">Nota:</label>
 					<div class="col-sm-5">
 					  <textarea class="form-control" rows="5" id="nota" name="nota" placeholder="Nota"></textarea>
 					</div>
 					</div>
 
-				<div class="col-sm-2"></div>
+				<div class="col-sm-1"></div>
 
 				<button name="submit" id="submit" type="submit"
 					class="btn btn-primary">Reportar</button>
 			</form>
-		</div>
+		</div> 
 		<div class="container-fluid">
 		<jsp:include page="/footer.jsp" />
 	</div>

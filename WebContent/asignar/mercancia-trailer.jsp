@@ -24,8 +24,7 @@ session.setAttribute("pagina", "Asignar Mercancía a Trailer");
 		<div class="container-fluid">
 			<jsp:include page="/navbar.jsp" />
 		</div>
-		<br>
-		<br>
+
 		<div class="container">
 			<%@ page import="com.logica.*"%>
 			<%@ page import="java.util.ArrayList"%>

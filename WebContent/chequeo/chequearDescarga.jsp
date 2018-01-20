@@ -23,8 +23,7 @@
 	<div class="container-fluid">
 		<jsp:include page="/navbar.jsp" />
 	</div>
-	<br>
-	<br>
+
 	<div class="container">
 		<%@ page import="java.util.ArrayList"%>
 		<%@ page import="com.logica.*"%>
