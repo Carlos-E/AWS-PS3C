@@ -3,74 +3,64 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <jsp:include page="/head.jsp" />
+<link rel="shortcut icon" href="/img/icon.ico" />
 
-<link rel="shortcut icon" href="img/icon.ico" />
+<!-- CSS -->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/style-login.css" rel="stylesheet">
 
-<title>PS3C Registro</title>
+<title>PS3C</title>
 
 </head>
-
-<body class="fondo">
+<body>
 
 	<div class="container">
 
-		<h1>Registro</h1>
-		<br>
+		<div class="row" id="pwd-container">
+			<div class="col-md-4"></div>
 
-		<form id="form" name="form" class="form-horizontal" action="signin" method="post">
-
-			<!-- 
-			<input name="usuario" id="usuario" type="text" placeholder="Nombre de Usuario*">
-			<input name="clave1" id="clave1" type="password" placeholder="Password*">
-			<input name="calve2" id="clave2" type="password" placeholder="Repetir-Password*">
-			<input name="nombres" id="nombres" type="text" placeholder="Nombres*">
-			<input name="apellidos" id="apellidos" type="text" placeholder="Apellidos">
-			<input name="correo" id="correo" type="email" placeholder="E-Mail*">
-			<input name="direccion" id="direccion" type="text" placeholder="Direccion">
-			<input name="telefono" id="telefono" type="text" placeholder="Telefono">
-			<input type="submit" value="Registrar" id="submit">
-
- -->
-			<div class="row">
-
-				<div class="col-sm-6">
-
-					<!-- INPUTS -->
-					<%
-						com.logica.Dibujar.input(out, "usuario");
-						String[] inputs = { "clave1", "clave2" };
-						com.logica.Dibujar.inputsHidden(out, inputs);
-						com.logica.Dibujar.input(out, "nombres");
-						com.logica.Dibujar.input(out, "apellidos");
-						com.logica.Dibujar.input(out, "correo");
-						com.logica.Dibujar.input(out, "direccion");
-						com.logica.Dibujar.input(out, "telefono");
-					%>
-
-				</div>
-
-				<div class="col-sm-6"></div>
-
-			</div>
-
-			<div class="row">
-				<div class="col-sm-1"></div>
-				<div class="col-sm-1">
-					<!-- Boton Verde -->
-					<button id="submit" type="submit" name="submit" value="Registrar" class="btn btn-primary">Registrar</button>
-				</div>
-				<div class="col-sm-1">
+			<div class="col-md-4">
+				<section class="login-form">
+				<form method="post" action="/signin" role="login">
+					<h1>Registrar</h1>
+					Usuario:<br><input type="text" name="usuario" placeholder="Usuario" required class=" input-sm" value="" /><br>
+					Password:<br><input type="password" name="clave1" class=" input-sm" id="password" placeholder="Contraseña" required="" />
+					Repetir-Password:<br><input type="password" name="clave2" class=" input-sm" id="password" placeholder="Contraseña" required="" />
+					Nombres:<br><input type="text" name="nombres" placeholder="nombres" required class=" input-sm" value="" /><br>
+					Apellidos:<br><input type="text" name="apellidos" placeholder="apellidos" required class=" input-sm" value="" /><br>
+					Correo:<br><input type="text" name="correo" placeholder="correo" required class=" input-sm" value="" /><br>
+					Direccion:<br><input type="text" name="direccion" placeholder="direccion" required class=" input-sm" value="" /><br>
+					Telefono:<br><input type="text" name="telefono" placeholder="telefono" required class=" input-sm" value="" /><br>
+					
+					<button type="submit" name="go" class="btn btn-lg btn-primary btn-block">
+						<span class="glyphicon glyphicon-log-in"></span>
+						Ingresar
+					</button>
 					<!-- Boton Rojo -->
-					<button formaction="/login.jsp" name="submit" id="cancelar" type="submit" class="btn btn-danger">Cancelar</button>
-				</div>
-				<div class="col-sm-8"></div>
+					<button name="submit" id="submit" type="submit" class="btn btn-lg btn-block btn-danger" formaction="/cancelar">Cancelar</button>
+						<!--  or <a href="#">reset password</a>   -->
+
+				</form>
+
+				</section>
 			</div>
 
-		</form>
+			<div class="col-md-4"></div>
+
+		</div>
+
+
 	</div>
+
+	<!-- Scripts -->
+	<script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/js/login.js"></script>
+	<!-- Scripts -->
 
 </body>
 
