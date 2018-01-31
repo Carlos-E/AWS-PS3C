@@ -25,16 +25,16 @@
 
 			<div class="col-md-4">
 				<section class="login-form">
-				<form method="post" action="/signin" role="login">
+				<form method="post" action="/signin" role="login" style="text-align:left;">
 					<h1>Registrar</h1>
-					Usuario:<br><input type="text" name="usuario" placeholder="Usuario" required class=" input-sm" value="" /><br>
-					Password:<br><input type="password" name="clave1" class=" input-sm" id="password" placeholder="Contraseña" required="" />
-					Repetir-Password:<br><input type="password" name="clave2" class=" input-sm" id="password" placeholder="Contraseña" required="" />
-					Nombres:<br><input type="text" name="nombres" placeholder="nombres" required class=" input-sm" value="" /><br>
-					Apellidos:<br><input type="text" name="apellidos" placeholder="apellidos" required class=" input-sm" value="" /><br>
-					Correo:<br><input type="text" name="correo" placeholder="correo" required class=" input-sm" value="" /><br>
-					Direccion:<br><input type="text" name="direccion" placeholder="direccion" required class=" input-sm" value="" /><br>
-					Telefono:<br><input type="text" name="telefono" placeholder="telefono" required class=" input-sm" value="" /><br>
+					Usuario:<input type="text" name="usuario" placeholder="Usuario" required class="form-control input-sm" value="" /><br>
+					Password:<input type="password" name="clave1" class="form-control input-sm" id="password" placeholder="Contraseña" required="" />
+					<div class="pwstrength_viewport_progress"></div>
+					Nombres:<input type="text" name="nombres" placeholder="Nombres" required class="form-control input-sm" value="" /><br>
+					Apellidos:<input type="text" name="apellidos" placeholder="Apellidos" required class="form-control input-sm" value="" /><br>
+					Correo:<input type="text" name="correo" placeholder="Correo" required class="form-control input-sm" value="" /><br>
+					Direccion:<input type="text" name="direccion" placeholder="Direccion" required class="form-control input-sm" value="" /><br>
+					Telefono:<input type="text" name="telefono" placeholder="Telefono" required class="form-control input-sm" value="" /><br>
 					
 					<button type="submit" name="go" class="btn btn-lg btn-primary btn-block">
 						<span class="glyphicon glyphicon-log-in"></span>
