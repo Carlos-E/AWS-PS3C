@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <!-- Custom styles for this template -->
-<link href="/css/login.css?v=1.1.6" rel="stylesheet">
+<link href="/css/login.css?v=1.2.2" rel="stylesheet">
 </head>
 
 <body class="fondo">
@@ -37,12 +37,12 @@
  -->
 		<div class="form-label-group">
 			<input type="email" id="inputEmail" class="form-control" name="username" placeholder="Usuario" required autofocus>
-			<label for="inputEmail">Correo</label>
+			<label class="unselectable" for="inputEmail">Correo</label>
 		</div>
 
 		<div class="form-label-group">
 			<input type="password" id="inputPassword" class="form-control" name="password" placeholder="Contraseña" required>
-			<label for="inputPassword">Contrase&ntildea</label>
+			<label class="unselectable" for="inputPassword">Contrase&ntildea</label>
 		</div>
 
 		<div class="checkbox mt-3 mb-3">
@@ -71,7 +71,5 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<!-- Scripts -->
 
-	<script>
-	</script>
 </body>
 </html>

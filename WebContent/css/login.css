@@ -1,6 +1,6 @@
 .fondo {
-	 /* background: url(http://i.imgur.com/GHr12sH.jpg) no-repeat center center
-		fixed;  */ 
+	background: url(http://i.imgur.com/GHr12sH.jpg) no-repeat center center
+		fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -17,6 +17,7 @@
 	border-radius: 5px;
 	box-shadow: 5px 6px 12px 0px;
 }
+
 :root {
   --input-padding-x: .75rem;
   --input-padding-y: .75rem;
@@ -98,10 +99,21 @@ body {
   color: #777;
 }
 
+
 /* Codigo especial para que fucione correctamente la animacion */
 .form-group.label-floating input.form-control:-webkit-autofill ~ label.control-label {
     top: -30px;
     left: 0;
-    font-size: 12px;
-    line-height: 1.07142857;
+    font-size: 11px;
+    line-height: 1;
+}
+
+/* Hacer objetos inseleccionables */
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
