@@ -15,10 +15,10 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <!-- Custom styles for this template -->
-<link href="/css/login.css?v=1.2.2" rel="stylesheet">
+<link href="/css/login.css?v=1.2.5" rel="stylesheet">
 </head>
 
-<body class="fondo">
+<body class="background">
 
 	<form class="form-signin" method="post" action="/login" role="login">
 
