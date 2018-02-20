@@ -72,10 +72,6 @@
 	<!-- Scripts -->
 
 	<script>
-		// Codigo necesario para que la animacion del form funcione correctamente en el password
-		 $(document).ready(function() {
-			 $("#inputPassword").val(0);
-	        });
 	</script>
 </body>
 </html>
