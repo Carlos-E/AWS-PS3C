@@ -5,7 +5,7 @@
 		response.sendError(400, "Acceso incorrecto"); //cambiar
 	}
 %>
-BORRAR
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
