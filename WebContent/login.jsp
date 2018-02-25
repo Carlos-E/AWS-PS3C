@@ -39,7 +39,7 @@
 		<input type="password" name="password" class="form-control" id="password" placeholder="Contraseña" required="" />
  -->
 		<div class="form-label-group">
-			<input type="text" id="inputEmail" class="form-control" name="username" placeholder="Usuario" required autofocus>
+			<input type="email" id="inputEmail" class="form-control" name="username" placeholder="Usuario" required autofocus>
 			<label class="unselectable" for="inputEmail">Correo</label>
 		</div>
 
