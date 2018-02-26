@@ -15,7 +15,7 @@ import org.json.JSONObject;
 import clases.ubicacion;
 
 /**
- * Servlet implementation class mapeoDeMercancia
+ * Servlet implementation class fechaEnvios
  */
 @WebServlet("/fechaEnvios")
 public class fechaEnvios extends HttpServlet {

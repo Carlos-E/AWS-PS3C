@@ -17,7 +17,14 @@ var randomScalingFactor = function(){ return Math.round(Math.random()*1000 + 3)}
 
 		}
 	
+	
 
+		$.getJSON('/fechaEnvios', {format: "json"}, function(data) {
+			for (var i = 0; i < data.length; i++) {
+				console.log(data[i]);
+			}
+		});
+		
 	var barChartData = {
 			labels : ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio"],
 			datasets : [
