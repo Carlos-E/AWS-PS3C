@@ -1,5 +1,5 @@
-<%@page import="java.io.PrintWriter"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.io.PrintWriter"%>
 <%
 	if (session.getAttribute("rol") == null) {
 		response.sendError(400, "Acceso incorrecto"); //cambiar
@@ -42,32 +42,10 @@
 			<!--  ./Barra de navegacion -->
 
 
-			<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <header class="page-header row justify-center">
-				<div class="col-md-6 col-lg-8">
-					<h1 class="float-left text-center text-md-left">PROTOTIPO SOFTWARE DE CARGA COMPARTIDA</h1>
-				</div>
-				<div class="dropdown user-dropdown col-md-6 col-lg-4 text-center text-md-right">
-					<a class="btn btn-stripped dropdown-toggle" href="/index.html#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<img src="./img/user.svg" alt="profile photo" class="circle float-left profile-photo" width="50" height="auto">
-						<div class="username mt-1">
-							<h4 class="mb-1" id="username">Usuario</h4>
-							<h6 id="role">Rol</h6>
-						</div>
-					</a>
-					<div class="dropdown-menu dropdown-menu-right" style="margin-right: 1.5rem;" aria-labelledby="dropdownMenuLink">
-						<a class="dropdown-item" href="/index.html#">
-							<em class="fa fa-user-circle mr-1"></em>
-							Ver Perfil
-						</a>
+			<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> 
+			
+			<!-- HEADER --> <jsp:include page="/header.jsp" /> <!--  HEADER -->
 
-						<a class="dropdown-item" href="/index.html#">
-							<em class="fa fa-power-off mr-1"></em>
-							Cerrar Sesi&oacute;n
-						</a>
-					</div>
-				</div>
-				<div class="clear"></div>
-			</header>
 			<section class="row">
 				<div class="col-sm-12">
 					<section class="row">

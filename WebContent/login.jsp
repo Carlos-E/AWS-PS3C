@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html lang="en">
@@ -36,7 +36,7 @@
 		<input type="email" id="inputEmail" name="username" placeholder="Usuario" class="form-control" value="" required autofocus>
 
 		<label for="inputPassword" class="sr-only">Password</label>
-		<input type="password" name="password" class="form-control" id="password" placeholder="Contraseña" required="" />
+		<input type="password" name="password" class="form-control" id="password" placeholder="ContraseÃ±a" required="" />
  -->
 		<div class="form-label-group">
 			<input type="email" id="inputEmail" class="form-control" name="username" placeholder="Usuario" required autofocus>
@@ -44,7 +44,7 @@
 		</div>
 
 		<div class="form-label-group">
-			<input type="password" id="inputPassword" class="form-control" name="password" placeholder="Contraseña" required>
+			<input type="password" id="inputPassword" class="form-control" name="password" placeholder="ContraseÃ±a" required>
 			<label class="unselectable" for="inputPassword">Contrase&ntildea</label>
 		</div>
 
