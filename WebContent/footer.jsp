@@ -8,7 +8,7 @@
 				y
 				<a href="https://www.linkedin.com/in/carlos-e-perez-meza/" target="_blank">Carlos E. Perez,</a>
 				pagina con fines academicos.</p>
-				<p> Template by
+				<p> Plantilla hecha por
 				<a href="https://www.medialoot.com/">Medialoot</a></p>
 		</div>
 </div>
