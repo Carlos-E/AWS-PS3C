@@ -216,7 +216,7 @@ code {
   margin: 0 4px 6px 0 !important; }
 
 .btn {
-  border-radius: 499rem;
+  border-radius: .25rem;
   text-transform: uppercase;
   letter-spacing: .1rem;
   font-size: .75rem;

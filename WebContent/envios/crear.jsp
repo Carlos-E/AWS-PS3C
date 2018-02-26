@@ -41,10 +41,7 @@
 					<div class="form-group row">
 
 						<%
-							/* 						
 							if (session.getAttribute("rol") == "admin" || session.getAttribute("rol") == "empleado") {
-							 */
-							if (true) {
 						%>
 						<label class="col-md-2 col-form-label text-capitalize">cliente</label>
 						<div class="col-md-4">
