@@ -6,7 +6,7 @@
 				</div>
 				<div class="dropdown user-dropdown col-md-6 col-lg-4 text-center text-md-right">
 					<a class="btn btn-stripped dropdown-toggle" href="/index.html#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<img src="./img/user.svg" alt="profile photo" class="circle float-left profile-photo" width="50" height="auto">
+						<img src="/img/user.svg" alt="profile photo" class="circle float-left profile-photo" width="50" height="auto">
 						<div class="username mt-1">
 							<h4 class="mb-1" id="username">Usuario</h4>
 							<h6 id="role">Rol</h6>
