@@ -23,7 +23,7 @@
 					</a>
 				</h1>
 
-				<a href="/index.jsp#menu-toggle" class="btn btn-default" id="menu-toggle">
+				<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">
 					<em class="fa fa-bars"></em>
 				</a>
 				<ul class="nav nav-pills flex-column sidebar-nav">
