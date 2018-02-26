@@ -40,7 +40,7 @@
 			<a class="nav-link" data-toggle="collapse" href="#sub-item-1">
 				<em class="fa fa-paper-plane">&nbsp;</em>
 				Env&iacute;os
-				<span data-toggle="collapse" href="#sub-item-1" class="icon pull-right">
+				<span data-toggle="collapse" href="" class="icon pull-right">
 					<i class="fa fa-caret-down"></i>
 				</span>
 			</a>
@@ -75,7 +75,7 @@
 			<a class="nav-link" data-toggle="collapse" href="#sub-item-2">
 				<em class="fa fa-users">&nbsp;</em>
 				Usuarios
-				<span data-toggle="collapse" href="#sub-item-2" class="icon pull-right">
+				<span data-toggle="collapse" href="" class="icon pull-right">
 					<i class="fa fa-caret-down"></i>
 				</span>
 			</a>
@@ -110,7 +110,7 @@
 			<a class="nav-link" data-toggle="collapse" href="#sub-item-3">
 				<em class="fa fa-building">&nbsp;</em>
 				Empresas
-				<span data-toggle="collapse" href="#sub-item-3" class="icon pull-right">
+				<span data-toggle="collapse" href="" class="icon pull-right">
 					<i class="fa fa-caret-down"></i>
 				</span>
 			</a>
@@ -145,7 +145,7 @@
 			<a class="nav-link" data-toggle="collapse" href="#sub-item-4">
 				<em class="fa fa-truck">&nbsp;</em>
 				Camiones
-				<span data-toggle="collapse" href="#sub-item-4" class="icon pull-right">
+				<span data-toggle="collapse" href="" class="icon pull-right">
 					<i class="fa fa-caret-down"></i>
 				</span>
 			</a>
@@ -180,7 +180,7 @@
 			<a class="nav-link" data-toggle="collapse" href="#sub-item-5">
 				<em class="fa fa-truck">&nbsp;</em>
 				Traileres
-				<span data-toggle="collapse" href="#sub-item-5" class="icon pull-right">
+				<span data-toggle="collapse" href="" class="icon pull-right">
 					<i class="fa fa-caret-down"></i>
 				</span>
 			</a>
@@ -215,7 +215,7 @@
 			<a class="nav-link" data-toggle="collapse" href="#sub-item-6">
 				<em class="fa fa-check-circle">&nbsp;</em>
 				Chequeo
-				<span data-toggle="collapse" href="#sub-item-6" class="icon pull-right">
+				<span data-toggle="collapse" href="" class="icon pull-right">
 					<i class="fa fa-caret-down"></i>
 				</span>
 
@@ -230,7 +230,7 @@
 			</ul>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" href="mapa.jsp">
+			<a class="nav-link" href="/chequeo/mapeoDeMercancia.jsp">
 				<em class="fa fa-globe"></em>
 				Mapa
 			</a>
