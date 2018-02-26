@@ -42,9 +42,7 @@
 			<!--  ./Barra de navegacion -->
 
 
-			<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> 
-			
-			<!-- HEADER --> <jsp:include page="/header.jsp" /> <!--  HEADER -->
+			<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!-- HEADER --> <jsp:include page="/header.jsp" /> <!--  HEADER -->
 
 			<section class="row">
 				<div class="col-sm-12">
@@ -100,10 +98,9 @@
 						</div>
 					</section>
 					<section class="row">
-						<div class="col-12 mt-1 mb-4">
-							Template by
-							<a href="https://www.medialoot.com/">Medialoot</a>
-						</div>
+						<!--  FOOTER -->
+						<jsp:include page="/footer.jsp" />
+						<!--  ./FOOTER -->
 					</section>
 				</div>
 			</section>
@@ -111,17 +108,10 @@
 		</div>
 	</div>
 
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<!--  SCRIPTS -->
+	<jsp:include page="/scripts.jsp" />
+	<!--  ./SCRIPTS -->
 
-
-	<script src="/js/chart.min.js"></script>
-	<script src="/js/chart-data.js"></script>
-	<script src="/js/custom.js"></script>
 	<script>
 		var startCharts = function() {
 			var chart1 = document.getElementById("line-chart").getContext("2d");
@@ -134,8 +124,6 @@
 		};
 		window.setTimeout(startCharts(), 1000);
 	</script>
-
-	<script src="./js/tether.min.js"></script>
 
 </body>
 
