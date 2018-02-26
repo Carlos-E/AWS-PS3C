@@ -15,13 +15,15 @@
 
 <style type="text/css">
 html, body {
-	height: 100%;
+	/* 	height: 100%;
+ */
 	margin: 0;
 	padding: 0;
 }
 
 #map {
-	height: 100%;
+	height: 80vh;
+	width: 80vw;
 }
 
 /*Propiedad de bootstrap sobreescrita aqui para la dimension del mapa*/
@@ -60,8 +62,7 @@ html, body {
 
 	<!--  FOOTER CON SCRIPTS -->
 	<jsp:include page="/footer.jsp" />
-
-
+	
 	<!-- JavaScript del mapa -->
 	<script>
 		$.getJSON('/mapeoDeMercancia', function(data) {
