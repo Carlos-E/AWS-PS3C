@@ -1,5 +1,5 @@
-<%@page import="java.io.PrintWriter"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.io.PrintWriter"%>
 <%
 	if (session.getAttribute("rol") == null) {
 		response.sendError(400, "Acceso incorrecto"); //cambiar
@@ -19,18 +19,9 @@
 <link rel="icon" href="/img/favicon.ico">
 <title>PS3C</title>
 
-<!-- Bootstrap core CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-<!-- Icons -->
-<!-- <link href="./css/font-awesome.css" rel="stylesheet"> -->
-<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-
-<!-- Custom styles for this template -->
-<link href="/css/style.css" rel="stylesheet">
-
-<link rel="stylesheet" href="/css/theme-teal.css" id="theme-css">
-<!-- End Theme Switcher -->
+<!--  HEAD -->
+<jsp:include page="/head.jsp" />
+<!--  HEAD -->
 </head>
 
 <body>
@@ -42,32 +33,8 @@
 			<!--  ./Barra de navegacion -->
 
 
-			<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <header class="page-header row justify-center">
-				<div class="col-md-6 col-lg-8">
-					<h1 class="float-left text-center text-md-left">PROTOTIPO SOFTWARE DE CARGA COMPARTIDA</h1>
-				</div>
-				<div class="dropdown user-dropdown col-md-6 col-lg-4 text-center text-md-right">
-					<a class="btn btn-stripped dropdown-toggle" href="/index.html#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<img src="./img/user.svg" alt="profile photo" class="circle float-left profile-photo" width="50" height="auto">
-						<div class="username mt-1">
-							<h4 class="mb-1" id="username">Usuario</h4>
-							<h6 id="role">Rol</h6>
-						</div>
-					</a>
-					<div class="dropdown-menu dropdown-menu-right" style="margin-right: 1.5rem;" aria-labelledby="dropdownMenuLink">
-						<a class="dropdown-item" href="/index.html#">
-							<em class="fa fa-user-circle mr-1"></em>
-							Ver Perfil
-						</a>
+			<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!-- HEADER --> <jsp:include page="/header.jsp" /> <!--  HEADER -->
 
-						<a class="dropdown-item" href="/index.html#">
-							<em class="fa fa-power-off mr-1"></em>
-							Cerrar Sesi&oacute;n
-						</a>
-					</div>
-				</div>
-				<div class="clear"></div>
-			</header>
 			<section class="row">
 				<div class="col-sm-12">
 					<section class="row">
@@ -122,10 +89,9 @@
 						</div>
 					</section>
 					<section class="row">
-						<div class="col-12 mt-1 mb-4">
-							Template by
-							<a href="https://www.medialoot.com/">Medialoot</a>
-						</div>
+						<!--  FOOTER -->
+						<jsp:include page="/footer.jsp" />
+						<!--  ./FOOTER -->
 					</section>
 				</div>
 			</section>
@@ -133,17 +99,10 @@
 		</div>
 	</div>
 
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<!--  SCRIPTS -->
+	<jsp:include page="/scripts.jsp" />
+	<!--  ./SCRIPTS -->
 
-
-	<script src="/js/chart.min.js"></script>
-	<script src="/js/chart-data.js"></script>
-	<script src="/js/custom.js"></script>
 	<script>
 		var startCharts = function() {
 			var chart1 = document.getElementById("line-chart").getContext("2d");
@@ -156,8 +115,6 @@
 		};
 		window.setTimeout(startCharts(), 1000);
 	</script>
-
-	<script src="./js/tether.min.js"></script>
 
 </body>
 

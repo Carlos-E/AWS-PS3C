@@ -1,22 +1,6 @@
-<style>
-.navbar.navbar-inverse.navbar-fixed-bottom {
-	background: rgba(0, 0, 0, 0.65);
-}
-</style>
-<br><br><br><br><br><br>
-<footer>
-	<div class="navbar navbar-inverse navbar-fixed-bottom">
-		<div class="container-fluid">
-			<p class="navbar-text pull-left">
-				� 2017 - Sitio construido por
-				<a href="https://www.linkedin.com/in/luis-puche/" target="_blank">Luis A. Puche</a>
-				y
-				<a href="https://www.linkedin.com/in/carlos-e-perez-meza/" target="_blank">Carlos E. Perez,</a>
-				esta pagina solo tiene fines academicos.
-			</p>
-			<a class="navbar-text pull-right" href="https://www.unicartagena.edu.co/" target="_blank">
-				<img src="/img/logoUniversidadDeCartagena.png" height="65" width="140" />
-			</a>
-		</div>
-	</div>
-</footer>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<div class="col-12 mt-1 mb-4">
+	Template by
+	<a href="https://www.medialoot.com/">Medialoot</a>
+</div>
