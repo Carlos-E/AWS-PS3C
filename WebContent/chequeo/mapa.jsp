@@ -8,8 +8,9 @@
 	session.setAttribute("pagina", "Mapeo de Mercancía");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html lang="es">
 <head>
+
 <jsp:include page="/head.jsp" />
 <title>Mapa</title>
 
@@ -26,10 +27,6 @@ html, body {
 	width: 80vw;
 }
 
-/*Propiedad de bootstrap sobreescrita aqui para la dimension del mapa*/
-.embed-responsive-16by9 {
-	padding-bottom: 0%;
-}
 </style>
 
 </head>

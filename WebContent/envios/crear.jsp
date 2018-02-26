@@ -6,10 +6,10 @@
 	session.setAttribute("pagina", "Crear Envíos");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html lang="es">
 <head>
-<title>Crear Env&iacute;o</title>
 <jsp:include page="/head.jsp" />
+<title>Crear Env&iacute;o</title>
 </head>
 <body>
 
