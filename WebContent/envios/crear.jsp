@@ -41,7 +41,10 @@
 					<div class="form-group row">
 
 						<%
+							/* 						
 							if (session.getAttribute("rol") == "admin" || session.getAttribute("rol") == "empleado") {
+							 */
+							if (true) {
 						%>
 						<label class="col-md-2 col-form-label text-capitalize">cliente</label>
 						<div class="col-md-4">
@@ -65,13 +68,9 @@
 					<input type="text" id="latitud_Destino" name="latitud_Destino" style="display: none">
 					<input type="text" id="latitud_Origen" name="latitud_Origen" style="display: none">
 					<input type="text" id="longitud_Origen" name="longitud_Origen" style="display: none">
-					<div class="form-group">
-						<div class="col-12 widget-right">
-							<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger btn-md float-right">Cancelar</button>
-						</div>
-						<div class="col widget-right">
-							<button type="submit" name="submit" class="btn btn-primary btn-md float-right">Registrar</button>
-						</div>
+					<div class="modal-footer">
+						<button type="submit" name="submit" class="btn btn-primary btn-md float-right">Registrar</button>
+						<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger btn-md float-right">Cancelar</button>
 					</div>
 				</form>
 			</div>
