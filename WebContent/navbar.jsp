@@ -230,7 +230,7 @@
 		</li>
 		
 		<li class="nav-item">
-			<a class="nav-link" href="/chequeo/mapeoDeMercancia.jsp">
+			<a class="nav-link" href="/chequeo/mapa.jsp">
 				<em class="fa fa-globe"></em>
 				Mapa
 			</a>

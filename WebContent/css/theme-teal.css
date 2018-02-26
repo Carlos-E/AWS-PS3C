@@ -181,7 +181,7 @@ code {
   background-image: none; }
 
 .nav-pills .nav-link.active, .badge-primary[href]:focus, .badge-primary[href]:hover, a.bg-primary:focus, a.bg-primary:hover {
-  background-color: #30ab8d !important; }
+  background-color: rgba(0,0,0,0.7) !important; }
 
 .form-control:focus {
   border-color: #3dbb9c !important; }

@@ -15,6 +15,9 @@
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+<!-- Icons -->
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
 <!-- Custom styles for this template -->
 <link href="/css/login.css?v=1.0.0" rel="stylesheet">
 </head>
@@ -26,7 +29,8 @@
 	<form class="form-signin" method="post" action="/login" role="login">
 
 		<h1 class="text-center h1 mt-3 mb-3 font-weight-normal">
-			<img class="mb-4" src="/img/icon.ico" class="img-responsive" alt=":)">
+<!-- 			<img class="mb-4" src="/img/icon.ico" class="img-responsive" alt=":)">
+ -->			<em class="fa fa-truck fa-sm"></em>
 			PS3C
 		</h1>
 
