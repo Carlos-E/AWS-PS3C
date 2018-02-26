@@ -47,6 +47,7 @@
     display: none; } }
 body {
   background-color: #ffffff;
+  background-image: url("/img/pattern.svg");
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1rem;
   color: #383c42; }
