@@ -27,7 +27,7 @@
 
 			<div class="card-block">
 				<h3 class="card-title">Crear Env&iacute;o</h3>
-				<form class="form" action="#">
+				<form class="form" action="/envio" method="post">
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">origen</label>
 						<div class="col-md-4">
@@ -45,7 +45,7 @@
 						%>
 						<label class="col-md-2 col-form-label text-capitalize">cliente</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="cliente" placeholder="cliente" >
+							<input class="form-control" type="text" name="cliente" placeholder="cliente">
 						</div>
 						<%
 							}
@@ -67,7 +67,7 @@
 					<input type="text" id="longitud_Origen" name="longitud_Origen" style="display: none">
 					<div class="form-group">
 						<div class="col-12 widget-right">
-							<button name="submit" id="submit" type="submit" class="btn btn-danger btn-md float-right" formaction="/cancelar">Cancelar</button>
+							<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger btn-md float-right">Cancelar</button>
 						</div>
 						<div class="col widget-right">
 							<button type="submit" name="submit" class="btn btn-primary btn-md float-right">Registrar</button>
@@ -125,7 +125,10 @@
 			</div>
 
 			<div class="col-sm-1">
+				<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger">Cancelar</button>
+				<!-- 				
 				<button name="submit" id="submit" type="submit" class="btn btn-danger" formaction="/cancelar">Cancelar</button>
+ 				-->
 			</div>
 
 			<div class="col-sm-8"></div>
@@ -133,6 +136,27 @@
 		</div>
 
 	</form>
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">Confirmaci&oacute;n</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">Desea cancelar?</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+					<form name="form" action="/cancelar" method="post">
+						<button type="submit" class="btn btn-danger btn-md float-right">Cancelar</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!--  SCRIPTS -->
 	<jsp:include page="/scripts.jsp" />
