@@ -33,8 +33,7 @@
 		</div>
 	</div>
 
-	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> 
-	<!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER -->
+	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER -->
 	<section class="row">
 		<div class="col-md-12 col-lg-8">
 
@@ -62,12 +61,98 @@
 
 		</div>
 		<div class="col-md-12 col-lg-4">
-			<div class="card">
+			<div class="card mb-4">
 
 				<div class="card-header">Universidad De Cartagena</div>
 				<div class="card-block">
 					<p>La Universidad de Cartagena ha sido el espacio de formación de los jóvenes del Caribe colombiano desde el siglo XIX. Su historia e importancia se expresan desde los albores de la independencia y en el sueño de los libertadores Simón Bolívar y Francisco de Paula Santander, organizadores
 						del novel Estado colombiano. Ellos visionaron la educación como el medio ideal para la formación de las nuevas generaciones que conducirían los destinos de la República.</p>
+				</div>
+			</div>
+			<div class="card mb-4">
+				<div class="card-block">
+					<h3 class="card-title">Objetivos Cumplidos</h3>
+					<h6 class="card-subtitle mb-2 text-muted">Tesis</h6>
+					<ul class="todo-list mt-2">
+						<li class="todo-list-item">
+							<div class="checkbox mt-1 mb-2">
+								<label class="custom-control custom-checkbox">
+									<input checked="" type="checkbox" class="custom-control-input">
+									<span class="custom-control-indicator"></span>
+									<span class="custom-control-description">Make Coffee</span>
+								</label>
+								<div class="float-right action-buttons">
+									<a href="#" class="trash">
+										<em class="fa fa-trash"></em>
+									</a>
+								</div>
+							</div>
+						</li>
+						<li class="todo-list-item">
+							<div class="checkbox mt-1 mb-2">
+								<label class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input">
+									<span class="custom-control-indicator"></span>
+									<span class="custom-control-description">Check emails</span>
+								</label>
+								<div class="float-right action-buttons">
+									<a href="#" class="trash">
+										<em class="fa fa-trash"></em>
+									</a>
+								</div>
+							</div>
+						</li>
+						<li class="todo-list-item">
+							<div class="checkbox mt-1 mb-2">
+								<label class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input">
+									<span class="custom-control-indicator"></span>
+									<span class="custom-control-description">Reply to Jane</span>
+								</label>
+								<div class="float-right action-buttons">
+									<a href="#" class="trash">
+										<em class="fa fa-trash"></em>
+									</a>
+								</div>
+							</div>
+						</li>
+						<li class="todo-list-item">
+							<div class="checkbox mt-1 mb-2">
+								<label class="custom-control custom-checkbox">
+									<input checked="" type="checkbox" class="custom-control-input">
+									<span class="custom-control-indicator"></span>
+									<span class="custom-control-description">Work on the new design</span>
+								</label>
+								<div class="float-right action-buttons">
+									<a href="#" class="trash">
+										<em class="fa fa-trash"></em>
+									</a>
+								</div>
+							</div>
+						</li>
+						<li class="todo-list-item">
+							<div class="checkbox mt-1 mb-2">
+								<label class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input">
+									<span class="custom-control-indicator"></span>
+									<span class="custom-control-description">Get feedback</span>
+								</label>
+								<div class="float-right action-buttons">
+									<a href="#" class="trash">
+										<em class="fa fa-trash"></em>
+									</a>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<div class="card-footer todo-list-footer">
+						<div class="input-group">
+							<input id="btn-input" type="text" class="form-control input-md" placeholder="Add new task">
+							<span class="input-group-btn">
+								<button class="btn btn-primary btn-md" id="btn-todo">Add</button>
+							</span>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
