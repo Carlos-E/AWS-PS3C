@@ -22,13 +22,13 @@ html, body {
 }
 
 #map {
-	height: 80vh;
+	height: 70vh;
 	width: 80vw;
 }
 
 /*Propiedad de bootstrap sobreescrita aqui para la dimension del mapa*/
 .embed-responsive-16by9 {
-	padding-bottom: 35.00%;
+	padding-bottom: 0%;
 }
 </style>
 
@@ -62,7 +62,7 @@ html, body {
 
 	<!--  FOOTER CON SCRIPTS -->
 	<jsp:include page="/footer.jsp" />
-	
+
 	<!-- JavaScript del mapa -->
 	<script>
 		$.getJSON('/mapeoDeMercancia', function(data) {
