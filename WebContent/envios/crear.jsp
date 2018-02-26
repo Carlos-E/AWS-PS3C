@@ -24,15 +24,18 @@
 </head>
 <body>
 
-
 	<div class="container-fluid" id="wrapper">
 
-		<!--  NAVBAR -->
-		<jsp:include page="/navbar.jsp" />
-		<!--  ./NAVBAR -->
+		<div class="row">
 
-		<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!-- HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER --> <section class="row">
-		<div class="col-md-12 col-lg-8">
+			<!--  NAVBAR -->
+			<jsp:include page="/navbar.jsp" />
+			<!--  ./NAVBAR -->
+
+			<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!-- HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER -->
+
+			<section class="row">
+				<div class="col-md-12 col-lg-8">
 
 			<form id="form" name="form" action="/envio" method="post" class="form-horizontal">
 
@@ -91,9 +94,15 @@
 			<br>
 
 
-
+</div>
+			</section>
+			<section class="row">
+				<!--  FOOTER -->
+				<jsp:include page="/footer.jsp" />
+				<!--  ./FOOTER -->
+			</section>
+			</main>
 		</div>
-		</section> <section class="row"> <!--  FOOTER --> <jsp:include page="/footer.jsp" /> <!--  ./FOOTER --> </section> </main>
 	</div>
 
 

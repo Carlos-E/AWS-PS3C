@@ -313,7 +313,7 @@ code {
   overflow-x: hidden;
   overflow-y: auto;
   /* Scrollable contents if viewport is shorter than content. */
-  background: #1f2225; }
+  background: rgba(31, 34, 37,0.2); }
   .sidebar a {
     color: #ffffff;
     text-transform: uppercase;
