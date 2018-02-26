@@ -46,25 +46,25 @@
 			</a>
 			<ul class="children collapse" id="sub-item-1">
 				<li class="nav-item">
-					<a class="nav-link" href="envios/listar.jsp">
+					<a class="nav-link" href="/envios/listar.jsp">
 						Listar
 						<em class="fa fa-list-alt">&nbsp;</em>
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="envios/crear.jsp">
+					<a class="nav-link" href="/envios/crear.jsp">
 						Crear
 						<em class="fa fa-plus-square">&nbsp;</em>
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="envios/modificar.jsp">
+					<a class="nav-link" href="/envios/modificar.jsp">
 						Modificar
 						<em class="fa fa-edit">&nbsp;</em>
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="envios/eliminar.jsp">
+					<a class="nav-link" href="/envios/eliminar.jsp">
 						Eliminar
 						<em class="fa fa-trash">&nbsp;</em>
 					</a>
