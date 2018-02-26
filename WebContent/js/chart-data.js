@@ -2,6 +2,24 @@ var randomScalingFactor = function() {
 	return Math.round(Math.random() * 1000 + 3)
 };
 
+var fechas = $.getJSON('/fechaEnvios');
+
+var json = fechas.responseJSON;
+console.log(fechas);
+console.log(fechas.responseText);
+
+
+$.ajax({
+	  dataType: '/fechaEnvios',
+	  async: false,
+	  data: myData,
+	  success: function(data) {
+	    //stuff
+	    //...
+	  }
+	});
+
+
 var lineChartData = {
 	labels : [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio" ],
 	datasets : [ {
@@ -12,7 +30,7 @@ var lineChartData = {
 		pointStrokeColor : "#fff",
 		pointHighlightFill : "#fff",
 		pointHighlightStroke : "rgba(128,130,228,1)",
-		data : [ randomScalingFactor(), randomScalingFactor(),
+		data : [ "0", randomScalingFactor(),
 				randomScalingFactor(), randomScalingFactor(),
 				randomScalingFactor(), randomScalingFactor(),
 				randomScalingFactor() ]
@@ -20,11 +38,6 @@ var lineChartData = {
 
 }
 
-$.getJSON('/fechaEnvios', function(data) {
-	for (var i = 0; i < data.length; i++) {
-		console.log(data[i]);
-	}
-});
 
 var barChartData = {
 	labels : [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio" ],
