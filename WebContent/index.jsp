@@ -12,7 +12,6 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
@@ -21,22 +20,18 @@
 
 <!--  HEAD -->
 <jsp:include page="/head.jsp" />
-<!--  HEAD -->
+<!--  ./HEAD -->
 </head>
 
 <body>
 	<div class="container-fluid" id="wrapper">
-		<div class="row">
 
-			<!--  Barra de navegacion -->
+			<!--  NAVBAR -->
 			<jsp:include page="/navbar.jsp" />
-			<!--  ./Barra de navegacion -->
+			<!--  ./NAVBAR -->
 
+			<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!-- HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER -->
 
-			<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!-- HEADER --> <jsp:include page="/header.jsp" /> <!--  HEADER -->
-
-			<section class="row">
-				<div class="col-sm-12">
 					<section class="row">
 						<div class="col-md-12 col-lg-8">
 
@@ -94,10 +89,7 @@
 						<!--  ./FOOTER -->
 					</section>
 				</div>
-			</section>
 			</main>
-		</div>
-	</div>
 
 	<!--  SCRIPTS -->
 	<jsp:include page="/scripts.jsp" />
