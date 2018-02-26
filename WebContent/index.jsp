@@ -71,16 +71,10 @@
 			</div>
 		</div>
 	</section>
-	<section class="row">
-		<!--  FOOTER -->
-		<jsp:include page="/footer.jsp" />
-		<!--  ./FOOTER -->
-	</section>
 	</main>
 
-	<!--  SCRIPTS -->
-	<jsp:include page="/scripts.jsp" />
-	<!--  ./SCRIPTS -->
+	<!--  FOOTER -->
+	<jsp:include page="/footer.jsp" />
 
 	<script>
 		var startCharts = function() {

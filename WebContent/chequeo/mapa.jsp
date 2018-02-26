@@ -13,8 +13,6 @@
 <jsp:include page="/head.jsp" />
 <title>Mapa</title>
 
-<jsp:include page="/head.jsp" />
-
 <style type="text/css">
 html, body {
 	height: 100%;
@@ -24,7 +22,6 @@ html, body {
 
 #map {
 	height: 100%;
-	width: 100%;
 }
 
 /*Propiedad de bootstrap sobreescrita aqui para la dimension del mapa*/
@@ -45,15 +42,13 @@ html, body {
 		</div>
 	</div>
 
-	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER --> <section class="row">
+	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <section class="row">
 	<div class="col-md-12 col-lg-12">
-		<div class="card mb-4">
-			<!-- Container del mapa -->
-			<div class="embed-responsive embed-responsive-16by9">
-				<div id="map" class="embed-responsive-item" style="border: 1px solid black"></div>
-			</div>
+		<!-- Container del mapa -->
+		<div class="embed-responsive embed-responsive-16by9">
+			<div id="map" class="embed-responsive-item" style="border: 1px solid black"></div>
 		</div>
-	</section> <!--  FOOTER --><jsp:include page="/footer.jsp" /> </main>
+	</div>
 
 	<!-- 
 		<br>
@@ -61,7 +56,10 @@ html, body {
 			<button id="botonlocalizar" onclick="localizar()" class="btn btn-primary">Localizarte</button>
 		</div>
 	</div>
-	 -->
+	 --> </section> </main>
+
+	<!--  FOOTER CON SCRIPTS -->
+	<jsp:include page="/footer.jsp" />
 
 
 	<!-- JavaScript del mapa -->

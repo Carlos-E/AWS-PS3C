@@ -76,8 +76,7 @@
 
 		</div>
 	</div>
-	</section> <!--  FOOTER --><jsp:include page="/footer.jsp" /> </main>
-
+	</section> </main>
 
 	<!-- Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -100,9 +99,8 @@
 		</div>
 	</div>
 
-	<!--  SCRIPTS -->
-	<jsp:include page="/scripts.jsp" />
-	<!--  ./SCRIPTS -->
+	<!--  FOOTER CON SCRIPTS -->
+	<jsp:include page="/footer.jsp" />
 
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwUOXR0TZ7pyQhLJAuA6_U6Ffg92YMkLk&libraries=places"></script>
 	<script type="text/javascript">
