@@ -13,9 +13,9 @@
 			session.getAttribute("username").toString());
 %>
 <nav class="sidebar col-xs-12 col-sm-4 col-lg-3 col-xl-2">
-	<h1 class="site-title">
+	<h1 class="site-title p-5x">
 		<a href="/index.jsp">
-			<em class="fa fa-truck"></em>
+			<em class="fa fa-truck fa-5x"></em>
 			PS3C
 		</a>
 	</h1>
