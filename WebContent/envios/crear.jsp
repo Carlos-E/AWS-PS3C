@@ -31,11 +31,11 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">origen</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="origen" placeholder="origen" id="origen">
+							<input class="form-control" type="text" name="origen" placeholder="origen" id="origen" required>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">destino</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="destino" placeholder="destino" id="destino">
+							<input class="form-control" type="text" name="destino" placeholder="destino" id="destino" required>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -44,7 +44,7 @@
 						%>
 						<label class="col-md-2 col-form-label text-capitalize">cliente</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="cliente" placeholder="cliente">
+							<input class="form-control" type="text" name="cliente" placeholder="cliente" required>
 						</div>
 						<%
 							}
@@ -54,13 +54,13 @@
 						%>
 						<label class="col-md-2 col-form-label text-capitalize">tipo</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="tipo" placeholder="tipo">
+							<input class="form-control" type="text" name="tipo" placeholder="tipo" required>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">espacio</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="espacio" placeholder="espacio">
+							<input class="form-control" type="text" name="espacio" placeholder="espacio" required>
 						</div>
 					</div>
 					<input type="text" id="longitud_Destino" name="longitud_Destino" style="display: none">

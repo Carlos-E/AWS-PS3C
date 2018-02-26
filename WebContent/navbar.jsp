@@ -236,5 +236,5 @@
 			</a>
 		</li>
 	</ul>
-	<a href="/logout" class="nav-link"><em class="fa fa-power-off"></em> Cerrar Sesion</a>
+	<a href="/logout" class="nav-link"><em class="fa fa-power-off"></em> Cerrar Sesi&oacute;n</a>
 </nav>
