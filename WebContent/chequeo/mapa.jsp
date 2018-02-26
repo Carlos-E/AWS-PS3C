@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.io.*,java.util.*"%>
 <%
 	int i = 0;
 	if (session.getAttribute("rol") == null) {
 		response.sendError(400, "Acceso incorrecto"); //cambiar
 	}
-	session.setAttribute("pagina", "Mapeo de Mercancía");
+	session.setAttribute("pagina", "Mapeo de MercancÃ­a");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -24,6 +24,7 @@ html, body {
 
 #map {
 	height: 100%;
+	width: 100%;
 }
 
 /*Propiedad de bootstrap sobreescrita aqui para la dimension del mapa*/
@@ -34,45 +35,34 @@ html, body {
 
 </head>
 
-<body class="fondo">
+<body>
 
-	<!-- Header  -->
-	<div class="container-fluid">
-		<jsp:include page="/header.jsp" />
+	<div class="container-fluid" id="wrapper">
+		<div class="row">
+			<!--  NAVBAR -->
+			<jsp:include page="/navbar.jsp" />
+			<!--  ./NAVBAR -->
+		</div>
 	</div>
 
-	<!--  Barra de navegacion -->
-	<div class="container-fluid">
-		<jsp:include page="/navbar.jsp" />
-	</div>
-
-
-	<!-- Container del mapa -->
-	<div class="container-fluid">
-
-		<div class="container-fluid">
+	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER --> <section class="row">
+	<div class="col-md-12 col-lg-12">
+		<div class="card mb-4">
+			<!-- Container del mapa -->
 			<div class="embed-responsive embed-responsive-16by9">
 				<div id="map" class="embed-responsive-item" style="border: 1px solid black"></div>
 			</div>
-
 		</div>
+	</section> <!--  FOOTER --><jsp:include page="/footer.jsp" /> </main>
 
-<!-- 
-
+	<!-- 
 		<br>
-
 		<div class="container">
-
 			<button id="botonlocalizar" onclick="localizar()" class="btn btn-primary">Localizarte</button>
-
 		</div>
-
 	</div>
-	
 	 -->
 
-	<!-- Footer -->
-	<jsp:include page="/footer.jsp" />
 
 	<!-- JavaScript del mapa -->
 	<script>

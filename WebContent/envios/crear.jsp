@@ -73,9 +73,11 @@
 					</div>
 				</form>
 			</div>
+
 		</div>
 	</div>
-	</section> <section class="row"> <!--  FOOTER --> <jsp:include page="/footer.jsp" /> <!--  ./FOOTER --> </section> </section> </main>
+	</section> <!--  FOOTER --><jsp:include page="/footer.jsp" /> </main>
+
 
 	<!-- Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
