@@ -12,19 +12,13 @@
 	usuario = (usuario) com.logica.ControladorBD.getItem("usuarios", "usuario",
 			session.getAttribute("username").toString());
 %>
-
 <nav class="sidebar col-xs-12 col-sm-4 col-lg-3 col-xl-2">
 	<h1 class="site-title">
 		<a href="/index.jsp">
 			<em class="fa fa-truck"></em>
 			PS3C
 		</a>
-
-		<a class="ml-5" href="/logout">
-			<em class="fa fa-power-off mr-1"></em>
-		</a>
 	</h1>
-
 	<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">
 		<em class="fa fa-bars"></em>
 	</a>
@@ -40,31 +34,25 @@
 			<a class="nav-link" data-toggle="collapse" href="#sub-item-1">
 				<em class="fa fa-paper-plane">&nbsp;</em>
 				Env&iacute;os
-				<span data-toggle="collapse" href="" class="icon pull-right">
+				<span data-toggle="collapse" class="icon pull-right">
 					<i class="fa fa-caret-down"></i>
 				</span>
 			</a>
-			<ul class="children collapse" id="sub-item-1">
+			<ul class="children collapse" id="sub-item-1">	
 				<li class="nav-item">
-					<a class="nav-link" href="envios/listar.jsp">
-						Listar
-						<em class="fa fa-list-alt">&nbsp;</em>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="envios/crear.jsp">
+					<a class="nav-link" href="/envios/crear.jsp">
 						Crear
 						<em class="fa fa-plus-square">&nbsp;</em>
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="envios/modificar.jsp">
+					<a class="nav-link" href="/envios/modificar.jsp">
 						Modificar
 						<em class="fa fa-edit">&nbsp;</em>
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="envios/eliminar.jsp">
+					<a class="nav-link" href="/envios/eliminar.jsp">
 						Eliminar
 						<em class="fa fa-trash">&nbsp;</em>
 					</a>
@@ -75,17 +63,11 @@
 			<a class="nav-link" data-toggle="collapse" href="#sub-item-2">
 				<em class="fa fa-users">&nbsp;</em>
 				Usuarios
-				<span data-toggle="collapse" href="" class="icon pull-right">
+				<span data-toggle="collapse" class="icon pull-right">
 					<i class="fa fa-caret-down"></i>
 				</span>
 			</a>
 			<ul class="children collapse" id="sub-item-2">
-				<li class="nav-item">
-					<a class="nav-link" href="/usuarios/listar.jsp">
-						Listar
-						<em class="fa fa-list-alt">&nbsp;</em>
-					</a>
-				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="/usuarios/crear.jsp">
 						Crear
@@ -110,17 +92,11 @@
 			<a class="nav-link" data-toggle="collapse" href="#sub-item-3">
 				<em class="fa fa-building">&nbsp;</em>
 				Empresas
-				<span data-toggle="collapse" href="" class="icon pull-right">
+				<span data-toggle="collapse" class="icon pull-right">
 					<i class="fa fa-caret-down"></i>
 				</span>
 			</a>
 			<ul class="children collapse" id="sub-item-3">
-				<li class="nav-item">
-					<a class="nav-link" href="/empresas/listar.jsp">
-						Listar
-						<em class="fa fa-list-alt">&nbsp;</em>
-					</a>
-				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="/empresas/crear.jsp">
 						Crear
@@ -145,17 +121,11 @@
 			<a class="nav-link" data-toggle="collapse" href="#sub-item-4">
 				<em class="fa fa-truck">&nbsp;</em>
 				Camiones
-				<span data-toggle="collapse" href="" class="icon pull-right">
+				<span data-toggle="collapse"  class="icon pull-right">
 					<i class="fa fa-caret-down"></i>
 				</span>
 			</a>
 			<ul class="children collapse" id="sub-item-4">
-				<li class="nav-item">
-					<a class="nav-link" href="/camiones/listar.jsp">
-						Listar
-						<em class="fa fa-list-alt">&nbsp;</em>
-					</a>
-				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="/camiones/crear.jsp">
 						Crear
@@ -180,17 +150,11 @@
 			<a class="nav-link" data-toggle="collapse" href="#sub-item-5">
 				<em class="fa fa-truck">&nbsp;</em>
 				Traileres
-				<span data-toggle="collapse" href="" class="icon pull-right">
+				<span data-toggle="collapse"  class="icon pull-right">
 					<i class="fa fa-caret-down"></i>
 				</span>
 			</a>
 			<ul class="children collapse" id="sub-item-5">
-				<li class="nav-item">
-					<a class="nav-link" href="/traileres/listar.jsp">
-						Listar
-						<em class="fa fa-list-alt">&nbsp;</em>
-					</a>
-				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="/traileres/crear.jsp">
 						Crear
@@ -213,22 +177,58 @@
 		</li>
 		<li class="parent nav-item">
 			<a class="nav-link" data-toggle="collapse" href="#sub-item-6">
-				<em class="fa fa-check-circle">&nbsp;</em>
-				Chequeo
-				<span data-toggle="collapse" href="" class="icon pull-right">
+				<em class="fa fa-list">&nbsp;</em>
+				Datos
+				<span data-toggle="collapse"  class="icon pull-right">
 					<i class="fa fa-caret-down"></i>
 				</span>
-
 			</a>
 			<ul class="children collapse" id="sub-item-6">
 				<li class="nav-item">
-					<a class="nav-link" href="/asignar/carga.jsp"> Carga </a>
+					<a class="nav-link" href="/envios/listar.jsp">
+						Envios
+						<em class="fa fa-paper-plane">&nbsp;</em>
+					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/asignar/descarga.jsp"> Descarga </a>
+					<a class="nav-link" href="/usuarios/listar.jsp">
+						Usuarios
+						<em class="fa fa-users">&nbsp;</em>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/empresas/listar.jsp">
+						Empresas
+						<em class="fa fa-building">&nbsp;</em>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/camiones/listar.jsp">
+						Camiones
+						<em class="fa fa-truck">&nbsp;</em>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/traileres/listar.jsp">
+						Traileres
+						<em class="fa fa-truck">&nbsp;</em>
+					</a>
 				</li>
 			</ul>
 		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="/chequeo/chequearCarga.jsp">
+				<em class="fa fa-check-square"></em>
+				Chequeo Carga
+			</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="/chequeo/chequearDescarga.jsp">
+				<em class="fa fa-check-square"></em>
+				Chequeo Descarga
+			</a>
+		</li>
+		
 		<li class="nav-item">
 			<a class="nav-link" href="/chequeo/mapeoDeMercancia.jsp">
 				<em class="fa fa-globe"></em>
@@ -236,5 +236,5 @@
 			</a>
 		</li>
 	</ul>
-
+	<a href="/logout" class="nav-link"><em class="fa fa-power-off"></em> Cerrar Sesion</a>
 </nav>

@@ -59,7 +59,7 @@ h1, h2 {
 h3, h4, h5, h6 {
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
-a, a:visited {
+a {
   color: #7376df; }
 
 a:hover, a:focus, a:active {
@@ -275,7 +275,7 @@ code {
 .dropdown a {
   color: #444444; }
 
-.dropdown a:hover, .dropdown a:active, .dropdown a:focus {
+.dropdown a:hover, .dropdown .dropdown a:focus {
   background-color: #7376df;
   color: #ffffff; }
 
@@ -366,6 +366,9 @@ code {
   .sidebar .nav ul.children li a:visited {
     background: rgba(0, 0, 0, 0.5) !important;
     color: #ffffff !important; }
+      .sidebar .nav ul.children li a:link {
+    background: rgba(0, 0, 0, 0.5) !important;
+    color: #ffffff !important; }
   .sidebar .nav ul.children li a:hover {
     background: #6365d2 !important;
     color: #ffffff !important; }
@@ -378,7 +381,7 @@ code {
   top: 1rem;
   right: 1rem; }
 
-.sidebar a:focus, .sidebar a:hover, .sidebar a:active {
+.sidebar a:focus, .sidebar a:hover {
   background-color: #6365d2 !important; }
 
 @media screen and (max-width: 576px) {
