@@ -15,17 +15,17 @@
 
 <body class="fondo">
 
-	<!-- Header -->
-	<div class="container-fluid">
-		<jsp:include page="/header.jsp" />
+	<div class="container-fluid" id="wrapper">
+		<div class="row">
+			<!--  NAVBAR -->
+			<jsp:include page="/navbar.jsp" />
+			<!--  ./NAVBAR -->
+		</div>
 	</div>
 
-	<!--  Barra de navegacion -->
-	<div class="container-fluid">
-		<jsp:include page="/navbar.jsp" />
-	</div>
-
-	<div class="container">
+	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER --> <section class="row">
+	<div class="col-md-12 col-lg-12">
+		<div class="card mb-4">
 
 		<%
 			ArrayList<envio> listaEnvio = ControladorBD.escanearTabla("envios");
@@ -90,7 +90,7 @@
 						session.getAttribute("obj1").toString(), "fecha", session.getAttribute("obj2").toString());
 		%>
 
-
+		<!-- SEGUNDO FORM -->
 		<form id="form" name="form" class="form" action="../modificarMercancia" method="post">
 
 			<div class="row">
@@ -138,11 +138,34 @@
 			}
 		%>
 
+	<!-- /CONTAINER -->
+		</div>
+	</div>
+	</section> </main>
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">Confirmaci&oacute;n</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">Desea cancelar?</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+					<form name="form" action="/cancelar" method="post">
+						<button type="submit" class="btn btn-danger btn-md float-right">Cancelar</button>
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
 
-	<div class="container-fluid">
-		<jsp:include page="/footer.jsp" />
-	</div>
+	<!--  FOOTER CON SCRIPTS -->
+	<jsp:include page="/footer.jsp" />
 
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwUOXR0TZ7pyQhLJAuA6_U6Ffg92YMkLk&libraries=places"></script>
 	<script type="text/javascript">
