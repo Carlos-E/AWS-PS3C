@@ -71,6 +71,9 @@
 	<!--  FOOTER -->
 	<jsp:include page="/footer.jsp" />
 
+	<script src="/js/chart.min.js"></script>
+	<script src="/js/chart-data.js"></script>
+
 </body>
 
 </html>

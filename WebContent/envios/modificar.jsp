@@ -29,7 +29,7 @@
 
 	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER --> <section class="row">
 	<div class="col-md-12 col-lg-12">
-		<div class="card mb-4">
+		<div class="card mb-4" >
 			<!-- INICIO CONTAINER -->
 			<%
 				ArrayList<envio> listaEnvio = ControladorBD.escanearTabla("envios");
@@ -38,13 +38,13 @@
 				if (session.getAttribute("busca") != "mercancia") {
 			%>
 
-			<div class="card-block">
+			<div class="card-block" id="buscar-form">
 				<h3 class="card-title">
 					<%
 						out.print(session.getAttribute("pagina").toString());
 					%>
 				</h3>
-				<form class="form" id="form" name="form" action="/buscar" method="post">
+				<form class="form" name="form" method="post">
 					<div class="form-group row">
 						<label class="col-md-3 col-form-label">Custom Select</label>
 						<div class="col-md-9">
@@ -64,63 +64,11 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="submit" name="submit" class="btn btn-primary btn-md float-right">Buscar</button>
+						<button id="buscar" class="btn btn-primary btn-md float-right">Buscar</button>
 						<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger btn-md float-right">Cancelar</button>
 					</div>
 				</form>
 			</div>
-			<%-- 
-			<form id="form" name="form" action="/buscar" method="post" class="form-horizontal">
-
-				<div class="row">
-
-					<div class="col-sm-6">
-
-						<!-- INPUTS -->
-						<div class="form-group">
-
-							<div class="col-sm-2">
-								<label class="control-label " for="camiones"> Mercancia: </label>
-							</div>
-
-							<div class="col-sm-10">
-								<select class="form-control" id="subject" name="envio" tabindex="4">
-									<%
-										for (int i = 0; i < listaEnvio.size(); i++) {
-									%>
-									<option value="<%out.print(listaEnvio.get(i).getUsuario() + " : " + listaEnvio.get(i).getFecha());%>">
-										<%
-											out.print(listaEnvio.get(i).getUsuario() + " : " + listaEnvio.get(i).getFecha());
-										%>
-									</option>
-									<%
-										}
-									%>
-								</select>
-							</div>
-						</div>
-
-					</div>
-
-					<div class="col-sm-6"></div>
-
-				</div>
-
-				<div class="row">
-					<div class="col-sm-1"></div>
-					<div class="col-sm-1">
-						<!-- Boton Verde -->
-						<button type="submit" name="submit" class="btn btn-primary">Buscar</button>
-
-					</div>
-					<div class="col-sm-1">
-						<!-- Boton Rojo -->
-					</div>
-					<div class="col-sm-8"></div>
-				</div>
-
-			</form>
-			 --%>
 			<%
 				} else {
 					envio envio = new envio();
@@ -128,6 +76,60 @@
 							session.getAttribute("obj1").toString(), "fecha", session.getAttribute("obj2").toString());
 			%>
 
+			<div class="card-block" id="modificar-form" hidden>
+				<h3 class="card-title">Crear Env&iacute;o</h3>
+				<form class="form-modificar" action="/envio" method="post">
+					<div class="form-group row">
+						<label class="col-md-2 col-form-label text-capitalize">origen</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="origen" placeholder="origen" id="origen" required>
+						</div>
+						<label class="col-md-2 col-form-label text-capitalize">destino</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="destino" placeholder="destino" id="destino" required>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-2 col-form-label text-capitalize">usuario</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="usuario" placeholder="usuario" required>
+						</div>
+						<label class="col-md-2 col-form-label text-capitalize">tipo</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="tipo" placeholder="tipo" required>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-2 col-form-label text-capitalize">espacio</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="espacio" placeholder="espacio" required>
+						</div>
+						<label class="col-md-2 col-form-label text-capitalize">estado</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="estado" placeholder="estado" required>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-2 col-form-label text-capitalize">tiempoCarga</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="tiempoCarga" placeholder="tiempoCarga" required>
+						</div>
+						<label class="col-md-2 col-form-label text-capitalize">tiempoDescarga</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="tiempoDescarga" placeholder="tiempoDescarga" required>
+						</div>
+					</div>
+					<input type="text" id="longitud_Destino" name="longitud_Destino" style="display: none">
+					<input type="text" id="latitud_Destino" name="latitud_Destino" style="display: none">
+					<input type="text" id="latitud_Origen" name="latitud_Origen" style="display: none">
+					<input type="text" id="longitud_Origen" name="longitud_Origen" style="display: none">
+					<div class="modal-footer">
+						<button id="modificar" type="submit" name="submit" class="btn btn-primary btn-md float-right">Modificar</button>
+						<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger btn-md float-right">Cancelar</button>
+					</div>
+				</form>
+			</div>
+<%-- 
 			<!-- SEGUNDO FORM -->
 			<form id="form" name="form" class="form" action="../modificarMercancia" method="post">
 
@@ -140,7 +142,7 @@
 
 							<%
 								//Nombre de los campos del form			
-									String[] inputs = {"espacio", "tipo", "empresa", "estado", "usuario", "destino", "origen",
+									String[] inputs = {"espacioX", "tipoX", "empresa", "estadoX", "usuarioX", "destinoX", "origenX",
 											"tiempoCarga", "tiempoDescarga"};
 									String[] values = {envio.getEspacio(), envio.getTipo(), envio.getEmpresa(), envio.getEstado(),
 											envio.getUsuario(), envio.getDestino(), envio.getOrigen(), envio.getTiempoCarga(),
@@ -172,7 +174,8 @@
 
 			</form>
 
-			<%
+ --%>
+ 			<%
 				}
 			%>
 
@@ -248,6 +251,19 @@
 										.lng();
 							});
 		};
+	</script>
+	<script>
+	
+	$( document ).ready(function(){
+		
+		$('#buscar').click(function(){
+			
+			$('#buscar-form').hide();
+		});
+		
+	})
+	
+	
 	</script>
 
 </body>
