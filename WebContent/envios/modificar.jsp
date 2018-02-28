@@ -13,8 +13,9 @@
 %>
 </head>
 
-<body class="fondo">
+<body>
 
+	<!-- INICIO -->
 	<div class="container-fluid" id="wrapper">
 		<div class="row">
 			<!--  NAVBAR -->
@@ -26,119 +27,119 @@
 	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER --> <section class="row">
 	<div class="col-md-12 col-lg-12">
 		<div class="card mb-4">
+			<!-- CONTAINER -->
+			<%
+				ArrayList<envio> listaEnvio = ControladorBD.escanearTabla("envios");
+			%>
+			<%
+				if (session.getAttribute("busca") != "mercancia") {
+			%>
+			<form id="form" name="form" action="/buscar" method="post" class="form-horizontal">
 
-		<%
-			ArrayList<envio> listaEnvio = ControladorBD.escanearTabla("envios");
-		%>
-		<%
-			if (session.getAttribute("busca") != "mercancia") {
-		%>
-		<form id="form" name="form" action="/buscar" method="post" class="form-horizontal">
+				<div class="row">
 
-			<div class="row">
+					<div class="col-sm-6">
 
-				<div class="col-sm-6">
+						<!-- INPUTS -->
+						<div class="form-group">
 
-					<!-- INPUTS -->
-					<div class="form-group">
+							<div class="col-sm-2">
+								<label class="control-label " for="camiones"> Mercancia: </label>
+							</div>
 
-						<div class="col-sm-2">
-							<label class="control-label " for="camiones"> Mercancia: </label>
-						</div>
-
-						<div class="col-sm-10">
-							<select class="form-control" id="subject" name="envio" tabindex="4">
-								<%
-									for (int i = 0; i < listaEnvio.size(); i++) {
-								%>
-								<option value="<%out.print(listaEnvio.get(i).getUsuario() + " : " + listaEnvio.get(i).getFecha());%>">
+							<div class="col-sm-10">
+								<select class="form-control" id="subject" name="envio" tabindex="4">
 									<%
-										out.print(listaEnvio.get(i).getUsuario() + " : " + listaEnvio.get(i).getFecha());
+										for (int i = 0; i < listaEnvio.size(); i++) {
 									%>
-								</option>
-								<%
-									}
-								%>
-							</select>
+									<option value="<%out.print(listaEnvio.get(i).getUsuario() + " : " + listaEnvio.get(i).getFecha());%>">
+										<%
+											out.print(listaEnvio.get(i).getUsuario() + " : " + listaEnvio.get(i).getFecha());
+										%>
+									</option>
+									<%
+										}
+									%>
+								</select>
+							</div>
 						</div>
+
 					</div>
 
-				</div>
-
-				<div class="col-sm-6"></div>
-
-			</div>
-
-			<div class="row">
-				<div class="col-sm-1"></div>
-				<div class="col-sm-1">
-					<!-- Boton Verde -->
-					<button type="submit" name="submit" class="btn btn-primary">Buscar</button>
+					<div class="col-sm-6"></div>
 
 				</div>
-				<div class="col-sm-1">
-					<!-- Boton Rojo -->
+
+				<div class="row">
+					<div class="col-sm-1"></div>
+					<div class="col-sm-1">
+						<!-- Boton Verde -->
+						<button type="submit" name="submit" class="btn btn-primary">Buscar</button>
+
+					</div>
+					<div class="col-sm-1">
+						<!-- Boton Rojo -->
+					</div>
+					<div class="col-sm-8"></div>
 				</div>
-				<div class="col-sm-8"></div>
-			</div>
 
-		</form>
-		<%
-			} else {
-				envio envio = new envio();
-				envio = (envio) com.logica.ControladorBD.getItem("envios", "usuario",
-						session.getAttribute("obj1").toString(), "fecha", session.getAttribute("obj2").toString());
-		%>
+			</form>
+			<%
+				} else {
+					envio envio = new envio();
+					envio = (envio) com.logica.ControladorBD.getItem("envios", "usuario",
+							session.getAttribute("obj1").toString(), "fecha", session.getAttribute("obj2").toString());
+			%>
 
-		<!-- SEGUNDO FORM -->
-		<form id="form" name="form" class="form" action="../modificarMercancia" method="post">
+			<!-- SEGUNDO FORM -->
+			<form id="form" name="form" class="form" action="../modificarMercancia" method="post">
 
-			<div class="row">
+				<div class="row">
 
-				<div class="col-sm-6">
+					<div class="col-sm-6">
 
-					<!-- INPUTS -->
-					<div class="form-horizontal">
+						<!-- INPUTS -->
+						<div class="form-horizontal">
 
-						<%
-							//Nombre de los campos del form			
-								String[] inputs = {"espacio", "tipo", "empresa", "estado", "usuario", "destino", "origen",
-										"tiempoCarga", "tiempoDescarga"};
-								String[] values = {envio.getEspacio(), envio.getTipo(), envio.getEmpresa(), envio.getEstado(),
-										envio.getUsuario(), envio.getDestino(), envio.getOrigen(), envio.getTiempoCarga(),
-										envio.getTiempoDescargaUsuario()};
-								com.logica.Dibujar.inputs(out, inputs, values);
-						%>
+							<%
+								//Nombre de los campos del form			
+									String[] inputs = {"espacio", "tipo", "empresa", "estado", "usuario", "destino", "origen",
+											"tiempoCarga", "tiempoDescarga"};
+									String[] values = {envio.getEspacio(), envio.getTipo(), envio.getEmpresa(), envio.getEstado(),
+											envio.getUsuario(), envio.getDestino(), envio.getOrigen(), envio.getTiempoCarga(),
+											envio.getTiempoDescargaUsuario()};
+									com.logica.Dibujar.inputs(out, inputs, values);
+							%>
+						</div>
+
 					</div>
 
-				</div>
-
-				<div class="col-sm-6"></div>
-
-			</div>
-
-			<div class="row">
-				<div class="col-sm-1"></div>
-				<div class="col-sm-1">
-					<!-- Boton Verde -->
-					<button name="submit" id="submit" type="submit" class="btn btn-primary">Modificar</button>
+					<div class="col-sm-6"></div>
 
 				</div>
-				<div class="col-sm-1">
-					<!-- Boton Rojo -->
-					<button formaction="/cancelar" name="submit" id="cancelar" type="submit" class="btn btn-danger">Cancelar</button>
 
+				<div class="row">
+					<div class="col-sm-1"></div>
+					<div class="col-sm-1">
+						<!-- Boton Verde -->
+						<button name="submit" id="submit" type="submit" class="btn btn-primary">Modificar</button>
+
+					</div>
+					<div class="col-sm-1">
+						<!-- Boton Rojo -->
+						<button formaction="/cancelar" name="submit" id="cancelar" type="submit" class="btn btn-danger">Cancelar</button>
+
+					</div>
+					<div class="col-sm-8"></div>
 				</div>
-				<div class="col-sm-8"></div>
-			</div>
 
-		</form>
+			</form>
 
-		<%
-			}
-		%>
+			<%
+				}
+			%>
 
-	<!-- /CONTAINER -->
+			<!-- /CONTAINER -->
 		</div>
 	</div>
 	</section> </main>
@@ -166,6 +167,9 @@
 
 	<!--  FOOTER CON SCRIPTS -->
 	<jsp:include page="/footer.jsp" />
+	<!--  /FOOTER CON SCRIPTS -->
+	<!-- /FIN -->
+
 
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwUOXR0TZ7pyQhLJAuA6_U6Ffg92YMkLk&libraries=places"></script>
 	<script type="text/javascript">
