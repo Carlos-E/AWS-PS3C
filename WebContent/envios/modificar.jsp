@@ -170,48 +170,6 @@
 	<!--  /FIN FOOTER CON SCRIPTS -->
 	<!-- /FIN -->
 
-
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwUOXR0TZ7pyQhLJAuA6_U6Ffg92YMkLk&libraries=places"></script>
-	<script type="text/javascript">
-		google.maps.event.addDomListener(window, 'load', intilize);
-		function intilize() {
-			var autocomplete = new google.maps.places.Autocomplete(document
-					.getElementById("destino"));
-			google.maps.event
-					.addListener(
-							autocomplete,
-							'place_changed',
-							function() {
-								var place = autocomplete.getPlace();
-								var latlon = place.geometry.location.lat()
-										+ "," + place.geometry.location.lng();
-								document.getElementById('latitud_Destino').value = place.geometry.location
-										.lat();
-								document.getElementById('longitud_Destino').value = place.geometry.location
-										.lng();
-							});
-		};
-	</script>
-	<script>
-		google.maps.event.addDomListener(window, 'load', intilize);
-		function intilize() {
-			var autocomplete = new google.maps.places.Autocomplete(document
-					.getElementById("origen"));
-			google.maps.event
-					.addListener(
-							autocomplete,
-							'place_changed',
-							function() {
-								var place = autocomplete.getPlace();
-								var latlon = place.geometry.location.lat()
-										+ "," + place.geometry.location.lng();
-								document.getElementById('latitud_Origen').value = place.geometry.location
-										.lat();
-								document.getElementById('longitud_Origen').value = place.geometry.location
-										.lng();
-							});
-		};
-	</script>
 	<script>
 		$(document).ready(function() {
 
@@ -269,6 +227,49 @@
 			});
 
 		});
+	</script>
+	
+	
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwUOXR0TZ7pyQhLJAuA6_U6Ffg92YMkLk&libraries=places"></script>
+	<script type="text/javascript">
+		google.maps.event.addDomListener(window, 'load', intilize);
+		function intilize() {
+			var autocomplete = new google.maps.places.Autocomplete(document
+					.getElementById("destino"));
+			google.maps.event
+					.addListener(
+							autocomplete,
+							'place_changed',
+							function() {
+								var place = autocomplete.getPlace();
+								var latlon = place.geometry.location.lat()
+										+ "," + place.geometry.location.lng();
+								document.getElementById('latitud_Destino').value = place.geometry.location
+										.lat();
+								document.getElementById('longitud_Destino').value = place.geometry.location
+										.lng();
+							});
+		};
+	</script>
+	<script>
+		google.maps.event.addDomListener(window, 'load', intilize);
+		function intilize() {
+			var autocomplete = new google.maps.places.Autocomplete(document
+					.getElementById("origen"));
+			google.maps.event
+					.addListener(
+							autocomplete,
+							'place_changed',
+							function() {
+								var place = autocomplete.getPlace();
+								var latlon = place.geometry.location.lat()
+										+ "," + place.geometry.location.lng();
+								document.getElementById('latitud_Origen').value = place.geometry.location
+										.lat();
+								document.getElementById('longitud_Origen').value = place.geometry.location
+										.lng();
+							});
+		};
 	</script>
 
 </body>
