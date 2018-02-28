@@ -41,7 +41,7 @@
 				</h3>
 				<form class="form" name="form" method="post">
 					<div class="form-group row">
-						<label class="col-md-3 col-form-label">Custom Select</label>
+						<label class="col-md-3 col-form-label">Seleccione el env&iacute;o</label>
 						<div class="col-md-9">
 							<select class="custom-select form-control" id="select">
 								<%
@@ -123,7 +123,7 @@
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="empresa" placeholder="empresa" id="empresa" required>
 						</div>
-						
+
 					</div>
 					<input type="text" id="longitud_Destino" name="longitud_Destino" style="display: none">
 					<input type="text" id="latitud_Destino" name="latitud_Destino" style="display: none">
@@ -135,54 +135,6 @@
 					</div>
 				</form>
 			</div>
-			<%-- 
-			<!-- SEGUNDO FORM -->
-			<form id="form" name="form" class="form" action="../modificarMercancia" method="post">
-
-				<div class="row">
-
-					<div class="col-sm-6">
-
-						<!-- INPUTS -->
-						<div class="form-horizontal">
-
-							<%
-								//Nombre de los campos del form			
-									String[] inputs = {"espacioX", "tipoX", "empresa", "estadoX", "usuarioX", "destinoX", "origenX",
-											"tiempoCarga", "tiempoDescarga"};
-									String[] values = {envio.getEspacio(), envio.getTipo(), envio.getEmpresa(), envio.getEstado(),
-											envio.getUsuario(), envio.getDestino(), envio.getOrigen(), envio.getTiempoCarga(),
-											envio.getTiempoDescargaUsuario()};
-									com.logica.Dibujar.inputs(out, inputs, values);
-							%>
-						</div>
-
-					</div>
-
-					<div class="col-sm-6"></div>
-
-				</div>
-
-				<div class="row">
-					<div class="col-sm-1"></div>
-					<div class="col-sm-1">
-						<!-- Boton Verde -->
-						<button name="submit" id="submit" type="submit" class="btn btn-primary">Modificar</button>
-
-					</div>
-					<div class="col-sm-1">
-						<!-- Boton Rojo -->
-						<button formaction="/cancelar" name="submit" id="cancelar" type="submit" class="btn btn-danger">Cancelar</button>
-
-					</div>
-					<div class="col-sm-8"></div>
-				</div>
-
-			</form>
-
- --%>
-
-
 			<!-- /FIN CONTAINER -->
 		</div>
 	</div>
