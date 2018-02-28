@@ -61,21 +61,11 @@
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="placa" placeholder="placa" id="placa" required>
 						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Cami&oacute;n:</label>
-						<div class="col-md-4">
-							<input type="radio" name="tipo" onclick="mostrar()" value="camion">
-						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Remolque:</label>
-						<div class="col-md-4">
-							<input type="radio" name="tipo" onclick="ocultar()" value="remolque" checked="checked">
-						</div>
-					</div>
+					</div>					
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Empresa</label>
 						<div class="col-md-4">
-						<select class="form-control" name="empresa" id="empresa">
+							<select class="form-control" name="empresa" id="empresa">
 								<%
 									for (int i = 0; i < listaEmpresas.size(); i++) {
 								%>
@@ -88,10 +78,10 @@
 									}
 								%>
 							</select>
-							</div>
+						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Conductor</label>
 						<div class="col-md-4">
-						<select class="form-control" name="conductor" id="conductor">
+							<select class="form-control" name="conductor" id="conductor">
 								<%
 									for (int i = 0; i < listaConductor.size(); i++) {
 								%>
@@ -104,7 +94,27 @@
 									}
 								%>
 							</select>
-							</div>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-2 col-form-label text-capitalize">Cami&oacute;n:</label>
+						<div class="col-md-4">
+							<input type="radio" name="tipo" onclick="mostrar()" value="camion">
+						</div>
+						<label class="col-md-2 col-form-label text-capitalize">Remolque:</label>
+						<div class="col-md-4">
+							<input type="radio" name="tipo" onclick="ocultar()" value="remolque" checked="checked">
+						</div>
+					</div>
+					<div id="oculto" class="form-group row" style="display: none;">
+						<label class="col-md-2 col-form-label text-capitalize">Capacidad</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="capacidad" placeholder="capacidad" id="capacidad" required>
+						</div>
+						<label class="col-md-2 col-form-label text-capitalize">Espacio</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="espacio" placeholder="espacio" id="espacio" required>
+						</div>
 					</div>
 					<input type="text" id="longitud_Destino" name="longitud_Destino" style="display: none">
 					<input type="text" id="latitud_Destino" name="latitud_Destino" style="display: none">
@@ -142,154 +152,6 @@
 	</div>
 	<!--  FOOTER CON SCRIPTS -->
 	<jsp:include page="/footer.jsp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-	<!--
-
-
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<title>Crear Camión</title>
-
-<jsp:include page="/head.jsp" />
-
-</head>
-<body class="fondo">
- Header 
-	<div class="container-fluid">
-		<jsp:include page="/header.jsp" />
-	</div>
-
-	<!--  Barra de navegacion 
-	<div class="container-fluid">
-		<jsp:include page="/navbar.jsp" />
-	</div>
-
-
-	<div class="container">
-
-		<form id="form" name="form" action="/camion" method="post" class="form-horizontal">
-
-			<div class="row">
-
-				<div class="col-sm-6">
-
-					<!-- INPUTS 
-
-					<%
-						//Nombre de los campos del form
-						String[] inputs = {"destino", "placa"};
-						com.logica.Dibujar.inputs(out, inputs);
-					%>
-
-					<div class="form-group">
-						<label class="control-label col-sm-2" for="destino">Cami&oacute;n:</label>
-						<div class="col-sm-9">
-							<input type="radio" name="tipo" onclick="mostrar()" value="camion">
-						</div>
-					</div>
-					<!-- <input type="radio" name="tipo" onclick="mostrar()" value="camion" checked="checked"> -->
-					<div class="form-group">
-						<label class="control-label col-sm-2" for="destino">Remolque:</label>
-						<div class="col-sm-9">
-							<input type="radio" name="tipo" onclick="ocultar()" value="remolque" checked="checked">
-						</div>
-					</div>
-					<!-- <input type="radio" name="tipo" onclick="ocultar()" value="remolque"> -
-
-					<div id="oculto" style="display: none;">
-						<%
-							//Nombre de los campos del form
-							String[] inputs2 = {"capacidad", "espacio"};
-							com.logica.Dibujar.inputs(out, inputs2);
-						%>
-
-					</div>
-					<div class="form-group">
-						<label class="control-label col-sm-2" for="destino">Empresa:</label>
-						<div class="col-sm-9">
-							<select class="form-control" name="empresa" id="empresa">
-								<%
-									for (int i = 0; i < listaEmpresas.size(); i++) {
-								%>
-								<option value="<%out.print(listaEmpresas.get(i).getNit());%>">
-									<%
-										out.print(listaEmpresas.get(i).getNombre());
-									%>
-								</option>
-								<%
-									}
-								%>
-							</select>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-sm-2" for="destino">Conductor:</label>
-						<div class="col-sm-9">
-							<select class="form-control" name="conductor" id="conductor">
-								<%
-									for (int i = 0; i < listaConductor.size(); i++) {
-								%>
-								<option value="<%out.print(listaConductor.get(i).getUsuario());%>">
-									<%
-										out.print(listaConductor.get(i).getUsuario());
-									%>
-								</option>
-								<%
-									}
-								%>
-							</select>
-						</div>
-					</div>
-
-					<input type="text" id="longitud_Destino" name="longitud_Destino" style="display: none">
-					<input type="text" id="latitud_Destino" name="latitud_Destino" style="display: none">
-					<input type="text" id="latitud_Origen" name="latitud_Origen" style="display: none">
-					<input type="text" id="longitud_Origen" name="longitud_Origen" style="display: none">
-					<%
-						//Nombre de los campos del form
-						String[] inputs4 = {"origen"};
-						com.logica.Dibujar.inputs(out, inputs4);
-					%>
-
-				</div>
-
-				<div class="col-sm-6"></div>
-
-			</div>
-
-			<div class="row">
-				<div class="col-sm-1"></div>
-				<div class="col-sm-1">
-					<!-- Boton Verde 
-					<button type="submit" name="submit" class="btn btn-primary">Registrar</button>
-				</div>
-				<div class="col-sm-1">
-					<!-- Boton Rojo --
-					<button formaction="/cancelar" name="submit" id="cancelar" type="submit" class="btn btn-danger">Cancelar</button>
-				</div>
-				<div class="col-sm-8"></div>
-			</div>
-		</form>
-	</div>
-
-	<div class="container-fluid">
-		<jsp:include page="/footer.jsp" />
-	</div>
--->
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwUOXR0TZ7pyQhLJAuA6_U6Ffg92YMkLk&libraries=places"></script>
 	<script type="text/javascript">
 		google.maps.event.addDomListener(window, 'load', intilize);
@@ -313,7 +175,7 @@
 	</script>
 	<script type="text/javascript">
 		function mostrar() {
-			document.getElementById('oculto').style.display = 'block';
+			document.getElementById('oculto').style.display = '';
 		}
 
 		function ocultar() {
@@ -340,6 +202,5 @@
 							});
 		};
 	</script>
-
 </body>
 </html>
