@@ -2,15 +2,18 @@
 <%@ page import="com.logica.*"%>
 <%@ page import="clases.*"%>
 <%@ page import="java.util.ArrayList"%>
+<%
+	if (session.getAttribute("rol") == null) {
+		response.sendError(400, "Acceso incorrecto"); //cambiar
+	}
+	session.setAttribute("pagina", "Modificar Envíos");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
 <head>
-<title>Modificar Envíos</title>
 <jsp:include page="/head.jsp" />
-<%
-	session.setAttribute("pagina", "Modificar Envíos");
-%>
+<title>Modificar Envíos</title>
 </head>
 
 <body>
@@ -18,7 +21,7 @@
 	<!-- INICIO -->
 	<div class="container-fluid" id="wrapper">
 		<div class="row">
-			<!--  NAVBAR -->
+			<!-- INICIO NAVBAR -->
 			<jsp:include page="/navbar.jsp" />
 			<!--  ./NAVBAR -->
 		</div>
@@ -27,13 +30,46 @@
 	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER --> <section class="row">
 	<div class="col-md-12 col-lg-12">
 		<div class="card mb-4">
-			<!-- CONTAINER -->
+			<!-- INICIO CONTAINER -->
 			<%
 				ArrayList<envio> listaEnvio = ControladorBD.escanearTabla("envios");
 			%>
 			<%
 				if (session.getAttribute("busca") != "mercancia") {
 			%>
+
+			<div class="card-block">
+				<h3 class="card-title">
+					<%
+						out.print(session.getAttribute("pagina").toString());
+					%>
+				</h3>
+				<form class="form" id="form" name="form" action="/buscar" method="post">
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label">Custom Select</label>
+						<div class="col-md-9">
+							<select class="custom-select form-control">
+								<%
+									for (int i = 0; i < listaEnvio.size(); i++) {
+								%>
+								<option value="<%out.print(listaEnvio.get(i).getUsuario() + " : " + listaEnvio.get(i).getFecha());%>">
+									<%
+										out.print(listaEnvio.get(i).getUsuario() + " : " + listaEnvio.get(i).getFecha());
+									%>
+								</option>
+								<%
+									}
+								%>
+							</select>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" name="submit" class="btn btn-primary btn-md float-right">Buscar</button>
+						<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger btn-md float-right">Cancelar</button>
+					</div>
+				</form>
+			</div>
+			<%-- 
 			<form id="form" name="form" action="/buscar" method="post" class="form-horizontal">
 
 				<div class="row">
@@ -84,6 +120,7 @@
 				</div>
 
 			</form>
+			 --%>
 			<%
 				} else {
 					envio envio = new envio();
@@ -139,7 +176,7 @@
 				}
 			%>
 
-			<!-- /CONTAINER -->
+			<!-- /FIN CONTAINER -->
 		</div>
 	</div>
 	</section> </main>
@@ -165,9 +202,9 @@
 		</div>
 	</div>
 
-	<!--  FOOTER CON SCRIPTS -->
+	<!-- INICIO FOOTER CON SCRIPTS -->
 	<jsp:include page="/footer.jsp" />
-	<!--  /FOOTER CON SCRIPTS -->
+	<!--  /FIN FOOTER CON SCRIPTS -->
 	<!-- /FIN -->
 
 
