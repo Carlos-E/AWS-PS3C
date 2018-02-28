@@ -39,7 +39,6 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 				<h1 class="mb-4">Hola, Bienvenido!</h1>
-
 				<p class="lead">Prototipo software de control de carga compartida.</p>
 				<p>Este es un proyecto que tiene como finalidad ayudar en la logistica de transporte de empresas en Cartagena, mejorar la utilizacion de recursos y automatizar procesos de transporte, entre otros.</p>
 			</div>
