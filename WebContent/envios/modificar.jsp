@@ -7,6 +7,7 @@
 		response.sendError(400, "Acceso incorrecto"); //cambiar
 	}
 	session.setAttribute("pagina", "Modificar Envíos");
+	ArrayList<envio> listaEnvio = ControladorBD.escanearTabla("envios");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -29,14 +30,8 @@
 
 	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER --> <section class="row">
 	<div class="col-md-12 col-lg-12">
-		<div class="card mb-4" >
+		<div class="card mb-4">
 			<!-- INICIO CONTAINER -->
-			<%
-				ArrayList<envio> listaEnvio = ControladorBD.escanearTabla("envios");
-			%>
-			<%
-				if (session.getAttribute("busca") != "mercancia") {
-			%>
 
 			<div class="card-block" id="buscar-form">
 				<h3 class="card-title">
@@ -48,7 +43,7 @@
 					<div class="form-group row">
 						<label class="col-md-3 col-form-label">Custom Select</label>
 						<div class="col-md-9">
-							<select class="custom-select form-control">
+							<select class="custom-select form-control" id="select">
 								<%
 									for (int i = 0; i < listaEnvio.size(); i++) {
 								%>
@@ -64,19 +59,13 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button id="buscar" class="btn btn-primary btn-md float-right">Buscar</button>
+						<button id="buscar" type="button" data-toggle="modal" data-target="#" class="btn btn-primary btn-md float-right">Buscar</button>
 						<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger btn-md float-right">Cancelar</button>
 					</div>
 				</form>
 			</div>
-			<%
-				} else {
-					envio envio = new envio();
-					envio = (envio) com.logica.ControladorBD.getItem("envios", "usuario",
-							session.getAttribute("obj1").toString(), "fecha", session.getAttribute("obj2").toString());
-			%>
 
-			<div class="card-block" id="modificar-form" hidden>
+			<div class="card-block" id="modificar-form" hidden="true">
 				<h3 class="card-title">Crear Env&iacute;o</h3>
 				<form class="form-modificar" action="/envio" method="post">
 					<div class="form-group row">
@@ -92,31 +81,31 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">usuario</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="usuario" placeholder="usuario" required>
+							<input class="form-control" type="text" name="usuario" placeholder="usuario" id="usuario" required>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">tipo</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="tipo" placeholder="tipo" required>
+							<input class="form-control" type="text" name="tipo" placeholder="tipo" id="tipo" required>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">espacio</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="espacio" placeholder="espacio" required>
+							<input class="form-control" type="text" name="espacio" placeholder="espacio" id="espacio" required>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">estado</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="estado" placeholder="estado" required>
+							<input class="form-control" type="text" name="estado" placeholder="estado" id="estado" required>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">tiempoCarga</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="tiempoCarga" placeholder="tiempoCarga" required>
+							<input class="form-control" type="text" name="tiempoCarga" placeholder="tiempoCarga" id="tiempoCarga" required>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">tiempoDescarga</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="tiempoDescarga" placeholder="tiempoDescarga" required>
+							<input class="form-control" type="text" name="tiempoDescarga" placeholder="tiempoDescarga" id="tiempoDescarga" required>
 						</div>
 					</div>
 					<input type="text" id="longitud_Destino" name="longitud_Destino" style="display: none">
@@ -129,7 +118,7 @@
 					</div>
 				</form>
 			</div>
-<%-- 
+			<%-- 
 			<!-- SEGUNDO FORM -->
 			<form id="form" name="form" class="form" action="../modificarMercancia" method="post">
 
@@ -175,9 +164,7 @@
 			</form>
 
  --%>
- 			<%
-				}
-			%>
+
 
 			<!-- /FIN CONTAINER -->
 		</div>
@@ -253,17 +240,53 @@
 		};
 	</script>
 	<script>
-	
-	$( document ).ready(function(){
-		
-		$('#buscar').click(function(){
-			
-			$('#buscar-form').hide();
-		});
-		
-	})
-	
-	
+		$(document).ready(function() {
+
+			$('#buscar').click(function() {
+
+				let selected = $('#select').find(":selected").val();
+				
+				var fields = selected.split(' : ');
+				var usuario = fields[0];
+				var fecha = fields[1];
+
+				$.ajax({
+					url : "/trueBuscar",
+					data : {
+						modify : 'envios',
+						table : 'envios',
+						username : usuario,
+						date : fecha
+					},
+					type : "POST",
+					dataType : "json",
+				}).done(function(response) {
+					console.log(response);
+
+					$('#origen').val(response.origen);
+					$('#destino').val(response.destino);
+					$('#usuario').val(response.usuario);
+					$('#tipo').val(response.tipo);
+					$('#espacio').val(response.espacio);
+					$('#estado').val(response.estado);
+					$('#tiempoCarga').val(response.tiempoCarga);
+					$('#tiempoDescarga').val(response.tiempoDescargaUsuario);
+
+					$('#buscar-form').hide();
+					$('#modificar-form').removeAttr('hidden');
+					$('#modificar-form').show();
+
+				}).fail(function(xhr, status, errorThrown) {
+					$('#buscar-form').show();
+					$('#modificar-form').hide();
+					alert("Algo a salido mal");
+					console.log('Failed Request To Servlet')
+				}).always(function(xhr, status) {
+				});
+
+			});
+
+		})
 	</script>
 
 </body>
