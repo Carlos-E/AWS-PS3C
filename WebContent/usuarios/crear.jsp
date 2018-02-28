@@ -7,10 +7,6 @@
 	session.setAttribute("pagina", "Crear Usuario");
 %>
 
-
-
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="es">
 <head>
@@ -33,25 +29,49 @@
 	<div class="col-md-12 col-lg-12">
 		<div class="card mb-4">
 			<div class="card-block">
-				<h3 class="card-title">Crear Env&iacute;o</h3>
-				<form class="form" action="/envio" method="post">
+				<h3 class="card-title"><% out.print(session.getAttribute("pagina").toString()); %></h3>
+				<form class="form" action="/empleado" method="post">
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">usuario</label>
+						<label class="col-md-2 col-form-label text-capitalize">Nombre</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="usuario" placeholder="usuario" id="usuario" required>
+							<input class="form-control" type="text" name="nombre" placeholder="nombre" id="nombre" required>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">destino</label>
+						<label class="col-md-2 col-form-label text-capitalize">Apellido</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="destino" placeholder="destino" id="destino" required>
+							<input class="form-control" type="text" name="apellido" placeholder="apellido" id="apellido" required>
 						</div>
 					</div>
 					<div class="form-group row">
+						<label class="col-md-2 col-form-label text-capitalize">Contraseña</label>
+						<div class="col-md-4">
+							<input class="form-control" type="password" name="clave1" placeholder="contraseña" required>
+						</div>
+						<label class="col-md-2 col-form-label text-capitalize">Repetir-Contraseña</label>
+						<div class="col-md-4">
+							<input class="form-control" type="password" name="clave2" placeholder="contraseña" required>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-2 col-form-label text-capitalize">Correo</label>
+						<div class="col-md-4">
+							<input class="form-control" type="email" name="correo" placeholder="correo" required>
+						</div>
+						<label class="col-md-2 col-form-label text-capitalize">Direccion</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="dirección" placeholder="dirección" required>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-2 col-form-label text-capitalize">Telefono</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="telefono" placeholder="telefono" required>
+						</div>
 						<%
 							if (session.getAttribute("rol") == "admin" || session.getAttribute("rol") == "empleado") {
 						%>
-						<label class="col-md-2 col-form-label text-capitalize">contraseña</label>
+						<label class="col-md-2 col-form-label text-capitalize">Rol</label>
 						<div class="col-md-4">
-							<input class="form-control" type="password" name="clave1" placeholder="contraseña" required>
+							<input class="form-control" type="text" name="rol" placeholder="rol" required>
 						</div>
 						<%
 							}
@@ -59,16 +79,6 @@
 						<%
 							//out.print(session.getAttribute("rol").toString());
 						%>
-						<label class="col-md-2 col-form-label text-capitalize">tipo</label>
-						<div class="col-md-4">
-							<input class="form-control" type="text" name="tipo" placeholder="tipo" required>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">espacio</label>
-						<div class="col-md-4">
-							<input class="form-control" type="text" name="espacio" placeholder="espacio" required>
-						</div>
 					</div>
 					<input type="text" id="longitud_Destino" name="longitud_Destino" style="display: none">
 					<input type="text" id="latitud_Destino" name="latitud_Destino" style="display: none">
@@ -104,64 +114,7 @@
 			</div>
 		</div>
 	</div>
-
 	<!--  FOOTER CON SCRIPTS -->
 	<jsp:include page="/footer.jsp" />
-
-
-<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<title>Crear Usuario</title>
-
-<jsp:include page="/head.jsp" />
-
-</head>
-<body class="fondo">
-
-	<-- Header  ->
-	<div class="container-fluid">
-		<jsp:include page="/header.jsp" />
-	</div>
-	<!--  Container de la Barra de navegacion ->
-	<div class="container-fluid">
-		<jsp:include page="/navbar.jsp" />
-	</div>
-	<div class="container-fluid">
-		<form id="form" name="form" action="/empleado" method="post" class="form-horizontal">
-
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-6">
-						<%
-							//Nombre de los campos del form
-							String[] inputs = { "usuario" };
-							com.logica.Dibujar.inputs(out, inputs);
-							String[] inputs2 = { "clave1", "clave2" };
-							com.logica.Dibujar.inputsHidden(out, inputs2);
-							String[] inputs3 = { "nombre", "apellidos", "correo", "direccion", "telefono", "rol" };
-							com.logica.Dibujar.inputs(out, inputs3);
-						%>
-					</div>
-					<div class="col-sm-6"></div>
-				</div>
-				<div class="row">
-					<div class="col-sm-1"></div>
-					<div class="col-sm-1">
-						<!-- Boton Verde ->
-						<button type="submit" name="submit" class="btn btn-primary">Registrar</button>
-					</div>
-					<div class="col-sm-1">
-						<!-- Boton Rojo ->
-						<button name="submit" id="submit" type="submit" class="btn btn-danger" formaction="/cancelar">Cancelar</button>
-					</div>
-					<div class="col-sm-8"></div>
-				</div>
-			</div>
-
-		</form>
-	</div>
-	<jsp:include page="/footer.jsp" /> -->
-
 </body>
 </html>

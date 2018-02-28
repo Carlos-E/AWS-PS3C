@@ -51,7 +51,7 @@ public class agregarEmpleado extends HttpServlet {
 		
 		
 
-		usuario.setUsuario(request.getParameter("usuario").toLowerCase());
+		usuario.setUsuario(request.getParameter("correo").toLowerCase());
 		usuario.setClave(request.getParameter("clave1").toLowerCase());
 		usuario.setNombre(request.getParameter("nombre").toLowerCase());
 		usuario.setApellido(request.getParameter("apellidos").toLowerCase());
