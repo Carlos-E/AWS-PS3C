@@ -66,7 +66,11 @@
 			</div>
 
 			<div class="card-block" id="modificar-form" hidden="true">
-				<h3 class="card-title">Crear Env&iacute;o</h3>
+				<h3 class="card-title">
+					<%
+						out.print(session.getAttribute("pagina").toString());
+					%>
+				</h3>
 				<form class="form" action="/modificarMercancia" method="post">
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">cliente</label>
