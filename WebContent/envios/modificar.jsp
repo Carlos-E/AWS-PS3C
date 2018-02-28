@@ -59,7 +59,7 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button id="buscar" type="button" data-toggle="modal" data-target="#" class="btn btn-primary btn-md float-right">Buscar</button>
+						<button id="buscar" type="button" class="btn btn-primary btn-md float-right">Buscar</button>
 						<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger btn-md float-right">Cancelar</button>
 					</div>
 				</form>
@@ -67,7 +67,7 @@
 
 			<div class="card-block" id="modificar-form" hidden="true">
 				<h3 class="card-title">Crear Env&iacute;o</h3>
-				<form class="form-modificar" action="/modificarMercancia" method="post">
+				<form class="form" action="/modificarMercancia" method="post">
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">cliente</label>
 						<div class="col-md-4">
@@ -130,8 +130,8 @@
 					<input type="text" id="latitud_Origen" name="latitud_Origen" style="display: none">
 					<input type="text" id="longitud_Origen" name="longitud_Origen" style="display: none">
 					<div class="modal-footer">
-						<button id="modificar" type="submit" name="submit" class="btn btn-primary btn-md float-right">Modificar</button>
-						<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger btn-md float-right">Cancelar</button>
+						<button id="modificar" type="submit" class="btn btn-primary btn-md float-right">Modificar</button>
+						<button id="atras" type="button" data-target="#" class="btn btn-danger btn-md float-right">Atras</button>
 					</div>
 				</form>
 			</div>
@@ -252,14 +252,19 @@
 				}).fail(function(xhr, status, errorThrown) {
 					$('#buscar-form').show();
 					$('#modificar-form').hide();
-					alert("Algo a salido mal");
+					alert("Algo ha salido mal");
 					console.log('Failed Request To Servlet')
 				}).always(function(xhr, status) {
 				});
 
 			});
 
-		})
+			$('#atras').click(function() {
+				$('#buscar-form').show();
+				$('#modificar-form').hide();
+			});
+
+		});
 	</script>
 
 </body>
