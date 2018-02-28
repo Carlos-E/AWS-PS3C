@@ -73,6 +73,7 @@
 	<jsp:include page="/footer.jsp" />
 
 	<script>
+	/* 
 		var startCharts = function() {
 			var chart1 = document.getElementById("line-chart").getContext("2d");
 			window.myLine = new Chart(chart1).Line(lineChartData, {
@@ -83,6 +84,7 @@
 			});
 		};
 		window.setTimeout(startCharts(), 1000);
+		 */
 	</script>
 
 </body>
