@@ -33,7 +33,7 @@ body {
 	width: 100%;
 	padding: 10px 25px 10px 25px;
 	margin: 0 auto;
-	background: rgba(255, 255, 255, 0.05) no-repeat center center fixed;
+	background:#f7f7f7 no-repeat center center fixed;
 	border-radius: 5px;
 	box-shadow: 5px 6px 12px 0px;
 }
