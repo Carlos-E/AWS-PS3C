@@ -12,7 +12,7 @@
 <title>Crear Env&iacute;o</title>
 </head>
 <body>
-
+	<!-- INICIO -->
 	<div class="container-fluid" id="wrapper">
 		<div class="row">
 			<!--  NAVBAR -->
@@ -24,6 +24,7 @@
 	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER --> <section class="row">
 	<div class="col-md-12 col-lg-12">
 		<div class="card mb-4">
+		<!-- CONTAINER -->
 
 			<div class="card-block">
 				<h3 class="card-title">Crear Env&iacute;o</h3>
@@ -74,6 +75,7 @@
 				</form>
 			</div>
 
+			<!-- /CONTAINER -->
 		</div>
 	</div>
 	</section> </main>
@@ -101,6 +103,8 @@
 
 	<!--  FOOTER CON SCRIPTS -->
 	<jsp:include page="/footer.jsp" />
+	<!--  /FOOTER CON SCRIPTS -->
+	
 
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwUOXR0TZ7pyQhLJAuA6_U6Ffg92YMkLk&libraries=places"></script>
 	<script type="text/javascript">
