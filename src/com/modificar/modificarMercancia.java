@@ -50,8 +50,8 @@ public class modificarMercancia extends HttpServlet {
 		// TODO Auto-generated method stub
 		// doGet(request, response);
 		HttpSession session = request.getSession();
-		String usuario = session.getAttribute("obj1").toString();
-		String fecha = session.getAttribute("obj2").toString();
+		String usuario = request.getParameter("cliente").toString();
+		String fecha = request.getParameter("fecha").toString();
 		envio = (clases.envio) ControladorBD.getItem("envios", "usuario",usuario,"fecha", fecha);
 		String destino = request.getParameter("destino").toLowerCase();
 		String origen = request.getParameter("origen").toLowerCase();
@@ -62,6 +62,7 @@ public class modificarMercancia extends HttpServlet {
 		String tiempoCarga = request.getParameter("tiempoCarga").toLowerCase();
 		String tiempoDescargaUsuario = request.getParameter("tiempoDescarga").toLowerCase();
 		boolean cambio = false;
+		
 		if (!envio.getDestino().equals(destino)) {
 			envio.setDestino(destino);
 			ControladorBD.actualizarValor("envios", "usuario", usuario, "fecha", fecha, "destino", destino);
@@ -111,7 +112,7 @@ public class modificarMercancia extends HttpServlet {
 			session.setAttribute("busca", "ninguno");
 			System.out.println("algo se cambio");
 			PrintWriter out = response.getWriter();
-			String nextURL = request.getContextPath() + "/modificarDatos/mercancia.jsp";
+			String nextURL = request.getContextPath() + "/envios/modificar.jsp";
 			com.logica.Dibujar.mensaje(out, "Operacion Exitosa", nextURL);
 			//response.sendRedirect("index.jsp");
 		} else {

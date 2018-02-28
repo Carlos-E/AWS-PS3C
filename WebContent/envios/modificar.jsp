@@ -67,7 +67,17 @@
 
 			<div class="card-block" id="modificar-form" hidden="true">
 				<h3 class="card-title">Crear Env&iacute;o</h3>
-				<form class="form-modificar" action="/envio" method="post">
+				<form class="form-modificar" action="/modificarMercancia" method="post">
+					<div class="form-group row">
+						<label class="col-md-2 col-form-label text-capitalize">cliente</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="cliente" placeholder="" id="cliente" readonly>
+						</div>
+						<label class="col-md-2 col-form-label text-capitalize">fecha</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="fecha" placeholder="" id="fecha" readonly>
+						</div>
+					</div>
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">origen</label>
 						<div class="col-md-4">
@@ -107,6 +117,13 @@
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="tiempoDescarga" placeholder="tiempoDescarga" id="tiempoDescarga" required>
 						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-2 col-form-label text-capitalize">empresa</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="empresa" placeholder="empresa" id="empresa" required>
+						</div>
+						
 					</div>
 					<input type="text" id="longitud_Destino" name="longitud_Destino" style="display: none">
 					<input type="text" id="latitud_Destino" name="latitud_Destino" style="display: none">
@@ -245,23 +262,26 @@
 			$('#buscar').click(function() {
 
 				let selected = $('#select').find(":selected").val();
-				
-				var fields = selected.split(' : ');
-				var usuario = fields[0];
-				var fecha = fields[1];
+
+				var campos = selected.split(' : ');
+				var usuario = campos[0];
+				var fecha = campos[1];
 
 				$.ajax({
 					url : "/trueBuscar",
 					data : {
-						modify : 'envios',
-						table : 'envios',
-						username : usuario,
-						date : fecha
+						modificar : 'envios',
+						tabla : 'envios',
+						usuario : usuario,
+						fecha : fecha
 					},
 					type : "POST",
 					dataType : "json",
 				}).done(function(response) {
 					console.log(response);
+
+					$('#cliente').val(usuario);
+					$('#fecha').val(fecha);
 
 					$('#origen').val(response.origen);
 					$('#destino').val(response.destino);
@@ -271,6 +291,7 @@
 					$('#estado').val(response.estado);
 					$('#tiempoCarga').val(response.tiempoCarga);
 					$('#tiempoDescarga').val(response.tiempoDescargaUsuario);
+					$('#empresa').val(response.empresa);
 
 					$('#buscar-form').hide();
 					$('#modificar-form').removeAttr('hidden');

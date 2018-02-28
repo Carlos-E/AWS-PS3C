@@ -49,16 +49,12 @@ public class trueBuscar extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		HttpSession session = request.getSession();
-
 		envio objeto = new envio();
-		objeto = (envio) com.logica.ControladorBD.getItem(request.getParameter("table"), "usuario", request.getParameter("username"), "fecha",
-				request.getParameter("date"));
+		objeto = (envio) com.logica.ControladorBD.getItem(request.getParameter("tabla"), "usuario", request.getParameter("usuario"), "fecha",
+				request.getParameter("fecha"));
 
 		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 		String json = ow.writeValueAsString(objeto);
-
-		System.out.print("JSON: " + json);
 
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
