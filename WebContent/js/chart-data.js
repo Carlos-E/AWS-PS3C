@@ -27,7 +27,6 @@ $.get( "/fechaEnvios", function( data ) {
 	
 	console.log('After Get: ' + lineChartData.datasets['0'].data.toString());
 
-		  
 		var startCharts = function() {
 			var chart1 = document.getElementById("line-chart").getContext("2d");
 			window.myLine = new Chart(chart1).Line(lineChartData, {
