@@ -708,9 +708,9 @@ input[type=checkbox]:checked + label {
 .todo-list-item .trash .fa:hover {
   color: #ef4040; }
   
-  footer{  
-  border-top: 1px solid #dfdfdf;
-  padding-top: 10px;
+  footer{
+  	border-top: 1px solid #dfdfdf;
+  	padding-top: 10px;
   }
 
 .todo-list-footer {
