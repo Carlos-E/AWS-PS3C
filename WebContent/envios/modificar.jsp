@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.logica.*"%>
 <%@ page import="clases.*"%>
 <%@ page import="java.util.ArrayList"%>
@@ -6,7 +6,7 @@
 	if (session.getAttribute("rol") == null) {
 		response.sendError(400, "Acceso incorrecto"); //cambiar
 	}
-	session.setAttribute("pagina", "Modificar Envíos");
+	session.setAttribute("pagina", "Modificar EnvÃ­os");
 /* 	ArrayList<envio> listaEnvio = ControladorBD.escanearTabla("envios");
  */%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -14,7 +14,7 @@
 
 <head>
 <jsp:include page="/head.jsp" />
-<title>Modificar Envíos</title>
+<title>Modificar EnvÃ­os</title>
 </head>
 
 <body>
