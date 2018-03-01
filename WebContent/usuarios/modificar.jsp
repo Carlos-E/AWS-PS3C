@@ -4,7 +4,8 @@
 <%@ page import="clases.*"%>
 <%
 	if (session.getAttribute("rol") == null) {
-		response.sendError(400, "Acceso incorrecto"); //cambiar
+		//response.sendError(400, "Acceso incorrecto"); //cambiar
+		response.sendRedirect("/error.jsp");
 	}
 	session.setAttribute("pagina", "Modificar Usuario");
 %>
@@ -58,7 +59,7 @@
 						out.print(session.getAttribute("pagina").toString());
 					%>
 				</h3>
-				<form class="form" action="/usuarios/modificar" method="post">
+				<form id="form2" class="form" action="/usuarios/modificar" method="post">
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">usuario</label>
 						<div class="col-md-4">
@@ -116,7 +117,7 @@
 					<input type="text" id="latitud_Origen" name="latitud_Origen" style="display: none">
 					<input type="text" id="longitud_Origen" name="longitud_Origen" style="display: none">
 					<div class="modal-footer">
-						<button id="modificar" type="submit" class="btn btn-primary btn-md float-right">Modificar</button>
+						<button id="submit" type="button" class="btn btn-primary btn-md float-right">Modificar</button>
 						<button id="atras" type="button" data-target="#" class="btn btn-danger btn-md float-right">Atras</button>
 					</div>
 				</form>
@@ -189,18 +190,10 @@
 				
 				let objeto = lista[selectedIndex];
 				
-				<%
-				//Nombre de los campos del form
-					String[] input = { "nombre", "rol" };
-					String[] inputsh = { "claveOld", "clave", "repita clave" };
-					String[] inputs = { "apellido", "telefono", "direccion", "correo" };
-					
-			%>
-
 				$('#usuario').val(objeto.usuario);
 
-				$('#rol').val(objeto.rol);
 				$('#nombre').val(objeto.nombre);
+				$('#rol').val(objeto.rol);
 				$('#apellido').val(objeto.apellido);
 				$('#telefono').val(objeto.telefono);
 				$('#direccion').val(objeto.direccion);

@@ -32,8 +32,7 @@ public class modificarUsuario extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.sendRedirect("/error.jsp");
 	}
 
 	/**
@@ -91,9 +90,12 @@ public class modificarUsuario extends HttpServlet {
 			}
 		}else if(!claveOld.isEmpty() || !clave1.isEmpty() || !clave2.isEmpty()){
 			if(!usuario.getClave().equals(claveOld)){
-				System.out.println("clave vieja incorrecta");
+				System.out.println("clave antigua incorrecta");
+				com.logica.Dibujar.mensaje(response.getWriter(), "clave antigua incorrecta");
+
 			}else if(!clave1.equals(clave2)){
 				System.out.println("clave nueva no coincide");
+				com.logica.Dibujar.mensaje(response.getWriter(), "clave nueva no coincide");
 			}else{
 				if(!usuario.getRol().equals(rol)){
 					ControladorBD.actualizarValor("usuarios", "usuario", request.getParameter("usuario"), "rol", rol);
@@ -126,9 +128,7 @@ public class modificarUsuario extends HttpServlet {
 				if(cambio){
 					session.setAttribute("busca", "ninguno");
 					System.out.println("algo se cambio");
-					PrintWriter out = response.getWriter();
-					String nextURL = request.getContextPath() + "/modificar/usuario.jsp";
-					com.logica.Dibujar.mensaje(out, "Operacion Exitosa", nextURL);
+					com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getRequestURL() + ".jsp");
 					//response.sendRedirect("index.jsp");
 				}else{
 					System.out.println("no se cambio nada");
