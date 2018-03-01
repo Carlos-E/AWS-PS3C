@@ -7,12 +7,12 @@
 		//response.sendError(400, "Acceso incorrecto"); //cambiar
 		response.sendRedirect("/error.jsp");
 	}
-	session.setAttribute("pagina", "Modificar Usuario");
+	session.setAttribute("pagina", "Modificar Empleado");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Modificar Usuario</title>
+<title>Modificar Empleado</title>
 <jsp:include page="/head.jsp" />
 </head>
 <body>
