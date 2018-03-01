@@ -40,8 +40,6 @@ public class Eliminar extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
 		HttpSession session = request.getSession();
 		String usuario = session.getAttribute("obj").toString();
 		System.out.println("hola" + usuario);
@@ -52,7 +50,6 @@ public class Eliminar extends HttpServlet {
 		String nextURL = request.getContextPath() + "/index.jsp";
 		com.logica.Dibujar.mensaje(out, "Operacion Exitosa", nextURL);
 		//response.sendRedirect("index.jsp");
-		
 	}
 
 }

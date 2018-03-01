@@ -7,8 +7,8 @@
 		response.sendError(400, "Acceso incorrecto"); //cambiar
 	}
 	session.setAttribute("pagina", "Modificar Envíos");
-	ArrayList<envio> listaEnvio = ControladorBD.escanearTabla("envios");
-%>
+/* 	ArrayList<envio> listaEnvio = ControladorBD.escanearTabla("envios");
+ */%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -44,17 +44,6 @@
 						<label class="col-md-3 col-form-label">Seleccione el env&iacute;o</label>
 						<div class="col-md-9">
 							<select class="custom-select form-control" id="select">
-								<%
-									for (int i = 0; i < listaEnvio.size(); i++) {
-								%>
-								<option value="<%out.print(listaEnvio.get(i).getUsuario() + " : " + listaEnvio.get(i).getFecha());%>">
-									<%
-										out.print(listaEnvio.get(i).getUsuario() + " : " + listaEnvio.get(i).getFecha());
-									%>
-								</option>
-								<%
-									}
-								%>
 							</select>
 						</div>
 					</div>
@@ -65,7 +54,7 @@
 				</form>
 			</div>
 
-			<div class="card-block" id="modificar-form" hidden="true">
+			<div class="card-block" id="form" hidden="true">
 				<h3 class="card-title">
 					<%
 						out.print(session.getAttribute("pagina").toString());
@@ -171,59 +160,63 @@
 	<!-- /FIN -->
 
 	<script>
+	
 		$(document).ready(function() {
+			
+			var lista;
+			
+			$.ajax({
+				url : "/scanTable",
+				data : {
+					tabla : 'envios'
+				},
+				type : "POST",
+				dataType : "json",
+			}).done(function(response) {
+				console.log(response);
+				
+				lista = response;
+				    	
+				 $(response).each(function() {
+				 	$('#select').append($("<option>").attr('value',this.usuario+' : '+this.fecha).text(this.usuario+' : '+this.fecha));
+				 	});
+				
+			}).fail(function(xhr, status, errorThrown) {
+				alert("Algo ha salido mal");
+				console.log('Failed Request To Servlet /scanTable')
+			}).always(function(xhr, status) {
+			});			
 
 			$('#buscar').click(function() {
+				
+				let selectedIndex = $('#select').prop('selectedIndex');
+				
+				console.log(lista[selectedIndex]);
+				
+				let objeto = lista[selectedIndex];
 
-				let selected = $('#select').find(":selected").val();
+				$('#cliente').val(objeto.usuario);
+				$('#fecha').val(objeto.fecha);
 
-				var campos = selected.split(' : ');
-				var usuario = campos[0];
-				var fecha = campos[1];
+				$('#origen').val(objeto.origen);
+				$('#destino').val(objeto.destino);
+				$('#usuario').val(objeto.usuario);
+				$('#tipo').val(objeto.tipo);
+				$('#espacio').val(objeto.espacio);
+				$('#estado').val(objeto.estado);
+				$('#tiempoCarga').val(objeto.tiempoCarga);
+				$('#tiempoDescarga').val(objeto.tiempoDescargaUsuario);
+				$('#empresa').val(objeto.empresa);
 
-				$.ajax({
-					url : "/trueBuscar",
-					data : {
-						modificar : 'envios',
-						tabla : 'envios',
-						usuario : usuario,
-						fecha : fecha
-					},
-					type : "POST",
-					dataType : "json",
-				}).done(function(response) {
-					console.log(response);
-
-					$('#cliente').val(usuario);
-					$('#fecha').val(fecha);
-
-					$('#origen').val(response.origen);
-					$('#destino').val(response.destino);
-					$('#usuario').val(response.usuario);
-					$('#tipo').val(response.tipo);
-					$('#espacio').val(response.espacio);
-					$('#estado').val(response.estado);
-					$('#tiempoCarga').val(response.tiempoCarga);
-					$('#tiempoDescarga').val(response.tiempoDescargaUsuario);
-					$('#empresa').val(response.empresa);
-
-					$('#buscar-form').hide();
-					$('#modificar-form').removeAttr('hidden');
-					$('#modificar-form').show();
-
-				}).fail(function(xhr, status, errorThrown) {
-					$('#buscar-form').show();
-					$('#modificar-form').hide();
-					alert("Algo ha salido mal");
-					console.log('Failed Request To Servlet')
-				}).always(function(xhr, status) {
-				});
+				$('#buscar-form').hide();
+				$('#form').removeAttr('hidden');
+				$('#form').show();
 
 			});
 
 			$('#atras').click(function() {
 				$('#buscar-form').show();
-				$('#modificar-form').hide();
+				$('#form').hide();
 			});
 
 		});
