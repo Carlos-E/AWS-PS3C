@@ -20,8 +20,8 @@ import clases.*;
 /**
  * Servlet implementation class envio
  */
-@WebServlet("/envio")
-public class reportarEnvio extends HttpServlet {
+@WebServlet("/envios/crear")
+public class Crear extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	clases.envio envio = new clases.envio();
 	clases.usuario cliente = new clases.usuario();
@@ -29,7 +29,7 @@ public class reportarEnvio extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public reportarEnvio() {
+	public Crear() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -40,8 +40,8 @@ public class reportarEnvio extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.sendRedirect("/error.jsp");
+
 	}
 
 	/**
@@ -53,7 +53,7 @@ public class reportarEnvio extends HttpServlet {
 		Calendar calendar = Calendar.getInstance();	
 		DecimalFormat mFormat= new DecimalFormat("00");
 		PrintWriter out = response.getWriter();
-		String nextURL = request.getContextPath() + "/envios/realizarNuevoEnvio.jsp";
+		String nextURL = request.getContextPath() + "/envios/crear.jsp";
 		HttpSession session = request.getSession();		
 		String destinoLatLong = request.getParameter("latitud_Destino").toLowerCase()+","+request.getParameter("longitud_Destino").toLowerCase();
 		String origenLatLong = request.getParameter("latitud_Origen").toLowerCase()+","+request.getParameter("longitud_Origen").toLowerCase();
@@ -122,7 +122,7 @@ public class reportarEnvio extends HttpServlet {
 				com.logica.Dibujar.mensaje(out, "Operacion Exitosa", nextURL);
 			}
 		} catch (Exception e) {
-			System.out.println("paso algo malo en la busqueda dentro del servlet");
+			System.out.println("paso algo malo en la busqueda dentro del servlet"+ e.toString());
 			response.setContentType("text/html");
 			com.logica.Dibujar.mensaje(out, "Ocurrio un error Codigo 0x0001", nextURL);
 			return;

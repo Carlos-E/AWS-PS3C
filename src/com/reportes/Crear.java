@@ -1,4 +1,4 @@
-package com.envios;
+package com.reportes;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,13 +21,13 @@ import clases.usuario;
  * Servlet implementation class reportarProblema
  */
 @WebServlet("/reportarProblema")
-public class reportarProblema extends HttpServlet {
+public class Crear extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public reportarProblema() {
+    public Crear() {
         super();
         // TODO Auto-generated constructor stub
     }

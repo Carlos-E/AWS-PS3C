@@ -1,4 +1,4 @@
-package com.eliminar;
+package com.empresas;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,22 +8,23 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.logica.ControladorBD;
 
+import clases.usuario;
+
 /**
- * Servlet implementation class eliminarUsuario
+ * Servlet implementation class empresa
  */
-@WebServlet("/eliminarMercancia")
-public class eliminarMercancia extends HttpServlet {
+@WebServlet("/empresas/crear")
+public class Crear extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	clases.usuario usuario = new clases.usuario();
+	clases.empresa empresa = new clases.empresa();
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public eliminarMercancia() {
+    public Crear() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,27 +33,27 @@ public class eliminarMercancia extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.sendRedirect("/error.jsp");
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
-		HttpSession session = request.getSession();
-		String usuario = session.getAttribute("obj").toString();
-		System.out.println("hola" + usuario);
-		session.setAttribute("busca", "ninguno");
-		System.out.println("algo se cambio");
-		ControladorBD.borrarItem("envios", "usuario", usuario);
-		PrintWriter out = response.getWriter();
-		String nextURL = request.getContextPath() + "/index.jsp";
-		com.logica.Dibujar.mensaje(out, "Operacion Exitosa", nextURL);
-		//response.sendRedirect("index.jsp");
 		
+		empresa.setNit(request.getParameter("nit").toLowerCase());
+		empresa.setRut(request.getParameter("rut").toLowerCase());
+		empresa.setNombre(request.getParameter("nombre").toLowerCase());
+		empresa.setDireccion(request.getParameter("direccion").toLowerCase());
+		empresa.setTelefono(request.getParameter("telefono").toLowerCase());
+		empresa.setCorreo(request.getParameter("correo").toLowerCase());
+		ControladorBD.registrarItem("empresas",empresa);
+		
+		//cambiar ese response por un mensaje de exito
+		//response.sendRedirect("index.jsp");
+		PrintWriter out = response.getWriter();
+		String nextURL = request.getContextPath() + "/agregar/empresa.jsp";
+		com.logica.Dibujar.mensaje(out, "Operacion Exitosa", nextURL);
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.modificar;
+package com.envios;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,8 +15,8 @@ import com.logica.ControladorBD;
 /**
  * Servlet implementation class modificarMercancia
  */
-@WebServlet("/modificarMercancia")
-public class modificarMercancia extends HttpServlet {
+@WebServlet("/envios/modificar")
+public class Modificar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	clases.envio envio = new clases.envio();
 	clases.camion camion = new clases.camion();
@@ -26,7 +26,7 @@ public class modificarMercancia extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public modificarMercancia() {
+	public Modificar() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

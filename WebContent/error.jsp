@@ -39,10 +39,10 @@
           Lo lamentamos, ha ocurrido un error, la pagina requerida no ha sido encontrada!
         </div>
         <div class="error-actions">
-          <a href="/index.html" class="btn btn-primary btn-lg">
+          <a href="/index.jsp" class="btn btn-primary btn-lg">
             <span class="glyphicon glyphicon-home"></span>
             Llévame a Casa </a>
-          <a href="/soporte.html" class="btn btn-default btn-lg">
+          <a href="/soporte.html" class="btn btn-default btn-lg" hidden>
             <span class="glyphicon glyphicon-envelope"></span> Contactar Soporte </a>
         </div>
       </div>
