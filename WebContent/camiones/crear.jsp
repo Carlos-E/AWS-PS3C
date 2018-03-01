@@ -53,7 +53,7 @@
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Origen</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="origen" placeholder="origen" required>
+							<input class="form-control" type="text" name="origen" placeholder="origen" id="origen" required>
 						</div>
 					</div>
 					<div class="form-group row">
