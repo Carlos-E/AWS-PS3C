@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.io.*,java.util.*"%>
 <%
 	if (session.getAttribute("rol") == null) {
@@ -42,13 +42,13 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Contraseña</label>
+						<label class="col-md-2 col-form-label text-capitalize">ContraseÃ±a</label>
 						<div class="col-md-4">
-							<input class="form-control" type="password" name="clave1" placeholder="contraseña" required>
+							<input class="form-control" type="password" name="clave1" placeholder="contraseÃ±a" required>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Repetir-Contraseña</label>
+						<label class="col-md-2 col-form-label text-capitalize">Repetir-ContraseÃ±a</label>
 						<div class="col-md-4">
-							<input class="form-control" type="password" name="clave2" placeholder="contraseña" required>
+							<input class="form-control" type="password" name="clave2" placeholder="contraseÃ±a" required>
 						</div>
 					</div>
 					<div class="form-group row">
