@@ -17,49 +17,58 @@ import com.logica.ControladorBD;
 import clases.*;
 
 /**
- * Servlet implementation class modificarUsuario
+ * Servlet implementation class trueBuscar
  */
 @WebServlet("/trueBuscar")
 public class trueBuscar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	clases.usuario usuario = new clases.usuario();
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public trueBuscar() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.sendRedirect("/error.jsp");
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		envio objeto = new envio();
-		objeto = (envio) com.logica.ControladorBD.getItem(request.getParameter("tabla"), "usuario", request.getParameter("usuario"), "fecha",
-				request.getParameter("fecha"));
+
+		Object objeto = new Object();
+
+		switch (request.getParameter("modificar")) {
+		case "envios":
+			objeto = (envio) com.logica.ControladorBD.getItem(request.getParameter("tabla"), "usuario",
+					request.getParameter("usuario"), "fecha", request.getParameter("fecha"));
+			break;
+		case "usuarios":
+			;
+			break;
+		case "empresas":
+			;
+			break;
+		case "camiones":
+			;
+			break;
+		case "traileres":
+			;
+			break;
+		}
+
+//		if (request.getParameter("modificar").equals("envios")) {
+//			objeto = (envio) com.logica.ControladorBD.getItem(request.getParameter("tabla"), "usuario",
+//					request.getParameter("usuario"), "fecha", request.getParameter("fecha"));
+//		}
 
 		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 		String json = ow.writeValueAsString(objeto);
 
 		response.setContentType("application/json");
-		PrintWriter out = response.getWriter();
-		out.println(json);
-		out.flush();
+		response.getWriter().print(json);
+		response.getWriter().close();
+
 	}
 
 }
