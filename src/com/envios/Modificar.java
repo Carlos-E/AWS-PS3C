@@ -46,8 +46,7 @@ public class Modificar extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		// doGet(request, response);
+		
 		HttpSession session = request.getSession();
 		String usuario = request.getParameter("cliente").toString();
 		String fecha = request.getParameter("fecha").toString();
@@ -108,11 +107,8 @@ public class Modificar extends HttpServlet {
 			cambio = true;
 		}
 		if (cambio) {
-			session.setAttribute("busca", "ninguno");
 			System.out.println("algo se cambio");
-			PrintWriter out = response.getWriter();
-			String nextURL = request.getContextPath() + "/envios/modificar.jsp";
-			com.logica.Dibujar.mensaje(out, "Operacion Exitosa", nextURL);
+			com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getRequestURL() + ".jsp");
 			//response.sendRedirect("index.jsp");
 		} else {
 			System.out.println("no se cambio nada");

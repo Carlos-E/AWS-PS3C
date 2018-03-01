@@ -21,16 +21,16 @@
 			<!--  ./NAVBAR -->
 		</div>
 	</div>
-	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> 
-	<!--  HEADER --> 
-		<jsp:include page="/header.jsp" /> 
-	<!--  ./HEADER --> 
-	<section class="row">
+	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER --> <section class="row">
 	<div class="col-md-12 col-lg-12">
 		<div class="card mb-4">
 			<div class="card-block">
-				<h3 class="card-title"><% out.print(session.getAttribute("pagina").toString()); %></h3>
-				<form class="form" action="/empleado" method="post">
+				<h3 class="card-title">
+					<%
+						out.print(session.getAttribute("pagina").toString());
+					%>
+				</h3>
+				<form class="form" action="/usuarios/crear" method="post">
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Nombre</label>
 						<div class="col-md-4">
@@ -56,9 +56,9 @@
 						<div class="col-md-4">
 							<input class="form-control" type="email" name="correo" placeholder="correo" required>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Direccion</label>
+						<label class="col-md-2 col-form-label text-capitalize">Direcci&oacute;n</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="dirección" placeholder="dirección" required>
+							<input class="form-control" type="text" name="direccion" placeholder="direccion" required>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -90,6 +90,7 @@
 					</div>
 				</form>
 			</div>
+			<!-- /FIN CONTAINER -->
 
 		</div>
 	</div>
@@ -116,5 +117,7 @@
 	</div>
 	<!--  FOOTER CON SCRIPTS -->
 	<jsp:include page="/footer.jsp" />
+		<!-- /FIN -->
+	
 </body>
 </html>

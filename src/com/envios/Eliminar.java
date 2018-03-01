@@ -15,41 +15,41 @@ import com.logica.ControladorBD;
 /**
  * Servlet implementation class eliminarUsuario
  */
-@WebServlet("/eliminarMercancia")
+@WebServlet("/envios/eliminar")
 public class Eliminar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	clases.usuario usuario = new clases.usuario();
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Eliminar() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public Eliminar() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.sendRedirect("/error.jsp");
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		String usuario = session.getAttribute("obj").toString();
-		System.out.println("hola" + usuario);
-		session.setAttribute("busca", "ninguno");
-		System.out.println("algo se cambio");
-		ControladorBD.borrarItem("envios", "usuario", usuario);
-		PrintWriter out = response.getWriter();
-		String nextURL = request.getContextPath() + "/index.jsp";
-		com.logica.Dibujar.mensaje(out, "Operacion Exitosa", nextURL);
-		//response.sendRedirect("index.jsp");
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		ControladorBD.borrarItem("envios", "usuario", request.getParameter("usuario"), "fecha",
+				request.getParameter("fecha"));
+		
+		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getRequestURL() + ".jsp");
+		// response.sendRedirect("index.jsp");
 	}
 
 }

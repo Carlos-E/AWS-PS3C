@@ -7,7 +7,6 @@
 		response.sendError(400, "Acceso incorrecto"); //cambiar
 	}
 	session.setAttribute("pagina", "Eliminar Envíos");
-	ArrayList<envio> listaEnvio = ControladorBD.escanearTabla("envios");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -38,7 +37,6 @@
 		<div class="card mb-4">
 			<!-- INICIO CONTAINER -->
 
-
 			<div class="card-block" id="buscar-form">
 				<h3 class="card-title">
 					<%
@@ -50,17 +48,7 @@
 						<label class="col-md-3 col-form-label">Seleccione el env&iacute;o</label>
 						<div class="col-md-9">
 							<select class="custom-select form-control" id="select">
-								<%
-									for (int i = 0; i < listaEnvio.size(); i++) {
-								%>
-								<option value="<%out.print(listaEnvio.get(i).getUsuario() + " : " + listaEnvio.get(i).getFecha());%>">
-									<%
-										out.print(listaEnvio.get(i).getUsuario() + " : " + listaEnvio.get(i).getFecha());
-									%>
-								</option>
-								<%
-									}
-								%>
+								
 							</select>
 						</div>
 					</div>
@@ -70,58 +58,6 @@
 					</div>
 				</form>
 			</div>
-			<%-- 	
-
-			<div class="row">
-
-				<div class="col-sm-6">
-
-					<!-- INPUTS -->
-					<div class="form-group">
-
-						<div class="col-sm-2">
-
-							<label class="control-label col-sm-2" for="camiones"> Mercancia: </label>
-
-						</div>
-						<div class="col-sm-10">
-							<select class="form-control" id="subject" name="envioE" tabindex="4">
-								<%
-									for (int i = 0; i < listaEnvio.size(); i++) {
-								%>
-								<option value="<%out.print(listaEnvio.get(i).getUsuario() + " : " + listaEnvio.get(i).getFecha());%>">
-									<%
-										out.print(listaEnvio.get(i).getUsuario() + " : " + listaEnvio.get(i).getFecha());
-									%>
-								</option>
-								<%
-									}
-								%>
-							</select>
-						</div>
-					</div>
-
-				</div>
-
-				<div class="col-sm-6"></div>
-
-			</div>
-
-			<div class="row">
-				<div class="col-sm-1"></div>
-				<div class="col-sm-1">
-					<!-- Boton Verde -->
-					<button type="submit" name="submit" class="btn btn-primary">Buscar</button>
-
-				</div>
-				<div class="col-sm-1">
-					<!-- Boton Rojo -->
-				</div>
-				<div class="col-sm-8"></div>
-			</div>
-
-		</form> 
-		--%>
 
 			<div class="card-block" id="form" hidden="true">
 				<h3 class="card-title">
@@ -198,48 +134,6 @@
 				</form>
 			</div>
 
-			<%-- 
-			<form id="form" name="form" class="form-horizontal" action="/envios/eliminar" method="post">
-
-				<div class="row">
-
-					<div class="col-sm-6">
-
-						<!-- INPUTS -->
-						<%
-						//Nombre de los campos del form			
-							String[] inputs = {"espacio", "tipo", "empresa", "estado", "usuario", "destino", "origen",
-									"tiempoCarga", "tiempoDescarga"};
-							String[] values = {envio.getEspacio(), envio.getTipo(), envio.getEmpresa(), envio.getEstado(),
-									envio.getUsuario(), envio.getDestino(), envio.getOrigen(), envio.getTiempoCarga(),
-									envio.getTiempoDescargaUsuario()};
-							com.logica.Dibujar.inputs(out, inputs, values);
-					%>
-
-					</div>
-
-					<div class="col-sm-6"></div>
-
-				</div>
-
-				<div class="row">
-					<div class="col-sm-1"></div>
-					<div class="col-sm-1">
-						<!-- Boton Verde -->
-						<button name="submit" id="submit" type="submit" class="btn btn-primary">Eliminar</button>
-
-					</div>
-					<div class="col-sm-1">
-						<!-- Boton Rojo -->
-						<button name="submit" id="submit" type="submit" class="btn btn-danger" formaction="/cancelar">Cancelar</button>
-
-					</div>
-					<div class="col-sm-8"></div>
-				</div>
-
-			</form>
-
- --%>
 			<!-- /FIN CONTAINER -->
 		</div>
 	</div>
@@ -272,53 +166,57 @@
 	<!-- /FIN -->
 	
 	<script>
+	
 		$(document).ready(function() {
+			
+			var lista;
+			
+			$.ajax({
+				url : "/scanTable",
+				data : {
+					tabla : 'envios'
+				},
+				type : "POST",
+				dataType : "json",
+			}).done(function(response) {
+				console.log(response);
+				
+				lista = response;
+				    	
+				 $(response).each(function() {
+				 	$('#select').append($("<option>").attr('value',this.usuario+' : '+this.fecha).text(this.usuario+' : '+this.fecha));
+				 	});
+				
+			}).fail(function(xhr, status, errorThrown) {
+				alert("Algo ha salido mal");
+				console.log('Failed Request To Servlet /scanTable')
+			}).always(function(xhr, status) {
+			});			
 
 			$('#buscar').click(function() {
+				
+				let selectedIndex = $('#select').prop('selectedIndex');
+				
+				console.log(lista[selectedIndex]);
+				
+				let objeto = lista[selectedIndex];
 
-				let selected = $('#select').find(":selected").val();
+				$('#cliente').val(objeto.usuario);
+				$('#fecha').val(objeto.fecha);
 
-				var campos = selected.split(' : ');
-				var usuario = campos[0];
-				var fecha = campos[1];
+				$('#origen').val(objeto.origen);
+				$('#destino').val(objeto.destino);
+				$('#usuario').val(objeto.usuario);
+				$('#tipo').val(objeto.tipo);
+				$('#espacio').val(objeto.espacio);
+				$('#estado').val(objeto.estado);
+				$('#tiempoCarga').val(objeto.tiempoCarga);
+				$('#tiempoDescarga').val(objeto.tiempoDescargaUsuario);
+				$('#empresa').val(objeto.empresa);
 
-				$.ajax({
-					url : "/trueBuscar",
-					data : {
-						modificar : 'envios',
-						tabla : 'envios',
-						usuario : usuario,
-						fecha : fecha
-					},
-					type : "POST",
-					dataType : "json",
-				}).done(function(response) {
-					console.log(response);
-
-					$('#cliente').val(usuario);
-					$('#fecha').val(fecha);
-
-					$('#origen').val(response.origen);
-					$('#destino').val(response.destino);
-					$('#usuario').val(response.usuario);
-					$('#tipo').val(response.tipo);
-					$('#espacio').val(response.espacio);
-					$('#estado').val(response.estado);
-					$('#tiempoCarga').val(response.tiempoCarga);
-					$('#tiempoDescarga').val(response.tiempoDescargaUsuario);
-					$('#empresa').val(response.empresa);
-
-					$('#buscar-form').hide();
-					$('#form').removeAttr('hidden');
-					$('#form').show();
-
-				}).fail(function(xhr, status, errorThrown) {
-					$('#buscar-form').show();
-					$('#form').hide();
-					alert("Algo ha salido mal");
-					console.log('Failed Request To Servlet')
-				}).always(function(xhr, status) {
-				});
+				$('#buscar-form').hide();
+				$('#form').removeAttr('hidden');
+				$('#form').show();
 
 			});
 

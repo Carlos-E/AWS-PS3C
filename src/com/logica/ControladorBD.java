@@ -73,6 +73,7 @@ public class ControladorBD {
 			br.close();
 			connection.disconnect();
 		} catch (Exception e) {
+			System.out.println(e);
 			throw new RuntimeException(e.getMessage());
 		}
 		
@@ -369,6 +370,77 @@ public class ControladorBD {
     					+ "\"payload\":{"
     						+ "\"Key\":{"
     							+ "\""+nombrellaveprimaria+"\":\""+valorllaveprimaria+"\""
+    						+ "},"
+    						//+ "\"ReturnValues\":\"ALL_NEW\""
+    						+ "\"ReturnValues\": \"ALL_OLD\""
+    					+ "}"
+    				+ "}";
+		
+		String response = postRequest(payload).toString();
+
+		JSONObject obj;
+
+		try {
+			obj = new JSONObject(response);
+			String valorllaveencontrada = obj.getJSONObject("Attributes").getString(nombrellaveprimaria);
+			// String valorencontrado =
+			// obj.getJSONObject("Attributes").getString(llave);
+			String statuscode = obj.getJSONObject("ResponseMetadata").get("HTTPStatusCode").toString();
+
+			System.out.println();
+
+			System.out.println("Codigo de estatus: " + statuscode);
+
+			System.out.println();
+
+			System.out.println("   Enviado: " + "\"" + nombrellaveprimaria + "\": " + "\"" + valorllaveprimaria + "\"");
+
+			System.out.println();
+
+			System.out
+					.println("   Borrado: " + "\"" + nombrellaveprimaria + "\": " + "\"" + valorllaveencontrada + "\"");
+
+			System.out.println();
+
+			// if(valorllave.equals(valorllaveencontrada) &&
+			// valorvalor.equals(valorvalorencontrado)){
+			if (valorllaveprimaria.equals(valorllaveencontrada)) {
+
+				System.out.println("Success");
+				return true;
+
+			} else {
+
+				System.out.println("Fail");
+				return false;
+			}
+
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+
+			System.out.println("\nError: " + e.getMessage());
+
+			System.out.println("Fail, error o no existe");
+			// throw new RuntimeException(e.getMessage());
+			return false;
+
+		}
+
+	}
+	
+	public static boolean borrarItem(String tabla, String nombrellaveprimaria, String valorllaveprimaria, String nombrellaveordenada, String valorllaveordenada) {
+
+		String nombretabla = tabla;// No cambiar
+		String operacion = "delete";
+		
+		String payload="{"
+    			+ "\"operation\":\""+operacion+"\","
+    			+ "\"tableName\":\""+nombretabla+"\","
+    					+ "\"payload\":{"
+    						+ "\"Key\":{"
+    							+ "\""+nombrellaveprimaria+"\":\""+valorllaveprimaria+"\","
+    							+ "\""+nombrellaveordenada+"\":\""+valorllaveordenada+"\""
     						+ "},"
     						//+ "\"ReturnValues\":\"ALL_NEW\""
     						+ "\"ReturnValues\": \"ALL_OLD\""

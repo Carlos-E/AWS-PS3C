@@ -1,4 +1,4 @@
-package com.agregar;
+package com.usuarios;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,15 +16,15 @@ import clases.usuario;
 /**
  * Servlet implementation class empleado
  */
-@WebServlet("/empleado")
-public class agregarEmpleado extends HttpServlet {
+@WebServlet("/usuarios/crear")
+public class Crear extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	usuario usuario = new usuario();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public agregarEmpleado() {
+	public Crear() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -34,12 +34,8 @@ public class agregarEmpleado extends HttpServlet {
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-		response.sendError(400, "Acceso incorrecto");
-
+			throws ServletException, IOException {		
+		response.sendRedirect("/error.jsp");
 	}
 
 	/**
@@ -48,23 +44,19 @@ public class agregarEmpleado extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		
 
 		usuario.setUsuario(request.getParameter("correo").toLowerCase());
 		usuario.setClave(request.getParameter("clave1").toLowerCase());
 		usuario.setNombre(request.getParameter("nombre").toLowerCase());
-		usuario.setApellido(request.getParameter("apellidos").toLowerCase());
+		usuario.setApellido(request.getParameter("apellido").toLowerCase());
 		usuario.setTelefono(request.getParameter("telefono").toLowerCase());
 		usuario.setCorreo(request.getParameter("correo").toLowerCase());
 		usuario.setDireccion(request.getParameter("direccion").toLowerCase());
 		usuario.setRol(request.getParameter("rol").toLowerCase());
 		ControladorBD.registrarItem("usuarios", usuario);
-		// cambiar ese response por un mensaje de exito
+		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getRequestURL() + ".jsp");
 		// response.sendRedirect("index.jsp");
-		PrintWriter out = response.getWriter();
-		String nextURL = request.getContextPath() + "/agregar/empleado.jsp";
-		com.logica.Dibujar.mensaje(out, "Operacion Exitosa", nextURL);
+
 	}
 
 }

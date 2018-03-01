@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.logica.ControladorBD;
-import clases.*;
 
 /**
  * Servlet implementation class trueBuscar

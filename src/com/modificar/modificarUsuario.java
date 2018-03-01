@@ -15,7 +15,7 @@ import com.logica.ControladorBD;
 /**
  * Servlet implementation class modificarUsuario
  */
-@WebServlet("/modificarUsuario")
+@WebServlet("/usuarios/modificar")
 public class modificarUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	clases.usuario usuario = new clases.usuario();
@@ -43,9 +43,7 @@ public class modificarUsuario extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		HttpSession session = request.getSession();
-		String user = session.getAttribute("obj").toString();
-		System.out.println("hola" +user);
-		usuario = (clases.usuario) ControladorBD.getItem("usuarios", "usuario", user);
+		usuario = (clases.usuario) ControladorBD.getItem("usuarios", "usuario", request.getParameter("usuario"));
 		String rol = request.getParameter("rol").toLowerCase().replaceAll(" ", "");
 		String nombre = request.getParameter("nombre").toLowerCase().replaceAll(" ", "");
 		String apellido = request.getParameter("apellido").toLowerCase().replaceAll(" ", "");
@@ -58,27 +56,27 @@ public class modificarUsuario extends HttpServlet {
 		boolean cambio = false;
 		if(claveOld.isEmpty() && clave1.isEmpty() && clave2.isEmpty()){
 			if(!usuario.getRol().equals(rol)){
-				ControladorBD.actualizarValor("usuarios", "usuario", user, "rol", rol);
+				ControladorBD.actualizarValor("usuarios", "usuario", request.getParameter("usuario"), "rol", rol);
 				cambio = true;
 			}
 			if(!usuario.getNombre().equals(nombre)){
-				ControladorBD.actualizarValor("usuarios", "usuario", user, "nombre", nombre);
+				ControladorBD.actualizarValor("usuarios", "usuario", request.getParameter("usuario"), "nombre", nombre);
 				cambio = true;
 			}
 			if(!usuario.getApellido().equals(apellido)){
-				ControladorBD.actualizarValor("usuarios", "usuario", user, "apellido", apellido);
+				ControladorBD.actualizarValor("usuarios", "usuario", request.getParameter("usuario"), "apellido", apellido);
 				cambio = true;
 			}
 			if(!usuario.getTelefono().equals(telefono)){
-				ControladorBD.actualizarValor("usuarios", "usuario", user, "telefono", telefono);
+				ControladorBD.actualizarValor("usuarios", "usuario", request.getParameter("usuario"), "telefono", telefono);
 				cambio = true;
 			}
 			if(!usuario.getDireccion().equals(direccion)){
-				ControladorBD.actualizarValor("usuarios", "usuario", user, "direccion", direccion);
+				ControladorBD.actualizarValor("usuarios", "usuario", request.getParameter("usuario"), "direccion", direccion);
 				cambio = true;
 			}
 			if(!usuario.getCorreo().equals(correo)){
-				ControladorBD.actualizarValor("usuarios", "usuario", user, "correo", correo);
+				ControladorBD.actualizarValor("usuarios", "usuario", request.getParameter("usuario"), "correo", correo);
 				cambio = true;
 			}
 			if(cambio){
@@ -93,36 +91,36 @@ public class modificarUsuario extends HttpServlet {
 			}
 		}else if(!claveOld.isEmpty() || !clave1.isEmpty() || !clave2.isEmpty()){
 			if(!usuario.getClave().equals(claveOld)){
-				System.out.println("clave vieja incorreccta");
+				System.out.println("clave vieja incorrecta");
 			}else if(!clave1.equals(clave2)){
 				System.out.println("clave nueva no coincide");
 			}else{
 				if(!usuario.getRol().equals(rol)){
-					ControladorBD.actualizarValor("usuarios", "usuario", user, "rol", rol);
+					ControladorBD.actualizarValor("usuarios", "usuario", request.getParameter("usuario"), "rol", rol);
 					cambio = true;
 				}
 				if(!usuario.getNombre().equals(nombre)){
-					ControladorBD.actualizarValor("usuarios", "usuario", user, "nombre", nombre);
+					ControladorBD.actualizarValor("usuarios", "usuario", request.getParameter("usuario"), "nombre", nombre);
 					cambio = true;
 				}
 				if(!usuario.getApellido().equals(apellido)){
-					ControladorBD.actualizarValor("usuarios", "usuario", user, "apellido", apellido);
+					ControladorBD.actualizarValor("usuarios", "usuario", request.getParameter("usuario"), "apellido", apellido);
 					cambio = true;
 				}
 				if(!usuario.getClave().equals(clave1)){
-					ControladorBD.actualizarValor("usuarios", "usuario", user, "clave", clave1);
+					ControladorBD.actualizarValor("usuarios", "usuario", request.getParameter("usuario"), "clave", clave1);
 					cambio = true;
 				}
 				if(!usuario.getTelefono().equals(telefono)){
-					ControladorBD.actualizarValor("usuarios", "usuario", user, "telefono", telefono);
+					ControladorBD.actualizarValor("usuarios", "usuario", request.getParameter("usuario"), "telefono", telefono);
 					cambio = true;
 				}
 				if(!usuario.getDireccion().equals(direccion)){
-					ControladorBD.actualizarValor("usuarios", "usuario", user, "direccion", direccion);
+					ControladorBD.actualizarValor("usuarios", "usuario", request.getParameter("usuario"), "direccion", direccion);
 					cambio = true;
 				}
 				if(!usuario.getCorreo().equals(correo)){
-					ControladorBD.actualizarValor("usuarios", "usuario", user, "correo", correo);
+					ControladorBD.actualizarValor("usuarios", "usuario", request.getParameter("usuario"), "correo", correo);
 					cambio = true;
 				}
 				if(cambio){
