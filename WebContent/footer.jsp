@@ -21,7 +21,7 @@
 				</div>
 
 				<div class="col-md-12 col-lg-2">
-				<img width=180 height=90 class="float-right" style="filter: invert(55%);" src="https://www.unicartagena.edu.co/templates/ja_university_t3/images/logo.png" alt="Ja University">
+				<img width=180 height=85 class="float-right" style="filter: invert(55%);" src="https://www.unicartagena.edu.co/templates/ja_university_t3/images/logo.png" alt="Ja University">
 				</div>
 			</div>
 		</footer>
