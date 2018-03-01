@@ -10,9 +10,7 @@
 <html>
 <head>
 <title>Eliminar Usuario</title>
-
 <jsp:include page="/head.jsp" />
-
 </head>
 <body>
 	<!-- INICIO -->
@@ -23,12 +21,10 @@
 			<!--  ./NAVBAR -->
 		</div>
 	</div>
-
 	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER --> <section class="row">
 	<div class="col-md-12 col-lg-12">
 		<div class="card mb-4">
 			<!-- INICIO CONTAINER -->
-			
 			<div class="card-block" id="buscar-form">
 				<h3 class="card-title">
 					<%
@@ -49,7 +45,6 @@
 					</div>
 				</form>
 			</div>
-			
 			<div class="card-block" id="form" hidden="true">
 				<h3 class="card-title">
 					<%
@@ -118,10 +113,8 @@
 						<button id="atras" type="button" data-target="#" class="btn btn-danger btn-md float-right">Atras</button>
 					</div>
 				</form>
-			</div>
-			
+			</div>		
 		<!-- /FIN CONTAINER -->
-
 	</div>
 	</div>
 	</section> </main>
@@ -148,13 +141,9 @@
 	<!--  FOOTER CON SCRIPTS -->
 	<jsp:include page="/footer.jsp" />
 	<!-- /FIN -->
-	
 	<script>
-	
-		$(document).ready(function() {
-			
-			var lista;
-			
+		$(document).ready(function() {		
+			var lista;	
 			$.ajax({
 				url : "/scanTable",
 				data : {
@@ -163,53 +152,38 @@
 				type : "POST",
 				dataType : "json",
 			}).done(function(response) {
-				console.log(response);
-				
-				lista = response;
-				    	
+				console.log(response);		
+				lista = response;	    	
 				 $(response).each(function() {
 					 let value = this.usuario;
 					 let text = this.usuario;
 				 	$('#select').append($("<option>").attr('value',value).text(text));
-				 	});
-				
+				 	});	
 			}).fail(function(xhr, status, errorThrown) {
 				alert("Algo ha salido mal");
 				console.log('Failed Request To Servlet /scanTable')
 			}).always(function(xhr, status) {
 			});			
-
-			$('#buscar').click(function() {
-				
-				let selectedIndex = $('#select').prop('selectedIndex');
-				
-				console.log(lista[selectedIndex]);
-				
-				let objeto = lista[selectedIndex];
-				
+			$('#buscar').click(function() {	
+				let selectedIndex = $('#select').prop('selectedIndex');	
+				console.log(lista[selectedIndex]);	
+				let objeto = lista[selectedIndex];	
 				$('#usuario').val(objeto.usuario);
-
 				$('#nombre').val(objeto.nombre);
 				$('#rol').val(objeto.rol);
 				$('#apellido').val(objeto.apellido);
 				$('#telefono').val(objeto.telefono);
 				$('#direccion').val(objeto.direccion);
 				$('#correo').val(objeto.correo);
-
 				$('#buscar-form').hide();
 				$('#form').removeAttr('hidden');
 				$('#form').show();
-
 			});
-
 			$('#atras').click(function() {
 				$('#buscar-form').show();
 				$('#form').hide();
 			});
-
 		});
 	</script>
-
 </body>
-
 </html>

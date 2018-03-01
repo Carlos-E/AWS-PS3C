@@ -62,6 +62,12 @@
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="nit" placeholder="nit" id="nit" readonly>
 						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-2 col-form-label text-capitalize">Nombre</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="nombre" placeholder="nombre" id="nombre" required>
+						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Correo</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="correo" placeholder="correo" id="correo" required>
@@ -128,8 +134,8 @@
 				console.log(response);		
 				lista = response;			    	
 				 $(response).each(function() {
-					 let value = this.usuario;
-					 let text = this.usuario;
+					 let value = this.nombre;
+					 let text = this.nombre;
 				 	$('#select').append($("<option>").attr('value',value).text(text));
 				 	});			
 			}).fail(function(xhr, status, errorThrown) {
@@ -142,6 +148,7 @@
 				console.log(lista[selectedIndex]);
 				let objeto = lista[selectedIndex];	
 				$('#nit').val(objeto.nit);
+				$('#nombre').val(objeto.nombre);
 				$('#telefono').val(objeto.telefono);
 				$('#direccion').val(objeto.direccion);
 				$('#correo').val(objeto.correo);
