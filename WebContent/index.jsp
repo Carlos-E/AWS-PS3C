@@ -37,7 +37,7 @@
 				<button type="button" class="close" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h1 class="mb-4">Hola, Bienvenido!</h1>
+				<h1 class="mb-1">Hola, Bienvenido!</h1>
 				<p class="lead">Prototipo software de control de carga compartida.</p>
 				<p>Este es un proyecto que tiene como finalidad ayudar en la logistica de transporte de empresas en Cartagena, mejorar la utilizacion de recursos y automatizar procesos de transporte, entre otros.</p>
 			</div>
@@ -46,7 +46,7 @@
 				<div class="card-block">
 
 					<h3 class="card-title">Env&iacute;os</h3>
-					<h6 class="card-subtitle mb-2 text-muted">Ultimos env&iacute;os</h6>
+					<h6 class="card-subtitle mb-1 text-muted">Ultimos env&iacute;os</h6>
 					<div class="canvas-wrapper">
 						<canvas class="chart" id="line-chart" height="426" width="1282" style="width: 641px; height: 213px;"></canvas>
 					</div>
@@ -56,16 +56,7 @@
 		</div>
 		<div class="col-md-12 col-lg-4">
 
-			<div class="card">
-
-				<div class="card-header">Universidad De Cartagena</div>
-				<div class="card-block">
-					<p>La Universidad de Cartagena ha sido el espacio de formación de los jóvenes del Caribe colombiano desde el siglo XIX. Su historia e importancia se expresan desde los albores de la independencia y en el sueño de los libertadores Simón Bolívar y Francisco de Paula Santander, organizadores
-						del novel Estado colombiano. Ellos visionaron la educación como el medio ideal para la formación de las nuevas generaciones que conducirían los destinos de la República.</p>
-				</div>
-			</div>
-
-			<div class="card mt-4">
+			<div class="card ">
 				<div class="card-block">
 					<h3 class="card-title">Env&iacute;os</h3>
 					<h6 class="card-subtitle mb-2 text-muted">Por empresa</h6>
@@ -77,6 +68,16 @@
 
 				</div>
 			</div>
+
+			<div class="card mt-4">
+
+				<div class="card-header">Universidad De Cartagena</div>
+				<div class="card-block">
+					<p>La Universidad de Cartagena ha sido el espacio de formación de los jóvenes del Caribe colombiano desde el siglo XIX. Su historia e importancia se expresan desde los albores de la independencia y en el sueño de los libertadores Simón Bolívar y Francisco de Paula Santander, organizadores
+						del novel Estado colombiano. Ellos visionaron la educación como el medio ideal para la formación de las nuevas generaciones que conducirían los destinos de la República.</p>
+				</div>
+			</div>
+
 
 		</div>
 	</section>
