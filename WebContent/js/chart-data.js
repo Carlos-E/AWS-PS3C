@@ -28,7 +28,7 @@ var datos = function(data) {
 	    	agosto++;
 	        break;
 	    case "09":
-	    	sebtiembre++;
+	    	septiembre++;
 	        break;
 	    case "10":
 	    	octubre++;
