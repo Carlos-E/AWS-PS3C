@@ -155,34 +155,6 @@ function makePie() {
 				pieData.push(data);
 			});
 			
-			pieData = [
-				{
-					value: 300,
-					color: randomColor(),
-					highlight: "#7376df",
-					label: "Value 1"
-				},
-				{
-					value: 50,
-					color: randomColor(),
-					highlight: "#999999",
-					label: "Value 2"
-				},
-				{
-					value: 100,
-					color:randomColor(),
-					highlight: "#cccccc",
-					label: "Value 3"
-				},
-				{
-					value: 120,
-					color: randomColor(),
-					highlight: "#eeeeee",
-					label: "Value 4"
-				}
-
-			];
-			
 			console.log(pieData);
 
 			var pieChart = document.getElementById("pie-chart").getContext("2d");
