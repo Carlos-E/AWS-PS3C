@@ -1,9 +1,63 @@
-var randomScalingFactor = function() {
-	return Math.round(Math.random() * 1000 + 3)
+var datos = function(data) {
+	var enero=0, febrero=0, marzo=0, abril=0, mayo=0, junio=0, julio=0, agosto=0, septiembre=0, octubre=0, noviembre=0, diciembre=0;
+	for(var i=0;i<data.length;i++){
+		console.log(data[i].fecha)
+		switch(extraerMes(data[i].fecha)) {
+		case "01":
+			enero++;
+	        break;
+	    case "02":
+	    	febrero++;
+	        break;
+	    case "03":
+	    	marzo++;
+	        break;
+	    case "04":
+	    	abril++;
+	        break;
+	    case "05":
+	    	mayo++;
+	        break;
+	    case "06":
+	    	junio++;
+	        break;
+	    case "07":
+	    	julio++;
+	        break;
+	    case "08":
+	    	agosto++;
+	        break;
+	    case "09":
+	    	sebtiembre++;
+	        break;
+	    case "10":
+	    	octubre++;
+	        break;
+	    case "11":
+	    	noviembre++;
+	        break;
+	    case "12":
+	    	diciembre++;
+	        break;
+	    default:
+	    	console.log("algo salio mal con los meses");
+	    	break;
+		}
+	}
+	data=[enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubre, noviembre, diciembre];
+	console.log(data);
+	return data;
 };
 
+var extraerMes = function(data) {
+	var fecha = data.split(" ");
+	var amd = fecha[0];
+	var mes = amd.split("-");
+	return mes[1];
+}
+
 var lineChartData = {
-		labels : [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio" ],
+		labels : [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ],
 		datasets : [ {
 			label : "My First dataset",
 			fillColor : "rgba(128,130,228,0.6)",
@@ -12,10 +66,7 @@ var lineChartData = {
 			pointStrokeColor : "#fff",
 			pointHighlightFill : "#fff",
 			pointHighlightStroke : "rgba(128,130,228,1)",
-			data : [ "0", randomScalingFactor(),
-					randomScalingFactor(), randomScalingFactor(),
-					randomScalingFactor(), randomScalingFactor(),
-					randomScalingFactor() ]
+			data : ['0','0','0','0','0','0','0','0','0','0','0','0']
 		} ]
 	};
 
@@ -23,7 +74,7 @@ console.log("Random: ",lineChartData.datasets['0'].data.toString());
 
 $.get( "/fechaEnvios", function( data ) {
 	
-	lineChartData.datasets['0'].data = ['0','0','0','0','0','0','0'];
+	lineChartData.datasets['0'].data = datos(data);
 	
 	console.log('After Get: ' + lineChartData.datasets['0'].data.toString());
 
