@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.io.*,java.util.*"%>
 <%@ page import="com.logica.*"%>
 <%@ page import="clases.*"%>
 <%@ page import="java.util.ArrayList"%>
@@ -54,7 +55,7 @@
 						out.print(session.getAttribute("pagina").toString());
 					%>
 				</h3>
-				<form id="form2" class="form" action="/usuarios/eliminar" method="post">
+				<form id="form2" class="form" action="/empresas/eliminar" method="post">
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Nit</label>
 						<div class="col-md-4">
@@ -86,7 +87,7 @@
 					<input type="text" id="latitud_Origen" name="latitud_Origen" style="display: none">
 					<input type="text" id="longitud_Origen" name="longitud_Origen" style="display: none">
 					<div class="modal-footer">
-						<button id="submit" type="submit" class="btn btn-primary btn-md float-right">Modificar</button>
+						<button id="submit" type="submit" class="btn btn-primary btn-md float-right">Eliminar</button>
 						<button id="atras" type="button" data-target="#" class="btn btn-danger btn-md float-right">Atras</button>
 					</div>
 				</form>

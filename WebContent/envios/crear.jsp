@@ -9,7 +9,7 @@
 <html lang="es">
 <head>
 <jsp:include page="/head.jsp" />
-<title>Crear Env&iacute;o</title>
+<title><%out.print(session.getAttribute("pagina").toString());%></title>
 </head>
 <body>
 	<!-- INICIO -->

@@ -12,7 +12,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Modificar Usuario</title>
+<title><%out.print(session.getAttribute("pagina").toString());%></title>
 <jsp:include page="/head.jsp" />
 </head>
 <body>
@@ -78,17 +78,17 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Contraseña antigua</label>
+						<label class="col-md-2 col-form-label text-capitalize">Contraseï¿½a antigua</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="claveOld" placeholder="clave antigua" id="claveOld" required>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Contraseña</label>
+						<label class="col-md-2 col-form-label text-capitalize">Contraseï¿½a</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="clave" placeholder="clave" id="clave" required>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Repita Contraseña</label>
+						<label class="col-md-2 col-form-label text-capitalize">Repita Contraseï¿½a</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="repita clave" placeholder="repita clave" id="repita-clave" required>
 						</div>

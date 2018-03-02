@@ -14,7 +14,7 @@
 
 <head>
 <jsp:include page="/head.jsp" />
-<title>Modificar Envíos</title>
+<title><%out.print(session.getAttribute("pagina").toString());%></title>
 </head>
 
 <body>

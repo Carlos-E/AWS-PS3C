@@ -13,7 +13,7 @@
 
 <head>
 
-<title>Eliminar Envíos</title>
+<title><%out.print(session.getAttribute("pagina").toString());%></title>
 <%
 	session.setAttribute("pagina", "Eliminar Envíos");
 %>

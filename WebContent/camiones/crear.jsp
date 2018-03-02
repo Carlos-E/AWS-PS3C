@@ -13,7 +13,7 @@
 <html lang="es">
 <head>
 <jsp:include page="/head.jsp" />
-<title>Crear Env&iacute;o</title>
+<title><%out.print(session.getAttribute("pagina").toString());%></title>
 </head>
 <body>
 	<div class="container-fluid" id="wrapper">
@@ -45,7 +45,13 @@
 		<div class="card mb-4">
 			<div class="card-block">
 				<h3 class="card-title"><% out.print(session.getAttribute("pagina").toString()); %></h3>
-				<form class="form" action="/empleado" method="post">
+				<form class="form" action="/camion" method="post">
+					<div class="form-group row">
+						<label class="col-md-2 col-form-label text-capitalize">Placa</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="placa" placeholder="placa" id="placa" required>
+						</div>
+					</div>
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Destino</label>
 						<div class="col-md-4">
@@ -55,13 +61,7 @@
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="origen" placeholder="origen" id="origen" required>
 						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Placa</label>
-						<div class="col-md-4">
-							<input class="form-control" type="text" name="placa" placeholder="placa" id="placa" required>
-						</div>
-					</div>					
+					</div>								
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Empresa</label>
 						<div class="col-md-4">
