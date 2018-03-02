@@ -37,7 +37,7 @@
 				</h3>
 				<form class="form" name="form" method="post">
 					<div class="form-group row">
-						<label class="col-md-3 col-form-label">Seleccione el env&iacute;o</label>
+						<label class="col-md-3 col-form-label">Seleccione la empresa</label>
 						<div class="col-md-9">
 							<select class="custom-select form-control" id="select">
 							</select>

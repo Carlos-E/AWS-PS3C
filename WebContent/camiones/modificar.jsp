@@ -4,16 +4,15 @@
 <%@ page import="clases.*"%>
 <%
 	if (session.getAttribute("rol") == null) {
-		//response.sendError(400, "Acceso incorrecto"); //cambiar
 		response.sendRedirect("/error.jsp");
 	}
-	session.setAttribute("pagina", "Modificar Usuario");
+	session.setAttribute("pagina", "Modificar Cami&oacute;n");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title><%out.print(session.getAttribute("pagina").toString());%></title>
 <jsp:include page="/head.jsp" />
+<title><%out.print(session.getAttribute("pagina").toString());%></title>
 </head>
 <body>
 	<!-- INICIO -->
@@ -50,7 +49,7 @@
 				</h3>
 				<form class="form" name="form" method="post">
 					<div class="form-group row">
-						<label class="col-md-3 col-form-label">Seleccione el env&iacute;o</label>
+						<label class="col-md-3 col-form-label">Seleccione el cami&oacute;n</label>
 						<div class="col-md-9">
 							<select class="custom-select form-control" id="select">
 							</select>
