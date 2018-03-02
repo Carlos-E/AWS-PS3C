@@ -108,6 +108,13 @@ var pieDataExample = [{
 function makePie() {
 	console.log('Making Pie');
 	let pieData = [];
+	
+	var randomColor = function(){
+		let random = (min,max) => Math.floor((Math.random() * max) + min);
+		let rgb = `rgb(${random(1,170)},${random(1,200)},255)`;
+		console.log(rgb);
+		return rgb;
+	}
 
 	$.ajax({
 		url: "/scanTable",
@@ -133,7 +140,7 @@ function makePie() {
 
 				let data = {
 					value: 0,
-					color: '#'+Math.floor(Math.random()*16777215).toString(16),
+					color: randomColor(),
 					highlight: "#999999",
 					label: empresa.nombre
 				};
@@ -147,7 +154,35 @@ function makePie() {
 				});
 				pieData.push(data);
 			});
+			
+			pieData = [
+				{
+					value: 300,
+					color: randomColor(),
+					highlight: "#7376df",
+					label: "Value 1"
+				},
+				{
+					value: 50,
+					color: randomColor(),
+					highlight: "#999999",
+					label: "Value 2"
+				},
+				{
+					value: 100,
+					color:randomColor(),
+					highlight: "#cccccc",
+					label: "Value 3"
+				},
+				{
+					value: 120,
+					color: randomColor(),
+					highlight: "#eeeeee",
+					label: "Value 4"
+				}
 
+			];
+			
 			console.log(pieData);
 
 			var pieChart = document.getElementById("pie-chart").getContext("2d");
