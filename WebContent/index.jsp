@@ -73,9 +73,7 @@
 						<canvas class="chart" id="pie-chart" height="368" width="738" style="width: 369px; height: 184px;"></canvas>
 					</div>
 					<h6 class="card-subtitle mb-2 text-muted"></h6>
-					<div class="canvas-wrapper" id="empresas-colores">
-						Empresa 1.
-					</div>
+					<div class="canvas-wrapper" id="empresas-colores"></div>
 
 				</div>
 			</div>
@@ -90,14 +88,9 @@
 	<script src="/js/chart.min.js"></script>
 	<script src="/js/chart-data.js"></script>
 
-	<script type="text/javascript">
-		var chart4 = document.getElementById("pie-chart").getContext("2d");
-		window.myPie = new Chart(chart4).Pie(pieData, {
-			responsive : true,
-			segmentShowStroke : false
-		});
+	<script>
+		makePie();
 	</script>
-
 
 </body>
 
