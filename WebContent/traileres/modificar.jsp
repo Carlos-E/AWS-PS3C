@@ -91,9 +91,9 @@
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="empresa" placeholder="empresa" id="empresa" required>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Conductor</label>
+						<label class="col-md-2 col-form-label text-capitalize">Cami&oacute;n:</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="conductor" placeholder="conductor" id="conductor" required>
+							<input class="form-control" type="text" name="camion" placeholder="camion" id="camion" required>
 						</div>
 					</div>					
 					<div class="form-group row">
@@ -238,117 +238,4 @@
 		};
 	</script>
 </body>
-</html>
-
-	<div class="container">
-		<%
-			ArrayList<trailer> listaTrailer = ControladorBD.escanearTabla("trailers");
-		%>
-		<%
-			if (session.getAttribute("busca") != "trailer") {
-		%>
-		<form id="form" name="form" action="/buscar" method="post" class="form-horizontal">
-
-			<div class="row">
-
-				<div class="col-sm-6">
-
-					<!-- INPUTS -->
-
-					<div class="form-group">
-						<div class="col-sm-2">
-
-							<label class="control-label" for="camiones"> Traileres: </label>
-						</div>
-						<div class="col-sm-10">
-							<select class="form-control" id="subject" name="patente" tabindex="4">
-								<%
-									for (int i = 0; i < listaTrailer.size(); i++) {
-								%>
-								<option value="<%out.print(listaTrailer.get(i).getPatente());%>">
-									<%
-										out.print(listaTrailer.get(i).getPatente());
-									%>
-								</option>
-								<%
-									}
-								%>
-							</select>
-						</div>
-					</div>
-
-
-				</div>
-
-				<div class="col-sm-6"></div>
-
-			</div>
-
-			<div class="row">
-				<div class="col-sm-1"></div>
-				<div class="col-sm-1">
-					<!-- Boton Verde -->
-					<button type="submit" name="submit" class="btn btn-primary">Buscar</button>
-
-				</div>
-				<div class="col-sm-1">
-					<!-- Boton Rojo -->
-				</div>
-				<div class="col-sm-8"></div>
-			</div>
-
-		</form>
-		<%
-			} else {
-				trailer trailer = (trailer) com.logica.ControladorBD.getItem("trailers", "patente",
-						session.getAttribute("obj").toString());
-		%>
-		<form id="form" name="form" class="form-horizontal" action="../modificarTrailer" method="post">
-
-			<div class="row">
-
-				<div class="col-sm-6">
-
-					<!-- INPUTS -->
-					<%
-						//Nombre de los campos del form	
-							String[] inputs = { "capacidad", "espacio", "estado", "tipo", "camion" };
-							String[] values = { trailer.getCapacidad(), trailer.getEspacio(), trailer.getEstado(),
-									trailer.getTipo(), trailer.getCamion() };
-							com.logica.Dibujar.inputs(out, inputs, values);
-					%>
-
-				</div>
-
-				<div class="col-sm-6"></div>
-
-			</div>
-
-			<div class="row">
-				<div class="col-sm-1"></div>
-				<div class="col-sm-1">
-					<!-- Boton Verde -->
-					<button name="submit" id="submit" type="submit" class="btn btn-primary">Modificar</button>
-
-				</div>
-				<div class="col-sm-1">
-					<!-- Boton Rojo -->
-					<button formaction="/cancelar" name="submit" id="cancelar" type="submit" class="btn btn-danger">Cancelar</button>
-
-				</div>
-				<div class="col-sm-8"></div>
-			</div>
-
-		</form>
-		<%
-			}
-		%>
-	</div>
-
-	<div class="container-fluid">
-		<jsp:include page="/footer.jsp" />
-	</div>
-
-</body>
-
 </html>
