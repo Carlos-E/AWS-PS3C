@@ -110,8 +110,11 @@ function makePie() {
 	let pieData = [];
 
 	$.ajax({
-		url: "/fechaEnvios",
-		type: "GET",
+		url: "/scanTable",
+		data: {
+			tabla: 'envios'
+		},
+		type: "POST",
 		dataType: "json",
 	}).done(function (envios) {
 
@@ -156,13 +159,11 @@ function makePie() {
 		}).fail(function (xhr, status, errorThrown) {
 			alert("Algo ha salido mal");
 			console.log('Failed Request To Servlet /scanTable')
-		}).always(function (xhr, status) {
-		});
+		})
 
 	}).fail(function (xhr, status, errorThrown) {
 		alert("Algo ha salido mal");
 		console.log('Failed Request To Servlet /fechaEnvios')
-	}).always(function (xhr, status) {
-	});
+	})
 
 }
