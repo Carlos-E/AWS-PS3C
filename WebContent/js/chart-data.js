@@ -134,7 +134,7 @@ function makePie() {
 				let data = {
 					value: 0,
 					color: '#'+Math.floor(Math.random()*16777215).toString(16),
-					highlight: "#eeeeee",
+					highlight: "#999999",
 					label: empresa.nombre
 				};
 
