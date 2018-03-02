@@ -90,3 +90,32 @@ $.get( "/fechaEnvios", function( data ) {
 		window.setTimeout(startCharts(), 1000);
 
 	});
+
+
+var pieData = [
+	{
+		value: 300,
+		color: "#8082e4",
+		highlight: "#7376df",
+		label: "Value 1"
+	},
+	{
+		value: 50,
+		color: "#a0a0a0",
+		highlight: "#999999",
+		label: "Value 2"
+	},
+	{
+		value: 100,
+		color:"#dfdfdf",
+		highlight: "#cccccc",
+		label: "Value 3"
+	},
+	{
+		value: 120,
+		color: "#f7f7f7",
+		highlight: "#eeeeee",
+		label: "Value 4"
+	}
+
+];

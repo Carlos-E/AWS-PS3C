@@ -33,7 +33,6 @@
 	<section class="row">
 		<div class="col-md-12 col-lg-8">
 
-
 			<div class="jumbotron">
 				<button type="button" class="close" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
@@ -42,8 +41,8 @@
 				<p class="lead">Prototipo software de control de carga compartida.</p>
 				<p>Este es un proyecto que tiene como finalidad ayudar en la logistica de transporte de empresas en Cartagena, mejorar la utilizacion de recursos y automatizar procesos de transporte, entre otros.</p>
 			</div>
-			<div class="card mb-4">
 
+			<div class="card">
 				<div class="card-block">
 
 					<h3 class="card-title">Env&iacute;os</h3>
@@ -56,7 +55,8 @@
 
 		</div>
 		<div class="col-md-12 col-lg-4">
-			<div class="card mb-4">
+
+			<div class="card">
 
 				<div class="card-header">Universidad De Cartagena</div>
 				<div class="card-block">
@@ -64,6 +64,22 @@
 						del novel Estado colombiano. Ellos visionaron la educación como el medio ideal para la formación de las nuevas generaciones que conducirían los destinos de la República.</p>
 				</div>
 			</div>
+
+			<div class="card mt-4">
+				<div class="card-block">
+					<h3 class="card-title">Env&iacute;os</h3>
+					<h6 class="card-subtitle mb-2 text-muted">Por empresa</h6>
+					<div class="canvas-wrapper">
+						<canvas class="chart" id="pie-chart" height="368" width="738" style="width: 369px; height: 184px;"></canvas>
+					</div>
+					<h6 class="card-subtitle mb-2 text-muted"></h6>
+					<div class="canvas-wrapper" id="empresas-colores">
+						Empresa 1.
+					</div>
+
+				</div>
+			</div>
+
 		</div>
 	</section>
 	</main>
@@ -73,6 +89,15 @@
 
 	<script src="/js/chart.min.js"></script>
 	<script src="/js/chart-data.js"></script>
+
+	<script type="text/javascript">
+		var chart4 = document.getElementById("pie-chart").getContext("2d");
+		window.myPie = new Chart(chart4).Pie(pieData, {
+			responsive : true,
+			segmentShowStroke : false
+		});
+	</script>
+
 
 </body>
 
