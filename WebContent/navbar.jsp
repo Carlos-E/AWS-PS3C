@@ -186,7 +186,7 @@
 			<ul class="children collapse" id="sub-item-6">
 				<li class="nav-item">
 					<a class="nav-link" href="/envios/listar.jsp">
-						Envios
+						Env&iacute;os
 						<em class="fa fa-paper-plane">&nbsp;</em>
 					</a>
 				</li>
