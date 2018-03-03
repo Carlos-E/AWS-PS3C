@@ -16,7 +16,7 @@
 					</p>
 					<p>
 						Plantilla hecha por
-						<a href="https://www.medialoot.com/">Medialoot</a>
+						<a href="https://www.medialoot.com/">Medialoot.</a>
 					</p>
 				</div>
 
