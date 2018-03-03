@@ -1,220 +1,176 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.logica.*"%>
-<%@ page import="clases.*"%>
 <%@ page import="java.util.ArrayList"%>
-<%@ page import="java.util.HashSet"%>
-<%@ page import="java.util.LinkedHashSet"%>
-<%@ page import="java.util.Set"%>z
+<%@ page import="clases.*"%>
+<%@ page import="java.io.*,java.util.*"%>
+<%@ page import="com.logica.*"%>
+<%@ page import="clases.*"%>
+<%
+	if (session.getAttribute("rol") == null) {
+		//response.sendError(400, "Acceso incorrecto"); //cambiar
+		response.sendRedirect("/error.jsp");
+	}
+	session.setAttribute("pagina", "Listar Usuarios");
+	ArrayList<envio> listaEnvios = ControladorBD.escanearTabla("envios");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Estado Envio</title>
-<%
-	session.setAttribute("pagina", "Estado de Envíos");
-%>
+<title>
+	<%
+		out.print(session.getAttribute("pagina").toString());
+	%>
+</title>
 <jsp:include page="/head.jsp" />
-
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.16/af-2.2.2/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/cr-1.4.1/fc-3.2.4/fh-3.1.3/kt-2.3.2/r-2.2.1/rg-1.0.2/rr-1.2.3/sc-1.4.4/sl-1.2.5/datatables.min.css" />
 </head>
-
-<body class="fondo">
-
-	<!-- Header -->
-	<div class="container-fluid">
-		<jsp:include page="/header.jsp" />
+<body>
+	<!-- INICIO -->
+	<div class="container-fluid" id="wrapper">
+		<div class="row">
+			<!-- INICIO NAVBAR -->
+			<jsp:include page="/navbar.jsp" />
+			<!--  ./NAVBAR -->
+		</div>
 	</div>
+	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER --> <section class="row">
+	<div class="col-md-12 col-lg-12">
 
-	<!--  Barra de navegacion -->
-	<div class="container-fluid">
-		<jsp:include page="/navbar.jsp" />
-	</div>
+		<div class="card mb-4">
+			<div class="card-block">
+				<h3 class="card-title">
+					<%
+						out.print(session.getAttribute("pagina").toString());
+					%>
+				</h3>
+				<h6 class="text-muted mb-4">Datos</h6>
 
-	<div class="container">
-	
-		<%
-			ArrayList<envio> listaEnvio = ControladorBD.escanearTabla("envios");
-			ArrayList<String> nombres = new ArrayList<String>();
-			ArrayList<String> fechas = new ArrayList<String>();
-		%>
-		<%
-			if (session.getAttribute("busca") != "envio") {
-				if (session.getAttribute("busca") == "fecha") {
-					for (int i = 0; i < listaEnvio.size(); i++) {
-						if (listaEnvio.get(i).getUsuario().equals(session.getAttribute("obj"))) {
-							fechas.add(listaEnvio.get(i).getFecha());
-						}
-					}
-		%>
-		<form id="form" name="form" action="/buscar" method="post" class="form-horizontal">
-
-			<div class="row">
-
-				<div class="col-sm-6">
-
-					<!-- INPUTS -->
-					<div class="form-group">
-						<div class="col-sm-2">
-
-							<label class="control-label" for="fechas"> Fechas </label>
+				<div id="example_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+					<div class="row">
+						<div class="col-sm-12 col-md-6">
+							<div class="dataTables_length" id="example_length"></div>
 						</div>
-						<div class="col-sm-10">
-							<select class="form-control" id="subject" name="fecha" tabindex="4">
-								<%
-									for (int i = 0; i < fechas.size(); i++) {
-								%>
-								<option value="<%out.print(session.getAttribute("obj") + " : " + fechas.get(i));%>">
+						<div class="col-sm-12 col-md-6">
+							<div id="example_filter" class="dataTables_filter"></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<table id="tabla-usuarios" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
+								<thead>
+									<tr>
+										<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 71px;">Fecha</th>
+										<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 59px;">Cliente</th>
+										<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 34px;">Empresa</th>
+										<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 64px;">Origen</th>
+										<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Destino</th>
+										<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Tipo</th>
+										<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Capacidad</th>
+										<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Camion</th>
+										<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Trailer</th>
+									</tr>
+								</thead>
+								<tfoot>
+									<tr>
+										<th rowspan="1" colspan="1">Fecha</th>
+										<th rowspan="1" colspan="1">Cliente</th>
+										<th rowspan="1" colspan="1">Empresa</th>
+										<th rowspan="1" colspan="1">Origen</th>
+										<th rowspan="1" colspan="1">Destino</th>
+										<th rowspan="1" colspan="1">Tipo</th>
+										<th rowspan="1" colspan="1">Capacidad</th>
+										<th rowspan="1" colspan="1">Camion</th>
+										<th rowspan="1" colspan="1">Trailer</th>
+									</tr>
+								</tfoot>
+								<tbody>
 									<%
-										out.print(fechas.get(i));
+										for (int i = 0; i < listaEnvios.size(); i++) {
 									%>
-								</option>
-								<%
-									}
-								%>
-							</select>
-						</div>
-					</div>
-
-				</div>
-
-				<div class="col-sm-6"></div>
-
-			</div>
-
-			<div class="row">
-				<div class="col-sm-1"></div>
-				<div class="col-sm-1">
-					<!-- Boton Verde -->
-					<button type="submit" name="submit" class="btn btn-primary">Buscar</button>
-
-				</div>
-				<div class="col-sm-1">
-					<!-- Boton Rojo -->
-					<button name="submit" id="submit" type="submit" class="btn btn-danger" formaction="/cancelar">Cancelar</button>
-
-				</div>
-				<div class="col-sm-8"></div>
-			</div>
-
-		</form>
-
-		<%
-			} else {
-					for (int i = 0; i < listaEnvio.size(); i++) {
-						nombres.add(listaEnvio.get(i).getUsuario());
-					}
-					Set<String> linkedHashSet = new LinkedHashSet<String>();
-					linkedHashSet.addAll(nombres);
-					nombres.clear();
-					nombres.addAll(linkedHashSet);
-		%>
-		<form id="form" name="form" action="/buscar" method="post" class="form-horizontal">
-
-			<div class="row">
-
-				<div class="col-sm-6">
-
-					<!-- INPUTS -->
-					<div class="form-group">
-						<div class="col-sm-2">
-
-							<label class="control-label" for="clientes"> Clientes </label>
-						</div>
-						<div class="col-sm-10">
-							<select class="form-control" id="subject" name="usuarioEnvio" tabindex="4">
-								<%
-									for (int i = 0; i < nombres.size(); i++) {
-								%>
-								<option value="<%out.print(nombres.get(i));%>">
+									<tr>
+										<td>
+											<strong>
+												<%
+													out.println(listaEnvios.get(i).getFecha());
+												%>
+											</strong>
+										</td>
+										<td>
+											<%
+												out.println(listaEnvios.get(i).getUsuario());
+											%>
+										</td>
+										<td>
+											<%
+												out.println(listaEnvios.get(i).getEmpresa());
+											%>
+										</td>
+										<td>
+											<%
+												out.println(listaEnvios.get(i).getOrigen());
+											%>
+										</td>
+										<td>
+											<%
+												out.println(listaEnvios.get(i).getDestino());
+											%>
+										</td>
+										<td>
+											<%
+												out.println(listaEnvios.get(i).getTipo());
+											%>
+										</td>
+										<td>
+											<%
+												out.println(listaEnvios.get(i).getEspacio());
+											%>
+										</td>
+										<td id="camion">
+											<%
+												out.println(listaEnvios.get(i).getCamion());
+											%>
+										</td>
+										<td id="trailer">
+											<%
+												out.println(listaEnvios.get(i).getTrailer());
+											%>
+										</td>								
+									</tr>
 									<%
-										out.print(nombres.get(i));
+										}
 									%>
-								</option>
-								<%
-									}
-								%>
-							</select>
+								</tbody>
+							</table>
 						</div>
 					</div>
-
-				</div>
-
-				<div class="col-sm-6"></div>
-
-			</div>
-
-			<div class="row">
-				<div class="col-sm-1"></div>
-				<div class="col-sm-1">
-					<!-- Boton Verde -->
-					<button type="submit" name="submit" class="btn btn-primary">Buscar</button>
-
-				</div>
-				<div class="col-sm-1">
-					<!-- Boton Rojo -->
-					<button name="submit" id="submit" type="submit" class="btn btn-danger" formaction="/cancelar">Cancelar</button>
-
-				</div>
-				<div class="col-sm-8"></div>
-			</div>
-
-		</form>
-
-		<%
-			}
-			} else {
-				envio envio = new envio();
-				envio = (envio) ControladorBD.getItem("envios", "usuario", session.getAttribute("obj1").toString(),
-						"fecha", session.getAttribute("obj2").toString());
-				//falta hacer la funcion get envio bien
-		%>
-
-		<form id="form" name="form" action="/cancelar" method="post" class="form-horizontal">
-
-
-			<div class="row">
-
-				<div class="col-sm-6">
-
-					<!-- INPUTS -->
-
-					<div class="form-group">
-						<div class="col-sm-2">
-
-							<label class="control-label" for="destino">Estado:</label>
+					<div class="row">
+						<div class="col-sm-12 col-md-5">
+							<div class="dataTables_info" id="example_info" role="status" aria-live="polite"></div>
 						</div>
-						<div class="col-sm-10">
-							<input class="form-control" name="estado" id="estado" type="text" placeholder="Id del envio" disabled="disabled" value="<%out.println(envio.getEstado());%>">
+						<div class="col-sm-12 col-md-7">
+							<div class="dataTables_paginate paging_simple_numbers" id="example_paginate"></div>
 						</div>
 					</div>
-
 				</div>
-
-				<div class="col-sm-6"></div>
-
 			</div>
-
-			<div class="row">
-				<div class="col-sm-1"></div>
-				<div class="col-sm-1">
-					<!-- Boton Verde -->
-					<button name="submit" id="modificar" type="submit" value="Aceptar" class="btn btn-primary">Aceptar</button>
-
-				</div>
-				<div class="col-sm-1">
-					<!-- Boton Rojo -->
-				</div>
-				<div class="col-sm-8"></div>
-			</div>
-
-		</form>
-
-		<%
-			}
-		%>
+		</div>
+		<!-- /FIN CONTAINER -->
 
 	</div>
-	<div class="container-fluid">
-		<jsp:include page="/footer.jsp" />
-	</div>
+	</section> </main>
+	<!-- Modal -->
+	<!--  FOOTER CON SCRIPTS -->
+	<jsp:include page="/footer.jsp" />
+	<!-- /FIN -->
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.16/af-2.2.2/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/cr-1.4.1/fc-3.2.4/fh-3.1.3/kt-2.3.2/r-2.2.1/rg-1.0.2/rr-1.2.3/sc-1.4.4/sl-1.2.5/datatables.min.js"></script>
+
+	<script>
+		$(document).ready(function() {
+			$('#tabla-usuarios').DataTable();
+		});		
+	</script>
 </body>
 </html>
