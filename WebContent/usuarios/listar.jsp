@@ -13,8 +13,8 @@
 	session.setAttribute("pagina", "Listar Usuarios");
 	ArrayList<usuario> listaUsuario = ControladorBD.escanearTabla("usuarios");
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
 <title>
 	<%
@@ -39,11 +39,9 @@
 		<div class="card mb-4">
 			<div class="card-block">
 				<h3 class="card-title">
-					<%
-						out.print(session.getAttribute("pagina").toString());
-					%>
+					Datos
 				</h3>
-				<h6 class="text-muted mb-4">Datos</h6>
+				<h6 class="text-muted mb-4"></h6>
 
 				<div id="example_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
 					<div class="row">
@@ -56,7 +54,7 @@
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
-							<table id="tabla-usuarios" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
+							<table id="tabla" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
 								<thead>
 									<tr>
 										<th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 67px;">Cedula</th>
@@ -149,7 +147,7 @@
 
 	<script>
 		$(document).ready(function() {
-			$('#tabla-usuarios').DataTable();
+			$('#tabla').DataTable();
 		});
 	</script>
 </body>
