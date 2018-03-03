@@ -47,7 +47,7 @@
 
 					<h3 class="card-title">
 						Env&iacute;os
-						<i id="spinner-1" class="fa fa-spinner fa-spin" style="font-size: 30px"></i>
+						<i id="spinner-1" class="fa fa-circle-notch fa-spin" style="font-size: 30px"></i>
 					</h3>
 					<h6 class="card-subtitle mb-1 text-muted">Ultimos env&iacute;os</h6>
 					<div class="canvas-wrapper">
@@ -63,7 +63,7 @@
 				<div class="card-block">
 					<h3 class="card-title">
 						Env&iacute;os
-						<i id="spinner-2" class="fa fa-spinner fa-spin" style="font-size: 30px"></i>
+						<i id="spinner-2" class="fa fa-circle-notch fa-spin" style="font-size: 30px"></i>						
 					</h3>
 					<h6 class="card-subtitle mb-2 text-muted">Por empresa</h6>
 					<div class="canvas-wrapper">
