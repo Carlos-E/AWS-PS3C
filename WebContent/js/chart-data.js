@@ -90,6 +90,8 @@ $.get("/fechaEnvios", function (data) {
 		});
 	};
 	window.setTimeout(startCharts(), 1000);
+    $("#spinner-1").fadeOut("slow");
+
 
 });
 
@@ -156,6 +158,8 @@ function makePie() {
 			});
 			
 			console.log(pieData);
+			
+	        $("#spinner-2").fadeOut("slow");
 
 			var pieChart = document.getElementById("pie-chart").getContext("2d");
 			window.myPie = new Chart(pieChart).Pie(pieData, {
