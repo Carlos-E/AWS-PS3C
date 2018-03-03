@@ -217,7 +217,7 @@
 			</ul>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" href="/chequeo/chequearDeCarga.jsp">
+			<a class="nav-link" href="/chequeo/chequeoDeCarga.jsp">
 				<em class="fa fa-check-square"></em>
 				Chequeo Carga
 			</a>
