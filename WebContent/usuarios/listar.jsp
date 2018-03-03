@@ -39,7 +39,7 @@
 				<div class="card-block">
 					<h3 class="card-title">
 						Datos
-						<i id="spinner" class="fa fa-spinner fa-spin" style="font-size: 24px"></i>
+						<i id="spinner" class="fa fa-spinner fa-spin" style="font-size: 30px"></i>
 					</h3>
 					<h6 class="text-muted mb-4"></h6>
 
@@ -128,7 +128,7 @@
 			        ]
 			    } );
 				
-				$('#spinner').hide();
+		        $("#spinner").fadeOut("slow");
 			
 			}).fail(function(xhr, status, errorThrown) {
 				alert("Algo ha salido mal");

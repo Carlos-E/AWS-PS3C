@@ -56,7 +56,7 @@
 		</div>
 		<div class="col-md-12 col-lg-4">
 
-			<div class="card ">
+			<div class="card mt-4">
 				<div class="card-block">
 					<h3 class="card-title">Env&iacute;os</h3>
 					<h6 class="card-subtitle mb-2 text-muted">Por empresa</h6>

@@ -1,10 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="com.logica.*"%>
-<%@ page import="java.util.ArrayList"%>
-<%@ page import="clases.*"%>
-<%@ page import="java.io.*,java.util.*"%>
-<%@ page import="com.logica.*"%>
-<%@ page import="clases.*"%>
 <%
 	if (session.getAttribute("rol") == null) {
 		//response.sendError(400, "Acceso incorrecto"); //cambiar
@@ -40,10 +34,10 @@
 				<div class="card-block">
 					<h3 class="card-title">
 						Datos
-						<i id="spinner" class="fa fa-spinner fa-spin" style="font-size: 24px"></i>
+						<i id="spinner" class="fa fa-spinner fa-spin" style="font-size: 30px"></i>
+
 					</h3>
 					<h6 class="text-muted mb-4"></h6>
-
 					<div id="example_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
 						<div class="row">
 							<div class="col-sm-12 col-md-6">
@@ -135,7 +129,7 @@
 			        ]
 			    } );
 				
-				$('#spinner').hide();
+		        $("#spinner").fadeOut("slow");
 			
 			}).fail(function(xhr, status, errorThrown) {
 				alert("Algo ha salido mal");
