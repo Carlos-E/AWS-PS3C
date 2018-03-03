@@ -60,5 +60,4 @@ public class chequeoCarga extends HttpServlet {
 		String nextURL = request.getContextPath() + "chequeo/chequearCarga.jsp";
 		com.logica.Dibujar.mensaje(out, "Operacion Exitosa", nextURL);
 	}
-
 }

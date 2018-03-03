@@ -4,7 +4,7 @@
 		//response.sendError(400, "Acceso incorrecto"); //cambiar
 		response.sendRedirect("/error.jsp");
 	}
-	session.setAttribute("pagina", "Chequear Env&iacute;os Cargados");
+	session.setAttribute("pagina", "Chequear Env&iacute;os Descargados");
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -103,8 +103,8 @@
 				let dataSet = [];
 				var aux, chequeo = "";
 				response.forEach(element => {
-					console.log(element.chequeoCarga);	
-					if (element.chequeoCarga) {
+					console.log(element.chequeoDescarga);	
+					if (element.chequeoDescarga) {
 						chequeo = "checked='checked'";
 					}
 					aux = '<input id="'+element.fehca+'" name="'+element.fehca+'" value="true" type="checkbox" '+chequeo+' >';
