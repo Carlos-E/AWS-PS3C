@@ -11,10 +11,9 @@
 		response.sendRedirect("/error.jsp");
 	}
 	session.setAttribute("pagina", "Listar Env&iacute;os");
-	ArrayList<envio> listaEnvios = ControladorBD.escanearTabla("envios");
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
 <title>
 	<%
@@ -32,131 +31,55 @@
 			<!--  ./NAVBAR -->
 		</div>
 	</div>
-	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER --> <section class="row">
-	<div class="col-md-12 col-lg-12">
+	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER -->
+	<section class="row">
+		<div class="col-md-12 col-lg-12">
 
-		<div class="card mb-4">
-			<div class="card-block">
-				<h3 class="card-title">
-					<%
-						out.print(session.getAttribute("pagina").toString());
-					%>
-				</h3>
-				<h6 class="text-muted mb-4">Datos</h6>
+			<div class="card mb-4">
+				<div class="card-block">
+					<h3 class="card-title">Datos</h3>
+					<h6 class="text-muted mb-4"></h6>
 
-				<div id="example_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
-					<div class="row">
-						<div class="col-sm-12 col-md-6">
-							<div class="dataTables_length" id="example_length"></div>
+					<div id="example_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+						<div class="row">
+							<div class="col-sm-12 col-md-6">
+								<div class="dataTables_length" id="example_length"></div>
+							</div>
+							<div class="col-sm-12 col-md-6">
+								<div id="example_filter" class="dataTables_filter"></div>
+							</div>
 						</div>
-						<div class="col-sm-12 col-md-6">
-							<div id="example_filter" class="dataTables_filter"></div>
+						<div class="row">
+							<div class="col-sm-12">
+								<table id="tabla" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
+									<thead>
+
+									</thead>
+									<tfoot>
+
+									</tfoot>
+									<tbody>
+
+									</tbody>
+								</table>
+							</div>
 						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<table id="tabla-usuarios" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
-								<thead>
-									<tr>
-										<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 71px;">Fecha</th>
-										<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 59px;">Cliente</th>
-										<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 34px;">Empresa</th>
-										<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 64px;">Origen</th>
-										<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Destino</th>
-										<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Tipo</th>
-										<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Capacidad</th>
-										<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Camion</th>
-										<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 67px;">Trailer</th>
-									</tr>
-								</thead>
-								<tfoot>
-									<tr>
-										<th rowspan="1" colspan="1">Fecha</th>
-										<th rowspan="1" colspan="1">Cliente</th>
-										<th rowspan="1" colspan="1">Empresa</th>
-										<th rowspan="1" colspan="1">Origen</th>
-										<th rowspan="1" colspan="1">Destino</th>
-										<th rowspan="1" colspan="1">Tipo</th>
-										<th rowspan="1" colspan="1">Capacidad</th>
-										<th rowspan="1" colspan="1">Camion</th>
-										<th rowspan="1" colspan="1">Trailer</th>
-									</tr>
-								</tfoot>
-								<tbody>
-									<%
-										for (int i = 0; i < listaEnvios.size(); i++) {
-									%>
-									<tr>
-										<td>
-											<strong>
-												<%
-													out.println(listaEnvios.get(i).getFecha());
-												%>
-											</strong>
-										</td>
-										<td>
-											<%
-												out.println(listaEnvios.get(i).getUsuario());
-											%>
-										</td>
-										<td>
-											<%
-												out.println(listaEnvios.get(i).getEmpresa());
-											%>
-										</td>
-										<td>
-											<%
-												out.println(listaEnvios.get(i).getOrigen());
-											%>
-										</td>
-										<td>
-											<%
-												out.println(listaEnvios.get(i).getDestino());
-											%>
-										</td>
-										<td>
-											<%
-												out.println(listaEnvios.get(i).getTipo());
-											%>
-										</td>
-										<td>
-											<%
-												out.println(listaEnvios.get(i).getEspacio());
-											%>
-										</td>
-										<td id="camion">
-											<%
-												out.println(listaEnvios.get(i).getCamion());
-											%>
-										</td>
-										<td id="trailer">
-											<%
-												out.println(listaEnvios.get(i).getTrailer());
-											%>
-										</td>								
-									</tr>
-									<%
-										}
-									%>
-								</tbody>
-							</table>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12 col-md-5">
-							<div class="dataTables_info" id="example_info" role="status" aria-live="polite"></div>
-						</div>
-						<div class="col-sm-12 col-md-7">
-							<div class="dataTables_paginate paging_simple_numbers" id="example_paginate"></div>
+						<div class="row">
+							<div class="col-sm-12 col-md-5">
+								<div class="dataTables_info" id="example_info" role="status" aria-live="polite"></div>
+							</div>
+							<div class="col-sm-12 col-md-7">
+								<div class="dataTables_paginate paging_simple_numbers" id="example_paginate"></div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<!-- /FIN CONTAINER -->
+			<!-- /FIN CONTAINER -->
 
-	</div>
-	</section> </main>
+		</div>
+	</section>
+	</main>
 	<!-- Modal -->
 	<!--  FOOTER CON SCRIPTS -->
 	<jsp:include page="/footer.jsp" />
@@ -164,8 +87,57 @@
 
 	<script>
 		$(document).ready(function() {
-			$('#tabla').DataTable();
-		});		
+			
+			$.ajax({
+				url : "/scanTable",
+				data : {
+					tabla : 'envios'
+				},
+				type : "POST",
+				dataType : "json",
+			}).done(function(response) {
+				console.log(response);
+				
+				let dataSet = [];
+				
+				response.forEach(element => {
+					dataSet.push([
+						element.fecha,
+						element.usuario,
+						element.empresa,
+						element.origen,
+						element.destino,
+						element.tipo,
+						element.espacio,
+						element.camion,
+						element.trailer,
+				]);
+				});
+				
+				console.log(dataSet);
+					
+				$('#tabla').DataTable( {
+			        data: dataSet,
+			        columns: [
+			            { title: "fecha" },
+			            { title: "usuario" },
+			            { title: "empresa" },
+			            { title: "origen" },
+			            { title: "destino" },
+			            { title: "tipo" },
+			            { title: "capacidad" },
+			            { title: "camion" },
+			            { title: "trailer" }
+			        ]
+			    } );
+			
+			}).fail(function(xhr, status, errorThrown) {
+				alert("Algo ha salido mal");
+				console.log('Failed Request To Servlet /scanTable')
+			}).always(function(xhr, status) {
+			});		
+			
+		});
 	</script>
 </body>
 </html>
