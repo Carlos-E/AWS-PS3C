@@ -36,8 +36,12 @@
 		<div class="col-md-12 col-lg-12">
 
 			<div class="card mb-4">
+
 				<div class="card-block">
-					<h3 class="card-title">Datos</h3>
+					<h3 class="card-title">
+						Datos
+						<i id="spinner" class="fa fa-spinner fa-spin" style="font-size: 24px"></i>
+					</h3>
 					<h6 class="text-muted mb-4"></h6>
 
 					<div id="example_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
@@ -87,7 +91,7 @@
 
 	<script>
 		$(document).ready(function() {
-			
+						
 			$.ajax({
 				url : "/scanTable",
 				data : {
@@ -130,6 +134,8 @@
 			            { title: "trailer" }
 			        ]
 			    } );
+				
+				$('#spinner').hide();
 			
 			}).fail(function(xhr, status, errorThrown) {
 				alert("Algo ha salido mal");
