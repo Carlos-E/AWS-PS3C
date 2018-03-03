@@ -1,136 +1,139 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.logica.*"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="clases.*"%>
+<%@ page import="java.io.*,java.util.*"%>
+<%@ page import="com.logica.*"%>
+<%@ page import="clases.*"%>
 <%
 	if (session.getAttribute("rol") == null) {
-		response.sendError(400, "Acceso incorrecto"); //cambiar
+		//response.sendError(400, "Acceso incorrecto"); //cambiar
+		response.sendRedirect("/error.jsp");
 	}
+	session.setAttribute("pagina", "Listar Camiones");
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-<title>Camiones Disponibles</title>
-<%
-	session.setAttribute("pagina", "Disponibilidad de Camiones");
-%>
+<title>
+	<%
+		out.print(session.getAttribute("pagina").toString());
+	%>
+</title>
 <jsp:include page="/head.jsp" />
-
 </head>
-<body class="fondo">
-	<!-- Header -->
-	<div class="container-fluid">
-		<jsp:include page="/header.jsp" />
+<body>
+	<!-- INICIO -->
+	<div class="container-fluid" id="wrapper">
+		<div class="row">
+			<!-- INICIO NAVBAR -->
+			<jsp:include page="/navbar.jsp" />
+			<!--  ./NAVBAR -->
+		</div>
 	</div>
+	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER -->
+	<section class="row">
+		<div class="col-md-12 col-lg-12">
 
-	<!--  Barra de navegacion -->
-	<div class="container-fluid">
-		<jsp:include page="/navbar.jsp" />
-	</div>
+			<div class="card mb-4">
+				<div class="card-block">
+					<h3 class="card-title">Datos</h3>
+					<h6 class="text-muted mb-4"></h6>
 
-	<style>
-th, td {
-	color: white;
-}
-</style>
-	<div class="container">
-		<%@ page import="com.logica.*"%>
-		<%@ page import="java.util.ArrayList"%>
-		<%@ page import="clases.*"%>
-		<%@ page import="java.lang.reflect.Field"%>
-
-		<%
-			ArrayList<camion> listaCamion = ControladorBD.escanearTabla("camiones");
-		%>
-
-		<table class="table table-bordered" style="background-color: rgba(0, 0, 0, 0.75);">
-			<thead>
-				<tr>
-					<th>Placa</th>
-					<th>Conductor</th>
-					<th>Tipo</th>
-					<th>Capacidad</th>
-					<th>Espacio</th>
-					<th>Estado</th>
-					<th>Empresa</th>
-
-				</tr>
-			</thead>
-			<tbody>
-				<%
-					for (int i = 0; i < listaCamion.size(); i++) {
-				%>
-				<tr>
-					<td>
-						<strong>
-							<%
-								out.println(listaCamion.get(i).getPlaca());
-							%>
-						</strong>
-					</td>
-					<td>
-						<%
-							out.println(listaCamion.get(i).getUsuario());
-						%>
-					</td>
-					<td>
-						<%
-							out.println(listaCamion.get(i).getTipo());
-						%>
-					</td>
-					<td>
-						<%
-							out.println(listaCamion.get(i).getCapacidad());
-						%>
-					</td>
-					<td>
-						<%
-							out.println(listaCamion.get(i).getEspacio());
-						%>
-					</td>
-					<td>
-						<%
-							out.println(listaCamion.get(i).getEstado());
-						%>
-					</td>
-
-					<td>
-						<div class="dropdown">
-							<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-								<%
-									out.println(listaCamion.get(i).getEmpresa());
-								%>
-								<span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu" role="menu">
-								<li>
-									<a>
-										Correo:
-										<%
-										out.println(listaCamion.get(i).getEmpresa());
-									%>
-									</a>
-								</li>
-								<li>
-									<a>
-										Telefono:
-										<%
-										out.println(listaCamion.get(i).getEmpresa());
-									%>
-									</a>
-								</li>
-							</ul>
+					<div id="example_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+						<div class="row">
+							<div class="col-sm-12 col-md-6">
+								<div class="dataTables_length" id="example_length"></div>
+							</div>
+							<div class="col-sm-12 col-md-6">
+								<div id="example_filter" class="dataTables_filter"></div>
+							</div>
 						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<table id="tabla" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
+									<thead>
 
-					</td>
+									</thead>
+									<tfoot>
 
-				</tr>
-				<%
-					}
-				%>
-			</tbody>
-		</table>
+									</tfoot>
+									<tbody>
 
-	</div>
-	<div class="container-fluid">
-		<jsp:include page="/footer.jsp" />
-	</div>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12 col-md-5">
+								<div class="dataTables_info" id="example_info" role="status" aria-live="polite"></div>
+							</div>
+							<div class="col-sm-12 col-md-7">
+								<div class="dataTables_paginate paging_simple_numbers" id="example_paginate"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /FIN CONTAINER -->
+
+		</div>
+	</section>
+	</main>
+	<!-- Modal -->
+	<!--  FOOTER CON SCRIPTS -->
+	<jsp:include page="/footer.jsp" />
+	<!-- /FIN -->
+
+	<script>
+		$(document).ready(function() {
+			
+			$.ajax({
+				url : "/scanTable",
+				data : {
+					tabla : 'camiones'
+				},
+				type : "POST",
+				dataType : "json",
+			}).done(function(response) {
+				console.log(response);
+				
+				let dataSet = [];
+				
+				response.forEach(element => {
+					dataSet.push([
+						element.placa,
+						element.usuario,
+						element.tipo,
+						element.capacidad,
+						element.espacio,
+						element.estado,
+						element.empresa
+				]);
+				});
+				
+				console.log(dataSet);
+					
+				$('#tabla').DataTable( {
+			        data: dataSet,
+			        columns: [
+			            { title: "Placa" },
+			            { title: "Conductor" },
+			            { title: "Tipo" },
+			            { title: "Capacidad" },
+			            { title: "Espacio" },
+			            { title: "Estado" },
+			            { title: "Empresa" }
+			        ]
+			    } );
+			
+			}).fail(function(xhr, status, errorThrown) {
+				alert("Algo ha salido mal");
+				console.log('Failed Request To Servlet /scanTable')
+			}).always(function(xhr, status) {
+			});		
+			
+		});
+	</script>
 </body>
 </html>

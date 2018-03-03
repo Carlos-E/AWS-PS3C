@@ -10,7 +10,7 @@
 		//response.sendError(400, "Acceso incorrecto"); //cambiar
 		response.sendRedirect("/error.jsp");
 	}
-	session.setAttribute("pagina", "Listar Empresas");
+	session.setAttribute("pagina", "Listar Tralieres");
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -91,7 +91,7 @@
 			$.ajax({
 				url : "/scanTable",
 				data : {
-					tabla : 'empresas'
+					tabla : 'trailers'
 				},
 				type : "POST",
 				dataType : "json",
@@ -102,12 +102,13 @@
 				
 				response.forEach(element => {
 					dataSet.push([
-						element.nit,
-						element.nombre,
-						element.rut,
-						element.correo,
-						element.direccion,
-						element.telefono
+						element.patente,
+						/* element.usuario, */
+						element.camion,
+						element.capacidad,
+						element.espacio,
+						element.estado,
+						element.empresa
 				]);
 				});
 				
@@ -116,12 +117,13 @@
 				$('#tabla').DataTable( {
 			        data: dataSet,
 			        columns: [
-			            { title: "Nit" },
-			            { title: "Nombre" },
-			            { title: "Rut" },
-			            { title: "Correo" },
-			            { title: "Direcci&oacute;n" },
-			            { title: "Telefono" }
+			            { title: "Patente" },
+			            /* { title: "Conductor" }, */
+			            { title: "Placa de Remolque" },
+			            { title: "Capacidad" },
+			            { title: "Espacio" },
+			            { title: "Estado" },
+			            { title: "Empresa" }
 			        ]
 			    } );
 			
