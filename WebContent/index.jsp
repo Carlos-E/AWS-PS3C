@@ -2,8 +2,7 @@
 <%@ page import="java.io.PrintWriter"%>
 <%
 	if (session.getAttribute("rol") == null) {
-		response.sendError(400, "Acceso incorrecto"); //cambiar
-		//response.sendRedirect("/login.jsp");
+		response.sendRedirect("/error.jsp");
 	}
 	session.setAttribute("pagina", "PROTOTIPO SOFTWARE DE CARGA COMPARTIDA");
 %>
