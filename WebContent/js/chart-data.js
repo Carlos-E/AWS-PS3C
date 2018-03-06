@@ -74,13 +74,42 @@ var lineChartData = {
 
 console.log("Random: ", lineChartData.datasets['0'].data.toString());
 
-$.get("/fechaEnvios", function (data) {
+//$.get("/fechaEnvios", function (data) {
+//
+//	lineChartData.datasets['0'].data = datos(data);
+//
+//	console.log('After Get: ' + lineChartData.datasets['0'].data.toString());
+//
+//	var startCharts = function () {
+//		var chart1 = document.getElementById("line-chart").getContext("2d");
+//		window.myLine = new Chart(chart1).Line(lineChartData, {
+//			responsive: true,
+//			scaleLineColor: "rgba(0,0,0,.2)",
+//			scaleGridLineColor: "rgba(0,0,0,.05)",
+//			scaleFontColor: "#c5c7cc "
+//		});
+//	};
+//	window.setTimeout(startCharts(), 1000);
+//    $("#spinner-1").fadeOut("slow");
+//
+//});
 
-	lineChartData.datasets['0'].data = datos(data);
+function makeChart(){
+	
+	console.log('Making Chart');
+	
+	$("#spinner-1").attr('class', 'fa fa-circle-notch fa-spin');
+    $("#spinner-1").fadeIn("slow");
 
-	console.log('After Get: ' + lineChartData.datasets['0'].data.toString());
+$.ajax({
+	url: "/fechaEnvios",
+	type: "GET",
+	dataType: "json",
+}).done(function (response) {
+	console.log(response);
 
-	var startCharts = function () {
+	lineChartData.datasets['0'].data = datos(response);
+
 		var chart1 = document.getElementById("line-chart").getContext("2d");
 		window.myLine = new Chart(chart1).Line(lineChartData, {
 			responsive: true,
@@ -88,12 +117,19 @@ $.get("/fechaEnvios", function (data) {
 			scaleGridLineColor: "rgba(0,0,0,.05)",
 			scaleFontColor: "#c5c7cc "
 		});
-	};
-	window.setTimeout(startCharts(), 1000);
+	
     $("#spinner-1").fadeOut("slow");
 
+}).fail(function (xhr, status, errorThrown) {
+    $("#spinner-1").attr('class', 'fa fa-exclamation-triangle');
+    
+   // makeChart();
 
+	console.log('Failed Request To Servlet /scanTable');
 });
+
+}
+
 
 var pieDataExample = [{
 	value: 300,
@@ -108,7 +144,12 @@ var pieDataExample = [{
 }];
 
 function makePie() {
+	
 	console.log('Making Pie');
+	
+	$("#spinner-2").attr('class', 'fa fa-circle-notch fa-spin');
+    $("#spinner-2").fadeIn("slow");
+	
 	let pieData = [];
 	
 	var randomColor = function(){
@@ -168,13 +209,15 @@ function makePie() {
 			});
 
 		}).fail(function (xhr, status, errorThrown) {
-			alert("Algo ha salido mal");
+	        $("#spinner-2").attr('class', 'fa fa-exclamation-triangle');
 			console.log('Failed Request To Servlet /scanTable')
-		})
+			//makePie();
+		});
 
 	}).fail(function (xhr, status, errorThrown) {
-		alert("Algo ha salido mal");
+        $("#spinner-2").attr('class', 'fa fa-exclamation-triangle');
 		console.log('Failed Request To Servlet /scanTable')
-	})
+		//makePie();
+	});
 
 }

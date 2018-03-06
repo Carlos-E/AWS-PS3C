@@ -30,6 +30,7 @@
 
 	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER -->
 	<section class="row">
+	
 		<div class="col-md-12 col-lg-8">
 
 			<div class="jumbotron">
@@ -54,15 +55,16 @@
 					</div>
 				</div>
 			</div>
-
+			
 		</div>
+		
 		<div class="col-md-12 col-lg-4">
 
 			<div class="card mt-4">
 				<div class="card-block">
 					<h3 class="card-title">
 						Env&iacute;os
-						<i id="spinner-2" class="fa fa-circle-notch fa-spin" style="font-size: 30px"></i>						
+						<i id="spinner-2" class="fa fa-circle-notch fa-spin" style="font-size: 30px"></i>
 					</h3>
 					<h6 class="card-subtitle mb-2 text-muted">Por empresa</h6>
 					<div class="canvas-wrapper">
@@ -83,7 +85,6 @@
 				</div>
 			</div>
 
-
 		</div>
 	</section>
 	</main>
@@ -95,6 +96,7 @@
 	<script src="/js/chart-data.js"></script>
 
 	<script>
+		makeChart();
 		makePie();
 	</script>
 
