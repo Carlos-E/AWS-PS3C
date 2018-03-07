@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <header class="page-header row justify-center">
-	<div class="col-md-6 col-lg-8">
+	<div class="col-md-6 col-lg-8 titulo">
 		<h1 class="float-left text-center text-md-left">
 			<%
 				out.print(session.getAttribute("pagina").toString());

@@ -4,13 +4,19 @@
 	if (session.getAttribute("rol") == null) {
 		response.sendRedirect("/error.jsp");
 	}
-	session.setAttribute("pagina", "PS3C Cambiarasfn;odIGOARGOAING;OI");
+	session.setAttribute("pagina", "PROTOTIPO DE CARGA SOFTWARE COMPARTIDA");
 %>
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
+<style>
+@import url('https://fonts.googleapis.com/css?family=Faster+One');
 
+.titulo h1{
+	font-family: 'Faster One', cursive;
+}
+</style>
 <!--  HEAD -->
 <jsp:include page="/head.jsp" />
 <!--  ./HEAD -->
@@ -38,8 +44,8 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 				<h1 class="mb-1">Hola, Bienvenido!</h1>
-				<p class="lead">Prototipo software de control de carga compartida.</p>
-				<p>Este es un proyecto que tiene como finalidad ayudar en la logistica de transporte de empresas en Cartagena, mejorar la utilizacion de recursos y automatizar procesos de transporte, entre otros.</p>
+				<p class="lead" align="justify">Prototipo software de control de carga compartida.</p>
+				<p align="justify">Este es un proyecto que tiene como finalidad ayudar en la logistica de transporte de empresas en Cartagena, mejorar la utilizacion de recursos y automatizar procesos de transporte, entre otros.</p>
 			</div>
 
 			<div class="card">
@@ -80,7 +86,7 @@
 
 				<div class="card-header">PS3C ANDROID</div>
 				<div class="card-block">
-					<p>Esta herramienta cuenta con seguimiento a transporte en tiempo real por medio de una aplicaci&oacute;n movil Android. La aplicaci&oacute;n posee un gestor de env&iacute;os donde los trasportadores pueden confirmar la recogida y entrega del env&iacute;o, as&iacute; como una opci&oacute;n
+					<p align="justify">Esta herramienta cuenta con seguimiento a transporte en tiempos muy cortos de respuesta por medio de una aplicaci&oacute;n movil Android. La aplicaci&oacute;n posee un gestor de env&iacute;os donde los trasportadores pueden confirmar la recogida y entrega del env&iacute;o, as&iacute; como una opci&oacute;n
 						para generar reportes, ya sea del estado de las v&iacute;as o eventualidades, tamb&iacute;en la aplicacion sugiere una ruta con un mapa siempre y cuando el env&iacute;o tenga las ubicaciones correctamente ingresadas.</p>
 				</div>
 
