@@ -38,7 +38,7 @@
 					
 					<div class="row">
 						<div class="col-md-12 col-lg">
-							<p>
+							<p style="font-size:10px;">
 								Plantilla base hecha por
 								<a href="https://www.medialoot.com/">Medialoot.</a>
 							</p>
