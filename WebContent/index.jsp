@@ -30,7 +30,7 @@
 
 	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER -->
 	<section class="row">
-	
+
 		<div class="col-md-12 col-lg-8">
 
 			<div class="jumbotron">
@@ -55,9 +55,9 @@
 					</div>
 				</div>
 			</div>
-			
+
 		</div>
-		
+
 		<div class="col-md-12 col-lg-4">
 
 			<div class="card mt-4">
@@ -78,11 +78,12 @@
 
 			<div class="card mt-4">
 
-				<div class="card-header">Universidad De Cartagena</div>
+				<div class="card-header">PS3C ANDROID</div>
 				<div class="card-block">
-					<p>La Universidad de Cartagena ha sido el espacio de formación de los jóvenes del Caribe colombiano desde el siglo XIX. Su historia e importancia se expresan desde los albores de la independencia y en el sueño de los libertadores Simón Bolívar y Francisco de Paula Santander, organizadores
-						del novel Estado colombiano. Ellos visionaron la educación como el medio ideal para la formación de las nuevas generaciones que conducirían los destinos de la República.</p>
+					<p>Esta herramienta cuenta con seguimiento a transporte en tiempo real por medio de una aplicaci&oacute;n movil Android. La aplicaci&oacute;n posee un gestor de env&iacute;os donde los trasportadores pueden confirmar la recogida y entrega del env&iacute;o, as&iacute; como una opci&oacute;n
+						para generar reportes, ya sea del estado de las v&iacute;as o eventualidades, tamb&iacute;en la aplicacion sugiere una ruta con un mapa siempre y cuando el env&iacute;o tenga las ubicaciones correctamente ingresadas.</p>
 				</div>
+
 			</div>
 
 		</div>
