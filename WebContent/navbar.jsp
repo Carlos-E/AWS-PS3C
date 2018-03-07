@@ -178,7 +178,7 @@
 		<li class="parent nav-item">
 			<a class="nav-link" data-toggle="collapse" href="#sub-item-6">
 				<em class="fa fa-list">&nbsp;</em>
-				Datos
+				Consultar
 				<span data-toggle="collapse"  class="icon pull-right">
 					<i class="fa fa-caret-down"></i>
 				</span>

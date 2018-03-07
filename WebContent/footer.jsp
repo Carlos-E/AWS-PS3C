@@ -8,10 +8,13 @@
 
 				<div class="col-md-12 col-lg-10">
 					<p>
-						© 2017-2018 - Sitio construido por
+						© 2017-2018 - Investigadores y desarrolladores.
 						<a href="https://www.linkedin.com/in/luis-puche/" target="_blank">Luis A. Puche</a>
-						y
-						<a href="https://www.linkedin.com/in/carlos-e-perez-meza/" target="_blank">Carlos E. Perez,</a>
+						,
+						<a href="https://www.linkedin.com/in/carlos-e-perez-meza/" target="_blank">Carlos E. Perez</a>
+						y					
+						<a href="https://www.linkedin.com/in/plinio-puello-marrugo-800a30130/" target="_blank">Plinio Puello,</a>
+						
 						pagina con fines academicos.
 					</p>
 					<p>
