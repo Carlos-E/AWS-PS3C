@@ -4,7 +4,7 @@
 	if (session.getAttribute("rol") == null) {
 		response.sendRedirect("/error.jsp");
 	}
-	session.setAttribute("pagina", "PROTOTIPO SOFTWARE DE CARGA COMPARTIDA");
+	session.setAttribute("pagina", "PS3C Cambiarasfn;odIGOARGOAING;OI");
 %>
 <!DOCTYPE html>
 <html lang="es">
