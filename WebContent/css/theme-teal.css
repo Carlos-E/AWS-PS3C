@@ -1,51 +1,7 @@
+/* V1.5 */
 /*Google Fonts*/
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i");
-/*Modify Chart Colors Hack*/
-.chart, .easypiechart {
- /*  filter: hue-rotate(-78deg) saturate(100%) brightness(1.075); hptas animales xd*/
-}
 
-/*Theme Switcher*/
-.theme-switcher {
-  list-style: none;
-  text-align: center;
-  margin: 1rem auto 3rem auto;
-  display: block;
-  width: 280px;
-  display: block; }
-  .theme-switcher li {
-    float: left;
-    text-transform: uppercase;
-    color: #ffffff; }
-    .theme-switcher li span {
-      margin-right: 10px; }
-    .theme-switcher li a.theme-btn {
-      color: #ffffff;
-      background: none;
-      display: inline-block;
-      width: 30px;
-      height: 30px;
-      padding: 0;
-      margin: 0 6px;
-      text-indent: -499rem;
-      border-radius: 499rem;
-      opacity: .8; }
-    .theme-switcher li a.theme-btn:hover {
-      opacity: 1; }
-    .theme-switcher li a.theme-btn-default {
-      background: #7376df !important; }
-    .theme-switcher li a.theme-btn-teal {
-      background: #3dbb9c !important; }
-    .theme-switcher li a.theme-btn-ruby {
-      background: #f54b63 !important; }
-    .theme-switcher li a.theme-btn-nightfall {
-      background: #32343c !important; }
-    .theme-switcher li a.theme-btn-organic {
-      background: #918278 !important; }
-
-@media (max-width: 768px) {
-  .theme-switcher {
-    display: none; } }
 body {
   background-color: #ffffff;
   background-image: url("/img/pattern.svg");
@@ -53,18 +9,7 @@ body {
   background-attachment: fixed;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1rem;
-  color: #383c42; }
-
-h1, h2 {
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  padding-bottom: 1.2rem;
-  border-bottom: 1px solid #dfdfdf; }
-
-h3, h4, h5, h6 {
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif; }
-
-a, a:visited {
-  color: #3dbb9c; }
+  }
 
 a:hover, a:focus, a:active {
   color: #30ab8d;
@@ -73,46 +18,9 @@ a:hover, a:focus, a:active {
 .nav-pills .nav-item.show .nav-link, .nav-pills .nav-link.active {
   background-color: #3dbb9c; }
 
-h1 {
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 2.4rem;
-  font-weight: 600; }
-
-h2 {
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 2.4rem;
-  font-weight: 500; }
-
-h3 {
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 1.8rem;
-  font-weight: 500; }
-
-h4 {
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 1.4rem;
-  font-weight: 500; }
-
-h5 {
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 1rem;
-  letter-spacing: .1rem;
-  font-weight: 600;
-  text-transform: uppercase; }
-
-h6 {
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: .8rem;
-  letter-spacing: .1rem;
-  font-weight: 500;
-  text-transform: uppercase; }
-
 p {
   color: #7c7c7c;
   font-size: 1rem; }
-
-.text-white p {
-  color: #ffffff; }
 
 .card-inverse p {
   color: #ffffff;
@@ -140,9 +48,6 @@ p {
 .text-muted {
   color: #a0a0a0 !important; }
 
-code {
-  background-color: #f7f7f7; }
-
 .divider {
   display: block;
   width: 100%;
@@ -150,14 +55,12 @@ code {
   background-color: #dfdfdf;
   margin: 2rem auto; }
 
-.circle {
-  border-radius: 499rem; }
-
 .jumbotron {
   padding: 2rem 2rem;
   background-color: #f7f7f7; 
   box-shadow: 0px 0px 3px 0px;
  }
+
 
 .btn-primary, .btn-primary.disabled, .btn-primary:disabled, .btn-outline-primary:hover, .btn-outline-primary:active, .btn-outline-primary.active, .show > .btn-outline-primary.dropdown-toggle, .card-primary, .page-item.active .page-link, .list-group-item.active {
   background-color: #3dbb9c !important;
@@ -167,22 +70,9 @@ code {
   background-color: #30ab8d !important;
   border-color: #30ab8d !important; }
 
-.btn-outline-primary {
-  color: #3dbb9c !important;
-  border-color: #3dbb9c !important; }
-
-.btn-outline-primary.disabled, .btn-outline-primary:disabled, .btn-link, .page-link, .text-primary {
-  color: #3dbb9c !important; }
-
-.btn-link:focus, .btn-link:hover, .page-link:focus, .page-link:hover, a.text-primary:focus, a.text-primary:hover {
-  color: #30ab8d !important; }
-
-.dropdown-item.active, .dropdown-item:active, .custom-control-input:checked ~ .custom-control-indicator, .custom-checkbox .custom-control-input:indeterminate ~ .custom-control-indicator, .nav-pills .nav-item.show .nav-link, .badge-primary, .progress-bar, .bg-primary {
-  background-color: #3dbb9c !important;
-  background-image: none; }
-
 .nav-pills .nav-link.active, .badge-primary[href]:focus, .badge-primary[href]:hover, a.bg-primary:focus, a.bg-primary:hover {
-  background-color: rgba(0,0,0,0.7) !important; }
+  background-color: rgba(255, 113, 27,0.7);
+  color: white !important; }
 
 .form-control:focus {
   border-color: #3dbb9c !important; }
@@ -373,9 +263,8 @@ code {
     background: rgba(255, 255, 255, 0.2);
     color: #ffffff; }
   .sidebar .nav ul.children li a:visited {
-    background: rgba(0, 0, 0, 0.5) !important;
-    /* background: #ffcc00; */
-    color: #ffffff !important; }
+    background: rgba(0, 0, 0, 0.5);
+    color: #ffffff; }
   .sidebar .nav ul.children li a:hover {
     background: rgba(255, 255, 255, 0.6) !important;
     color: #ffffff !important; }
@@ -389,7 +278,7 @@ code {
   right: 1rem; }
 
 .sidebar a:focus, .sidebar a:hover, .sidebar a:active {
-  background: rgba(255, 255, 255, 0.2) !important;
+  background: rgba(255, 255, 255, 0.5) !important;
 }
 
 @media screen and (max-width: 576px) {
@@ -794,7 +683,10 @@ input.form-control {
   margin-top: 1rem !important; }
 
 .page-item.active .page-link {
-  color: #ffffff !important; }
+	background: rgb(255, 204, 1) !important;
+  	color: #ffffff !important; 
+  	text-shadow: 1px 1px 1px 0px;
+}
 
 .page-item .page-link {
   outline: none !important;
@@ -802,21 +694,3 @@ input.form-control {
 
 .dataTables_wrapper {
   padding: 0; }
-
-table, td, tr, th, thead {
-  border-color: #dfdfdf !important; }
-
-/*Login Page*/
-.login-page {
-  background: #f7f7f7; }
-  .login-page .login-panel .btn {
-    display: block;
-    width: 100%; }
-
-/*Error Page*/
-.error-page {
-  background: #f7f7f7; }
-  .error-page h1 {
-    font-size: 4rem; }
-
-    span .colap

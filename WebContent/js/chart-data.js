@@ -57,31 +57,14 @@ var extraerMes = function (data) {
 	return mes[1];
 }
 
-var chartOptions = {
-		  scales: {
-		    xAxes: [{
-		      display: false
-		    }],
-		    yAxes: [{
-		      display: false
-		    }]
-		  },
-		  legend: {
-		    display: false
-		  },
-		  responsive: true,
-		  showTooltips: false,
-		  scaleFontSize: 0
-		};
-
 var lineChartData = {
 	labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio",
 		"Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
 	datasets: [{
 		label: "Dataset",
-	    backgroundColor: 'rgba(212, 107, 61,0.9)',
-	    borderColor: "rgba(255, 204, 1,0.9)",
-	    pointBackgroundColor: "rgba(255, 204, 1,1)",
+	    backgroundColor: 'rgba(213, 108, 62,0.85)',
+	    borderColor: "rgb(255, 204, 1)",
+	    pointBackgroundColor: "rgb(255, 204, 1)",
 	    pointBorderColor: "#fff",
 	    pointHoverBackgroundColor: "rgba(159,204,0,0.8)",
 	    pointHoverBorderColor: "rgba(159,204,0,1)",
@@ -109,7 +92,10 @@ $.ajax({
 		let chart = new Chart(ctx, {
 		    type: 'line',
 		    data: lineChartData,
-		    options: {}
+		    options: {					
+		    	responsive: true,
+				legend: {display:false}
+		    	}
 		});
 		
     $("#spinner-1").fadeOut("slow");
@@ -137,12 +123,10 @@ function makePie() {
 	
 	$("#spinner-2").attr('class', 'fa fa-circle-notch fa-spin');
     $("#spinner-2").fadeIn("slow");
-	
-	let pieData = [];
-	
+		
 	var randomColor = function(){
 		let random = (min,max) => Math.floor((Math.random() * max) + min);
-		let rgb = `rgb(212,${random(0,180)},${random(0,100)})`;
+		let rgb = `rgb(212,${random(0,230)},${random(0,100)})`;
 		console.log(rgb);
 		return rgb;
 	}
@@ -196,18 +180,13 @@ function makePie() {
 			
 	        $("#spinner-2").fadeOut("slow");
 
-// var pieChart = document.getElementById("pie-chart").getContext("2d");
-// window.myPie = new Chart(pieChart).Pie(pieData, {
-// responsive: true,
-// segmentShowStroke: false
-// });
-			
 			let ctx = document.getElementById('pie-chart').getContext('2d');
 			let chart = new Chart(ctx, {
 			    type: 'pie',
 			    data: pieData,
 			    options: {
-					responsive: true
+					responsive: true,
+					legend: {display:false}
 				}
 			});
 
