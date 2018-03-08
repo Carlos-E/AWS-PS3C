@@ -12,7 +12,7 @@ body {
   }
 
 a:hover, a:focus, a:active {
-  color: #30ab8d;
+  color: #ffff80;
   text-decoration: none; }
 
 .nav-pills .nav-item.show .nav-link, .nav-pills .nav-link.active {
@@ -103,8 +103,8 @@ p {
 
 .btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active, .btn-default:hover, .btn-default:focus, .btn-default:active {
   color: #383c42 !important;
-  background-color: #f7f7f7 !important;
-  border-color: #dfdfdf !important; }
+  background-color: #ffff80 !important;
+  border-color: #ffff80 !important; }
 
 .btn-margins button.btn {
   margin: 0 4px 6px 0 !important; }
