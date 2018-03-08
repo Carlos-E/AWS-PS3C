@@ -27,6 +27,7 @@
 .sidebar .nav ul.children li a:hover {
 	background: rgb(70, 70, 70) !important;
 	color: rgb(214, 109, 63);
+	text-shadow: 1px 1px 1px 1px;
 }
 
 footer a {
