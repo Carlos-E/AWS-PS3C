@@ -38,7 +38,7 @@
 	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER -->
 	<section class="row">
 
-		<div class="col-md-12 col-lg-6">
+		<div class="col-md-12 col-lg-7">
 
 			<div class="jumbotron">
 				<button type="button" class="close" aria-label="Close">
@@ -65,7 +65,7 @@
 
 		</div>
 
-		<div class="col-md-12 col-lg-6">
+		<div class="col-md-12 col-lg-5">
 
 			<div class="card mt-4">
 				<div class="card-block">
