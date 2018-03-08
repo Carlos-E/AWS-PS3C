@@ -5,8 +5,13 @@
 }
 
 .sidebar {
-	background-color: rgba(16, 21, 28,0.9) !important;
+	background-color: rgba(16, 21, 28, 0.9) !important;
 	box-shadow: 0px 0px 0px 0px;
+}
+
+.nav-pills .nav-link.active, .badge-primary[href]:focus, .badge-primary[href]:hover, a.bg-primary:focus, a.bg-primary:hover {
+	background: rgba(255, 204, 1, 0.8) !important;
+	color: white;
 }
 
 .sidebar .nav ul.children li a {
@@ -14,9 +19,14 @@
 	color: white;
 }
 
-.children collapse show nav-link {
-	background-color: rgb(100, 100, 100) !important;
-	color: orange !important;
+.sidebar a:focus, .sidebar a:hover, .sidebar a:active {
+	background-color: rgba(255, 204, 1, 0.7);
+	color: white;
+}
+
+.sidebar .nav ul.children li a:hover {
+	background: rgb(70, 70, 70) !important;
+	color: rgb(214, 109, 63);
 }
 
 footer a {
