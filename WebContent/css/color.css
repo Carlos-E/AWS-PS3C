@@ -4,11 +4,12 @@
 	color: #ffcc01 !important;
 }
 
-.sidebar{
-		background-color: rgb(16, 21, 28) !important;
+.sidebar {
+	background-color: rgba(16, 21, 28,0.9) !important;
+	box-shadow: 0px 0px 0px 0px;
 }
 
-.sidebar .nav ul.children li a{
+.sidebar .nav ul.children li a {
 	background-color: rgb(70, 70, 70) !important;
 	color: white;
 }
@@ -17,12 +18,13 @@
 	background-color: rgb(100, 100, 100) !important;
 	color: orange !important;
 }
-footer a{
+
+footer a {
 	color: rgb(213, 108, 62) !important;
 }
 
-canvas{
-		-moz-user-select: none;
-		-webkit-user-select: none;
-		-ms-user-select: none;
-	}
+canvas {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
