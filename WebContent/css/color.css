@@ -20,14 +20,14 @@
 }
 
 .sidebar a:focus, .sidebar a:hover, .sidebar a:active {
-	background-color: rgba(255, 204, 1, 0.7);
+	background-color: rgba(255, 204, 1, 0.7) !important;
 	color: white;
 }
 
 .sidebar .nav ul.children li a:hover {
 	background: rgb(70, 70, 70) !important;
-	color: rgb(214, 109, 63);
-	text-shadow: 1px 1px 1px 1px;
+	color: rgb(214, 109, 63) !important;
+	text-shadow: 1px 1px black;
 }
 
 footer a {
