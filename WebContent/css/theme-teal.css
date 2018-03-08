@@ -12,7 +12,7 @@ body {
   }
 
 a:hover, a:focus, a:active {
-  color: #ffff80;
+  color: #30ab8d;
   text-decoration: none; }
 
 .nav-pills .nav-item.show .nav-link, .nav-pills .nav-link.active {
@@ -72,7 +72,7 @@ p {
 
 .nav-pills .nav-link.active, .badge-primary[href]:focus, .badge-primary[href]:hover, a.bg-primary:focus, a.bg-primary:hover {
   background-color: rgba(255, 113, 27,0.7);
-  color: white; }
+  color: white !important; }
 
 .form-control:focus {
   border-color: #3dbb9c !important; }
@@ -267,7 +267,7 @@ p {
     color: #ffffff; }
   .sidebar .nav ul.children li a:hover {
     background: rgba(255, 255, 255, 0.6) !important;
-    color: #ffffff; }
+    color: #ffffff !important; }
 
 #wrapper.toggled .sidebar-nav {
   display: none; }
@@ -278,7 +278,7 @@ p {
   right: 1rem; }
 
 .sidebar a:focus, .sidebar a:hover, .sidebar a:active {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.5) !important;
 }
 
 @media screen and (max-width: 576px) {
