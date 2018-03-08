@@ -57,17 +57,34 @@ var extraerMes = function (data) {
 	return mes[1];
 }
 
+var chartOptions = {
+		  scales: {
+		    xAxes: [{
+		      display: false
+		    }],
+		    yAxes: [{
+		      display: false
+		    }]
+		  },
+		  legend: {
+		    display: false
+		  },
+		  responsive: true,
+		  showTooltips: false,
+		  scaleFontSize: 0
+		};
+
 var lineChartData = {
 	labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio",
 		"Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
 	datasets: [{
-		label: "My First dataset",
-		fillColor: "rgba(128,130,228,0.6)",
-		strokeColor: "rgba(128,130,228,1)",
-		pointColor: "rgba(128,130,228,1)",
-		pointStrokeColor: "#fff",
-		pointHighlightFill: "#fff",
-		pointHighlightStroke: "rgba(128,130,228,1)",
+		label: "Dataset",
+	    backgroundColor: 'rgba(212, 107, 61,0.9)',
+	    borderColor: "rgba(255, 204, 1,0.9)",
+	    pointBackgroundColor: "rgba(255, 204, 1,1)",
+	    pointBorderColor: "#fff",
+	    pointHoverBackgroundColor: "rgba(159,204,0,0.8)",
+	    pointHoverBorderColor: "rgba(159,204,0,1)",
 		data: ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0']
 	}]
 };
@@ -86,16 +103,15 @@ $.ajax({
 }).done(function (response) {
 	console.log(response);
 
-	lineChartData.datasets['0'].data = datos(response);
-
-		var chart1 = document.getElementById("line-chart").getContext("2d");
-		window.myLine = new Chart(chart1).Line(lineChartData, {
-			responsive: true,
-			scaleLineColor: "rgba(0,0,0,.2)",
-			scaleGridLineColor: "rgba(0,0,0,.05)",
-			scaleFontColor: "#c5c7cc "
+		lineChartData.datasets['0'].data = datos(response);
+		
+		let ctx = document.getElementById('line-chart').getContext('2d');
+		let chart = new Chart(ctx, {
+		    type: 'line',
+		    data: lineChartData,
+		    options: {}
 		});
-	
+		
     $("#spinner-1").fadeOut("slow");
 
 }).fail(function (xhr, status, errorThrown) {
@@ -108,17 +124,12 @@ $.ajax({
 
 }
 
-var pieDataExample = [{
-	value: 300,
-	color: "#8082e4",
-	highlight: "#7376df",
-	label: "Value 1"
-}, {
-	value: 50,
-	color: "#a0a0a0",
-	highlight: "#999999",
-	label: "Value 2"
-}];
+var pieDataExample = {datasets: [{
+	data: ['1','2','3'],
+	backgroundColor: ['0','0','0'],
+	label: 'Envios'
+}],
+labels: ['1','2','3']};
 
 function makePie() {
 	
@@ -131,7 +142,7 @@ function makePie() {
 	
 	var randomColor = function(){
 		let random = (min,max) => Math.floor((Math.random() * max) + min);
-		let rgb = `rgb(${random(20,150)},${random(20,150)},255)`;
+		let rgb = `rgb(212,${random(0,180)},${random(0,100)})`;
 		console.log(rgb);
 		return rgb;
 	}
@@ -154,35 +165,50 @@ function makePie() {
 			dataType: "json",
 		}).done(function (empresas) {
 			console.log(empresas);
+			
+			let pieData = { datasets: [{
+				data: [],
+				backgroundColor: [],
+				label: 'Envios'
+			}],
+			labels: []};
+
+			let numeroenvios = 0;
 
 			empresas.forEach(function (empresa, i, empresas) {
 				console.log(empresa.nit);
-
-				let data = {
-					value: 0,
-					color: randomColor(),
-					highlight: "#999999",
-					label: empresa.nombre
-				};
+				
+				numeroenvios = 0;
 
 				envios.forEach(function (envio, j, envios) {
 					console.log(envio.empresa);
 
 					if (envio.empresa.toLowerCase() === empresa.nit.toLowerCase()) {
-						data.value++;
+						numeroenvios++;
 					}
 				});
-				pieData.push(data);
+				pieData.datasets['0'].data.push(numeroenvios.toString());
+				pieData.datasets['0'].backgroundColor.push(randomColor());
+				pieData.labels.push(empresa.nombre);
 			});
 			
 			console.log(pieData);
 			
 	        $("#spinner-2").fadeOut("slow");
 
-			var pieChart = document.getElementById("pie-chart").getContext("2d");
-			window.myPie = new Chart(pieChart).Pie(pieData, {
-				responsive: true,
-				segmentShowStroke: false
+// var pieChart = document.getElementById("pie-chart").getContext("2d");
+// window.myPie = new Chart(pieChart).Pie(pieData, {
+// responsive: true,
+// segmentShowStroke: false
+// });
+			
+			let ctx = document.getElementById('pie-chart').getContext('2d');
+			let chart = new Chart(ctx, {
+			    type: 'pie',
+			    data: pieData,
+			    options: {
+					responsive: true
+				}
 			});
 
 		}).fail(function (xhr, status, errorThrown) {

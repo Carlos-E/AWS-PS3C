@@ -13,7 +13,7 @@
 <style>
 @import url('https://fonts.googleapis.com/css?family=Faster+One');
 
-.titulo h1{
+.titulo h1 {
 	font-family: 'Faster One', cursive;
 	font-weight: normal;
 }
@@ -38,7 +38,7 @@
 	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER -->
 	<section class="row">
 
-		<div class="col-md-12 col-lg-8">
+		<div class="col-md-12 col-lg-6">
 
 			<div class="jumbotron">
 				<button type="button" class="close" aria-label="Close">
@@ -65,7 +65,7 @@
 
 		</div>
 
-		<div class="col-md-12 col-lg-4">
+		<div class="col-md-12 col-lg-6">
 
 			<div class="card mt-4">
 				<div class="card-block">
@@ -87,8 +87,8 @@
 
 				<div class="card-header">PS3C ANDROID</div>
 				<div class="card-block">
-					<p align="justify">Esta herramienta cuenta con seguimiento de transporte por medio de una aplicaci&oacute;n movil Android. La aplicaci&oacute;n posee un gestor de env&iacute;os donde los trasportadores pueden confirmar la recogida y entrega del env&iacute;o, as&iacute; como una opci&oacute;n
-						para generar reportes, ya sea del estado de las v&iacute;as o eventualidades, tamb&iacute;en la aplicacion sugiere una ruta con un mapa siempre y cuando el env&iacute;o tenga las ubicaciones correctamente ingresadas.</p>
+					<p align="justify">Esta herramienta cuenta con seguimiento de transporte por medio de una aplicaci&oacute;n movil Android. La aplicaci&oacute;n posee un gestor de env&iacute;os donde los trasportadores pueden confirmar la recogida y entrega del env&iacute;o, as&iacute; como una
+						opci&oacute;n para generar reportes, ya sea del estado de las v&iacute;as o eventualidades, tamb&iacute;en la aplicacion sugiere una ruta con un mapa siempre y cuando el env&iacute;o tenga las ubicaciones correctamente ingresadas.</p>
 				</div>
 
 			</div>
@@ -100,7 +100,7 @@
 	<!--  FOOTER -->
 	<jsp:include page="/footer.jsp" />
 
-	<script src="/js/chart.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.min.js"></script>
 	<script src="/js/chart-data.js"></script>
 
 	<script>
