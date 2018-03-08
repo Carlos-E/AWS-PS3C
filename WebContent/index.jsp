@@ -4,7 +4,7 @@
 	if (session.getAttribute("rol") == null) {
 		response.sendRedirect("/error.jsp");
 	}
-	session.setAttribute("pagina", "PROTOTIPO DE CARGA SOFTWARE COMPARTIDA");
+	session.setAttribute("pagina", "PROTOTIPO SOFTWARE DE CARGA COMPARTIDA");
 %>
 <!DOCTYPE html>
 <html lang="es">
