@@ -2,7 +2,7 @@
 <%@ page import="java.io.*,java.util.*"%>
 <%
 	if (session.getAttribute("rol") == null) {
-		response.sendError(400, "Acceso incorrecto"); //cambiar
+		response.sendRedirect("/login.jsp");
 	}
 %>
 <%@ page import="com.logica.*"%>
@@ -15,7 +15,7 @@
 <nav class="sidebar col-xs-12 col-sm-4 col-lg-3 col-xl-2">
 	<h1 class="site-title">
 		<a href="/index.jsp">
-			<em class="fa fa-truck fa-spin fa-9x"></em>
+			<em class="fa fa-truck fa-spin fa-2x"></em>
 			PS3C
 		</a>
 	</h1>

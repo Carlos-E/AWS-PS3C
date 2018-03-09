@@ -2,7 +2,7 @@
 <%@ page import="java.io.PrintWriter"%>
 <%
 	if (session.getAttribute("rol") == null) {
-		response.sendRedirect("/error.jsp");
+		response.sendRedirect("/login.jsp");
 	}
 	/* session.setAttribute("pagina", "<em class=\"fa fa-truck fa-lg\" style=\"color: rgba(255, 255, 255, 0.7)\"></em><span style=\"color:rgb(213, 108, 62);\">P</span><span style=\"color: rgb(213, 108, 62)\">S</span><span style=\"color: rgb(213, 108, 62)\">3</span><span style=\"color: rgb(213, 108, 62)\">C</span>"); */ 
 	 session.setAttribute("pagina", "<span style=\"color: rgba(220, 220, 220, 1); text-shadow: 1px 1px black;\"><em class=\"fa fa-truck fa-lg\" style=\"color: rgba(125, 125, 125, 1);\"></em>PS3C</span>");
