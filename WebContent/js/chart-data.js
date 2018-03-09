@@ -123,7 +123,7 @@ function makePie() {
 		
 	var randomColor = function(){
 		let random = (min,max) => Math.floor((Math.random() * max) + min);
-		let rgb = `rgb(255,${random(80,140)},${random(0,60)})`;
+		let rgb = `rgb(255,${random(85,120)},${random(0,60)})`;
 		console.log(rgb);
 		return rgb;
 	}
