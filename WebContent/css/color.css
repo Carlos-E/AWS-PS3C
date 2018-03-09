@@ -9,7 +9,8 @@
 	box-shadow: 0px 0px 0px 0px;
 }
 
-.nav-pills .nav-link.active, .badge-primary[href]:focus, .badge-primary[href]:hover, a.bg-primary:focus, a.bg-primary:hover {
+.nav-pills .nav-link.active, .badge-primary[href]:focus, .badge-primary[href]:hover,
+	a.bg-primary:focus, a.bg-primary:hover {
 	background: rgba(255, 204, 1, 0.8) !important;
 	color: white;
 }
@@ -19,14 +20,20 @@
 	color: white;
 }
 
-.sidebar a:hover {
+.sidebar a:focus {
 	background-color: rgba(0, 0, 0, 0) !important;
-	color: rgb(214, 109, 63) !important;
+	color: white;
 }
 
-.sidebar a:focus, .sidebar a:active {
+.sidebar a:hover {
 	background-color: rgba(255, 204, 1, 0.8) !important;
-	color: rgb(255, 255, 255);
+	color: white;
+	text-shadow: 1px 1px black;
+}
+
+.sidebar a:active {
+	background-color: rgba(0, 0, 0, 0);
+	color: white;
 }
 
 .sidebar .nav ul.children li a:hover {
