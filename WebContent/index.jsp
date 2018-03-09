@@ -4,7 +4,6 @@
 	if (session.getAttribute("rol") == null) {
 		response.sendRedirect("/error.jsp");
 	}
-	session.setAttribute("pagina", "<em class=\"fa fa-truck fa-lg\"></em><span style=\"color:white;\">P</span><span>S</span><span>3</span><span>C</span>");
 %>
 <!DOCTYPE html>
 <html lang="es">
