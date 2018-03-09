@@ -6,26 +6,17 @@ body {
 	-o-background-size: cover;
 	background-size: cover;
 } 
-/* 
-.background-image {
-	z-index: -1;
-	position: absolute;
-  	width: 100%;
-  	height: 100%;
-	background: url(/img/camion_de_frente.jpg) no-repeat center center
-		fixed;
-	background-image: url("/img/pattern.svg");
-	
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	
-	
-  	-webkit-filter: blur(5px);
-          filter: blur(5px);
+
+.btn-primary {
+	background: rgba(251, 204, 45, 0.99);
+	border-color: rgb(251, 204, 45);
 }
- */
+ .btn-primary:hover{
+ 	color: black;
+	background: rgb(251, 204, 45);
+	box-shadow: 0px 0px 5px 1px;
+ }
+
 .form-signin {	
 	z-index: 1;
 	min-width: 150px;
