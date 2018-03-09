@@ -107,6 +107,9 @@
 	<script>
 		makeChart();
 		makePie();
+		
+		var audio = new Audio('/audio/song.mp3');
+		audio.play();
 	</script>
 
 </body>
