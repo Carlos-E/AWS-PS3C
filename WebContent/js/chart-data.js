@@ -102,9 +102,6 @@ $.ajax({
 
 }).fail(function (xhr, status, errorThrown) {
     $("#spinner-1").attr('class', 'fa fa-exclamation-triangle');
-    
-   // makeChart();
-
 	console.log('Failed Request To Servlet /scanTable');
 });
 
@@ -126,7 +123,7 @@ function makePie() {
 		
 	var randomColor = function(){
 		let random = (min,max) => Math.floor((Math.random() * max) + min);
-		let rgb = `rgb(212,${random(0,230)},${random(0,100)})`;
+		let rgb = `rgb(255,${random(80,140)},${random(0,60)})`;
 		console.log(rgb);
 		return rgb;
 	}
@@ -193,13 +190,11 @@ function makePie() {
 		}).fail(function (xhr, status, errorThrown) {
 	        $("#spinner-2").attr('class', 'fa fa-exclamation-triangle');
 			console.log('Failed Request To Servlet /scanTable')
-			// makePie();
 		});
 
 	}).fail(function (xhr, status, errorThrown) {
         $("#spinner-2").attr('class', 'fa fa-exclamation-triangle');
 		console.log('Failed Request To Servlet /scanTable')
-		// makePie();
 	});
 
 }
