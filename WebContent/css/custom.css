@@ -2,7 +2,7 @@
 
 body {
 	background-color: #ffffff;
-	background-image: url("/img/pattern.svg");
+	background-image: url("/img/pattern2.svg");
 	/* 	background-image: url("https://www.unicartagena.edu.co/images/fondo.png");*/
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -52,6 +52,10 @@ body {
 	background: rgb(70, 70, 70) !important;
 	color: rgb(214, 109, 63) !important;
 	text-shadow: 1px 1px black;
+}
+
+footer{
+	padding-top: 2rem;
 }
 
 footer a, p a {
