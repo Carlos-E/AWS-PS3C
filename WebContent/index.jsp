@@ -6,7 +6,7 @@
 	}
 	/* session.setAttribute("pagina", "<em class=\"fa fa-truck fa-lg\" style=\"color: rgba(255, 255, 255, 0.7)\"></em><span style=\"color:rgb(213, 108, 62);\">P</span><span style=\"color: rgb(213, 108, 62)\">S</span><span style=\"color: rgb(213, 108, 62)\">3</span><span style=\"color: rgb(213, 108, 62)\">C</span>"); */
 	session.setAttribute("pagina",
-			"<span style=\"color: rgba(220, 220, 220, 1); text-shadow: 1px 1px black;\"><em class=\"fa fa-truck fa-lg\" style=\"color: rgba(125, 125, 125, 1);\"></em>PS3C</span>");
+			"<span style=\"color: rgba(255, 210, 20, 1); text-shadow: 1px 1px black;\"><em class=\"fa fa-truck fa-lg\" style=\"color: rgb(219, 130, 92);\"></em>PS3C</span>");
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -112,9 +112,12 @@
 		var audio = new Audio('/audio/song.mp3');
 		//audio.play();
 
-		setTimeout(function() {
- 			document.querySelector('#vacile').innerHTML = '<em class="fa fa-truck fa-2x"></em> PS3C';
-		}, 8130);
+		document.querySelector('#vacile').innerHTML = '<em class="fa fa-truck fa-spin fa-2x"></em> PS3C';
+
+		setTimeout(
+				function() {
+					document.querySelector('#vacile').innerHTML = '<em class="fa fa-truck fa-2x"></em> PS3C';
+				}, 8130);
 	</script>
 
 </body>

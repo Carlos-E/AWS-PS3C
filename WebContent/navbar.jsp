@@ -15,7 +15,7 @@
 <nav class="sidebar col-xs-12 col-sm-4 col-lg-3 col-xl-2">
 	<h1 class="site-title">
 		<a id='vacile' href="/index.jsp">
-			<em class="fa fa-truck fa-spin fa-2x"></em>
+			<em class="fa fa-truck fa-2x"></em>
 			PS3C
 		</a>
 	</h1>
