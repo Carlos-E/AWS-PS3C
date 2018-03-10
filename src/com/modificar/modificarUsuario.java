@@ -132,6 +132,7 @@ public class modificarUsuario extends HttpServlet {
 
 				}else{
 					System.out.println("no se cambio nada");
+					com.logica.Dibujar.mensaje(response.getWriter(), "No ha habido cambio", request.getSession().getAttribute("origin").toString());
 				}
 			}
 		}
