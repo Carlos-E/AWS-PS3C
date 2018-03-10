@@ -34,8 +34,8 @@
 			<a class="nav-link" data-toggle="collapse" href="#sub-item-1">
 				<em class="fa fa-paper-plane">&nbsp;</em>
 				Env&iacute;os
-				<span data-toggle="collapse" class="icon pull-right">
-					<i class="fa fa-caret-down"></i>
+				<span data-toggle="collapse" class="icon float-right">
+					<i class="fa fa-plus"></i>
 				</span>
 			</a>
 			<ul class="children collapse" id="sub-item-1">	
@@ -63,8 +63,8 @@
 			<a class="nav-link" data-toggle="collapse" href="#sub-item-2">
 				<em class="fa fa-users">&nbsp;</em>
 				Usuarios
-				<span data-toggle="collapse" class="icon pull-right">
-					<i class="fa fa-caret-down"></i>
+				<span data-toggle="collapse" class="icon float-right">
+					<i class="fa fa-plus"></i>
 				</span>
 			</a>
 			<ul class="children collapse" id="sub-item-2">
@@ -92,8 +92,8 @@
 			<a class="nav-link" data-toggle="collapse" href="#sub-item-3">
 				<em class="fa fa-building">&nbsp;</em>
 				Empresas
-				<span data-toggle="collapse" class="icon pull-right">
-					<i class="fa fa-caret-down"></i>
+				<span data-toggle="collapse" class="icon float-right">
+					<i class="fa fa-plus"></i>
 				</span>
 			</a>
 			<ul class="children collapse" id="sub-item-3">
@@ -121,8 +121,8 @@
 			<a class="nav-link" data-toggle="collapse" href="#sub-item-4">
 				<em class="fa fa-truck">&nbsp;</em>
 				Camiones
-				<span data-toggle="collapse"  class="icon pull-right">
-					<i class="fa fa-caret-down"></i>
+				<span data-toggle="collapse"  class="icon float-right">
+					<i class="fa fa-plus"></i>
 				</span>
 			</a>
 			<ul class="children collapse" id="sub-item-4">
@@ -150,8 +150,8 @@
 			<a class="nav-link" data-toggle="collapse" href="#sub-item-5">
 				<em class="fa fa-truck">&nbsp;</em>
 				Traileres
-				<span data-toggle="collapse"  class="icon pull-right">
-					<i class="fa fa-caret-down"></i>
+				<span data-toggle="collapse"  class="icon float-right">
+					<i class="fa fa-plus"></i>
 				</span>
 			</a>
 			<ul class="children collapse" id="sub-item-5">
@@ -179,8 +179,8 @@
 			<a class="nav-link" data-toggle="collapse" href="#sub-item-6">
 				<em class="fa fa-list">&nbsp;</em>
 				Consultar
-				<span data-toggle="collapse"  class="icon pull-right">
-					<i class="fa fa-caret-down"></i>
+				<span data-toggle="collapse"  class="icon float-right">
+					<i class="fa fa-plus"></i>
 				</span>
 			</a>
 			<ul class="children collapse" id="sub-item-6">
