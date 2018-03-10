@@ -110,11 +110,11 @@
 		makePie();
 
 		var audio = new Audio('/audio/song.mp3');
-		audio.play();
+		//audio.play();
 
 		setTimeout(function() {
  			document.querySelector('#vacile').innerHTML = '<em class="fa fa-truck fa-2x"></em> PS3C';
-		}, 7000);
+		}, 8130);
 	</script>
 
 </body>
