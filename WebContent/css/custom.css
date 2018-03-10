@@ -42,7 +42,7 @@
 	text-shadow: 1px 1px black;
 }
 
-footer a {
+footer a, p a {
 	color: rgb(213, 108, 62) !important;
 }
 
@@ -53,11 +53,11 @@ canvas {
 }
 
 .fa-spin {
-  -webkit-animation: fa-spin 0.8s infinite linear;
-  animation: fa-spin 0.8s infinite linear;
+	-webkit-animation: fa-spin 0.8s infinite linear;
+	animation: fa-spin 0.8s infinite linear;
 }
 
 .quick {
-  -webkit-animation: fa-spin 0.1s infinite linear;
-  animation: fa-spin 0.1s infinite linear;
+	-webkit-animation: fa-spin 0.1s infinite linear;
+	animation: fa-spin 0.1s infinite linear;
 }
