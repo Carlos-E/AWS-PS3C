@@ -14,7 +14,7 @@
 
 <link href="/css/error.css?v=1.0.0" rel="stylesheet">
 
-<title>ERROR 500</title>
+<title>ERROR 404</title>
 </head>
 
 <body>
