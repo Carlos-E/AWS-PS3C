@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<html lang="en">
+<html lang="es">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="Carlos E.">
+<meta name="description" content="Login PS3C">
+<meta name="author" content="Carlos E. Perez, Luis Puche">
 <meta name="version" content="1.0.0">
 <link rel="shortcut icon" type="image/png" href="/img/icon.ico" />
 
@@ -29,19 +29,12 @@
 	<form class="form-signin" method="post" action="/login" role="login">
 
 		<h1 class="text-center h1 mt-3 mb-3 font-weight-normal">
-<!-- 			<img class="mb-4" src="/img/icon.ico" class="img-responsive" alt=":)">
- -->			<em class="fa fa-truck fa-sm"></em>
+			<em class="fa fa-truck fa-sm"></em>
 			PS3C
 		</h1>
 
 		<h1 class="text-center h3 mt-3 mb-3 font-weight-normal">Iniciar sesi&oacute;n</h1>
 
-		<!-- <label for="inputEmail" class="sr-only">Email address</label>
-		<input type="email" id="inputEmail" name="username" placeholder="Usuario" class="form-control" value="" required autofocus>
-
-		<label for="inputPassword" class="sr-only">Password</label>
-		<input type="password" name="password" class="form-control" id="password" placeholder="Contraseña" required="" />
- -->
 		<div class="form-label-group">
 			<input type="email" id="inputEmail" class="form-control" name="username" placeholder="Usuario" required autofocus>
 			<label class="unselectable" for="inputEmail">Correo</label>
