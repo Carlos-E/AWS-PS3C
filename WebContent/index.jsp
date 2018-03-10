@@ -52,7 +52,7 @@
 				<p align="justify">Este es un proyecto que tiene como finalidad ayudar en la logistica de transporte de empresas en Cartagena, mejorar la utilizacion de recursos y automatizar procesos de transporte, entre otros.</p>
 			</div>
 
-			<div class="card">
+			<div class="card mb-4">
 				<div class="card-block">
 
 					<h3 class="card-title">
@@ -70,7 +70,7 @@
 
 		<div class="col-md-12 col-lg-5">
 
-			<div class="card mt-4">
+			<div class="card mb-4">
 				<div class="card-block">
 					<h3 class="card-title">
 						Env&iacute;os
@@ -86,7 +86,7 @@
 				</div>
 			</div>
 
-			<div class="card mt-4">
+			<div class="card">
 
 				<div class="card-header">PS3C ANDROID</div>
 				<div class="card-block">

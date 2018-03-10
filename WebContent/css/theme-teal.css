@@ -335,7 +335,7 @@ p {
   margin-top: 1rem !important; }
 
 .card-header {
-  padding: .75rem 1.25rem; }
+  padding: .50rem 1rem; }
 
 .bg-default .card-header {
   background: #f7f7f7;
@@ -366,8 +366,8 @@ p {
 .page-header {
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin-top: 0rem;
-  margin-bottom: 2.4rem;
-  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
   border-bottom: 1px solid #dfdfdf;
   height: auto; }
   .page-header h1 {
