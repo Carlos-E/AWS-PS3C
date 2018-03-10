@@ -35,14 +35,14 @@
 				<em class="fa fa-paper-plane">&nbsp;</em>
 				Env&iacute;os
 				<span data-toggle="collapse" class="icon float-right">
-					<i class="fa fa-plus"></i>
+					<i class="fa fa-caret-down"></i>
 				</span>
 			</a>
 			<ul class="children collapse" id="sub-item-1">	
 				<li class="nav-item">
 					<a class="nav-link" href="/envios/crear.jsp">
 						Crear
-						<em class="fa fa-plus-square">&nbsp;</em>
+						<em class="fa fa-plus">&nbsp;</em>
 					</a>
 				</li>
 				<li class="nav-item">
@@ -64,14 +64,14 @@
 				<em class="fa fa-users">&nbsp;</em>
 				Usuarios
 				<span data-toggle="collapse" class="icon float-right">
-					<i class="fa fa-plus"></i>
+					<i class="fa fa-caret-down"></i>
 				</span>
 			</a>
 			<ul class="children collapse" id="sub-item-2">
 				<li class="nav-item">
 					<a class="nav-link" href="/usuarios/crear.jsp">
 						Crear
-						<em class="fa fa-plus-square">&nbsp;</em>
+						<em class="fa fa-plus">&nbsp;</em>
 					</a>
 				</li>
 				<li class="nav-item">
@@ -93,14 +93,14 @@
 				<em class="fa fa-building">&nbsp;</em>
 				Empresas
 				<span data-toggle="collapse" class="icon float-right">
-					<i class="fa fa-plus"></i>
+					<i class="fa fa-caret-down"></i>
 				</span>
 			</a>
 			<ul class="children collapse" id="sub-item-3">
 				<li class="nav-item">
 					<a class="nav-link" href="/empresas/crear.jsp">
 						Crear
-						<em class="fa fa-plus-square">&nbsp;</em>
+						<em class="fa fa-plus">&nbsp;</em>
 					</a>
 				</li>
 				<li class="nav-item">
@@ -122,14 +122,14 @@
 				<em class="fa fa-truck">&nbsp;</em>
 				Camiones
 				<span data-toggle="collapse"  class="icon float-right">
-					<i class="fa fa-plus"></i>
+					<i class="fa fa-caret-down"></i>
 				</span>
 			</a>
 			<ul class="children collapse" id="sub-item-4">
 				<li class="nav-item">
 					<a class="nav-link" href="/camiones/crear.jsp">
 						Crear
-						<em class="fa fa-plus-square">&nbsp;</em>
+						<em class="fa fa-plus">&nbsp;</em>
 					</a>
 				</li>
 				<li class="nav-item">
@@ -151,14 +151,14 @@
 				<em class="fa fa-truck">&nbsp;</em>
 				Traileres
 				<span data-toggle="collapse"  class="icon float-right">
-					<i class="fa fa-plus"></i>
+					<i class="fa fa-caret-down"></i>
 				</span>
 			</a>
 			<ul class="children collapse" id="sub-item-5">
 				<li class="nav-item">
 					<a class="nav-link" href="/traileres/crear.jsp">
 						Crear
-						<em class="fa fa-plus-square">&nbsp;</em>
+						<em class="fa fa-plus">&nbsp;</em>
 					</a>
 				</li>
 				<li class="nav-item">
@@ -180,7 +180,7 @@
 				<em class="fa fa-list">&nbsp;</em>
 				Consultar
 				<span data-toggle="collapse"  class="icon float-right">
-					<i class="fa fa-plus"></i>
+					<i class="fa fa-caret-down"></i>
 				</span>
 			</a>
 			<ul class="children collapse" id="sub-item-6">
