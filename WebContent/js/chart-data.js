@@ -246,7 +246,8 @@ function makeDoughnut() {
 			    type: 'doughnut',
 			    data: data,
 			    options: {
-					responsive: true
+					responsive: true,
+					legend: {display:false}
 				}
 			});
 

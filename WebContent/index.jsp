@@ -65,19 +65,15 @@
 					</div>
 				</div>
 			</div>
-			
+				
 			<div class="card mb-3">
-				<div class="card-block">
 
-					<h3 class="card-title">
-						Camiones
-						<i id="spinner-3" class="fa fa-circle-notch fa-spin" style="font-size: 30px"></i>
-					</h3>
-					<h6 class="card-subtitle mb-1 text-muted">Por empresa</h6>
-					<div class="canvas-wrapper">
-						<canvas class="chart" id="doughnut-chart" height="426" width="1282" style="width: 641px; height: 213px;"></canvas>
-					</div>
+				<div class="card-header">PS3C ANDROID</div>
+				<div class="card-block">
+					<p align="justify">Esta herramienta cuenta con seguimiento de transporte por medio de una aplicaci&oacute;n movil Android. La aplicaci&oacute;n posee un gestor de env&iacute;os donde los trasportadores pueden confirmar la recogida y entrega del env&iacute;o, as&iacute; como una
+						opci&oacute;n para generar reportes, ya sea del estado de las v&iacute;as o eventualidades, tamb&iacute;en la aplicacion sugiere una ruta con un mapa siempre y cuando el env&iacute;o tenga las ubicaciones correctamente ingresadas.</p> <p>Eres conductor o camionero? <a href="">Descargala Aqu&iacute;!! <em class="fa fa-download"></em></a></p>
 				</div>
+
 			</div>
 
 		</div>
@@ -99,17 +95,21 @@
 
 				</div>
 			</div>
-
+			
 			<div class="card mb-3">
-
-				<div class="card-header">PS3C ANDROID</div>
 				<div class="card-block">
-					<p align="justify">Esta herramienta cuenta con seguimiento de transporte por medio de una aplicaci&oacute;n movil Android. La aplicaci&oacute;n posee un gestor de env&iacute;os donde los trasportadores pueden confirmar la recogida y entrega del env&iacute;o, as&iacute; como una
-						opci&oacute;n para generar reportes, ya sea del estado de las v&iacute;as o eventualidades, tamb&iacute;en la aplicacion sugiere una ruta con un mapa siempre y cuando el env&iacute;o tenga las ubicaciones correctamente ingresadas.</p>
+
+					<h3 class="card-title">
+						Camiones
+						<i id="spinner-3" class="fa fa-circle-notch fa-spin" style="font-size: 30px"></i>
+					</h3>
+					<h6 class="card-subtitle mb-1 text-muted">Por empresa</h6>
+					<div class="canvas-wrapper">
+						<canvas class="chart" id="doughnut-chart" height="426" width="1282" style="width: 641px; height: 213px;"></canvas>
+					</div>
 				</div>
-
 			</div>
-
+			
 		</div>
 	</section>
 	</main>
