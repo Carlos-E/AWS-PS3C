@@ -56,7 +56,7 @@
 						out.print(session.getAttribute("pagina").toString());
 					%>
 				</h3>
-				<form id="form2" class="form" action="/usuarios/modificar" method="post">
+				<form id="form2" class="form" action="/modificarEmpresa" method="post">
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Nit</label>
 						<div class="col-md-4">
