@@ -57,7 +57,7 @@ public class chequeoDescarga extends HttpServlet {
 			}
 		}
 		PrintWriter out = response.getWriter();
-		String nextURL = request.getContextPath() + "chequeo/chequearDescarga.jsp";
+		String nextURL = request.getContextPath() + "chequeo/chequeoDeDescarga.jsp";
 		com.logica.Dibujar.mensaje(out, "Operacion Exitosa", nextURL);
 	}
 
