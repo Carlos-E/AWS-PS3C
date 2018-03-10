@@ -44,13 +44,15 @@ public class chequeoCarga extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		ArrayList<envio> envios = ControladorBD.escanearTabla("envios");
-		String chequeoCarga = "jeje saludos";
+		String chequeoCarga = "jeje saludos",rol = "para que quiere saber eso";
 		for(int i=0;i<envios.size();i++){		
 			System.out.println(envios.get(i).getFecha());
 			try{
 				chequeoCarga = request.getParameter(envios.get(i).getFecha()).toLowerCase();
 				if(chequeoCarga.equals("true")){
 					ControladorBD.actualizarValor("envios", "usuario", envios.get(i).getUsuario(), "fecha", envios.get(i).getFecha(), "chequeoCarga", chequeoCarga);
+				}else if(chequeoCarga.equals("false")) {
+					
 				}
 			}catch (Exception e) {
 				System.out.println("no encontro una fecha, algo anda mal");				
