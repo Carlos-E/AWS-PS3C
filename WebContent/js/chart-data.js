@@ -84,7 +84,6 @@ $.ajax({
 	type: "GET",
 	dataType: "json",
 }).done(function (response) {
-	console.log(response);
 
 		lineChartData.datasets['0'].data = datos(response);
 		
@@ -120,13 +119,6 @@ function makePie() {
 	
 	$("#spinner-2").attr('class', 'fa fa-circle-notch fa-spin');
     $("#spinner-2").fadeIn("slow");
-		
-	var randomColor = function(){
-		let random = (min,max) => Math.floor((Math.random() * max) + min);
-		let rgb = `rgb(255,${random(85,120)},${random(0,60)})`;
-		console.log(rgb);
-		return rgb;
-	}
 
 	$.ajax({
 		url: "/scanTable",
@@ -145,42 +137,36 @@ function makePie() {
 			type: "POST",
 			dataType: "json",
 		}).done(function (empresas) {
-			console.log(empresas);
 			
-			let pieData = { datasets: [{
+			let data = { datasets: [{
 				data: [],
 				backgroundColor: [],
 				label: 'Envios'
 			}],
 			labels: []};
 
-			let numeroenvios = 0;
+			let contador = 0;
 
 			empresas.forEach(function (empresa, i, empresas) {
-				console.log(empresa.nit);
 				
-				numeroenvios = 0;
+				contador = 0;
 
 				envios.forEach(function (envio, j, envios) {
-					console.log(envio.empresa);
-
 					if (envio.empresa.toLowerCase() === empresa.nit.toLowerCase()) {
-						numeroenvios++;
+						contador++;
 					}
 				});
-				pieData.datasets['0'].data.push(numeroenvios.toString());
-				pieData.datasets['0'].backgroundColor.push(randomColor());
-				pieData.labels.push(empresa.nombre);
+				data.datasets['0'].data.push(contador.toString());
+				data.datasets['0'].backgroundColor.push(randomColor());
+				data.labels.push(empresa.nombre);
 			});
-			
-			console.log(pieData);
-			
+						
 	        $("#spinner-2").fadeOut("slow");
 
 			let ctx = document.getElementById('pie-chart').getContext('2d');
 			let chart = new Chart(ctx, {
 			    type: 'pie',
-			    data: pieData,
+			    data: data,
 			    options: {
 					responsive: true,
 					legend: {display:false}
@@ -197,4 +183,87 @@ function makePie() {
 		console.log('Failed Request To Servlet /scanTable')
 	});
 
+}
+
+function makeDoughnut() {
+	
+	console.log('Making doughnut');
+	
+	$("#spinner-3").attr('class', 'fa fa-circle-notch fa-spin');
+    $("#spinner-3").fadeIn("slow");
+
+	$.ajax({
+		url: "/scanTable",
+		data: {
+			tabla: 'camiones'
+		},
+		type: "POST",
+		dataType: "json",
+	}).done(function (camiones) {
+
+		$.ajax({
+			url: "/scanTable",
+			data: {
+				tabla: 'empresas'
+			},
+			type: "POST",
+			dataType: "json",
+		}).done(function (empresas) {
+			
+			let data = { datasets: [{
+				data: [],
+				backgroundColor: [],
+				label: 'Envios'
+			}],
+			labels: []};
+
+			let contador = 0;
+
+			empresas.forEach(function (empresa, i, empresas) {
+				console.log(empresa.nit);
+				
+				contador = 0;
+
+				camiones.forEach(function (camion, j, camiones) {
+					console.log(camion.empresa);
+
+					if (camion.empresa.toLowerCase() === empresa.nit.toLowerCase()) {
+						//Numero de envios por empresa
+						contador++;
+					}
+				});
+				data.datasets['0'].data.push(contador.toString());
+				data.datasets['0'].backgroundColor.push(randomColor());
+				data.labels.push(empresa.nombre);
+			});
+			
+			console.log(JSON.stringify(data,null,2));
+			
+	        $("#spinner-3").fadeOut("slow");
+
+			let ctx = document.getElementById('doughnut-chart').getContext('2d');
+			let chart = new Chart(ctx, {
+			    type: 'doughnut',
+			    data: data,
+			    options: {
+					responsive: true
+				}
+			});
+
+		}).fail(function (xhr, status, errorThrown) {
+	        $("#spinner-3").attr('class', 'fa fa-exclamation-triangle');
+			console.log('Failed Request To Servlet /scanTable')
+		});
+
+	}).fail(function (xhr, status, errorThrown) {
+        $("#spinner-3").attr('class', 'fa fa-exclamation-triangle');
+		console.log('Failed Request To Servlet /scanTable')
+	});
+
+}
+
+var randomColor = function(){
+	let random = (min,max) => Math.floor((Math.random() * max) + min);
+	let rgb = `rgb(255,${random(85,120)},${random(0,60)})`;
+	return rgb;
 }

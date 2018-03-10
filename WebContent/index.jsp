@@ -52,7 +52,7 @@
 				<p align="justify">Este es un proyecto que tiene como finalidad ayudar en la logistica de transporte de empresas en Cartagena, mejorar la utilizacion de recursos y automatizar procesos de transporte, entre otros.</p>
 			</div>
 
-			<div class="card mb-4">
+			<div class="card mb-3">
 				<div class="card-block">
 
 					<h3 class="card-title">
@@ -65,12 +65,26 @@
 					</div>
 				</div>
 			</div>
+			
+			<div class="card mb-3">
+				<div class="card-block">
+
+					<h3 class="card-title">
+						Camiones
+						<i id="spinner-3" class="fa fa-circle-notch fa-spin" style="font-size: 30px"></i>
+					</h3>
+					<h6 class="card-subtitle mb-1 text-muted">Por empresa</h6>
+					<div class="canvas-wrapper">
+						<canvas class="chart" id="doughnut-chart" height="426" width="1282" style="width: 641px; height: 213px;"></canvas>
+					</div>
+				</div>
+			</div>
 
 		</div>
 
 		<div class="col-md-12 col-lg-5">
 
-			<div class="card mb-4">
+			<div class="card mb-3">
 				<div class="card-block">
 					<h3 class="card-title">
 						Env&iacute;os
@@ -86,7 +100,7 @@
 				</div>
 			</div>
 
-			<div class="card">
+			<div class="card mb-3">
 
 				<div class="card-header">PS3C ANDROID</div>
 				<div class="card-block">
@@ -109,6 +123,7 @@
 	<script>
 		makeChart();
 		makePie();
+		makeDoughnut();
 
 		var audio = new Audio('/audio/song.mp3');
 		//audio.play();
