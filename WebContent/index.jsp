@@ -48,7 +48,20 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 				<h1 class="mb-1">Hola, Bienvenido!</h1>
-				<p class="lead"><span>P</span>rototipo <span>S</span>oftware de <span>C</span>ontrol de <span>C</span>arga <span>C</span>ompartida (<span>PS3C</span>)</p>
+				<p class="lead">
+					<span>P</span>
+					rototipo
+					<span>S</span>
+					oftware de
+					<span>C</span>
+					ontrol de
+					<span>C</span>
+					arga
+					<span>C</span>
+					ompartida (
+					<span>PS3C</span>
+					)
+				</p>
 				<p align="justify">Este es un proyecto que tiene como finalidad ayudar en la logistica de transporte de empresas en Cartagena, mejorar la utilizacion de recursos y automatizar procesos de transporte, entre otros.</p>
 			</div>
 
@@ -80,7 +93,7 @@
 						</a>
 					</p>
 				</div>
-				
+
 			</div>
 
 		</div>
@@ -128,9 +141,11 @@
 	<script src="/js/chart-data.js"></script>
 
 	<script>
-		makeChart();
-		makePie();
-		makeDoughnut();
+		setTimeout(function() {
+			makeChart();
+			makePie();
+			makeDoughnut();
+		}, 1500);
 
 		var audio = new Audio('/audio/song.mp3');
 		//audio.play();
@@ -140,7 +155,7 @@
 		setTimeout(
 				function() {
 					document.querySelector('#nav-brand-link').innerHTML = '<em class="fa fa-truck fa-2x"></em> PS3C';
-				}, /* 8110 */3000);
+				}, 3000);
 	</script>
 
 </body>
