@@ -4,9 +4,9 @@
 	if (session.getAttribute("rol") == null) {
 		response.sendRedirect("/login.jsp");
 	}
-/* 	session.setAttribute("pagina",
-			"<span style=\"color: rgba(255, 210, 20, 1); text-shadow: 1px 1px black;\"><em class=\"fa fa-truck fa-lg\" style=\"color: rgb(219, 130, 92);\"></em>PS3C</span>");
- */	session.setAttribute("pagina","Inicio");
+	/* 	session.setAttribute("pagina",
+				"<span style=\"color: rgba(255, 210, 20, 1); text-shadow: 1px 1px black;\"><em class=\"fa fa-truck fa-lg\" style=\"color: rgb(219, 130, 92);\"></em>PS3C</span>");
+	 */ session.setAttribute("pagina", "Inicio");
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -18,8 +18,8 @@
 .titulo h1 {
 	/* font-family: 'Faster One', cursive;
 	font-weight: normal; */
+	
 }
-
 </style>
 <!--  HEAD -->
 <jsp:include page="/head.jsp" />
@@ -65,13 +65,20 @@
 					</div>
 				</div>
 			</div>
-				
+
 			<div class="card mb-3">
 
 				<div class="card-header">PS3C ANDROID</div>
 				<div class="card-block">
 					<p align="justify">Esta herramienta cuenta con seguimiento de transporte por medio de una aplicaci&oacute;n movil Android. La aplicaci&oacute;n posee un gestor de env&iacute;os donde los trasportadores pueden confirmar la recogida y entrega del env&iacute;o, as&iacute; como una
-						opci&oacute;n para generar reportes, ya sea del estado de las v&iacute;as o eventualidades, tamb&iacute;en la aplicacion sugiere una ruta con un mapa siempre y cuando el env&iacute;o tenga las ubicaciones correctamente ingresadas.</p> <p>Eres conductor o camionero? <a href="">Descargala Aqu&iacute;!! <em class="fa fa-download"></em></a></p>
+						opci&oacute;n para generar reportes, ya sea del estado de las v&iacute;as o eventualidades, tamb&iacute;en la aplicacion sugiere una ruta con un mapa siempre y cuando el env&iacute;o tenga las ubicaciones correctamente ingresadas.</p>
+					<p>
+						Eres conductor o camionero?
+						<a href="/app/PS3C-Android.apk" target="_blank">
+							Descargala Aqu&iacute;!!
+							<em class="fa fa-download"></em>
+						</a>
+					</p>
 				</div>
 
 			</div>
@@ -95,7 +102,7 @@
 
 				</div>
 			</div>
-			
+
 			<div class="card mb-3">
 				<div class="card-block">
 
@@ -109,7 +116,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 		</div>
 	</section>
 	</main>
@@ -133,7 +140,7 @@
 		setTimeout(
 				function() {
 					document.querySelector('#nav-brand-link').innerHTML = '<em class="fa fa-truck fa-2x"></em> PS3C';
-				}, /* 8110 */ 3000);
+				}, /* 8110 */3000);
 	</script>
 
 </body>
