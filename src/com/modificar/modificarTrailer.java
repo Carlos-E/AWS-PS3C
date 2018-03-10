@@ -81,10 +81,7 @@ public class modificarTrailer extends HttpServlet {
 		if (cambio) {
 			session.setAttribute("busca", "ninguno");
 			System.out.println("algo se cambio");
-			PrintWriter out = response.getWriter();
-			String nextURL = request.getContextPath() + "/modificar/trailer.jsp";
-			com.logica.Dibujar.mensaje(out, "Operacion Exitosa", nextURL);
-			//response.sendRedirect("index.jsp");
+			com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getSession().getAttribute("origin").toString());
 		} else {
 			System.out.println("no se cambio nada");
 			com.logica.Dibujar.mensaje(response.getWriter(), "No ha habido cambio", request.getSession().getAttribute("origin").toString());

@@ -77,9 +77,7 @@ public class modificarCamion extends HttpServlet {
 		}
 		if (cambio) {
 			session.setAttribute("busca", "ninguno");
-			PrintWriter out = response.getWriter();
-			String nextURL = request.getContextPath() + "/modificar/camion.jsp";
-			com.logica.Dibujar.mensaje(out, "Operacion Exitosa", nextURL);
+			com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getSession().getAttribute("origin").toString());
 		} else {
 			System.out.println("no se cambio nada");
 			com.logica.Dibujar.mensaje(response.getWriter(), "No ha habido cambio", request.getSession().getAttribute("origin").toString());
