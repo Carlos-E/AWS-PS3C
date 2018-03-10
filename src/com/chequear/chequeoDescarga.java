@@ -51,7 +51,7 @@ public class chequeoDescarga extends HttpServlet {
 				chequeoDescarga = request.getParameter(envios.get(i).getFecha()).toLowerCase();
 				if(chequeoDescarga.equals("true")){
 					ControladorBD.actualizarValor("envios", "usuario", envios.get(i).getUsuario(), "fecha", envios.get(i).getFecha(), "chequeoDescarga", chequeoDescarga);
-				}else if(chequeoCarga.equals("false")) {
+				}else if(chequeoDescarga.equals("false")) {
 					
 				}
 			}catch (Exception e) {
