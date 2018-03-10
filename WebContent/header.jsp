@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%
+	session.setAttribute("origin", request.getRequestURI());
+%>
 <header class="page-header row justify-center">
 	<div class="col-md-6 col-lg-8 titulo">
 		<h1 class="float-left text-center text-md-left">
@@ -25,9 +27,9 @@
 			</div>
 		</a>
 		<div class="dropdown-menu dropdown-menu-right" style="margin-right: 1.5rem;" aria-labelledby="dropdownMenuLink">
-			<a class="dropdown-item" href="/index.html#">
+			<a class="dropdown-item" href="/usuarios/perfil.jsp">
 				<em class="fa fa-user-circle mr-1"></em>
-				Ver Perfil
+				Actualizar Perfil
 			</a>
 
 			<a class="dropdown-item" href="/logout">

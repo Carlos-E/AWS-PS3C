@@ -128,8 +128,8 @@ public class modificarUsuario extends HttpServlet {
 				if(cambio){
 					session.setAttribute("busca", "ninguno");
 					System.out.println("algo se cambio");
-					com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getRequestURL() + ".jsp");
-					//response.sendRedirect("index.jsp");
+					com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getSession().getAttribute("origin").toString());
+
 				}else{
 					System.out.println("no se cambio nada");
 				}
