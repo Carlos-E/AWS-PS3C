@@ -82,6 +82,8 @@ public class modificarCamion extends HttpServlet {
 			com.logica.Dibujar.mensaje(out, "Operacion Exitosa", nextURL);
 		} else {
 			System.out.println("no se cambio nada");
+			com.logica.Dibujar.mensaje(response.getWriter(), "No ha habido cambio", request.getSession().getAttribute("origin").toString());
+
 		}		
 	}
 

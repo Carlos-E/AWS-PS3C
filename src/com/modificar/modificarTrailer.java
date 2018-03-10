@@ -87,6 +87,7 @@ public class modificarTrailer extends HttpServlet {
 			//response.sendRedirect("index.jsp");
 		} else {
 			System.out.println("no se cambio nada");
+			com.logica.Dibujar.mensaje(response.getWriter(), "No ha habido cambio", request.getSession().getAttribute("origin").toString());
 		}
 	}
 

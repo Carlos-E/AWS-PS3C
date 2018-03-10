@@ -77,8 +77,6 @@ public class modificarEmpresa extends HttpServlet {
 		if (cambio) {
 			session.setAttribute("busca", "ninguno");
 			System.out.println("algo se cambio");
-			PrintWriter out = response.getWriter();
-			String nextURL = request.getContextPath() + "/modificar/empresa.jsp";
 			com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getSession().getAttribute("origin").toString());
 		} else {
 			System.out.println("no se cambio nada");
