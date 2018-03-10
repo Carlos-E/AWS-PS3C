@@ -46,6 +46,10 @@ footer a, p a {
 	color: rgb(213, 108, 62) !important;
 }
 
+.jumbotron span {
+	font-weight: bold;
+}
+
 canvas {
 	-moz-user-select: none;
 	-webkit-user-select: none;
