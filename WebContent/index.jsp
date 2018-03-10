@@ -4,9 +4,9 @@
 	if (session.getAttribute("rol") == null) {
 		response.sendRedirect("/login.jsp");
 	}
-	/* session.setAttribute("pagina", "<em class=\"fa fa-truck fa-lg\" style=\"color: rgba(255, 255, 255, 0.7)\"></em><span style=\"color:rgb(213, 108, 62);\">P</span><span style=\"color: rgb(213, 108, 62)\">S</span><span style=\"color: rgb(213, 108, 62)\">3</span><span style=\"color: rgb(213, 108, 62)\">C</span>"); */
-	session.setAttribute("pagina",
+/* 	session.setAttribute("pagina",
 			"<span style=\"color: rgba(255, 210, 20, 1); text-shadow: 1px 1px black;\"><em class=\"fa fa-truck fa-lg\" style=\"color: rgb(219, 130, 92);\"></em>PS3C</span>");
+ */	session.setAttribute("pagina","Inicio");
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -16,8 +16,8 @@
 @import url('https://fonts.googleapis.com/css?family=Faster+One');
 
 .titulo h1 {
-	font-family: 'Faster One', cursive;
-	font-weight: normal;
+	/* font-family: 'Faster One', cursive;
+	font-weight: normal; */
 }
 </style>
 <!--  HEAD -->
