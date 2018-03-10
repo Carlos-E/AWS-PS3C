@@ -19,6 +19,7 @@
 	/* font-family: 'Faster One', cursive;
 	font-weight: normal; */
 }
+
 </style>
 <!--  HEAD -->
 <jsp:include page="/head.jsp" />
@@ -112,12 +113,12 @@
 		var audio = new Audio('/audio/song.mp3');
 		//audio.play();
 
-		document.querySelector('#nav-brand-link').innerHTML = '<em class="fa fa-truck fa-spin fa-2x"></em> PS3C';
+		document.querySelector('#nav-brand-link').innerHTML = '<em class="fa fa-truck fa-spin fa-2x quick"></em> PS3C';
 
 		setTimeout(
 				function() {
 					document.querySelector('#nav-brand-link').innerHTML = '<em class="fa fa-truck fa-2x"></em> PS3C';
-				}, 8110);
+				}, /* 8110 */ 3000);
 	</script>
 
 </body>

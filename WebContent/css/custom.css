@@ -51,3 +51,13 @@ canvas {
 	-webkit-user-select: none;
 	-ms-user-select: none;
 }
+
+.fa-spin {
+  -webkit-animation: fa-spin 0.8s infinite linear;
+  animation: fa-spin 0.8s infinite linear;
+}
+
+.quick {
+  -webkit-animation: fa-spin 0.1s infinite linear;
+  animation: fa-spin 0.1s infinite linear;
+}
