@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.io.*,java.util.*"%>
-<%@ page import="com.logica.*"%>
-<%@ page import="clases.*"%>
 <%
 	if (session.getAttribute("rol") == null) {
-		//response.sendError(400, "Acceso incorrecto"); //cambiar
 		response.sendRedirect("/error.jsp");
 	}
 	session.setAttribute("pagina", "Actualizar Perfil");
@@ -131,7 +127,7 @@
 	<!-- /FIN -->
 	<script>
 		$(document).ready(function() {
-			var lista;
+
 			$.ajax({
 				url : "/usuarios/perfil",
 				type : "GET",

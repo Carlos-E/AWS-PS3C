@@ -2,7 +2,7 @@
 <%@ page import="java.io.*,java.util.*"%>
 <%
 	if (session.getAttribute("rol") == null) {
-		response.sendError(400, "Acceso incorrecto"); //cambiar
+		response.sendRedirect("/login.jsp");
 	}
 %>
 

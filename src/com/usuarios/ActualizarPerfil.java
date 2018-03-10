@@ -27,9 +27,8 @@ public class ActualizarPerfil extends HttpServlet {
 			response.sendRedirect("/error.jsp");
 		}
 		
-		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-
 		response.setContentType("application/json");
+		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 		response.getWriter().print(ow.writeValueAsString(ControladorBD.getItem("usuarios", "usuario", request.getSession().getAttribute("username").toString())));
 		response.getWriter().close();
 	}
