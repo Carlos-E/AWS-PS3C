@@ -100,10 +100,9 @@
 				dataType : "json",
 			}).done(function(response) {
 				console.log(response);				
-				let dataSet = [];
-				var aux, chequeo = "";
+				let dataSet = [];	
 				response.forEach(element => {
-					console.log(element.chequeoDescarga);	
+					var aux, chequeo = "";	
 					if (element.chequeoDescarga) {
 						chequeo = "checked='checked'";
 					}

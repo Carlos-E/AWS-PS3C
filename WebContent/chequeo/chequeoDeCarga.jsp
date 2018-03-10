@@ -100,10 +100,9 @@
 				dataType : "json",
 			}).done(function(response) {
 				console.log(response);				
-				let dataSet = [];
-				var aux, chequeo = "";
+				let dataSet = [];				
 				response.forEach(element => {
-					console.log(element.chequeoCarga);	
+					var aux, chequeo = "";
 					if (element.chequeoCarga) {
 						chequeo = "checked='checked'";
 					}
@@ -111,7 +110,7 @@
 					dataSet.push([
 						element.fecha,
 						element.usuario,
-						element.empresa,
+						element.chequeoCarga,
 						element.origen,
 						element.destino,
 						element.espacio,
@@ -120,7 +119,6 @@
 						aux
 				]);
 				});
-				
 				console.log(dataSet);
 					
 				$('#tabla').DataTable( {

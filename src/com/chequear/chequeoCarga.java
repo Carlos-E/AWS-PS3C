@@ -45,8 +45,8 @@ public class chequeoCarga extends HttpServlet {
 		//doGet(request, response);
 		ArrayList<envio> envios = ControladorBD.escanearTabla("envios");
 		String chequeoCarga = "jeje saludos";
-		System.out.println(chequeoCarga);
-		for(int i=0;i<envios.size();i++){			
+		for(int i=0;i<envios.size();i++){		
+			System.out.println(envios.get(i).getFecha());
 			try{
 				chequeoCarga = request.getParameter(envios.get(i).getFecha()).toLowerCase();
 				if(chequeoCarga.equals("true")){
