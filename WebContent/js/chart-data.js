@@ -1,7 +1,6 @@
 var datos = function (data) {
 	var enero = 0, febrero = 0, marzo = 0, abril = 0, mayo = 0, junio = 0, julio = 0, agosto = 0, septiembre = 0, octubre = 0, noviembre = 0, diciembre = 0;
 	for (var i = 0; i < data.length; i++) {
-		console.log(data[i].fecha)
 		switch (extraerMes(data[i].fecha)) {
 			case "01":
 				enero++;
@@ -46,7 +45,6 @@ var datos = function (data) {
 	}
 	data = [enero, febrero, marzo, abril, mayo, junio, julio, agosto,
 		septiembre, octubre, noviembre, diciembre];
-	console.log(data);
 	return data;
 };
 
@@ -220,12 +218,10 @@ function makeDoughnut() {
 			let contador = 0;
 
 			empresas.forEach(function (empresa, i, empresas) {
-				console.log(empresa.nit);
 				
 				contador = 0;
 
 				camiones.forEach(function (camion, j, camiones) {
-					console.log(camion.empresa);
 
 					if (camion.empresa.toLowerCase() === empresa.nit.toLowerCase()) {
 						//Numero de envios por empresa
@@ -236,9 +232,7 @@ function makeDoughnut() {
 				data.datasets['0'].backgroundColor.push(randomColor());
 				data.labels.push(empresa.nombre);
 			});
-			
-			console.log(JSON.stringify(data,null,2));
-			
+						
 	        $("#spinner-3").fadeOut("slow");
 
 			let ctx = document.getElementById('doughnut-chart').getContext('2d');
