@@ -44,7 +44,6 @@ public class chequeoCarga extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		ArrayList<envio> envios = ControladorBD.escanearTabla("envios");
-		request.getParameter("destino").toLowerCase();
 		String chequeoCarga = "jeje saludos";
 		System.out.println(chequeoCarga);
 		for(int i=0;i<envios.size();i++){			
