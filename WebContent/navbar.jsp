@@ -235,6 +235,37 @@
 				Mapa
 			</a>
 		</li>
+		
+		<li class="parent nav-item">
+			<a class="nav-link" data-toggle="collapse" href="#sub-item-10">
+				<em class="fa fa-user">&nbsp;</em>
+				<em class="fa fa-truck">&nbsp;</em>
+				Transportador
+				<span data-toggle="collapse"  class="icon float-right">
+					<i class="fa fa-caret-down"></i>
+				</span>
+			</a>
+			<ul class="children collapse" id="sub-item-10">
+				<li class="nav-item">
+					<a class="nav-link" href="/trasportador/envios.jsp">
+						Env&iacute;os
+						<em class="fa fa-paper-plane">&nbsp;</em>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/transportador/reportes.jsp">
+						Reportes
+						<em class="fa fa-newspaper">&nbsp;</em>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/transportador/mapa.jsp">
+						Mapa
+						<em class="fa fa-map">&nbsp;</em>
+					</a>
+				</li>
+			</ul>
+		</li>
 	</ul>
 	<a href="/logout" class="nav-link"><em class="fa fa-power-off"></em> Cerrar Sesi&oacute;n</a>
 </nav>
