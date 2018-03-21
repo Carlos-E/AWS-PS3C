@@ -32,8 +32,7 @@ html, body {
 	position: absolute;
 	bottom: 2rem;
 	left: 1rem;
-	max-width: 50%;
-	z-index: 5;
+	max-width: 70%; z-index : 5;
 	background-color: #fff;
 	padding: 0.5rem;
 	border: 1px solid #999;
@@ -41,21 +40,40 @@ html, body {
 	font-family: 'Roboto', 'sans-serif';
 	line-height: 30px;
 	padding-left: 10px;
+	z-index: 5;
 }
 </style>
 </head>
 <body>
 	<div id="floating-panel">
-		<b>Origen: </b>
-		<select id="start">
-			<option value="8.772299, -75.861037">Puche</option>
-			<option value="barranquilla, atlantico">Barranquilla</option>
-		</select>
-		<b>Destino: </b>
-		<select id="end">
-			<option value="santamarta, magdalena">Santamarta</option>
-			<option value="10.3904916,-75.5014576">Carlos</option>
-		</select>
+		<div class="row">
+			<div class="col">
+				<b>Origen: </b>
+				<select id="start">
+					<option value="8.772299, -75.861037">Puche</option>
+					<option value="barranquilla, atlantico">Barranquilla</option>
+					<option value="barranquilla, atlantico">Barranquilla</option>
+					<option value="barranquilla, atlantico">Barranquilla</option>
+					<option value="barranquilla, atlantico">Barranquilla</option>
+					<option value="barranquilla, atlantico">Barranquilla</option>
+					<option value="barranquilla, atlantico">Barranquilla</option>
+					<option value="barranquilla, atlantico">Barranquilla</option>
+					<option value="barranquilla, atlantico">Barranquilla</option>
+					<option value="barranquilla, atlantico">Barranquilla</option>
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<b>Destino: </b>
+				<select id="end">
+					<option value="santamarta, magdalena">Santamarta</option>
+					<option value="10.3904916,-75.5014576">Carlos</option>
+				</select>
+			</div>
+		</div>
+
+
 	</div>
 
 
@@ -67,10 +85,10 @@ html, body {
 			var directionsService = new google.maps.DirectionsService;
 			var directionsDisplay = new google.maps.DirectionsRenderer;
 			var map = new google.maps.Map(document.getElementById('map'), {
-				zoom : 16,
+				zoom : 13,
 				center : {
-					lat : 10.4002813,
-					lng : -75.5435451
+					lat : 10.4049383,
+					lng : -75.497829
 				}
 			});
 			directionsDisplay.setMap(map);
