@@ -12,6 +12,11 @@
 <head>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 <meta charset="utf-8">
+
+<!--  HEAD -->
+<jsp:include page="/head.jsp" />
+<!--  ./HEAD -->
+
 <title>Prueba Rutas</title>
 <style>
 /* Always set the map height explicitly to define the size of the div
@@ -24,61 +29,90 @@ html, body {
 	height: 100%;
 	margin: 0;
 	padding: 0;
-	font-size: 1rem;
 }
 
-#floating-panel {
+.floating-panel {
 	font-size: 1rem;
 	position: absolute;
-	bottom: 2rem;
-	left: 1rem;
-	max-width: 70%; z-index : 5;
-	background-color: #fff;
-	padding: 0.5rem;
-	border: 1px solid #999;
-	text-align: center;
-	font-family: 'Roboto', 'sans-serif';
-	line-height: 30px;
-	padding-left: 10px;
+	min-width: auto;
+	max-width: 70%;
 	z-index: 5;
+	text-align: right;
+	line-height: 30px;
+	z-index: 5;
+}
+
+.card-header {
+	padding: 0rem;
+	margin: 0;
+}
+
+.card-block {
+	padding: 0.5rem;
+	margin: 0;
+}
+
+p {
+	padding: 0;
+	margin: 0;
 }
 </style>
 </head>
 <body>
-	<div id="floating-panel">
-		<div class="row">
-			<div class="col">
-				<b>Origen: </b>
-				<select id="start">
-					<option value="8.772299, -75.861037">Puche</option>
-					<option value="barranquilla, atlantico">Barranquilla</option>
-					<option value="barranquilla, atlantico">Barranquilla</option>
-					<option value="barranquilla, atlantico">Barranquilla</option>
-					<option value="barranquilla, atlantico">Barranquilla</option>
-					<option value="barranquilla, atlantico">Barranquilla</option>
-					<option value="barranquilla, atlantico">Barranquilla</option>
-					<option value="barranquilla, atlantico">Barranquilla</option>
-					<option value="barranquilla, atlantico">Barranquilla</option>
-					<option value="barranquilla, atlantico">Barranquilla</option>
-				</select>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col">
-				<b>Destino: </b>
-				<select id="end">
-					<option value="santamarta, magdalena">Santamarta</option>
-					<option value="10.3904916,-75.5014576">Carlos</option>
-				</select>
-			</div>
-		</div>
 
+	<div class="floating-panel" style="bottom: 7rem; left: 0.5rem;">
+
+		<div class="row">
+			<div class="col">
+				<div class="card">
+
+					<div class="card-block">
+						<select id="envios">
+							<option value="1">Envio 1</option>
+							<option value="2">Envio 2</option>
+							<option value="3">Envio 3</option>
+							<option value="4">Envio 4</option>
+						</select>
+						<span></span>
+					</div>
+
+				</div>
+			</div>
+		</div>
 
 	</div>
 
+	<div class="floating-panel" style="bottom: 2rem; left: 0.5rem;">
+
+		<div class="card">
+
+			<div class="card-block">
+
+				<div class="row">
+					<div class="col">
+						Origen:
+						<select id="start">
+							<option value="8.772299, -75.861037">Puche</option>
+						</select>
+					</div>
+
+				</div>
+
+				<div class="row">
+					<div class="col">
+						Destino:
+						<select id="end">
+							<option value="10.3904916,-75.5014576">Carlos</option>
+						</select>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
 
 	<div id="map"></div>
-
 
 	<script>
 		function initMap() {
