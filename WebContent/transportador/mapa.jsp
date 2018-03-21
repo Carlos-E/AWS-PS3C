@@ -134,6 +134,10 @@ p {
 					onChangeHandler);
 			document.getElementById('end').addEventListener('change',
 					onChangeHandler);
+
+			setTimeout(function() {
+				calculateAndDisplayRoute(directionsService, directionsDisplay);
+			}, 2000);
 		}
 
 		function calculateAndDisplayRoute(directionsService, directionsDisplay) {
