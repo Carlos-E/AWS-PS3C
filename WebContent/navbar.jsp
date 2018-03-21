@@ -214,6 +214,12 @@
 						<em class="fa fa-truck">&nbsp;</em>
 					</a>
 				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/envios/reportes.jsp">
+						Reportes
+						<em class="fa fa-newspaper">&nbsp;</em>
+					</a>
+				</li>
 			</ul>
 		</li>
 		<li class="nav-item">
