@@ -61,6 +61,7 @@ p {
 <body>
 
 	<div class="floating-panel" style="bottom: 7rem; left: 0.5rem;">
+		<input type="button" value="Say hello" onClick="showAndroidToast('Hello Android!')" />
 
 		<div class="row">
 			<div class="col">
@@ -114,7 +115,26 @@ p {
 
 	<div id="map"></div>
 
+	<script type="text/javascript">
+	
+		var bestLatLong, GPSLatLong, networkLatLong;
+		
+		var BestIsOn = true;
+		var GPSIsOn = true;
+		var networkIsOn = true;
+		
+		Android.showToast('Toasty');
+		Android.toggleBestUpdates(BestIsOn);		
+		Android.toggleGPSUpdates(GPSIsOn);		
+		Android.toggleNetworkUpdates(networkIsOn);
+		
+		setInterval(function(){
+			Android.showToast('COORDENADAS: ' + Android.getBestLocation()+", "+ Android.getGPSLocation()+", "+ Android.getNetworkLocation());
+		},5000)
+	</script>
+
 	<script>
+	
 		function initMap() {
 			var directionsService = new google.maps.DirectionsService;
 			var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -149,10 +169,11 @@ p {
 				if (status === 'OK') {
 					directionsDisplay.setDirections(response);
 				} else {
-					window.alert('Directions request failed due to ' + status);
+					Android.showToast('Directions request failed due to ' + status);
 				}
 			});
 		}
+		
 	</script>
 
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsQwNmnSYTDtkrlXKeKnfP0x8TNwVJ2uI&callback=initMap">
