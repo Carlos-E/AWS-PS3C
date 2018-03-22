@@ -32,14 +32,18 @@ html, body {
 }
 
 .floating-panel {
-	font-size: 1rem;
 	position: absolute;
-	min-width: auto;
-	max-width: 70%;
 	z-index: 5;
 	text-align: right;
-	line-height: 30px;
-	z-index: 5;
+	line-height: 15px;
+}
+
+.row {
+	padding-top: 0.5rem;
+}
+
+.card {
+	width: fit-content;
 }
 
 .card-header {
@@ -60,8 +64,7 @@ p {
 </head>
 <body>
 
-	<div class="floating-panel" style="bottom: 7rem; left: 0.5rem;">
-		<input type="button" value="Say hello" onClick="showAndroidToast('Hello Android!')" />
+	<div class="floating-panel" style="bottom: 2rem; left: 0.5rem;">
 
 		<div class="row">
 			<div class="col">
@@ -69,10 +72,7 @@ p {
 
 					<div class="card-block">
 						<select id="envios">
-							<option value="1">Envio 1</option>
-							<option value="2">Envio 2</option>
-							<option value="3">Envio 3</option>
-							<option value="4">Envio 4</option>
+							<option value=""></option>
 						</select>
 						<span></span>
 					</div>
@@ -81,63 +81,79 @@ p {
 			</div>
 		</div>
 
-	</div>
+		<div class="row">
+			<div class="col">
 
-	<div class="floating-panel" style="bottom: 2rem; left: 0.5rem;">
+				<div class="card">
 
-		<div class="card">
+					<div class="card-block">
 
-			<div class="card-block">
+						<div class="row">
+							<div class="col">
+								<label for="recogido">Recogido:</label>
+								<input type="checkbox" value="Recogido" id="recogido">
+							</div>
 
-				<div class="row">
-					<div class="col">
-						Origen:
-						<select id="start">
-							<option value="8.772299, -75.861037">Puche</option>
-						</select>
-					</div>
+						</div>
 
-				</div>
+						<div class="row">
+							<div class="col">
+								<label for="entregado">Entregado:</label>
+								<input type="checkbox" value="Entregado" id="entregado">
+							</div>
+						</div>
 
-				<div class="row">
-					<div class="col">
-						Destino:
-						<select id="end">
-							<option value="10.3904916,-75.5014576">Carlos</option>
-						</select>
 					</div>
 				</div>
 
 			</div>
 		</div>
 
+		<div class="row">
+			<div class="col">
+				<div class="card">
+
+					<div class="card-block">
+						<label id="coords"> </label>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
 	</div>
+
+	<select id="start" hidden>
+		<option value="8.772299, -75.861037">Puche</option>
+	</select>
+	<select id="end" hidden>
+		<option value="10.3904916,-75.5014576">Carlos</option>
+	</select>
 
 	<div id="map"></div>
 
 	<script type="text/javascript">
-	
-		var bestLatLong, GPSLatLong, networkLatLong;
-		
 		var BestIsOn = true;
-		var GPSIsOn = true;
-		var networkIsOn = true;
-		
-		Android.showToast('Toasty');
-		Android.toggleBestUpdates(BestIsOn);		
-		Android.toggleGPSUpdates(GPSIsOn);		
+		var GPSIsOn = false;
+		var networkIsOn = false;
+
+		Android.toggleBestUpdates(BestIsOn);
+		Android.toggleGPSUpdates(GPSIsOn);
 		Android.toggleNetworkUpdates(networkIsOn);
-		
-		setInterval(function(){
-			Android.showToast('COORDENADAS: ' + Android.getBestLocation()+", "+ Android.getGPSLocation()+", "+ Android.getNetworkLocation());
-		},5000)
+
+		setInterval(function() {
+
+			document.getElementById('coords').innerHTML = Android
+					.getBestLocation()
+		}, 5000);
 	</script>
 
 	<script>
-	
 		function initMap() {
+
 			var directionsService = new google.maps.DirectionsService;
 			var directionsDisplay = new google.maps.DirectionsRenderer;
+
 			var map = new google.maps.Map(document.getElementById('map'), {
 				zoom : 13,
 				center : {
@@ -145,6 +161,7 @@ p {
 					lng : -75.497829
 				}
 			});
+
 			directionsDisplay.setMap(map);
 
 			var onChangeHandler = function() {
@@ -169,11 +186,11 @@ p {
 				if (status === 'OK') {
 					directionsDisplay.setDirections(response);
 				} else {
-					Android.showToast('Directions request failed due to ' + status);
+					Android.showToast('Directions request failed due to '
+							+ status);
 				}
 			});
 		}
-		
 	</script>
 
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsQwNmnSYTDtkrlXKeKnfP0x8TNwVJ2uI&callback=initMap">

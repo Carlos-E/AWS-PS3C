@@ -12,46 +12,105 @@
 <html lang="es">
 <head>
 <jsp:include page="/head.jsp" />
-<title><%out.print(session.getAttribute("pagina").toString());%></title>
+<title>
+	<%
+		out.print(session.getAttribute("pagina").toString());
+	%>
+</title>
 </head>
 <body>
-<div class="container-fluid" id="wrapper">
+
+	<div class="container-fluid" id="wrapper">
 		<div class="row">
-			<!-- INICIO NAVBAR -->
-			<jsp:include page="/navbar.jsp" />
+			<!--  NAVBAR -->
+			<%@ page import="com.logica.*"%>
+			<%@ page import="clases.*"%>
+			<%
+				usuario usuario = new usuario();
+				usuario = (usuario) com.logica.ControladorBD.getItem("usuarios", "usuario",
+						session.getAttribute("username").toString());
+			%>
+			<nav class="sidebar col-xs-12 col-sm-4 col-lg-3 col-xl-2">
+			<h1 class="site-title">
+				<a id="nav-brand-link" href="/index.jsp">
+					<em class="fa fa-truck fa-2x"></em>
+					PS3C
+				</a>
+			</h1>
+			<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">
+				<em class="fa fa-bars"></em>
+			</a>
+			<ul class="nav nav-pills flex-column sidebar-nav">
+				<li class="nav-item">
+					<a class="nav-link active" href="/index.jsp">
+						<em class="fa fa-tachometer-alt"></em>
+						Inicio
+						<span class="sr-only">(current)</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/transportador/envios.jsp">
+						Env&iacute;os
+						<em class="fa fa-paper-plane">&nbsp;</em>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/transportador/reportes.jsp">
+						Reportes
+						<em class="fa fa-newspaper">&nbsp;</em>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/transportador/mapa.jsp">
+						Mapa
+						<em class="fa fa-map">&nbsp;</em>
+					</a>
+				</li>
+
+			</ul>
+			<a href="/logoutMovil" class="nav-link">
+				<em class="fa fa-power-off"></em>
+				Cerrar Sesi&oacute;n
+			</a> </nav>
 			<!--  ./NAVBAR -->
 		</div>
 	</div>
 
-<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER --> <section class="row">
+	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER --> <section class="row">
 	<div class="col-md-12 col-lg-12">
 		<div class="card mb-4">
 			<!-- INICIO CONTAINER -->
 
 			<div class="card-block">
-				<h3 class="card-title"><% out.print(session.getAttribute("pagina").toString()); %></h3>
-				
+				<h3 class="card-title">
+					<%
+						out.print(session.getAttribute("pagina").toString());
+					%>
+				</h3>
+
 				<form class="form" action="#" method="post">
-		
-							<div class="col-sm-12">
-								<table id="tabla" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
-									<thead>
 
-									</thead>
-									<tfoot>
+					<div class="col-sm-12">
+						<table id="tabla" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
+							<thead>
 
-									</tfoot>
-									<tbody>
+							</thead>
+							<tfoot>
 
-									</tbody>
-								</table>
-							</div><br><br>
-										<div class="form-group">
-													<label class="col-12 control-label no-padding" for="message">Escriba su Reporte</label>
-													<div class="col-12 no-padding">
-														<textarea class="form-control" id="message" name="message" placeholder="Escriba aqui su reporte..." rows="5"></textarea>
-													</div>
-												</div>
+							</tfoot>
+							<tbody>
+
+							</tbody>
+						</table>
+					</div>
+					<br>
+					<br>
+					<div class="form-group">
+						<label class="col-12 control-label no-padding" for="message">Escriba su Reporte</label>
+						<div class="col-12 no-padding">
+							<textarea class="form-control" id="message" name="message" placeholder="Escriba aqui su reporte..." rows="5"></textarea>
+						</div>
+					</div>
 
 					<div class="modal-footer">
 						<button type="submit" name="submit" class="btn btn-primary btn-md float-right">Reportar</button>
