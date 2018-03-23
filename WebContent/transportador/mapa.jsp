@@ -17,7 +17,7 @@
 <jsp:include page="/head.jsp" />
 <!--  ./HEAD -->
 
-<title>Prueba Rutas</title>
+<title>Rutas</title>
 <style>
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -35,15 +35,17 @@ html, body {
 	position: absolute;
 	z-index: 5;
 	text-align: right;
-	line-height: 15px;
 }
 
 .row {
-	padding-top: 0.5rem;
+	padding: 0.1rem;
+	padding-top: 0.25rem;
 }
 
 .card {
+	height: fit-content;
 	width: fit-content;
+	/* max-width: 50vw; */
 }
 
 .card-header {
@@ -52,7 +54,7 @@ html, body {
 }
 
 .card-block {
-	padding: 0.5rem;
+	padding: 0.1rem;
 	margin: 0;
 }
 
@@ -61,8 +63,29 @@ p {
 	margin: 0;
 }
 </style>
+
+<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
+
 </head>
 <body>
+
+	<div class="floating-panel" style="top: 0.25rem; right: 0.5rem;">
+		<div class="row">
+			<div class="col">
+<!-- 				<a class="btn btn-light" href="https://www.google.com/maps/dir/?api=1&destination="+destination+"&travelmode=driving&dir_action=navigate" onclick="Android.openOnGoogleMaps(document.getElementById('end').value)">Abrir en Google Maps</a>
+ -->				<a class="btn btn-light" href="https://www.google.com/maps/dir/?api=1&destination=10.4227348,-75.5529205&travelmode=driving&dir_action=navigate">Abrir en Google Maps</a>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col">
+				<button class="btn btn-light" id="sync">
+					<i class="fa fa-sync-alt"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+
 
 	<div class="floating-panel" style="bottom: 2rem; left: 0.5rem;">
 
@@ -71,8 +94,11 @@ p {
 				<div class="card">
 
 					<div class="card-block">
+						<span for="recogido">Env&iacute;os:</span>
+
 						<select id="envios">
-							<option value=""></option>
+							<option value="">...</option>
+							<option value="1">1..</option>
 						</select>
 						<span></span>
 					</div>
@@ -90,7 +116,7 @@ p {
 
 						<div class="row">
 							<div class="col">
-								<label for="recogido">Recogido:</label>
+								<span for="recogido">Recogido:</span>
 								<input type="checkbox" value="Recogido" id="recogido">
 							</div>
 
@@ -98,7 +124,7 @@ p {
 
 						<div class="row">
 							<div class="col">
-								<label for="entregado">Entregado:</label>
+								<span for="entregado">Entregado:</span>
 								<input type="checkbox" value="Entregado" id="entregado">
 							</div>
 						</div>
@@ -114,7 +140,11 @@ p {
 				<div class="card">
 
 					<div class="card-block">
-						<label id="coords"> </label>
+						Lat:
+						<span id="lat">10.4001778</span>
+						<br>
+						Lng:
+						<span id="lng">-75.5657678</span>
 					</div>
 
 				</div>
@@ -123,30 +153,10 @@ p {
 
 	</div>
 
-	<select id="start" hidden>
-		<option value="8.772299, -75.861037">Puche</option>
-	</select>
-	<select id="end" hidden>
-		<option value="10.3904916,-75.5014576">Carlos</option>
-	</select>
+	<!-- <input id="start" value="8.772299, -75.861037" hidden> -->
+	<input id="end" value="10.4233996,-75.5554203" hidden>
 
 	<div id="map"></div>
-
-	<script type="text/javascript">
-		var BestIsOn = true;
-		var GPSIsOn = false;
-		var networkIsOn = false;
-
-		Android.toggleBestUpdates(BestIsOn);
-		Android.toggleGPSUpdates(GPSIsOn);
-		Android.toggleNetworkUpdates(networkIsOn);
-
-		setInterval(function() {
-
-			document.getElementById('coords').innerHTML = Android
-					.getBestLocation()
-		}, 5000);
-	</script>
 
 	<script>
 		function initMap() {
@@ -164,13 +174,18 @@ p {
 
 			directionsDisplay.setMap(map);
 
-			var onChangeHandler = function() {
+			var onEventHandler = function() {
 				calculateAndDisplayRoute(directionsService, directionsDisplay);
 			};
-			document.getElementById('start').addEventListener('change',
-					onChangeHandler);
-			document.getElementById('end').addEventListener('change',
-					onChangeHandler);
+
+			document.getElementById('envios').addEventListener('change',
+					onEventHandler);
+			document.getElementById('sync').addEventListener('click',
+					onEventHandler);
+
+			function recalculate() {
+				calculateAndDisplayRoute(directionsService, directionsDisplay);
+			}
 
 			setTimeout(function() {
 				calculateAndDisplayRoute(directionsService, directionsDisplay);
@@ -179,18 +194,37 @@ p {
 
 		function calculateAndDisplayRoute(directionsService, directionsDisplay) {
 			directionsService.route({
-				origin : document.getElementById('start').value,
+				origin : document.getElementById('lat').innerHTML + ","
+						+ document.getElementById('lng').innerHTML,
 				destination : document.getElementById('end').value,
 				travelMode : 'DRIVING'
 			}, function(response, status) {
 				if (status === 'OK') {
 					directionsDisplay.setDirections(response);
+					console.log(JSON.stringify(response, null, 2));
 				} else {
 					Android.showToast('Directions request failed due to '
 							+ status);
 				}
 			});
 		}
+		
+		var BestIsOn = true;
+		var GPSIsOn = false;
+		var networkIsOn = false;
+
+		Android.toggleBestUpdates(BestIsOn);
+		Android.toggleGPSUpdates(GPSIsOn);
+		Android.toggleNetworkUpdates(networkIsOn);
+
+		setInterval(function() {
+
+			var coords = Android.getBestLocation();
+
+			document.getElementById('lat').innerHTML = coords.split(",")[0];
+			document.getElementById('lng').innerHTML = coords.split(",")[1];
+
+		}, 1000);
 	</script>
 
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsQwNmnSYTDtkrlXKeKnfP0x8TNwVJ2uI&callback=initMap">
