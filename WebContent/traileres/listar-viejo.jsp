@@ -55,8 +55,8 @@ th, td {
 			<tbody>
 				<%
 					for (int i = 0; i < listaTrailer.size(); i++) {
-						camion camion = (camion) ControladorBD.getItem("camiones", "placa", listaTrailer.get(i).getCamion());
-						empresa empresa = (empresa) ControladorBD.getItem("empresas", "nit", listaTrailer.get(i).getEmpresa());
+						Camion camion = (Camion) ControladorBD.getItem("camiones", "placa", listaTrailer.get(i).getCamion());
+						Empresa empresa = (Empresa) ControladorBD.getItem("empresas", "nit", listaTrailer.get(i).getEmpresa());
 				%>
 				<tr>
 					<td>

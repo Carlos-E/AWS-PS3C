@@ -29,9 +29,9 @@
 		<%@ page import="com.logica.*"%>
 		<%@ page import="clases.*"%>
 		<%
-			ArrayList<camion> listaCamion = ControladorBD.escanearTabla("camiones");
+			ArrayList<Camion> listaCamion = ControladorBD.escanearTabla("camiones");
 			ArrayList<trailer> listaTrailers = ControladorBD.escanearTabla("trailers");
-			ArrayList<camion> listaCamiones = new ArrayList<camion>();
+			ArrayList<Camion> listaCamiones = new ArrayList<Camion>();
 			for (int i = 0; i < listaCamion.size(); i++) {
 				if (!listaCamion.get(i).getTipo().equals("camion")) {
 					listaCamiones.add(listaCamion.get(i));
@@ -82,10 +82,10 @@
 		<%
 			} else {
 				String camtra = session.getAttribute("obj").toString();
-				camion camion = new camion();
+				Camion camion = new Camion();
 				trailer trailer = new trailer();
-				ArrayList<envio> envio = ControladorBD.escanearTabla("envios");
-				ArrayList<envio> envios = new ArrayList<envio>();
+				ArrayList<Envio> envio = ControladorBD.escanearTabla("envios");
+				ArrayList<Envio> envios = new ArrayList<Envio>();
 				try {
 					for (int i = 0; i < envio.size(); i++) {
 						if (envio.get(i).getCamion().equals(camtra)) {

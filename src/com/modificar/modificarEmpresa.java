@@ -18,7 +18,7 @@ import com.logica.ControladorBD;
 @WebServlet("/modificarEmpresa")
 public class modificarEmpresa extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	clases.empresa empresa = new clases.empresa();
+	clases.Empresa empresa = new clases.Empresa();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -48,7 +48,7 @@ public class modificarEmpresa extends HttpServlet {
 		// doGet(request, response);
 		HttpSession session = request.getSession();
 		String nit = session.getAttribute("obj").toString();
-		empresa = (clases.empresa) ControladorBD.getItem("empresas", "empresa", nit);
+		empresa = (clases.Empresa) ControladorBD.getItem("empresas", "empresa", nit);
 		String nombre = request.getParameter("nombre").toLowerCase();
 		String telefono = request.getParameter("telefono").toLowerCase();
 		String direccion = request.getParameter("direccion").toLowerCase();

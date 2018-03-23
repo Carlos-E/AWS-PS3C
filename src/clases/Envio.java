@@ -1,16 +1,16 @@
 package clases;
 
-public class envio {
+public class Envio {
 
 	String  usuario, fecha, destino, origen, destinoLatLong, origenLatLong, estado, espacio, tipo, tiempoCarga, tiempoDescargaUsuario, camion, trailer, empresa;
 	boolean chequeoCarga, chequeoDescarga;
 	
-	public envio() {
+	public Envio() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public envio(String usuario, String fecha, String destino, String origen, String destinoLatLong,
+	public Envio(String usuario, String fecha, String destino, String origen, String destinoLatLong,
 			String origenLatLong, String estado, String espacio, String tipo, String tiempoCarga,
 			String tiempoDescargaUsuario, String camion, String trailer, String empresa, boolean chequeoCarga,
 			boolean chequeoDescarga) {

@@ -33,7 +33,7 @@ session.setAttribute("pagina", "Asignar Mercancía a Trailer");
 			ArrayList<trailer> listaTrailer = ControladorBD.escanearTabla("trailers");
 		%>
 			<%
-			ArrayList<envio> listaEnvio = ControladorBD.escanearTabla("envios");
+			ArrayList<Envio> listaEnvio = ControladorBD.escanearTabla("envios");
 		%>
 			<form id="form" name="form" class="form" action="/mercanciaATrailer"
 				method="post">

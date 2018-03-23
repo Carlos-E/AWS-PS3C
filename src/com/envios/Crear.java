@@ -23,7 +23,7 @@ import clases.*;
 @WebServlet("/envios/crear")
 public class Crear extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	clases.envio envio = new clases.envio();
+	clases.Envio envio = new clases.Envio();
 	clases.usuario cliente = new clases.usuario();
 
 	/**
@@ -75,7 +75,7 @@ public class Crear extends HttpServlet {
 		try {
 			String busqueda = ControladorBD.buscaCamion(destino, origen, espacio);
 			trailer trailer1 = (trailer) ControladorBD.getItem("trailers", "patente", busqueda.substring(1, busqueda.length()));
-			camion camion1 = (camion) ControladorBD.getItem("camiones", "placa", busqueda.substring(1, busqueda.length()));
+			Camion camion1 = (Camion) ControladorBD.getItem("camiones", "placa", busqueda.substring(1, busqueda.length()));
 			if (busqueda == "nada") {
 				response.setContentType("text/html");
 				com.logica.Dibujar.mensaje(out, "No Hay Rutas", nextURL);
@@ -110,7 +110,7 @@ public class Crear extends HttpServlet {
 				envio.setChequeoCarga(false);
 				envio.setChequeoDescarga(false);
 				trailer trailer2 = (trailer) ControladorBD.getItem("trailers", "patente", envio.getTrailer());
-				camion camion2 = (camion) ControladorBD.getItem("camiones", "placa", envio.getCamion());
+				Camion camion2 = (Camion) ControladorBD.getItem("camiones", "placa", envio.getCamion());
 				if (envio.getCamion() == null && envio.getTrailer() != null) {
 					envio.setEmpresa(trailer2.getEmpresa());
 					envio.setCamion(trailer2.getCamion());

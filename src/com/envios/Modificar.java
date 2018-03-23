@@ -18,9 +18,9 @@ import com.logica.ControladorBD;
 @WebServlet("/envios/modificar")
 public class Modificar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	clases.envio envio = new clases.envio();
-	clases.camion camion = new clases.camion();
-	clases.empresa empresa = new clases.empresa();
+	clases.Envio envio = new clases.Envio();
+	clases.Camion camion = new clases.Camion();
+	clases.Empresa empresa = new clases.Empresa();
 	clases.usuario usuario = new clases.usuario();
 
 	/**
@@ -50,7 +50,7 @@ public class Modificar extends HttpServlet {
 		HttpSession session = request.getSession();
 		String usuario = request.getParameter("cliente").toString();
 		String fecha = request.getParameter("fecha").toString();
-		envio = (clases.envio) ControladorBD.getItem("envios", "usuario",usuario,"fecha", fecha);
+		envio = (clases.Envio) ControladorBD.getItem("envios", "usuario",usuario,"fecha", fecha);
 		String destino = request.getParameter("destino").toLowerCase();
 		String origen = request.getParameter("origen").toLowerCase();
 		String espacio = request.getParameter("espacio").toLowerCase();

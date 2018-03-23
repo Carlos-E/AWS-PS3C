@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.logica.ControladorBD;
 
-import clases.camion;
-import clases.envio;
+import clases.Camion;
+import clases.Envio;
 import clases.trailer;
 
 /**
@@ -50,7 +50,7 @@ public class mercanciaATrailer extends HttpServlet {
 		String[] frag = id.split(" : ");
 		String frag1 = frag[0], frag2 = frag[1];
 		trailer trailer = (trailer) ControladorBD.getItem("trailers", "patente", patente);
-		envio envio = (envio) ControladorBD.getItem("envios", "usuario", frag1, "fecha", frag2);
+		Envio envio = (Envio) ControladorBD.getItem("envios", "usuario", frag1, "fecha", frag2);
 		double suma = Double.parseDouble(trailer.getEspacio()) - Double.parseDouble(envio.getEspacio());
 		if(suma < 0){
 			PrintWriter out = response.getWriter();

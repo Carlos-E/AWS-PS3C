@@ -166,6 +166,9 @@ html, body {
 
 	<div id="map"></div>
 
+
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	
 	<script>
 		function initMap() {
 
@@ -240,10 +243,20 @@ html, body {
 			document.getElementById('lng').innerHTML = coords.split(",")[1];
 
 		}, 1000);
+
+		$.ajax({
+			url : "/getEnvios",
+			type : "GET",
+			dataType : "json",
+		}).done(function(response) {
+			console.log(response);
+
+		}).fail(function(xhr, status, errorThrown) {
+			console.log('Failed Request To Servlet /getEnvios')
+		}).always(function(xhr, status) {
+		});
 	</script>
 
-	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsQwNmnSYTDtkrlXKeKnfP0x8TNwVJ2uI&callback=initMap">
-		
-	</script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsQwNmnSYTDtkrlXKeKnfP0x8TNwVJ2uI&callback=initMap"></script>
 </body>
 </html>

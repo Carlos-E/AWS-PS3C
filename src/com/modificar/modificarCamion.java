@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.logica.ControladorBD;
 
-import clases.camion;
+import clases.Camion;
 import clases.usuario;
 
 /**
@@ -21,7 +21,7 @@ import clases.usuario;
 @WebServlet("/modificarCamion")
 public class modificarCamion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	camion camion = new camion();
+	Camion camion = new Camion();
 	
 	
        
@@ -49,7 +49,7 @@ public class modificarCamion extends HttpServlet {
 		//doGet(request, response);
 		HttpSession session = request.getSession();	
 		String placa = session.getAttribute("obj").toString();
-		camion = (clases.camion) ControladorBD.getItem("camiones", "camion", placa);
+		camion = (clases.Camion) ControladorBD.getItem("camiones", "camion", placa);
 		String capacidad = request.getParameter("capacidad").toLowerCase();
 		String espacio = request.getParameter("espacio").toLowerCase();
 		String estado = request.getParameter("estado").toLowerCase();

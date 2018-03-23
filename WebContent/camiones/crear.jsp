@@ -29,9 +29,9 @@
 	<!--  ./HEADER --> 
 	<%
 		ArrayList<usuario> listaUsuarios = ControladorBD.escanearTabla("usuarios");
-		ArrayList<camion> listaCamiones = ControladorBD.escanearTabla("camiones");
+		ArrayList<Camion> listaCamiones = ControladorBD.escanearTabla("camiones");
 		ArrayList<usuario> listaConductor = new ArrayList<usuario>();
-		ArrayList<empresa> listaEmpresas = ControladorBD.escanearTabla("empresas");
+		ArrayList<Empresa> listaEmpresas = ControladorBD.escanearTabla("empresas");
 		for (int i = 0; i < listaUsuarios.size(); i++) {
 			if (listaUsuarios.get(i).getRol().equals("conductor")) {
 				if (!ControladorBD.estaOcupado(listaUsuarios.get(i).getNombre(), "null")) {

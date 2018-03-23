@@ -29,7 +29,7 @@
 		<%@ page import="java.util.ArrayList"%>
 		<%@ page import="clases.*"%>
 		<%
-			ArrayList<camion> listaCamion = com.logica.ControladorBD.escanearTabla("camiones");
+			ArrayList<Camion> listaCamion = com.logica.ControladorBD.escanearTabla("camiones");
 		%>
 			<form id="form" name="form" class="form" action="/destinoACamion" method="post">
 				<table class="table">

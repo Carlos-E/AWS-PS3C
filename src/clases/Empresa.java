@@ -1,10 +1,10 @@
 package clases;
 
-public class empresa {
+public class Empresa {
 	
 	String nombre, nit, rut, direccion, telefono, correo;
 
-	public empresa(String nombre, String nit, String rut, String direccion, String telefono, String correo) {
+	public Empresa(String nombre, String nit, String rut, String direccion, String telefono, String correo) {
 		super();
 		this.nombre = nombre;
 		this.nit = nit;
@@ -14,7 +14,7 @@ public class empresa {
 		this.correo = correo;
 	}
 
-	public empresa() {
+	public Empresa() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

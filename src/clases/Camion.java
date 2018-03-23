@@ -1,15 +1,15 @@
 package clases;
 
-public class camion {
+public class Camion {
 
 	String placa, tipo, capacidad, espacio, estado, destino, ubicacion, origen, usuario, empresa;
 	
-	public camion() {
+	public Camion() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public camion(String placa, String tipo, String capacidad, String espacio, String estado, String destino,
+	public Camion(String placa, String tipo, String capacidad, String espacio, String estado, String destino,
 			String ubicacion, String origen, String conductor, String empresa) {
 		super();
 		this.placa = placa;

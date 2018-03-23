@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.logica.ControladorBD;
 
-import clases.envio;
+import clases.Envio;
 
 /**
  * Servlet implementation class chequeoDescarga
@@ -43,7 +43,7 @@ public class chequeoDescarga extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
-		ArrayList<envio> envios = ControladorBD.escanearTabla("envios");
+		ArrayList<Envio> envios = ControladorBD.escanearTabla("envios");
 		String chequeoDescarga = "jeje saludos";
 		System.out.println(chequeoDescarga);
 		for(int i=0;i<envios.size();i++){			

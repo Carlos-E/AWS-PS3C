@@ -19,7 +19,7 @@ import clases.usuario;
 @WebServlet("/empresas/crear")
 public class Crear extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	clases.empresa empresa = new clases.empresa();
+	clases.Empresa empresa = new clases.Empresa();
        
     /**
      * @see HttpServlet#HttpServlet()

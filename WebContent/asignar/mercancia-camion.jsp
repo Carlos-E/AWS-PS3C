@@ -30,15 +30,15 @@ session.setAttribute("pagina", "Asignar Mercancía a Camion");
 			<%@ page import="com.logica.*"%>
 			<%@ page import="java.util.ArrayList"%>
 			<%@ page import="clases.*"%>
-			<% ArrayList<camion> listaCamiones = ControladorBD.escanearTabla("camiones");
-                   ArrayList<camion> listaCamion = new ArrayList<camion>();
+			<% ArrayList<Camion> listaCamiones = ControladorBD.escanearTabla("camiones");
+                   ArrayList<Camion> listaCamion = new ArrayList<Camion>();
                    for(int i=0; i<listaCamiones.size();i++){
                 	   if(listaCamiones.get(i).getTipo().equals("camion") ){
                 		   listaCamion.add(listaCamiones.get(i));
                        }
                    }
                    %>
-			<% ArrayList<envio> listaEnvio = ControladorBD.escanearTabla("envios");
+			<% ArrayList<Envio> listaEnvio = ControladorBD.escanearTabla("envios");
                 %>
 			<form id="form" name="form" class="form" action="/mercanciaACamion"
 				method="post">

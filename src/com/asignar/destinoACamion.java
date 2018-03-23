@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.logica.ControladorBD;
 
-import clases.camion;
+import clases.Camion;
 import clases.trailer;
 
 /**

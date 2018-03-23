@@ -34,8 +34,8 @@ session.setAttribute("pagina", "Asignar Trailer a Camión");
 				ArrayList<trailer> listaTrailer = ControladorBD.escanearTabla("trailers");
 			%>
 			<%
-				ArrayList<camion> list = ControladorBD.escanearTabla("camiones");
-				ArrayList<camion> listaCamion = new ArrayList();
+				ArrayList<Camion> list = ControladorBD.escanearTabla("camiones");
+				ArrayList<Camion> listaCamion = new ArrayList();
 				for (int i = 0; i < list.size(); i++) {
 					if (list.get(i).getTipo().equals("remolque")) {
 						listaCamion.add(list.get(i));

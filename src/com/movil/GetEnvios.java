@@ -32,12 +32,16 @@ public class GetEnvios extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-camion camion = (camion)ControladorBD.getItem("camiones", "usuario", request.getSession().getAttribute("username").toString());
+		String conductor = request.getSession().getAttribute("username").toString();
+		conductor = "condu";
+		
+		Camion camion = (Camion)ControladorBD.getItem("camiones", "usuario", conductor);
 		
 		String placaCamion = camion.getPlaca();
-		ArrayList<envio> enviosCamion = null; 
 		
-		ArrayList<envio> envios = ControladorBD.escanearTabla("envios");
+		ArrayList<Envio> enviosCamion = new ArrayList<Envio>(); 
+		
+		ArrayList<Envio> envios = ControladorBD.escanearTabla("envios");
 		
 		for (int i = 0; i < envios.size(); i++) {
 			

@@ -154,11 +154,11 @@ public class ControladorBD {
 			}
 
 			if (nombreTabla.equals("empresas")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), empresa.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Empresa.class);
 			}
 
 			if (nombreTabla.equals("camiones")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), camion.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Camion.class);
 			}
 
 			if (nombreTabla.equals("trailers")) {
@@ -166,7 +166,7 @@ public class ControladorBD {
 			}
 
 			if (nombreTabla.equals("envios")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), envio.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Envio.class);
 			}
 			
 			if (nombreTabla.equals("ubicaciones")) {
@@ -214,11 +214,11 @@ public class ControladorBD {
 			}
 
 			if (nombreTabla.equals("empresas")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), empresa.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Empresa.class);
 			}
 
 			if (nombreTabla.equals("camiones")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), camion.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Camion.class);
 			}
 
 			if (nombreTabla.equals("trailers")) {
@@ -226,7 +226,7 @@ public class ControladorBD {
 			}
 
 			if (nombreTabla.equals("envios")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), envio.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Envio.class);
 			}
 			
 			if (nombreTabla.equals("ubicaciones")) {
@@ -275,11 +275,11 @@ public class ControladorBD {
 			}
 
 			if (nombreTabla.equals("empresas")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), empresa.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Empresa.class);
 			}
 
 			if (nombreTabla.equals("camiones")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), camion.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Camion.class);
 			}
 
 			if (nombreTabla.equals("trailers")) {
@@ -287,7 +287,7 @@ public class ControladorBD {
 			}
 
 			if (nombreTabla.equals("envios")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), envio.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Envio.class);
 			}
 			
 			if (nombreTabla.equals("ubicaciones")) {
@@ -850,7 +850,7 @@ public class ControladorBD {
 				
 				for(int i=0 ; i< obj.getJSONArray("Items").length(); i++){   // iterate through jsonArray 
 					
-					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), empresa.class));
+					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), Empresa.class));
 
 					System.out.println("Objeto " + i + ": " + objetos.get(i));
 				}
@@ -860,7 +860,7 @@ public class ControladorBD {
 			if(nombreTabla.equals("camiones")){
 					for(int i=0 ; i< obj.getJSONArray("Items").length(); i++){   // iterate through jsonArray 
 					
-					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), camion.class));
+					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), Camion.class));
 
 					System.out.println("Objeto " + i + ": " + objetos.get(i));
 				}				
@@ -879,7 +879,7 @@ public class ControladorBD {
 			if(nombreTabla.equals("envios")){
 				for(int i=0 ; i< obj.getJSONArray("Items").length(); i++){   // iterate through jsonArray 
 					
-					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), envio.class));
+					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), Envio.class));
 
 					System.out.println("Objeto " + i + ": " + objetos.get(i));
 				}				
@@ -928,8 +928,8 @@ public class ControladorBD {
 		
 		String placa = "nada";
 		ArrayList<trailer> trailer = ControladorBD.escanearTabla("trailers");
-		ArrayList<camion> camionAll = ControladorBD.escanearTabla("camiones");
-		ArrayList<camion> camion = new ArrayList<camion>();
+		ArrayList<Camion> camionAll = ControladorBD.escanearTabla("camiones");
+		ArrayList<Camion> camion = new ArrayList<Camion>();
 		for(int i=0;i<camionAll.size();i++){
 			if(camionAll.get(i).getTipo().equals("camion")){
 				camion.add(camionAll.get(i));
@@ -970,7 +970,7 @@ public class ControladorBD {
 	
 	public static boolean estaOcupado(String nombre, String camion){
 		boolean resultado = false;
-		ArrayList<camion> camiones = escanearTabla("camiones");
+		ArrayList<Camion> camiones = escanearTabla("camiones");
 		ArrayList<trailer> trailers = escanearTabla("trailers");
 		if(camion.equals("null")){
 			for (int i = 0; i < camiones.size() ; i++){
@@ -988,6 +988,84 @@ public class ControladorBD {
 		}
 		return resultado;
 	}
+	
+	public static ArrayList<Envio> getShipments(String key, String value) {
+
+
+		ArrayList<Envio> Envios = new ArrayList<>();
+
+        JSONObject jsonObject = null;
+
+        String operation = "query", tableName = "envios";
+
+        String payload = "{"
+                + "\"operation\":\"" + operation + "\","
+                + "\"tableName\":\"" + tableName + "\","
+                + "\"payload\":{"
+                + "\"IndexName\":" + "\"" + key + "\","
+                + "\"KeyConditionExpression\":" + "\"" + key + " = :v1\", "
+                + "\"ExpressionAttributeValues\": {"
+                + "\":v1\": \"" + value + "\"}"
+                + "}"
+                + "}";
+
+        StringBuffer response = postRequest(payload);
+
+        if (response != null) {
+
+            try {
+
+                jsonObject = new JSONObject(response.toString());
+
+                if (jsonObject.getDouble("Count") == 0) {
+                    return null;
+                }
+
+                // "I want to iterate though the objects in the array..."
+                JSONArray jsonArray = jsonObject.getJSONArray("Items");
+
+                for (int i = 0; i < jsonArray.length(); i++) {
+
+                    Envio envio = new Envio();
+
+                    //String id, fecha, destino, origen, estado, espacio, tipo, tiempoCarga, tiempoDescargausuario, usuario, camion, trailer, empresa;
+                    //String destinoLatLong, origenLatLong;
+                    //boolean chequeoCarga, chequeoDescarga;
+                    //15 en total.
+
+                    envio.setUsuario(jsonArray.getJSONObject(i).getString("usuario"));
+                    envio.setCamion(jsonArray.getJSONObject(i).getString("camion"));
+                    envio.setTrailer(jsonArray.getJSONObject(i).getString("trailer"));
+                    envio.setEmpresa(jsonArray.getJSONObject(i).getString("empresa"));
+                    envio.setFecha(jsonArray.getJSONObject(i).getString("fecha"));
+                    envio.setDestino(jsonArray.getJSONObject(i).getString("destino"));
+                    envio.setOrigen(jsonArray.getJSONObject(i).getString("origen"));
+                    envio.setEstado(jsonArray.getJSONObject(i).getString("estado"));
+                    envio.setEspacio(jsonArray.getJSONObject(i).getString("espacio"));
+                    envio.setTipo(jsonArray.getJSONObject(i).getString("tipo"));
+                    //envio.setTiempoCarga(jsonArray.getJSONObject(i).getString("tiempoCarga"));
+                    //envio.setTiempoDescargausuario(jsonArray.getJSONObject(i).getString("tiempoDescargausuario"));
+                    envio.setChequeoCarga(jsonArray.getJSONObject(i).getBoolean("chequeoCarga"));
+                    envio.setChequeoDescarga(jsonArray.getJSONObject(i).getBoolean("chequeoDescarga"));
+
+                    envio.setOrigenLatLong(jsonArray.getJSONObject(i).getString("origenLatLong"));
+                    envio.setDestinoLatLong(jsonArray.getJSONObject(i).getString("destinoLatLong"));
+
+                    Envios.add(envio);
+
+                }
+
+                return Envios;
+
+            } catch (Exception e) {
+                
+                return null;
+            }
+
+        } else {
+            return null;
+        }
+    }
 	
 	
 }

@@ -40,7 +40,7 @@ public class trueBuscar extends HttpServlet {
 
 		switch (request.getParameter("modificar")) {
 		case "envios":
-			objeto = (envio) com.logica.ControladorBD.getItem(request.getParameter("tabla"), "usuario",
+			objeto = (Envio) com.logica.ControladorBD.getItem(request.getParameter("tabla"), "usuario",
 					request.getParameter("usuario"), "fecha", request.getParameter("fecha"));
 			break;
 		case "usuarios":

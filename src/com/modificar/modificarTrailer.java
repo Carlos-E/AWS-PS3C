@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.logica.ControladorBD;
 
-import clases.camion;
+import clases.Camion;
 
 /**
  * Servlet implementation class modificarTrailer
