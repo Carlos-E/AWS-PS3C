@@ -7,7 +7,8 @@
 	session.setAttribute("origin", request.getRequestURI());
 %>
 <header class="page-header row justify-center">
-	<div class="dropdown user-dropdown col-md-6 col-lg-4 text-center text-md-right">
+	<div class="col-md-12 col-lg-6 titulo"></div>
+	<div class="dropdown user-dropdown col-md-12 col-lg-6 text-center text-md-right">
 		<a class="btn btn-stripped dropdown-toggle" href="/index.html#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<img src="/img/user.svg" alt="profile photo" class="circle float-left profile-photo" width="50" height="auto">
 			<div class="username mt-1">
