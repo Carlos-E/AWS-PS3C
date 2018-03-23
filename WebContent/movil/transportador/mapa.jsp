@@ -14,7 +14,7 @@
 <meta charset="utf-8">
 
 <!--  HEAD -->
-<jsp:include page="/head.jsp" />
+<jsp:include page="/movil/head.jsp" />
 <!--  ./HEAD -->
 
 <title>Rutas</title>

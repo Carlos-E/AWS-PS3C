@@ -36,7 +36,7 @@ public class login extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+		request.getRequestDispatcher("login.jsp").forward(request, response);
 	}
 
 	/**
@@ -69,6 +69,10 @@ public class login extends HttpServlet {
 				session.setAttribute("rol", "admin");
 				response.sendRedirect("index.jsp");
 				break;
+			case "conductor":
+				session.setAttribute("rol", "conductor");
+				response.sendRedirect("/movil/index.jsp");
+				break;
 			}
 
 			/*
@@ -82,8 +86,8 @@ public class login extends HttpServlet {
 			 * response.sendRedirect("rolAdmin/usuario/index.jsp"); break; }
 			 */
 		} else {
-			//response.sendError(400, "Usuario no encontrado");
-			
+			// response.sendError(400, "Usuario no encontrado");
+
 			PrintWriter out = response.getWriter();
 			String nextURL = request.getContextPath() + "/login.jsp";
 			response.setContentType("text/html");//

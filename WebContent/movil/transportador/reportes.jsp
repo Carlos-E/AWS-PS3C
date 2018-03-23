@@ -11,7 +11,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="es">
 <head>
-<jsp:include page="/head.jsp" />
+<jsp:include page="/movil/head.jsp" />
 <title>
 	<%
 		out.print(session.getAttribute("pagina").toString());
@@ -23,60 +23,12 @@
 	<div class="container-fluid" id="wrapper">
 		<div class="row">
 			<!--  NAVBAR -->
-			<%@ page import="com.logica.*"%>
-			<%@ page import="clases.*"%>
-			<%
-				usuario usuario = new usuario();
-				usuario = (usuario) com.logica.ControladorBD.getItem("usuarios", "usuario",
-						session.getAttribute("username").toString());
-			%>
-			<nav class="sidebar col-xs-12 col-sm-4 col-lg-3 col-xl-2">
-			<h1 class="site-title">
-				<a id="nav-brand-link" href="/index.jsp">
-					<em class="fa fa-truck fa-2x"></em>
-					PS3C
-				</a>
-			</h1>
-			<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">
-				<em class="fa fa-bars"></em>
-			</a>
-			<ul class="nav nav-pills flex-column sidebar-nav">
-				<li class="nav-item">
-					<a class="nav-link active" href="/index.jsp">
-						<em class="fa fa-tachometer-alt"></em>
-						Inicio
-						<span class="sr-only">(current)</span>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/transportador/envios.jsp">
-						Env&iacute;os
-						<em class="fa fa-paper-plane">&nbsp;</em>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/transportador/reportes.jsp">
-						Reportes
-						<em class="fa fa-newspaper">&nbsp;</em>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/transportador/mapa.jsp">
-						Mapa
-						<em class="fa fa-map">&nbsp;</em>
-					</a>
-				</li>
-
-			</ul>
-			<a href="/logoutMovil" class="nav-link">
-				<em class="fa fa-power-off"></em>
-				Cerrar Sesi&oacute;n
-			</a> </nav>
+			<jsp:include page="/movil/navbar.jsp" />
 			<!--  ./NAVBAR -->
 		</div>
 	</div>
 
-	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER --> <section class="row">
+	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/movil/header.jsp" /> <!--  ./HEADER --> <section class="row">
 	<div class="col-md-12 col-lg-12">
 		<div class="card mb-4">
 			<!-- INICIO CONTAINER -->
@@ -125,7 +77,7 @@
 	</section> </main>
 
 	<div class="container-fluid">
-		<jsp:include page="/footer.jsp" />
+		<jsp:include page="/movil/footer.jsp" />
 	</div>
 	<script>
 		$(document).ready(function() {

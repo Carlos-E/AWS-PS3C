@@ -36,12 +36,12 @@
 		<h1 class="text-center h3 mt-3 mb-3 font-weight-normal">Iniciar sesi&oacute;n</h1>
 
 		<div class="form-label-group">
-			<input type="email" id="inputEmail" class="form-control" name="username" placeholder="Usuario" required autofocus>
+			<input type="email" id="inputEmail" class="form-control" name="username" placeholder="Usuario" value="root@ps3c.com" required autofocus>
 			<label class="unselectable" for="inputEmail">Correo</label>
 		</div>
 
 		<div class="form-label-group">
-			<input type="password" id="inputPassword" class="form-control" name="password" placeholder="Contraseña" required>
+			<input type="password" id="inputPassword" class="form-control" name="password" placeholder="Contraseña" value="root" required>
 			<label class="unselectable" for="inputPassword">Contrase&ntildea</label>
 		</div>
 

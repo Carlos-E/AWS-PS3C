@@ -36,7 +36,7 @@ public class loginMovil extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-        request.getRequestDispatcher("login-movil.jsp").forward(request, response);
+        request.getRequestDispatcher("/movil/login.jsp").forward(request, response);
 	}
 
 	/**
@@ -59,22 +59,22 @@ public class loginMovil extends HttpServlet {
 				break;
 			case "cliente":
 				session.setAttribute("rol", "cliente");
-				response.sendRedirect("index-movil.jsp");
+				response.sendRedirect("/movil/index.jsp");
 				break;
 			case "empleado":
 				session.setAttribute("rol", "empleado");
-				response.sendRedirect("index-movil.jsp");
+				response.sendRedirect("/movil/index.jsp");
 				break;
 			case "admin":
 				session.setAttribute("rol", "admin");
-				response.sendRedirect("index-movil.jsp");
+				response.sendRedirect("/movil/index.jsp");
 				break;
 			}
 
 		} else {
 			
 			PrintWriter out = response.getWriter();
-			String nextURL = request.getContextPath() + "/login-movil.jsp";
+			String nextURL = request.getContextPath() + "/movil/index.jsp";
 			response.setContentType("text/html");//
 			com.logica.Dibujar.mensaje(out, "Usuario o contraseña incorrecto", nextURL);
 		}
