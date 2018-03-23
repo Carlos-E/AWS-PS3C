@@ -35,17 +35,17 @@ html, body {
 	position: absolute;
 	z-index: 5;
 	text-align: right;
+	font-size: 0.9rem !important;
 }
 
 .row {
-	padding: 0.1rem;
 	padding-top: 0.25rem;
 }
 
 .card {
+	padding: 0.1rem;
 	height: fit-content;
 	width: fit-content;
-	/* max-width: 50vw; */
 }
 
 .card-header {
@@ -58,9 +58,8 @@ html, body {
 	margin: 0;
 }
 
-p {
-	padding: 0;
-	margin: 0;
+.btn-light {
+	font-size: 0.6rem !important;
 }
 </style>
 
@@ -138,13 +137,23 @@ p {
 		<div class="row">
 			<div class="col">
 				<div class="card">
-
 					<div class="card-block">
-						Lat:
-						<span id="lat">10.4001778</span>
-						<br>
-						Lng:
-						<span id="lng">-75.5657678</span>
+
+						<div class="row">
+							<div class="col">
+								Lat:
+								<span id="lat">10.4001778</span>
+							</div>
+
+						</div>
+
+						<div class="row">
+							<div class="col">
+								Lng:
+								<span id="lng">-75.5657678</span>
+							</div>
+						</div>
+
 					</div>
 
 				</div>
