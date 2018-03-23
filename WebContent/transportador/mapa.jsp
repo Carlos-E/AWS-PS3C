@@ -72,8 +72,9 @@ p {
 	<div class="floating-panel" style="top: 0.25rem; right: 0.5rem;">
 		<div class="row">
 			<div class="col">
-<!-- 				<a class="btn btn-light" href="https://www.google.com/maps/dir/?api=1&destination="+destination+"&travelmode=driving&dir_action=navigate" onclick="Android.openOnGoogleMaps(document.getElementById('end').value)">Abrir en Google Maps</a>
- -->				<a class="btn btn-light" href="https://www.google.com/maps/dir/?api=1&destination=10.4227348,-75.5529205&travelmode=driving&dir_action=navigate">Abrir en Google Maps</a>
+				<!-- 				<a class="btn btn-light" href="https://www.google.com/maps/dir/?api=1&destination="+destination+"&travelmode=driving&dir_action=navigate" onclick="Android.openOnGoogleMaps(document.getElementById('end').value)">Abrir en Google Maps</a>
+ -->
+				<a id="goMaps" class="btn btn-light">Abrir en Google Maps</a>
 			</div>
 		</div>
 
@@ -108,10 +109,9 @@ p {
 		</div>
 
 		<div class="row">
+
 			<div class="col">
-
 				<div class="card">
-
 					<div class="card-block">
 
 						<div class="row">
@@ -131,8 +131,8 @@ p {
 
 					</div>
 				</div>
-
 			</div>
+
 		</div>
 
 		<div class="row">
@@ -153,8 +153,7 @@ p {
 
 	</div>
 
-	<!-- <input id="start" value="8.772299, -75.861037" hidden> -->
-	<input id="end" value="10.4233996,-75.5554203" hidden>
+	<input id="end" value="10.4233778,-75.5532186" hidden>
 
 	<div id="map"></div>
 
@@ -187,9 +186,6 @@ p {
 				calculateAndDisplayRoute(directionsService, directionsDisplay);
 			}
 
-			setTimeout(function() {
-				calculateAndDisplayRoute(directionsService, directionsDisplay);
-			}, 2000);
 		}
 
 		function calculateAndDisplayRoute(directionsService, directionsDisplay) {
@@ -208,7 +204,17 @@ p {
 				}
 			});
 		}
-		
+
+		document
+				.getElementById('goMaps')
+				.addEventListener(
+						'click',
+						function() {
+							location.href = 'https://www.google.com/maps/dir/?api=1&destination='
+									+ document.getElementById('end').value
+									+ '&travelmode=driving&dir_action=navigate'
+						});
+
 		var BestIsOn = true;
 		var GPSIsOn = false;
 		var networkIsOn = false;
