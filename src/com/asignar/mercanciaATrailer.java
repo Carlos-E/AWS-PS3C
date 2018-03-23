@@ -13,7 +13,7 @@ import com.logica.ControladorBD;
 
 import clases.Camion;
 import clases.Envio;
-import clases.trailer;
+import clases.Trailer;
 
 /**
  * Servlet implementation class mercanciaATrailer
@@ -49,7 +49,7 @@ public class mercanciaATrailer extends HttpServlet {
 		String id = request.getParameter("mercancia").toLowerCase();
 		String[] frag = id.split(" : ");
 		String frag1 = frag[0], frag2 = frag[1];
-		trailer trailer = (trailer) ControladorBD.getItem("trailers", "patente", patente);
+		Trailer trailer = (Trailer) ControladorBD.getItem("trailers", "patente", patente);
 		Envio envio = (Envio) ControladorBD.getItem("envios", "usuario", frag1, "fecha", frag2);
 		double suma = Double.parseDouble(trailer.getEspacio()) - Double.parseDouble(envio.getEspacio());
 		if(suma < 0){

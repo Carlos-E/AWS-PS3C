@@ -22,7 +22,7 @@ import clases.*;
 @WebServlet("/trueBuscar")
 public class trueBuscar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	clases.usuario usuario = new clases.usuario();
+	clases.Usuario usuario = new clases.Usuario();
 
 	public trueBuscar() {
 		super();

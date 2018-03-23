@@ -21,7 +21,7 @@ public class Modificar extends HttpServlet {
 	clases.Envio envio = new clases.Envio();
 	clases.Camion camion = new clases.Camion();
 	clases.Empresa empresa = new clases.Empresa();
-	clases.usuario usuario = new clases.usuario();
+	clases.Usuario usuario = new clases.Usuario();
 
 	/**
 	 * @see HttpServlet#HttpServlet()

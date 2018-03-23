@@ -24,7 +24,7 @@ import clases.*;
 public class Crear extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	clases.Envio envio = new clases.Envio();
-	clases.usuario cliente = new clases.usuario();
+	clases.Usuario cliente = new clases.Usuario();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -74,7 +74,7 @@ public class Crear extends HttpServlet {
 		envio.setEmpresa(empresa);
 		try {
 			String busqueda = ControladorBD.buscaCamion(destino, origen, espacio);
-			trailer trailer1 = (trailer) ControladorBD.getItem("trailers", "patente", busqueda.substring(1, busqueda.length()));
+			Trailer trailer1 = (Trailer) ControladorBD.getItem("trailers", "patente", busqueda.substring(1, busqueda.length()));
 			Camion camion1 = (Camion) ControladorBD.getItem("camiones", "placa", busqueda.substring(1, busqueda.length()));
 			if (busqueda == "nada") {
 				response.setContentType("text/html");
@@ -109,7 +109,7 @@ public class Crear extends HttpServlet {
 				envio.setUsuario(persona);		
 				envio.setChequeoCarga(false);
 				envio.setChequeoDescarga(false);
-				trailer trailer2 = (trailer) ControladorBD.getItem("trailers", "patente", envio.getTrailer());
+				Trailer trailer2 = (Trailer) ControladorBD.getItem("trailers", "patente", envio.getTrailer());
 				Camion camion2 = (Camion) ControladorBD.getItem("camiones", "placa", envio.getCamion());
 				if (envio.getCamion() == null && envio.getTrailer() != null) {
 					envio.setEmpresa(trailer2.getEmpresa());

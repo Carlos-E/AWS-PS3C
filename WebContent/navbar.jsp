@@ -8,8 +8,8 @@
 <%@ page import="com.logica.*"%>
 <%@ page import="clases.*"%>
 <%
-	usuario usuario = new usuario();
-	usuario = (usuario) com.logica.ControladorBD.getItem("usuarios", "usuario",
+	Usuario usuario = new Usuario();
+	usuario = (Usuario) com.logica.ControladorBD.getItem("usuarios", "usuario",
 			session.getAttribute("username").toString());
 %>
 <nav class="sidebar col-xs-12 col-sm-4 col-lg-3 col-xl-2">
@@ -38,7 +38,7 @@
 					<i class="fa fa-caret-down"></i>
 				</span>
 			</a>
-			<ul class="children collapse" id="sub-item-1">	
+			<ul class="children collapse" id="sub-item-1">
 				<li class="nav-item">
 					<a class="nav-link" href="/envios/crear.jsp">
 						Crear
@@ -121,7 +121,7 @@
 			<a class="nav-link" data-toggle="collapse" href="#sub-item-4">
 				<em class="fa fa-truck">&nbsp;</em>
 				Camiones
-				<span data-toggle="collapse"  class="icon float-right">
+				<span data-toggle="collapse" class="icon float-right">
 					<i class="fa fa-caret-down"></i>
 				</span>
 			</a>
@@ -150,7 +150,7 @@
 			<a class="nav-link" data-toggle="collapse" href="#sub-item-5">
 				<em class="fa fa-truck">&nbsp;</em>
 				Traileres
-				<span data-toggle="collapse"  class="icon float-right">
+				<span data-toggle="collapse" class="icon float-right">
 					<i class="fa fa-caret-down"></i>
 				</span>
 			</a>
@@ -179,7 +179,7 @@
 			<a class="nav-link" data-toggle="collapse" href="#sub-item-6">
 				<em class="fa fa-list">&nbsp;</em>
 				Consultar
-				<span data-toggle="collapse"  class="icon float-right">
+				<span data-toggle="collapse" class="icon float-right">
 					<i class="fa fa-caret-down"></i>
 				</span>
 			</a>
@@ -234,14 +234,17 @@
 				Chequeo Descarga
 			</a>
 		</li>
-		
+
 		<li class="nav-item">
 			<a class="nav-link" href="/chequeo/mapa.jsp">
 				<em class="fa fa-globe"></em>
 				Mapa
 			</a>
 		</li>
-		
+
 	</ul>
-	<a href="/logout" class="nav-link"><em class="fa fa-power-off"></em> Cerrar Sesi&oacute;n</a>
+	<a href="/logout" class="nav-link">
+		<em class="fa fa-power-off"></em>
+		Cerrar Sesi&oacute;n
+	</a>
 </nav>

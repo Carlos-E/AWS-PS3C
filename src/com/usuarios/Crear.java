@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.logica.ControladorBD;
 
-import clases.usuario;
+import clases.Usuario;
 
 /**
  * Servlet implementation class empleado
@@ -19,7 +19,7 @@ import clases.usuario;
 @WebServlet("/usuarios/crear")
 public class Crear extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	usuario usuario = new usuario();
+	Usuario usuario = new Usuario();
 
 	/**
 	 * @see HttpServlet#HttpServlet()

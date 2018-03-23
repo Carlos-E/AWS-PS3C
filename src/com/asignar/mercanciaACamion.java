@@ -13,7 +13,7 @@ import com.logica.ControladorBD;
 
 import clases.Camion;
 import clases.Envio;
-import clases.trailer;
+import clases.Trailer;
 
 /**
  * Servlet implementation class mercanciaACamion

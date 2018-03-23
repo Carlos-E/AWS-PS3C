@@ -44,7 +44,7 @@ public class signin extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		clases.usuario persona = new clases.usuario();
+		clases.Usuario persona = new clases.Usuario();
 		
 		persona.setUsuario(request.getParameter("usuario").toLowerCase());
 		persona.setClave(request.getParameter("clave1").toLowerCase());

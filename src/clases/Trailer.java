@@ -1,15 +1,15 @@
 package clases;
 
-public class trailer {
+public class Trailer {
 	
 	String patente, tipo, capacidad, espacio, estado, destino, origen, camion, empresa;
 
-	public trailer() {
+	public Trailer() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public trailer(String patente, String tipo, String capacidad, String espacio, String estado, String destino,
+	public Trailer(String patente, String tipo, String capacidad, String espacio, String estado, String destino,
 			String origen, String camion, String empresa) {
 		super();
 		this.patente = patente;

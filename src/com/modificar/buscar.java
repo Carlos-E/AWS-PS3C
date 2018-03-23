@@ -12,7 +12,7 @@ import org.json.JSONException;
 
 import com.logica.ControladorBD;
 
-import clases.usuario;
+import clases.Usuario;
 
 /**
  * Servlet implementation class buscar
@@ -133,8 +133,8 @@ public class buscar extends HttpServlet {
 			usuario = request.getParameter("usuario");
 			usuario.replaceAll(" ", "");
 			if (!usuario.equals("nada")) {
-				usuario user = new usuario();
-				user = (clases.usuario) ControladorBD.getItem("usuarios", "usuario", usuario);
+				Usuario user = new Usuario();
+				user = (clases.Usuario) ControladorBD.getItem("usuarios", "usuario", usuario);
 				switch (user.getRol()){
 				case "cliente":
 					session.setAttribute("busca", "cliente");
@@ -159,8 +159,8 @@ public class buscar extends HttpServlet {
 			usuario = request.getParameter("usuarioE");
 			usuario.replaceAll(" ", "");
 			if (!usuario.equals("nada")) {
-				usuario user = new usuario();
-				user = (clases.usuario) ControladorBD.getItem("usuarios", "usuario", usuario);
+				Usuario user = new Usuario();
+				user = (clases.Usuario) ControladorBD.getItem("usuarios", "usuario", usuario);
 				switch (user.getRol()){
 				case "cliente":
 					session.setAttribute("busca", "cliente");

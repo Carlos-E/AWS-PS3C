@@ -18,7 +18,7 @@ import com.logica.ControladorBD;
 @WebServlet("/usuarios/modificar")
 public class modificarUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	clases.usuario usuario = new clases.usuario();
+	clases.Usuario usuario = new clases.Usuario();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -42,7 +42,7 @@ public class modificarUsuario extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		HttpSession session = request.getSession();
-		usuario = (clases.usuario) ControladorBD.getItem("usuarios", "usuario", request.getParameter("usuario"));
+		usuario = (clases.Usuario) ControladorBD.getItem("usuarios", "usuario", request.getParameter("usuario"));
 		String rol = request.getParameter("rol").toLowerCase().replaceAll(" ", "");
 		String nombre = request.getParameter("nombre").toLowerCase().replaceAll(" ", "");
 		String apellido = request.getParameter("apellido").toLowerCase().replaceAll(" ", "");

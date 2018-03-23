@@ -30,7 +30,7 @@
 		<%@ page import="clases.*"%>
 		<%
 			ArrayList<Camion> listaCamion = ControladorBD.escanearTabla("camiones");
-			ArrayList<trailer> listaTrailers = ControladorBD.escanearTabla("trailers");
+			ArrayList<Trailer> listaTrailers = ControladorBD.escanearTabla("trailers");
 			ArrayList<Camion> listaCamiones = new ArrayList<Camion>();
 			for (int i = 0; i < listaCamion.size(); i++) {
 				if (!listaCamion.get(i).getTipo().equals("camion")) {
@@ -81,7 +81,7 @@
 			} else {
 				String camtra = session.getAttribute("obj").toString();
 				Camion camion = new Camion();
-				trailer trailer = new trailer();
+				Trailer trailer = new Trailer();
 				ArrayList<Envio> envio = ControladorBD.escanearTabla("envios");
 				ArrayList<Envio> envios = new ArrayList<Envio>();
 				try {

@@ -21,7 +21,7 @@ import com.logica.ControladorBD;
 @WebServlet("/prueba")
 public class prueba extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	clases.usuario usuario = new clases.usuario();
+	clases.Usuario usuario = new clases.Usuario();
 
 	public prueba() {
 		super();

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.logica.ControladorBD;
 
-import clases.usuario;
+import clases.Usuario;
 
 /**
  * Servlet implementation class empresa

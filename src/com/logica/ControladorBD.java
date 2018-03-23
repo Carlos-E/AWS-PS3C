@@ -150,7 +150,7 @@ public class ControladorBD {
 			ObjectMapper mapper = new ObjectMapper();
 
 			if (nombreTabla.equals("usuarios")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), usuario.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Usuario.class);
 			}
 
 			if (nombreTabla.equals("empresas")) {
@@ -162,7 +162,7 @@ public class ControladorBD {
 			}
 
 			if (nombreTabla.equals("trailers")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), trailer.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Trailer.class);
 			}
 
 			if (nombreTabla.equals("envios")) {
@@ -170,7 +170,7 @@ public class ControladorBD {
 			}
 			
 			if (nombreTabla.equals("ubicaciones")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), ubicacion.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Ubicacion.class);
 			}
 
 			System.out.println(objeto);
@@ -210,7 +210,7 @@ public class ControladorBD {
 			ObjectMapper mapper = new ObjectMapper();
 
 			if (nombreTabla.equals("usuarios")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), usuario.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Usuario.class);
 			}
 
 			if (nombreTabla.equals("empresas")) {
@@ -222,7 +222,7 @@ public class ControladorBD {
 			}
 
 			if (nombreTabla.equals("trailers")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), trailer.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Trailer.class);
 			}
 
 			if (nombreTabla.equals("envios")) {
@@ -230,7 +230,7 @@ public class ControladorBD {
 			}
 			
 			if (nombreTabla.equals("ubicaciones")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), ubicacion.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Ubicacion.class);
 			}
 
 			System.out.println(objeto);
@@ -271,7 +271,7 @@ public class ControladorBD {
 			ObjectMapper mapper = new ObjectMapper();
 
 			if (nombreTabla.equals("usuarios")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), usuario.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Usuario.class);
 			}
 
 			if (nombreTabla.equals("empresas")) {
@@ -283,7 +283,7 @@ public class ControladorBD {
 			}
 
 			if (nombreTabla.equals("trailers")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), trailer.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Trailer.class);
 			}
 
 			if (nombreTabla.equals("envios")) {
@@ -291,7 +291,7 @@ public class ControladorBD {
 			}
 			
 			if (nombreTabla.equals("ubicaciones")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), ubicacion.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Ubicacion.class);
 			}
 
 			System.out.println(objeto);
@@ -839,7 +839,7 @@ public class ControladorBD {
 				 
 				for(int i=0 ; i< obj.getJSONArray("Items").length(); i++){   // iterate through jsonArray 
 					
-					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), usuario.class));
+					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), Usuario.class));
 
 					System.out.println("Objeto " + i + ": " + objetos.get(i));
 				}
@@ -870,7 +870,7 @@ public class ControladorBD {
 			if(nombreTabla.equals("trailers")){
 				for(int i=0 ; i< obj.getJSONArray("Items").length(); i++){   // iterate through jsonArray 
 					
-					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), trailer.class));
+					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), Trailer.class));
 
 					System.out.println("Objeto " + i + ": " + objetos.get(i));
 				}
@@ -889,7 +889,7 @@ public class ControladorBD {
 			if(nombreTabla.equals("reportes")){
 				for(int i=0 ; i< obj.getJSONArray("Items").length(); i++){   // iterate through jsonArray 
 					
-					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), reporte.class));
+					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), Reporte.class));
 
 					System.out.println("Objeto " + i + ": " + objetos.get(i));
 				}				
@@ -899,7 +899,7 @@ public class ControladorBD {
 			if(nombreTabla.equals("ubicaciones")){
 				for(int i=0 ; i< obj.getJSONArray("Items").length(); i++){   // iterate through jsonArray 
 					
-					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), ubicacion.class));
+					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), Ubicacion.class));
 
 					System.out.println("Objeto " + i + ": " + objetos.get(i));
 				}				
@@ -927,7 +927,7 @@ public class ControladorBD {
 		Double espacioTrailer = Double.parseDouble(espacio), espacioCamion = Double.parseDouble(espacio);
 		
 		String placa = "nada";
-		ArrayList<trailer> trailer = ControladorBD.escanearTabla("trailers");
+		ArrayList<Trailer> trailer = ControladorBD.escanearTabla("trailers");
 		ArrayList<Camion> camionAll = ControladorBD.escanearTabla("camiones");
 		ArrayList<Camion> camion = new ArrayList<Camion>();
 		for(int i=0;i<camionAll.size();i++){
@@ -971,7 +971,7 @@ public class ControladorBD {
 	public static boolean estaOcupado(String nombre, String camion){
 		boolean resultado = false;
 		ArrayList<Camion> camiones = escanearTabla("camiones");
-		ArrayList<trailer> trailers = escanearTabla("trailers");
+		ArrayList<Trailer> trailers = escanearTabla("trailers");
 		if(camion.equals("null")){
 			for (int i = 0; i < camiones.size() ; i++){
 				if(nombre.equals(camiones.get(i).getUsuario())){

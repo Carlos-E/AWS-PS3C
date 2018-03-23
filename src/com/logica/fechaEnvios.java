@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import clases.ubicacion;
+import clases.Ubicacion;
 
 /**
  * Servlet implementation class fechaEnvios

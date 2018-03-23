@@ -18,7 +18,7 @@ import com.logica.ControladorBD;
 @WebServlet("/login")
 public class login extends HttpServlet {
 
-	clases.usuario usuario;
+	clases.Usuario usuario;
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -52,7 +52,7 @@ public class login extends HttpServlet {
 		if (ControladorBD.validarLogin(uname, pass)) {
 			HttpSession session = request.getSession();
 			session.setAttribute("username", uname);
-			usuario = (clases.usuario) ControladorBD.getItem("usuarios", "usuario", uname);
+			usuario = (clases.Usuario) ControladorBD.getItem("usuarios", "usuario", uname);
 			switch (usuario.getRol()) {
 			case "null":
 				response.sendError(400, "Sin roll");

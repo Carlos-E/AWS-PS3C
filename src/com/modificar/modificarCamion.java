@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.logica.ControladorBD;
 
 import clases.Camion;
-import clases.usuario;
+import clases.Usuario;
 
 /**
  * Servlet implementation class modificarCamion

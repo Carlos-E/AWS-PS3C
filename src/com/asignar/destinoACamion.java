@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.logica.ControladorBD;
 
 import clases.Camion;
-import clases.trailer;
+import clases.Trailer;
 
 /**
  * Servlet implementation class destinoACamion

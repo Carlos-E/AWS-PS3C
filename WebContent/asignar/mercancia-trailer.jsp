@@ -30,7 +30,7 @@ session.setAttribute("pagina", "Asignar Mercancía a Trailer");
 			<%@ page import="java.util.ArrayList"%>
 			<%@ page import="clases.*"%>
 			<%
-			ArrayList<trailer> listaTrailer = ControladorBD.escanearTabla("trailers");
+			ArrayList<Trailer> listaTrailer = ControladorBD.escanearTabla("trailers");
 		%>
 			<%
 			ArrayList<Envio> listaEnvio = ControladorBD.escanearTabla("envios");

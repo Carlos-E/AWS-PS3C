@@ -14,8 +14,8 @@ import javax.servlet.http.HttpSession;
 
 import com.logica.ControladorBD;
 
-import clases.reporte;
-import clases.usuario;
+import clases.Reporte;
+import clases.Usuario;
 
 /**
  * Servlet implementation class reportarProblema
@@ -46,7 +46,7 @@ public class Crear extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
-		reporte reporte = new reporte();
+		Reporte reporte = new Reporte();
 		HttpSession session = request.getSession();
 		String nota = request.getParameter("nota").toLowerCase();
 		String empleado = session.getAttribute("username").toString();

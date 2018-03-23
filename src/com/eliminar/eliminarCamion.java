@@ -18,7 +18,7 @@ import com.logica.ControladorBD;
 @WebServlet("/eliminarCamion")
 public class eliminarCamion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	clases.usuario usuario = new clases.usuario();
+	clases.Usuario usuario = new clases.Usuario();
        
     /**
      * @see HttpServlet#HttpServlet()

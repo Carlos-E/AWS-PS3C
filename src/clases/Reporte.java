@@ -1,15 +1,15 @@
 package clases;
 
-public class reporte {
+public class Reporte {
 	
 	String hora, nota, usuario;
 	
-	public reporte() {
+	public Reporte() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public reporte(String hora, String nota, String usuario) {
+	public Reporte(String hora, String nota, String usuario) {
 		super();
 		this.hora = hora;
 		this.nota = nota;

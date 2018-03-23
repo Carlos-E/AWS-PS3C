@@ -77,7 +77,7 @@ public class agregarCamion extends HttpServlet {
 			capacidad = "ninguna";
 			espacio = "ninguno";
 		}
-		usuario usuarioConductor = (clases.usuario) ControladorBD.getItem("usuarios", "usuario", conductor);
+		Usuario usuarioConductor = (clases.Usuario) ControladorBD.getItem("usuarios", "usuario", conductor);
 		Empresa empresa = (clases.Empresa) ControladorBD.getItem("empresas", "nit", nit);
 		camion.setPlaca(placa);
 		camion.setCapacidad(capacidad);

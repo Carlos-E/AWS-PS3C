@@ -20,7 +20,7 @@ import clases.Camion;
 @WebServlet("/modificarTrailer")
 public class modificarTrailer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	clases.trailer trailer = new clases.trailer();
+	clases.Trailer trailer = new clases.Trailer();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -46,7 +46,7 @@ public class modificarTrailer extends HttpServlet {
 		//doGet(request, response);
 		HttpSession session = request.getSession();
 		String patente = session.getAttribute("obj").toString();
-		trailer = (clases.trailer) ControladorBD.getItem("trailers", "trailer", patente);
+		trailer = (clases.Trailer) ControladorBD.getItem("trailers", "trailer", patente);
 		String capacidad = request.getParameter("capacidad").toLowerCase();
 		String espacio = request.getParameter("espacio").toLowerCase();
 		String estado = request.getParameter("estado").toLowerCase();

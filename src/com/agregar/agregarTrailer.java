@@ -20,7 +20,7 @@ import clases.Empresa;
 @WebServlet("/trailer")
 public class agregarTrailer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	clases.trailer trailer = new clases.trailer();
+	clases.Trailer trailer = new clases.Trailer();
 
 	/**
 	 * @see HttpServlet#HttpServlet()

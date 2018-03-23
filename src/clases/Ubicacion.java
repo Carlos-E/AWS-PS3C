@@ -1,12 +1,12 @@
 package clases;
 
-public class ubicacion {
+public class Ubicacion {
 
 	String placa;
 	String hora;
 	double latitud, longitud;
 	
-	public ubicacion() {
+	public Ubicacion() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

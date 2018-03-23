@@ -36,7 +36,7 @@ th, td {
 		<%@ page import="java.util.ArrayList"%>
 		<%@ page import="clases.*"%>
 		<%
-			ArrayList<trailer> listaTrailer = ControladorBD.escanearTabla("trailers");
+			ArrayList<Trailer> listaTrailer = ControladorBD.escanearTabla("trailers");
 			System.out.print(listaTrailer.size());
 		%>
 		<table class="table table-bordered" style="background-color: rgba(0, 0, 0, 0.60);color: blue !important;">

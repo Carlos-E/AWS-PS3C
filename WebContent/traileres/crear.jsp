@@ -28,9 +28,9 @@
 		<jsp:include page="/header.jsp" /> 
 	<!--  ./HEADER --> 
 	<%
-		ArrayList<usuario> listaUsuarios = ControladorBD.escanearTabla("usuarios");
+		ArrayList<Usuario> listaUsuarios = ControladorBD.escanearTabla("usuarios");
 		ArrayList<Camion> listaCamiones = ControladorBD.escanearTabla("camiones");
-		ArrayList<usuario> listaConductor = new ArrayList<usuario>();
+		ArrayList<Usuario> listaConductor = new ArrayList<Usuario>();
 		ArrayList<Empresa> listaEmpresas = ControladorBD.escanearTabla("empresas");
 		for (int i = 0; i < listaUsuarios.size(); i++) {
 			if (listaUsuarios.get(i).getRol().equals("conductor")) {

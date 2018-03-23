@@ -1,15 +1,15 @@
 package clases;
 
-public class usuario {
+public class Usuario {
 	
 	String usuario, rol, nombre, apellido, clave, correo, direccion, telefono;
 
-	public usuario() {
+	public Usuario() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public usuario(String usuario, String rol, String nombre, String apellido, String clave, String correo,
+	public Usuario(String usuario, String rol, String nombre, String apellido, String clave, String correo,
 			String direccion, String telefono) {
 		super();
 		this.usuario = usuario;

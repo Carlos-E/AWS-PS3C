@@ -8,8 +8,8 @@
 <%@ page import="com.logica.*"%>
 <%@ page import="clases.*"%>
 <%
-	usuario usuario = new usuario();
-	usuario = (usuario) com.logica.ControladorBD.getItem("usuarios", "usuario",
+	Usuario usuario = new Usuario();
+	usuario = (Usuario) com.logica.ControladorBD.getItem("usuarios", "usuario",
 			session.getAttribute("username").toString());
 %>
 <nav class="sidebar col-xs-12 col-sm-4 col-lg-3 col-xl-2">

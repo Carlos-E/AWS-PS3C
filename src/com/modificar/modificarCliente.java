@@ -16,7 +16,7 @@ import com.logica.ControladorBD;
 @WebServlet("/cliente")
 public class modificarCliente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	clases.usuario cliente = new clases.usuario();
+	clases.Usuario cliente = new clases.Usuario();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -42,7 +42,7 @@ public class modificarCliente extends HttpServlet {
 		//doGet(request, response);
 		HttpSession session = request.getSession();
 		String usuario = session.getAttribute("obj").toString();
-		cliente = (clases.usuario) ControladorBD.getItem("usuarios", "usuario", usuario);
+		cliente = (clases.Usuario) ControladorBD.getItem("usuarios", "usuario", usuario);
 		String nombre = request.getParameter("nombre").toLowerCase();
 		String apeliido = request.getParameter("apellido").toLowerCase();
 		String claveOld = request.getParameter("claveOld").toLowerCase();
