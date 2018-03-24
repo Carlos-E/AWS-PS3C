@@ -87,7 +87,7 @@
 					<div class="row">
 						<div class="col">
 							<button class="btn btn-light" id="sync">
-								<i class="fa fa-sync-alt"></i>
+								<i class="fa fa-cloud-download-alt" style="font-size: 1.2rem;"></i>
 							</button>
 						</div>
 					</div>
