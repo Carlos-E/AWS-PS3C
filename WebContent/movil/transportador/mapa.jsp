@@ -203,9 +203,11 @@
 									Android.showToast('Envio completado');
 								}
 								return;
-							}
+							}else{
+								calculateAndDisplayRoute(directionsService, directionsDisplay);
+								}
 							getEnvios();
-							calculateAndDisplayRoute(directionsService, directionsDisplay);
+
 						});
 
 
@@ -252,22 +254,26 @@
 							///////ACTUALIZAR ENVIO
 							let cliente = envios[document.getElementById('envios').selectedIndex].usuario;
 							let fecha = envios[document.getElementById('envios').selectedIndex].fecha;
-							updateShipment(cliente, fecha, 'chequeoCarga', document.getElementById('recogido').checked);
 							///////ACTUALIZAR ENVIO
 
 							directionsDisplay.setMap(map);
 							if (document.getElementById('recogido').checked) {
 								document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].destinoLatLong;
 
-								envios[document.getElementById('envios').selectedIndex].chequeoCarga = true
+								envios[document.getElementById('envios').selectedIndex].chequeoCarga = true;
+								updateShipment(cliente, fecha, 'chequeoCarga', true);
+
 								////
 								calculateAndDisplayRoute(directionsService, directionsDisplay);
 							} else {
 								document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].origenLatLong;
 
 								envios[document.getElementById('envios').selectedIndex].chequeoCarga = false
+								updateShipment(cliente, fecha, 'chequeoCarga', false);
 
 								envios[document.getElementById('envios').selectedIndex].chequeoDescarga = false;
+								updateShipment(cliente, fecha, 'chequeoDescarga', false);
+
 
 								document.getElementById('entregado').checked = false;
 								////
@@ -289,7 +295,6 @@
 							///////ACTUALIZAR ENVIO
 							let cliente = envios[document.getElementById('envios').selectedIndex].usuario;
 							let fecha = envios[document.getElementById('envios').selectedIndex].fecha;
-							updateShipment(cliente, fecha, 'chequeoDescarga', document.getElementById('entregado').checked);
 							///////ACTUALIZAR ENVIO
 
 
@@ -297,8 +302,12 @@
 							if (document.getElementById('entregado').checked) {
 								//ENTREGADO o DESCARGA
 								envios[document.getElementById('envios').selectedIndex].chequeoDescarga = true;
+								updateShipment(cliente, fecha, 'chequeoDescarga', true);
+
 								//RECOGIDO o CARGA
 								envios[document.getElementById('envios').selectedIndex].chequeoCarga = true
+								updateShipment(cliente, fecha, 'chequeoCarga', true);
+
 								document.getElementById('recogido').checked = true;
 								document.getElementById('recogido').disable = true;
 								directionsDisplay.setMap(null);
@@ -309,6 +318,7 @@
 								document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].destinoLatLong;
 
 								envios[document.getElementById('envios').selectedIndex].chequeoDescarga = false;
+								updateShipment(cliente, fecha, 'chequeoDescarga', false);
 
 								document.getElementById('recogido').checked = true;
 								document.getElementById('recogido').disable = false;
@@ -395,7 +405,7 @@
 							}
 
 							if (typeof Android != 'undefined') {
-								Android.showToast('Envio descargado');
+								Android.showToast('Envios descargados correctamente');
 							}
 
 						}).fail(function (xhr, status, errorThrown) {
