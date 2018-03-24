@@ -33,9 +33,11 @@ public class GetEnvios extends HttpServlet {
 			throws ServletException, IOException {
 		
 		String conductor = request.getSession().getAttribute("username").toString();
-				
+		
+		conductor = "condu2";
+		
 		String placaCamion = ControladorBD.checkPlaca(conductor);
-
+		
 		ArrayList<Envio> enviosCamion = ControladorBD.getShipments("camion", placaCamion);
 		
 		System.out.print(enviosCamion);

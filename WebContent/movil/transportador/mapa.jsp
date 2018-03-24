@@ -98,7 +98,6 @@ html, body {
 
 						<select id="envios">
 							<option value="">...</option>
-							<option value="1">1..</option>
 						</select>
 						<span></span>
 					</div>
@@ -243,6 +242,8 @@ html, body {
 			document.getElementById('lng').innerHTML = coords.split(",")[1];
 
 		}, 1000);
+		
+		var envios = ['...'];
 
 		$.ajax({
 			url : "/getEnvios",
@@ -250,7 +251,16 @@ html, body {
 			dataType : "json",
 		}).done(function(response) {
 			console.log(response);
-
+			
+			if(response !== null){
+			
+				envios = response;
+			
+				$(envios).each(function() {
+			 		$('#envios').append($("<option>").attr('value',this.usuario+' : '+this.fecha).text(this.usuario+' : '+this.fecha));
+			 	});
+			}
+			
 		}).fail(function(xhr, status, errorThrown) {
 			console.log('Failed Request To Servlet /getEnvios')
 		}).always(function(xhr, status) {
