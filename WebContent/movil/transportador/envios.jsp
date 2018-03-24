@@ -172,7 +172,7 @@
 							response.forEach(element => {
 
 								var aux = "<select class='custom-select'>" +
-									"<option>Fecha: " + element.fecha + "</option>" +
+									"<option>" + element.fecha + "</option>" +
 									"<option disabled>Cliente: " + element.usuario + "</option>" +
 									"<option disabled>Origen: " + element.origen + "</option>" +
 									"<option disabled>Destino: " + element.destino + "</option>" +
@@ -192,7 +192,7 @@
 						$('#tabla').DataTable({
 							data: dataSet,
 							columns: [
-								{ title: "envíos" }
+								{ title: "Fecha" }
 							]
 						});
 
