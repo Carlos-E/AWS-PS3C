@@ -1119,12 +1119,9 @@ public class ControladorBD {
         }
     }
 	
-	public static boolean updateShipment(String key, Object value) {
+	public static boolean updateShipment(String primaryKeyValue, Object sortKeyValue, String key, Object value) {
 
         JSONObject jsonObject = null;
-
-        String primaryKeyValue = "usuario";
-        String sortKeyValue = "fecha";
         
         String operation = "update";
         String tableName = "envios";
@@ -1152,6 +1149,8 @@ public class ControladorBD {
                 + "}";
 
         StringBuffer response = postRequest(payload);
+        
+        System.out.println("\nRespuesta: "+response);
 
         String objectFound;
 
@@ -1165,6 +1164,8 @@ public class ControladorBD {
 
                 try {
                     objectFound = jsonObject.getJSONObject("Attributes").getString(key).toString();
+                    System.out.println("\nObjecto encontrado: "+objectFound);
+
                 } catch (Exception e) {
                     e.printStackTrace();
                     return false;

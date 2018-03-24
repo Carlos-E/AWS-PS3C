@@ -179,7 +179,6 @@
 					var map;
 
 					var envios = ['...'];
-					var route = null;
 
 					function initMap() {
 
@@ -200,7 +199,7 @@
 							directionsDisplay.setMap(map);
 							if (document.getElementById('entregado').checked) {
 								directionsDisplay.setMap(null);
-								if(typeof Android != 'undefined'){
+								if (typeof Android != 'undefined') {
 									Android.showToast('Envio completado');
 								}
 								return;
@@ -208,6 +207,7 @@
 							getEnvios();
 							calculateAndDisplayRoute(directionsService, directionsDisplay);
 						});
+
 
 						document.getElementById('envios').addEventListener('change', function () {
 							directionsDisplay.setMap(map);
@@ -226,8 +226,8 @@
 							if (envios[document.getElementById('envios').selectedIndex].chequeoDescarga) {
 								document.getElementById('entregado').checked = true;
 								directionsDisplay.setMap(null);
-								if(typeof Android != 'undefined'){
-								Android.showToast('Envio completado');
+								if (typeof Android != 'undefined') {
+									Android.showToast('Envio completado');
 								}
 							} else {
 								document.getElementById('entregado').checked = false;
@@ -240,7 +240,21 @@
 
 						});
 
+						/* document.getElementById('recogido').addEventListener('click', function () {
+						///////ACTUALIZAR ENVIO
+							let cliente = envios[document.getElementById('envios').selectedIndex].usuario;
+							let fecha = envios[document.getElementById('envios').selectedIndex].fecha;
+							updateShipment(cliente,fecha,'chequeoCarga', document.getElementById('recogido').checked);
+							///////ACTUALIZAR ENVIO
+						}); */
+
 						document.getElementById('recogido').addEventListener('change', function () {
+							///////ACTUALIZAR ENVIO
+							let cliente = envios[document.getElementById('envios').selectedIndex].usuario;
+							let fecha = envios[document.getElementById('envios').selectedIndex].fecha;
+							updateShipment(cliente, fecha, 'chequeoCarga', document.getElementById('recogido').checked);
+							///////ACTUALIZAR ENVIO
+
 							directionsDisplay.setMap(map);
 							if (document.getElementById('recogido').checked) {
 								document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].destinoLatLong;
@@ -261,7 +275,24 @@
 							}
 						});
 
+
+
+						/* document.getElementById('entregado').addEventListener('click', function () {
+						///////ACTUALIZAR ENVIO
+							let cliente = envios[document.getElementById('envios').selectedIndex].usuario;
+							let fecha = envios[document.getElementById('envios').selectedIndex].fecha;
+							updateShipment(cliente,fecha,'chequeoDescarga', document.getElementById('entregado').checked);
+							///////ACTUALIZAR ENVIO
+						}); */
+
 						document.getElementById('entregado').addEventListener('change', function () {
+							///////ACTUALIZAR ENVIO
+							let cliente = envios[document.getElementById('envios').selectedIndex].usuario;
+							let fecha = envios[document.getElementById('envios').selectedIndex].fecha;
+							updateShipment(cliente, fecha, 'chequeoDescarga', document.getElementById('entregado').checked);
+							///////ACTUALIZAR ENVIO
+
+
 							directionsDisplay.setMap(map);
 							if (document.getElementById('entregado').checked) {
 								//ENTREGADO o DESCARGA
@@ -271,8 +302,8 @@
 								document.getElementById('recogido').checked = true;
 								document.getElementById('recogido').disable = true;
 								directionsDisplay.setMap(null);
-								if(typeof Android != 'undefined'){
-								Android.showToast('Envio completado');
+								if (typeof Android != 'undefined') {
+									Android.showToast('Envio completado');
 								}
 							} else {
 								document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].destinoLatLong;
@@ -297,16 +328,15 @@
 							travelMode: 'DRIVING'
 						}, function (response, status) {
 							if (status === 'OK') {
-								//route = response;
 								directionsDisplay.setDirections(response);
-								console.log(JSON.stringify(response, null, 2));
-								if(typeof Android != 'undefined'){
+								//console.log(JSON.stringify(response, null, 2));
+								if (typeof Android != 'undefined') {
 									Android.showToast('Distancia: ' + response.routes[0].legs[0].distance.text);
 									Android.showToast('Duración: ' + response.routes[0].legs[0].duration.text);
 								}
 
 							} else {
-								if(typeof Android != 'undefined'){
+								if (typeof Android != 'undefined') {
 									Android.showToast('Directions request failed due to '
 										+ status);
 								}
@@ -355,51 +385,54 @@
 								if (envios[document.getElementById('envios').selectedIndex].chequeoDescarga) {
 									document.getElementById('entregado').checked = true;
 									directionsDisplay.setMap(null);
-									if(typeof Android != 'undefined'){
-									Android.showToast('Envio completado');
+									if (typeof Android != 'undefined') {
+										Android.showToast('Envio completado');
 									}
 								} else {
 									document.getElementById('entregado').checked = false;
 									document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].destinoLatLong;
 								}
 							}
-							
-							if(typeof Android != 'undefined'){
-							Android.showToast('Envio descargado');
+
+							if (typeof Android != 'undefined') {
+								Android.showToast('Envio descargado');
 							}
 
 						}).fail(function (xhr, status, errorThrown) {
 							console.log('Failed Request To Servlet /getEnvios')
-							if(typeof Android != 'undefined'){
+							if (typeof Android != 'undefined') {
 								Android.showToast('Error: envio no actualizado');
-								}
+							}
 						}).always(function (xhr, status) {
 						});
 
 					}
 
-					function updateShipment(key, value) {
+					function updateShipment(client, date, key, value) {
 
 						$.ajax({
-							url : "/updateShipment",
-							data : {
-								key : key,
-								value : value
+							url: "/updateShipment",
+							data: {
+								client: client,
+								date: date,
+								key: key,
+								value: value
 							},
-							type : "POST",
-							dataType : "json",
+							type: "POST",
+							dataType: "json",
 						}).done(function (response) {
-							console.log('Envios:\n' + JSON.stringify(response, null, 2));
 
-							if(typeof Android != 'undefined'){
-							Android.showToast('Envio descargado');
+							console.log('Envio actualizado correctamente');
+
+							if (typeof Android != 'undefined') {
+								Android.showToast('Envio actualizado correctamente');
 							}
 
 						}).fail(function (xhr, status, errorThrown) {
 							console.log('Failed Request To Servlet /updateShipment')
-				if(typeof Android != 'undefined'){
+							if (typeof Android != 'undefined') {
 								Android.showToast('Error: envio no actualizado');
-								}
+							}
 						}).always(function (xhr, status) {
 						});
 
@@ -409,25 +442,25 @@
 				</script>
 
 				<script>
-				if(typeof Android != 'undefined'){
+					if (typeof Android != 'undefined') {
 
-					var BestIsOn = true;
-					var GPSIsOn = false;
-					var networkIsOn = false;
+						var BestIsOn = true;
+						var GPSIsOn = false;
+						var networkIsOn = false;
 
-					Android.toggleBestUpdates(BestIsOn);
-					Android.toggleGPSUpdates(GPSIsOn);
-					Android.toggleNetworkUpdates(networkIsOn);
+						Android.toggleBestUpdates(BestIsOn);
+						Android.toggleGPSUpdates(GPSIsOn);
+						Android.toggleNetworkUpdates(networkIsOn);
 
-					setInterval(function () {
+						setInterval(function () {
 
-						var coords = Android.getBestLocation();
+							var coords = Android.getBestLocation();
 
-						document.getElementById('lat').innerHTML = coords.split(",")[0];
-						document.getElementById('lng').innerHTML = coords.split(",")[1];
+							document.getElementById('lat').innerHTML = coords.split(",")[0];
+							document.getElementById('lng').innerHTML = coords.split(",")[1];
 
-					}, 1000);
-				}
+						}, 1000);
+					}
 				</script>
 
 				<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsQwNmnSYTDtkrlXKeKnfP0x8TNwVJ2uI&callback=initMap"></script>

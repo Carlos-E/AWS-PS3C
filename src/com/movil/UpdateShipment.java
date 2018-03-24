@@ -37,7 +37,10 @@ public class UpdateShipment extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		boolean result = ControladorBD.updateShipment(request.getParameter("key"), request.getParameter("value"));
+		System.out.println(
+				"\n\n\nKey and Value: " + request.getParameter("key") + " " + request.getParameter("value") + "\n");
+
+		boolean result = ControladorBD.updateShipment(request.getParameter("client"), request.getParameter("date"),request.getParameter("key"), request.getParameter("value"));
 
 		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 
