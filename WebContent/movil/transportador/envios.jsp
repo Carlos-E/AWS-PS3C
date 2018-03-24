@@ -97,10 +97,16 @@
 				if(response !== null){
 				
 				response.forEach(element => {
+					var aux = "<select class='custom-select'>"+
+					"<option>Fecha: "+element.fecha+"</option>"+
+					"<option disabled>Cliente: "+element.usuario+"</option>"+
+					"<option disabled>Origen: "+element.origen+"</option>"+
+					"<option disabled>Destino: "+element.destino+"</option>"+
+					"<option disabled>Tipo: "+element.tipo+"</option>"+
+					"<option disabled>espacio: "+element.espacio+"</option>"+
+					"</select>";
 					dataSet.push([
-						element.usuario,
-						element.tipo,
-						element.espacio
+						aux
 				]);
 				});
 				
@@ -110,9 +116,7 @@
 				$('#tabla').DataTable( {
 			        data: dataSet,
 			        columns: [
-			            { title: "cliente" },
-			            { title: "tipo" },
-			            { title: "espacio" }
+			            { title: "envíos" }
 			        ]
 			    });
 				
