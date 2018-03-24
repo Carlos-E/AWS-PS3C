@@ -171,6 +171,7 @@ html, body {
 		var map;
 		
 		var envios = ['...'];
+		var route = null;
 
 		function initMap() {
 
@@ -292,8 +293,13 @@ html, body {
 				travelMode : 'DRIVING'
 			}, function(response, status) {
 				if (status === 'OK') {
+					//route = response;
 					directionsDisplay.setDirections(response);
 					console.log(JSON.stringify(response, null, 2));
+					
+					Android.showToast('Distancia: '+response.routes[0].legs[0].distance.text);
+					Android.showToast('Duración: '+response.routes[0].legs[0].duration.text);
+					
 				} else {
 					Android.showToast('Directions request failed due to '
 							+ status);
@@ -319,8 +325,8 @@ html, body {
 			type : "GET",
 			dataType : "json",
 		}).done(function(response) {
-			console.log(response);
-			
+			console.log('Envios:\n'+JSON.stringify(response,null,2));
+		
 			if(response !== null){
 				directionsDisplay.setMap(map);
 			
