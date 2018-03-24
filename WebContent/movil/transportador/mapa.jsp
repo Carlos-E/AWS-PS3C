@@ -95,9 +95,7 @@ html, body {
 
 					<div class="card-block">
 						<span for="recogido">Env&iacute;os:</span>
-
 						<select id="envios">
-							<option value="">...</option>
 						</select>
 						<span></span>
 					</div>
@@ -165,16 +163,21 @@ html, body {
 
 	<div id="map"></div>
 
-
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	
 	<script>
+		var directionsService;
+		var directionsDisplay;
+		var map;
+		
+		var envios = ['...'];
+
 		function initMap() {
 
-			var directionsService = new google.maps.DirectionsService;
-			var directionsDisplay = new google.maps.DirectionsRenderer;
+			directionsService = new google.maps.DirectionsService;
+			directionsDisplay = new google.maps.DirectionsRenderer;
 
-			var map = new google.maps.Map(document.getElementById('map'), {
+			map = new google.maps.Map(document.getElementById('map'), {
 				zoom : 13,
 				center : {
 					lat : 10.4049383,
@@ -184,18 +187,72 @@ html, body {
 
 			directionsDisplay.setMap(map);
 
-			var onEventHandler = function() {
-				calculateAndDisplayRoute(directionsService, directionsDisplay);
-			};
+			document.getElementById('envios').addEventListener('change',function() {
+				directionsDisplay.setMap(map);
+			
+				console.log(envios[document.getElementById('envios').selectedIndex]);
+				
+				if(envios[document.getElementById('envios').selectedIndex].chequeoCarga){
+					document.getElementById('recogido').checked = true;
+				}else{
+					document.getElementById('recogido').checked = false;
+					document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].origenLatLong;
+				}
+				
+				if(envios[document.getElementById('envios').selectedIndex].chequeoDescarga){
+					document.getElementById('entregado').checked = true;
+				    directionsDisplay.setMap(null);
+					Android.showToast('Envio completado');
+				}else{
+					document.getElementById('entregado').checked = false;
+					document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].destinoLatLong;
+				}
 
-			document.getElementById('envios').addEventListener('change',
-					onEventHandler);
-			document.getElementById('sync').addEventListener('click',
-					onEventHandler);
-
-			function recalculate() {
 				calculateAndDisplayRoute(directionsService, directionsDisplay);
-			}
+			});
+			
+			document.getElementById('sync').addEventListener('click',function() {
+				directionsDisplay.setMap(map);
+				if(document.getElementById('entregado').checked){
+				    directionsDisplay.setMap(null);
+					Android.showToast('Envio completado');
+					return;
+					}
+				getEnvios();
+				calculateAndDisplayRoute(directionsService, directionsDisplay);
+			});
+			
+			document.getElementById('recogido').addEventListener('click',function() {
+				directionsDisplay.setMap(map);
+				if(document.getElementById('recogido').checked){
+					//si ya se recogio
+					envios[document.getElementById('envios').selectedIndex].chequeoCarga = true;
+					document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].destinoLatLong;
+				}else{
+					//si todavia no se ha recogio	
+					envios[document.getElementById('envios').selectedIndex].chequeoCarga = false;
+					document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].origenLatLong;
+				}
+				
+				calculateAndDisplayRoute(directionsService, directionsDisplay);
+			});
+
+			document.getElementById('entregado').addEventListener('click',function() {
+				directionsDisplay.setMap(map);
+				if(document.getElementById('entregado').checked){
+					//si ya se entrego
+					envios[document.getElementById('envios').selectedIndex].chequeoDescarga = true;
+				    directionsDisplay.setMap(null);
+					Android.showToast('Envio completado');
+				}else{
+					//si todavia no se ha entregado	
+					envios[document.getElementById('envios').selectedIndex].chequeoDescarga = false;
+					document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].destinoLatLong;
+				}
+				
+				calculateAndDisplayRoute(directionsService, directionsDisplay);
+			});
+
 
 		}
 
@@ -225,7 +282,56 @@ html, body {
 									+ document.getElementById('end').value
 									+ '&travelmode=driving&dir_action=navigate'
 						});
-
+		
+		
+		function getEnvios(){
+		
+		$.ajax({
+			url : "/getEnvios",
+			type : "GET",
+			dataType : "json",
+		}).done(function(response) {
+			console.log(response);
+			
+			if(response !== null){
+				directionsDisplay.setMap(map);
+			
+				envios = response;
+				
+				$('#envios').html(''); 
+				$(envios).each(function() {
+			 		$('#envios').append($("<option>").attr('value',this.usuario+' : '+this.fecha).text(this.usuario+' : '+this.fecha));
+			 	});
+				
+				if(envios[document.getElementById('envios').selectedIndex].chequeoCarga){
+					document.getElementById('recogido').checked = true;
+					document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].destinoLatLong;
+				}else{
+					document.getElementById('recogido').checked = false;
+					document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].origenLatLong;
+				}
+				
+				if(envios[document.getElementById('envios').selectedIndex].chequeoDescarga){
+					document.getElementById('entregado').checked = true;
+					directionsDisplay.setMap(null);
+					Android.showToast('Envio completado');
+				}else{
+					document.getElementById('entregado').checked = false;
+					document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].destinoLatLong;
+				}
+			}
+			
+		}).fail(function(xhr, status, errorThrown) {
+			console.log('Failed Request To Servlet /getEnvios')
+		}).always(function(xhr, status) {
+		});
+		
+		}
+		
+		getEnvios();
+		</script>
+		
+		<script>
 		var BestIsOn = true;
 		var GPSIsOn = false;
 		var networkIsOn = false;
@@ -242,29 +348,6 @@ html, body {
 			document.getElementById('lng').innerHTML = coords.split(",")[1];
 
 		}, 1000);
-		
-		var envios = ['...'];
-
-		$.ajax({
-			url : "/getEnvios",
-			type : "GET",
-			dataType : "json",
-		}).done(function(response) {
-			console.log(response);
-			
-			if(response !== null){
-			
-				envios = response;
-			
-				$(envios).each(function() {
-			 		$('#envios').append($("<option>").attr('value',this.usuario+' : '+this.fecha).text(this.usuario+' : '+this.fecha));
-			 	});
-			}
-			
-		}).fail(function(xhr, status, errorThrown) {
-			console.log('Failed Request To Servlet /getEnvios')
-		}).always(function(xhr, status) {
-		});
 	</script>
 
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsQwNmnSYTDtkrlXKeKnfP0x8TNwVJ2uI&callback=initMap"></script>
