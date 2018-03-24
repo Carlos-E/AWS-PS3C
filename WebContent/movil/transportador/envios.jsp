@@ -101,12 +101,8 @@
 						element.fecha,
 						element.usuario,
 						element.empresa,
-						element.origen,
-						element.destino,
 						element.tipo,
-						element.espacio,
-						element.camion,
-						element.trailer,
+						element.espacio
 				]);
 				});
 				
@@ -117,14 +113,10 @@
 			        data: dataSet,
 			        columns: [
 			            { title: "fecha" },
-			            { title: "usuario" },
+			            { title: "cliente" },
 			            { title: "empresa" },
-			            { title: "origen" },
-			            { title: "destino" },
 			            { title: "tipo" },
-			            { title: "capacidad" },
-			            { title: "camion" },
-			            { title: "trailer" }
+			            { title: "espacio" }
 			        ]
 			    });
 				

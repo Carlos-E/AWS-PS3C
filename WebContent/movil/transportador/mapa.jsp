@@ -355,6 +355,9 @@ html, body {
 				}
 			}
 			
+			Android.showToast('Envio descargado');
+
+			
 		}).fail(function(xhr, status, errorThrown) {
 			console.log('Failed Request To Servlet /getEnvios')
 		}).always(function(xhr, status) {
