@@ -47,7 +47,7 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-sm-12">
+							<div class="col-sm-12 small">
 								<table id="tabla" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
 									<thead>
 
@@ -98,9 +98,7 @@
 				
 				response.forEach(element => {
 					dataSet.push([
-						element.fecha,
 						element.usuario,
-						element.empresa,
 						element.tipo,
 						element.espacio
 				]);
@@ -112,9 +110,7 @@
 				$('#tabla').DataTable( {
 			        data: dataSet,
 			        columns: [
-			            { title: "fecha" },
 			            { title: "cliente" },
-			            { title: "empresa" },
 			            { title: "tipo" },
 			            { title: "espacio" }
 			        ]
