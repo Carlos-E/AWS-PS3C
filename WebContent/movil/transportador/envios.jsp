@@ -134,8 +134,9 @@
 						let datos = [];
 						let miUbicacion = '10.390467,-75.5014747';
 
-						document.getElementById("tabla").rows[0].insertCell(document.getElementById("tabla").rows[0].cells.length).innerHTML = 'Origen';
-						document.getElementById("tabla").rows[0].insertCell(document.getElementById("tabla").rows[0].cells.length).innerHTML = 'Destino';
+						document.getElementById("tabla").rows[0].insertCell(document.getElementById("tabla").rows[0].cells.length).outerHTML = '<th>Origen</th>';
+						//document.getElementById('tabla').tHead.children[0].appendChild(document.createElement('th').innerHTML);
+						document.getElementById("tabla").rows[0].insertCell(document.getElementById("tabla").rows[0].cells.length).outerHTML = '<th>Destino</th>';
 
 						envios.forEach(function callback(envio, index, envios) {
 							calculateRoute(directionsService, miUbicacion, envio.origenLatLong, index);
