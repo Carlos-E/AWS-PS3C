@@ -196,17 +196,14 @@
 						directionsDisplay.setMap(map);
 
 						document.getElementById('sync').addEventListener('click', function () {
+							getEnvios();
+							
 							directionsDisplay.setMap(map);
 							if (document.getElementById('entregado').checked) {
 								directionsDisplay.setMap(null);
-								if (typeof Android != 'undefined') {
-									Android.showToast('Envio completado');
-								}
-								return;
 							}else{
 								calculateAndDisplayRoute(directionsService, directionsDisplay);
 								}
-							getEnvios();
 
 						});
 
@@ -375,6 +372,11 @@
 							console.log('Envios:\n' + JSON.stringify(response, null, 2));
 
 							if (response !== null) {
+								
+								if (typeof Android != 'undefined') {
+									Android.showToast('Envios descargados correctamente');
+								}
+								
 								directionsDisplay.setMap(map);
 
 								envios = response;
@@ -402,10 +404,6 @@
 									document.getElementById('entregado').checked = false;
 									document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].destinoLatLong;
 								}
-							}
-
-							if (typeof Android != 'undefined') {
-								Android.showToast('Envios descargados correctamente');
 							}
 
 						}).fail(function (xhr, status, errorThrown) {
