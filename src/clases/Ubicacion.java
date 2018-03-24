@@ -1,10 +1,13 @@
 package clases;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Ubicacion {
 
 	String placa;
 	String hora;
-	double latitud, longitud;
+	String latitud, longitud;
 	
 	public Ubicacion() {
 		super();
@@ -28,22 +31,40 @@ public class Ubicacion {
 	public void setHora(String hora) {
 		this.hora = hora;
 	}
-
-	public double getLatitud() {
+	
+	public String getLatitud() {
 		return latitud;
 	}
 
-	public void setLatitud(double latitud) {
+	public void setLatitud(String latitud) {
 		this.latitud = latitud;
 	}
 
-	public double getLongitud() {
+	public String getLongitud() {
 		return longitud;
 	}
 
-	public void setLongitud(double longitud) {
+	public void setLongitud(String longitud) {
 		this.longitud = longitud;
 	}
+
+	public String toJSON() {
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("placa", getPlaca());
+            jsonObject.put("hora", getHora());
+            jsonObject.put("latitud", getLatitud());
+            jsonObject.put("longitud", getLongitud());
+
+            return jsonObject.toString();
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return "null";
+        }
+
+    }
 
 	@Override
 	public String toString() {

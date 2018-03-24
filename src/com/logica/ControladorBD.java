@@ -1187,4 +1187,25 @@ public class ControladorBD {
         }
     }
 	
+	public static boolean putItem(String tableName, String objectJSON) {
+
+        String operation = "create";
+
+        String payload = "{"
+                + "\"operation\":\"" + operation + "\","
+                + "\"tableName\":\"" + tableName + "\","
+                + "\"payload\":{"
+                + "\"Item\":" + objectJSON
+                + "}"
+                + "}";
+
+
+        if (postRequest(payload) != null) {
+            return true;
+
+        } else {
+            return false;
+        }
+    }
+	
 }
