@@ -33,22 +33,10 @@ public class GetEnvios extends HttpServlet {
 			throws ServletException, IOException {
 		
 		String conductor = request.getSession().getAttribute("username").toString();
-		conductor = "condu";
 		
-		Camion camion = (Camion)ControladorBD.getItem("camiones", "usuario", conductor);
-		
-		String placaCamion = camion.getPlaca();
-		
-		ArrayList<Envio> enviosCamion = new ArrayList<Envio>(); 
-		
-		ArrayList<Envio> envios = ControladorBD.escanearTabla("envios");
-		
-		for (int i = 0; i < envios.size(); i++) {
-			
-			if(envios.get(i).getCamion().equals(placaCamion)){
-				enviosCamion.add(envios.get(i));
-			}
-		}
+		String placaCamion = ControladorBD.checkPlaca(conductor);
+
+		ArrayList<Envio> enviosCamion = ControladorBD.getShipments("camion", placaCamion);
 		
 		System.out.print(enviosCamion);
 		

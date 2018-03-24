@@ -1068,4 +1068,55 @@ public class ControladorBD {
     }
 	
 	
+	public static String checkPlaca(String usuario) {
+
+        String key = "usuario", tableName = "camiones", operation = "query";
+
+        String payload = "{"
+                + "\"operation\":\"" + operation + "\","
+                + "\"tableName\":\"" + tableName + "\","
+                + "\"payload\":{"
+                + "\"IndexName\":" + "\"" + key + "\","
+                + "\"KeyConditionExpression\":" + "\"" + key + " = :v1\","
+                + "\"ExpressionAttributeValues\": {"
+                + "\":v1\": \"" + usuario + "\"}"
+                + "}"
+                + "}";
+
+
+        StringBuffer response = postRequest(payload);
+
+        if (response != null) {
+
+        } else {
+            return null;
+        }
+
+        JSONObject jsonObject;
+
+        try {
+
+            jsonObject = new JSONObject(response.toString());
+
+            if (jsonObject.getDouble("Count") == 0) {
+                return null;
+            }
+
+            // "I want to iterate though the objects in the array..."
+            JSONArray jsonArray = jsonObject.getJSONArray("Items");
+            
+            String currentPlaca =null;
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                currentPlaca = jsonArray.getJSONObject(i).getString("placa");
+            }
+
+            return currentPlaca;
+
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            return null;
+        }
+    }
+	
 }
