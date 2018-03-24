@@ -139,7 +139,7 @@ html, body {
 						<div class="row">
 							<div class="col">
 								Lat:
-								<span id="lat">10.4001778</span>
+								<span id="lat">10.390467</span>
 							</div>
 
 						</div>
@@ -147,7 +147,7 @@ html, body {
 						<div class="row">
 							<div class="col">
 								Lng:
-								<span id="lng">-75.5657678</span>
+								<span id="lng">-75.5014747</span>
 							</div>
 						</div>
 
