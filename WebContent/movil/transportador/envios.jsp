@@ -110,7 +110,7 @@
 								i++;
 
 								let rows = document.getElementById("tabla").rows;
-								rows[i].insertCell(rows[i].cells.length).innerHTML = response.routes[0].legs[0].distance.text + " " + response.routes[0].legs[0].duration.text;
+								rows[i].insertCell(rows[i].cells.length).innerHTML = "Distancia " + response.routes[0].legs[0].distance.text + "<br>Duraci&oacute;n " + response.routes[0].legs[0].duration.text;
 
 								//response.routes[0].legs[0].duration.text;
 
@@ -134,6 +134,9 @@
 						let datos = [];
 						let miUbicacion = '10.390467,-75.5014747';
 
+						document.getElementById("tabla").rows[0].insertCell(document.getElementById("tabla").rows[0].cells.length).innerHTML = 'Origen';
+						document.getElementById("tabla").rows[0].insertCell(document.getElementById("tabla").rows[0].cells.length).innerHTML = 'Destino';
+
 						envios.forEach(function callback(envio, index, envios) {
 							calculateRoute(directionsService, miUbicacion, envio.origenLatLong, index);
 							calculateRoute(directionsService, miUbicacion, envio.destinoLatLong, index);
@@ -144,7 +147,6 @@
 					console.log('Mapa Inicializado');
 				}
 
-				var envios;
 
 				$(document).ready(function () {
 
@@ -154,8 +156,6 @@
 						dataType: "json",
 					}).done(function (response) {
 						console.log(response);
-
-						envios = response;
 
 						dataSet = [];
 
