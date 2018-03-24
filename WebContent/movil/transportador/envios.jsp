@@ -1,103 +1,142 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.io.*,java.util.*"%>
 <%
-	int i = 0;
 	if (session.getAttribute("rol") == null) {
-		response.sendError(400, "Acceso incorrecto"); //cambiar
+		//response.sendError(400, "Acceso incorrecto"); //cambiar
+		response.sendRedirect("/error.jsp");
 	}
-	session.setAttribute("pagina", "Seguimiento de Mercancía");
+	session.setAttribute("pagina", "Listar Env&iacute;os");
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="es">
 <head>
-
-<jsp:include page="/movil/head.jsp" />
-<title>Mapa</title>
-
-<style type="text/css">
-html, body {
-	/* 	height: 100%;
- */
-	margin: 0;
-	padding: 0;
-}
-
-#map {
-	height: 90vh;
-	width: 90vw;
-	margin: auto auto;
-}
-
-#embeded {
-	height: 90vh;
-	width: 90vw;
-	margin: auto auto;
-}
-</style>
-
+<title>
+	<%
+		out.print(session.getAttribute("pagina").toString());
+	%>
+</title>
+<jsp:include page="/head.jsp" />
 </head>
-
 <body>
-
+	<!-- INICIO -->
 	<div class="container-fluid" id="wrapper">
 		<div class="row">
-			<!--  NAVBAR -->
-			<jsp:include page="/movil/navbar.jsp" />
+			<!-- INICIO NAVBAR -->
+			<jsp:include page="/navbar.jsp" />
 			<!--  ./NAVBAR -->
 		</div>
 	</div>
+	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER -->
+	<section class="row">
+		<div class="col-md-12 col-lg-12">
 
-	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/movil/header.jsp" /> <!--  ./HEADER --> <section class="row">
-	<div class="col-md-12 col-lg-12">
-		<div class="card mb-4">
-			<!-- INICIO CONTAINER -->
+			<div class="card mb-4">
 
-			<div class="card-block">
-				<h3 class="card-title">
-					<%
-						out.print(session.getAttribute("pagina").toString());
-					%>
-				</h3>
+				<div class="card-block">
+					<h3 class="card-title">
+						Datos
+						<i id="spinner" class="fa fa-circle-notch fa-spin" style="font-size: 30px"></i>
+					</h3>
+					<h6 class="text-muted mb-4"></h6>
+					<div id="example_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+						<div class="row">
+							<div class="col-sm-12 col-md-6">
+								<div class="dataTables_length" id="example_length"></div>
+							</div>
+							<div class="col-sm-12 col-md-6">
+								<div id="example_filter" class="dataTables_filter"></div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<table id="tabla" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
+									<thead>
 
-				<form class="form" action="#" method="post">
+									</thead>
+									<tfoot>
 
-					<div class="col-sm-12">
-						<table id="tabla" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
-							<thead>
+									</tfoot>
+									<tbody>
 
-							</thead>
-							<tfoot>
-
-							</tfoot>
-							<tbody>
-
-							</tbody>
-						</table>
-					</div>
-					<br>
-					<br>
-					<div class="form-group">
-						<label class="col-12 control-label no-padding" for="message">Escriba su Reporte</label>
-						<div class="col-12 no-padding">
-							<textarea class="form-control" id="message" name="message" placeholder="Escriba aqui su reporte..." rows="5"></textarea>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12 col-md-5">
+								<div class="dataTables_info" id="example_info" role="status" aria-live="polite"></div>
+							</div>
+							<div class="col-sm-12 col-md-7">
+								<div class="dataTables_paginate paging_simple_numbers" id="example_paginate"></div>
+							</div>
 						</div>
 					</div>
-
-					<div class="modal-footer">
-						<button type="submit" name="submit" class="btn btn-primary btn-md float-right">Reportar</button>
-						<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger btn-md float-right">Cancelar</button>
-					</div>
-				</form>
+				</div>
 			</div>
-
 			<!-- /FIN CONTAINER -->
+
 		</div>
-	</div>
-	</section> </main>
+	</section>
+	</main>
+	<!-- Modal -->
+	<!--  FOOTER CON SCRIPTS -->
+	<jsp:include page="/footer.jsp" />
+	<!-- /FIN -->
 
-	<div class="container-fluid">
-		<jsp:include page="/movil/footer.jsp" />
-	</div>
-
+	<script>
+		$(document).ready(function() {
+						
+			$.ajax({
+				url : "/getEnvios",
+				type : "GET",
+				dataType : "json",
+			}).done(function(response) {
+				console.log(response);
+				
+				let dataSet = [];
+				
+				if(response !== null){
+				
+				response.forEach(element => {
+					dataSet.push([
+						element.fecha,
+						element.usuario,
+						element.empresa,
+						element.origen,
+						element.destino,
+						element.tipo,
+						element.espacio,
+						element.camion,
+						element.trailer,
+				]);
+				});
+				
+				}
+				console.log(dataSet);
+					
+				$('#tabla').DataTable( {
+			        data: dataSet,
+			        columns: [
+			            { title: "fecha" },
+			            { title: "usuario" },
+			            { title: "empresa" },
+			            { title: "origen" },
+			            { title: "destino" },
+			            { title: "tipo" },
+			            { title: "capacidad" },
+			            { title: "camion" },
+			            { title: "trailer" }
+			        ]
+			    });
+				
+		        $("#spinner").fadeOut("slow");
+			
+			}).fail(function(xhr, status, errorThrown) {
+				Android.showToast('Algo ha fallado')
+				console.log('Failed Request To Servlet /getEnvios')
+			}).always(function(xhr, status) {
+			});		
+			
+		});
+	</script>
 </body>
 </html>

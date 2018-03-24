@@ -33,7 +33,7 @@ public class GetEnvios extends HttpServlet {
 			throws ServletException, IOException {
 		
 		String conductor = request.getSession().getAttribute("username").toString();
-		
+				
 		String placaCamion = ControladorBD.checkPlaca(conductor);
 
 		ArrayList<Envio> enviosCamion = ControladorBD.getShipments("camion", placaCamion);
@@ -45,7 +45,6 @@ public class GetEnvios extends HttpServlet {
 		response.setContentType("application/json");
 		response.getWriter().print(ow.writeValueAsString(enviosCamion));
 		response.getWriter().close();
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
