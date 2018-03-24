@@ -64,7 +64,10 @@
 
 
 	<script>
-		
+		if (typeof Android != 'undefined') {
+			var BestIsOn = true;
+			Android.toggleBestUpdates(BestIsOn);
+		}
 	</script>
 
 </body>

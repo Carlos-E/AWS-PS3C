@@ -454,12 +454,12 @@
 					if (typeof Android != 'undefined') {
 
 						var BestIsOn = true;
-						var GPSIsOn = false;
-						var networkIsOn = false;
+						//var GPSIsOn = false;
+						//var networkIsOn = false;
 
 						Android.toggleBestUpdates(BestIsOn);
-						Android.toggleGPSUpdates(GPSIsOn);
-						Android.toggleNetworkUpdates(networkIsOn);
+						//Android.toggleGPSUpdates(GPSIsOn);
+						//Android.toggleNetworkUpdates(networkIsOn);
 
 						setInterval(function () {
 

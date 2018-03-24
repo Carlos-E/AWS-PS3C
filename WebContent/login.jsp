@@ -72,17 +72,9 @@
 	<!-- Scripts -->
 	
 	<script>
-	var coords = '0.0,0.0';
-
 	if (typeof Android != 'undefined') {
-
 		var BestIsOn = true;
-		var GPSIsOn = false;
-		var networkIsOn = false;
-
 		Android.toggleBestUpdates(BestIsOn);
-		Android.toggleGPSUpdates(GPSIsOn);
-		Android.toggleNetworkUpdates(networkIsOn);
 	}
 	</script>
 

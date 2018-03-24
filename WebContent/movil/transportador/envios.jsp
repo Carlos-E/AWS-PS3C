@@ -92,15 +92,8 @@
 				var coords = '0.0,0.0';
 
 				if (typeof Android != 'undefined') {
-
 					var BestIsOn = true;
-					var GPSIsOn = false;
-					var networkIsOn = false;
-
 					Android.toggleBestUpdates(BestIsOn);
-					Android.toggleGPSUpdates(GPSIsOn);
-					Android.toggleNetworkUpdates(networkIsOn);
-
 					setInterval(function () {
 						var coords = Android.getBestLocation();
 					}, 1000);
@@ -127,16 +120,8 @@
 								console.log(JSON.stringify(response.routes[0].legs[0].duration.text, null, 2));
 
 								i++;
-
 								let rows = document.getElementById("tabla").rows;
 								rows[i].insertCell(rows[i].cells.length).innerHTML = "Distancia " + response.routes[0].legs[0].distance.text + "<br>Duraci&oacute;n " + response.routes[0].legs[0].duration.text;
-
-								//response.routes[0].legs[0].duration.text;
-
-								if (typeof Android != 'undefined') {
-									Android.showToast('Distancia: ' + response.routes[0].legs[0].distance.text);
-									Android.showToast('Duración: ' + response.routes[0].legs[0].duration.text);
-								}
 
 							} else {
 								if (typeof Android != 'undefined') {
