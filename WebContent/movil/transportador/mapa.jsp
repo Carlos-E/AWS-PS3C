@@ -186,30 +186,6 @@ html, body {
 			});
 
 			directionsDisplay.setMap(map);
-
-			document.getElementById('envios').addEventListener('change',function() {
-				directionsDisplay.setMap(map);
-			
-				console.log(envios[document.getElementById('envios').selectedIndex]);
-				
-				if(envios[document.getElementById('envios').selectedIndex].chequeoCarga){
-					document.getElementById('recogido').checked = true;
-				}else{
-					document.getElementById('recogido').checked = false;
-					document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].origenLatLong;
-				}
-				
-				if(envios[document.getElementById('envios').selectedIndex].chequeoDescarga){
-					document.getElementById('entregado').checked = true;
-				    directionsDisplay.setMap(null);
-					Android.showToast('Envio completado');
-				}else{
-					document.getElementById('entregado').checked = false;
-					document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].destinoLatLong;
-				}
-
-				calculateAndDisplayRoute(directionsService, directionsDisplay);
-			});
 			
 			document.getElementById('sync').addEventListener('click',function() {
 				directionsDisplay.setMap(map);
@@ -221,38 +197,90 @@ html, body {
 				getEnvios();
 				calculateAndDisplayRoute(directionsService, directionsDisplay);
 			});
-			
-			document.getElementById('recogido').addEventListener('click',function() {
+
+			document.getElementById('envios').addEventListener('change',function() {
 				directionsDisplay.setMap(map);
-				if(document.getElementById('recogido').checked){
-					//si ya se recogio
-					envios[document.getElementById('envios').selectedIndex].chequeoCarga = true;
+			
+				console.log(envios[document.getElementById('envios').selectedIndex]);
+				
+				if(envios[document.getElementById('envios').selectedIndex].chequeoCarga){
+					document.getElementById('recogido').checked = true;
 					document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].destinoLatLong;
+
 				}else{
-					//si todavia no se ha recogio	
-					envios[document.getElementById('envios').selectedIndex].chequeoCarga = false;
+					document.getElementById('recogido').checked = false;
 					document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].origenLatLong;
 				}
 				
+				if(envios[document.getElementById('envios').selectedIndex].chequeoDescarga){
+					document.getElementById('entregado').checked = true;
+				    directionsDisplay.setMap(null);
+					Android.showToast('Envio completado');
+				}else{
+					document.getElementById('entregado').checked = false;
+					if(document.getElementById('recogido').checked){
+						document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].destinoLatLong;
+					}
+				}
+
+				calculateAndDisplayRoute(directionsService, directionsDisplay);
+			});
+			
+			/* document.getElementById('recogido').addEventListener('click',function() {
+				directionsDisplay.setMap(map);
 				calculateAndDisplayRoute(directionsService, directionsDisplay);
 			});
 
 			document.getElementById('entregado').addEventListener('click',function() {
 				directionsDisplay.setMap(map);
-				if(document.getElementById('entregado').checked){
-					//si ya se entrego
-					envios[document.getElementById('envios').selectedIndex].chequeoDescarga = true;
-				    directionsDisplay.setMap(null);
-					Android.showToast('Envio completado');
-				}else{
-					//si todavia no se ha entregado	
-					envios[document.getElementById('envios').selectedIndex].chequeoDescarga = false;
-					document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].destinoLatLong;
-				}
-				
 				calculateAndDisplayRoute(directionsService, directionsDisplay);
+			}); */
+			
+			document.getElementById('recogido').addEventListener('change',function() {
+				directionsDisplay.setMap(map);
+				if(document.getElementById('recogido').checked){
+					document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].destinoLatLong;
+
+					envios[document.getElementById('envios').selectedIndex].chequeoCarga = true					
+					////
+					calculateAndDisplayRoute(directionsService, directionsDisplay);
+				}else{
+					document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].origenLatLong;
+					
+					envios[document.getElementById('envios').selectedIndex].chequeoCarga = false					
+
+					envios[document.getElementById('envios').selectedIndex].chequeoDescarga = false;
+					
+					document.getElementById('entregado').checked = false;
+					////
+					calculateAndDisplayRoute(directionsService, directionsDisplay);
+				}
 			});
 
+			document.getElementById('entregado').addEventListener('change',function() {
+				directionsDisplay.setMap(map);
+				if(document.getElementById('entregado').checked){
+					//ENTREGADO o DESCARGA
+					envios[document.getElementById('envios').selectedIndex].chequeoDescarga = true;
+					//RECOGIDO o CARGA
+					envios[document.getElementById('envios').selectedIndex].chequeoCarga = true
+					document.getElementById('recogido').checked = true;
+					document.getElementById('recogido').disable = true;
+				    directionsDisplay.setMap(null);
+				    Android.showToast('Envio completado');
+				}else{
+					document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].destinoLatLong;
+
+					envios[document.getElementById('envios').selectedIndex].chequeoDescarga = false;
+
+					document.getElementById('recogido').checked = true;
+					document.getElementById('recogido').disable = false;
+					
+					
+					////
+					calculateAndDisplayRoute(directionsService, directionsDisplay);
+				}
+			});
 
 		}
 
