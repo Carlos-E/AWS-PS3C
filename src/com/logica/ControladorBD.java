@@ -1119,4 +1119,71 @@ public class ControladorBD {
         }
     }
 	
+	public static boolean updateShipment(String key, Object value) {
+
+        JSONObject jsonObject = null;
+
+        String primaryKeyValue = "usuario";
+        String sortKeyValue = "fecha";
+        
+        String operation = "update";
+        String tableName = "envios";
+        String primaryKey = "usuario";
+        String sortKey = "fecha";
+
+
+        String payload;
+
+        payload = "{"
+                + "\"operation\":\"" + operation + "\","
+                + "\"tableName\":\"" + tableName + "\","
+                + "\"payload\":{"
+                + "\"Key\":{"
+                + "\"" + primaryKey + "\":\"" + primaryKeyValue + "\","
+                + "\"" + sortKey + "\":\"" + sortKeyValue + "\""
+                + "},"
+                + "\"UpdateExpression\": \"set " + key + " = :val\","
+                + "\"ExpressionAttributeValues\": {"
+                + "\":val\":\"" + value + "\""
+                + "},"
+                //+ "\"ReturnValues\":\"ALL_NEW\""
+                + "\"ReturnValues\": \"UPDATED_NEW\""
+                + "}"
+                + "}";
+
+        StringBuffer response = postRequest(payload);
+
+        String objectFound;
+
+        if (response != null) {
+
+            try {
+
+                jsonObject = new JSONObject(response.toString());
+
+                String statuscode = jsonObject.getJSONObject("ResponseMetadata").get("HTTPStatusCode").toString();
+
+                try {
+                    objectFound = jsonObject.getJSONObject("Attributes").getString(key).toString();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return false;
+                }
+
+                if (value.equals(objectFound.toString())) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+
+            } catch (Exception e) {
+                return false;
+            }
+
+        } else {
+            return false;
+        }
+    }
+	
 }
