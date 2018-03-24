@@ -227,16 +227,6 @@ html, body {
 				calculateAndDisplayRoute(directionsService, directionsDisplay);
 			});
 			
-			/* document.getElementById('recogido').addEventListener('click',function() {
-				directionsDisplay.setMap(map);
-				calculateAndDisplayRoute(directionsService, directionsDisplay);
-			});
-
-			document.getElementById('entregado').addEventListener('click',function() {
-				directionsDisplay.setMap(map);
-				calculateAndDisplayRoute(directionsService, directionsDisplay);
-			}); */
-			
 			document.getElementById('recogido').addEventListener('change',function() {
 				directionsDisplay.setMap(map);
 				if(document.getElementById('recogido').checked){
