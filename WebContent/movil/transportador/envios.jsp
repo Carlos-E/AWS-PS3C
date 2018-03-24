@@ -89,6 +89,25 @@
 			<!-- /FIN -->
 
 			<script>
+				var coords = '0.0,0.0';
+
+				if (typeof Android != 'undefined') {
+
+					var BestIsOn = true;
+					var GPSIsOn = false;
+					var networkIsOn = false;
+
+					Android.toggleBestUpdates(BestIsOn);
+					Android.toggleGPSUpdates(GPSIsOn);
+					Android.toggleNetworkUpdates(networkIsOn);
+
+					setInterval(function () {
+						var coords = Android.getBestLocation();
+					}, 1000);
+				}
+			</script>
+
+			<script>
 				var directionsService;
 				var dataSet;
 
@@ -131,8 +150,11 @@
 
 					getRoutes = (envios) => {
 
-						let datos = [];
 						let miUbicacion = '10.390467,-75.5014747';
+
+						if (coords != '0.0,0.0') {
+							miUbicacion = coords;
+						}
 
 						document.getElementById("tabla").rows[0].insertCell(document.getElementById("tabla").rows[0].cells.length).outerHTML = '<th>Origen</th>';
 						//document.getElementById('tabla').tHead.children[0].appendChild(document.createElement('th').innerHTML);
@@ -201,7 +223,6 @@
 				});
 			</script>
 			<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsQwNmnSYTDtkrlXKeKnfP0x8TNwVJ2uI&callback=initMap"></script>
-
 
 		</body>
 

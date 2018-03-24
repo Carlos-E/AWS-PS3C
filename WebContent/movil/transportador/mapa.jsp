@@ -402,7 +402,6 @@
 									}
 								} else {
 									document.getElementById('entregado').checked = false;
-									document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].destinoLatLong;
 								}
 							}
 
@@ -450,6 +449,8 @@
 				</script>
 
 				<script>
+					var coords = '0.0,0.0';
+					
 					if (typeof Android != 'undefined') {
 
 						var BestIsOn = true;
@@ -462,7 +463,7 @@
 
 						setInterval(function () {
 
-							var coords = Android.getBestLocation();
+							coords = Android.getBestLocation();
 
 							document.getElementById('lat').innerHTML = coords.split(",")[0];
 							document.getElementById('lng').innerHTML = coords.split(",")[1];
