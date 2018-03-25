@@ -46,7 +46,7 @@ public class updateLocation extends HttpServlet {
         String ts = tsLong.toString();
         ubicacion.setHora(ts);
 
-        ubicacion.setPlaca(request.getParameter("placa"));
+        ubicacion.setPlaca(ControladorBD.checkPlaca(request.getSession().getAttribute("username").toString()));
         
 		boolean result = ControladorBD.putItem("ubicaciones", ubicacion.toJSON());
 

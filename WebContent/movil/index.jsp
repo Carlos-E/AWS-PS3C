@@ -65,6 +65,8 @@
 
 	<script>
 		if (typeof Android != 'undefined') {
+			Android.setPlaca('<% out.print(session.getAttribute("placa").toString()); %>');
+
 			var BestIsOn = true;
 			Android.toggleBestUpdates(BestIsOn);
 		}

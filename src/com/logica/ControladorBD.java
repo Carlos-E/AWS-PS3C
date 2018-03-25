@@ -1083,7 +1083,6 @@ public class ControladorBD {
                 + "}"
                 + "}";
 
-
         StringBuffer response = postRequest(payload);
 
         if (response != null) {
@@ -1198,7 +1197,6 @@ public class ControladorBD {
                 + "\"Item\":" + objectJSON
                 + "}"
                 + "}";
-
 
         if (postRequest(payload) != null) {
             return true;

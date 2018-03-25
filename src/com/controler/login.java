@@ -71,22 +71,12 @@ public class login extends HttpServlet {
 				break;
 			case "conductor":
 				session.setAttribute("rol", "conductor");
+				session.setAttribute("placa", ControladorBD.checkPlaca(uname));
 				response.sendRedirect("/movil/index.jsp");
 				break;
 			}
 
-			/*
-			 * switch(logic.rol(uname)){ case "null": response.sendError(400,
-			 * "Sin roll"); break; case "cliente": session.setAttribute("rol",
-			 * "cliente");
-			 * response.sendRedirect("rolCliente/usuario/index.jsp"); break;
-			 * case "empleado": session.setAttribute("rol", "empleado");
-			 * response.sendRedirect("rolEmpleado/usuario/index.jsp"); break;
-			 * case "admin": session.setAttribute("rol", "admin");
-			 * response.sendRedirect("rolAdmin/usuario/index.jsp"); break; }
-			 */
 		} else {
-			// response.sendError(400, "Usuario no encontrado");
 
 			PrintWriter out = response.getWriter();
 			String nextURL = request.getContextPath() + "/login.jsp";

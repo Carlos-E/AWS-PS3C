@@ -146,9 +146,8 @@
 									<div class="row">
 										<div class="col">
 											Lat:
-											<span id="lat">10.390467</span>
+											<span id="lat">10.390309096147115</span>
 										</div>
-
 									</div>
 
 									<div class="row">
@@ -462,11 +461,14 @@
 						//Android.toggleNetworkUpdates(networkIsOn);
 
 						setInterval(function () {
-
-							coords = Android.getBestLocation();
+							
+							if(!Android.getBestLocation() === coords){
+								coords = Android.getBestLocation();	
+							}
 
 							document.getElementById('lat').innerHTML = coords.split(",")[0];
 							document.getElementById('lng').innerHTML = coords.split(",")[1];
+
 
 						}, 1000);
 					}

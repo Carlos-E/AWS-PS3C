@@ -92,8 +92,6 @@
 				var coords = '0.0,0.0';
 
 				if (typeof Android != 'undefined') {
-					var BestIsOn = true;
-					Android.toggleBestUpdates(BestIsOn);
 					setInterval(function () {
 						var coords = Android.getBestLocation();
 					}, 1000);
@@ -107,7 +105,6 @@
 				function initMap() {
 
 					directionsService = new google.maps.DirectionsService;
-
 
 					function calculateRoute(directionsService, origin, destination, i) {
 						directionsService.route({

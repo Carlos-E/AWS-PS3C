@@ -116,8 +116,9 @@
 		        $("#spinner").fadeOut("slow");
 			
 			}).fail(function(xhr, status, errorThrown) {
-				alert("Algo ha salido mal");
-				console.log('Failed Request To Servlet /scanTable')
+				if (typeof Android != 'undefined') {
+						Android.showToast('Ha ocurrido un error');
+				}
 			}).always(function(xhr, status) {
 			});		
 			
