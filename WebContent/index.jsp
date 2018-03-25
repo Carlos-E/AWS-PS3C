@@ -76,7 +76,7 @@
 						opci&oacute;n para generar reportes, ya sea del estado de las v&iacute;as o eventualidades, tamb&iacute;en la aplicacion sugiere una ruta con un mapa siempre y cuando el env&iacute;o tenga las ubicaciones correctamente ingresadas.</p>
 					<p>
 						Eres conductor o camionero?
-						<a href="/app/app.apk" target="_blank">
+						<a href="https://s3.amazonaws.com/ps3c/app.apk" target="_blank">
 							Descargala Aqu&iacute;!!
 							<em class="fa fa-download"></em>
 						</a>
