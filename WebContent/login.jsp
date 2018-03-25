@@ -36,18 +36,18 @@
 		<h1 class="text-center h3 mt-3 mb-3 font-weight-normal">Iniciar sesi&oacute;n</h1>
 
 		<div class="form-label-group">
-			<input type="email" id="inputEmail" class="form-control" name="username" placeholder="Usuario" value="conductor@ps3c.com" required autofocus>
+			<input type="email" id="inputEmail" class="form-control" name="username" placeholder="Usuario" required autofocus>
 			<label class="unselectable" for="inputEmail">Correo</label>
 		</div>
 
 		<div class="form-label-group">
-			<input type="password" id="inputPassword" class="form-control" name="password" placeholder="Contraseña" value="root" required>
+			<input type="password" id="inputPassword" class="form-control" name="password" value="root" required>
 			<label class="unselectable" for="inputPassword">Contrase&ntildea</label>
 		</div>
 
 		<div class="checkbox mt-3 mb-3">
-			<label>
-				<input type="checkbox" value="remember-me">
+			<label id="remember">
+				<input  type="checkbox" value="remember-me">
 				Recuerdame
 			</label>
 		</div>
@@ -59,7 +59,7 @@
 		</button>
 
 		<div class="text-center mt-3 mb-3">
-			<a href="signin.jsp">Registrarse</a>
+			<a href="signin.jsp" hidden>Registrarse</a>
 		</div>
 
 		<p class="text-center mt-5 mb-3 text-muted">&copy; 2017-2018</p>
@@ -75,6 +75,7 @@
 	if (typeof Android != 'undefined') {
 		var BestIsOn = false;
 		Android.toggleBestUpdates(BestIsOn);
+		document.getElementById('remember').setAttribute('hidden','true');
 	}
 	</script>
 

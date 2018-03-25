@@ -42,17 +42,6 @@
 	<section class="row">
 
 		<div class="col-md-12 col-lg-7">
-
-			<div class="card mb-3">
-
-				<div class="card-header">PS3C ANDROID</div>
-				<div class="card-block">
-					<p align="justify">Esta herramienta cuenta con seguimiento de transporte por medio de una aplicaci&oacute;n movil Android. La aplicaci&oacute;n posee un gestor de env&iacute;os donde los trasportadores pueden confirmar la recogida y entrega del env&iacute;o, as&iacute; como una
-						opci&oacute;n para generar reportes, ya sea del estado de las v&iacute;as o eventualidades, tamb&iacute;en la aplicacion sugiere una ruta con un mapa siempre y cuando el env&iacute;o tenga las ubicaciones correctamente ingresadas.</p>
-					<p></p>
-				</div>
-
-			</div>
 			
 			<div class="card mb-3">
 
