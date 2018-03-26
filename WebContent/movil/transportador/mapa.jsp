@@ -417,6 +417,10 @@
 											Android
 												.showToast('Envios descargados correctamente');
 										}
+										
+										envios = response;
+
+										directionsDisplay.setMap(map);
 
 										$('#envios').html('');
 										$(envios)
@@ -460,10 +464,6 @@
 											document.getElementById('entregado').checked = false;
 										}
 									}
-
-									envios = response;
-
-									directionsDisplay.setMap(map);
 
 
 								}).fail(function (xhr, status, errorThrown) {
@@ -526,7 +526,7 @@
 							function () {
 
 								coords = Android.getBestLocation();
-
+								
 								document.getElementById('lat').innerHTML = coords
 									.split(",")[0];
 								document.getElementById('lng').innerHTML = coords
