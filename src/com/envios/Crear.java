@@ -50,6 +50,8 @@ public class Crear extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		
 		Calendar calendar = Calendar.getInstance();	
 		DecimalFormat mFormat= new DecimalFormat("00");
 		PrintWriter out = response.getWriter();
@@ -67,8 +69,10 @@ public class Crear extends HttpServlet {
 		String tiempoDescargaUsuario = "0";
 		String fecha = 	calendar.get(Calendar.YEAR)+"-"+mFormat.format(Double.valueOf(calendar.get(Calendar.MONTH)+1))+"-"+mFormat.format(Double.valueOf(calendar.get(Calendar.DAY_OF_MONTH)))+" "+mFormat.format(calendar.get(Calendar.HOUR_OF_DAY))+":"+ mFormat.format(calendar.get(Calendar.MINUTE))+":"+ mFormat.format(calendar.get(Calendar.SECOND));
 		String espacio = request.getParameter("espacio").toLowerCase();
+
 		String destino = request.getParameter("destino").toLowerCase();
 		String origen = request.getParameter("origen").toLowerCase();
+
 		envio.setCamion(camion);
 		envio.setTrailer(trailer);
 		envio.setEmpresa(empresa);
