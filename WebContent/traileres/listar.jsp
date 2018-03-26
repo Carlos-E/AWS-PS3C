@@ -108,9 +108,9 @@
 						element.patente,
 						/* element.usuario, */
 						element.camion,
-						element.capacidad,
+						element.origen,
+						element.destino,
 						element.espacio,
-						element.estado,
 						element.empresa
 				]);
 				});
@@ -123,9 +123,9 @@
 			            { title: "Patente" },
 			            /* { title: "Conductor" }, */
 			            { title: "Placa de Remolque" },
-			            { title: "Capacidad" },
+			            { title: "origen" },
+			            { title: "destino" },
 			            { title: "Espacio" },
-			            { title: "Estado" },
 			            { title: "Empresa" }
 			        ]
 			    } );

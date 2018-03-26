@@ -122,7 +122,7 @@
 			            { title: "origen" },
 			            { title: "destino" },
 			            { title: "tipo" },
-			            { title: "capacidad" },
+			            { title: "espacio" },
 			            { title: "camion" },
 			            { title: "trailer" }
 			        ]

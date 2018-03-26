@@ -108,9 +108,9 @@
 						element.placa,
 						element.usuario,
 						element.tipo,
-						element.capacidad,
+						element.origen,
+						element.destino,
 						element.espacio,
-						element.estado,
 						element.empresa
 				]);
 				});
@@ -123,9 +123,9 @@
 			            { title: "Placa" },
 			            { title: "Conductor" },
 			            { title: "Tipo" },
-			            { title: "Capacidad" },
+			            { title: "origen" },
+			            { title: "destino" },
 			            { title: "Espacio" },
-			            { title: "Estado" },
 			            { title: "Empresa" }
 			        ]
 			    } );

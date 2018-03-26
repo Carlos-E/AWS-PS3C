@@ -71,7 +71,7 @@
 						%>
 																<label class="col-md-2 col-form-label text-capitalize">cliente</label>
 																<div class="col-md-4">
-																	<select class="form-control" name="empresa" id="empresa">
+																	<select class="form-control" name="cliente" id="cliente">
 																		<%
 									for (int i = 0; i < listaClientes.size(); i++) {
 								%>

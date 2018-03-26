@@ -77,7 +77,7 @@ public class Crear extends HttpServlet {
 		envio.setTrailer(trailer);
 		envio.setEmpresa(empresa);
 		try {
-			String busqueda = ControladorBD.buscaCamion(destinoLatLong, origenLatLong, espacio);
+			String busqueda = ControladorBD.buscaCamion(destino, origen, espacio);
 			Trailer trailer1 = (Trailer) ControladorBD.getItem("trailers", "patente", busqueda.substring(1, busqueda.length()));
 			Camion camion1 = (Camion) ControladorBD.getItem("camiones", "placa", busqueda.substring(1, busqueda.length()));
 			if (busqueda == "nada") {
@@ -91,9 +91,13 @@ public class Crear extends HttpServlet {
 					envio.setTrailer(trailer1.getPatente());
 					envio.setEmpresa(trailer1.getEmpresa());
 					envio.setCamion(trailer1.getCamion());
+					double resultado = Double.parseDouble(trailer1.getEspacio())-Double.parseDouble(envio.getEspacio());
+					ControladorBD.actualizarValor("trailers", "patente", envio.getCamion(), "espacio", String.valueOf(resultado));
 				} else if (busqueda.charAt(0) == '1') {
 					envio.setCamion(camion1.getPlaca());
 					envio.setEmpresa(camion1.getEmpresa());
+					double resultado = Double.parseDouble(camion1.getEspacio())-Double.parseDouble(envio.getEspacio());
+					ControladorBD.actualizarValor("camiones", "placa", envio.getCamion(), "espacio", String.valueOf(resultado));
 				}
 				if (request.getParameter("cliente") == null) {
 					persona = session.getAttribute("username").toString();
@@ -121,7 +125,7 @@ public class Crear extends HttpServlet {
 				} else if (envio.getCamion() != null && envio.getTrailer() == null) {
 					envio.setEmpresa(camion2.getEmpresa());
 				}
-				System.out.println(envio.toString());
+				System.out.println(envio.toString());				
 				ControladorBD.registrarItem("envios", envio);
 				response.setContentType("text/html");
 				com.logica.Dibujar.mensaje(out, "Operacion Exitosa", nextURL);

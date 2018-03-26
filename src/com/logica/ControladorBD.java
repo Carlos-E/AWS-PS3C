@@ -925,7 +925,7 @@ public class ControladorBD {
 	
 	public static String buscaCamion (String destino, String origen, String espacio){
 		Double espacioTrailer = Double.parseDouble(espacio), espacioCamion = Double.parseDouble(espacio);
-		
+		System.out.println(espacioCamion);
 		String placa = "nada";
 		ArrayList<Trailer> trailer = ControladorBD.escanearTabla("trailers");
 		ArrayList<Camion> camionAll = ControladorBD.escanearTabla("camiones");
