@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.io.*,java.util.*"%>
+<%@ page import="com.logica.*"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="clases.*"%>
 <%
 	if (session.getAttribute("rol") == null) {
 		response.sendError(400, "Acceso incorrecto"); //cambiar
@@ -20,7 +24,18 @@
 			<!--  ./NAVBAR -->
 		</div>
 	</div>
-
+<%
+		ArrayList<Usuario> listaUsuarios = ControladorBD.escanearTabla("usuarios");
+		ArrayList<Usuario> listaClientes = new ArrayList<Usuario>();
+		ArrayList<Empresa> listaEmpresas = ControladorBD.escanearTabla("empresas");
+		for (int i = 0; i < listaUsuarios.size(); i++) {
+			if (listaUsuarios.get(i).getRol().equals("cliente")) {
+				if (!ControladorBD.estaOcupado(listaUsuarios.get(i).getNombre(), "null")) {
+					listaClientes.add(listaUsuarios.get(i));
+				}
+			}
+		}
+	%>
 	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER --> <section class="row">
 	<div class="col-md-12 col-lg-12">
 		<div class="card mb-4">
@@ -46,17 +61,45 @@
 						%>
 						<label class="col-md-2 col-form-label text-capitalize">cliente</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="cliente" placeholder="cliente" required>
-						</div>
+							<select class="form-control" name="empresa" id="empresa">
+								<%
+									for (int i = 0; i < listaClientes.size(); i++) {
+								%>
+								<option value="<%out.print(listaClientes.get(i).getUsuario());%>">
+									<%
+										out.print(listaClientes.get(i).getNombre());
+									%>
+								</option>
+								<%
+									}
+								%>
+							</select>
+						</div>	
 						<%
 							}
-						%>
+						%>	
+						<label class="col-md-2 col-form-label text-capitalize">Empresa</label>
+						<div class="col-md-4">
+							<select class="form-control" name="empresa" id="empresa">
+								<%
+									for (int i = 0; i < listaEmpresas.size(); i++) {
+								%>
+								<option value="<%out.print(listaEmpresas.get(i).getNit());%>">
+									<%
+										out.print(listaEmpresas.get(i).getNombre());
+									%>
+								</option>
+								<%
+									}
+								%>
+							</select>
+						</div>					
+					</div>					
+					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">tipo</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="tipo" placeholder="tipo" required>
 						</div>
-					</div>
-					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">espacio</label>
 						<div class="col-md-4">
 							<input class="form-control" type="number" name="espacio" placeholder="metros cubicos" required>

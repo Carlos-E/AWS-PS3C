@@ -60,7 +60,7 @@ public class Crear extends HttpServlet {
 		String estado = "iniciado";
 		String camion = "ninguno";
 		String trailer = "ninguno";
-		String empresa = "ninguno";
+		String empresa = request.getParameter("empresa").toLowerCase();
 		String tipo = request.getParameter("tipo").toLowerCase();
 		String persona;
 		String tiempoCarga = "0";
@@ -73,7 +73,7 @@ public class Crear extends HttpServlet {
 		envio.setTrailer(trailer);
 		envio.setEmpresa(empresa);
 		try {
-			String busqueda = ControladorBD.buscaCamion(destino, origen, espacio);
+			String busqueda = ControladorBD.buscaCamion(destinoLatLong, origenLatLong, espacio);
 			Trailer trailer1 = (Trailer) ControladorBD.getItem("trailers", "patente", busqueda.substring(1, busqueda.length()));
 			Camion camion1 = (Camion) ControladorBD.getItem("camiones", "placa", busqueda.substring(1, busqueda.length()));
 			if (busqueda == "nada") {
@@ -117,12 +117,13 @@ public class Crear extends HttpServlet {
 				} else if (envio.getCamion() != null && envio.getTrailer() == null) {
 					envio.setEmpresa(camion2.getEmpresa());
 				}
+				System.out.println(envio.toString());
 				ControladorBD.registrarItem("envios", envio);
 				response.setContentType("text/html");
 				com.logica.Dibujar.mensaje(out, "Operacion Exitosa", nextURL);
 			}
 		} catch (Exception e) {
-			System.out.println("paso algo malo en la busqueda dentro del servlet"+ e.toString());
+			System.out.println("ENVIOS paso algo malo en la busqueda dentro del servlet"+ e.toString());
 			response.setContentType("text/html");
 			com.logica.Dibujar.mensaje(out, "Ocurrio un error Codigo 0x0001", nextURL);
 			return;
