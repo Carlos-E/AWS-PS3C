@@ -923,7 +923,7 @@ public class ControladorBD {
 	
 	
 	
-	public static String buscaCamion (String destino, String origen, String espacio){
+	public static String buscaCamion (String destinoLatLong, String origenLatLong, String espacio){
 		Double espacioTrailer = Double.parseDouble(espacio), espacioCamion = Double.parseDouble(espacio);
 		
 		String placa = "nada";
@@ -936,11 +936,11 @@ public class ControladorBD {
 			}
 		}
 		for(int i=0;i<camion.size();i++){
-			System.out.println(destino + " = " + camion.get(i).getDestino());
+			System.out.println(destinoLatLong + " = " + camion.get(i).getDestinoLatLong());
 			double suma = Double.parseDouble(camion.get(i).getEspacio()) - espacioCamion;
 			if(suma >= 0){
-				if(camion.get(i).getDestino().equals(destino) && camion.get(i).getOrigen().equals(origen)){
-					System.out.println(destino + " : " + camion.get(i).getDestino());
+				if(camion.get(i).getDestinoLatLong().equals(destinoLatLong) && camion.get(i).getOrigenLatLong().equals(origenLatLong)){
+					System.out.println(destinoLatLong + " : " + camion.get(i).getDestinoLatLong());
 					return "1"+camion.get(i).getPlaca();
 				}
 			}else{
@@ -948,12 +948,12 @@ public class ControladorBD {
 			}	
 		}
 		for(int j=0;j<trailer.size();j++){
-			System.out.println(destino + " :: " + trailer.get(j).getDestino());
+			System.out.println(destinoLatLong + " :: " + trailer.get(j).getDestinoLatLong());
 			double suma = Double.parseDouble(trailer.get(j).getEspacio()) - espacioTrailer;
 			System.out.println(suma);
 			if(suma >= 0){
-				if(trailer.get(j).getDestino().equals(destino) && trailer.get(j).getOrigen().equals(origen)){
-					System.out.println(destino + " : " + trailer.get(j).getDestino());
+				if(trailer.get(j).getDestinoLatLong().equals(destinoLatLong) && trailer.get(j).getOrigenLatLong().equals(origenLatLong)){
+					System.out.println(destinoLatLong + " : " + trailer.get(j).getDestinoLatLong());
 					return "0"+trailer.get(j).getPatente();
 				}
 			}else{
