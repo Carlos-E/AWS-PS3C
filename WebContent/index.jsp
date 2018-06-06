@@ -138,13 +138,18 @@
 
 		var audio = new Audio('/audio/song.mp3');
 		//audio.play();
+		
+		function spinSpinner(){
+			document.querySelector('#nav-brand-link').innerHTML = '<em class="fa fa-truck fa-spin fa-2x quick"></em> PS3C';
+			
+			setTimeout(
+					function() {
+						document.querySelector('#nav-brand-link').innerHTML = '<em class="fa fa-truck fa-2x"></em> PS3C';
+					}, 3000);
+		}
+		
+		//spinSpinner();
 
-		document.querySelector('#nav-brand-link').innerHTML = '<em class="fa fa-truck fa-spin fa-2x quick"></em> PS3C';
-
-		setTimeout(
-				function() {
-					document.querySelector('#nav-brand-link').innerHTML = '<em class="fa fa-truck fa-2x"></em> PS3C';
-				}, 3000);
 	</script>
 
 </body>

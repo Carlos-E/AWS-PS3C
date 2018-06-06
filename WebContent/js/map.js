@@ -75,22 +75,13 @@ function ponerMarcadores(data) {
 		console.log(data[i].latitud);
 		console.log(data[i].longitud);
 
-//		if (data[i].latitud == data[i].latitud && data[i].longitud == data[i].longitud) {
-//
-//			console.log(data[i].placa
-//					+ " Ubicacion igual, pasando al siguiente");
-//
-//			continue;
-//		}
-
 		console.log("Antes Marcador");
-
+		
+		var myLatlng = new google.maps.LatLng(parseFloat(data[i].latitud),parseFloat(data[i].longitud));
+		
 		var marker = new google.maps.Marker({
 			map : map,
-			position : {
-				lat : data[i].latitud,
-				lng : data[i].longitud
-			},
+			position : myLatlng,
 			title : 'Marcador',
 			label : data[i].placa
 		});
