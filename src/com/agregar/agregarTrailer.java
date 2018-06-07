@@ -87,10 +87,11 @@ public class agregarTrailer extends HttpServlet {
 		trailer.setDestino(destino);
 		ControladorBD.registrarItem("trailers", trailer);
 
-		PrintWriter out = response.getWriter();
+		
+		
+		response.setContentType("text/html");
 		String nextURL = request.getContextPath() + "/agregar/trailer.jsp";
-
-		com.logica.Dibujar.mensaje(out, "Operacion Exitosa", nextURL);
+		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", nextURL);
 		// response.sendRedirect("index.jsp");
 	}
 

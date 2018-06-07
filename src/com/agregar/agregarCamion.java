@@ -93,9 +93,11 @@ public class agregarCamion extends HttpServlet {
 		ControladorBD.registrarItem("camiones", camion);
 		// response.sendRedirect("index.jsp");
 
-		PrintWriter out = response.getWriter();
+		
+		response.setContentType("text/html");
+
 		String nextURL = request.getContextPath() + "/camiones/crear.jsp";
-		com.logica.Dibujar.mensaje(out, "Operacion Exitosa", nextURL);
+		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", nextURL);
 
 	}
 

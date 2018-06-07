@@ -53,7 +53,10 @@ public class Crear extends HttpServlet {
 		usuario.setCorreo(request.getParameter("correo").toLowerCase());
 		usuario.setDireccion(request.getParameter("direccion").toLowerCase());
 		usuario.setRol(request.getParameter("rol").toLowerCase());
+		
 		ControladorBD.registrarItem("usuarios", usuario);
+		
+		response.setContentType("text/html");
 		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getRequestURL() + ".jsp");
 		// response.sendRedirect("index.jsp");
 

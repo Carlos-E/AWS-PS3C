@@ -48,6 +48,7 @@ public class Eliminar extends HttpServlet {
 		ControladorBD.borrarItem("envios", "usuario", request.getParameter("usuario"), "fecha",
 				request.getParameter("fecha"));
 		
+		response.setContentType("text/html");
 		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getRequestURL() + ".jsp");
 		// response.sendRedirect("index.jsp");
 	}

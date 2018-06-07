@@ -59,9 +59,10 @@ public class agregarEmpresa extends HttpServlet {
 
 		// cambiar ese response por un mensaje de exito
 		// response.sendRedirect("index.jsp");
-		PrintWriter out = response.getWriter();
+		
+		response.setContentType("text/html");
 		String nextURL = request.getContextPath() + "/agregar/empresa.jsp";
-		com.logica.Dibujar.mensaje(out, "Operacion Exitosa", nextURL);
+		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", nextURL);
 	}
 
 }

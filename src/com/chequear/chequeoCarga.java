@@ -59,8 +59,7 @@ public class chequeoCarga extends HttpServlet {
 				System.out.println("no encontro una fecha, algo anda mal");				
 			}
 		}
-		PrintWriter out = response.getWriter();
-		String nextURL = request.getContextPath() + "chequeo/chequeoDeCarga.jsp";
-		com.logica.Dibujar.mensaje(out, "Operacion Exitosa", nextURL);
+		response.setContentType("text/html");
+		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getContextPath() + "chequeo/chequeoDeCarga.jsp");
 	}
 }

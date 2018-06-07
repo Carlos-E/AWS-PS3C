@@ -46,11 +46,11 @@ public class Modificar extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		HttpSession session = request.getSession();
 		String usuario = request.getParameter("cliente").toString();
 		String fecha = request.getParameter("fecha").toString();
-		envio = (clases.Envio) ControladorBD.getItem("envios", "usuario",usuario,"fecha", fecha);
+		envio = (clases.Envio) ControladorBD.getItem("envios", "usuario", usuario, "fecha", fecha);
 		String destino = request.getParameter("destino").toLowerCase();
 		String origen = request.getParameter("origen").toLowerCase();
 		String espacio = request.getParameter("espacio").toLowerCase();
@@ -60,7 +60,7 @@ public class Modificar extends HttpServlet {
 		String tiempoCarga = request.getParameter("tiempoCarga").toLowerCase();
 		String tiempoDescargaUsuario = request.getParameter("tiempoDescarga").toLowerCase();
 		boolean cambio = false;
-		
+
 		if (!envio.getDestino().equals(destino)) {
 			envio.setDestino(destino);
 			ControladorBD.actualizarValor("envios", "usuario", usuario, "fecha", fecha, "destino", destino);
@@ -103,15 +103,20 @@ public class Modificar extends HttpServlet {
 		}
 		if (!envio.getCamion().equals(tiempoDescargaUsuario)) {
 			envio.setCamion(tiempoDescargaUsuario);
-			ControladorBD.actualizarValor("envios", "usuario", usuario, "fecha", fecha, "tiempoDescargaUsuario", tiempoDescargaUsuario);
+			ControladorBD.actualizarValor("envios", "usuario", usuario, "fecha", fecha, "tiempoDescargaUsuario",
+					tiempoDescargaUsuario);
 			cambio = true;
 		}
 		if (cambio) {
 			System.out.println("algo se cambio");
+			response.setContentType("text/html");
+
 			com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getRequestURL() + ".jsp");
-			//response.sendRedirect("index.jsp");
+			// response.sendRedirect("index.jsp");
 		} else {
 			System.out.println("no se cambio nada");
+			response.setContentType("text/html");
+			com.logica.Dibujar.mensaje(response.getWriter(), "No se cambio nada", request.getRequestURL() + ".jsp");
 		}
 	}
 }

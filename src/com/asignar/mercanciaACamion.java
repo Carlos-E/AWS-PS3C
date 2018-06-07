@@ -44,6 +44,9 @@ public class mercanciaACamion extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
+		response.setContentType("text/html");
+
+		
 		String placa =  request.getParameter("camion").toLowerCase();
 		String id = request.getParameter("mercancia").toLowerCase();
 		String[] frag = id.split(" : ");
@@ -53,17 +56,15 @@ public class mercanciaACamion extends HttpServlet {
 		double suma = Double.parseDouble(camion.getEspacio()) - Double.parseDouble(envio.getEspacio());
 		System.out.println(Double.parseDouble(camion.getEspacio()) +" - "+ Double.parseDouble(envio.getEspacio()) +" = "+ suma);
 		if(suma < 0){
-			PrintWriter out = response.getWriter();
 			String nextURL = request.getContextPath() + "/asignar/mercancia-camion.jsp";
-			com.logica.Dibujar.mensaje(out, "Error el la asignacion, revise los volumenes", nextURL);
+			com.logica.Dibujar.mensaje(response.getWriter(), "Error el la asignacion, revise los volumenes", nextURL);
 		}else{
 		ControladorBD.actualizarValor("camiones", "placa", placa, "espacio", String.valueOf(suma));
 		ControladorBD.actualizarValor("camiones", "placa", placa, "estado", "asignado");
 		ControladorBD.actualizarValor("envios", "usuario", frag1, "fecha", frag2, "camion", placa);
 		ControladorBD.actualizarValor("envios", "usuario", frag1, "fecha", frag2, "estado", "asignado");
-		PrintWriter out = response.getWriter();
-		String nextURL = request.getContextPath() + "/asignar/mercancia-camion.jsp";
-		com.logica.Dibujar.mensaje(out, "Operacion Exitosa", nextURL);
+		
+		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getContextPath() + "/asignar/mercancia-camion.jsp");
 		//response.sendRedirect("index.jsp");
 		}
 	}

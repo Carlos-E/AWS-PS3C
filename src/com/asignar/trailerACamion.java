@@ -45,9 +45,10 @@ public class trailerACamion extends HttpServlet {
 		System.out.println(placa.length());
 		ControladorBD.actualizarValor("camiones", "placa", placa, "estado", "asignado");
 		ControladorBD.actualizarValor("trailers", "patente", patente, "camion", placa);
-		PrintWriter out = response.getWriter();
+
+		response.setContentType("text/html");
 		String nextURL = request.getContextPath() + "/asignar/trailer-camion.jsp";
-		com.logica.Dibujar.mensaje(out, "Operacion Exitosa", nextURL);
+		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", nextURL);
 		//response.sendRedirect("index.jsp");
 	}
 

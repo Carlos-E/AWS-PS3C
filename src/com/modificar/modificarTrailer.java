@@ -81,9 +81,13 @@ public class modificarTrailer extends HttpServlet {
 		if (cambio) {
 			session.setAttribute("busca", "ninguno");
 			System.out.println("algo se cambio");
+			response.setContentType("text/html");
+
 			com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getSession().getAttribute("origin").toString());
 		} else {
 			System.out.println("no se cambio nada");
+			response.setContentType("text/html");
+
 			com.logica.Dibujar.mensaje(response.getWriter(), "No ha habido cambio", request.getSession().getAttribute("origin").toString());
 		}
 	}

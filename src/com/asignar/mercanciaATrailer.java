@@ -44,6 +44,7 @@ public class mercanciaATrailer extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
+		response.setContentType("text/html");
 		
 		String patente =  request.getParameter("patente").toLowerCase();
 		String id = request.getParameter("mercancia").toLowerCase();
@@ -53,17 +54,15 @@ public class mercanciaATrailer extends HttpServlet {
 		Envio envio = (Envio) ControladorBD.getItem("envios", "usuario", frag1, "fecha", frag2);
 		double suma = Double.parseDouble(trailer.getEspacio()) - Double.parseDouble(envio.getEspacio());
 		if(suma < 0){
-			PrintWriter out = response.getWriter();
 			String nextURL = request.getContextPath() + "/asignar/mercancia-trailer.jsp";
-			com.logica.Dibujar.mensaje(out, "Error el la asignacion, revise los volumenes", nextURL);
+			com.logica.Dibujar.mensaje(response.getWriter(), "Error el la asignacion, revise los volumenes", nextURL);
 		}
 		ControladorBD.actualizarValor("trailers", "patente", patente, "espacio", String.valueOf(suma));
 		ControladorBD.actualizarValor("trailers", "patente", patente, "estado", "asignado");
 		ControladorBD.actualizarValor("envios", "usuario", frag1, "fecha", frag2, "trailer", patente);
 		ControladorBD.actualizarValor("envios", "usuario", frag1, "fecha", frag2, "estado", "asignado");
-		PrintWriter out = response.getWriter();
 		String nextURL = request.getContextPath() + "/asignar/mercancia-trailer.jsp";
-		com.logica.Dibujar.mensaje(out, "Operacion Exitosa", nextURL);
+		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", nextURL);
 		//response.sendRedirect("index.jsp");
 	}
 

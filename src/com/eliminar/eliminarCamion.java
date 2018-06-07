@@ -15,7 +15,7 @@ import com.logica.ControladorBD;
 /**
  * Servlet implementation class eliminarUsuario
  */
-@WebServlet("/eliminarCamion")
+@WebServlet("/camiones/eliminar")
 public class eliminarCamion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	clases.Usuario usuario = new clases.Usuario();
@@ -48,6 +48,7 @@ public class eliminarCamion extends HttpServlet {
 		session.setAttribute("busca", "ninguno");
 		System.out.println("algo se cambio");
 		ControladorBD.borrarItem("camiones", "placa", placa);
+		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		String nextURL = request.getContextPath() + "/index.jsp";
 		com.logica.Dibujar.mensaje(out, "Operacion Exitosa", nextURL);

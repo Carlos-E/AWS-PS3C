@@ -56,6 +56,7 @@ public class Crear extends HttpServlet {
 		reporte.setNota(nota);
 		reporte.setUsuario(empleado);
 		ControladorBD.registrarItem("reportes", reporte);
+		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		String nextURL = request.getContextPath() + "index.jsp";
 		com.logica.Dibujar.mensaje(out, "Operacion Exitosa", nextURL);

@@ -48,10 +48,9 @@ public class destinoACamion extends HttpServlet {
 		String patente =  request.getParameter("trailer").toLowerCase();
 		String destino = request.getParameter("destino").toLowerCase();
 		ControladorBD.actualizarValor("trailers", "patente", patente, "destino", destino);
-		PrintWriter out = response.getWriter();
-		String nextURL = request.getContextPath() + "/asignar/destino-trailer.jsp";
-
-		com.logica.Dibujar.mensaje(out, "Operacion Exitosa", nextURL);
+		
+		response.setContentType("text/html");
+		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getContextPath() + "/asignar/destino-trailer.jsp");
 		//response.sendRedirect("index.jsp");
 	}
 

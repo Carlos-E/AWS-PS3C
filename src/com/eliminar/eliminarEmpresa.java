@@ -48,6 +48,8 @@ public class eliminarEmpresa extends HttpServlet {
 		session.setAttribute("busca", "ninguno");
 		System.out.println("algo se cambio");
 		ControladorBD.borrarItem("empresas", "nit", nit);
+		response.setContentType("text/html");
+
 		PrintWriter out = response.getWriter();
 		String nextURL = request.getContextPath() + "/index.jsp";
 		com.logica.Dibujar.mensaje(out, "Operacion Exitosa", nextURL);

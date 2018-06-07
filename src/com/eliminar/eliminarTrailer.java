@@ -15,7 +15,7 @@ import com.logica.ControladorBD;
 /**
  * Servlet implementation class eliminarUsuario
  */
-@WebServlet("/eliminarTrailer")
+@WebServlet("/trailer/eliminar")
 public class eliminarTrailer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	clases.Usuario usuario = new clases.Usuario();
@@ -48,11 +48,13 @@ public class eliminarTrailer extends HttpServlet {
 		session.setAttribute("busca", "ninguno");
 		System.out.println("algo se cambio");
 		ControladorBD.borrarItem("trailers", "patente", patente);
+		response.setContentType("text/html");
+
 		PrintWriter out = response.getWriter();
 		String nextURL = request.getContextPath() + "/index.jsp";
 		com.logica.Dibujar.mensaje(out, "Operacion Exitosa", nextURL);
-		//response.sendRedirect("index.jsp");
-		
+		// response.sendRedirect("index.jsp");
+
 	}
 
 }
