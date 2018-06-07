@@ -49,7 +49,7 @@
 						</div>
 						<div class="row">
 							<div class="col-sm-12">
-								<table id="tabla" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
+								<table id="tabla" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;font-size: 0.9rem;">
 									<thead>
 
 									</thead>
@@ -109,7 +109,7 @@
 					dataSet.push([
 						element.fecha,
 						element.usuario,
-						element.chequeoCarga,
+						element.empresa,
 						element.origen,
 						element.destino,
 						element.espacio,
