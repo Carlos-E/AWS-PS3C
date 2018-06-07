@@ -69,10 +69,9 @@ public class Crear extends HttpServlet {
 		String tiempoDescargaUsuario = "0";
 		String fecha = 	calendar.get(Calendar.YEAR)+"-"+mFormat.format(Double.valueOf(calendar.get(Calendar.MONTH)+1))+"-"+mFormat.format(Double.valueOf(calendar.get(Calendar.DAY_OF_MONTH)))+" "+mFormat.format(calendar.get(Calendar.HOUR_OF_DAY))+":"+ mFormat.format(calendar.get(Calendar.MINUTE))+":"+ mFormat.format(calendar.get(Calendar.SECOND));
 		String espacio = request.getParameter("espacio").toLowerCase();
-
 		String destino = request.getParameter("destino").toLowerCase();
 		String origen = request.getParameter("origen").toLowerCase();
-
+		envio.setEspacio(espacio);
 		envio.setCamion(camion);
 		envio.setTrailer(trailer);
 		envio.setEmpresa(empresa);
@@ -117,6 +116,7 @@ public class Crear extends HttpServlet {
 				envio.setUsuario(persona);		
 				envio.setChequeoCarga(false);
 				envio.setChequeoDescarga(false);
+				System.out.println(envio.getTrailer());
 				Trailer trailer2 = (Trailer) ControladorBD.getItem("trailers", "patente", envio.getTrailer());
 				Camion camion2 = (Camion) ControladorBD.getItem("camiones", "placa", envio.getCamion());
 				if (envio.getCamion() == null && envio.getTrailer() != null) {
@@ -125,6 +125,7 @@ public class Crear extends HttpServlet {
 				} else if (envio.getCamion() != null && envio.getTrailer() == null) {
 					envio.setEmpresa(camion2.getEmpresa());
 				}
+				System.out.println("----------------------------------------------------------------");
 				System.out.println(envio.toString());				
 				ControladorBD.registrarItem("envios", envio);
 				response.setContentType("text/html");
