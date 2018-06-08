@@ -112,11 +112,11 @@
 					<div id="oculto" class="form-group row" style="display: none;">
 						<label class="col-md-2 col-form-label text-capitalize">Peso maximo</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="peso" placeholder="peso" id="peso" value="ninguna" required>
+							<input class="form-control" type="text" name="peso" placeholder="peso en kg" id="peso" required>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Espacio</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="espacio" placeholder="espacio" id="espacio" value="ninguno" required>
+							<input class="form-control" type="text" name="espacio" placeholder="en metros cubicos" id="espacio" required>
 						</div>
 					</div>
 					<input type="text" id="longitud_Destino" name="longitud_Destino" style="display: none">
