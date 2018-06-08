@@ -2,7 +2,7 @@ package clases;
 
 public class Envio {
 
-	String  usuario, fecha, destino, origen, destinoLatLong, origenLatLong, estado, espacio, tipo, tiempoCarga, tiempoDescargaUsuario, camion, trailer, empresa;
+	String  usuario, fecha, destino, origen, destinoLatLong, origenLatLong, estado, peso, espacio, tipo, camion, trailer, empresa, descripcion;
 	boolean chequeoCarga, chequeoDescarga;
 	
 	public Envio() {
@@ -11,9 +11,8 @@ public class Envio {
 	}
 
 	public Envio(String usuario, String fecha, String destino, String origen, String destinoLatLong,
-			String origenLatLong, String estado, String espacio, String tipo, String tiempoCarga,
-			String tiempoDescargaUsuario, String camion, String trailer, String empresa, boolean chequeoCarga,
-			boolean chequeoDescarga) {
+			String origenLatLong, String estado, String peso, String espacio, String tipo, String camion,
+			String trailer, String empresa, String descripcion, boolean chequeoCarga, boolean chequeoDescarga) {
 		super();
 		this.usuario = usuario;
 		this.fecha = fecha;
@@ -22,13 +21,13 @@ public class Envio {
 		this.destinoLatLong = destinoLatLong;
 		this.origenLatLong = origenLatLong;
 		this.estado = estado;
+		this.peso = peso;
 		this.espacio = espacio;
 		this.tipo = tipo;
-		this.tiempoCarga = tiempoCarga;
-		this.tiempoDescargaUsuario = tiempoDescargaUsuario;
 		this.camion = camion;
 		this.trailer = trailer;
 		this.empresa = empresa;
+		this.descripcion = descripcion;
 		this.chequeoCarga = chequeoCarga;
 		this.chequeoDescarga = chequeoDescarga;
 	}
@@ -89,6 +88,14 @@ public class Envio {
 		this.estado = estado;
 	}
 
+	public String getPeso() {
+		return peso;
+	}
+
+	public void setPeso(String peso) {
+		this.peso = peso;
+	}
+
 	public String getEspacio() {
 		return espacio;
 	}
@@ -103,22 +110,6 @@ public class Envio {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
-	}
-
-	public String getTiempoCarga() {
-		return tiempoCarga;
-	}
-
-	public void setTiempoCarga(String tiempoCarga) {
-		this.tiempoCarga = tiempoCarga;
-	}
-
-	public String getTiempoDescargaUsuario() {
-		return tiempoDescargaUsuario;
-	}
-
-	public void setTiempoDescargaUsuario(String tiempoDescargaUsuario) {
-		this.tiempoDescargaUsuario = tiempoDescargaUsuario;
 	}
 
 	public String getCamion() {
@@ -145,6 +136,14 @@ public class Envio {
 		this.empresa = empresa;
 	}
 
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
 	public boolean isChequeoCarga() {
 		return chequeoCarga;
 	}
@@ -163,12 +162,11 @@ public class Envio {
 
 	@Override
 	public String toString() {
-		return "envio [usuario=" + usuario + ", fecha=" + fecha + ", destino=" + destino + ", origen=" + origen
+		return "Envio [usuario=" + usuario + ", fecha=" + fecha + ", destino=" + destino + ", origen=" + origen
 				+ ", destinoLatLong=" + destinoLatLong + ", origenLatLong=" + origenLatLong + ", estado=" + estado
-				+ ", espacio=" + espacio + ", tipo=" + tipo + ", tiempoCarga=" + tiempoCarga
-				+ ", tiempoDescargaUsuario=" + tiempoDescargaUsuario + ", camion=" + camion + ", trailer=" + trailer
-				+ ", empresa=" + empresa + ", chequeoCarga=" + chequeoCarga + ", chequeoDescarga=" + chequeoDescarga
-				+ "]";
+				+ ", peso=" + peso + ", espacio=" + espacio + ", tipo=" + tipo + ", camion=" + camion + ", trailer="
+				+ trailer + ", empresa=" + empresa + ", descripcion=" + descripcion + ", chequeoCarga=" + chequeoCarga
+				+ ", chequeoDescarga=" + chequeoDescarga + "]";
 	}
 	
 }
