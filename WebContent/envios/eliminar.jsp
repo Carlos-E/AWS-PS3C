@@ -105,6 +105,10 @@
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="estado" placeholder="estado" id="estado" readonly>
 						</div>
+						<label class="col-md-2 col-form-label text-capitalize">peso</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="peso" placeholder="peso" id="peso" readonly>
+						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">tiempoCarga</label>

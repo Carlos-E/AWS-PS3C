@@ -106,6 +106,7 @@
 						element.destino,
 						element.tipo,
 						element.espacio,
+						element.peso,
 						element.camion,
 						element.trailer,
 				]);
@@ -123,6 +124,7 @@
 			            { title: "destino" },
 			            { title: "tipo" },
 			            { title: "espacio" },
+			            { title: "peso" },
 			            { title: "camion" },
 			            { title: "trailer" }
 			        ]

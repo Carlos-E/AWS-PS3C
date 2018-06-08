@@ -121,6 +121,12 @@
 							<input class="form-control" type="number" name="espacio" placeholder="en metros cubicos" required>
 						</div>
 					</div>
+					<div class="form-group row">
+						<label class="col-md-2 col-form-label text-capitalize">Peso maximo</label>
+						<div class="col-md-4">
+							<input class="form-control" type="number" name="peso" placeholder="en kilos" required>
+						</div>
+					</div>
 					<input type="text" id="longitud_Destino" name="longitud_Destino" style="display: none">
 					<input type="text" id="latitud_Destino" name="latitud_Destino" style="display: none">
 					<input type="text" id="latitud_Origen" name="latitud_Origen" style="display: none">
