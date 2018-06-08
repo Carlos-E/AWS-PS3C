@@ -66,7 +66,7 @@ public class agregarCamion extends HttpServlet {
 		String nit = request.getParameter("empresa").toLowerCase();
 		// la empresa a la cual pertenese el camion
 		String conductor = request.getParameter("conductor").toLowerCase();
-		;
+		
 		// es el conductor que se le asigna al camion
 		String destino = request.getParameter("destino").toLowerCase();
 		String ubicacion = request.getParameter("latitud_Origen").toLowerCase() + ","

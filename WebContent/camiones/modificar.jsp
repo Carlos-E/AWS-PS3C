@@ -88,13 +88,13 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Destino</label>
-						<div class="col-md-4">
-							<input class="form-control" type="text" name="destino" placeholder="destino" id="destino" required>
-						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Origen</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="origen" placeholder="origen" id="origen" required>
+						</div>
+						<label class="col-md-2 col-form-label text-capitalize">Destino</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="destino" placeholder="destino" id="destino" required>
 						</div>
 					</div>
 					<div class="form-group row">
