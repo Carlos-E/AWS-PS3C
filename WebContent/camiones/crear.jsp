@@ -13,7 +13,11 @@
 <html lang="es">
 <head>
 <jsp:include page="/head.jsp" />
-<title><%out.print(session.getAttribute("pagina").toString());%></title>
+<title>
+	<%
+		out.print(session.getAttribute("pagina").toString());
+	%>
+</title>
 </head>
 <body>
 	<div class="container-fluid" id="wrapper">
@@ -23,28 +27,27 @@
 			<!--  ./NAVBAR -->
 		</div>
 	</div>
-	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> 
-	<!--  HEADER --> 
-		<jsp:include page="/header.jsp" /> 
-	<!--  ./HEADER --> 
-	<%
-		ArrayList<Usuario> listaUsuarios = ControladorBD.escanearTabla("usuarios");
-		ArrayList<Camion> listaCamiones = ControladorBD.escanearTabla("camiones");
-		ArrayList<Usuario> listaConductor = new ArrayList<Usuario>();
-		ArrayList<Empresa> listaEmpresas = ControladorBD.escanearTabla("empresas");
-		for (int i = 0; i < listaUsuarios.size(); i++) {
-			if (listaUsuarios.get(i).getRol().equals("conductor")) {
-				if (!ControladorBD.estaOcupado(listaUsuarios.get(i).getNombre(), "null")) {
-					listaConductor.add(listaUsuarios.get(i));
-				}
-			}
-		}
-	%>
-	<section class="row">
+	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER --> <%
+ 	ArrayList<Usuario> listaUsuarios = ControladorBD.escanearTabla("usuarios");
+ 	ArrayList<Camion> listaCamiones = ControladorBD.escanearTabla("camiones");
+ 	ArrayList<Usuario> listaConductor = new ArrayList<Usuario>();
+ 	ArrayList<Empresa> listaEmpresas = ControladorBD.escanearTabla("empresas");
+ 	for (int i = 0; i < listaUsuarios.size(); i++) {
+ 		if (listaUsuarios.get(i).getRol().equals("conductor")) {
+ 			if (!ControladorBD.estaOcupado(listaUsuarios.get(i).getNombre(), "null")) {
+ 				listaConductor.add(listaUsuarios.get(i));
+ 			}
+ 		}
+ 	}
+ %> <section class="row">
 	<div class="col-md-12 col-lg-12">
 		<div class="card mb-4">
 			<div class="card-block">
-				<h3 class="card-title"><% out.print(session.getAttribute("pagina").toString()); %></h3>
+				<h3 class="card-title">
+					<%
+						out.print(session.getAttribute("pagina").toString());
+					%>
+				</h3>
 				<form class="form" action="/camion" method="post">
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Placa</label>
@@ -53,15 +56,15 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Destino</label>
-						<div class="col-md-4">
-							<input class="form-control" type="text" name="destino" placeholder="destino" id="destino" required>
-						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Origen</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="origen" placeholder="origen" id="origen" required>
 						</div>
-					</div>								
+						<label class="col-md-2 col-form-label text-capitalize">Destino</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="destino" placeholder="destino" id="destino" required>
+						</div>
+					</div>
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Empresa</label>
 						<div class="col-md-4">

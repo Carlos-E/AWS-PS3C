@@ -41,18 +41,12 @@ public class eliminarCamion extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
-		HttpSession session = request.getSession();
-		String placa = session.getAttribute("obj").toString();
-		System.out.println("hola" + placa);
-		session.setAttribute("busca", "ninguno");
-		System.out.println("algo se cambio");
+		String placa = request.getParameter("placa").toString();
 		ControladorBD.borrarItem("camiones", "placa", placa);
+		
 		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		String nextURL = request.getContextPath() + "/index.jsp";
-		com.logica.Dibujar.mensaje(out, "Operacion Exitosa", nextURL);
-		//response.sendRedirect("index.jsp");
+		String nextURL = request.getContextPath() + "/camiones/eliminar.jsp";
+		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", nextURL);
 		
 	}
 

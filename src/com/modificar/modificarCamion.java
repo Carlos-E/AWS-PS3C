@@ -18,7 +18,7 @@ import clases.Usuario;
 /**
  * Servlet implementation class modificarCamion
  */
-@WebServlet("/modificarCamion")
+@WebServlet("/camiones/modificar")
 public class modificarCamion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Camion camion = new Camion();
@@ -48,8 +48,8 @@ public class modificarCamion extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		HttpSession session = request.getSession();	
-		String placa = session.getAttribute("obj").toString();
-		camion = (clases.Camion) ControladorBD.getItem("camiones", "camion", placa);
+		String placa = request.getParameter("placa").toString();
+		camion = (clases.Camion) ControladorBD.getItem("camiones", "placa", placa);
 		String capacidad = request.getParameter("capacidad").toLowerCase();
 		String espacio = request.getParameter("espacio").toLowerCase();
 		String estado = request.getParameter("estado").toLowerCase();

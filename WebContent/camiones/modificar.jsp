@@ -12,7 +12,11 @@
 <html>
 <head>
 <jsp:include page="/head.jsp" />
-<title><%out.print(session.getAttribute("pagina").toString());%></title>
+<title>
+	<%
+		out.print(session.getAttribute("pagina").toString());
+	%>
+</title>
 </head>
 <body>
 	<!-- INICIO -->
@@ -23,7 +27,7 @@
 			<!--  ./NAVBAR -->
 		</div>
 	</div>
-		<%
+	<%
 		ArrayList<Usuario> listaUsuarios = ControladorBD.escanearTabla("usuarios");
 		ArrayList<Camion> listaCamiones = ControladorBD.escanearTabla("camiones");
 		ArrayList<Usuario> listaConductor = new ArrayList<Usuario>();
@@ -40,7 +44,7 @@
 	<div class="col-md-12 col-lg-12">
 		<div class="card mb-4">
 			<!-- INICIO CONTAINER -->
-			
+
 			<div class="card-block" id="buscar-form">
 				<h3 class="card-title">
 					<%
@@ -61,18 +65,26 @@
 					</div>
 				</form>
 			</div>
-			
+
 			<div class="card-block" id="form" hidden="true">
 				<h3 class="card-title">
 					<%
 						out.print(session.getAttribute("pagina").toString());
 					%>
 				</h3>
-				<form id="form2" class="form" action="/usuarios/modificar" method="post">
+				<form id="form2" class="form" action="/camiones/modificar" method="post">
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Placa</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="placa" placeholder="placa" id="placa" readonly>
+						</div>
+						<label class="col-md-2 col-form-label text-capitalize">Estado</label>
+						<div class="col-md-4">
+							<select class="custom-select" name="estado" id="estado" required>
+								<option value="" selected>Seleccionar...</option>
+								<option value="disponible">disponible</option>
+								<option value="asignado">asignado</option>
+							</select>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -84,7 +96,7 @@
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="origen" placeholder="origen" id="origen" required>
 						</div>
-					</div>								
+					</div>
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Empresa</label>
 						<div class="col-md-4">
@@ -94,7 +106,7 @@
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="conductor" placeholder="conductor" id="conductor" required>
 						</div>
-					</div>					
+					</div>
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Capacidad</label>
 						<div class="col-md-4">
@@ -114,9 +126,9 @@
 						<button id="atras" type="button" data-target="#" class="btn btn-danger btn-md float-right">Atras</button>
 					</div>
 				</form>
-			</div>	
-		<!-- /FIN CONTAINER -->
-	</div>
+			</div>
+			<!-- /FIN CONTAINER -->
+		</div>
 	</div>
 	</section> </main>
 	<!-- Modal -->
@@ -143,48 +155,53 @@
 	<jsp:include page="/footer.jsp" />
 	<!-- /FIN -->
 	<script>
-		$(document).ready(function() {		
-			var lista;	
-			$.ajax({
-				url : "/scanTable",
-				data : {
-					tabla : 'camiones'
-				},
-				type : "POST",
-				dataType : "json",
-			}).done(function(response) {
-				console.log(response);		
-				lista = response;			    	
-				 $(response).each(function() {
-					 let value = this.placa;
-					 let text = this.placa;
-				 	$('#select').append($("<option>").attr('value',value).text(text));
-				 	});			
-			}).fail(function(xhr, status, errorThrown) {
-				alert("Algo ha salido mal");
-				console.log('Failed Request To Servlet /scanTable')
-			}).always(function(xhr, status) {
-			});			
-			$('#buscar').click(function() {		
-				let selectedIndex = $('#select').prop('selectedIndex');	
-				console.log(lista[selectedIndex]);
-				let objeto = lista[selectedIndex];	
-				$('#placa').val(objeto.placa);
-				$('#capacidad').val(objeto.capacidad);
-				$('#espacio').val(objeto.espacio);
-				$('#empresa').val(objeto.empresa);
-				$('#conductor').val(objeto.usuario);
-				$('#destino').val(objeto.destino);
-				$('#origen').val(objeto.origen);
-				$('#buscar-form').hide();
-				$('#form').removeAttr('hidden');
-				$('#form').show();
-			});
-			$('#atras').click(function() {
-				$('#buscar-form').show();
-				$('#form').hide();
-			});
-		});
+		$(document).ready(
+				function() {
+					var lista;
+					$.ajax({
+						url : "/scanTable",
+						data : {
+							tabla : 'camiones'
+						},
+						type : "POST",
+						dataType : "json",
+					}).done(
+							function(response) {
+								console.log(response);
+								lista = response;
+								$(response).each(
+										function() {
+											let value = this.placa;
+											let text = this.placa;
+											$('#select').append(
+													$("<option>").attr('value',
+															value).text(text));
+										});
+							}).fail(function(xhr, status, errorThrown) {
+						alert("Algo ha salido mal");
+						console.log('Failed Request To Servlet /scanTable')
+					}).always(function(xhr, status) {
+					});
+					$('#buscar').click(function() {
+						let selectedIndex = $('#select').prop('selectedIndex');
+						console.log(lista[selectedIndex]);
+						let objeto = lista[selectedIndex];
+						$('#placa').val(objeto.placa);
+						$('#capacidad').val(objeto.capacidad);
+						$('#espacio').val(objeto.espacio);
+						$('#empresa').val(objeto.empresa);
+						$('#conductor').val(objeto.usuario);
+						$('#destino').val(objeto.destino);
+						$('#origen').val(objeto.origen);
+						$('#buscar-form').hide();
+						$('#form').removeAttr('hidden');
+						$('#form').show();
+					});
+					$('#atras').click(function() {
+						$('#buscar-form').show();
+						$('#form').hide();
+					});
+				});
 	</script>
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwUOXR0TZ7pyQhLJAuA6_U6Ffg92YMkLk&libraries=places"></script>
 	<script type="text/javascript">
