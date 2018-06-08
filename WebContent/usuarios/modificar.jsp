@@ -64,7 +64,13 @@
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Rol</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="rol" placeholder="rol" id="rol" required>
+							<select class="custom-select" name="rol" id="rol" required>
+								<option value="" selected>Seleccionar...</option>
+								<option value="cliente">cliente</option>
+								<option value="conductor">conductor</option>
+								<option value="empleado">empleado</option>
+								<option value="admin">admin</option>
+							</select>
 						</div>
 					</div>
 					<div class="form-group row">
