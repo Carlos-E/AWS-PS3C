@@ -97,9 +97,9 @@
 						</div>
 					</div>					
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Capacidad</label>
+						<label class="col-md-2 col-form-label text-capitalize">Peso maximo</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="capacidad" placeholder="capacidad" id="capacidad" required>
+							<input class="form-control" type="text" name="peso" placeholder="peso" id="peso" required>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Espacio</label>
 						<div class="col-md-4">
