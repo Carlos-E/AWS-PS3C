@@ -187,6 +187,7 @@
 						console.log(lista[selectedIndex]);
 						let objeto = lista[selectedIndex];
 						$('#placa').val(objeto.placa);
+						$('#estado').val(objeto.estado);
 						$('#capacidad').val(objeto.capacidad);
 						$('#espacio').val(objeto.espacio);
 						$('#empresa').val(objeto.empresa);

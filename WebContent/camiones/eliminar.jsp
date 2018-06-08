@@ -13,7 +13,11 @@
 <html>
 <head>
 <jsp:include page="/head.jsp" />
-<title><%out.print(session.getAttribute("pagina").toString());%></title>
+<title>
+	<%
+		out.print(session.getAttribute("pagina").toString());
+	%>
+</title>
 </head>
 <body>
 	<!-- INICIO -->
@@ -28,7 +32,7 @@
 	<div class="col-md-12 col-lg-12">
 		<div class="card mb-4">
 			<!-- INICIO CONTAINER -->
-			
+
 			<div class="card-block" id="buscar-form">
 				<h3 class="card-title">
 					<%
@@ -49,7 +53,7 @@
 					</div>
 				</form>
 			</div>
-			
+
 			<div class="card-block" id="form" hidden="true">
 				<h3 class="card-title">
 					<%
@@ -61,6 +65,10 @@
 						<label class="col-md-2 col-form-label text-capitalize">Placa</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="placa" placeholder="placa" id="placa" readonly>
+						</div>
+						<label class="col-md-2 col-form-label text-capitalize">Estado</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="estado" placeholder="estado" id="estado" readonly>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -74,15 +82,15 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Espacio</label>
-						<div class="col-md-4">
-							<input class="form-control" type="text" name="espacio" placeholder="espacio" id="espacio" readonly>
-						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Capacidad</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="capacidad" id="capacidad" readonly>
 						</div>
-					</div>					
+						<label class="col-md-2 col-form-label text-capitalize">Espacio</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="espacio" placeholder="espacio" id="espacio" readonly>
+						</div>
+					</div>
 					<input type="text" id="longitud_Destino" name="longitud_Destino" style="display: none">
 					<input type="text" id="latitud_Destino" name="latitud_Destino" style="display: none">
 					<input type="text" id="latitud_Origen" name="latitud_Origen" style="display: none">
@@ -92,9 +100,9 @@
 						<button id="atras" type="button" data-target="#" class="btn btn-danger btn-md float-right">Atras</button>
 					</div>
 				</form>
-			</div>	
-		<!-- /FIN CONTAINER -->
-	</div>
+			</div>
+			<!-- /FIN CONTAINER -->
+		</div>
 	</div>
 	</section> </main>
 	<!-- Modal -->
@@ -121,47 +129,53 @@
 	<jsp:include page="/footer.jsp" />
 	<!-- /FIN -->
 	<script>
-		$(document).ready(function() {		
-			var lista;	
-			$.ajax({
-				url : "/scanTable",
-				data : {
-					tabla : 'camiones'
-				},
-				type : "POST",
-				dataType : "json",
-			}).done(function(response) {
-				console.log(response);		
-				lista = response;			    	
-				 $(response).each(function() {
-					 let value = this.placa;
-					 let text = this.placa;
-				 	$('#select').append($("<option>").attr('value',value).text(text));
-				 	});			
-			}).fail(function(xhr, status, errorThrown) {
-				alert("Algo ha salido mal");
-				console.log('Failed Request To Servlet /scanTable')
-			}).always(function(xhr, status) {
-			});			
-			$('#buscar').click(function() {		
-				let selectedIndex = $('#select').prop('selectedIndex');	
-				console.log(lista[selectedIndex]);
-				let objeto = lista[selectedIndex];	
-				$('#placa').val(objeto.placa);
-				$('#capacidad').val(objeto.capacidad);
-				$('#espacio').val(objeto.espacio);
-				$('#conductor').val(objeto.usuario);
-				$('#empresa').val(objeto.empresa);
-				$('#buscar-form').hide();
-				$('#form').removeAttr('hidden');
-				$('#form').show();
-			});
-			$('#atras').click(function() {
-				$('#buscar-form').show();
-				$('#form').hide();
-			});
-		});
+		$(document).ready(
+				function() {
+					var lista;
+					$.ajax({
+						url : "/scanTable",
+						data : {
+							tabla : 'camiones'
+						},
+						type : "POST",
+						dataType : "json",
+					}).done(
+							function(response) {
+								console.log(response);
+								lista = response;
+								$(response).each(
+										function() {
+											let value = this.placa;
+											let text = this.placa;
+											$('#select').append(
+													$("<option>").attr('value',
+															value).text(text));
+										});
+							}).fail(function(xhr, status, errorThrown) {
+						alert("Algo ha salido mal");
+						console.log('Failed Request To Servlet /scanTable')
+					}).always(function(xhr, status) {
+					});
+					$('#buscar').click(function() {
+						let selectedIndex = $('#select').prop('selectedIndex');
+						console.log(lista[selectedIndex]);
+						let objeto = lista[selectedIndex];
+						$('#placa').val(objeto.placa);
+						$('#estado').val(objeto.estado);
+						$('#capacidad').val(objeto.capacidad);
+						$('#espacio').val(objeto.espacio);
+						$('#conductor').val(objeto.usuario);
+						$('#empresa').val(objeto.empresa);
+						$('#buscar-form').hide();
+						$('#form').removeAttr('hidden');
+						$('#form').show();
+					});
+					$('#atras').click(function() {
+						$('#buscar-form').show();
+						$('#form').hide();
+					});
+				});
 	</script>
-	</body>
+</body>
 
 </html>
