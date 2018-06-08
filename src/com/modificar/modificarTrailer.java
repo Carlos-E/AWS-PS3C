@@ -47,15 +47,15 @@ public class modificarTrailer extends HttpServlet {
 		HttpSession session = request.getSession();
 		String patente = session.getAttribute("obj").toString();
 		trailer = (clases.Trailer) ControladorBD.getItem("trailers", "trailer", patente);
-		String capacidad = request.getParameter("capacidad").toLowerCase();
+		String peso = request.getParameter("peso").toLowerCase();
 		String espacio = request.getParameter("espacio").toLowerCase();
 		String estado = request.getParameter("estado").toLowerCase();
 		String camion = request.getParameter("camion").toLowerCase();
 		String tipo = request.getParameter("tipo").toLowerCase();
 		boolean cambio = false;
-		if (!trailer.getCapacidad().equals(capacidad)) {
-			trailer.setCapacidad(capacidad);
-			ControladorBD.actualizarValor("trailers", "patente", patente, "capacidad", capacidad);
+		if (!trailer.getPeso().equals(peso)) {
+			trailer.setPeso(peso);
+			ControladorBD.actualizarValor("trailers", "patente", patente, "capacidad", peso);
 			cambio = true;
 		}
 		if (!trailer.getEspacio().equals(espacio)) {

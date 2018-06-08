@@ -65,12 +65,12 @@ public class Crear extends HttpServlet {
 		String empresa = request.getParameter("empresa").toLowerCase();
 		String tipo = request.getParameter("tipo").toLowerCase();
 		String persona;
-		String tiempoCarga = "0";
-		String tiempoDescargaUsuario = "0";
 		String fecha = 	calendar.get(Calendar.YEAR)+"-"+mFormat.format(Double.valueOf(calendar.get(Calendar.MONTH)+1))+"-"+mFormat.format(Double.valueOf(calendar.get(Calendar.DAY_OF_MONTH)))+" "+mFormat.format(calendar.get(Calendar.HOUR_OF_DAY))+":"+ mFormat.format(calendar.get(Calendar.MINUTE))+":"+ mFormat.format(calendar.get(Calendar.SECOND));
+		String peso = request.getParameter("peso").toLowerCase();
 		String espacio = request.getParameter("espacio").toLowerCase();
 		String destino = request.getParameter("destino").toLowerCase();
 		String origen = request.getParameter("origen").toLowerCase();
+		envio.setPeso(peso);
 		envio.setEspacio(espacio);
 		envio.setCamion(camion);
 		envio.setTrailer(trailer);
@@ -111,8 +111,6 @@ public class Crear extends HttpServlet {
 				envio.setEstado(estado);
 				envio.setEspacio(espacio);
 				envio.setTipo(tipo);
-				envio.setTiempoCarga(tiempoCarga);
-				envio.setTiempoDescargaUsuario(tiempoDescargaUsuario);
 				envio.setUsuario(persona);		
 				envio.setChequeoCarga(false);
 				envio.setChequeoDescarga(false);

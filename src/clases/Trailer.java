@@ -2,19 +2,19 @@ package clases;
 
 public class Trailer {
 	
-	String patente, tipo, capacidad, espacio, estado, destino, origen, camion, empresa;
+	String patente, tipo, peso, espacio, estado, destino, origen, camion, empresa;
 
 	public Trailer() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Trailer(String patente, String tipo, String capacidad, String espacio, String estado, String destino,
+	public Trailer(String patente, String tipo, String peso, String espacio, String estado, String destino,
 			String origen, String camion, String empresa) {
 		super();
 		this.patente = patente;
 		this.tipo = tipo;
-		this.capacidad = capacidad;
+		this.peso = peso;
 		this.espacio = espacio;
 		this.estado = estado;
 		this.destino = destino;
@@ -39,12 +39,12 @@ public class Trailer {
 		this.tipo = tipo;
 	}
 
-	public String getCapacidad() {
-		return capacidad;
+	public String getPeso() {
+		return peso;
 	}
 
-	public void setCapacidad(String capacidad) {
-		this.capacidad = capacidad;
+	public void setPeso(String peso) {
+		this.peso = peso;
 	}
 
 	public String getEspacio() {
@@ -97,7 +97,7 @@ public class Trailer {
 
 	@Override
 	public String toString() {
-		return "trailer [patente=" + patente + ", tipo=" + tipo + ", capacidad=" + capacidad + ", espacio=" + espacio
+		return "trailer [patente=" + patente + ", tipo=" + tipo + ", peso=" + peso + ", espacio=" + espacio
 				+ ", estado=" + estado + ", destino=" + destino + ", origen=" + origen + ", camion=" + camion
 				+ ", empresa=" + empresa + "]";
 	}

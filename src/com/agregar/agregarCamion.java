@@ -51,54 +51,29 @@ public class agregarCamion extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// doGet(request, response);
-
-		String placa = request.getParameter("placa").toLowerCase();
-		String tipo = request.getParameter("tipo").toLowerCase();
-		// los tipos de camion definiran si es remolque, refrigerado o camion
-		String capacidad = request.getParameter("capacidad").toLowerCase();
-		// la capacidad son los metros cuadrados que se utilizan para transporte
-		String espacio = capacidad;
-		// el espacio es el espacio disponible despues de un embarque, el cual
-		// puede aprobecharse
-		String estado = "disponible";
-		// los estados seran "disponible","ocupado","en carga","en descarga","en
-		// raparacion"
-		String nit = request.getParameter("empresa").toLowerCase();
-		// la empresa a la cual pertenese el camion
-		String conductor = request.getParameter("conductor").toLowerCase();
-		
-		// es el conductor que se le asigna al camion
-		String destino = request.getParameter("destino").toLowerCase();
-		String ubicacion = request.getParameter("latitud_Origen").toLowerCase() + ","
-				+ request.getParameter("longitud_Origen").toLowerCase();
-		String origen = request.getParameter("origen").toLowerCase();
-		// destino y origen del camion respectivamente
-		if (tipo.equals("remolque")) {
-			capacidad = "ninguna";
+		String peso = request.getParameter("peso").toLowerCase();
+		String espacio = request.getParameter("espacio").toLowerCase();
+		if (request.getParameter("tipo").toLowerCase().equals("remolque")) {
+			peso = "ninguna";
 			espacio = "ninguno";
 		}
-		Usuario usuarioConductor = (clases.Usuario) ControladorBD.getItem("usuarios", "usuario", conductor);
-		Empresa empresa = (clases.Empresa) ControladorBD.getItem("empresas", "nit", nit);
-		camion.setPlaca(placa);
-		camion.setCapacidad(capacidad);
-		camion.setTipo(tipo);
+		Usuario usuarioConductor = (clases.Usuario) ControladorBD.getItem("usuarios", "usuario", request.getParameter("conductor").toLowerCase());
+		Empresa empresa = (clases.Empresa) ControladorBD.getItem("empresas", "nit", request.getParameter("empresa").toLowerCase());
+		camion.setPlaca(request.getParameter("placa").toLowerCase());
+		camion.setPeso(peso);
+		camion.setTipo(request.getParameter("tipo").toLowerCase());
 		camion.setEspacio(espacio);
-		camion.setEstado(estado);
+		camion.setEstado("disponible");
 		camion.setUsuario(usuarioConductor.getUsuario());
 		camion.setEmpresa(empresa.getNit());
-		camion.setOrigen(origen);
-		camion.setDestino(destino);
-		camion.setUbicacion(ubicacion);
-		System.out.println(camion);
+		camion.setOrigen(request.getParameter("origen").toLowerCase());
+		camion.setDestino(request.getParameter("destino").toLowerCase());
+		camion.setUbicacion(request.getParameter("latitud_Origen").toLowerCase() + ","
+				+ request.getParameter("longitud_Origen").toLowerCase());
 		ControladorBD.registrarItem("camiones", camion);
-		// response.sendRedirect("index.jsp");
-
-		
 		response.setContentType("text/html");
-
 		String nextURL = request.getContextPath() + "/camiones/crear.jsp";
 		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", nextURL);
-
 	}
 
 }

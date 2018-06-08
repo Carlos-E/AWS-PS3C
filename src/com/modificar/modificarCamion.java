@@ -50,14 +50,14 @@ public class modificarCamion extends HttpServlet {
 		HttpSession session = request.getSession();	
 		String placa = request.getParameter("placa").toString();
 		camion = (clases.Camion) ControladorBD.getItem("camiones", "placa", placa);
-		String capacidad = request.getParameter("capacidad").toLowerCase();
+		String peso = request.getParameter("peso").toLowerCase();
 		String espacio = request.getParameter("espacio").toLowerCase();
 		String estado = request.getParameter("estado").toLowerCase();
 		String conductor = request.getParameter("conductor").toLowerCase();
 		boolean cambio = false;
-		if (!camion.getCapacidad().equals(capacidad)) {
-			camion.setCapacidad(capacidad);
-			ControladorBD.actualizarValor("camiones", "placa", placa, "capacidad", capacidad);
+		if (!camion.getPeso().equals(peso)) {
+			camion.setPeso(peso);
+			ControladorBD.actualizarValor("camiones", "placa", placa, "capacidad", peso);
 			cambio = true;
 		}
 		if (!camion.getEspacio().equals(espacio)) {
