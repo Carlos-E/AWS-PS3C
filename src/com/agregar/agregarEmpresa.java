@@ -61,7 +61,7 @@ public class agregarEmpresa extends HttpServlet {
 		// response.sendRedirect("index.jsp");
 		
 		response.setContentType("text/html");
-		String nextURL = request.getContextPath() + "/agregar/empresa.jsp";
+		String nextURL = request.getContextPath() + "/empresas/crear.jsp";
 		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", nextURL);
 	}
 

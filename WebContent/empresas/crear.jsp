@@ -55,9 +55,9 @@
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="telefono" placeholder="telefono" required>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Direccion</label>
+						<label class="col-md-2 col-form-label text-capitalize">Direcci&oacute;n</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="dirección" placeholder="dirección" required>
+							<input class="form-control" type="text" name="direccion" placeholder="dirección" required>
 						</div>
 					</div>
 					<input type="text" id="longitud_Destino" name="longitud_Destino" style="display: none">

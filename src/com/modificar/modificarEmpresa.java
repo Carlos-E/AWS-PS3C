@@ -47,8 +47,8 @@ public class modificarEmpresa extends HttpServlet {
 		// TODO Auto-generated method stub
 		// doGet(request, response);
 		HttpSession session = request.getSession();
-		String nit = session.getAttribute("obj").toString();
-		empresa = (clases.Empresa) ControladorBD.getItem("empresas", "empresa", nit);
+		String nit = request.getParameter("nit").toString();
+		empresa = (clases.Empresa) ControladorBD.getItem("empresas", "nit", nit);
 		String nombre = request.getParameter("nombre").toLowerCase();
 		String telefono = request.getParameter("telefono").toLowerCase();
 		String direccion = request.getParameter("direccion").toLowerCase();
