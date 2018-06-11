@@ -1,62 +1,49 @@
 package com.trailers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.logica.ControladorBD;
 
-import clases.Camion;
-
-/**
- * Servlet implementation class modificarTrailer
- */
 @WebServlet("/traileres/modificar")
 public class Modificar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	clases.Trailer trailer = new clases.Trailer();
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public Modificar() {
         super();
-        // TODO Auto-generated constructor stub
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.sendRedirect("/404.jsp");
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String patente = request.getParameter("patete").toString();
-		trailer = (clases.Trailer) ControladorBD.getItem("trailers", "trailer", patente);
+		String patente = request.getParameter("patente").toString();
+		
+		trailer = (clases.Trailer) ControladorBD.getItem("trailers", "patente", request.getParameter("patente").toString());
+
+		String origen = request.getParameter("origen").toLowerCase();
+		String destino = request.getParameter("destino").toLowerCase();
 		String peso = request.getParameter("peso").toLowerCase();
 		String espacio = request.getParameter("espacio").toLowerCase();
 		String estado = request.getParameter("estado").toLowerCase();
 		String camion = request.getParameter("camion").toLowerCase();
 		String tipo = request.getParameter("tipo").toLowerCase();
+		String empresa = request.getParameter("empresa").toLowerCase();
 		boolean cambio = false;
 		
 		response.setContentType("text/html");
 
 		if (!trailer.getPeso().equals(peso)) {
 			trailer.setPeso(peso);
-			ControladorBD.actualizarValor("trailers", "patente", patente, "capacidad", peso);
+			ControladorBD.actualizarValor("trailers", "patente", patente, "peso", peso);
 			cambio = true;
 		}
 		if (!trailer.getEspacio().equals(espacio)) {
@@ -79,6 +66,12 @@ public class Modificar extends HttpServlet {
 			ControladorBD.actualizarValor("trailers", "patente", patente, "tipo", tipo);
 			cambio = true;
 		}
+		if (!trailer.getEmpresa().equals(empresa)) {
+			trailer.setTipo(empresa);
+			ControladorBD.actualizarValor("trailers", "patente", patente, "empresa", empresa);
+			cambio = true;
+		}
+		
 		if (cambio) {
 			System.out.println("algo se cambio");
 			com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getSession().getAttribute("origin").toString());
