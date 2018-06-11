@@ -41,11 +41,11 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Nit</label>
+						<label class="col-md-2 col-form-label text-capitalize">NIT</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="nit" placeholder="nit" id="nit" required>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Rut</label>
+						<label class="col-md-2 col-form-label text-capitalize">RUT</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="rut" placeholder="rut" id="rut" required>
 						</div>

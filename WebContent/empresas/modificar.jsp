@@ -58,7 +58,7 @@
 				</h3>
 				<form id="form2" class="form" action="/modificarEmpresa" method="post">
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Nit</label>
+						<label class="col-md-2 col-form-label text-capitalize">NIT</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="nit" placeholder="nit" id="nit" readonly>
 						</div>

@@ -15,7 +15,7 @@ import com.logica.ControladorBD;
 /**
  * Servlet implementation class eliminarUsuario
  */
-@WebServlet("/eliminarEmpresa")
+@WebServlet("/empresas/eliminar")
 public class eliminarEmpresa extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	clases.Usuario usuario = new clases.Usuario();
@@ -40,20 +40,10 @@ public class eliminarEmpresa extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
-		HttpSession session = request.getSession();
-		String nit = session.getAttribute("obj").toString();
-		System.out.println("hola" + nit);
-		session.setAttribute("busca", "ninguno");
-		System.out.println("algo se cambio");
-		ControladorBD.borrarItem("empresas", "nit", nit);
+		
+		ControladorBD.borrarItem("empresas", "nit", request.getParameter("nit").toString());		
 		response.setContentType("text/html");
-
-		PrintWriter out = response.getWriter();
-		String nextURL = request.getContextPath() + "/index.jsp";
-		com.logica.Dibujar.mensaje(out, "Operacion Exitosa", nextURL);
-		//response.sendRedirect("index.jsp");
+		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getContextPath() + "/empresas/eliminar.jsp");
 		
 	}
 

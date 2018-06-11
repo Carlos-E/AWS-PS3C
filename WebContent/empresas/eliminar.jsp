@@ -57,7 +57,7 @@
 				</h3>
 				<form id="form2" class="form" action="/empresas/eliminar" method="post">
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Nit</label>
+						<label class="col-md-2 col-form-label text-capitalize">NIT</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="nit" placeholder="nit" id="nit" readonly>
 						</div>
@@ -73,7 +73,7 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Direccion</label>
+						<label class="col-md-2 col-form-label text-capitalize">Direcci&oacute;n</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="direccion" placeholder="direccion" id="direccion" readonly>
 						</div>
