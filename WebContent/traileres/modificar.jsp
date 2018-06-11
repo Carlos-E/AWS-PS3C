@@ -12,7 +12,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title><%out.print(session.getAttribute("pagina").toString());%></title>
+<title>
+	<%
+		out.print(session.getAttribute("pagina").toString());
+	%>
+</title>
 <jsp:include page="/head.jsp" />
 </head>
 <body>
@@ -24,7 +28,7 @@
 			<!--  ./NAVBAR -->
 		</div>
 	</div>
-		<%
+	<%
 		ArrayList<Usuario> listaUsuarios = ControladorBD.escanearTabla("usuarios");
 		ArrayList<Camion> listaCamiones = ControladorBD.escanearTabla("camiones");
 		ArrayList<Usuario> listaConductor = new ArrayList<Usuario>();
@@ -41,7 +45,7 @@
 	<div class="col-md-12 col-lg-12">
 		<div class="card mb-4">
 			<!-- INICIO CONTAINER -->
-			
+
 			<div class="card-block" id="buscar-form">
 				<h3 class="card-title">
 					<%
@@ -62,18 +66,39 @@
 					</div>
 				</form>
 			</div>
-			
+
 			<div class="card-block" id="form" hidden="true">
 				<h3 class="card-title">
 					<%
 						out.print(session.getAttribute("pagina").toString());
 					%>
 				</h3>
-				<form id="form2" class="form" action="/usuarios/modificar" method="post">
+				<form id="form2" class="form" action="/traileres/modificar" method="post">
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Placa</label>
+						<label class="col-md-2 col-form-label text-capitalize">Patente</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="placa" placeholder="placa" id="placa" readonly>
+							<input class="form-control" type="text" name="patente" placeholder="patente" id="patente" readonly>
+						</div>
+						<label class="col-md-2 col-form-label text-capitalize">Tipo</label>
+						<div class="col-md-4">
+							<select class="custom-select" name="tipo" id="tipo" required>
+								<option value="" selected>seleccionar...</option>
+								<option value="rabon (1 eje)">rabon (1 eje)</option>
+								<option value="torton (2 ejes)">torton (2 ejes)</option>
+								<option value="caja cerrada de 53 pies">caja cerrada de 53 pies</option>
+								<option value="caja cerrada de 48 pies">caja cerrada de 48 pies</option>
+								<option value="full / doble semiremolque">full / doble semiremolque</option>
+								<option value="caja refrigerada">caja refrigerada</option>
+								<option value="plataforma">plataforma</option>
+								<option value="autotanque / pipa">autotanque / pipa</option>
+								<option value="autotanque para asfalto / granel">autotanque para asfalto / granel</option>
+								<option value="jaula a granel / granelera">jaula a granel / granelera</option>
+								<option value="jaula ganadera">jaula ganadera</option>
+								<option value="jaula enlonada / cortina">jaula enlonada / cortina</option>
+								<option value="low boy / cama baja">low boy / cama baja</option>
+								<option value="madrina / porta vehículos">madrina / porta vehículos</option>
+								<option value="tolva">tolva</option>
+							</select>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -85,7 +110,7 @@
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="origen" placeholder="origen" id="origen" required>
 						</div>
-					</div>								
+					</div>
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Empresa</label>
 						<div class="col-md-4">
@@ -95,7 +120,7 @@
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="camion" placeholder="camion" id="camion" required>
 						</div>
-					</div>					
+					</div>
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Peso maximo</label>
 						<div class="col-md-4">
@@ -115,9 +140,9 @@
 						<button id="atras" type="button" data-target="#" class="btn btn-danger btn-md float-right">Atras</button>
 					</div>
 				</form>
-			</div>	
-		<!-- /FIN CONTAINER -->
-	</div>
+			</div>
+			<!-- /FIN CONTAINER -->
+		</div>
 	</div>
 	</section> </main>
 	<!-- Modal -->
@@ -144,48 +169,54 @@
 	<jsp:include page="/footer.jsp" />
 	<!-- /FIN -->
 	<script>
-		$(document).ready(function() {		
-			var lista;	
-			$.ajax({
-				url : "/scanTable",
-				data : {
-					tabla : 'trailers'
-				},
-				type : "POST",
-				dataType : "json",
-			}).done(function(response) {
-				console.log(response);		
-				lista = response;			    	
-				 $(response).each(function() {
-					 let value = this.patente;
-					 let text = this.patente;
-				 	$('#select').append($("<option>").attr('value',value).text(text));
-				 	});			
-			}).fail(function(xhr, status, errorThrown) {
-				alert("Algo ha salido mal");
-				console.log('Failed Request To Servlet /scanTable')
-			}).always(function(xhr, status) {
-			});			
-			$('#buscar').click(function() {		
-				let selectedIndex = $('#select').prop('selectedIndex');	
-				console.log(lista[selectedIndex]);
-				let objeto = lista[selectedIndex];	
-				$('#patente').val(objeto.patente);
-				$('#capacidad').val(objeto.capacidad);
-				$('#espacio').val(objeto.espacio);
-				$('#empresa').val(objeto.empresa);
-				$('#camion').val(objeto.camion);
-				$('#destino').val(objeto.destino);
-				$('#origen').val(objeto.origen);
-				$('#buscar-form').hide();
-				$('#form').removeAttr('hidden');
-				$('#form').show();
-			});
-			$('#atras').click(function() {
-				$('#buscar-form').show();
-				$('#form').hide();
-			});
-		});
+		$(document).ready(
+				function() {
+					var lista;
+					$.ajax({
+						url : "/scanTable",
+						data : {
+							tabla : 'trailers'
+						},
+						type : "POST",
+						dataType : "json",
+					}).done(
+							function(response) {
+								console.log(response);
+								lista = response;
+								$(response).each(
+										function() {
+											let value = this.patente;
+											let text = this.patente;
+											$('#select').append(
+													$("<option>").attr('value',
+															value).text(text));
+										});
+							}).fail(function(xhr, status, errorThrown) {
+						alert("Algo ha salido mal");
+						console.log('Failed Request To Servlet /scanTable')
+					}).always(function(xhr, status) {
+					});
+					$('#buscar').click(function() {
+						let selectedIndex = $('#select').prop('selectedIndex');
+						console.log(lista[selectedIndex]);
+						let objeto = lista[selectedIndex];
+						$('#patente').val(objeto.patente);
+						$('#tipo').val(objeto.tipo);
+						$('#peso').val(objeto.peso);
+						$('#espacio').val(objeto.espacio);
+						$('#empresa').val(objeto.empresa);
+						$('#camion').val(objeto.camion);
+						$('#destino').val(objeto.destino);
+						$('#origen').val(objeto.origen);
+						$('#buscar-form').hide();
+						$('#form').removeAttr('hidden');
+						$('#form').show();
+					});
+					$('#atras').click(function() {
+						$('#buscar-form').show();
+						$('#form').hide();
+					});
+				});
 	</script>
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwUOXR0TZ7pyQhLJAuA6_U6Ffg92YMkLk&libraries=places"></script>
 	<script type="text/javascript">

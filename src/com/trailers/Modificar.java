@@ -17,7 +17,7 @@ import clases.Camion;
 /**
  * Servlet implementation class modificarTrailer
  */
-@WebServlet("/modificarTrailer")
+@WebServlet("/traileres/modificar")
 public class Modificar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	clases.Trailer trailer = new clases.Trailer();
