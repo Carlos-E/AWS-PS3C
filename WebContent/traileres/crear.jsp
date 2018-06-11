@@ -90,7 +90,7 @@
 								%>
 							</select>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Cami&oacute;n:</label>
+						<label class="col-md-2 col-form-label text-capitalize">Cami&oacute;n</label>
 						<div class="col-md-4">
 							<select class="form-control" name="camion" id="camion">
 								<%
