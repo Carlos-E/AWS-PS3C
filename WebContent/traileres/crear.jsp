@@ -51,6 +51,27 @@
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="patente" placeholder="patente" id="patente" required>
 						</div>
+						<label class="col-md-2 col-form-label text-capitalize">Tipo</label>
+						<div class="col-md-4">
+							<select class="custom-select" name="tipo" id="tipo" required>
+								<option value="" selected>Seleccionar...</option>
+								<option value="RABON (1 EJE)">RABON (1 EJE)</option>
+								<option value="TORTON (2 EJES)">TORTON (2 EJES)</option>
+								<option value="CAJA CERRADA DE 53 PIES">CAJA CERRADA DE 53 PIES</option>
+								<option value="CAJA CERRADA DE 48 PIES">CAJA CERRADA DE 48 PIES</option>
+								<option value="FULL / DOBLE SEMIREMOLQUE">FULL / DOBLE SEMIREMOLQUE</option>
+								<option value="CAJA REFRIGERADA">CAJA REFRIGERADA</option>
+								<option value="PLATAFORMA">PLATAFORMA</option>
+								<option value="AUTOTANQUE / PIPA">AUTOTANQUE / PIPA</option>
+								<option value="AUTOTANQUE PARA ASFALTO / GRANEL">AUTOTANQUE PARA ASFALTO / GRANEL</option>
+								<option value="JAULA A GRANEL / GRANELERA">JAULA A GRANEL / GRANELERA</option>
+								<option value="JAULA GANADERA">JAULA GANADERA</option>
+								<option value="JAULA ENLONADA / CORTINA">JAULA ENLONADA / CORTINA</option>
+								<option value="LOW BOY / CAMA BAJA">LOW BOY / CAMA BAJA</option>
+								<option value="MADRINA / PORTA VEHÍCULOS">MADRINA / PORTA VEHÍCULOS</option>
+								<option value="TOLVA">TOLVA</option>
+							</select>
+						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Destino</label>
@@ -107,11 +128,11 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Peso maximo</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="peso" placeholder="peso en kg" id="peso" required>
+							<input class="form-control" type="number" name="peso" placeholder="peso en kg" id="peso" required>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Espacio</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="espacio" placeholder="en metros cubicos" id="espacio" required>
+							<input class="form-control" type="number" name="espacio" placeholder="en metros cubicos" id="espacio" required>
 						</div>
 					</div>
 					<input type="text" id="longitud_Destino" name="longitud_Destino" style="display: none">

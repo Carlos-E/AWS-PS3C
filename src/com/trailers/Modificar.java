@@ -18,14 +18,14 @@ import clases.Camion;
  * Servlet implementation class modificarTrailer
  */
 @WebServlet("/modificarTrailer")
-public class modificarTrailer extends HttpServlet {
+public class Modificar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	clases.Trailer trailer = new clases.Trailer();
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public modificarTrailer() {
+    public Modificar() {
         super();
         // TODO Auto-generated constructor stub
     }

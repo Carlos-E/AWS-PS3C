@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.logica.ControladorBD;
 
 @WebServlet("/trailer/eliminar")
-public class eliminarTrailer extends HttpServlet {
+public class Eliminar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	clases.Usuario usuario = new clases.Usuario();
 
-    public eliminarTrailer() {
+    public Eliminar() {
         super();
     }
 
