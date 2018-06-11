@@ -45,7 +45,7 @@
 		<div class="card mb-4">
 			<div class="card-block">
 				<h3 class="card-title"><% out.print(session.getAttribute("pagina").toString()); %></h3>
-				<form class="form" action="/trailer" method="post">
+				<form class="form" action="/trailers/crear" method="post">
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Patente</label>
 						<div class="col-md-4">
@@ -54,22 +54,22 @@
 						<label class="col-md-2 col-form-label text-capitalize">Tipo</label>
 						<div class="col-md-4">
 							<select class="custom-select" name="tipo" id="tipo" required>
-								<option value="" selected>Seleccionar...</option>
-								<option value="RABON (1 EJE)">RABON (1 EJE)</option>
-								<option value="TORTON (2 EJES)">TORTON (2 EJES)</option>
-								<option value="CAJA CERRADA DE 53 PIES">CAJA CERRADA DE 53 PIES</option>
-								<option value="CAJA CERRADA DE 48 PIES">CAJA CERRADA DE 48 PIES</option>
-								<option value="FULL / DOBLE SEMIREMOLQUE">FULL / DOBLE SEMIREMOLQUE</option>
-								<option value="CAJA REFRIGERADA">CAJA REFRIGERADA</option>
-								<option value="PLATAFORMA">PLATAFORMA</option>
-								<option value="AUTOTANQUE / PIPA">AUTOTANQUE / PIPA</option>
-								<option value="AUTOTANQUE PARA ASFALTO / GRANEL">AUTOTANQUE PARA ASFALTO / GRANEL</option>
-								<option value="JAULA A GRANEL / GRANELERA">JAULA A GRANEL / GRANELERA</option>
-								<option value="JAULA GANADERA">JAULA GANADERA</option>
-								<option value="JAULA ENLONADA / CORTINA">JAULA ENLONADA / CORTINA</option>
-								<option value="LOW BOY / CAMA BAJA">LOW BOY / CAMA BAJA</option>
-								<option value="MADRINA / PORTA VEHÍCULOS">MADRINA / PORTA VEHÍCULOS</option>
-								<option value="TOLVA">TOLVA</option>
+								<option value="" selected>seleccionar...</option>
+								<option value="rabon (1 eje)">rabon (1 eje)</option>
+								<option value="torton (2 ejes)">torton (2 ejes)</option>
+								<option value="caja cerrada de 53 pies">caja cerrada de 53 pies</option>
+								<option value="caja cerrada de 48 pies">caja cerrada de 48 pies</option>
+								<option value="full / doble semiremolque">full / doble semiremolque</option>
+								<option value="caja refrigerada">caja refrigerada</option>
+								<option value="plataforma">plataforma</option>
+								<option value="autotanque / pipa">autotanque / pipa</option>
+								<option value="autotanque para asfalto / granel">autotanque para asfalto / granel</option>
+								<option value="jaula a granel / granelera">jaula a granel / granelera</option>
+								<option value="jaula ganadera">jaula ganadera</option>
+								<option value="jaula enlonada / cortina">jaula enlonada / cortina</option>
+								<option value="low boy / cama baja">low boy / cama baja</option>
+								<option value="madrina / porta vehiculos">madrina / porta vehículos</option>
+								<option value="tolva">tolva</option>
 							</select>
 						</div>
 					</div>

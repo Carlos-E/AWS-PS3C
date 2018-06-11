@@ -107,7 +107,7 @@
 								<option value="jaula ganadera">jaula ganadera</option>
 								<option value="jaula enlonada / cortina">jaula enlonada / cortina</option>
 								<option value="low boy / cama baja">low boy / cama baja</option>
-								<option value="madrina / porta vehículos">madrina / porta vehículos</option>
+								<option value="madrina / porta vehiculos">madrina / porta vehículos</option>
 								<option value="tolva">tolva</option>
 							</select>
 						</div>
