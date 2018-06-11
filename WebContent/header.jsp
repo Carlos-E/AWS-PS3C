@@ -7,14 +7,20 @@
 	session.setAttribute("origin", request.getRequestURI());
 %>
 <header class="page-header row justify-center">
-	<div class="col-md-12 col-lg-6 titulo">
+	<div class="col-md-12 col-lg-7 titulo">
 		<h1 class="float-left text-center text-md-left">
 			<%
 				out.print(session.getAttribute("pagina").toString());
 			%>
 		</h1>
 	</div>
-	<div class="dropdown user-dropdown col-md-12 col-lg-6 text-center text-md-right">
+	<div class="col-md-2 col-lg-1">
+		<span class="fa-layers fa-fw" style="background:MistyRose">
+			<i class="fas fa-envelope"></i>
+			<span class="fa-layers-counter" style="background:Tomato">1,419</span>
+		</span>
+	</div>
+	<div class="dropdown user-dropdown col-md-10 col-lg-4 text-center text-md-right">
 		<a class="btn btn-stripped dropdown-toggle" href="/index.html#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<img src="/img/user.svg" alt="profile photo" class="circle float-left profile-photo" width="50" height="auto">
 			<div class="username mt-1">
