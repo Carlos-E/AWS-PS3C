@@ -75,5 +75,4 @@ public class Crear extends HttpServlet {
 		String nextURL = request.getContextPath() + "/camiones/crear.jsp";
 		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", nextURL);
 	}
-
 }
