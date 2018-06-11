@@ -8,13 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.logica.ControladorBD;
 
-import clases.Camion;
-import clases.Empresa;
+import clases.*;
 
 @WebServlet("/trailers/crear")
 public class Crear extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	clases.Trailer trailer = new clases.Trailer();
 
 	public Crear() {
 		super();
@@ -27,13 +25,12 @@ public class Crear extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		// doGet(request, response);
-		System.out.println("eeeeeeeeeeeeeeeeeeeeeee");
-		Empresa empresa = (clases.Empresa) ControladorBD.getItem("empresas", "nit", request.getParameter("empresa").toLowerCase());
-		System.out.println("eeeeeeeeeeeeeeeeeeeeeee!!");
-		Camion camion = (clases.Camion) ControladorBD.getItem("camiones", "placa", request.getParameter("camion").toLowerCase());
-		System.out.println("epaaaaaaaaaaa colombia");
+
+		Empresa empresa = (Empresa) ControladorBD.getItem("empresas", "nit", request.getParameter("empresa").toLowerCase());
+		Camion camion = (Camion) ControladorBD.getItem("camiones", "placa", request.getParameter("camion").toLowerCase());
+		
+		Trailer trailer = new clases.Trailer();
+		
 		trailer.setPatente(request.getParameter("patente").toLowerCase());
 		trailer.setPeso(request.getParameter("peso").toLowerCase());
 		trailer.setTipo(request.getParameter("tipo").toLowerCase());
@@ -41,15 +38,11 @@ public class Crear extends HttpServlet {
 		trailer.setEstado("disponible");
 		trailer.setEmpresa(empresa.getNit());
 		trailer.setCamion(camion.getPlaca());
-		trailer.setOrigen(request.getParameter("origen").toLowerCase());
-		trailer.setDestino(request.getParameter("destino").toLowerCase());
-		ControladorBD.registrarItem("trailers", trailer);
-		trailer.setCamion(camion.getPlaca());
 		trailer.setOrigen(camion.getOrigen());
 		trailer.setDestino(camion.getDestino());
-		System.out.println("veamos si salgo por ahi");
+		
 		ControladorBD.registrarItem("trailers", trailer);
-		System.out.println("nop esto no es");
+
 		response.setContentType("text/html");
 		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getContextPath() + "/traileres/crear.jsp");
 	}
