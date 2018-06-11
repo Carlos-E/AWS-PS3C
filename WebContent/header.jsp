@@ -7,18 +7,19 @@
 	session.setAttribute("origin", request.getRequestURI());
 %>
 <header class="page-header row justify-center">
-	<div class="col-md-12 col-lg-7 titulo">
+	<div class="col-md-12 col-lg-8 titulo">
 		<h1 class="float-left text-center text-md-left">
 			<%
 				out.print(session.getAttribute("pagina").toString());
-			%>
+			%>&nbsp;
+			<a href="/envios/reportes.jsp" style="color: black;">
+				<span class="fa-layers fa-fw">
+					<i class="fas fa-envelope"></i>
+					<span class="fa-layers-counter" style="background: Tomato" id="numMessages">0</span>
+				</span>
+			</a>
 		</h1>
-	</div>
-	<div class="col-md-2 col-lg-1">
-		<span class="fa-layers fa-fw" style="background:MistyRose">
-			<i class="fas fa-envelope"></i>
-			<span class="fa-layers-counter" style="background:Tomato">1,419</span>
-		</span>
+
 	</div>
 	<div class="dropdown user-dropdown col-md-10 col-lg-4 text-center text-md-right">
 		<a class="btn btn-stripped dropdown-toggle" href="/index.html#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -49,4 +50,5 @@
 		</div>
 	</div>
 	<div class="clear"></div>
+
 </header>

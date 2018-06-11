@@ -57,3 +57,35 @@
 </main>
 
 <jsp:include page="/scripts.jsp" />
+
+<script>
+	$(document).ready(function() {
+		
+		$.ajax({
+			url : "/scanTable",
+			data : {
+				tabla : 'reportes'
+			},
+			type : "POST",
+			dataType : "json",
+		}).done(function(response) {
+			console.log(response);
+			
+			let num = 0;
+			
+			response.forEach(element => {
+				if(element.visto===false){
+					num++
+				}
+			});
+			
+	        $("#numMessages").html(num);
+		
+		}).fail(function(xhr, status, errorThrown) {
+			alert("Algo ha salido mal");
+			console.log('Failed Request To Servlet /scanTable')
+		}).always(function(xhr, status) {
+		});		
+		
+	});
+	</script>
