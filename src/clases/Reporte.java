@@ -3,17 +3,19 @@ package clases;
 public class Reporte {
 	
 	String hora, nota, usuario;
+	boolean visto;
 	
 	public Reporte() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Reporte(String hora, String nota, String usuario) {
+	public Reporte(String hora, String nota, String usuario, boolean visto) {
 		super();
 		this.hora = hora;
 		this.nota = nota;
 		this.usuario = usuario;
+		this.visto = visto;
 	}
 
 	public String getHora() {
@@ -40,11 +42,19 @@ public class Reporte {
 		this.usuario = usuario;
 	}
 
-	@Override
-	public String toString() {
-		return "reporte [hora=" + hora + ", nota=" + nota + ", usuario=" + usuario + "]";
+	public boolean isVisto() {
+		return visto;
 	}
 
-	
+	public void setVisto(boolean visto) {
+		this.visto = visto;
+	}
 
+	@Override
+	public String toString() {
+		return "Reporte [hora=" + hora + ", nota=" + nota + ", usuario=" + usuario + ", visto=" + visto + "]";
+	}
+	
+	
+	
 }

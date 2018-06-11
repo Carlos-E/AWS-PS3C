@@ -114,7 +114,6 @@ public class Crear extends HttpServlet {
 				envio.setUsuario(persona);		
 				envio.setChequeoCarga(false);
 				envio.setChequeoDescarga(false);
-				System.out.println(envio.getTrailer());
 				Trailer trailer2 = (Trailer) ControladorBD.getItem("trailers", "patente", envio.getTrailer());
 				Camion camion2 = (Camion) ControladorBD.getItem("camiones", "placa", envio.getCamion());
 				if (envio.getCamion() == null && envio.getTrailer() != null) {
@@ -122,9 +121,7 @@ public class Crear extends HttpServlet {
 					envio.setCamion(trailer2.getCamion());
 				} else if (envio.getCamion() != null && envio.getTrailer() == null) {
 					envio.setEmpresa(camion2.getEmpresa());
-				}
-				System.out.println("----------------------------------------------------------------");
-				System.out.println(envio.toString());				
+				}			
 				ControladorBD.registrarItem("envios", envio);
 				response.setContentType("text/html");
 				com.logica.Dibujar.mensaje(out, "Operacion Exitosa", nextURL);
