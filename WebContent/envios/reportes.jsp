@@ -76,7 +76,7 @@
 					dataSet.push([
 						element.hora,
 						element.usuario,
-						element.nota
+						element.nota,
 				]);
 				});
 				
@@ -87,7 +87,8 @@
 			        columns: [
 			            { title: "hora" },
 			            { title: "usuario" },
-			            { title: "nota" }
+			            { title: "nota" },
+			            { title: "visto" }
 			        ]
 			    } );
 				
