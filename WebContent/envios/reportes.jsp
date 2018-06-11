@@ -77,6 +77,7 @@
 						element.hora,
 						element.usuario,
 						element.nota,
+						element.visto
 				]);
 				});
 				

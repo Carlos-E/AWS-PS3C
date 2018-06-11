@@ -28,7 +28,7 @@
 		</div>
 	</div>
 
-	<main  class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto small"> <!--  HEADER --> <jsp:include page="/movil/header.jsp" /> <!--  ./HEADER --> <section class="row">
+	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto small"> <!--  HEADER --> <jsp:include page="/movil/header.jsp" /> <!--  ./HEADER --> <section class="row">
 	<div class="col-md-12 col-lg-12">
 		<div class="card mb-4">
 			<!-- INICIO CONTAINER -->
@@ -40,27 +40,29 @@
 					%>
 				</h3>
 
-				<form class="form" action="#" method="post">
+				<div class="col-sm-12 ">
+					<table id="tabla" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
+						<thead>
 
-					<div class="col-sm-12 ">
-						<table id="tabla" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
-							<thead>
+						</thead>
+						<tfoot>
 
-							</thead>
-							<tfoot>
+						</tfoot>
+						<tbody>
 
-							</tfoot>
-							<tbody>
+						</tbody>
+					</table>
+				</div>
+				
+				<form class="form" action="/reportes/crear" method="post">
 
-							</tbody>
-						</table>
-					</div>
+
 					<br>
 					<br>
 					<div class="form-group">
 						<label class="col-12 control-label no-padding" for="message">Escriba su Reporte</label>
 						<div class="col-12 no-padding">
-							<textarea class="form-control" id="message" name="message" placeholder="Escriba aqui su reporte..." rows="5"></textarea>
+							<textarea class="form-control" id="nota" name="nota" placeholder="Escriba aqui su reporte..." rows="5"></textarea>
 						</div>
 					</div>
 
@@ -93,12 +95,13 @@
 				console.log(response);
 				
 				let dataSet = [];
-				
+
 				response.forEach(element => {
 					dataSet.push([
 						element.hora,
 						element.usuario,
-						element.nota
+						element.nota,
+						element.visto
 				]);
 				});
 				
@@ -109,7 +112,8 @@
 			        columns: [
 			            { title: "hora" },
 			            { title: "usuario" },
-			            { title: "nota" }
+			            { title: "nota" },
+			            { title: "visto" }
 			        ]
 			    } );
 				
