@@ -42,10 +42,8 @@ public class Modificar extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
-		HttpSession session = request.getSession();
-		String patente = session.getAttribute("obj").toString();
+
+		String patente = request.getParameter("patete").toString();
 		trailer = (clases.Trailer) ControladorBD.getItem("trailers", "trailer", patente);
 		String peso = request.getParameter("peso").toLowerCase();
 		String espacio = request.getParameter("espacio").toLowerCase();
@@ -53,6 +51,9 @@ public class Modificar extends HttpServlet {
 		String camion = request.getParameter("camion").toLowerCase();
 		String tipo = request.getParameter("tipo").toLowerCase();
 		boolean cambio = false;
+		
+		response.setContentType("text/html");
+
 		if (!trailer.getPeso().equals(peso)) {
 			trailer.setPeso(peso);
 			ControladorBD.actualizarValor("trailers", "patente", patente, "capacidad", peso);
@@ -79,15 +80,10 @@ public class Modificar extends HttpServlet {
 			cambio = true;
 		}
 		if (cambio) {
-			session.setAttribute("busca", "ninguno");
 			System.out.println("algo se cambio");
-			response.setContentType("text/html");
-
 			com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getSession().getAttribute("origin").toString());
 		} else {
 			System.out.println("no se cambio nada");
-			response.setContentType("text/html");
-
 			com.logica.Dibujar.mensaje(response.getWriter(), "No ha habido cambio", request.getSession().getAttribute("origin").toString());
 		}
 	}
