@@ -41,12 +41,11 @@ public class eliminarCamion extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String placa = request.getParameter("placa").toString();
-		ControladorBD.borrarItem("camiones", "placa", placa);
+		
+		ControladorBD.borrarItem("camiones", "placa", request.getParameter("placa").toString());
 		
 		response.setContentType("text/html");
-		String nextURL = request.getContextPath() + "/camiones/eliminar.jsp";
-		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", nextURL);
+		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getContextPath() + "/camiones/eliminar.jsp");
 		
 	}
 

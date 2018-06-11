@@ -10,7 +10,7 @@ public class Camion {
 	}
 
 	public Camion(String placa, String tipo, String peso, String espacio, String estado, String destino,
-			String ubicacion, String origen, String conductor, String empresa) {
+			String ubicacion, String origen, String usuario, String empresa) {
 		super();
 		this.placa = placa;
 		this.tipo = tipo;
@@ -20,7 +20,7 @@ public class Camion {
 		this.destino = destino;
 		this.ubicacion = ubicacion;
 		this.origen = origen;
-		this.usuario = conductor;
+		this.usuario = usuario;
 		this.empresa = empresa;
 	}
 
@@ -92,8 +92,8 @@ public class Camion {
 		return usuario;
 	}
 
-	public void setUsuario(String conductor) {
-		this.usuario = conductor;
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 
 	public String getEmpresa() {

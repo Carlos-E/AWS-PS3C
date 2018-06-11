@@ -78,7 +78,7 @@ th, td {
 					</td>
 					<td>
 						<%
-							out.println(listaTrailer.get(i).getCapacidad());
+							out.println(listaTrailer.get(i).getPeso());
 						%>
 					</td>
 					<td>

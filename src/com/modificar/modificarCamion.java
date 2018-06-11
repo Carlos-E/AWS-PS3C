@@ -72,7 +72,7 @@ public class modificarCamion extends HttpServlet {
 		}
 		if (!camion.getUsuario().equals(conductor)) {
 			camion.setUsuario(conductor);
-			ControladorBD.actualizarValor("camiones", "placa", placa, "conductor", conductor);
+			ControladorBD.actualizarValor("camiones", "placa", placa, "usuario", conductor);
 			cambio = true;
 		}
 		if (cambio) {
