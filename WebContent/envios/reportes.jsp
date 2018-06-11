@@ -30,9 +30,7 @@
 
 			<div class="card-block">
 				<h3 class="card-title"><% out.print(session.getAttribute("pagina").toString()); %></h3>
-				
-				<form class="form" action="#" method="post">
-		
+						
 							<div class="col-sm-12">
 								<table id="tabla" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
 									<thead>
@@ -46,7 +44,6 @@
 									</tbody>
 								</table>
 							</div>
-				</form>
 			</div>
 
 			<!-- /FIN CONTAINER -->
