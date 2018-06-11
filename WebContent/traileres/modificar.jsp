@@ -128,7 +128,7 @@
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="empresa" placeholder="empresa" id="empresa" required>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Cami&oacute;n:</label>
+						<label class="col-md-2 col-form-label text-capitalize">Cami&oacute;n</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="camion" placeholder="camion" id="camion" required>
 						</div>
