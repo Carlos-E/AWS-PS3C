@@ -141,6 +141,7 @@ public class Crear extends HttpServlet {
 		envio.setChequeoDescarga(false);
 		
 		ControladorBD.registrarItem("envios", envio);
+		
 		//Generar Reporte
 		Reporte reporte = new Reporte();
 		reporte.setHora(fecha);
