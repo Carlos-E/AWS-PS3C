@@ -27,7 +27,7 @@ public class Modificar extends HttpServlet {
 
 		String patente = request.getParameter("patente").toString();
 		
-		trailer = (clases.Trailer) ControladorBD.getItem("trailers", "patente", request.getParameter("patente").toString());
+		trailer = (clases.Trailer) ControladorBD.getItem("trailers", "patente", patente);
 
 		String peso = request.getParameter("peso").toLowerCase();
 		String espacio = request.getParameter("espacio").toLowerCase();
