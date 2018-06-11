@@ -1,4 +1,4 @@
-package com.agregar;
+package com.trailers;
 
 import java.io.IOException;
 import java.io.PrintWriter;

@@ -29,7 +29,7 @@
 		<div class="card mb-4">
 			<div class="card-block">
 				<h3 class="card-title"><% out.print(session.getAttribute("pagina").toString()); %></h3>
-				<form class="form" action="/empresa" method="post">
+				<form class="form" action="/empresas/crear" method="post">
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Nombre</label>
 						<div class="col-md-4">

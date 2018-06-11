@@ -14,14 +14,14 @@ import com.logica.ControladorBD;
  * Servlet implementation class cliente
  */
 @WebServlet("/cliente")
-public class modificarCliente extends HttpServlet {
+public class Modificar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	clases.Usuario cliente = new clases.Usuario();
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public modificarCliente() {
+    public Modificar() {
         super();
         // TODO Auto-generated constructor stub
     }

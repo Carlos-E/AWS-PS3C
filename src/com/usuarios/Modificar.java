@@ -1,4 +1,4 @@
-package com.modificar;
+package com.usuarios;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,14 +16,14 @@ import com.logica.ControladorBD;
  * Servlet implementation class modificarUsuario
  */
 @WebServlet("/usuarios/modificar")
-public class modificarUsuario extends HttpServlet {
+public class Modificar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	clases.Usuario usuario = new clases.Usuario();
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public modificarUsuario() {
+    public Modificar() {
         super();
         // TODO Auto-generated constructor stub
     }

@@ -1,4 +1,4 @@
-package com.agregar;
+package com.camiones;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,14 +18,14 @@ import clases.*;
  * Servlet implementation class camion
  */
 @WebServlet("/camion")
-public class agregarCamion extends HttpServlet {
+public class Crear extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	clases.Camion camion = new clases.Camion();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public agregarCamion() {
+	public Crear() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

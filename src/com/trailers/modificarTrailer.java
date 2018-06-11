@@ -1,4 +1,4 @@
-package com.modificar;
+package com.trailers;
 
 import java.io.IOException;
 import java.io.PrintWriter;

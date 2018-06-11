@@ -1,4 +1,4 @@
-package com.modificar;
+package com.camiones;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,7 +19,7 @@ import clases.Usuario;
  * Servlet implementation class modificarCamion
  */
 @WebServlet("/camiones/modificar")
-public class modificarCamion extends HttpServlet {
+public class Modificar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Camion camion = new Camion();
 	
@@ -28,7 +28,7 @@ public class modificarCamion extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public modificarCamion() {
+    public Modificar() {
         super();
         // TODO Auto-generated constructor stub
     }
