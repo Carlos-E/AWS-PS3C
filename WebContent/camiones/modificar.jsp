@@ -100,11 +100,35 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Empresa</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="empresa" placeholder="empresa" id="empresa" required>
+							<select class="form-control" name="empresa" id="empresa" required>
+								<%
+									for (int i = 0; i < listaEmpresas.size(); i++) {
+								%>
+								<option value="<%out.print(listaEmpresas.get(i).getNit());%>">
+									<%
+										out.print(listaEmpresas.get(i).getNombre());
+									%>
+								</option>
+								<%
+									}
+								%>
+							</select>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Conductor</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="conductor" placeholder="conductor" id="conductor" required>
+							<select class="form-control" name="conductor" id="conductor" required>
+								<%
+									for (int i = 0; i < listaConductor.size(); i++) {
+								%>
+								<option value="<%out.print(listaConductor.get(i).getUsuario());%>">
+									<%
+										out.print(listaConductor.get(i).getUsuario());
+									%>
+								</option>
+								<%
+									}
+								%>
+							</select>
 						</div>
 					</div>
 					<div class="form-group row">

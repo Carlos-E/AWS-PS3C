@@ -40,7 +40,6 @@ public class scanTable extends HttpServlet {
 			.withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build();
 
 	DynamoDB dynamoDB = new DynamoDB(client);
-
 	// CODIGO DE PRUEBA
 
 	public scanTable() {
@@ -64,13 +63,11 @@ public class scanTable extends HttpServlet {
 		// CODIGO DE PRUEBA
 		Table table = dynamoDB.getTable(request.getParameter("tabla"));
 		ItemCollection<ScanOutcome> result = table.scan();
-
 		ArrayList<String> Items = new ArrayList<String>();
 		Iterator<Item> iterator = result.iterator();
 		while (iterator.hasNext()) {
 			Items.add(iterator.next().toJSON().toString());
 		}
-
 		response.setContentType("application/json");
 		response.getWriter().print(Items);
 		response.getWriter().close();
