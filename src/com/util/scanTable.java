@@ -63,10 +63,10 @@ public class scanTable extends HttpServlet {
 
 		// CODIGO DE PRUEBA
 		Table table = dynamoDB.getTable(request.getParameter("tabla"));
-		ItemCollection<ScanOutcome> items = table.scan();
+		ItemCollection<ScanOutcome> result = table.scan();
 
 		ArrayList<String> Items = new ArrayList<String>();
-		Iterator<Item> iterator = items.iterator();
+		Iterator<Item> iterator = result.iterator();
 		while (iterator.hasNext()) {
 			Items.add(iterator.next().toJSON().toString());
 		}
