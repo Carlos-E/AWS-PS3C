@@ -40,8 +40,8 @@ public class Modificar extends HttpServlet {
 		String tipo = request.getParameter("tipo").toLowerCase();
 		String estado = request.getParameter("estado").toLowerCase();
 		String empresa = request.getParameter("empresa").toLowerCase();
-		String tiempoCarga = request.getParameter("tiempoCarga").toLowerCase();
-		String tiempoDescargaUsuario = request.getParameter("tiempoDescarga").toLowerCase();
+		//String tiempoCarga = request.getParameter("tiempoCarga").toLowerCase();
+		//String tiempoDescargaUsuario = request.getParameter("tiempoDescarga").toLowerCase();
 		boolean cambio = false;
 
 		if (!envio.getDestino().equals(destino)) {
@@ -79,17 +79,17 @@ public class Modificar extends HttpServlet {
 			ControladorBD.actualizarValor("envios", "usuario", usuario, "fecha", fecha, "empresa", empresa);
 			cambio = true;
 		}
-		if (!envio.getCamion().equals(tiempoCarga)) {
-			envio.setCamion(tiempoCarga);
-			ControladorBD.actualizarValor("envios", "usuario", usuario, "fecha", fecha, "tiempoCarga", tiempoCarga);
-			cambio = true;
-		}
-		if (!envio.getCamion().equals(tiempoDescargaUsuario)) {
-			envio.setCamion(tiempoDescargaUsuario);
-			ControladorBD.actualizarValor("envios", "usuario", usuario, "fecha", fecha, "tiempoDescargaUsuario",
-					tiempoDescargaUsuario);
-			cambio = true;
-		}
+//		if (!envio.getCamion().equals(tiempoCarga)) {
+//			envio.setCamion(tiempoCarga);
+//			ControladorBD.actualizarValor("envios", "usuario", usuario, "fecha", fecha, "tiempoCarga", tiempoCarga);
+//			cambio = true;
+//		}
+//		if (!envio.getCamion().equals(tiempoDescargaUsuario)) {
+//			envio.setCamion(tiempoDescargaUsuario);
+//			ControladorBD.actualizarValor("envios", "usuario", usuario, "fecha", fecha, "tiempoDescargaUsuario",
+//					tiempoDescargaUsuario);
+//			cambio = true;
+//		}
 		if (cambio) {
 			System.out.println("algo se cambio");
 			response.setContentType("text/html");
