@@ -15,7 +15,7 @@
 
 <script>
 
-
+$("#messageNotification").hide();
 			
 $(document).ready(function() {
 	

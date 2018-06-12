@@ -13,35 +13,21 @@ import com.logica.ControladorBD;
 
 import clases.Reporte;
 
-/**
- * Servlet implementation class Visto
- */
 @WebServlet("/reportes/visto")
 public class Visto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public Visto() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.sendRedirect("/404.jsp");
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
+	
 		ArrayList<Reporte> reportes = ControladorBD.escanearTabla("reportes");
 		String visto = "jeje saludos";
 		for(int i=0;i<reportes.size();i++){		
@@ -58,7 +44,7 @@ public class Visto extends HttpServlet {
 			}
 		}
 		response.setContentType("text/html");
-		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getContextPath() + "envios/reportes.jsp");
+		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getContextPath() + "/envios/reportes.jsp");
 	}
 
 }
