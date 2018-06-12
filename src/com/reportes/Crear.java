@@ -75,7 +75,6 @@ public class Crear extends HttpServlet {
 
 		System.out.println(outcome);
 		// PRUEBA
-		
 		response.setContentType("text/html");
 		com.logica.Dibujar.mensaje(response.getWriter(), "Reporte Creado",
 				request.getContextPath() + request.getContextPath() + "/movil/transportador/reportes.jsp");
