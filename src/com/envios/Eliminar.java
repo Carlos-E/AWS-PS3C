@@ -25,12 +25,12 @@ public class Eliminar extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		ControladorBD.borrarItem("envios", "usuario", request.getParameter("usuario"), "fecha",
-				request.getParameter("fecha"));
-		
-		response.setContentType("text/html");
-		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getRequestURL() + ".jsp");
+		try{
+			ControladorBD.borrarItem("envios", "usuario", request.getParameter("usuario"), "fecha", request.getParameter("fecha"));
+			response.setContentType("text/html");
+			com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getRequestURL() + ".jsp");
+		}catch(Exception e) {
+			com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar eliminar el Envio", request.getRequestURL() + ".jsp");
+		}
 	}
-
 }
