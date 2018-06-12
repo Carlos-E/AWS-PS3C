@@ -12,6 +12,14 @@ import com.logica.ControladorBD;
 
 import clases.Reporte;
 
+//import com.amazonaws.AmazonServiceException;
+//import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
+//import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
+//import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+//import com.amazonaws.services.dynamodbv2.model.GetItemRequest;
+import java.util.HashMap;
+import java.util.Map;
+
 @WebServlet("/getNumReports")
 public class GetNumReports extends HttpServlet {
 	private static final long serialVersionUID = 1L;
