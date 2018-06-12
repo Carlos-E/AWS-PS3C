@@ -8,7 +8,7 @@
 %>
 <header class="page-header row justify-center">
 	<div class="col-md-12 col-lg-7 titulo">
-		<h1 class="float-left text-center text-md-left">
+		<h2 class="float-left text-center text-md-left">
 			<%
 				out.print(session.getAttribute("pagina").toString());
 			%>&nbsp;
@@ -18,23 +18,23 @@
 					<span class="fa-layers-counter" style="background: Tomato" id="numMessages"></span>
 				</span>
 			</a>
-		</h1>
+		</h2>
 
 	</div>
 	<div class="dropdown user-dropdown col-md-10 col-lg-5 text-center text-md-right">
 		<a class="btn btn-stripped dropdown-toggle" href="/index.html#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<img src="/img/user.svg" alt="profile photo" class="circle float-left profile-photo" width="50" height="auto">
 			<div class="username mt-1">
-				<h4 class="mb-1" id="username">
+				<h6 class="mb-1" id="username">
 					<%
 						out.print(session.getAttribute("username").toString());
 					%>
-				</h4>
-				<h6 id="role">
+				</h6>
+				<h7 id="role">
 					<%
 						out.print(session.getAttribute("rol").toString());
 					%>
-				</h6>
+				</h7>
 			</div>
 		</a>
 		<div class="dropdown-menu dropdown-menu-right" style="margin-right: 1.5rem;" aria-labelledby="dropdownMenuLink">
