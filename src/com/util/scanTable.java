@@ -59,7 +59,6 @@ public class scanTable extends HttpServlet {
 		// response.setContentType("application/json");
 		// response.getWriter().print(ow.writeValueAsString(ControladorBD.escanearTabla(request.getParameter("tabla"))));
 		// response.getWriter().close();
-
 		// CODIGO DE PRUEBA
 		Table table = dynamoDB.getTable(request.getParameter("tabla"));
 		ItemCollection<ScanOutcome> result = table.scan();
@@ -72,7 +71,6 @@ public class scanTable extends HttpServlet {
 		response.getWriter().print(Items);
 		response.getWriter().close();
 		// CODIGO DE PRUEBA
-
 	}
 
 }
