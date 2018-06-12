@@ -146,6 +146,8 @@
 							<!-- 							<input class="form-control" type="text" name="empresa" placeholder="empresa" id="empresa" required>
  -->
 							<select class="form-control" name="empresa" id="empresa">
+								<option value="" selected>Seleccionar...</option>
+
 								<%
 									ArrayList<Empresa> listaEmpresas = ControladorBD.escanearTabla("empresas");
 
@@ -172,6 +174,8 @@
 									ArrayList<Camion> listaCamiones = ControladorBD.escanearTabla("camiones");
 
 									for (int i = 0; i < listaCamiones.size(); i++) {
+										if (listaCamiones.get(i).getTipo().equals("camion")) {
+
 								%>
 								<option value="<%out.print(listaCamiones.get(i).getPlaca());%>">
 									<%
@@ -179,7 +183,7 @@
 									%>
 								</option>
 								<%
-									}
+									}}
 								%>
 							</select>
 						</div>
@@ -300,6 +304,7 @@
 										$('#tiempoDescarga').val(
 												objeto.tiempoDescargaUsuario);
 										$('#empresa').val(objeto.empresa);
+										$('#camion').val(objeto.camion);
 										$('#descripcion').val(
 												objeto.descripcion);
 

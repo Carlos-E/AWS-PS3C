@@ -101,6 +101,7 @@
 						<label class="col-md-2 col-form-label text-capitalize">Empresa</label>
 						<div class="col-md-4">
 							<select class="form-control" name="empresa" id="empresa" required>
+								<option value="" selected>Seleccionar...</option>
 								<%
 									for (int i = 0; i < listaEmpresas.size(); i++) {
 								%>
@@ -117,6 +118,7 @@
 						<label class="col-md-2 col-form-label text-capitalize">Conductor</label>
 						<div class="col-md-4">
 							<select class="form-control" name="conductor" id="conductor" required>
+								<option value="" selected>Seleccionar...</option>
 								<%
 									for (int i = 0; i < listaConductor.size(); i++) {
 								%>

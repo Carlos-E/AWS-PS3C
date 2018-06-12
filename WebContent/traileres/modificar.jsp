@@ -129,6 +129,8 @@
 							<!-- 							<input class="form-control" type="text" name="empresa" placeholder="empresa" id="empresa" required>
  -->
 							<select class="form-control" name="empresa" id="empresa" required>
+															<option value="" selected>Seleccionar...</option>
+							
 								<%
 									for (int i = 0; i < listaEmpresas.size(); i++) {
 								%>
@@ -147,6 +149,8 @@
 							<!-- 							<input class="form-control" type="text" name="camion" placeholder="camion" id="camion" required>
  -->
 							<select class="form-control" name="camion" id="camion" required>
+															<option value="" selected>Seleccionar...</option>
+							
 								<%
 									for (int i = 0; i < listaCamiones.size(); i++) {
 										if (listaCamiones.get(i).getTipo().equals("remolque")) {

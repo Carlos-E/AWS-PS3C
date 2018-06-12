@@ -13,7 +13,11 @@
 <html lang="es">
 <head>
 <jsp:include page="/head.jsp" />
-<title><%out.print(session.getAttribute("pagina").toString());%></title>
+<title>
+	<%
+		out.print(session.getAttribute("pagina").toString());
+	%>
+</title>
 </head>
 <body>
 	<div class="container-fluid" id="wrapper">
@@ -23,28 +27,27 @@
 			<!--  ./NAVBAR -->
 		</div>
 	</div>
-	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> 
-	<!--  HEADER --> 
-		<jsp:include page="/header.jsp" /> 
-	<!--  ./HEADER --> 
-	<%
-		ArrayList<Usuario> listaUsuarios = ControladorBD.escanearTabla("usuarios");
-		ArrayList<Camion> listaCamiones = ControladorBD.escanearTabla("camiones");
-		ArrayList<Usuario> listaConductor = new ArrayList<Usuario>();
-		ArrayList<Empresa> listaEmpresas = ControladorBD.escanearTabla("empresas");
-		for (int i = 0; i < listaUsuarios.size(); i++) {
-			if (listaUsuarios.get(i).getRol().equals("conductor")) {
-				if (!ControladorBD.estaOcupado(listaUsuarios.get(i).getNombre(), "null")) {
-					listaConductor.add(listaUsuarios.get(i));
-				}
-			}
-		}
-	%>
-	<section class="row">
+	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER --> <%
+ 	ArrayList<Usuario> listaUsuarios = ControladorBD.escanearTabla("usuarios");
+ 	ArrayList<Camion> listaCamiones = ControladorBD.escanearTabla("camiones");
+ 	ArrayList<Usuario> listaConductor = new ArrayList<Usuario>();
+ 	ArrayList<Empresa> listaEmpresas = ControladorBD.escanearTabla("empresas");
+ 	for (int i = 0; i < listaUsuarios.size(); i++) {
+ 		if (listaUsuarios.get(i).getRol().equals("conductor")) {
+ 			if (!ControladorBD.estaOcupado(listaUsuarios.get(i).getNombre(), "null")) {
+ 				listaConductor.add(listaUsuarios.get(i));
+ 			}
+ 		}
+ 	}
+ %> <section class="row">
 	<div class="col-md-12 col-lg-12">
 		<div class="card mb-4">
 			<div class="card-block">
-				<h3 class="card-title"><% out.print(session.getAttribute("pagina").toString()); %></h3>
+				<h3 class="card-title">
+					<%
+						out.print(session.getAttribute("pagina").toString());
+					%>
+				</h3>
 				<form class="form" action="/trailers/crear" method="post">
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Patente</label>
@@ -54,7 +57,7 @@
 						<label class="col-md-2 col-form-label text-capitalize">Tipo</label>
 						<div class="col-md-4">
 							<select class="custom-select" name="tipo" id="tipo" required>
-								<option value="" selected>seleccionar...</option>
+								<option value="" selected>Seleccionar...</option>
 								<option value="rabon (1 eje)">rabon (1 eje)</option>
 								<option value="torton (2 ejes)">torton (2 ejes)</option>
 								<option value="caja cerrada de 53 pies">caja cerrada de 53 pies</option>
@@ -72,11 +75,13 @@
 								<option value="tolva">tolva</option>
 							</select>
 						</div>
-					</div>								
+					</div>
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Empresa</label>
 						<div class="col-md-4">
 							<select class="form-control" name="empresa" id="empresa">
+								<option value="" selected>Seleccionar...</option>
+
 								<%
 									for (int i = 0; i < listaEmpresas.size(); i++) {
 								%>
@@ -92,7 +97,9 @@
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Cami&oacute;n</label>
 						<div class="col-md-4">
-							<select class="form-control" name="camion" id="camion">
+							<select class="form-control" name="camion" id="camion" required>
+								<option value="" selected>Seleccionar...</option>
+
 								<%
 									for (int i = 0; i < listaCamiones.size(); i++) {
 										if (!ControladorBD.estaOcupado("null", listaCamiones.get(i).getPlaca())
