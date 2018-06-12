@@ -126,11 +126,41 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Empresa</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="empresa" placeholder="empresa" id="empresa" required>
+							<!-- 							<input class="form-control" type="text" name="empresa" placeholder="empresa" id="empresa" required>
+ -->
+							<select class="form-control" name="empresa" id="empresa" required>
+								<%
+									for (int i = 0; i < listaEmpresas.size(); i++) {
+								%>
+								<option value="<%out.print(listaEmpresas.get(i).getNit());%>">
+									<%
+										out.print(listaEmpresas.get(i).getNombre());
+									%>
+								</option>
+								<%
+									}
+								%>
+							</select>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Cami&oacute;n</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="camion" placeholder="camion" id="camion" required>
+							<!-- 							<input class="form-control" type="text" name="camion" placeholder="camion" id="camion" required>
+ -->
+							<select class="form-control" name="camion" id="camion" required>
+								<%
+									for (int i = 0; i < listaCamiones.size(); i++) {
+									
+								%>
+								<option value="<%out.print(listaCamiones.get(i).getPlaca());%>">
+									<%
+										out.print(listaCamiones.get(i).getPlaca());
+									%>
+								</option>
+								<%
+									
+									}
+								%>
+							</select>
 						</div>
 					</div>
 					<div class="form-group row">
