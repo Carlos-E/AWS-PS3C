@@ -32,11 +32,11 @@ public class Visto extends HttpServlet {
 		String visto = "jeje saludos";
 		for(int i=0;i<reportes.size();i++){		
 			try{
-				System.out.println("epa colombia");
-				System.out.println(reportes.get(i).getHora());
-				System.out.println(request.getParameter(reportes.get(i).getHora())+"  jejeee");
-				visto = request.getParameter(reportes.get(i).getHora()).toLowerCase();
-				System.out.println(request.getParameter(reportes.get(i).getHora())+"  jejeee");
+				if(request.getParameter(reportes.get(i).getHora())==null) {
+					visto="false";
+				}else {
+					visto="true";
+				}
 				ControladorBD.actualizarValor("reportes", "usuario", reportes.get(i).getUsuario(), "hora", reportes.get(i).getHora(), "visto", visto);
 			}catch (Exception e) {
 				System.out.println("no encontro una fecha, algo anda mal");				
