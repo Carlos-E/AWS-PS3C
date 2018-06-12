@@ -45,7 +45,6 @@ public class Visto extends HttpServlet {
 		ArrayList<Reporte> reportes = ControladorBD.escanearTabla("reportes");
 		String visto = "jeje saludos";
 		for(int i=0;i<reportes.size();i++){		
-			System.out.println(reportes.get(i).getHora());
 			try{
 				visto = request.getParameter(reportes.get(i).getHora()).toLowerCase();
 				if(visto.equals("true")){
