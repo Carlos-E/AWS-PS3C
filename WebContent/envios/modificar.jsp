@@ -161,6 +161,28 @@
 								%>
 							</select>
 						</div>
+						<label class="col-md-2 col-form-label text-capitalize">Cami&oacute;n</label>
+						<div class="col-md-4">
+							<!-- 							<input class="form-control" type="text" name="camion" placeholder="camion" id="camion" required>
+ -->
+							<select class="form-control" name="camion" id="camion" required>
+								<option value="" selected>Seleccionar...</option>
+
+								<%
+									ArrayList<Camion> listaCamiones = ControladorBD.escanearTabla("camiones");
+
+									for (int i = 0; i < listaCamiones.size(); i++) {
+								%>
+								<option value="<%out.print(listaCamiones.get(i).getPlaca());%>">
+									<%
+										out.print(listaCamiones.get(i).getPlaca());
+									%>
+								</option>
+								<%
+									}
+								%>
+							</select>
+						</div>
 
 					</div>
 					<input type="text" id="longitud_Destino" name="longitud_Destino" style="display: none">
@@ -278,7 +300,8 @@
 										$('#tiempoDescarga').val(
 												objeto.tiempoDescargaUsuario);
 										$('#empresa').val(objeto.empresa);
-										$('#descripcion').val(objeto.descripcion);
+										$('#descripcion').val(
+												objeto.descripcion);
 
 										$('#buscar-form').hide();
 										$('#form').removeAttr('hidden');

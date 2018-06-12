@@ -57,6 +57,7 @@ public class Crear extends HttpServlet {
 		envio.setUsuario(request.getSession().getAttribute("username").toString());		
 		envio.setChequeoCarga(false);
 		envio.setChequeoDescarga(false);
+		envio.setDescripcion(request.getParameter("descripcion").toLowerCase());
 		
 		ControladorBD.registrarItem("envios", envio);
 		

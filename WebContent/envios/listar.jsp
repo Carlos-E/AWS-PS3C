@@ -48,7 +48,7 @@
 						</div>
 						<div class="row">
 							<div class="col-sm-12">
-								<table id="tabla" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;font-size: 0.85rem;">
+								<table id="tabla" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;font-size: 0.75rem;">
 									<thead>
 
 									</thead>
@@ -109,6 +109,7 @@
 						element.peso,
 						element.camion,
 						element.trailer,
+						element.descripcion,
 				]);
 				});
 				
@@ -126,7 +127,8 @@
 			            { title: "espacio" },
 			            { title: "peso" },
 			            { title: "camion" },
-			            { title: "trailer" }
+			            { title: "trailer" },
+			            { title: "descripcion" }
 			        ]
 			    } );
 				

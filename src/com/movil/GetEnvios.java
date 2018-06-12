@@ -34,7 +34,7 @@ public class GetEnvios extends HttpServlet {
 		
 		String conductor = request.getSession().getAttribute("username").toString();
 		
-		conductor = "condu2";
+		//conductor = "condu2";
 		
 		String placaCamion = ControladorBD.checkPlaca(conductor);
 		
@@ -51,7 +51,7 @@ public class GetEnvios extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.sendRedirect("/error.jsp");
+		response.sendRedirect("/404.jsp");
 	}
 
 }
