@@ -31,6 +31,8 @@ public class Modificar extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		request.setCharacterEncoding("UTF-8");
+		
 		String usuario = request.getParameter("cliente").toString();
 		String fecha = request.getParameter("fecha").toString();
 		envio = (clases.Envio) ControladorBD.getItem("envios", "usuario", usuario, "fecha", fecha);
