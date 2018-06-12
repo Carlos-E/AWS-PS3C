@@ -74,11 +74,11 @@
 				let dataSet = [];
 				
 				response.forEach(element => {
-					var aux, visto = "";
+					var aux, visto = "unchecked";
 					if (element.visto) {
-						visto = "checked='checked'";
+						visto = "checked";
 					}
-					aux = '<input id="'+element.hora+'" name="'+element.hora+'" value="true" type="checkbox" '+visto+' >';
+					aux = '<input id="'+element.hora+'" name="'+element.hora+'" value="'+element.visto+'" type="checkbox" '+visto+' >';
 					dataSet.push([
 						element.hora,
 						element.usuario,
