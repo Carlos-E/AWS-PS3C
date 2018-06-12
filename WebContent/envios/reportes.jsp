@@ -27,7 +27,7 @@
 	<div class="col-md-12 col-lg-12">
 		<div class="card mb-4">
 			<!-- INICIO CONTAINER -->
-
+			<form action="/reportes/visto" method="post">
 			<div class="card-block">
 				<h3 class="card-title"><% out.print(session.getAttribute("pagina").toString()); %></h3>
 						
@@ -45,7 +45,11 @@
 								</table>
 							</div>
 			</div>
-
+			<div class="modal-footer">
+				<button id="modificar" type="submit" class="btn btn-primary btn-md float-right">Actualizar</button>
+				<button id="atras" type="button" data-target="#" class="btn btn-danger btn-md float-right">Atras</button>
+			</div>
+			</form>
 			<!-- /FIN CONTAINER -->
 		</div>
 	</div>
@@ -70,11 +74,16 @@
 				let dataSet = [];
 				
 				response.forEach(element => {
+					var aux, visto = "";
+					if (element.visto) {
+						visto = "checked='checked'";
+					}
+					aux = '<input id="'+element.hora+'" name="'+element.hora+'" value="true" type="checkbox" '+visto+' >';
 					dataSet.push([
 						element.hora,
 						element.usuario,
 						element.nota,
-						element.visto
+						aux
 				]);
 				});
 				
