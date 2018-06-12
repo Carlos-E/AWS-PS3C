@@ -46,7 +46,7 @@ public class scanTable extends HttpServlet {
 	public scanTable() {
 		super();
 	}
-
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.sendRedirect("/404.jsp");
