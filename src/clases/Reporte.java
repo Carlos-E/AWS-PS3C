@@ -3,14 +3,14 @@ package clases;
 public class Reporte {
 	
 	String hora, nota, usuario;
-	boolean visto;
+	String visto;
 	
 	public Reporte() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Reporte(String hora, String nota, String usuario, boolean visto) {
+	public Reporte(String hora, String nota, String usuario, String visto) {
 		super();
 		this.hora = hora;
 		this.nota = nota;
@@ -42,11 +42,11 @@ public class Reporte {
 		this.usuario = usuario;
 	}
 
-	public boolean isVisto() {
+	public String isVisto() {
 		return visto;
 	}
 
-	public void setVisto(boolean visto) {
+	public void setVisto(String visto) {
 		this.visto = visto;
 	}
 

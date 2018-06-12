@@ -65,7 +65,7 @@ public class Crear extends HttpServlet {
 		reporte.setHora(fecha);
 		reporte.setNota("Hay un nuevo envio del cliente: "+envio.getUsuario()+"");
 		reporte.setUsuario(envio.getUsuario());
-		reporte.setVisto(false);
+		reporte.setVisto("false");
 		ControladorBD.registrarItem("reportes", reporte);
 		//Generar Reporte
 

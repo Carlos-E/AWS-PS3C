@@ -65,7 +65,7 @@ public class GetNumReports extends HttpServlet {
 		//PRUEBA
 		Map<String, AttributeValue> expressionAttributeValues = new HashMap<String, AttributeValue>();
 
-		expressionAttributeValues.put(":val", new AttributeValue().withBOOL(false));
+		expressionAttributeValues.put(":val", new AttributeValue().withS("false"));
 
 		ScanRequest scanRequest = new ScanRequest().withTableName("reportes").withFilterExpression("visto = :val")
 				.withExpressionAttributeValues(expressionAttributeValues);
