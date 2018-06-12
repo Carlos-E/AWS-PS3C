@@ -102,7 +102,7 @@
 				let dataSet = [];	
 				response.forEach(element => {
 					var aux, chequeo = "unchecked";
-					if (element.chequeoDescarga) {
+					if (element.chequeoDescarga=="true") {
 						chequeo = "checked";
 					}
 					aux = '<input id="'+element.fecha+'" name="'+element.fecha+'" value="'+element.chequeoDescarga+'" type="checkbox" '+chequeo+' >';
