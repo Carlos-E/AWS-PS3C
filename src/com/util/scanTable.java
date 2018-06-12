@@ -54,8 +54,7 @@ public class scanTable extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// ObjectWriter ow = new
-		// ObjectMapper().writer().withDefaultPrettyPrinter();
+		// ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 		// response.setContentType("application/json");
 		// response.getWriter().print(ow.writeValueAsString(ControladorBD.escanearTabla(request.getParameter("tabla"))));
 		// response.getWriter().close();
