@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
@@ -30,6 +31,7 @@ public class Crear extends HttpServlet {
 			"512NOFNfUl4hAZMyFEHpt7ygdmksBVzmfXr6xLsR");
 
 	AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
+			.withRegion(Regions.US_EAST_1)
 			.withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build();
 	
 	DynamoDB dynamoDB = new DynamoDB(client);
