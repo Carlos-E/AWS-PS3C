@@ -7,14 +7,19 @@
 		response.sendError(400, "Acceso incorrecto"); //cambiar
 	}
 	session.setAttribute("pagina", "Modificar Envíos");
-/* 	ArrayList<envio> listaEnvio = ControladorBD.escanearTabla("envios");
- */%>
+	/* 	ArrayList<envio> listaEnvio = ControladorBD.escanearTabla("envios");
+	 */
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
 <head>
 <jsp:include page="/head.jsp" />
-<title><%out.print(session.getAttribute("pagina").toString());%></title>
+<title>
+	<%
+		out.print(session.getAttribute("pagina").toString());
+	%>
+</title>
 </head>
 
 <body>
@@ -88,7 +93,15 @@
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">tipo</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="tipo" placeholder="tipo" id="tipo" required>
+							<!-- 							<input class="form-control" type="text" name="tipo" placeholder="tipo" id="tipo" required>
+ -->
+							<select class="custom-select" name="tipo" id="tipo" required>
+								<option value="" selected>Seleccionar...</option>
+								<option value="normal">normal</option>
+								<option value="ligero">ligero</option>
+								<option value="fragil">fragil</option>
+								<option value="perecedero">perecedero</option>
+							</select>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -98,14 +111,22 @@
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">estado</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="estado" placeholder="estado" id="estado" required>
+							<!-- 							<input class="form-control" type="text" name="estado" placeholder="estado" id="estado" required>
+ -->
+							<select class="custom-select" name="estado" id="estado" required>
+								<option value="" selected>Seleccionar...</option>
+								<option value="no asignado">no asignado</option>
+								<option value="asignado">asignado</option>
+							</select>
 						</div>
+					</div>
+					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">peso</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="peso" placeholder="peso" id="peso" required>
 						</div>
 					</div>
-					<div class="form-group row">
+					<!-- <div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">tiempoCarga</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="tiempoCarga" placeholder="tiempoCarga" id="tiempoCarga" required>
@@ -114,11 +135,27 @@
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="tiempoDescarga" placeholder="tiempoDescarga" id="tiempoDescarga" required>
 						</div>
-					</div>
+					</div> -->
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">empresa</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="empresa" placeholder="empresa" id="empresa" required>
+							<!-- 							<input class="form-control" type="text" name="empresa" placeholder="empresa" id="empresa" required>
+ -->
+							<select class="form-control" name="empresa" id="empresa">
+								<%
+									ArrayList<Empresa> listaEmpresas = ControladorBD.escanearTabla("empresas");
+
+									for (int i = 0; i < listaEmpresas.size(); i++) {
+								%>
+								<option value="<%out.print(listaEmpresas.get(i).getNit());%>">
+									<%
+										out.print(listaEmpresas.get(i).getNombre());
+									%>
+								</option>
+								<%
+									}
+								%>
+							</select>
 						</div>
 
 					</div>
@@ -164,69 +201,95 @@
 	<!-- /FIN -->
 
 	<script>
-	
-		$(document).ready(function() {
-			
-			var lista;
-			
-			$.ajax({
-				url : "/scanTable",
-				data : {
-					tabla : 'envios'
-				},
-				type : "POST",
-				dataType : "json",
-			}).done(function(response) {
-				console.log(response);
-				
-				lista = response;
-				    	
-				 $(response).each(function() {
-				 	$('#select').append($("<option>").attr('value',this.usuario+' : '+this.fecha).text(this.usuario+' : '+this.fecha));
-				 	});
-				
-			}).fail(function(xhr, status, errorThrown) {
-				alert("Algo ha salido mal");
-				console.log('Failed Request To Servlet /scanTable')
-			}).always(function(xhr, status) {
-			});			
+		$(document)
+				.ready(
+						function() {
 
-			$('#buscar').click(function() {
-				
-				let selectedIndex = $('#select').prop('selectedIndex');
-				
-				console.log(lista[selectedIndex]);
-				
-				let objeto = lista[selectedIndex];
+							var lista;
 
-				$('#cliente').val(objeto.usuario);
-				$('#fecha').val(objeto.fecha);
+							$
+									.ajax({
+										url : "/scanTable",
+										data : {
+											tabla : 'envios'
+										},
+										type : "POST",
+										dataType : "json",
+									})
+									.done(
+											function(response) {
+												console.log(response);
 
-				$('#origen').val(objeto.origen);
-				$('#destino').val(objeto.destino);
-				$('#usuario').val(objeto.usuario);
-				$('#tipo').val(objeto.tipo);
-				$('#espacio').val(objeto.espacio);
-				$('#estado').val(objeto.estado);
-				$('#tiempoCarga').val(objeto.tiempoCarga);
-				$('#tiempoDescarga').val(objeto.tiempoDescargaUsuario);
-				$('#empresa').val(objeto.empresa);
+												lista = response;
 
-				$('#buscar-form').hide();
-				$('#form').removeAttr('hidden');
-				$('#form').show();
+												$(response)
+														.each(
+																function() {
+																	$('#select')
+																			.append(
+																					$(
+																							"<option>")
+																							.attr(
+																									'value',
+																									this.usuario
+																											+ ' : '
+																											+ this.fecha)
+																							.text(
+																									this.usuario
+																											+ ' : '
+																											+ this.fecha));
+																});
 
-			});
+											})
+									.fail(
+											function(xhr, status, errorThrown) {
+												alert("Algo ha salido mal");
+												console
+														.log('Failed Request To Servlet /scanTable')
+											}).always(function(xhr, status) {
+									});
 
-			$('#atras').click(function() {
-				$('#buscar-form').show();
-				$('#form').hide();
-			});
+							$('#buscar').click(
+									function() {
 
-		});
+										let selectedIndex = $('#select').prop(
+												'selectedIndex');
+
+										console.log(lista[selectedIndex]);
+
+										let objeto = lista[selectedIndex];
+
+										$('#cliente').val(objeto.usuario);
+										$('#fecha').val(objeto.fecha);
+
+										$('#origen').val(objeto.origen);
+										$('#destino').val(objeto.destino);
+										$('#usuario').val(objeto.usuario);
+										$('#peso').val(objeto.peso);
+										$('#tipo').val(objeto.tipo);
+										$('#espacio').val(objeto.espacio);
+										$('#estado').val(objeto.estado);
+										$('#tiempoCarga').val(
+												objeto.tiempoCarga);
+										$('#tiempoDescarga').val(
+												objeto.tiempoDescargaUsuario);
+										$('#empresa').val(objeto.empresa);
+
+										$('#buscar-form').hide();
+										$('#form').removeAttr('hidden');
+										$('#form').show();
+
+									});
+
+							$('#atras').click(function() {
+								$('#buscar-form').show();
+								$('#form').hide();
+							});
+
+						});
 	</script>
-	
-	
+
+
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwUOXR0TZ7pyQhLJAuA6_U6Ffg92YMkLk&libraries=places"></script>
 	<script type="text/javascript">
 		google.maps.event.addDomListener(window, 'load', intilize);
