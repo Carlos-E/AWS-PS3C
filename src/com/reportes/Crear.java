@@ -10,6 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
+import com.amazonaws.services.dynamodbv2.document.DynamoDB;
+import com.amazonaws.services.dynamodbv2.document.Item;
+import com.amazonaws.services.dynamodbv2.document.PutItemOutcome;
+import com.amazonaws.services.dynamodbv2.document.Table;
 import com.logica.ControladorBD;
 
 import clases.Reporte;
@@ -17,6 +25,12 @@ import clases.Reporte;
 @WebServlet("/reportes/crear")
 public class Crear extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAJSINT4F7K5BSGDRA",
+			"512NOFNfUl4hAZMyFEHpt7ygdmksBVzmfXr6xLsR");
+
+	AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
+			.withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build();
        
     public Crear() {
         super();
@@ -33,16 +47,30 @@ public class Crear extends HttpServlet {
 		
 		Calendar calendar = Calendar.getInstance();		
 		DecimalFormat mFormat= new DecimalFormat("00");
-        
-		reporte.setHora(calendar.get(Calendar.YEAR)+"-"+mFormat.format(Double.valueOf(calendar.get(Calendar.MONTH)+1))+"-"+mFormat.format(Double.valueOf(calendar.get(Calendar.DAY_OF_MONTH)))+" "+mFormat.format(calendar.get(Calendar.HOUR_OF_DAY))+":"+ mFormat.format(calendar.get(Calendar.MINUTE))+":"+ mFormat.format(calendar.get(Calendar.SECOND)));
+        String hora = calendar.get(Calendar.YEAR)+"-"+mFormat.format(Double.valueOf(calendar.get(Calendar.MONTH)+1))+"-"+mFormat.format(Double.valueOf(calendar.get(Calendar.DAY_OF_MONTH)))+" "+mFormat.format(calendar.get(Calendar.HOUR_OF_DAY))+":"+ mFormat.format(calendar.get(Calendar.MINUTE))+":"+ mFormat.format(calendar.get(Calendar.SECOND));
+		reporte.setHora(hora);
 		reporte.setNota(request.getParameter("nota").toLowerCase());
 		reporte.setUsuario(request.getSession().getAttribute("username").toString());
 		reporte.setVisto(false);
 		
-		ControladorBD.registrarItem("reportes", reporte);
+		//ControladorBD.registrarItem("reportes", reporte);
 		
+		//PRUEBA 
+		DynamoDB dynamoDB = new DynamoDB(client);
+		Table table = dynamoDB.getTable("reportes");
+		
+		Item item = new Item()
+			    .withPrimaryKey("usuario", request.getSession().getAttribute("username").toString())
+			    .withString("hora", hora)
+			    .withString("nota", request.getParameter("nota").toLowerCase())
+			    .withString("visto", "false");
+		
+		PutItemOutcome outcome = table.putItem(item);
+		
+		System.out.println(outcome);
+		//
 		response.setContentType("text/html");
-		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getContextPath() + request.getContextPath() + "/movil/transportador/reportes.jsp");
+		com.logica.Dibujar.mensaje(response.getWriter(), "Reporte Creado", request.getContextPath() + request.getContextPath() + "/movil/transportador/reportes.jsp");
 	}
 
 }
