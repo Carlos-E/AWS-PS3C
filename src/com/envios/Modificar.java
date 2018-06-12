@@ -1,7 +1,6 @@
 package com.envios;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,9 +11,6 @@ import javax.servlet.http.HttpSession;
 
 import com.logica.ControladorBD;
 
-/**
- * Servlet implementation class modificarMercancia
- */
 @WebServlet("/envios/modificar")
 public class Modificar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -23,31 +19,18 @@ public class Modificar extends HttpServlet {
 	clases.Empresa empresa = new clases.Empresa();
 	clases.Usuario usuario = new clases.Usuario();
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public Modificar() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.sendRedirect("/error.jsp");
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		HttpSession session = request.getSession();
 		String usuario = request.getParameter("cliente").toString();
 		String fecha = request.getParameter("fecha").toString();
 		envio = (clases.Envio) ControladorBD.getItem("envios", "usuario", usuario, "fecha", fecha);
@@ -112,7 +95,6 @@ public class Modificar extends HttpServlet {
 			response.setContentType("text/html");
 
 			com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getRequestURL() + ".jsp");
-			// response.sendRedirect("index.jsp");
 		} else {
 			System.out.println("no se cambio nada");
 			response.setContentType("text/html");
