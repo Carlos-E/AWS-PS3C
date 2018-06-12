@@ -27,7 +27,7 @@ $(document).ready(function() {
 		type : "POST",
 		dataType : "json",
 	}).done(function(response) {
-		console.log(response);
+		//console.log(response);
 		
         $("#numMessages").html(response.num);
 
