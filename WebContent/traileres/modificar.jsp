@@ -149,7 +149,8 @@
 							<select class="form-control" name="camion" id="camion" required>
 								<%
 									for (int i = 0; i < listaCamiones.size(); i++) {
-									
+										if (listaCamiones.get(i).getTipo().equals("remolque")) {
+											
 								%>
 								<option value="<%out.print(listaCamiones.get(i).getPlaca());%>">
 									<%
@@ -157,7 +158,7 @@
 									%>
 								</option>
 								<%
-									
+									}
 									}
 								%>
 							</select>
