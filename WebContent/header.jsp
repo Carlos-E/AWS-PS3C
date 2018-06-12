@@ -12,10 +12,10 @@
 			<%
 				out.print(session.getAttribute("pagina").toString());
 			%>&nbsp;
-			<a href="/envios/reportes.jsp" style="color: black;">
+			<a href="/envios/reportes.jsp" style="color: black;" id="messageNotification">
 				<span class="fa-layers fa-fw">
 					<i class="fas fa-envelope"></i>
-					<span class="fa-layers-counter" style="background: Tomato" id="numMessages">0</span>
+					<span class="fa-layers-counter" style="background: Tomato" id="numMessages"></span>
 				</span>
 			</a>
 		</h1>

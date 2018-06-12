@@ -4,11 +4,11 @@
 <div class="col-md-12 col-lg-12">
 	<section class="row">
 		<footer class="col-md-12 col-lg-12">
-		
+
 			<div class="row">
 
 				<div class="col-md-12 col-lg-9">
-				
+
 					<div class="row">
 						<div class="col-md-12 col-lg">
 							<p>© 2017-2018 - Proyecto con fines academicos</p>
@@ -35,10 +35,10 @@
 							</p>
 						</div>
 					</div>
-					
+
 					<div class="row">
 						<div class="col-md-12 col-lg">
-							<p style="font-size:10px;">
+							<p style="font-size: 10px;">
 								Plantilla base hecha por
 								<a href="https://www.medialoot.com/">Medialoot.</a>
 							</p>
@@ -80,7 +80,13 @@
 			});
 			
 	        $("#numMessages").html(num);
-		
+
+	        if(num==0){
+	        	$("#messageNotification").hide();
+	        }else{
+	        	$("#messageNotification").show();
+	        }
+	        
 		}).fail(function(xhr, status, errorThrown) {
 			alert("Algo ha salido mal");
 			console.log('Failed Request To Servlet /scanTable')
