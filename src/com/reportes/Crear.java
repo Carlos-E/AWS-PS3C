@@ -25,52 +25,60 @@ import clases.Reporte;
 @WebServlet("/reportes/crear")
 public class Crear extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAJSINT4F7K5BSGDRA",
 			"512NOFNfUl4hAZMyFEHpt7ygdmksBVzmfXr6xLsR");
 
 	AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
 			.withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build();
-       
-    public Crear() {
-        super();
-    }
+	
+	DynamoDB dynamoDB = new DynamoDB(client);
+	Table table = dynamoDB.getTable("reportes");
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.sendRedirect("/404.jsp");;
+	public Crear() {
+		super();
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		Reporte reporte = new Reporte();
-		
-		Calendar calendar = Calendar.getInstance();		
-		DecimalFormat mFormat= new DecimalFormat("00");
-        String hora = calendar.get(Calendar.YEAR)+"-"+mFormat.format(Double.valueOf(calendar.get(Calendar.MONTH)+1))+"-"+mFormat.format(Double.valueOf(calendar.get(Calendar.DAY_OF_MONTH)))+" "+mFormat.format(calendar.get(Calendar.HOUR_OF_DAY))+":"+ mFormat.format(calendar.get(Calendar.MINUTE))+":"+ mFormat.format(calendar.get(Calendar.SECOND));
-		reporte.setHora(hora);
-		reporte.setNota(request.getParameter("nota").toLowerCase());
-		reporte.setUsuario(request.getSession().getAttribute("username").toString());
-		reporte.setVisto(false);
-		
-		//ControladorBD.registrarItem("reportes", reporte);
-		
-		//PRUEBA 
-		DynamoDB dynamoDB = new DynamoDB(client);
-		Table table = dynamoDB.getTable("reportes");
-		
-		Item item = new Item()
-			    .withPrimaryKey("usuario", request.getSession().getAttribute("username").toString())
-			    .withString("hora", hora)
-			    .withString("nota", request.getParameter("nota").toLowerCase())
-			    .withString("visto", "false");
-		
-		PutItemOutcome outcome = table.putItem(item);
-		
-		System.out.println(outcome);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.sendRedirect("/404.jsp");
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		Calendar calendar = Calendar.getInstance();
+		DecimalFormat mFormat = new DecimalFormat("00");
+		String hora = calendar.get(Calendar.YEAR) + "-"
+				+ mFormat.format(Double.valueOf(calendar.get(Calendar.MONTH) + 1)) + "-"
+				+ mFormat.format(Double.valueOf(calendar.get(Calendar.DAY_OF_MONTH))) + " "
+				+ mFormat.format(calendar.get(Calendar.HOUR_OF_DAY)) + ":"
+				+ mFormat.format(calendar.get(Calendar.MINUTE)) + ":" + mFormat.format(calendar.get(Calendar.SECOND));
+
+		// Reporte reporte = new Reporte();
 		//
+		// reporte.setHora(hora);
+		// reporte.setNota(request.getParameter("nota").toLowerCase());
+		// reporte.setUsuario(request.getSession().getAttribute("username").toString());
+		// reporte.setVisto(false);
+
+		// ControladorBD.registrarItem("reportes", reporte);
+
+		// PRUEBA
+
+		PutItemOutcome outcome = table.putItem(new Item()
+				.withPrimaryKey("usuario", request.getSession().getAttribute("username").toString())
+				.withString("hora", hora)
+				.withString("nota", request.getParameter("nota").toLowerCase())
+				.withString("visto", "false"));
+
+		System.out.println(outcome);
+		// PRUEBA
+		
 		response.setContentType("text/html");
-		com.logica.Dibujar.mensaje(response.getWriter(), "Reporte Creado", request.getContextPath() + request.getContextPath() + "/movil/transportador/reportes.jsp");
+		com.logica.Dibujar.mensaje(response.getWriter(), "Reporte Creado",
+				request.getContextPath() + request.getContextPath() + "/movil/transportador/reportes.jsp");
 	}
 
 }

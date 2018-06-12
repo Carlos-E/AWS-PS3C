@@ -59,6 +59,8 @@ public class GetNumReports extends HttpServlet {
 		// response.getWriter().print("{\"num\":"+num+"}");
 		// response.getWriter().close();
 
+		
+		//PRUEBA
 		Map<String, AttributeValue> expressionAttributeValues = new HashMap<String, AttributeValue>();
 
 		expressionAttributeValues.put(":val", new AttributeValue().withS("false"));
@@ -69,6 +71,7 @@ public class GetNumReports extends HttpServlet {
 		ScanResult result = client.scan(scanRequest);
 		
 		//System.out.println(result.getItems()+"\n");
+		//PRUEBA
 
 		response.setContentType("application/json");
 		response.getWriter().print("{\"num\":" + result.getItems().size() + "}");
