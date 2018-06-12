@@ -125,6 +125,10 @@
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="peso" placeholder="peso" id="peso" required>
 						</div>
+						<label class="col-md-2 col-form-label text-capitalize">descripci&oacute;n</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="descripcion" placeholder="descripcion" id="descripcion" required>
+						</div>
 					</div>
 					<!-- <div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">tiempoCarga</label>
@@ -274,6 +278,7 @@
 										$('#tiempoDescarga').val(
 												objeto.tiempoDescargaUsuario);
 										$('#empresa').val(objeto.empresa);
+										$('#descripcion').val(objeto.descripcion);
 
 										$('#buscar-form').hide();
 										$('#form').removeAttr('hidden');

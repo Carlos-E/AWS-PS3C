@@ -40,6 +40,7 @@ public class Modificar extends HttpServlet {
 		String tipo = request.getParameter("tipo").toLowerCase();
 		String estado = request.getParameter("estado").toLowerCase();
 		String empresa = request.getParameter("empresa").toLowerCase();
+		String descripcion = request.getParameter("descripcion").toLowerCase();
 		//String tiempoCarga = request.getParameter("tiempoCarga").toLowerCase();
 		//String tiempoDescargaUsuario = request.getParameter("tiempoDescarga").toLowerCase();
 		boolean cambio = false;
@@ -77,6 +78,11 @@ public class Modificar extends HttpServlet {
 		if (!envio.getEmpresa().equals(empresa)) {
 			envio.setEmpresa(empresa);
 			ControladorBD.actualizarValor("envios", "usuario", usuario, "fecha", fecha, "empresa", empresa);
+			cambio = true;
+		}
+		if (!envio.getDescripcion().equals(descripcion)) {
+			envio.setEmpresa(descripcion);
+			ControladorBD.actualizarValor("envios", "usuario", usuario, "fecha", fecha, "descripcion", descripcion);
 			cambio = true;
 		}
 //		if (!envio.getCamion().equals(tiempoCarga)) {

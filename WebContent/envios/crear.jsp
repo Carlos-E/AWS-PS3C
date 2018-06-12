@@ -91,6 +91,7 @@
 						<label class="col-md-2 col-form-label text-capitalize">Empresa</label>
 						<div class="col-md-4">
 							<select class="form-control" name="empresa" id="empresa">
+								<option value="" selected>Seleccionar...</option>
 								<%
 									for (int i = 0; i < listaEmpresas.size(); i++) {
 								%>
@@ -125,6 +126,10 @@
 						<label class="col-md-2 col-form-label text-capitalize">Peso maximo</label>
 						<div class="col-md-4">
 							<input class="form-control" type="number" name="peso" placeholder="peso en kg" required>
+						</div>
+						<label class="col-md-2 col-form-label text-capitalize">Descripci&oacute;n</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="descripcion" placeholder="descripci&oacute;n" required>
 						</div>
 					</div>
 					<input type="text" id="longitud_Destino" name="longitud_Destino" style="display: none">
