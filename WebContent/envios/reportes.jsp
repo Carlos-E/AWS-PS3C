@@ -76,9 +76,9 @@
 				response.forEach(element => {
 					var aux, visto = "unchecked";
 					if (element.visto) {
-						visto = "checked";
+						visto = "checked='checked'";
 					}
-					aux = '<input id="'+element.hora+'" name="'+element.hora+'" value="'+element.visto+'" type="checkbox" '+visto+' >';
+					aux = '<input id="'+element.hora+'" name="'+element.hora+'" value="true" type="checkbox" '+visto+' >';
 					dataSet.push([
 						element.hora,
 						element.usuario,

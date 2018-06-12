@@ -48,12 +48,12 @@ public class chequeoDescarga extends HttpServlet {
 		System.out.println(chequeoDescarga);
 		for(int i=0;i<envios.size();i++){			
 			try{
-				chequeoDescarga = request.getParameter(envios.get(i).getFecha()).toLowerCase();
-				if(chequeoDescarga.equals("true")){
-					ControladorBD.actualizarValor("envios", "usuario", envios.get(i).getUsuario(), "fecha", envios.get(i).getFecha(), "chequeoDescarga", chequeoDescarga);
-				}else if(chequeoDescarga.equals("false")) {
-					
+				if(request.getParameter(envios.get(i).getFecha())==null){
+					chequeoDescarga="false";
+				}else {
+					chequeoDescarga="true";
 				}
+				ControladorBD.actualizarValor("envios", "usuario", envios.get(i).getUsuario(), "fecha", envios.get(i).getFecha(), "chequeoDescarga", chequeoDescarga);
 			}catch (Exception e) {
 				System.out.println("no encontro una fecha, algo anda mal");				
 			}
