@@ -56,6 +56,8 @@ public class scanTable extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		try{
+		
 		// ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 		// response.setContentType("application/json");
 		// response.getWriter().print(ow.writeValueAsString(ControladorBD.escanearTabla(request.getParameter("tabla"))));
@@ -72,6 +74,12 @@ public class scanTable extends HttpServlet {
 		response.getWriter().print(Items);
 		response.getWriter().close();
 		// CODIGO DE PRUEBA
+		
+	}catch(Exception e){
+		com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar modificar el Usuario", request.getContextPath() + "./index.jsp");
+	}
+		
+		
 	}
 
 }
