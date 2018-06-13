@@ -34,8 +34,13 @@ public class Crear extends HttpServlet {
 			request.setCharacterEncoding("UTF-8");
 			Calendar calendar = Calendar.getInstance();	
 			DecimalFormat mFormat= new DecimalFormat("00");
-			String destinoLatLong = request.getParameter("latitud_Destino").toLowerCase()+","+request.getParameter("longitud_Destino").toLowerCase();
-			String origenLatLong = request.getParameter("latitud_Origen").toLowerCase()+","+request.getParameter("longitud_Origen").toLowerCase();
+			
+//			String destinoLatLong = request.getParameter("latitud_Destino").toLowerCase()+","+request.getParameter("longitud_Destino").toLowerCase();
+//			String origenLatLong = request.getParameter("latitud_Origen").toLowerCase()+","+request.getParameter("longitud_Origen").toLowerCase();
+			
+			String destinoLatLong = request.getParameter("destinoLatLong").toLowerCase();
+			String origenLatLong = request.getParameter("origenLatLong").toLowerCase();
+			
 			String fecha = 	calendar.get(Calendar.YEAR)+"-"+mFormat.format(Double.valueOf(calendar.get(Calendar.MONTH)+1))+"-"+mFormat.format(Double.valueOf(calendar.get(Calendar.DAY_OF_MONTH)))+" "+mFormat.format(calendar.get(Calendar.HOUR_OF_DAY))+":"+ mFormat.format(calendar.get(Calendar.MINUTE))+":"+ mFormat.format(calendar.get(Calendar.SECOND));
 			envio.setPeso(request.getParameter("peso").toLowerCase());
 			envio.setEspacio(request.getParameter("espacio").toLowerCase());
@@ -55,6 +60,7 @@ public class Crear extends HttpServlet {
 			envio.setChequeoDescarga(false);
 			envio.setDescripcion(request.getParameter("descripcion").toLowerCase());
 			ControladorBD.registrarItem("envios", envio);
+			
 			//Generar Reporte
 			Reporte reporte = new Reporte();
 			reporte.setHora(fecha);
@@ -64,9 +70,10 @@ public class Crear extends HttpServlet {
 			ControladorBD.registrarItem("reportes", reporte);
 			//Generar Reporte
 			response.setContentType("text/html");
+			
 			com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa, Reporte generado.", request.getContextPath() + "/envios/crear.jsp");
 		}catch(Exception e){
-			com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar crear el Envio", request.getContextPath() + "./index.jsp");
+			com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar crear el Envio", request.getContextPath() + "/envios/crear.jsp");
 		}
 	}
 

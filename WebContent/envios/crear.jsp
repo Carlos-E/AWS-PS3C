@@ -133,10 +133,12 @@
 							<input class="form-control" type="text" name="descripcion" placeholder="descripci&oacute;n" required>
 						</div>
 					</div>
-					<input type="text" id="longitud_Destino" name="longitud_Destino" style="display: none">
+					<input type="text" id="destinoLatLong" name="destinoLatLong" style="display: none">
+					<input type="text" id="origenLatLong" name="origenLatLong" style="display: none">
+					<!-- <input type="text" id="longitud_Destino" name="longitud_Destino" style="display: none">
 					<input type="text" id="latitud_Destino" name="latitud_Destino" style="display: none">
 					<input type="text" id="latitud_Origen" name="latitud_Origen" style="display: none">
-					<input type="text" id="longitud_Origen" name="longitud_Origen" style="display: none">
+					<input type="text" id="longitud_Origen" name="longitud_Origen" style="display: none"> -->
 					<div class="modal-footer">
 						<button type="submit" name="submit" class="btn btn-primary btn-md float-right">Registrar</button>
 						<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger btn-md float-right">Cancelar</button>
@@ -189,10 +191,15 @@
 								var place = autocomplete.getPlace();
 								var latlon = place.geometry.location.lat()
 										+ "," + place.geometry.location.lng();
-								document.getElementById('latitud_Destino').value = place.geometry.location
+								
+								/* document.getElementById('latitud_Destino').value = place.geometry.location
 										.lat();
 								document.getElementById('longitud_Destino').value = place.geometry.location
 										.lng();
+								 */
+								document.getElementById('destinoLatLong').value = place.geometry.location
+										.lat()
+										+ "," + place.geometry.location.lng();
 							});
 		};
 	</script>
@@ -209,10 +216,14 @@
 								var place = autocomplete.getPlace();
 								var latlon = place.geometry.location.lat()
 										+ "," + place.geometry.location.lng();
-								document.getElementById('latitud_Origen').value = place.geometry.location
+								/* document.getElementById('latitud_Origen').value = place.geometry.location
 										.lat();
 								document.getElementById('longitud_Origen').value = place.geometry.location
 										.lng();
+								 */
+								document.getElementById('origenLatLong').value = place.geometry.location
+								.lat()
+								+ "," + place.geometry.location.lng();
 							});
 		};
 	</script>

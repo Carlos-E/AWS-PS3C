@@ -45,8 +45,11 @@ public class Modificar extends HttpServlet {
 			String camion = request.getParameter("camion").toLowerCase();
 			//String tiempoCarga = request.getParameter("tiempoCarga").toLowerCase();
 			//String tiempoDescargaUsuario = request.getParameter("tiempoDescarga").toLowerCase();		
-			String destinoLatLong = request.getParameter("latitud_Destino").toLowerCase()+","+request.getParameter("longitud_Destino").toLowerCase();
-			String origenLatLong = request.getParameter("latitud_Origen").toLowerCase()+","+request.getParameter("longitud_Origen").toLowerCase();	
+			// String destinoLatLong = request.getParameter("latitud_Destino").toLowerCase()+","+request.getParameter("longitud_Destino").toLowerCase();
+			// String origenLatLong = request.getParameter("latitud_Origen").toLowerCase()+","+request.getParameter("longitud_Origen").toLowerCase();	
+			String destinoLatLong = request.getParameter("destinoLatLong").toLowerCase();
+			String origenLatLong = request.getParameter("origenLatLong").toLowerCase();
+			
 			boolean cambio = false;	
 			if (!envio.getDestino().equals(destino)) {
 				envio.setDestino(destino);
