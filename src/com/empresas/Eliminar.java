@@ -25,11 +25,13 @@ public class Eliminar extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		try {
 		ControladorBD.borrarItem("empresas", "nit", request.getParameter("nit").toString());
 		response.setContentType("text/html");
 		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getContextPath() + "/empresas/eliminar.jsp");
-		
+		}catch(Exception e){
+			com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar eliminar la Empresa", request.getContextPath() + "./index.jsp");
+		}
 	}
 
 }

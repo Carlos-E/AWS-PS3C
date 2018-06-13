@@ -24,10 +24,14 @@ public class Eliminar extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
 		String usuario = request.getParameter("usuario").toString();
 		ControladorBD.borrarItem("usuarios", "usuario", usuario);
 		response.setContentType("text/html");
-		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getRequestURL() + ".jsp");		
+		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getRequestURL() + ".jsp");
+	}catch(Exception e){
+		com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar eliminar el Usuario", request.getContextPath() + "./index.jsp");
+	}
 	}
 
 }

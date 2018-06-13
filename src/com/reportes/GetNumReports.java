@@ -45,7 +45,7 @@ public class GetNumReports extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+try {
 		// ArrayList<Reporte> reportes =
 		// ControladorBD.escanearTabla("reportes");
 		//
@@ -78,6 +78,9 @@ public class GetNumReports extends HttpServlet {
 		response.setContentType("application/json");
 		response.getWriter().print("{\"num\":" + result.getItems().size() + "}");
 		response.getWriter().close();
+	}catch(Exception e){
+		com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar cargar el numero de Reportes", request.getContextPath() + "./index.jsp");
+	}
 	}
 
 }

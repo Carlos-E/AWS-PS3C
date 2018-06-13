@@ -41,6 +41,7 @@ public class Modificar extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
+		try {
 		HttpSession session = request.getSession();
 		usuario = (clases.Usuario) ControladorBD.getItem("usuarios", "usuario", request.getParameter("usuario"));
 		String rol = request.getParameter("rol").toLowerCase().replaceAll(" ", "");
@@ -140,7 +141,9 @@ public class Modificar extends HttpServlet {
 				}
 			}
 		}
-		
+	}catch(Exception e){
+		com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar modificar el Usuario", request.getContextPath() + "./index.jsp");
+	}
 	}
 
 }

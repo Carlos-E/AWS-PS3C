@@ -25,7 +25,7 @@ public class Crear extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+try {
 		Empresa empresa = (Empresa) ControladorBD.getItem("empresas", "nit", request.getParameter("empresa").toLowerCase());
 		Camion camion = (Camion) ControladorBD.getItem("camiones", "placa", request.getParameter("camion").toLowerCase());
 		
@@ -45,5 +45,8 @@ public class Crear extends HttpServlet {
 
 		response.setContentType("text/html");
 		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getContextPath() + "/traileres/crear.jsp");
+}catch(Exception e){
+	com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar crear el Trailer", request.getContextPath() + "./index.jsp");
+}
 	}
 }

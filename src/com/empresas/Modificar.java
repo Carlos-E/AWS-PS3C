@@ -46,6 +46,7 @@ public class Modificar extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// doGet(request, response);
+		try {
 		HttpSession session = request.getSession();
 		String nit = request.getParameter("nit").toString();
 		empresa = (clases.Empresa) ControladorBD.getItem("empresas", "nit", nit);
@@ -86,6 +87,9 @@ public class Modificar extends HttpServlet {
 
 			com.logica.Dibujar.mensaje(response.getWriter(), "No ha habido cambio", request.getSession().getAttribute("origin").toString());
 
+		}
+		}catch(Exception e){
+			com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar modificar la Empresa", request.getContextPath() + "./index.jsp");
 		}
 	}
 }

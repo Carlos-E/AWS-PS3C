@@ -45,6 +45,7 @@ public class destinoACamion extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
+		try {
 		String patente =  request.getParameter("trailer").toLowerCase();
 		String destino = request.getParameter("destino").toLowerCase();
 		ControladorBD.actualizarValor("trailers", "patente", patente, "destino", destino);
@@ -52,6 +53,9 @@ public class destinoACamion extends HttpServlet {
 		response.setContentType("text/html");
 		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getContextPath() + "/asignar/destino-trailer.jsp");
 		//response.sendRedirect("index.jsp");
+	}catch(Exception e){
+		com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar asignar un Destino a un Camion", request.getContextPath() + "./index.jsp");
+	}
 	}
 
 }

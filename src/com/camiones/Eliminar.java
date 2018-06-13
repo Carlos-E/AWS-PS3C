@@ -41,12 +41,14 @@ public class Eliminar extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		try {
 		ControladorBD.borrarItem("camiones", "placa", request.getParameter("placa").toString());
 		
 		response.setContentType("text/html");
 		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getContextPath() + "/camiones/eliminar.jsp");
-		
+		}catch(Exception e){
+			com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar eliminar el Camion o Remolque", request.getContextPath() + "./index.jsp");
+		}
 	}
 
 }

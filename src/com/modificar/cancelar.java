@@ -39,12 +39,16 @@ public class cancelar extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
+		try {
 		HttpSession session = request.getSession();
 		session.setAttribute("busca", "ninguno");
 		PrintWriter out = response.getWriter();
 		String nextURL = request.getContextPath() + "./index.jsp";
 //		com.logica.Dibujar.mensaje(out, "Operacion Cancelada", nextURL);
 		response.sendRedirect("index.jsp");
+	}catch(Exception e){
+		com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar cancelar: com.modificar/cancelar.java", request.getContextPath() + "./index.jsp");
+	}
 	}
 
 }

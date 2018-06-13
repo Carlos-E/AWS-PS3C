@@ -44,6 +44,7 @@ public class mercanciaATrailer extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
+		try {
 		response.setContentType("text/html");
 		
 		String patente =  request.getParameter("patente").toLowerCase();
@@ -64,6 +65,9 @@ public class mercanciaATrailer extends HttpServlet {
 		String nextURL = request.getContextPath() + "/asignar/mercancia-trailer.jsp";
 		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", nextURL);
 		//response.sendRedirect("index.jsp");
+		}catch(Exception e){
+			com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar asignar una Mercancia a un Trailer", request.getContextPath() + "./index.jsp");
+		}
 	}
 
 }

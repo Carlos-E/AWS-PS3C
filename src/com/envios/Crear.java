@@ -66,7 +66,7 @@ public class Crear extends HttpServlet {
 			response.setContentType("text/html");
 			com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa, Reporte generado.", request.getContextPath() + "/envios/crear.jsp");
 		}catch(Exception e){
-			com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar crear el Envio", request.getContextPath() + "/envios/crear.jsp");
+			com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar crear el Envio", request.getContextPath() + "./index.jsp");
 		}
 	}
 

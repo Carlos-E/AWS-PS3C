@@ -22,7 +22,7 @@ public class ActualizarPerfil extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+		try {
 		if(request.getSession().getAttribute("username") == null){
 			response.sendRedirect("/error.jsp");
 		}
@@ -31,6 +31,9 @@ public class ActualizarPerfil extends HttpServlet {
 		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 		response.getWriter().print(ow.writeValueAsString(ControladorBD.getItem("usuarios", "usuario", request.getSession().getAttribute("username").toString())));
 		response.getWriter().close();
+	}catch(Exception e){
+		com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar actualizar un Usuario", request.getContextPath() + "./index.jsp");
+	}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -47,6 +47,7 @@ public class buscar extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// doGet(request, response);
+		try {
 		HttpSession session = request.getSession();
 		String nit = "nada", placa = "nada", patente = "nada", usuario = "nada", usuarioEnvio = "nada";
 		String destinoTrailer = "nada", mercanciaTrailer = "nada", trailerCamion = "nada";
@@ -322,5 +323,8 @@ public class buscar extends HttpServlet {
 				response.sendRedirect("modificarDatos/empleado.jsp");
 			}
 		}*/
+		}catch(Exception e){
+			com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar buscar :com.modificar/buscar.java", request.getContextPath() + "./index.jsp");
+		}
 	}
 }

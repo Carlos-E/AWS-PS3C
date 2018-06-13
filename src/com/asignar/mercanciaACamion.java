@@ -44,6 +44,7 @@ public class mercanciaACamion extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
+		try {
 		response.setContentType("text/html");
 
 		
@@ -66,6 +67,9 @@ public class mercanciaACamion extends HttpServlet {
 		
 		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getContextPath() + "/asignar/mercancia-camion.jsp");
 		//response.sendRedirect("index.jsp");
+		}
+		}catch(Exception e){
+			com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar asignar una Mercancia a un Camion", request.getContextPath() + "./index.jsp");
 		}
 	}
 

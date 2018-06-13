@@ -40,6 +40,7 @@ public class trailerACamion extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
+		try {
 		String patente = request.getParameter("trailer").toLowerCase();
 		String placa = request.getParameter("camion").toLowerCase();
 		System.out.println(placa.length());
@@ -50,6 +51,9 @@ public class trailerACamion extends HttpServlet {
 		String nextURL = request.getContextPath() + "/asignar/trailer-camion.jsp";
 		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", nextURL);
 		//response.sendRedirect("index.jsp");
+		}catch(Exception e){
+			com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar asignar un Trailer a un Camion", request.getContextPath() + "./index.jsp");
+		}
 	}
 
 }

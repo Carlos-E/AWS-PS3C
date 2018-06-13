@@ -43,6 +43,7 @@ public class chequeoDescarga extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
+		try {
 		ArrayList<Envio> envios = ControladorBD.escanearTabla("envios");
 		String chequeoDescarga = "jeje saludos";
 		System.out.println(chequeoDescarga);
@@ -60,6 +61,9 @@ public class chequeoDescarga extends HttpServlet {
 		}
 		response.setContentType("text/html");
 		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getContextPath() + "chequeo/chequeoDeDescarga.jsp");
+		}catch(Exception e){
+			com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar chequear los envios descargados", request.getContextPath() + "./index.jsp");
+		}
 	}
 
 }

@@ -35,7 +35,7 @@ public class trueBuscar extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+try {
 		Object objeto = new Object();
 
 		switch (request.getParameter("modificar")) {
@@ -68,7 +68,9 @@ public class trueBuscar extends HttpServlet {
 		response.setContentType("application/json");
 		response.getWriter().print(json);
 		response.getWriter().close();
-
+}catch(Exception e){
+	com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar buscar: com.modificar/trueBuscar.java", request.getContextPath() + "./index.jsp");
+}
 	}
 
 }

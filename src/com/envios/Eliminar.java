@@ -30,7 +30,7 @@ public class Eliminar extends HttpServlet {
 			response.setContentType("text/html");
 			com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getRequestURL() + ".jsp");
 		}catch(Exception e) {
-			com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar eliminar el Envio", request.getRequestURL() + ".jsp");
+			com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar eliminar el Envio", request.getRequestURL() + "./index.jsp");
 		}
 	}
 }

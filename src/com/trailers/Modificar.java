@@ -24,7 +24,7 @@ public class Modificar extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+try {
 		String patente = request.getParameter("patente").toString();
 		
 		trailer = (clases.Trailer) ControladorBD.getItem("trailers", "patente", patente);
@@ -77,6 +77,9 @@ public class Modificar extends HttpServlet {
 			System.out.println("no se cambio nada");
 			com.logica.Dibujar.mensaje(response.getWriter(), "No ha habido cambio", request.getSession().getAttribute("origin").toString());
 		}
+}catch(Exception e){
+	com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar modificar el Trailer", request.getContextPath() + "./index.jsp");
+}
 	}
 
 }

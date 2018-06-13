@@ -125,7 +125,7 @@ public class Modificar extends HttpServlet {
 				com.logica.Dibujar.mensaje(response.getWriter(), "No se cambio nada", request.getRequestURL() + ".jsp");
 			}
 		}catch(Exception e){
-			com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar modificar el Envio", request.getContextPath() + "/envios/crear.jsp");
+			com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar modificar el Envio", request.getContextPath() + "./index.jsp");
 		}
 	}
 }

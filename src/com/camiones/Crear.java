@@ -51,6 +51,7 @@ public class Crear extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// doGet(request, response);
+		try {
 		String peso = request.getParameter("peso").toLowerCase();
 		String espacio = request.getParameter("espacio").toLowerCase();
 		if (request.getParameter("tipo").toLowerCase().equals("remolque")) {
@@ -74,5 +75,8 @@ public class Crear extends HttpServlet {
 		response.setContentType("text/html");
 		String nextURL = request.getContextPath() + "/camiones/crear.jsp";
 		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", nextURL);
+		}catch(Exception e){
+			com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar crear el Camion o Remolque", request.getContextPath() + "./index.jsp");
+		}
 	}
 }

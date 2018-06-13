@@ -26,7 +26,7 @@ public class Crear extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+try {
 		empresa.setNit(request.getParameter("nit").toLowerCase());
 		empresa.setRut(request.getParameter("rut").toLowerCase());
 		empresa.setNombre(request.getParameter("nombre").toLowerCase());
@@ -39,6 +39,9 @@ public class Crear extends HttpServlet {
 		response.setContentType("text/html");
 		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa",
 				request.getContextPath() + "/empresas/crear.jsp");
+}catch(Exception e){
+	com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar crear la Empresa", request.getContextPath() + "./index.jsp");
+}
 	}
 
 }

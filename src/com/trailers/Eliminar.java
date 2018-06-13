@@ -23,11 +23,13 @@ public class Eliminar extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+try {
 		ControladorBD.borrarItem("trailers", "patente", request.getParameter("patente").toString());
 		response.setContentType("text/html");
 		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getContextPath() + "/traileres/eliminar.jsp");
-
+}catch(Exception e){
+	com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar eliminar el Trailer", request.getContextPath() + "./index.jsp");
+}
 	}
 
 }

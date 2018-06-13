@@ -47,6 +47,7 @@ public class Modificar extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
+		try {
 		HttpSession session = request.getSession();	
 		String placa = request.getParameter("placa").toString();
 		camion = (clases.Camion) ControladorBD.getItem("camiones", "placa", placa);
@@ -86,7 +87,10 @@ public class Modificar extends HttpServlet {
 
 			com.logica.Dibujar.mensaje(response.getWriter(), "No ha habido cambio", request.getSession().getAttribute("origin").toString());
 
-		}		
+		}
+		}catch(Exception e){
+			com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar modificar el Camion o Remolque", request.getContextPath() + "./index.jsp");
+		}
 	}
 
 }

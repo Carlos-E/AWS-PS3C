@@ -27,7 +27,7 @@ public class Visto extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+	try {
 		ArrayList<Reporte> reportes = ControladorBD.escanearTabla("reportes");
 		String visto = "jeje saludos";
 		for(int i=0;i<reportes.size();i++){		
@@ -44,6 +44,9 @@ public class Visto extends HttpServlet {
 		}
 		response.setContentType("text/html");
 		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getContextPath() + "/envios/reportes.jsp");
+	}catch(Exception e){
+		com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar actualizar el Reporte", request.getContextPath() + "./index.jsp");
+	}
 	}
 
 }

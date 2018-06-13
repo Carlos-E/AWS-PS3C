@@ -27,7 +27,7 @@ public class Crear extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+		try {
 		Usuario usuario = new Usuario();
 
 		usuario.setUsuario(request.getParameter("correo").toLowerCase());
@@ -43,6 +43,9 @@ public class Crear extends HttpServlet {
 		
 		response.setContentType("text/html");
 		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getRequestURL() + ".jsp");
+	}catch(Exception e){
+		com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar crear el Usuario", request.getContextPath() + "./index.jsp");
+	}
 
 	}
 
