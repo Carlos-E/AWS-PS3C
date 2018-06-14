@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.io.*,java.util.*"%>
+<%@ page import="com.logica.*"%>
+<%@ page import="clases.*"%>
 <%
 	if (session.getAttribute("rol") == null) {
 		response.sendRedirect("/login.jsp");
 	}
-%>
-<%@ page import="com.logica.*"%>
-<%@ page import="clases.*"%>
-<%
+
 	Usuario usuario = new Usuario();
 	usuario = (Usuario) com.logica.ControladorBD.getItem("usuarios", "usuario",
 			session.getAttribute("username").toString());
@@ -45,21 +44,27 @@
 						<em class="fa fa-plus">&nbsp;</em>
 					</a>
 				</li>
-				<% if(session.getAttribute("rol")!="cliente"){ %>
+				<%
+					if (!session.getAttribute("rol").equals("cliente")) {
+				%>
 				<li class="nav-item">
 					<a class="nav-link" href="/envios/modificar.jsp">
 						Modificar
 						<em class="fa fa-edit">&nbsp;</em>
 					</a>
 				</li>
-				<% if(session.getAttribute("rol")!="empleado"){ %>
+				<%
+					if (!session.getAttribute("rol").equals("empleado")) {
+				%>
 				<li class="nav-item">
 					<a class="nav-link" href="/envios/eliminar.jsp">
 						Eliminar
 						<em class="fa fa-trash">&nbsp;</em>
 					</a>
 				</li>
-				<%} %>
+				<%
+					}
+				%>
 			</ul>
 		</li>
 		<li class="parent nav-item">
@@ -83,17 +88,23 @@
 						<em class="fa fa-edit">&nbsp;</em>
 					</a>
 				</li>
-				<% if(session.getAttribute("rol")!="empleado"){ %>
+				<%
+					if (session.getAttribute("rol") != "empleado") {
+				%>
 				<li class="nav-item">
 					<a class="nav-link" href="/usuarios/eliminar.jsp">
 						Eliminar
 						<em class="fa fa-trash">&nbsp;</em>
 					</a>
 				</li>
-				<%} %>
+				<%
+					}
+				%>
 			</ul>
 		</li>
-		<% if(session.getAttribute("rol")!="empleado"){ %>
+		<%
+			if (!session.getAttribute("rol").equals("empleado")) {
+		%>
 		<li class="parent nav-item">
 			<a class="nav-link" data-toggle="collapse" href="#sub-item-3">
 				<em class="fa fa-building">&nbsp;</em>
@@ -115,17 +126,23 @@
 						<em class="fa fa-edit">&nbsp;</em>
 					</a>
 				</li>
-				<% if(session.getAttribute("rol")!="empleado"){ %>
+				<%
+					if (session.getAttribute("rol") != "empleado") {
+				%>
 				<li class="nav-item">
 					<a class="nav-link" href="/empresas/eliminar.jsp">
 						Eliminar
 						<em class="fa fa-trash">&nbsp;</em>
 					</a>
 				</li>
-				<%} %>
+				<%
+					}
+				%>
 			</ul>
 		</li>
-		<%} %>
+		<%
+			}
+		%>
 		<li class="parent nav-item">
 			<a class="nav-link" data-toggle="collapse" href="#sub-item-4">
 				<em class="fa fa-truck">&nbsp;</em>
@@ -147,14 +164,18 @@
 						<em class="fa fa-edit">&nbsp;</em>
 					</a>
 				</li>
-				<% if(session.getAttribute("rol")!="empleado"){ %>
+				<%
+					if (!session.getAttribute("rol").equals("empleado")) {
+				%>
 				<li class="nav-item">
 					<a class="nav-link" href="/camiones/eliminar.jsp">
 						Eliminar
 						<em class="fa fa-trash">&nbsp;</em>
 					</a>
 				</li>
-				<%} %>
+				<%
+					}
+				%>
 			</ul>
 		</li>
 		<li class="parent nav-item">
@@ -178,14 +199,18 @@
 						<em class="fa fa-edit">&nbsp;</em>
 					</a>
 				</li>
-				<% if(session.getAttribute("rol")!="empleado"){ %>
+				<%
+					if (!session.getAttribute("rol").equals("empleado")) {
+				%>
 				<li class="nav-item">
 					<a class="nav-link" href="/traileres/eliminar.jsp">
 						Eliminar
 						<em class="fa fa-trash">&nbsp;</em>
 					</a>
 				</li>
-				<%} %>
+				<%
+					}
+				%>
 			</ul>
 		</li>
 		<li class="parent nav-item">
@@ -209,14 +234,18 @@
 						<em class="fa fa-users">&nbsp;</em>
 					</a>
 				</li>
-				<% if(session.getAttribute("rol")!="empleado"){ %>
+				<%
+					if (!session.getAttribute("rol").equals("empleado")) {
+				%>
 				<li class="nav-item">
 					<a class="nav-link" href="/empresas/listar.jsp">
 						Empresas
 						<em class="fa fa-building">&nbsp;</em>
 					</a>
 				</li>
-				<%} %>
+				<%
+					}
+				%>
 				<li class="nav-item">
 					<a class="nav-link" href="/camiones/listar.jsp">
 						Camiones
@@ -256,7 +285,9 @@
 				Mapa
 			</a>
 		</li>
-		<%} %>
+		<%
+			}
+		%>
 	</ul>
 	<a href="/logout" class="nav-link">
 		<em class="fa fa-power-off"></em>

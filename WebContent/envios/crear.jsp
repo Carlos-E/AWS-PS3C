@@ -5,7 +5,7 @@
 <%@ page import="clases.*"%>
 <%
 	if (session.getAttribute("rol") == null) {
-		response.sendError(400, "Acceso incorrecto"); //cambiar
+		response.sendRedirect("/login.jsp");
 	}
 	session.setAttribute("pagina", "Crear Envíos");
 %>
@@ -67,7 +67,7 @@
 					</div>
 					<div class="form-group row">
 						<%
-							if (session.getAttribute("rol") == "admin" || session.getAttribute("rol") == "empleado") {
+							if (session.getAttribute("rol").equals("admin") || session.getAttribute("rol").equals("empleado")) {
 						%>
 						<label class="col-md-2 col-form-label text-capitalize">cliente</label>
 						<div class="col-md-4">

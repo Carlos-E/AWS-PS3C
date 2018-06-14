@@ -34,7 +34,7 @@ public class Crear extends HttpServlet {
 			request.setCharacterEncoding("UTF-8");
 			Calendar calendar = Calendar.getInstance();	
 			DecimalFormat mFormat= new DecimalFormat("00");
-			
+		
 //			String destinoLatLong = request.getParameter("latitud_Destino").toLowerCase()+","+request.getParameter("longitud_Destino").toLowerCase();
 //			String origenLatLong = request.getParameter("latitud_Origen").toLowerCase()+","+request.getParameter("longitud_Origen").toLowerCase();
 			
@@ -64,7 +64,7 @@ public class Crear extends HttpServlet {
 			//Generar Reporte
 			Reporte reporte = new Reporte();
 			reporte.setHora(fecha);
-			reporte.setNota("Hay un nuevo envio del cliente: "+envio.getUsuario()+"");
+			reporte.setNota("Hay un nuevo envio del cliente: "+envio.getUsuario()+" Con Fecha: "+fecha);
 			reporte.setUsuario(envio.getUsuario());
 			reporte.setVisto("false");
 			ControladorBD.registrarItem("reportes", reporte);
