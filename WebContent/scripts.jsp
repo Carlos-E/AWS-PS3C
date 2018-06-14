@@ -19,34 +19,50 @@
 
 $("#messageNotification").hide();
 <%
-if (!session.getAttribute("rol").equals("cliente")) {
-%>			
+if (!session.getAttribute("rol").equals("cliente")&&!session.getAttribute("pagina").equals("Consultar Reportes")) {
+%>		
+
 $(document).ready(function() {
 	
-	setInterval(
-			function(){
+	var bell = new Audio('/audio/bell.mp3');
+	var aux=0;
 	
-	$.ajax({
-		url : "/getNumReports",
-		type : "POST",
-		dataType : "json",
-	}).done(function(response) {
-		//console.log(response);
-		
-        $("#numMessages").html(response.num);
+	function checkMessages(){
+		{
+			//console.log('checking');
+			
+			$.ajax({
+				url : "/getNumReports",
+				type : "POST",
+				dataType : "json",
+			}).done(function(response) {
+				//console.log(response);
+				
+		        $("#numMessages").html(response.num);
+		        
+		        
+		        if(aux!=response.num && aux<response.num){
+		        	aux = response.num;
+		        	bell.play();
+		        }
 
-        if(response.num==0){
-        	$("#messageNotification").hide();
-        }else{
-        	$("#messageNotification").show();
-        }
-        
-	}).fail(function(xhr, status, errorThrown) {
-		console.log('Failed Request To Servlet /getNumReports')
-	}).always(function(xhr, status) {
-	});		
+		        if(response.num==0){
+		        	$("#messageNotification").hide();
+		        }else{
+		        	$("#messageNotification").show();
+		        }
+		        
+			}).fail(function(xhr, status, errorThrown) {
+				console.log('Failed Request To Servlet /getNumReports')
+			}).always(function(xhr, status) {
+			});		
+			
+		}
+	}
 	
-},5000);
+	checkMessages();
+	setInterval(checkMessages,5000);
+	
 });
 <%
 }
