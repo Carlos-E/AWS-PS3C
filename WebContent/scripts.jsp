@@ -13,10 +13,14 @@
 
 <script src="/js/custom.js"></script>
 
+
+
 <script>
 
 $("#messageNotification").hide();
-			
+<%
+if (!session.getAttribute("rol").equals("cliente")) {
+%>			
 $(document).ready(function() {
 	
 	setInterval(
@@ -44,5 +48,8 @@ $(document).ready(function() {
 	
 },5000);
 });
+<%
+}
+%>
 
 </script>
