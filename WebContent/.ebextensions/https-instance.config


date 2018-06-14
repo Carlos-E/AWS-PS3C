@@ -1,0 +1,69 @@
+packages:
+  yum:
+    mod_ssl : []
+    
+files:
+  /etc/pki/tls/certs/server.crt:
+    mode: "000400"
+    owner: root
+    group: root
+    content: |
+      -----BEGIN CERTIFICATE-----
+      MIIC2DCCAcACCQClUfkIBaH8bzANBgkqhkiG9w0BAQUFADAuMSwwKgYDVQQDDCNw
+      czNjLnVzLWVhc3QtMS5lbGFzdGljYmVhbnN0YWxrLmNvbTAeFw0xODA2MTQwMjI1
+      MjdaFw0xOTA2MTQwMjI1MjdaMC4xLDAqBgNVBAMMI3BzM2MudXMtZWFzdC0xLmVs
+      YXN0aWNiZWFuc3RhbGsuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKC
+      AQEAwbZG71vKM1rV1095XJ4m+eqvqONDZ/L0nSSKlUr+iIwpueHL2dJzz/dNPizi
+      6CMrFwCMyThuZipIS1VOhhTLY2OXUsbKdS74zApbT9mSMRIBMuR0U//JG/3l+q83
+      X1Foj/zseK4+oBXwnZe2JC/wCXoBjocBVLOtT1/TbrayGENdfXqWEe0eR0VuTDvK
+      hwaeoGA24f35LyzR8upGom5n0mgCHC7Swm6WCHTY9jsaNINp3JW8jn9dzuk3MQTw
+      yyYaE+NYcSkKpACkqglzFI7m1sB2PZTQ9wjpsCP53v9likZqeGfpnClvwNAMqUyR
+      G5Soc7Y8mwBNtorhRvpX+EB56wIDAQABMA0GCSqGSIb3DQEBBQUAA4IBAQCpLbzw
+      QB+Huk2J5SwXcJwanAxw2AahZrgtmSSvOZP6Adn2up+/ztb5kmvUUau2Fan1cmAy
+      LvCdwIhUeCf0ELFcyXxnqiv4IdI/AgnABdgF/T5p/uTV5A7n8qfpkf9lrPAwFVzD
+      RVwi1EqcEaK2j1LtdU/8RA4WiW2NrUr/U6SgEMgjlx1uX0m69yZDoUUdheZGES7N
+      /h/kbDhrS8BXO8TZRhtfe4hizUPQf5so4c23cXToA5Wzbk8RSnHjKtBwqHykADtL
+      btMazQh/HLN6fHngfQcbFWES4XJLHGx8Qhc/OFX3L4C51bkyXRekeB4Ertib9WYP
+      U7vvpiJzDA+bM28b
+      -----END CERTIFICATE-----
+      
+  /etc/pki/tls/certs/server.key:
+    mode: "000400"
+    owner: root
+    group: root
+    content: |
+      -----BEGIN RSA PRIVATE KEY-----
+      MIIEpAIBAAKCAQEAwbZG71vKM1rV1095XJ4m+eqvqONDZ/L0nSSKlUr+iIwpueHL
+      2dJzz/dNPizi6CMrFwCMyThuZipIS1VOhhTLY2OXUsbKdS74zApbT9mSMRIBMuR0
+      U//JG/3l+q83X1Foj/zseK4+oBXwnZe2JC/wCXoBjocBVLOtT1/TbrayGENdfXqW
+      Ee0eR0VuTDvKhwaeoGA24f35LyzR8upGom5n0mgCHC7Swm6WCHTY9jsaNINp3JW8
+      jn9dzuk3MQTwyyYaE+NYcSkKpACkqglzFI7m1sB2PZTQ9wjpsCP53v9likZqeGfp
+      nClvwNAMqUyRG5Soc7Y8mwBNtorhRvpX+EB56wIDAQABAoIBAQCmBn4hpIBXJ6Fk
+      Gr+fvAUX6ieIDtC1BSzWin0km9QwYEFbCcXX+WI9em3/viT0ZUAHRPdldzJX6iFw
+      P7s/fA8eLjuCPNNFQG8JIk9EzutXl2Djp550aCSMEz7LbuV8kp+V2Wcrv9v5BRTn
+      XSJFPbjzxlgTOm7Pk/gUscLbf0aBN62D5UVtQ+BZT5lu24eRMhPoJdGLZZPVf4NO
+      F1hPON6DVYnCEVGZU8vVm+R8Sgq6cTXrt1XJFlorZruvbW5wX/flAycIgLpCOQgC
+      zLOR6mnSBafhMvEMI8J1MeX+HPpNtAB4r0glteNon4mWGdiiMZkJvG5pRz5BUSeq
+      4rDCP+DBAoGBAOlGOMlphlwAeplmIqpVZrvJaxO0F0Et1mNJSxrIduvUpz/GKLDi
+      Iqt54tXxdBjithASVakwRBz4dkF4C1F1plA0lF9bAWkgjsk55PTQOCnrdhy1+097
+      0XkhIq36H+iB8VO+S95oKpfILBzsvpkfxb4dtkBVM9yLY4f/hUJ/d80xAoGBANSV
+      Ys8B0MCFYJ47o8i2TDZ4cYZPfqUkGMhZRLgvrjoPZlTdTCpzWsceqhpQ9a3sKLOU
+      WwgSjCUS7u44U88EMu/seaQWyOuwQhxbcE/JKlbPDdDz9Qxo+TB5eS7fCOyUwnFf
+      182+dtAHk2s2ZlwfdOpgHHE/yL5RI64RgxYfssHbAoGBAMpagdQl18ljGPaMZLHB
+      V1a6iEoVRL7jlj+WSrI3BwHX/CUULiQSZeS93Imd5AnaT/htDyWumsdOuLZd/eNx
+      3Q1iLvrwpK6e8X2Y3QWIwc+LU2/gZNo0HCepGL42ZQt5/O+Z+ZI6Zgg4Ohv1Ofj2
+      WMBsYbY4sr4zo+lLPDvM+w1hAoGADU8Y84rSjesLxHxJYbyAAv0BZn49mIss/gYQ
+      tlNN3hauumtsZE/6g/LYhXNCHlRlq/CCznuSyJNp4AIoxRInOjwc1XgTtiW/zdSv
+      sF8QxoSKAeX0FoXP7Af+3T9baKxbjAuLEDd3asi+ovyx5dyWTkIcJb7vi3K7AB/a
+      jB0J7PcCgYBsDrBDFp4CY0Gb+vCNN6CTbC7Uw8O3F4pBEgN+p59qS9P/Rtaxdtw/
+      3XvUz3PPagu+t4aStq8Pz8QtbYBlJKupybZZL26h8h2Lbh6RsHtjr+0mW1lT67g2
+      mOJ2BlTo2/HFWr0QFikR7HOpSZEhfSOGKaPYW5tHZWEsrWomIKhq6w==
+      -----END RSA PRIVATE KEY-----
+
+  /opt/elasticbeanstalk/hooks/appdeploy/post/99_start_httpd.sh:
+    mode: "000755"
+    owner: root
+    group: root
+    content: |
+      #!/usr/bin/env bash
+      sudo service httpd restart
