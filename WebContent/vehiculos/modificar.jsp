@@ -80,14 +80,10 @@
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Estado</label>
 						<div class="col-md-4">
-							<select class="custom-select" name="estado" id="estado" required>
-								<option value="" selected>Seleccionar...</option>
-								<option value="disponible">disponible</option>
-								<option value="asignado">asignado</option>
-							</select>
+							<input class="form-control" type="text" name="estado" id="estado" readonly>
 						</div>
 					</div>
-					
+
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Empresa</label>
 						<div class="col-md-4">
@@ -110,7 +106,7 @@
 						<div class="col-md-4">
 							<select class="form-control" name="conductor" id="conductor" required>
 								<option value="" selected>Seleccionar...</option>
-								<option value="ninguno" >ninguno</option>
+								<option value="ninguno">ninguno</option>
 								<%
 									for (int i = 0; i < listaConductor.size(); i++) {
 								%>
@@ -126,7 +122,13 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Peso maximo</label>
+						<label class="col-md-2 col-form-label text-capitalize">Tipo</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="tipo" id="tipo" readonly>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-2 col-form-label text-capitalize">Peso m&aacute;ximo</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="peso" placeholder="peso" id="peso" required>
 						</div>
@@ -135,7 +137,7 @@
 							<input class="form-control" type="text" name="espacio" placeholder="espacio" id="espacio" required>
 						</div>
 					</div>
-					
+
 					<div class="modal-footer">
 						<button id="submit" type="submit" class="btn btn-primary btn-md float-right">Modificar</button>
 						<button id="atras" type="button" data-target="#" class="btn btn-danger btn-md float-right">Atras</button>
@@ -203,13 +205,24 @@
 						let objeto = lista[selectedIndex];
 						$('#placa').val(objeto.placa);
 						$('#estado').val(objeto.estado);
+						$('#tipo').val(objeto.tipo);
+						
+						if(objeto.tipo=='remolque'){
+							$('#peso').attr('readonly','true');
+							$('#espacio').attr('readonly','true');
+						}else{
+							$('#peso').attr('readonly','false');
+							$('#espacio').attr('readonly','false');
+						}
 						$('#peso').val(objeto.peso);
 						$('#espacio').val(objeto.espacio);
 						$('#empresa').val(objeto.empresa);
 						$('#conductor').val(objeto.usuario);
+						
 						$('#buscar-form').hide();
 						$('#form').removeAttr('hidden');
 						$('#form').show();
+						
 					});
 					$('#atras').click(function() {
 						$('#buscar-form').show();
