@@ -31,33 +31,28 @@ public class Crear extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		try {
-			String peso = request.getParameter("peso").toLowerCase();
-			String espacio = request.getParameter("espacio").toLowerCase();
-			if (request.getParameter("tipo").toLowerCase().equals("remolque")) {
-				peso = "ninguna";
-				espacio = "ninguno";
-			}
-			Usuario usuarioConductor = (clases.Usuario) ControladorBD.getItem("usuarios", "usuario",
-					request.getParameter("conductor").toLowerCase());
-			Empresa empresa = (clases.Empresa) ControladorBD.getItem("empresas", "nit",
-					request.getParameter("empresa").toLowerCase());
-			vehiculo.setPlaca(request.getParameter("placa").toLowerCase());
-			vehiculo.setPeso(peso);
-			vehiculo.setTipo(request.getParameter("tipo").toLowerCase());
-			vehiculo.setEspacio(espacio);
-			vehiculo.setEstado("disponible");
-			vehiculo.setUsuario(usuarioConductor.getUsuario());
-			vehiculo.setEmpresa(empresa.getNit());
-			vehiculo.setUbicacion(request.getParameter("latitud_Origen").toLowerCase() + ","
-					+ request.getParameter("longitud_Origen").toLowerCase());
-			ControladorBD.registrarItem("vehiculos", vehiculo);
-			response.setContentType("text/html");
-			String nextURL = request.getContextPath() + "/vehiculos/crear.jsp";
-			com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", nextURL);
-		} catch (Exception e) {
-			com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar crear el Camion o Remolque",
-					request.getContextPath() + "/vehiculos/crear.jsp");
+		String peso = request.getParameter("peso").toLowerCase();
+		String espacio = request.getParameter("espacio").toLowerCase();
+		if (request.getParameter("tipo").toLowerCase().equals("remolque")) {
+			peso = "ninguna";
+			espacio = "ninguno";
 		}
+
+		Empresa empresa = (clases.Empresa) ControladorBD.getItem("empresas", "nit",
+				request.getParameter("empresa").toLowerCase());
+		vehiculo.setPlaca(request.getParameter("placa").toLowerCase());
+		vehiculo.setPeso(peso);
+		vehiculo.setTipo(request.getParameter("tipo").toLowerCase());
+		vehiculo.setEspacio(espacio);
+		vehiculo.setEstado("disponible");
+		vehiculo.setUsuario(request.getParameter("conductor").toLowerCase());
+		vehiculo.setEmpresa(empresa.getNit());
+		vehiculo.setUbicacion(request.getParameter("latitud_Origen").toLowerCase() + ","
+				+ request.getParameter("longitud_Origen").toLowerCase());
+		ControladorBD.registrarItem("vehiculos", vehiculo);
+		response.setContentType("text/html");
+		String nextURL = request.getContextPath() + "/vehiculos/crear.jsp";
+		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", nextURL);
+
 	}
 }
