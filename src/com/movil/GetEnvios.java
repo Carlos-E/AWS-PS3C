@@ -1,7 +1,6 @@
 package com.movil;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -9,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -17,9 +15,6 @@ import com.logica.ControladorBD;
 
 import clases.*;
 
-/**
- * Servlet implementation class trueBuscar
- */
 @WebServlet("/getEnvios")
 public class GetEnvios extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -39,19 +34,19 @@ public class GetEnvios extends HttpServlet {
 		System.out.println(camion);
 
 		ArrayList<Envio> envios = null;
-		
+
 		if (camion.getTipo().equals("camion")) {
 			envios = ControladorBD.getShipments("camion", placaCamion);
 		} else {
 
+			@SuppressWarnings("unchecked")
 			ArrayList<Trailer> listaTrailers = ControladorBD.escanearTabla("trailers");
 
 			for (int i = 0; i < listaTrailers.size(); i++) {
-				if(listaTrailers.get(i).getCamion().equals(camion.getPlaca())){
+				if (listaTrailers.get(i).getCamion().equals(camion.getPlaca())) {
 					envios = ControladorBD.getShipments("trailer", listaTrailers.get(i).getPatente());
 				}
 			}
-
 		}
 
 		System.out.print(envios);
