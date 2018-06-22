@@ -368,20 +368,12 @@
 			document.getElementById('trailer').value = "ninguno";
 			document.getElementById('trailer').disabled  = true;
 			document.getElementById('camion').disabled = false;
-			/*document.getElementById('camion1').style.display = '';
-			document.getElementById('trailer1').style.display = 'none';
-			document.getElementById('camion2').style.display = '';
-			document.getElementById('trailer2').style.display = 'none';	*/	
 		}
 
 		function ocultar() {
 			document.getElementById('camion').value = "ninguno";
 			document.getElementById('camion').disabled = true;
 			document.getElementById('trailer').disabled  = false;
-			/*document.getElementById('trailer1').style.display = '';
-			document.getElementById('camion1').style.display = 'none';
-			document.getElementById('trailer2').style.display = '';
-			document.getElementById('camion2').style.display = 'none';*/
 		}
 	</script>
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwUOXR0TZ7pyQhLJAuA6_U6Ffg92YMkLk&libraries=places"></script>
