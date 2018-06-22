@@ -92,6 +92,5 @@ public class Camion {
 		return "Camion [placa=" + placa + ", tipo=" + tipo + ", peso=" + peso + ", espacio=" + espacio + ", estado="
 				+ estado + ", ubicacion=" + ubicacion + ", usuario=" + usuario + ", empresa=" + empresa + "]";
 	}
-
 	
 }

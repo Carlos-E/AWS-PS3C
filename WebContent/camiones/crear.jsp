@@ -56,16 +56,6 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Origen</label>
-						<div class="col-md-4">
-							<input class="form-control" type="text" name="origen" placeholder="origen" id="origen" required>
-						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Destino</label>
-						<div class="col-md-4">
-							<input class="form-control" type="text" name="destino" placeholder="destino" id="destino" required>
-						</div>
-					</div>
-					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Empresa</label>
 						<div class="col-md-4">
 							<select class="form-control" name="empresa" id="empresa">
@@ -158,55 +148,5 @@
 	</div>
 	<!--  FOOTER CON SCRIPTS -->
 	<jsp:include page="/footer.jsp" />
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwUOXR0TZ7pyQhLJAuA6_U6Ffg92YMkLk&libraries=places"></script>
-	<script type="text/javascript">
-		google.maps.event.addDomListener(window, 'load', intilize);
-		function intilize() {
-			var autocomplete = new google.maps.places.Autocomplete(document
-					.getElementById("destino"));
-			google.maps.event
-					.addListener(
-							autocomplete,
-							'place_changed',
-							function() {
-								var place = autocomplete.getPlace();
-								var latlon = place.geometry.location.lat()
-										+ "," + place.geometry.location.lng();
-								document.getElementById('latitud_Destino').value = place.geometry.location
-										.lat();
-								document.getElementById('longitud_Destino').value = place.geometry.location
-										.lng();
-							});
-		};
-	</script>
-	<script type="text/javascript">
-		function mostrar() {
-			document.getElementById('oculto').style.display = '';
-		}
-
-		function ocultar() {
-			document.getElementById('oculto').style.display = 'none';
-		}
-	</script>
-	<script type="text/javascript">
-		google.maps.event.addDomListener(window, 'load', intilize);
-		function intilize() {
-			var autocomplete = new google.maps.places.Autocomplete(document
-					.getElementById("origen"));
-			google.maps.event
-					.addListener(
-							autocomplete,
-							'place_changed',
-							function() {
-								var place = autocomplete.getPlace();
-								var latlon = place.geometry.location.lat()
-										+ "," + place.geometry.location.lng();
-								document.getElementById('latitud_Origen').value = place.geometry.location
-										.lat();
-								document.getElementById('longitud_Origen').value = place.geometry.location
-										.lng();
-							});
-		};
-	</script>
 </body>
 </html>
