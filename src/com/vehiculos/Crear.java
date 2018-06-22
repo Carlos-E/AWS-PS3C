@@ -1,4 +1,4 @@
-package com.camiones;
+package com.vehiculos;
 
 import java.io.IOException;
 
@@ -12,10 +12,10 @@ import com.logica.ControladorBD;
 
 import clases.*;
 
-@WebServlet("/camion")
+@WebServlet("/vehiculos/crear")
 public class Crear extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	clases.Vehiculo camion = new clases.Vehiculo();
+	clases.Vehiculo vehiculo = new clases.Vehiculo();
 
 	public Crear() {
 		super();
@@ -42,22 +42,22 @@ public class Crear extends HttpServlet {
 					request.getParameter("conductor").toLowerCase());
 			Empresa empresa = (clases.Empresa) ControladorBD.getItem("empresas", "nit",
 					request.getParameter("empresa").toLowerCase());
-			camion.setPlaca(request.getParameter("placa").toLowerCase());
-			camion.setPeso(peso);
-			camion.setTipo(request.getParameter("tipo").toLowerCase());
-			camion.setEspacio(espacio);
-			camion.setEstado("disponible");
-			camion.setUsuario(usuarioConductor.getUsuario());
-			camion.setEmpresa(empresa.getNit());
-			camion.setUbicacion(request.getParameter("latitud_Origen").toLowerCase() + ","
+			vehiculo.setPlaca(request.getParameter("placa").toLowerCase());
+			vehiculo.setPeso(peso);
+			vehiculo.setTipo(request.getParameter("tipo").toLowerCase());
+			vehiculo.setEspacio(espacio);
+			vehiculo.setEstado("disponible");
+			vehiculo.setUsuario(usuarioConductor.getUsuario());
+			vehiculo.setEmpresa(empresa.getNit());
+			vehiculo.setUbicacion(request.getParameter("latitud_Origen").toLowerCase() + ","
 					+ request.getParameter("longitud_Origen").toLowerCase());
-			ControladorBD.registrarItem("camiones", camion);
+			ControladorBD.registrarItem("vehiculos", vehiculo);
 			response.setContentType("text/html");
-			String nextURL = request.getContextPath() + "/camiones/crear.jsp";
+			String nextURL = request.getContextPath() + "/vehiculos/crear.jsp";
 			com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", nextURL);
 		} catch (Exception e) {
 			com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar crear el Camion o Remolque",
-					request.getContextPath() + "/camiones/crear.jsp");
+					request.getContextPath() + "/vehiculos/crear.jsp");
 		}
 	}
 }

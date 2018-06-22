@@ -6,7 +6,7 @@
 	if (session.getAttribute("rol") == null) {
 		response.sendRedirect("/error.jsp");
 	}
-	session.setAttribute("pagina", "Modificar Cami&oacute;n");
+	session.setAttribute("pagina", "Modificar Veh&iacute;culo");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -29,7 +29,7 @@
 	</div>
 	<%
 		ArrayList<Usuario> listaUsuarios = ControladorBD.escanearTabla("usuarios");
-		ArrayList<Vehiculo> listaCamiones = ControladorBD.escanearTabla("camiones");
+		ArrayList<Vehiculo> listavehiculos = ControladorBD.escanearTabla("vehiculos");
 		ArrayList<Usuario> listaConductor = new ArrayList<Usuario>();
 		ArrayList<Empresa> listaEmpresas = ControladorBD.escanearTabla("empresas");
 		for (int i = 0; i < listaUsuarios.size(); i++) {
@@ -72,7 +72,7 @@
 						out.print(session.getAttribute("pagina").toString());
 					%>
 				</h3>
-				<form id="form2" class="form" action="/camiones/modificar" method="post">
+				<form id="form2" class="form" action="/vehiculos/modificar" method="post">
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Placa</label>
 						<div class="col-md-4">
@@ -176,7 +176,7 @@
 					$.ajax({
 						url : "/scanTable",
 						data : {
-							tabla : 'camiones'
+							tabla : 'vehiculos'
 						},
 						type : "POST",
 						dataType : "json",

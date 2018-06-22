@@ -7,7 +7,7 @@
 	if (session.getAttribute("rol") == null) {
 		response.sendError(400, "Acceso incorrecto"); //cambiar
 	}
-	session.setAttribute("pagina", "Crear Camión");
+	session.setAttribute("pagina", "Crear Vehículo");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="es">
@@ -48,7 +48,7 @@
 						out.print(session.getAttribute("pagina").toString());
 					%>
 				</h3>
-				<form class="form" action="/camion" method="post">
+				<form class="form" action="/vehiculos/crear" method="post">
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Placa</label>
 						<div class="col-md-4">
@@ -93,11 +93,11 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Cami&oacute;n:</label>
+						<label class="col-md-2 col-form-label text-capitalize">Cami&oacute;n</label>
 						<div class="col-md-4">
 							<input type="radio" name="tipo" onclick="mostrar()" value="camion">
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Remolque:</label>
+						<label class="col-md-2 col-form-label text-capitalize">Remolque</label>
 						<div class="col-md-4">
 							<input type="radio" name="tipo" onclick="ocultar()" value="remolque" checked="checked">
 						</div>
