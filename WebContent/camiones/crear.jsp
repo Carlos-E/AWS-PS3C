@@ -34,7 +34,7 @@
  	ArrayList<Empresa> listaEmpresas = ControladorBD.escanearTabla("empresas");
  	for (int i = 0; i < listaUsuarios.size(); i++) {
  		if (listaUsuarios.get(i).getRol().equals("conductor")) {
- 			if (!ControladorBD.estaOcupado(listaUsuarios.get(i).getNombre(), "null")) {
+ 			if (!ControladorBD.estaOcupado(listaUsuarios.get(i).getUsuario(), "null")) {
  				listaConductor.add(listaUsuarios.get(i));
  			}
  		}
