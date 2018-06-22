@@ -26,7 +26,6 @@ public class Crear extends HttpServlet {
 			throws ServletException, IOException {
 
 		response.sendError(400, "Acceso incorrecto");
-
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
