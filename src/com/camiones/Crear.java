@@ -14,15 +14,26 @@ import com.logica.ControladorBD;
 
 import clases.*;
 
+/**
+ * Servlet implementation class camion
+ */
 @WebServlet("/camion")
 public class Crear extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	clases.Camion camion = new clases.Camion();
 
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
 	public Crear() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -32,38 +43,40 @@ public class Crear extends HttpServlet {
 
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		// TODO Auto-generated method stub
+		// doGet(request, response);
 		try {
-			String peso = request.getParameter("peso").toLowerCase();
-			String espacio = request.getParameter("espacio").toLowerCase();
-			if (request.getParameter("tipo").toLowerCase().equals("remolque")) {
-				peso = "ninguna";
-				espacio = "ninguno";
-			}
-			Usuario usuarioConductor = (clases.Usuario) ControladorBD.getItem("usuarios", "usuario",
-					request.getParameter("conductor").toLowerCase());
-			Empresa empresa = (clases.Empresa) ControladorBD.getItem("empresas", "nit",
-					request.getParameter("empresa").toLowerCase());
-			camion.setPlaca(request.getParameter("placa").toLowerCase());
-			camion.setPeso(peso);
-			camion.setTipo(request.getParameter("tipo").toLowerCase());
-			camion.setEspacio(espacio);
-			camion.setEstado("disponible");
-			camion.setUsuario(usuarioConductor.getUsuario());
-			camion.setEmpresa(empresa.getNit());
-			camion.setOrigen(request.getParameter("origen").toLowerCase());
-			camion.setDestino(request.getParameter("destino").toLowerCase());
-			camion.setUbicacion(request.getParameter("latitud_Origen").toLowerCase() + ","
-					+ request.getParameter("longitud_Origen").toLowerCase());
-			ControladorBD.registrarItem("camiones", camion);
-			response.setContentType("text/html");
-			String nextURL = request.getContextPath() + "/camiones/crear.jsp";
-			com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", nextURL);
-		} catch (Exception e) {
-			com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar crear el Camion o Remolque",
-					request.getContextPath() + "./index.jsp");
+		String peso = request.getParameter("peso").toLowerCase();
+		String espacio = request.getParameter("espacio").toLowerCase();
+		if (request.getParameter("tipo").toLowerCase().equals("remolque")) {
+			peso = "ninguna";
+			espacio = "ninguno";
+		}
+		Usuario usuarioConductor = (clases.Usuario) ControladorBD.getItem("usuarios", "usuario", request.getParameter("conductor").toLowerCase());
+		Empresa empresa = (clases.Empresa) ControladorBD.getItem("empresas", "nit", request.getParameter("empresa").toLowerCase());
+		camion.setPlaca(request.getParameter("placa").toLowerCase());
+		camion.setPeso(peso);
+		camion.setTipo(request.getParameter("tipo").toLowerCase());
+		camion.setEspacio(espacio);
+		camion.setEstado("disponible");
+		camion.setUsuario(usuarioConductor.getUsuario());
+		camion.setEmpresa(empresa.getNit());
+		camion.setOrigen(request.getParameter("origen").toLowerCase());
+		camion.setDestino(request.getParameter("destino").toLowerCase());
+		camion.setUbicacion(request.getParameter("latitud_Origen").toLowerCase() + ","
+				+ request.getParameter("longitud_Origen").toLowerCase());
+		ControladorBD.registrarItem("camiones", camion);
+		response.setContentType("text/html");
+		String nextURL = request.getContextPath() + "/camiones/crear.jsp";
+		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", nextURL);
+		}catch(Exception e){
+			com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar crear el Camion o Remolque", request.getContextPath() + "./index.jsp");
 		}
 	}
 }

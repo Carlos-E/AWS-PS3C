@@ -71,7 +71,7 @@
 							<input class="form-control" type="text" name="telefono" placeholder="telefono" required>
 						</div>
 						<%
-							if (session.getAttribute("rol") == "admin" || session.getAttribute("rol") == "empleado") {
+							if (session.getAttribute("rol").equals("admin") || session.getAttribute("rol").equals("empleado")) {
 						%>
 						<label class="col-md-2 col-form-label text-capitalize">Rol</label>
 						<div class="col-md-4">
