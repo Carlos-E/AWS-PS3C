@@ -55,7 +55,13 @@ public class Crear extends HttpServlet {
 			envio.setEstado("no asignado");
 			envio.setEspacio(request.getParameter("espacio").toLowerCase());
 			envio.setTipo(request.getParameter("tipo").toLowerCase());
-			envio.setUsuario(request.getSession().getAttribute("username").toString());		
+			
+			if(request.getSession().getAttribute("rol").equals("cliente")){
+				envio.setUsuario(request.getSession().getAttribute("username").toString().toLowerCase());		
+			}else{
+				envio.setUsuario(request.getParameter("cliente").toLowerCase());	
+			}
+			
 			envio.setChequeoCarga(false);
 			envio.setChequeoDescarga(false);
 			envio.setDescripcion(request.getParameter("descripcion").toLowerCase());
