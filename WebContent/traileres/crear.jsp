@@ -29,7 +29,7 @@
 	</div>
 	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER --> <%
  	ArrayList<Usuario> listaUsuarios = ControladorBD.escanearTabla("usuarios");
- 	ArrayList<Vehiculo> listaCamiones = ControladorBD.escanearTabla("camiones");
+ 	ArrayList<Vehiculo> listaVehiculos = ControladorBD.escanearTabla("vehiculos");
  	ArrayList<Usuario> listaConductor = new ArrayList<Usuario>();
  	ArrayList<Empresa> listaEmpresas = ControladorBD.escanearTabla("empresas");
  	for (int i = 0; i < listaUsuarios.size(); i++) {
@@ -102,18 +102,18 @@
 								<option value="ninguno" >ninguno</option>
 
 								<%
-									for (int i = 0; i < listaCamiones.size(); i++) {
-										if (!ControladorBD.estaOcupado("null", listaCamiones.get(i).getPlaca())
-												&& listaCamiones.get(i).getTipo().equals("remolque")) {
-											ControladorBD.actualizarValor("camiones", "placa", listaCamiones.get(i).getPlaca(), "estado",
+									for (int i = 0; i < listaVehiculos.size(); i++) {
+										if (!ControladorBD.estaOcupado("null", listaVehiculos.get(i).getPlaca())
+												&& listaVehiculos.get(i).getTipo().equals("remolque")) {
+											ControladorBD.actualizarValor("vehiculos", "placa", listaVehiculos.get(i).getPlaca(), "estado",
 													"Asignado");
 								%>
-								<option value="<%out.print(listaCamiones.get(i).getPlaca());%>">
+								<option value="<%out.print(listaVehiculos.get(i).getPlaca());%>">
 									<%
-										out.print(listaCamiones.get(i).getPlaca());
+										out.print(listaVehiculos.get(i).getPlaca());
 									%> conducido por:
 									<%
-										out.print(listaCamiones.get(i).getUsuario());
+										out.print(listaVehiculos.get(i).getUsuario());
 									%>
 								</option>
 								<%

@@ -30,7 +30,7 @@
 	</div>
 	<%
 		ArrayList<Usuario> listaUsuarios = ControladorBD.escanearTabla("usuarios");
-		ArrayList<Vehiculo> listaCamiones = ControladorBD.escanearTabla("camiones");
+		ArrayList<Vehiculo> listaVehiculos = ControladorBD.escanearTabla("vehiculos");
 		ArrayList<Usuario> listaConductor = new ArrayList<Usuario>();
 		ArrayList<Empresa> listaEmpresas = ControladorBD.escanearTabla("empresas");
 		for (int i = 0; i < listaUsuarios.size(); i++) {
@@ -137,23 +137,23 @@
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Cami&oacute;n</label>
 						<div class="col-md-4">
-							<!-- 							<input class="form-control" type="text" name="camion" placeholder="camion" id="camion" required>
+							<!-- 							<input class="form-control" type="text" name="vehiculo" placeholder="vehiculo" id="vehiculo" required>
  -->
-							<select class="form-control" name="camion" id="camion" required>
+							<select class="form-control" name="vehiculo" id="vehiculo" required>
 															<option value="" selected>Seleccionar...</option>
 															<option value="ninguno" >ninguno</option>
 							
 								<%
-									for (int i = 0; i < listaCamiones.size(); i++) {
-										if (!ControladorBD.estaOcupado("null", listaCamiones.get(i).getPlaca())
-												&& listaCamiones.get(i).getTipo().equals("remolque")) {
-											ControladorBD.actualizarValor("camiones", "placa", listaCamiones.get(i).getPlaca(), "estado",
+									for (int i = 0; i < listaVehiculos.size(); i++) {
+										if (!ControladorBD.estaOcupado("null", listaVehiculos.get(i).getPlaca())
+												&& listaVehiculos.get(i).getTipo().equals("remolque")) {
+											ControladorBD.actualizarValor("vehiculos", "placa", listaVehiculos.get(i).getPlaca(), "estado",
 													"Asignado");
 											
 								%>
-								<option value="<%out.print(listaCamiones.get(i).getPlaca());%>">
+								<option value="<%out.print(listaVehiculos.get(i).getPlaca());%>">
 									<%
-										out.print(listaCamiones.get(i).getPlaca());
+										out.print(listaVehiculos.get(i).getPlaca());
 									%>
 								</option>
 								<%
@@ -244,7 +244,7 @@
 						$('#peso').val(objeto.peso);
 						$('#espacio').val(objeto.espacio);
 						$('#empresa').val(objeto.empresa);
-						$('#camion').val(objeto.camion);
+						$('#vehiculo').val(objeto.vehiculo);
 						$('#buscar-form').hide();
 						$('#form').removeAttr('hidden');
 						$('#form').show();

@@ -7,7 +7,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.logica.ControladorBD;
 
@@ -31,13 +30,14 @@ public class Modificar extends HttpServlet {
 			throws ServletException, IOException {
 
 		try {
-			HttpSession session = request.getSession();
+
 			String placa = request.getParameter("placa").toString();
 			vehiculo = (clases.Vehiculo) ControladorBD.getItem("vehiculos", "placa", placa);
 			String peso = request.getParameter("peso").toLowerCase();
 			String espacio = request.getParameter("espacio").toLowerCase();
 			String estado = request.getParameter("estado").toLowerCase();
 			String conductor = request.getParameter("conductor").toLowerCase();
+
 			boolean cambio = false;
 			if (!vehiculo.getPeso().equals(peso)) {
 				vehiculo.setPeso(peso);
@@ -60,7 +60,6 @@ public class Modificar extends HttpServlet {
 				cambio = true;
 			}
 			if (cambio) {
-				session.setAttribute("busca", "ninguno");
 				response.setContentType("text/html");
 
 				com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa",

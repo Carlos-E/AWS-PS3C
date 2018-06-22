@@ -7,7 +7,7 @@
 	if (session.getAttribute("rol") == null) {
 		response.sendRedirect("/error.jsp");
 	}
-	session.setAttribute("pagina", "Eliminar Cami&oacute;n");
+	session.setAttribute("pagina", "Eliminar Veh&iacute;culo");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -41,7 +41,7 @@
 				</h3>
 				<form class="form" name="form" method="post">
 					<div class="form-group row">
-						<label class="col-md-3 col-form-label">Seleccione el cami&oacute;n</label>
+						<label class="col-md-3 col-form-label">Seleccione el veh&iacute;culo</label>
 						<div class="col-md-9">
 							<select class="custom-select form-control" id="select">
 							</select>
@@ -60,7 +60,7 @@
 						out.print(session.getAttribute("pagina").toString());
 					%>
 				</h3>
-				<form id="form2" class="form" action="/camiones/eliminar" method="post">
+				<form id="form2" class="form" action="/vehiculoes/eliminar" method="post">
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Placa</label>
 						<div class="col-md-4">
@@ -131,7 +131,7 @@
 					$.ajax({
 						url : "/scanTable",
 						data : {
-							tabla : 'camiones'
+							tabla : 'vehiculos'
 						},
 						type : "POST",
 						dataType : "json",

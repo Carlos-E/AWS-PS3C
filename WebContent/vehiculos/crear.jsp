@@ -29,7 +29,7 @@
 	</div>
 	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER --> <%
  	ArrayList<Usuario> listaUsuarios = ControladorBD.escanearTabla("usuarios");
- 	ArrayList<Vehiculo> listaCamiones = ControladorBD.escanearTabla("camiones");
+ 	ArrayList<Vehiculo> listaCamiones = ControladorBD.escanearTabla("vehiculos");
  	ArrayList<Usuario> listaConductor = new ArrayList<Usuario>();
  	ArrayList<Empresa> listaEmpresas = ControladorBD.escanearTabla("empresas");
  	for (int i = 0; i < listaUsuarios.size(); i++) {
@@ -95,7 +95,7 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Cami&oacute;n</label>
 						<div class="col-md-4">
-							<input type="radio" name="tipo" onclick="mostrar()" value="camion">
+							<input type="radio" name="tipo" onclick="mostrar()" value="vehiculo">
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Remolque</label>
 						<div class="col-md-4">

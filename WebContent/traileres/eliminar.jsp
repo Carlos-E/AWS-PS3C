@@ -70,7 +70,7 @@
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Cami&oacute;n:</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="camion" placeholder="camion" id="camion" readonly>
+							<input class="form-control" type="text" name="vehiculo" placeholder="vehiculo" id="vehiculo" readonly>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -146,7 +146,7 @@
 				$('#patente').val(objeto.patente);
 				$('#capacidad').val(objeto.capacidad);
 				$('#espacio').val(objeto.espacio);
-				$('#camion').val(objeto.camion);
+				$('#vehiculo').val(objeto.vehiculo);
 				$('#empresa').val(objeto.empresa);
 				$('#buscar-form').hide();
 				$('#form').removeAttr('hidden');
