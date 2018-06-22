@@ -146,20 +146,20 @@
 		<li class="parent nav-item">
 			<a class="nav-link" data-toggle="collapse" href="#sub-item-4">
 				<em class="fa fa-truck">&nbsp;</em>
-				Camiones
+				Veh&iacute;culos
 				<span data-toggle="collapse" class="icon float-right">
 					<i class="fa fa-caret-down"></i>
 				</span>
 			</a>
 			<ul class="children collapse" id="sub-item-4">
 				<li class="nav-item">
-					<a class="nav-link" href="/camiones/crear.jsp">
+					<a class="nav-link" href="/vehiculos/crear.jsp">
 						Crear
 						<em class="fa fa-plus">&nbsp;</em>
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/camiones/modificar.jsp">
+					<a class="nav-link" href="/vehiculos/modificar.jsp">
 						Modificar
 						<em class="fa fa-edit">&nbsp;</em>
 					</a>
@@ -168,7 +168,7 @@
 					if (!session.getAttribute("rol").equals("empleado")) {
 				%>
 				<li class="nav-item">
-					<a class="nav-link" href="/camiones/eliminar.jsp">
+					<a class="nav-link" href="/vehiculos/eliminar.jsp">
 						Eliminar
 						<em class="fa fa-trash">&nbsp;</em>
 					</a>
@@ -247,8 +247,8 @@
 					}
 				%>
 				<li class="nav-item">
-					<a class="nav-link" href="/camiones/listar.jsp">
-						Camiones
+					<a class="nav-link" href="/vehiculos/listar.jsp">
+						Veh&iacute;culos
 						<em class="fa fa-truck">&nbsp;</em>
 					</a>
 				</li>

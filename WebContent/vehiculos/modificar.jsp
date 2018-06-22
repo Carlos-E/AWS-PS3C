@@ -29,7 +29,7 @@
 	</div>
 	<%
 		ArrayList<Usuario> listaUsuarios = ControladorBD.escanearTabla("usuarios");
-		ArrayList<Camion> listaCamiones = ControladorBD.escanearTabla("camiones");
+		ArrayList<Vehiculo> listaCamiones = ControladorBD.escanearTabla("camiones");
 		ArrayList<Usuario> listaConductor = new ArrayList<Usuario>();
 		ArrayList<Empresa> listaEmpresas = ControladorBD.escanearTabla("empresas");
 		for (int i = 0; i < listaUsuarios.size(); i++) {

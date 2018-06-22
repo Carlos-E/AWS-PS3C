@@ -15,7 +15,7 @@ import com.logica.ControladorBD;
 public class Modificar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	clases.Envio envio = new clases.Envio();
-	clases.Camion camion = new clases.Camion();
+	clases.Vehiculo camion = new clases.Vehiculo();
 	clases.Empresa empresa = new clases.Empresa();
 	clases.Usuario usuario = new clases.Usuario();
 

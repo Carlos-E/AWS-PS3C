@@ -1,14 +1,14 @@
 package clases;
 
-public class Camion {
+public class Vehiculo {
 
 	String placa, tipo, peso, espacio, estado, ubicacion, usuario, empresa;
 	
-	public Camion() {
+	public Vehiculo() {
 		super();
 	}
 
-	public Camion(String placa, String tipo, String peso, String espacio, String estado,
+	public Vehiculo(String placa, String tipo, String peso, String espacio, String estado,
 			String ubicacion, String usuario, String empresa) {
 		super();
 		this.placa = placa;

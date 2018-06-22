@@ -29,7 +29,7 @@ public class Crear extends HttpServlet {
 		try {
 			Empresa empresa = (Empresa) ControladorBD.getItem("empresas", "nit",
 					request.getParameter("empresa").toLowerCase());
-			Camion camion = (Camion) ControladorBD.getItem("camiones", "placa",
+			Vehiculo camion = (Vehiculo) ControladorBD.getItem("camiones", "placa",
 					request.getParameter("camion").toLowerCase());
 
 			Trailer trailer = new clases.Trailer();

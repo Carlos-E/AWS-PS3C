@@ -158,7 +158,7 @@ public class ControladorBD {
 			}
 
 			if (nombreTabla.equals("camiones")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Camion.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Vehiculo.class);
 			}
 
 			if (nombreTabla.equals("trailers")) {
@@ -218,7 +218,7 @@ public class ControladorBD {
 			}
 
 			if (nombreTabla.equals("camiones")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Camion.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Vehiculo.class);
 			}
 
 			if (nombreTabla.equals("trailers")) {
@@ -279,7 +279,7 @@ public class ControladorBD {
 			}
 
 			if (nombreTabla.equals("camiones")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Camion.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Vehiculo.class);
 			}
 
 			if (nombreTabla.equals("trailers")) {
@@ -860,7 +860,7 @@ public class ControladorBD {
 			if(nombreTabla.equals("camiones")){
 					for(int i=0 ; i< obj.getJSONArray("Items").length(); i++){   // iterate through jsonArray 
 					
-					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), Camion.class));
+					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), Vehiculo.class));
 
 					System.out.println("Objeto " + i + ": " + objetos.get(i));
 				}				
@@ -922,7 +922,7 @@ public class ControladorBD {
 	
 	public static boolean estaOcupado(String nombre, String camion){
 		boolean resultado = false;
-		ArrayList<Camion> camiones = escanearTabla("camiones");
+		ArrayList<Vehiculo> camiones = escanearTabla("camiones");
 		ArrayList<Trailer> trailers = escanearTabla("trailers");
 		if(camion.equals("null")){
 			for (int i = 0; i < camiones.size() ; i++){

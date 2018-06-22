@@ -15,7 +15,7 @@ import clases.*;
 @WebServlet("/camion")
 public class Crear extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	clases.Camion camion = new clases.Camion();
+	clases.Vehiculo camion = new clases.Vehiculo();
 
 	public Crear() {
 		super();

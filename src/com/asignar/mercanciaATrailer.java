@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.logica.ControladorBD;
 
-import clases.Camion;
+import clases.Vehiculo;
 import clases.Envio;
 import clases.Trailer;
 

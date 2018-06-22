@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.logica.ControladorBD;
 
-import clases.Camion;
+import clases.Vehiculo;
 import clases.Envio;
 import clases.Trailer;
 
@@ -52,7 +52,7 @@ public class mercanciaACamion extends HttpServlet {
 		String id = request.getParameter("mercancia").toLowerCase();
 		String[] frag = id.split(" : ");
 		String frag1 = frag[0], frag2 = frag[1];
-		Camion camion = (Camion) ControladorBD.getItem("camiones", "placa", placa);
+		Vehiculo camion = (Vehiculo) ControladorBD.getItem("camiones", "placa", placa);
 		Envio envio = (Envio) ControladorBD.getItem("envios", "usuario", frag1, "fecha", frag2);
 		double suma = Double.parseDouble(camion.getEspacio()) - Double.parseDouble(envio.getEspacio());
 		System.out.println(Double.parseDouble(camion.getEspacio()) +" - "+ Double.parseDouble(envio.getEspacio()) +" = "+ suma);

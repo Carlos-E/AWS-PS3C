@@ -30,7 +30,7 @@ public class GetEnvios extends HttpServlet {
 		String conductor = request.getSession().getAttribute("username").toString();
 		String placaCamion = ControladorBD.checkPlaca(conductor);
 
-		Camion camion = (Camion) ControladorBD.getItem("camiones", "placa", placaCamion);
+		Vehiculo camion = (Vehiculo) ControladorBD.getItem("camiones", "placa", placaCamion);
 		System.out.println(camion);
 
 		ArrayList<Envio> envios = null;
