@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.io.*,java.util.*"%>
 <%@ page import="com.logica.*"%>
 <%@ page import="clases.*"%>
 <%@ page import="java.util.ArrayList"%>
@@ -167,8 +168,18 @@
 
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Cami&oacute;n</label>
+						<label class="col-md-2 col-form-label text-capitalize">Cami&oacute;n:</label>
 						<div class="col-md-4">
+							<input type="radio" name="tipo" onclick="mostrar()" checked="checked">
+						</div>
+						<label class="col-md-2 col-form-label text-capitalize">Trailer:</label>
+						<div class="col-md-4">
+							<input type="radio" name="tipo" onclick="ocultar()">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label id="camion1" class="col-md-2 col-form-label text-capitalize" >Cami&oacute;n</label>
+						<div id="camion2" class="col-md-4" >
 							<select class="form-control" name="camion" id="camion" required>
 								<option value="" selected>Seleccionar...</option>
 								<option value="ninguno" selected>ninguno</option>
@@ -188,10 +199,9 @@
 									}
 								%>
 							</select>
-						</div>
-
-						<label class="col-md-2 col-form-label text-capitalize">Trailer</label>
-						<div class="col-md-4">
+						</div>						
+						<label id="trailer1" class="col-md-2 col-form-label text-capitalize" style="display: none;">Trailer</label>
+						<div id="trailer2" class="col-md-4" style="display: none;">
 							<!-- 							<input class="form-control" type="text" name="camion" placeholder="camion" id="camion" required>
  -->
 							<select class="form-control" name="trailer" id="trailer" required>
@@ -256,7 +266,6 @@
 	<jsp:include page="/footer.jsp" />
 	<!--  /FIN FOOTER CON SCRIPTS -->
 	<!-- /FIN -->
-
 	<script>
 		$(document)
 				.ready(
@@ -353,8 +362,21 @@
 
 						});
 	</script>
+	<script type="text/javascript">
+		function mostrar() {
+			document.getElementById('camion1').style.display = '';
+			document.getElementById('trailer1').style.display = 'none';
+			document.getElementById('camion2').style.display = '';
+			document.getElementById('trailer2').style.display = 'none';
+		}
 
-
+		function ocultar() {
+			document.getElementById('trailer1').style.display = '';
+			document.getElementById('camion1').style.display = 'none';
+			document.getElementById('trailer2').style.display = '';
+			document.getElementById('camion2').style.display = 'none';
+		}
+	</script>
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwUOXR0TZ7pyQhLJAuA6_U6Ffg92YMkLk&libraries=places"></script>
 	<script type="text/javascript">
 		google.maps.event.addDomListener(window, 'load', intilize);
