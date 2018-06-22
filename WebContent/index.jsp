@@ -49,7 +49,7 @@
 				</button>
 				<h1 class="mb-1">Hola, Bienvenido!</h1>
 				<p class="lead">
-					Prototipo Software de Contro de Carga Compartida (<span>PS3C</span>)
+					Prototipo Software de Control de Carga Compartida (<span>PS3C</span>)
 				</p>
 				<p align="justify">Este es un proyecto que tiene como finalidad ayudar en la logistica de transporte de empresas en Cartagena, mejorar la utilizacion de recursos y automatizar procesos de transporte, entre otros.</p>
 			</div>

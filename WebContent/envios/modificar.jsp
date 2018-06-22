@@ -118,6 +118,7 @@
 								<option value="" selected>Seleccionar...</option>
 								<option value="no asignado">no asignado</option>
 								<option value="asignado">asignado</option>
+								<option value="completado">completado</option>
 							</select>
 						</div>
 					</div>

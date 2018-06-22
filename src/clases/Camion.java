@@ -2,24 +2,21 @@ package clases;
 
 public class Camion {
 
-	String placa, tipo, peso, espacio, estado, destino, ubicacion, origen, usuario, empresa;
+	String placa, tipo, peso, espacio, estado, ubicacion, usuario, empresa;
 	
 	public Camion() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public Camion(String placa, String tipo, String peso, String espacio, String estado, String destino,
-			String ubicacion, String origen, String usuario, String empresa) {
+	public Camion(String placa, String tipo, String peso, String espacio, String estado,
+			String ubicacion, String usuario, String empresa) {
 		super();
 		this.placa = placa;
 		this.tipo = tipo;
 		this.peso = peso;
 		this.espacio = espacio;
 		this.estado = estado;
-		this.destino = destino;
 		this.ubicacion = ubicacion;
-		this.origen = origen;
 		this.usuario = usuario;
 		this.empresa = empresa;
 	}
@@ -64,13 +61,6 @@ public class Camion {
 		this.estado = estado;
 	}
 
-	public String getDestino() {
-		return destino;
-	}
-
-	public void setDestino(String destino) {
-		this.destino = destino;
-	}
 
 	public String getUbicacion() {
 		return ubicacion;
@@ -80,13 +70,6 @@ public class Camion {
 		this.ubicacion = ubicacion;
 	}
 
-	public String getOrigen() {
-		return origen;
-	}
-
-	public void setOrigen(String origen) {
-		this.origen = origen;
-	}
 
 	public String getUsuario() {
 		return usuario;
@@ -106,10 +89,9 @@ public class Camion {
 
 	@Override
 	public String toString() {
-		return "camion [placa=" + placa + ", tipo=" + tipo + ", peso=" + peso + ", espacio=" + espacio
-				+ ", estado=" + estado + ", destino=" + destino + ", ubicacion=" + ubicacion + ", origen=" + origen
-				+ ", usuario=" + usuario + ", empresa=" + empresa + "]";
+		return "Camion [placa=" + placa + ", tipo=" + tipo + ", peso=" + peso + ", espacio=" + espacio + ", estado="
+				+ estado + ", ubicacion=" + ubicacion + ", usuario=" + usuario + ", empresa=" + empresa + "]";
 	}
-	
+
 	
 }

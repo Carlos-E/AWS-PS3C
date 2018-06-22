@@ -174,7 +174,8 @@
 									"<option disabled>Origen: " + element.origen + "</option>" +
 									"<option disabled>Destino: " + element.destino + "</option>" +
 									"<option disabled>Tipo: " + element.tipo + "</option>" +
-									"<option disabled>espacio: " + element.espacio + "</option>" +
+									"<option disabled>Espacio: " + element.espacio + "</option>" +
+									"<option disabled>Descripcion: " + element.descripcion + "</option>" +
 									"</select>";
 
 								dataSet.push([
