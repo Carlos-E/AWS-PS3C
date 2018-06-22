@@ -82,11 +82,7 @@
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="capacidad" capacidad="telefono" id="capacidad" readonly>
 						</div>
-					</div>					
-					<input type="text" id="longitud_Destino" name="longitud_Destino" style="display: none">
-					<input type="text" id="latitud_Destino" name="latitud_Destino" style="display: none">
-					<input type="text" id="latitud_Origen" name="latitud_Origen" style="display: none">
-					<input type="text" id="longitud_Origen" name="longitud_Origen" style="display: none">
+					</div>
 					<div class="modal-footer">
 						<button id="submit" type="submit" class="btn btn-primary btn-md float-right">Eliminar</button>
 						<button id="atras" type="button" data-target="#" class="btn btn-danger btn-md float-right">Atras</button>
