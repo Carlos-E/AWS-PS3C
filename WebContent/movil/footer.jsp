@@ -56,4 +56,4 @@
 </div>
 </main>
 
-<jsp:include page="/scripts.jsp" />
+<jsp:include page="/movil/scripts.jsp" />
