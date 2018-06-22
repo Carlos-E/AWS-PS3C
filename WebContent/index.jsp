@@ -51,7 +51,7 @@
 				<p class="lead">
 					Prototipo Software de Control de Carga Compartida (<span>PS3C</span>)
 				</p>
-				<p align="justify">Este es un proyecto que tiene como finalidad ayudar en la logistica de transporte de empresas en Cartagena, mejorar la utilizacion de recursos y automatizar procesos de transporte, entre otros.</p>
+				<p align="justify">Este es un proyecto que tiene como finalidad ayudar en la log&iacute;stica de transporte de empresas en Cartagena, mejorar la utilizaci&oacute;n de recursos y automatizar procesos de transporte, entre otros.</p>
 			</div>
 
 			<div class="card mb-3">
@@ -61,7 +61,7 @@
 						Env&iacute;os
 						<i id="spinner-1" class="fa fa-circle-notch fa-spin" style="font-size: 30px"></i>
 					</h3>
-					<h6 class="card-subtitle mb-1 text-muted">Ultimos env&iacute;os</h6>
+					<h6 class="card-subtitle mb-1 text-muted">&Uacute;ltimos env&iacute;os</h6>
 					<div class="canvas-wrapper">
 						<canvas class="chart" id="line-chart" height="426" width="1282" style="width: 641px; height: 213px;"></canvas>
 					</div>
@@ -73,9 +73,9 @@
 				<div class="card-header">PS3C ANDROID</div>
 				<div class="card-block">
 					<p align="justify">Esta herramienta cuenta con seguimiento de transporte por medio de una aplicaci&oacute;n movil Android. La aplicaci&oacute;n posee un gestor de env&iacute;os donde los trasportadores pueden confirmar la recogida y entrega del env&iacute;o, as&iacute; como una
-						opci&oacute;n para generar reportes, ya sea del estado de las v&iacute;as o eventualidades, tamb&iacute;en la aplicacion sugiere una ruta con un mapa siempre y cuando el env&iacute;o tenga las ubicaciones correctamente ingresadas.</p>
+						opci&oacute;n para generar reportes, ya sea del estado de las v&iacute;as o eventualidades, tamb&iacute;en la aplicaci&oacute;n sugiere una ruta con un mapa siempre y cuando el env&iacute;o tenga las ubicaciones correctamente ingresadas.</p>
 					<p>
-						Eres conductor o camionero?
+						¿Eres conductor o camionero?
 						<a href="https://s3.amazonaws.com/ps3c/app.apk" target="_blank">
 							Descargala Aqu&iacute;!!
 							<em class="fa fa-download"></em>
