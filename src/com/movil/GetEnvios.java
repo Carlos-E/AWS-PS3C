@@ -31,21 +31,35 @@ public class GetEnvios extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		String conductor = request.getSession().getAttribute("username").toString();
-		
-		//conductor = "condu2";
-		
 		String placaCamion = ControladorBD.checkPlaca(conductor);
+
+		Camion camion = (Camion) ControladorBD.getItem("camiones", "placa", placaCamion);
+		System.out.println(camion);
+
+		ArrayList<Envio> envios = null;
 		
-		ArrayList<Envio> enviosCamion = ControladorBD.getShipments("camion", placaCamion);
-		
-		System.out.print(enviosCamion);
-		
+		if (camion.getTipo().equals("camion")) {
+			envios = ControladorBD.getShipments("camion", placaCamion);
+		} else {
+
+			ArrayList<Trailer> listaTrailers = ControladorBD.escanearTabla("trailers");
+
+			for (int i = 0; i < listaTrailers.size(); i++) {
+				if(listaTrailers.get(i).getCamion().equals(camion.getPlaca())){
+					envios = ControladorBD.getShipments("trailer", listaTrailers.get(i).getCamion());
+				}
+			}
+
+		}
+
+		System.out.print(envios);
+
 		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 
 		response.setContentType("application/json");
-		response.getWriter().print(ow.writeValueAsString(enviosCamion));
+		response.getWriter().print(ow.writeValueAsString(envios));
 		response.getWriter().close();
 	}
 
