@@ -119,6 +119,7 @@
 						<div class="col-md-4">
 							<select class="form-control" name="conductor" id="conductor" required>
 								<option value="" selected>Seleccionar...</option>
+								<option value="ninguno" >Ninguno</option>
 								<%
 									for (int i = 0; i < listaConductor.size(); i++) {
 								%>
