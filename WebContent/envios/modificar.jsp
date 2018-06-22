@@ -172,7 +172,7 @@
 
 								<%
 									ArrayList<Camion> listaCamiones = ControladorBD.escanearTabla("camiones");
-
+									ArrayList<Trailer> listaTrailerres = ControladorBD.escanearTabla("camiones");
 									for (int i = 0; i < listaCamiones.size(); i++) {
 										if (listaCamiones.get(i).getTipo().equals("camion")) {
 
@@ -184,7 +184,15 @@
 								</option>
 								<%
 									}}
+									for (int i = 0; i < listaCamiones.size(); i++) {
 								%>
+								<option value="<%out.print(listaTrailerres.get(i).getPatente());%>">
+									<%
+										out.print(listaCamiones.get(i).getPlaca());
+									
+									%>
+								</option>
+								<% } %>
 							</select>
 						</div>
 
