@@ -170,19 +170,19 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Cami&oacute;n:</label>
 						<div class="col-md-4">
-							<input type="radio" name="tipo" onclick="mostrar()" checked="checked">
+							<input type="radio" name="tipo" onclick="mostrar()" required>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Trailer:</label>
 						<div class="col-md-4">
-							<input type="radio" name="tipo" onclick="ocultar()">
+							<input type="radio" name="tipo" onclick="ocultar()" required>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label id="camion1" class="col-md-2 col-form-label text-capitalize" >Cami&oacute;n</label>
 						<div id="camion2" class="col-md-4" >
-							<select class="form-control" name="camion" id="camion" required>
+							<select id="camion" class="form-control" name="camion" id="camion" required>
 								<option value="" selected>Seleccionar...</option>
-								<option value="ninguno" selected>ninguno</option>
+								<option value="ninguno">ninguno</option>
 
 								<%
 									ArrayList<Camion> listaCamiones = ControladorBD.escanearTabla("camiones");
@@ -200,13 +200,13 @@
 								%>
 							</select>
 						</div>						
-						<label id="trailer1" class="col-md-2 col-form-label text-capitalize" style="display: none;">Trailer</label>
-						<div id="trailer2" class="col-md-4" style="display: none;">
+						<label id="trailer1" class="col-md-2 col-form-label text-capitalize" >Trailer</label>
+						<div id="trailer2" class="col-md-4" >
 							<!-- 							<input class="form-control" type="text" name="camion" placeholder="camion" id="camion" required>
  -->
-							<select class="form-control" name="trailer" id="trailer" required>
+							<select id="trailer" class="form-control" name="trailer" id="trailer" required>
 								<option value="" selected>Seleccionar...</option>
-								<option value="ninguno" selected>ninguno</option>
+								<option value="ninguno">ninguno</option>
 								<%
 									ArrayList<Trailer> listaTraileres = ControladorBD.escanearTabla("trailers");
 									for (int i = 0; i < listaTraileres.size(); i++) {
@@ -365,17 +365,23 @@
 	</script>
 	<script type="text/javascript">
 		function mostrar() {
-			document.getElementById('camion1').style.display = '';
+			document.getElementById('trailer').value = "ninguno";
+			document.getElementById('trailer').disabled  = true;
+			document.getElementById('camion').disabled = false;
+			/*document.getElementById('camion1').style.display = '';
 			document.getElementById('trailer1').style.display = 'none';
 			document.getElementById('camion2').style.display = '';
-			document.getElementById('trailer2').style.display = 'none';
+			document.getElementById('trailer2').style.display = 'none';	*/	
 		}
 
 		function ocultar() {
-			document.getElementById('trailer1').style.display = '';
+			document.getElementById('camion').value = "ninguno";
+			document.getElementById('camion').disabled = true;
+			document.getElementById('trailer').disabled  = false;
+			/*document.getElementById('trailer1').style.display = '';
 			document.getElementById('camion1').style.display = 'none';
 			document.getElementById('trailer2').style.display = '';
-			document.getElementById('camion2').style.display = 'none';
+			document.getElementById('camion2').style.display = 'none';*/
 		}
 	</script>
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwUOXR0TZ7pyQhLJAuA6_U6Ffg92YMkLk&libraries=places"></script>
