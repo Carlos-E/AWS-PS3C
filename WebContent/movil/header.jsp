@@ -12,20 +12,20 @@
 		<a class="btn btn-stripped dropdown-toggle" href="/index.html#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<img src="/img/user.svg" alt="profile photo" class="circle float-left profile-photo" width="50" height="auto">
 			<div class="username mt-1">
-				<h8 class="mb-1" id="username">
+				<h6 class="mb-1" id="username">
 					<%
 						out.print(session.getAttribute("username").toString());
 					%>
-				</h8>
-				<h9 id="role">
+				</h6>
+				<h7 id="role">
 					<%
 						out.print(session.getAttribute("rol").toString());
 					%>
-				</h9>
+				</h7>
 			</div>
 		</a>
 		<div class="dropdown-menu dropdown-menu-right" style="margin-right: 1.5rem;" aria-labelledby="dropdownMenuLink">
-			<a class="dropdown-item" href="/movil/usuarios/perfil.jsp">
+			<a class="dropdown-item" href="/movil/usuarios/perfil.jsp" hidden>
 				<em class="fa fa-user-circle mr-1"></em>
 				Actualizar Perfil
 			</a>
