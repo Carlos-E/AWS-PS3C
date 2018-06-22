@@ -99,6 +99,7 @@
 						<div class="col-md-4">
 							<select class="form-control" name="camion" id="camion" required>
 								<option value="" selected>Seleccionar...</option>
+								<option value="ninguno" >ninguno</option>
 
 								<%
 									for (int i = 0; i < listaCamiones.size(); i++) {

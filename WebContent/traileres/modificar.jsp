@@ -150,10 +150,14 @@
  -->
 							<select class="form-control" name="camion" id="camion" required>
 															<option value="" selected>Seleccionar...</option>
+															<option value="ninguno" >Seleccionar...</option>
 							
 								<%
 									for (int i = 0; i < listaCamiones.size(); i++) {
-										if (listaCamiones.get(i).getTipo().equals("remolque")) {
+										if (!ControladorBD.estaOcupado("null", listaCamiones.get(i).getPlaca())
+												&& listaCamiones.get(i).getTipo().equals("remolque")) {
+											ControladorBD.actualizarValor("camiones", "placa", listaCamiones.get(i).getPlaca(), "estado",
+													"Asignado");
 											
 								%>
 								<option value="<%out.print(listaCamiones.get(i).getPlaca());%>">
