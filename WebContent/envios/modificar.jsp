@@ -163,19 +163,20 @@
 								%>
 							</select>
 						</div>
+
+
+					</div>
+					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Cami&oacute;n</label>
 						<div class="col-md-4">
-							<!-- 							<input class="form-control" type="text" name="camion" placeholder="camion" id="camion" required>
- -->
 							<select class="form-control" name="camion" id="camion" required>
 								<option value="" selected>Seleccionar...</option>
+								<option value="ninguno" selected>ninguno</option>
 
 								<%
 									ArrayList<Camion> listaCamiones = ControladorBD.escanearTabla("camiones");
-									ArrayList<Trailer> listaTrailerres = ControladorBD.escanearTabla("camiones");
 									for (int i = 0; i < listaCamiones.size(); i++) {
 										if (listaCamiones.get(i).getTipo().equals("camion")) {
-
 								%>
 								<option value="<%out.print(listaCamiones.get(i).getPlaca());%>">
 									<%
@@ -183,20 +184,36 @@
 									%>
 								</option>
 								<%
-									}}
-									for (int i = 0; i < listaCamiones.size(); i++) {
+									}
+									}
 								%>
-								<option value="<%out.print(listaTrailerres.get(i).getPatente());%>">
+							</select>
+						</div>
+
+						<label class="col-md-2 col-form-label text-capitalize">Trailer</label>
+						<div class="col-md-4">
+							<!-- 							<input class="form-control" type="text" name="camion" placeholder="camion" id="camion" required>
+ -->
+							<select class="form-control" name="trailer" id="trailer" required>
+								<option value="" selected>Seleccionar...</option>
+								<option value="ninguno" selected>ninguno</option>
+								<%
+									ArrayList<Trailer> listaTraileres = ControladorBD.escanearTabla("trailers");
+									for (int i = 0; i < listaTraileres.size(); i++) {
+								%>
+								<option value="<%out.print(listaTraileres.get(i).getPatente());%>">
 									<%
-										out.print(listaCamiones.get(i).getPlaca());
-									
+										out.print(listaTraileres.get(i).getPatente());
 									%>
 								</option>
-								<% } %>
+								<%
+									}
+								%>
 							</select>
 						</div>
 
 					</div>
+
 					<input type="text" id="destinoLatLong" name="destinoLatLong" style="display: none">
 					<input type="text" id="origenLatLong" name="origenLatLong" style="display: none">
 					<!-- <input type="text" id="longitud_Destino" name="longitud_Destino" style="display: none">
@@ -317,9 +334,11 @@
 										$('#camion').val(objeto.camion);
 										$('#descripcion').val(
 												objeto.descripcion);
-										
-										$('#destinoLatLong').val(objeto.destinoLatLong);
-										$('#origenLatLong').val(objeto.origenLatLong);
+
+										$('#destinoLatLong').val(
+												objeto.destinoLatLong);
+										$('#origenLatLong').val(
+												objeto.origenLatLong);
 
 										$('#buscar-form').hide();
 										$('#form').removeAttr('hidden');
@@ -356,8 +375,8 @@
 										.lng();
 								 */
 								document.getElementById('destinoLatLong').value = place.geometry.location
-								.lat()
-								+ "," + place.geometry.location.lng();
+										.lat()
+										+ "," + place.geometry.location.lng();
 							});
 		};
 	</script>
@@ -380,8 +399,8 @@
 										.lng();
 								 */
 								document.getElementById('origenLatLong').value = place.geometry.location
-								.lat()
-								+ "," + place.geometry.location.lng();
+										.lat()
+										+ "," + place.geometry.location.lng();
 							});
 		};
 	</script>
