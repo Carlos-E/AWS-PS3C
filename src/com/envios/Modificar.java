@@ -43,6 +43,7 @@ public class Modificar extends HttpServlet {
 			String empresa = request.getParameter("empresa").toLowerCase();
 			String descripcion = request.getParameter("descripcion").toLowerCase();
 			String camion = request.getParameter("camion").toLowerCase();
+			String trailer = request.getParameter("trailer").toLowerCase();
 			//String tiempoCarga = request.getParameter("tiempoCarga").toLowerCase();
 			//String tiempoDescargaUsuario = request.getParameter("tiempoDescarga").toLowerCase();		
 			// String destinoLatLong = request.getParameter("latitud_Destino").toLowerCase()+","+request.getParameter("longitud_Destino").toLowerCase();
@@ -104,6 +105,11 @@ public class Modificar extends HttpServlet {
 			if (!envio.getOrigenLatLong().equals(origenLatLong)) {
 				envio.setOrigenLatLong(origenLatLong);
 				ControladorBD.actualizarValor("envios", "usuario", usuario, "fecha", fecha, "origenLatLong", origenLatLong);
+				cambio = true;
+			}
+			if (!envio.getTrailer().equals(trailer)) {
+				envio.setTrailer(trailer);
+				ControladorBD.actualizarValor("envios", "usuario", usuario, "fecha", fecha, "trailer", trailer);
 				cambio = true;
 			}
 //			if (!envio.getCamion().equals(tiempoCarga)) {

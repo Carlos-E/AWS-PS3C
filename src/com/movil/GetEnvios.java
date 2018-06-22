@@ -48,7 +48,7 @@ public class GetEnvios extends HttpServlet {
 
 			for (int i = 0; i < listaTrailers.size(); i++) {
 				if(listaTrailers.get(i).getCamion().equals(camion.getPlaca())){
-					envios = ControladorBD.getShipments("trailer", listaTrailers.get(i).getCamion());
+					envios = ControladorBD.getShipments("trailer", listaTrailers.get(i).getPatente());
 				}
 			}
 

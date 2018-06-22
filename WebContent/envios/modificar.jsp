@@ -332,6 +332,7 @@
 												objeto.tiempoDescargaUsuario);
 										$('#empresa').val(objeto.empresa);
 										$('#camion').val(objeto.camion);
+										$('#trailer').val(objeto.trailer);
 										$('#descripcion').val(
 												objeto.descripcion);
 
