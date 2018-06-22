@@ -920,54 +920,6 @@ public class ControladorBD {
 		}
 	}
 	
-	
-	
-	
-	public static String buscaCamion (String destino, String origen, String espacio){
-		Double espacioTrailer = Double.parseDouble(espacio), espacioCamion = Double.parseDouble(espacio);
-		System.out.println(espacioCamion);
-		String placa = "nada";
-		ArrayList<Trailer> trailer = ControladorBD.escanearTabla("trailers");
-		ArrayList<Camion> camionAll = ControladorBD.escanearTabla("camiones");
-		ArrayList<Camion> camion = new ArrayList<Camion>();
-		for(int i=0;i<camionAll.size();i++){
-			if(camionAll.get(i).getTipo().equals("camion")){
-				camion.add(camionAll.get(i));
-			}
-		}
-		for(int i=0;i<camion.size();i++){
-			System.out.println(destino + " = " + camion.get(i).getDestino());
-			double suma = Double.parseDouble(camion.get(i).getEspacio()) - espacioCamion;
-			if(suma >= 0){
-				if(camion.get(i).getDestino().equals(destino) && camion.get(i).getOrigen().equals(origen)){
-					System.out.println(destino + " : " + camion.get(i).getDestino());
-					return "1"+camion.get(i).getPlaca();
-				}
-			}else{
-				placa = "sinEspacio";
-			}	
-		}
-		for(int j=0;j<trailer.size();j++){
-			System.out.println(destino + " :: " + trailer.get(j).getDestino());
-			double suma = Double.parseDouble(trailer.get(j).getEspacio()) - espacioTrailer;
-			System.out.println(suma);
-			if(suma >= 0){
-				if(trailer.get(j).getDestino().equals(destino) && trailer.get(j).getOrigen().equals(origen)){
-					System.out.println(destino + " : " + trailer.get(j).getDestino());
-					return "0"+trailer.get(j).getPatente();
-				}
-			}else{
-				placa = "sinEspacio";				
-			}
-		}
-		if(placa == "sinEspacio"){
-			return placa;
-		}else{
-			return placa;
-		}
-	}
-	
-	
 	public static boolean estaOcupado(String nombre, String camion){
 		boolean resultado = false;
 		ArrayList<Camion> camiones = escanearTabla("camiones");
