@@ -189,7 +189,7 @@
 						$('#tabla').DataTable({
 							data: dataSet,
 							columns: [
-								{ title: "Fecha" }
+								{ title: "Envio" }
 							]
 						});
 
