@@ -85,7 +85,7 @@
 								<%
 									for (int i = 0; i < listaEmpresas.size(); i++) {
 								%>
-								<option value="<%out.print(listaEmpresas.get(i).getNit());%>">
+								<option value="<%out.print(listaEmpresas.get(i).getNombre());%>">
 									<%
 										out.print(listaEmpresas.get(i).getNombre());
 									%>
