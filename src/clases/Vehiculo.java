@@ -2,7 +2,7 @@ package clases;
 
 public class Vehiculo {
 
-	String placa, tipo, peso, espacio, estado, ubicacion, usuario, empresa;
+	String placa, tipo, peso, espacio, estado, usuario, empresa;
 	
 	public Vehiculo() {
 		super();
@@ -16,7 +16,6 @@ public class Vehiculo {
 		this.peso = peso;
 		this.espacio = espacio;
 		this.estado = estado;
-		this.ubicacion = ubicacion;
 		this.usuario = usuario;
 		this.empresa = empresa;
 	}
@@ -61,16 +60,6 @@ public class Vehiculo {
 		this.estado = estado;
 	}
 
-
-	public String getUbicacion() {
-		return ubicacion;
-	}
-
-	public void setUbicacion(String ubicacion) {
-		this.ubicacion = ubicacion;
-	}
-
-
 	public String getUsuario() {
 		return usuario;
 	}
@@ -89,8 +78,8 @@ public class Vehiculo {
 
 	@Override
 	public String toString() {
-		return "Camion [placa=" + placa + ", tipo=" + tipo + ", peso=" + peso + ", espacio=" + espacio + ", estado="
-				+ estado + ", ubicacion=" + ubicacion + ", usuario=" + usuario + ", empresa=" + empresa + "]";
+		return "Vehiculo [placa=" + placa + ", tipo=" + tipo + ", peso=" + peso + ", espacio=" + espacio + ", estado="
+				+ estado + ", usuario=" + usuario + ", empresa=" + empresa + "]";
 	}
 	
 }

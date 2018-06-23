@@ -60,7 +60,7 @@
 						out.print(session.getAttribute("pagina").toString());
 					%>
 				</h3>
-				<form id="form2" class="form" action="/vehiculoes/eliminar" method="post">
+				<form id="form2" class="form" action="/vehiculos/eliminar" method="post">
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Placa</label>
 						<div class="col-md-4">

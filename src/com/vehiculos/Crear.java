@@ -33,6 +33,7 @@ public class Crear extends HttpServlet {
 
 		String peso = request.getParameter("peso").toLowerCase();
 		String espacio = request.getParameter("espacio").toLowerCase();
+		
 		if (request.getParameter("tipo").toLowerCase().equals("remolque")) {
 			peso = "ninguna";
 			espacio = "ninguno";
@@ -40,6 +41,7 @@ public class Crear extends HttpServlet {
 
 		Empresa empresa = (clases.Empresa) ControladorBD.getItem("empresas", "nit",
 				request.getParameter("empresa").toLowerCase());
+		
 		vehiculo.setPlaca(request.getParameter("placa").toLowerCase());
 		vehiculo.setPeso(peso);
 		vehiculo.setTipo(request.getParameter("tipo").toLowerCase());
@@ -47,12 +49,11 @@ public class Crear extends HttpServlet {
 		vehiculo.setEstado("disponible");
 		vehiculo.setUsuario(request.getParameter("conductor").toLowerCase());
 		vehiculo.setEmpresa(empresa.getNit());
-		vehiculo.setUbicacion(request.getParameter("latitud_Origen").toLowerCase() + ","
-				+ request.getParameter("longitud_Origen").toLowerCase());
+		
 		ControladorBD.registrarItem("vehiculos", vehiculo);
+		
 		response.setContentType("text/html");
-		String nextURL = request.getContextPath() + "/vehiculos/crear.jsp";
-		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", nextURL);
+		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getContextPath() + "/vehiculos/crear.jsp");
 
 	}
 }
