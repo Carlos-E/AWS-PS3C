@@ -922,7 +922,7 @@ public class ControladorBD {
 	
 	public static boolean estaOcupado(String nombre, String camion){
 		boolean resultado = false;
-		ArrayList<Vehiculo> camiones = escanearTabla("camiones");
+		ArrayList<Vehiculo> camiones = escanearTabla("vehiculos");
 		ArrayList<Trailer> trailers = escanearTabla("trailers");
 		if(camion.equals("null")){
 			for (int i = 0; i < camiones.size() ; i++){
