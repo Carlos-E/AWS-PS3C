@@ -108,8 +108,6 @@
 						element.placa,
 						element.usuario,
 						element.tipo,
-						element.origen,
-						element.destino,
 						element.espacio,
 						element.empresa
 				]);
@@ -126,8 +124,6 @@
 			            { title: "Placa" },
 			            { title: "Conductor" },
 			            { title: "Tipo" },
-			            { title: "origen" },
-			            { title: "destino" },
 			            { title: "Espacio" },
 			            { title: "Empresa" }
 			        ]
