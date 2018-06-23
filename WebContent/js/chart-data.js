@@ -193,7 +193,7 @@ function makeDoughnut() {
 	$.ajax({
 		url: "/scanTable",
 		data: {
-			tabla: 'camiones'
+			tabla: 'vehiculos'
 		},
 		type: "POST",
 		dataType: "json",

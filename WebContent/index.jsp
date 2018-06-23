@@ -109,7 +109,7 @@
 				<div class="card-block">
 
 					<h3 class="card-title">
-						Camiones
+						Veh&iacute;culos
 						<i id="spinner-3" class="fa fa-circle-notch fa-spin" style="font-size: 30px"></i>
 					</h3>
 					<h6 class="card-subtitle mb-1 text-muted">Por empresa</h6>
