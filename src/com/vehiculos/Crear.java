@@ -37,18 +37,14 @@ public class Crear extends HttpServlet {
 		if (request.getParameter("tipo").toLowerCase().equals("remolque")) {
 			peso = "ninguna";
 			espacio = "ninguno";
-		}
-
-		Empresa empresa = (clases.Empresa) ControladorBD.getItem("empresas", "nit",
-				request.getParameter("empresa").toLowerCase());
-		
+		}		
 		vehiculo.setPlaca(request.getParameter("placa").toLowerCase());
 		vehiculo.setPeso(peso);
 		vehiculo.setTipo(request.getParameter("tipo").toLowerCase());
 		vehiculo.setEspacio(espacio);
 		vehiculo.setEstado("disponible");
 		vehiculo.setUsuario(request.getParameter("conductor").toLowerCase());
-		vehiculo.setEmpresa(empresa.getNit());
+		vehiculo.setEmpresa(request.getParameter("empresa"));
 		
 		ControladorBD.registrarItem("vehiculos", vehiculo);
 		

@@ -37,6 +37,7 @@ public class Modificar extends HttpServlet {
 			String espacio = request.getParameter("espacio").toLowerCase();
 			String estado = request.getParameter("estado").toLowerCase();
 			String conductor = request.getParameter("conductor").toLowerCase();
+			String empresa = request.getParameter("empresa").toLowerCase();
 
 			boolean cambio = false;
 			if (!vehiculo.getPeso().equals(peso)) {
@@ -57,6 +58,11 @@ public class Modificar extends HttpServlet {
 			if (!vehiculo.getUsuario().equals(conductor)) {
 				vehiculo.setUsuario(conductor);
 				ControladorBD.actualizarValor("vehiculos", "placa", placa, "usuario", conductor);
+				cambio = true;
+			}
+			if (!vehiculo.getEmpresa().equals(empresa)) {
+				vehiculo.setUsuario(empresa);
+				ControladorBD.actualizarValor("vehiculos", "placa", placa, "empresa", empresa);
 				cambio = true;
 			}
 			if (cambio) {

@@ -148,5 +148,14 @@
 	</div>
 	<!--  FOOTER CON SCRIPTS -->
 	<jsp:include page="/footer.jsp" />
+	<script type="text/javascript">
+		function mostrar() {
+			document.getElementById('oculto').style.display = '';
+		}
+
+		function ocultar() {
+			document.getElementById('oculto').style.display = 'none';
+		}
+	</script>
 </body>
 </html>
