@@ -157,7 +157,7 @@ public class ControladorBD {
 				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Empresa.class);
 			}
 
-			if (nombreTabla.equals("camiones")) {
+			if (nombreTabla.equals("vehiculos")) {
 				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Vehiculo.class);
 			}
 
@@ -217,7 +217,7 @@ public class ControladorBD {
 				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Empresa.class);
 			}
 
-			if (nombreTabla.equals("camiones")) {
+			if (nombreTabla.equals("vehiculos")) {
 				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Vehiculo.class);
 			}
 
@@ -278,7 +278,7 @@ public class ControladorBD {
 				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Empresa.class);
 			}
 
-			if (nombreTabla.equals("camiones")) {
+			if (nombreTabla.equals("vehiculos")) {
 				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Vehiculo.class);
 			}
 
@@ -857,7 +857,7 @@ public class ControladorBD {
 				
 			}
 			
-			if(nombreTabla.equals("camiones")){
+			if(nombreTabla.equals("vehiculos")){
 					for(int i=0 ; i< obj.getJSONArray("Items").length(); i++){   // iterate through jsonArray 
 					
 					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), Vehiculo.class));
@@ -920,20 +920,20 @@ public class ControladorBD {
 		}
 	}
 	
-	public static boolean estaOcupado(String nombre, String camion){
+	public static boolean estaOcupado(String nombre, String vehiculo){
 		boolean resultado = false;
-		ArrayList<Vehiculo> camiones = escanearTabla("vehiculos");
+		ArrayList<Vehiculo> vehiculos = escanearTabla("vehiculos");
 		ArrayList<Trailer> trailers = escanearTabla("trailers");
-		if(camion.equals("null")){
-			for (int i = 0; i < camiones.size() ; i++){
-				if(nombre.equals(camiones.get(i).getUsuario())){
+		if(vehiculo.equals("null")){
+			for (int i = 0; i < vehiculos.size() ; i++){
+				if(nombre.equals(vehiculos.get(i).getUsuario())){
 					System.out.println("sale");
 					return true;
 				}
 			}
 		}else if (nombre.equals("null")){
 			for (int i = 0; i < trailers.size() ; i++){
-				if(camion.equals(trailers.get(i).getCamion())){
+				if(vehiculo.equals(trailers.get(i).getCamion())){
 					return true;
 				}
 			}
@@ -1022,7 +1022,7 @@ public class ControladorBD {
 	
 	public static String checkPlaca(String usuario) {
 
-        String key = "usuario", tableName = "camiones", operation = "query";
+        String key = "usuario", tableName = "vehiculos", operation = "query";
 
         String payload = "{"
                 + "\"operation\":\"" + operation + "\","
