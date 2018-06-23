@@ -10,7 +10,7 @@
 		//response.sendError(400, "Acceso incorrecto"); //cambiar
 		response.sendRedirect("/error.jsp");
 	}
-	session.setAttribute("pagina", "Listar Camiones");
+	session.setAttribute("pagina", "Listar Veh&iacute;culos");
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -94,12 +94,13 @@
 			$.ajax({
 				url : "/scanTable",
 				data : {
-					tabla : 'camiones'
+					tabla : 'vehiculos'
 				},
 				type : "POST",
 				dataType : "json",
-			}).done(function(response) {
+			}).done(function(response,statusText,xhr) {
 				console.log(response);
+				console.log(xhr);
 				
 				let dataSet = [];
 				
