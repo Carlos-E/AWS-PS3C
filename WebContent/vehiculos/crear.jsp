@@ -95,7 +95,7 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Cami&oacute;n</label>
 						<div class="col-md-4">
-							<input type="radio" name="tipo" onclick="mostrar()" value="vehiculo">
+							<input type="radio" name="tipo" onclick="mostrar()" value="camion">
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Remolque</label>
 						<div class="col-md-4">

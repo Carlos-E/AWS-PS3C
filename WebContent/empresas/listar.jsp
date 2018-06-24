@@ -122,9 +122,9 @@
 			            url: "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
 			        },
 			        columns: [
-			            { title: "Nit" },
+			            { title: "NIT" },
 			            { title: "Nombre" },
-			            { title: "Rut" },
+			            { title: "RUT" },
 			            { title: "Correo" },
 			            { title: "Direcci&oacute;n" },
 			            { title: "Telefono" }

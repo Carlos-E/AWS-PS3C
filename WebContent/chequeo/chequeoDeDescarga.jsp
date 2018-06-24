@@ -49,7 +49,7 @@
 						</div>
 						<div class="row">
 							<div class="col-sm-12">
-								<table id="tabla" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;font-size: 0.8rem;">
+								<table id="tabla" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;font-size: 0.7rem;">
 									<thead>
 
 									</thead>
@@ -124,15 +124,15 @@
 				$('#tabla').DataTable( {
 			        data: dataSet,
 			        columns: [
-			            { title: "fecha" },
-			            { title: "usuario" },
-			            { title: "empresa" },
-			            { title: "origen" },
-			            { title: "destino" },
-			            { title: "capacidad" },
-			            { title: "camion" },
-			            { title: "trailer" },
-			            { title: "chequeo" }
+			            { title: "Fecha" },
+			            { title: "Usuario" },
+			            { title: "Empresa" },
+			            { title: "Origen" },
+			            { title: "Destino" },
+			            { title: "Capacidad" },
+			            { title: "cami&oacute;n/Remolque" },
+			            { title: "Trailer" },
+			            { title: "Chequeo" }
 			        ]
 			    } );
 				
