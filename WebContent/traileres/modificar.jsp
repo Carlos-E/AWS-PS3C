@@ -79,16 +79,16 @@
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="patente" placeholder="patente" id="patente" readonly>
 						</div>
+						<label class="col-md-2 col-form-label text-capitalize">Remolque Asignado</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" id="remolqueAsignado" readonly>
+						</div>
 
 					</div>
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Estado</label>
 						<div class="col-md-4">
-							<select class="custom-select" name="estado" id="estado" required>
-								<option value="" selected>seleccionar...</option>
-								<option value="disponible">disponible</option>
-								<option value="asignado">asignado</option>
-							</select>
+							<input class="form-control" type="text" name="estado" id="estado" readonly>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Tipo</label>
 						<div class="col-md-4">
@@ -113,15 +113,15 @@
 						</div>
 					</div>
 
-					
+
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Empresa</label>
 						<div class="col-md-4">
 							<!-- 							<input class="form-control" type="text" name="empresa" placeholder="empresa" id="empresa" required>
  -->
 							<select class="form-control" name="empresa" id="empresa" required>
-															<option value="" selected>Seleccionar...</option>
-							
+								<option value="" selected>Seleccionar...</option>
+
 								<%
 									for (int i = 0; i < listaEmpresas.size(); i++) {
 								%>
@@ -135,21 +135,20 @@
 								%>
 							</select>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Cami&oacute;n</label>
+						<label class="col-md-2 col-form-label text-capitalize">Remolque</label>
 						<div class="col-md-4">
 							<!-- 							<input class="form-control" type="text" name="vehiculo" placeholder="vehiculo" id="vehiculo" required>
  -->
-							<select class="form-control" name="vehiculo" id="vehiculo" required>
-															<option value="" selected>Seleccionar...</option>
-															<option value="ninguno" >ninguno</option>
-							
+							<select class="form-control" name="remolque" id="remolque" required>
+								<option value="" selected>Seleccionar...</option>
+								<option value="ninguno">ninguno</option>
+
 								<%
 									for (int i = 0; i < listaVehiculos.size(); i++) {
 										if (!ControladorBD.estaOcupado("null", listaVehiculos.get(i).getPlaca())
 												&& listaVehiculos.get(i).getTipo().equals("remolque")) {
 											ControladorBD.actualizarValor("vehiculos", "placa", listaVehiculos.get(i).getPlaca(), "estado",
 													"Asignado");
-											
 								%>
 								<option value="<%out.print(listaVehiculos.get(i).getPlaca());%>">
 									<%
@@ -244,7 +243,7 @@
 						$('#peso').val(objeto.peso);
 						$('#espacio').val(objeto.espacio);
 						$('#empresa').val(objeto.empresa);
-						$('#vehiculo').val(objeto.vehiculo);
+						$('#remolqueAsignado').val(objeto.camion);
 						$('#buscar-form').hide();
 						$('#form').removeAttr('hidden');
 						$('#form').show();
@@ -255,6 +254,6 @@
 					});
 				});
 	</script>
-	
+
 </body>
 </html>

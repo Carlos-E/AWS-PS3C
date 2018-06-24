@@ -121,27 +121,40 @@
 			            url: "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
 			        },
 			        columns: [
-			            { title: "fecha" },
-			            { title: "usuario" },
-			            { title: "empresa" },
-			            { title: "origen" },
-			            { title: "destino" },
-			            { title: "tipo" },
-			            { title: "espacio" },
-			            { title: "peso" },
-			            { title: "camion" },
-			            { title: "trailer" },
-			            { title: "descripcion" }
+			            { title: "Fecha" },
+			            { title: "Usuario" },
+			            { title: "Empresa" },
+			            { title: "Origen" },
+			            { title: "Destino" },
+			            { title: "Tipo" },
+			            { title: "Espacio" },
+			            { title: "Peso" },
+			            { title: "Cami&oacute;n/Remolque" },
+			            { title: "Trailer" },
+			            { title: "Descripci&oacute;n" }
 			        ]
 			    } );
 				
 		        $("#spinner").fadeOut("slow");
+		        
+		        $.ajax({
+					url : "/scanTable?tabla=trailers",
+					dataType : "json",
+				}).done(function(response) {
+					console.log(response);
+					
+				
+				}).fail(function(xhr, status, errorThrown) {
+					alert("Algo ha salido mal");
+					console.log('Failed Request To Servlet')
+				})
 			
 			}).fail(function(xhr, status, errorThrown) {
 				alert("Algo ha salido mal");
 				console.log('Failed Request To Servlet /scanTable')
 			}).always(function(xhr, status) {
-			});		
+			});
+			
 			
 		});
 	</script>

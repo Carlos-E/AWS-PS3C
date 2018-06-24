@@ -83,24 +83,12 @@
 							<input class="form-control" type="text" name="estado" id="estado" readonly>
 						</div>
 					</div>
+					
 
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Empresa</label>
+						<label class="col-md-2 col-form-label text-capitalize">Conductor Asignado</label>
 						<div class="col-md-4">
-							<select class="form-control" name="empresa" id="empresa" required>
-								<option value="" selected>Seleccionar...</option>
-								<%
-									for (int i = 0; i < listaEmpresas.size(); i++) {
-								%>
-								<option value="<%out.print(listaEmpresas.get(i).getNombre());%>">
-									<%
-										out.print(listaEmpresas.get(i).getNombre());
-									%>
-								</option>
-								<%
-									}
-								%>
-							</select>
+							<input class="form-control" type="text" id="conductorAsignado" readonly>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Conductor</label>
 						<div class="col-md-4">
@@ -113,6 +101,26 @@
 								<option value="<%out.print(listaConductor.get(i).getUsuario());%>">
 									<%
 										out.print(listaConductor.get(i).getUsuario());
+									%>
+								</option>
+								<%
+									}
+								%>
+							</select>
+						</div>
+					</div>
+					
+					<div class="form-group row">
+						<label class="col-md-2 col-form-label text-capitalize">Empresa</label>
+						<div class="col-md-4">
+							<select class="form-control" name="empresa" id="empresa" required>
+								<option value="" selected>Seleccionar...</option>
+								<%
+									for (int i = 0; i < listaEmpresas.size(); i++) {
+								%>
+								<option value="<%out.print(listaEmpresas.get(i).getNombre());%>">
+									<%
+										out.print(listaEmpresas.get(i).getNombre());
 									%>
 								</option>
 								<%
@@ -217,7 +225,7 @@
 						$('#peso').val(objeto.peso);
 						$('#espacio').val(objeto.espacio);
 						$('#empresa').val(objeto.empresa);
-						$('#conductor').val(objeto.usuario);
+						$('#conductorAsignado').val(objeto.usuario);
 						
 						$('#buscar-form').hide();
 						$('#form').removeAttr('hidden');

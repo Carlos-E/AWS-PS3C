@@ -25,32 +25,25 @@ public class Crear extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		try {
-			Empresa empresa = (Empresa) ControladorBD.getItem("empresas", "nit",
-					request.getParameter("empresa").toLowerCase());
-			Vehiculo vehiculo = (Vehiculo) ControladorBD.getItem("vehiculos", "placa",
-					request.getParameter("vehiculo").toLowerCase());
 
-			Trailer trailer = new clases.Trailer();
+		Vehiculo vehiculo = (Vehiculo) ControladorBD.getItem("vehiculos", "placa",
+				request.getParameter("vehiculo").toLowerCase());
 
-			trailer.setPatente(request.getParameter("patente").toLowerCase());
-			trailer.setPeso(request.getParameter("peso").toLowerCase());
-			trailer.setTipo(request.getParameter("tipo").toLowerCase());
-			trailer.setEspacio(request.getParameter("espacio").toLowerCase());
-			trailer.setEstado("disponible");
-			trailer.setEmpresa(empresa.getNit());
-			trailer.setCamion(vehiculo.getPlaca());
+		Trailer trailer = new clases.Trailer();
 
-			ControladorBD.registrarItem("trailers", trailer);
+		trailer.setPatente(request.getParameter("patente").toLowerCase());
+		trailer.setPeso(request.getParameter("peso").toLowerCase());
+		trailer.setTipo(request.getParameter("tipo").toLowerCase());
+		trailer.setEspacio(request.getParameter("espacio").toLowerCase());
+		trailer.setEstado("disponible");
+		trailer.setEmpresa(request.getParameter("empresa").toLowerCase());
+		trailer.setCamion(vehiculo.getPlaca());
 
-			response.setContentType("text/html");
-			com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa",
-					request.getContextPath() + "/traileres/crear.jsp");
-		} catch (Exception e) {
-			com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar crear el Trailer",
-					request.getContextPath() + "/traileres/crear.jsp");
-		}
-		
+		ControladorBD.registrarItem("trailers", trailer);
+
+		response.setContentType("text/html");
+		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa",
+				request.getContextPath() + "/traileres/crear.jsp");
+
 	}
 }

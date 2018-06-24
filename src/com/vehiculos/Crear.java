@@ -35,7 +35,7 @@ public class Crear extends HttpServlet {
 		String espacio = request.getParameter("espacio").toLowerCase();
 		
 		if (request.getParameter("tipo").toLowerCase().equals("remolque")) {
-			peso = "ninguna";
+			peso = "ninguno";
 			espacio = "ninguno";
 		}		
 		vehiculo.setPlaca(request.getParameter("placa").toLowerCase());

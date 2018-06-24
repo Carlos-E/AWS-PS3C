@@ -108,6 +108,7 @@
 						element.placa,
 						element.usuario,
 						element.tipo,
+						element.estado,
 						element.peso,
 						element.espacio,
 						element.empresa
@@ -125,6 +126,7 @@
 			            { title: "Placa" },
 			            { title: "Conductor" },
 			            { title: "Tipo" },
+			            { title: "Estado" },
 			            { title: "Peso" },
 			            { title: "Espacio" },
 			            { title: "Empresa" }
