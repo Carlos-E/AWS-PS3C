@@ -43,8 +43,21 @@ public class Modificar extends HttpServlet {
 		String estado = request.getParameter("estado").toLowerCase();
 		String empresa = request.getParameter("empresa").toLowerCase();
 		String descripcion = request.getParameter("descripcion").toLowerCase();
-		String camion = request.getParameter("camion").toLowerCase();
-		String trailer = request.getParameter("trailer").toLowerCase();
+
+		String camion = null;
+		if (request.getParameter("camion") == null) {
+			camion = "ninguno";
+		} else {
+			camion = request.getParameter("camion").toLowerCase();
+		}
+
+		String trailer = null;
+		if (request.getParameter("trailer") == null) {
+			trailer = "ninguno";
+		} else {
+			trailer = request.getParameter("trailer").toLowerCase();
+		}
+
 		String destinoLatLong = request.getParameter("destinoLatLong").toLowerCase();
 		String origenLatLong = request.getParameter("origenLatLong").toLowerCase();
 
