@@ -111,10 +111,8 @@
 						element.usuario,
 						element.empresa,
 						element.origen,
-						element.destino,
-						element.espacio,
-						element.camion,
-						element.trailer,
+						element.destino,						
+						element.descripcion,
 						aux
 				]);
 				});
@@ -128,9 +126,7 @@
 			            { title: "Empresa" },
 			            { title: "Origen" },
 			            { title: "Destino" },
-			            { title: "Capacidad" },
-			            { title: "Cami&oacute;n/Remolque" },
-			            { title: "Trailer" },
+			            { title: "Descripci&oacute;n" },
 			            { title: "Chequeo" }
 			        ]
 			    } );

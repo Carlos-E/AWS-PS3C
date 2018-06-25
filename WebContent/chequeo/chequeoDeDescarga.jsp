@@ -112,9 +112,7 @@
 						element.empresa,
 						element.origen,
 						element.destino,
-						element.espacio,
-						element.camion,
-						element.trailer,
+						element.descripcion,
 						aux
 				]);
 				});
@@ -129,9 +127,7 @@
 			            { title: "Empresa" },
 			            { title: "Origen" },
 			            { title: "Destino" },
-			            { title: "Capacidad" },
-			            { title: "cami&oacute;n/Remolque" },
-			            { title: "Trailer" },
+			            { title: "Descripci&oacute;n" },
 			            { title: "Chequeo" }
 			        ]
 			    } );
@@ -141,8 +137,7 @@
 			}).fail(function(xhr, status, errorThrown) {
 				alert("Algo ha salido mal");
 				console.log('Failed Request To Servlet /scanTable')
-			}).always(function(xhr, status) {
-			});		
+			});
 			
 		});
 	</script>

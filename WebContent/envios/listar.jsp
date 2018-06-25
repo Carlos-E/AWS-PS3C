@@ -165,12 +165,12 @@
 						}).fail(function (xhr, status, errorThrown) {
 							alert("Algo ha salido mal");
 							console.log('Failed Request To Servlet /scanTable trailers')
-						})
+						});
 
 					}).fail(function (xhr, status, errorThrown) {
 						alert("Algo ha salido mal");
 						console.log('Failed Request To Servlet /scanTable envios')
-					})
+					});
 
 				});
 			</script>
