@@ -27,7 +27,7 @@ public class Crear extends HttpServlet {
 			throws ServletException, IOException {
 
 		Vehiculo vehiculo = (Vehiculo) ControladorBD.getItem("vehiculos", "placa",
-				request.getParameter("vehiculo").toLowerCase());
+				request.getParameter("remolque").toLowerCase());
 
 		Trailer trailer = new clases.Trailer();
 
@@ -37,7 +37,12 @@ public class Crear extends HttpServlet {
 		trailer.setEspacio(request.getParameter("espacio").toLowerCase());
 		trailer.setEstado("disponible");
 		trailer.setEmpresa(request.getParameter("empresa").toLowerCase());
-		trailer.setCamion(vehiculo.getPlaca());
+		
+		if (request.getParameter("remolque").equals("ninguno")) {
+			trailer.setCamion("ninguno");
+		} else {
+			trailer.setCamion(vehiculo.getPlaca());
+		}
 
 		ControladorBD.registrarItem("trailers", trailer);
 

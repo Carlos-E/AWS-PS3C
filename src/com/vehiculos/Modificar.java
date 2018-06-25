@@ -33,7 +33,14 @@ public class Modificar extends HttpServlet {
 		vehiculo = (clases.Vehiculo) ControladorBD.getItem("vehiculos", "placa", placa);
 		String peso = request.getParameter("peso").toLowerCase();
 		String espacio = request.getParameter("espacio").toLowerCase();
-		String conductor = request.getParameter("conductor").toLowerCase();
+		String conductor = null;
+		
+		if (request.getParameter("conductor").equals("null")) {
+			conductor = request.getParameter("conductorAsignado").toLowerCase();
+		} else {
+			conductor = request.getParameter("conductor").toLowerCase();
+		}
+		
 		String empresa = request.getParameter("empresa").toLowerCase();
 
 		boolean cambio = false;

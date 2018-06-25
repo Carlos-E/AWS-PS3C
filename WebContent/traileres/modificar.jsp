@@ -81,7 +81,7 @@
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Remolque Asignado</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" id="remolqueAsignado" readonly>
+							<input class="form-control" type="text" name="remolqueAsignado" id="remolqueAsignado" readonly>
 						</div>
 
 					</div>
@@ -140,7 +140,7 @@
 							<!-- 							<input class="form-control" type="text" name="vehiculo" placeholder="vehiculo" id="vehiculo" required>
  -->
 							<select class="form-control" name="remolque" id="remolque" required>
-								<option value="" selected>Seleccionar...</option>
+								<option value="null" selected>Seleccionar...</option>
 								<option value="ninguno">ninguno</option>
 
 								<%

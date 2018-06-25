@@ -88,12 +88,12 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Conductor Asignado</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" id="conductorAsignado" readonly>
+							<input class="form-control" type="text" name="conductorAsignado" id="conductorAsignado" readonly>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Conductor</label>
 						<div class="col-md-4">
 							<select class="form-control" name="conductor" id="conductor" required>
-								<option value="" selected>Seleccionar...</option>
+								<option value="null" selected>Seleccionar...</option>
 								<option value="ninguno">ninguno</option>
 								<%
 									for (int i = 0; i < listaConductor.size(); i++) {

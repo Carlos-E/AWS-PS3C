@@ -97,7 +97,7 @@
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Remolque</label>
 						<div class="col-md-4">
-							<select class="form-control" name="vehiculo" id="vehiculo" required>
+							<select class="form-control" name="remolque" id="remolque" required>
 								<option value="" selected>Seleccionar...</option>
 								<option value="ninguno" >ninguno</option>
 
