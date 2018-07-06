@@ -133,9 +133,16 @@
 							<input class="form-control" type="text" name="descripcion" placeholder="descripci&oacute;n" required>
 						</div>
 					</div>
+					<div class="form-group row">
+						<label class="col-md-2 col-form-label text-capitalize">Asignacion de Vehiculo</label>
+						<div class="col-md-4">
+							<select id="asignado" class="custom-select" name="tipo" required>
+								<option value="" selected>Seleccionar...</option>
+							</select>
+						</div>
+					</div>
 					<input type="text" id="destinoLatLong" name="destinoLatLong" style="display: none">
 					<input type="text" id="origenLatLong" name="origenLatLong" style="display: none">
-					<input type="text" id="asignado" name="asignado" style="display: none">
 					<!-- <input type="text" id="longitud_Destino" name="longitud_Destino" style="display: none">
 					<input type="text" id="latitud_Destino" name="latitud_Destino" style="display: none">
 					<input type="text" id="latitud_Origen" name="latitud_Origen" style="display: none">

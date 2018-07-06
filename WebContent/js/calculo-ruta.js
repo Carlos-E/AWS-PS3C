@@ -54,7 +54,24 @@ function initMap() {
                 itemsProcessed++;
                 if (itemsProcessed === ubicacionesCamiones.length) {
                   //HACER LAS COSAS AQUI
+                	var select = document.getElementById('asignado');
                 	console.log(list);
+                	for (var i=0;i<list.length;i++){
+                		var option = document.createElement("option");
+                		option.text = "Placa: "+list[i].placa+" Distancia: "+list[i].distancia.text;
+                    	select.add(option);
+                	}               	
+
+                	
+                	
+                	
+                	
+                	
+                	
+                	
+                	
+                	
+                	/*console.log(list);
                 	var distaNum = parseFloat(list[0].distancia.value);
                 	var vehiculo = "";
                 	console.log(distaNum);
@@ -65,8 +82,7 @@ function initMap() {
                 		}
                 		vehiculo = vehiculo+","+list[i].placa;
                 	}
-                	console.log(vehiculo);
-                	document.getElementById('asignado').value = vehiculo;
+                	console.log(vehiculo);*/
                 }
               }
             );
