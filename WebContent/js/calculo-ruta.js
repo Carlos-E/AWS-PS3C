@@ -56,15 +56,15 @@ function initMap() {
                   //HACER LAS COSAS AQUI
                 	console.log(list);
                 	var distaNum = parseFloat(list[0].distancia.text);
-                	var MONDA = json[0];
+                	var vehiculo = json[0];
                 	console.log(distaNum);
                 	for (var i=0;i<list.length;i++){
                 		if(distaNum>=parseFloat(list[i].distancia.text)){
                 			distaNum=parseFloat(list[i].distancia.text);
-                			MONDA = list[i];
+                			vehiculo = list[i];
                 		}
                 	}
-                	console.log(MONDA);
+                	console.log(vehiculo);
                 }
               }
             );
