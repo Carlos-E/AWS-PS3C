@@ -177,6 +177,9 @@
 	<!--  /FIN FOOTER CON SCRIPTS -->
 	<!-- /FIN -->
 
+	<script src="/js/calculo-ruta.js?v=1.1.7"></script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsQwNmnSYTDtkrlXKeKnfP0x8TNwVJ2uI&callback=initMap"></script>
+
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwUOXR0TZ7pyQhLJAuA6_U6Ffg92YMkLk&libraries=places"></script>
 	<script type="text/javascript">
 		google.maps.event.addDomListener(window, 'load', intilize);
