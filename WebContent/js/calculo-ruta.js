@@ -18,7 +18,6 @@ function initMap() {
           // console.log(JSON.stringify(response, null, 2));
           //console.log(JSON.stringify(response.routes[0].legs[0].distance, null, 2));
           //console.log(JSON.stringify(response.routes[0].legs[0].duration, null, 2));
-
           callback({
             placa: placa,
             distancia: response.routes[0].legs[0].distance,
@@ -31,20 +30,18 @@ function initMap() {
     );
   }
 
-  getRoutes = () => {
+  getRoutes = (ruta) => {
     $(document).ready(function() {
       $.ajax({
         url: '/scanTable',
         data: { tabla: 'ubicaciones' },
         type: 'POST',
         dataType: 'json'
-      })
-        .done(function(ubicacionesCamiones) {
+      }).done(function(ubicacionesCamiones) {
           console.log("Ubicaciones: ",JSON.stringify(ubicacionesCamiones, null, 2));
-
           list = [];
-          let envioLatLong = '10.390467,-75.5014747';
-
+          let envioLatLong = ruta;
+          //'10.390467,-75.5014747';
           let itemsProcessed = 0;
           ubicacionesCamiones.forEach(function callback(ubicacionCamion, index, ubicacionesCamiones) {
             calculateRoute(
@@ -54,10 +51,8 @@ function initMap() {
               envioLatLong,
               function(listItem) {
                 list.push(listItem);
-
                 itemsProcessed++;
                 if (itemsProcessed === ubicacionesCamiones.length) {
-
                   //HACER LAS COSAS AQUI
                   console.log(JSON.stringify(list, null, 2));
                 }

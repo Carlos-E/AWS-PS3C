@@ -178,9 +178,7 @@
 	<!-- /FIN -->
 
 	<script src="/js/calculo-ruta.js?v=1.1.7"></script>
-	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsQwNmnSYTDtkrlXKeKnfP0x8TNwVJ2uI&callback=initMap"></script>
-
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwUOXR0TZ7pyQhLJAuA6_U6Ffg92YMkLk&libraries=places"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsQwNmnSYTDtkrlXKeKnfP0x8TNwVJ2uI&libraries=places&callback=initMap"></script>
 	<script type="text/javascript">
 		google.maps.event.addDomListener(window, 'load', intilize);
 		function intilize() {
@@ -219,6 +217,8 @@
 								var place = autocomplete.getPlace();
 								var latlon = place.geometry.location.lat()
 										+ "," + place.geometry.location.lng();
+								console.log(latlon);
+								getRoutes(latlon);
 								/* document.getElementById('latitud_Origen').value = place.geometry.location
 										.lat();
 								document.getElementById('longitud_Origen').value = place.geometry.location
