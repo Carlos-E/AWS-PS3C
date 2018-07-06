@@ -55,12 +55,27 @@ function initMap() {
                 if (itemsProcessed === ubicacionesCamiones.length) {
                   //HACER LAS COSAS AQUI
                 	var select = document.getElementById('asignado');
-                	console.log(list);
+                	var listaDistancia = [];
+                	var listaDistanciaOrd = [];
+                	var listaOrdenada = []
+                	console.log(list); 
                 	for (var i=0;i<list.length;i++){
+                		listaDistancia.push(list[i].distancia.value)
+                	}
+                	listaDistanciaOrd = test(listaDistancia);
+                	for (var i=0;i<list.length;i++){
+                		for (var j=0;j<listaDistanciaOrd.length;j++){
+                			if(listaDistanciaOrd[i] == list[j].distancia.value){
+                				listaOrdenada.push(list[j]);
+                			}
+                    	}
+                	}
+                	console.log(listaOrdenada);
+                	for (var i=0;i<listaOrdenada.length;i++){
                 		var option = document.createElement("option");
-                		option.text = "Placa: "+list[i].placa+" Distancia: "+list[i].distancia.text;
+                		option.text = "Placa: "+listaOrdenada[i].placa+" Distancia: "+listaOrdenada[i].distancia.text;
                     	select.add(option);
-                	}               	
+                	}             	
 
                 	
                 	
@@ -100,3 +115,43 @@ function initMap() {
 
   console.log('Mapa Inicializado');
 }
+
+function test(arrel){
+	var arreglo = arrel;
+	quicksort(0,(arreglo.length -1));
+function quicksort(primero,ultimo){
+	i = primero
+    j = ultimo
+    pivote = arreglo[parseInt((i+j)/2)];
+    do{
+        while(arreglo[i]<pivote){
+        	i++;
+            j--;
+        }
+        if(i<=j){
+        	aux=arreglo[j];
+            arreglo[j] = arreglo[i]
+            arreglo[i] = aux
+            i++;
+            j--;
+        }
+    }while(i<j);
+    if(primero<j){
+    	quicksort(primero,j);
+    }
+    if(ultimo>i){
+    	quicksort(i,ultimo); 
+    }
+}
+return arreglo;
+}
+
+
+
+
+
+
+
+
+
+
