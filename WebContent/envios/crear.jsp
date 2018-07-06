@@ -218,7 +218,7 @@
 								var latlon = place.geometry.location.lat()
 										+ "," + place.geometry.location.lng();
 								console.log(latlon);
-								var test = getRoutes(latlon);
+								var CHUCHA = getRoutes(latlon);
 								console.log(test);
 								/* document.getElementById('latitud_Origen').value = place.geometry.location
 										.lat();

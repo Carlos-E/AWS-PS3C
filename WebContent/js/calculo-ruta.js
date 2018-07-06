@@ -30,7 +30,6 @@ function initMap() {
       }
     );
   }
-
   getRoutes = (ruta) => {
     $(document).ready(function() {
       $.ajax({
@@ -55,7 +54,17 @@ function initMap() {
                 itemsProcessed++;
                 if (itemsProcessed === ubicacionesCamiones.length) {
                   //HACER LAS COSAS AQUI
-                  console.log(JSON.stringify(list, null, 2));
+                	console.log(list);
+                	var distaNum = parseFloat(list[0].distancia.text);
+                	var MONDA = json[0];
+                	console.log(distaNum);
+                	for (var i=0;i<list.length;i++){
+                		if(distaNum>=parseFloat(list[i].distancia.text)){
+                			distaNum=parseFloat(list[i].distancia.text);
+                			MONDA = list[i];
+                		}
+                	}
+                	console.log(MONDA);
                 }
               }
             );
