@@ -24,6 +24,7 @@ function initMap() {
             duracion: response.routes[0].legs[0].duration
           });
         } else {
+        	return "fuera";
           console.log('Ah ocurrido un error con calculando las rutas');
         }
       }
