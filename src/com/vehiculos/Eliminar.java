@@ -28,6 +28,7 @@ public class Eliminar extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			ControladorBD.borrarItem("vehiculos", "placa", request.getParameter("placa").toString());
+			ControladorBD.borrarItem("ubicaciones", "placa", request.getParameter("placa").toString());
 
 			response.setContentType("text/html");
 			com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa",

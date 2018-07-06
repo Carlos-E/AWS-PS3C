@@ -1,6 +1,7 @@
 package com.vehiculos;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -47,6 +48,15 @@ public class Crear extends HttpServlet {
 		vehiculo.setEmpresa(request.getParameter("empresa"));
 		
 		ControladorBD.registrarItem("vehiculos", vehiculo);
+
+		//Generar una ubicacion por defecto
+		Ubicacion ubicacionVehiculo = new Ubicacion();
+		ubicacionVehiculo.setPlaca(request.getParameter("placa").toLowerCase());;
+		ubicacionVehiculo.setHora(String.valueOf(System.currentTimeMillis() / 1000));
+		ubicacionVehiculo.setLatitud("0.0");
+		ubicacionVehiculo.setLongitud("0.0");
+		ControladorBD.registrarItem("ubicaciones", ubicacionVehiculo);
+		//
 		
 		response.setContentType("text/html");
 		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getContextPath() + "/vehiculos/crear.jsp");
