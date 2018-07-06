@@ -55,16 +55,18 @@ function initMap() {
                 if (itemsProcessed === ubicacionesCamiones.length) {
                   //HACER LAS COSAS AQUI
                 	console.log(list);
-                	var distaNum = parseFloat(list[0].distancia.text);
-                	var vehiculo = json[0];
+                	var distaNum = parseFloat(list[0].distancia.value);
+                	var vehiculo = "";
                 	console.log(distaNum);
                 	for (var i=0;i<list.length;i++){
-                		if(distaNum>=parseFloat(list[i].distancia.text)){
-                			distaNum=parseFloat(list[i].distancia.text);
-                			vehiculo = list[i];
+                		if(distaNum>=parseFloat(list[i].distancia.value)){
+                			distaNum=parseFloat(list[i].distancia.value);
+                			vehiculo = vehiculo+","+list[i].placa;
                 		}
+                		vehiculo = vehiculo+","+list[i].placa;
                 	}
                 	console.log(vehiculo);
+                	document.getElementById('asignado').value = vehiculo;
                 }
               }
             );

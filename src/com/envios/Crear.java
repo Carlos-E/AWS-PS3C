@@ -37,7 +37,8 @@ public class Crear extends HttpServlet {
 
 		String destinoLatLong = request.getParameter("destinoLatLong").toLowerCase();
 		String origenLatLong = request.getParameter("origenLatLong").toLowerCase();
-
+		String asignado = request.getParameter("asignado").toLowerCase();
+		System.out.println(asignado);
 		String fecha = calendar.get(Calendar.YEAR) + "-"
 				+ mFormat.format(Double.valueOf(calendar.get(Calendar.MONTH) + 1)) + "-"
 				+ mFormat.format(Double.valueOf(calendar.get(Calendar.DAY_OF_MONTH))) + " "
@@ -45,7 +46,7 @@ public class Crear extends HttpServlet {
 				+ mFormat.format(calendar.get(Calendar.MINUTE)) + ":" + mFormat.format(calendar.get(Calendar.SECOND));
 		envio.setPeso(request.getParameter("peso").toLowerCase());
 		envio.setEspacio(request.getParameter("espacio").toLowerCase());
-		envio.setCamion("ninguno");
+		envio.setCamion(asignado);
 		envio.setTrailer("ninguno");
 		envio.setEmpresa(request.getParameter("empresa").toLowerCase());
 		envio.setFecha(fecha);
@@ -53,7 +54,7 @@ public class Crear extends HttpServlet {
 		envio.setOrigen(request.getParameter("origen"));
 		envio.setDestinoLatLong(destinoLatLong);
 		envio.setOrigenLatLong(origenLatLong);
-		envio.setEstado("no asignado");
+		envio.setEstado("asignado");
 		envio.setEspacio(request.getParameter("espacio").toLowerCase());
 		envio.setTipo(request.getParameter("tipo").toLowerCase());
 
