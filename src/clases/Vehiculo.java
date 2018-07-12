@@ -1,9 +1,12 @@
 package clases;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Vehiculo {
 
 	String placa, tipo, peso, espacio, estado, usuario, empresa, latitud, longitud;
-	
+
 	public Vehiculo() {
 		super();
 	}
@@ -99,6 +102,31 @@ public class Vehiculo {
 		return "Vehiculo [placa=" + placa + ", tipo=" + tipo + ", peso=" + peso + ", espacio=" + espacio + ", estado="
 				+ estado + ", usuario=" + usuario + ", empresa=" + empresa + ", latitud=" + latitud + ", longitud="
 				+ longitud + "]";
+	}
+
+	public String toJSON() {
+
+		JSONObject jsonObject = new JSONObject();
+
+		try {
+
+			jsonObject.put("placa", getPlaca());
+			jsonObject.put("tipo", getTipo());
+			jsonObject.put("peso", getPeso());
+			jsonObject.put("espacio", getEspacio());
+			jsonObject.put("estado", getEstado());
+			jsonObject.put("usuario", getUsuario());
+			jsonObject.put("empresa", getEmpresa());
+			jsonObject.put("latitud", getLatitud());
+			jsonObject.put("longitud", getLongitud());
+
+			return jsonObject.toString();
+
+		} catch (JSONException e) {
+			e.printStackTrace();
+			return null;
+		}
+
 	}
 
 }
