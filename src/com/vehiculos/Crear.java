@@ -1,7 +1,6 @@
 package com.vehiculos;
 
 import java.io.IOException;
-import java.util.Calendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,16 +10,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.logica.ControladorBD;
 
-import clases.*;
+import clases.Vehiculo;
 
 @WebServlet("/vehiculos/crear")
 public class Crear extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	clases.Vehiculo vehiculo = new clases.Vehiculo();
+	Vehiculo vehiculo = new Vehiculo();
 
 	public Crear() {
 		super();
-
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -46,17 +44,12 @@ public class Crear extends HttpServlet {
 		vehiculo.setEstado("disponible");
 		vehiculo.setUsuario(request.getParameter("conductor").toLowerCase());
 		vehiculo.setEmpresa(request.getParameter("empresa"));
+		//CODIGO NUEVO 12 JUL 2018
+		vehiculo.setLatitud("0.0");
+		vehiculo.setLongitud("0.0");
+		//CODIGO NUEVO 12 JUL 2018
 		
 		ControladorBD.registrarItem("vehiculos", vehiculo);
-
-		//Generar una ubicacion por defecto
-		Ubicacion ubicacionVehiculo = new Ubicacion();
-		ubicacionVehiculo.setPlaca(request.getParameter("placa").toLowerCase());;
-		ubicacionVehiculo.setHora(String.valueOf(System.currentTimeMillis() / 1000));
-		ubicacionVehiculo.setLatitud("0.0");
-		ubicacionVehiculo.setLongitud("0.0");
-		ControladorBD.registrarItem("ubicaciones", ubicacionVehiculo);
-		//
 		
 		response.setContentType("text/html");
 		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getContextPath() + "/vehiculos/crear.jsp");

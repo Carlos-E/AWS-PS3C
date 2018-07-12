@@ -169,9 +169,9 @@ public class ControladorBD {
 				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Envio.class);
 			}
 			
-			if (nombreTabla.equals("ubicaciones")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Ubicacion.class);
-			}
+//			if (nombreTabla.equals("ubicaciones")) {
+//				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Ubicacion.class);
+//			}
 
 			System.out.println(objeto);
 			System.out.println("Success");
@@ -229,9 +229,9 @@ public class ControladorBD {
 				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Envio.class);
 			}
 			
-			if (nombreTabla.equals("ubicaciones")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Ubicacion.class);
-			}
+//			if (nombreTabla.equals("ubicaciones")) {
+//				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Ubicacion.class);
+//			}
 
 			System.out.println(objeto);
 			System.out.println("Success");
@@ -290,9 +290,9 @@ public class ControladorBD {
 				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Envio.class);
 			}
 			
-			if (nombreTabla.equals("ubicaciones")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Ubicacion.class);
-			}
+//			if (nombreTabla.equals("ubicaciones")) {
+//				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Ubicacion.class);
+//			}
 
 			System.out.println(objeto);
 			System.out.println("Success");
@@ -896,15 +896,15 @@ public class ControladorBD {
 				
 			}
 			
-			if(nombreTabla.equals("ubicaciones")){
-				for(int i=0 ; i< obj.getJSONArray("Items").length(); i++){   // iterate through jsonArray 
-					
-					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), Ubicacion.class));
-
-					System.out.println("Objeto " + i + ": " + objetos.get(i));
-				}				
-				
-			}
+//			if(nombreTabla.equals("ubicaciones")){
+//				for(int i=0 ; i< obj.getJSONArray("Items").length(); i++){   // iterate through jsonArray 
+//					
+//					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), Ubicacion.class));
+//
+//					System.out.println("Objeto " + i + ": " + objetos.get(i));
+//				}				
+//				
+//			}
 				
 			System.out.println("\nCantidad de Items encontrados: "+ obj.getInt("Count"));
 			System.out.println("Capacidad de lectura consumida: "+obj.getJSONObject("ConsumedCapacity").getInt("CapacityUnits"));

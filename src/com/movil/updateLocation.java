@@ -36,25 +36,23 @@ public class updateLocation extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		Ubicacion ubicacion = new Ubicacion();
-
-        ubicacion.setLatitud(request.getParameter("lat"));
-        ubicacion.setLongitud(request.getParameter("lng"));
-
-        Long tsLong = System.currentTimeMillis() / 1000;
-        String ts = tsLong.toString();
-        ubicacion.setHora(ts);
-
-        ubicacion.setPlaca(ControladorBD.checkPlaca(request.getSession().getAttribute("username").toString()));
-        
-		boolean result = ControladorBD.putItem("ubicaciones", ubicacion.toJSON());
-
-		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-
+		
 		response.setContentType("application/json");
-		response.getWriter().print(ow.writeValueAsString(result));
-		response.getWriter().close();
+
+		try {
+
+			String placa = ControladorBD.checkPlaca(request.getSession().getAttribute("username").toString());
+			ControladorBD.actualizarValor("vehiculos", "placa", placa, "latitud", request.getParameter("lat"));
+			ControladorBD.actualizarValor("vehiculos", "placa", placa, "longitud", request.getParameter("lng"));
+
+			response.getWriter().print(true);
+			response.getWriter().close();
+			
+		} catch (Exception e) {
+			response.getWriter().print(false);
+			response.getWriter().close();
+		}
+
 	}
 
 }
