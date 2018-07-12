@@ -18,7 +18,6 @@ import clases.*;
 @WebServlet("/getEnvios")
 public class GetEnvios extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	clases.Usuario usuario = new clases.Usuario();
 
 	public GetEnvios() {
 		super();
@@ -30,12 +29,22 @@ public class GetEnvios extends HttpServlet {
 		String conductor = request.getSession().getAttribute("username").toString();
 		String placaCamion = ControladorBD.checkPlaca(conductor);
 
-		Vehiculo camion = (Vehiculo) ControladorBD.getItem("camiones", "placa", placaCamion);
-		System.out.println(camion);
+		Vehiculo vehiculo = (Vehiculo) ControladorBD.getItem("vehiculos", "placa", placaCamion);
+		System.out.println(vehiculo);
 
 		ArrayList<Envio> envios = null;
 
-		if (camion.getTipo().equals("camion")) {
+		if (vehiculo.getTipo().equals("camion")) {
+			
+//			OJO AQUI, PROBAR
+//			OJO AQUI, PROBAR
+//			OJO AQUI, PROBAR
+//			OJO AQUI, PROBAR
+//			OJO AQUI, PROBAR
+//			OJO AQUI, PROBAR
+//			OJO AQUI, PROBAR
+//			OJO AQUI, PROBAR 
+			
 			envios = ControladorBD.getShipments("camion", placaCamion);
 		} else {
 
@@ -43,7 +52,7 @@ public class GetEnvios extends HttpServlet {
 			ArrayList<Trailer> listaTrailers = ControladorBD.escanearTabla("trailers");
 
 			for (int i = 0; i < listaTrailers.size(); i++) {
-				if (listaTrailers.get(i).getCamion().equals(camion.getPlaca())) {
+				if (listaTrailers.get(i).getCamion().equals(vehiculo.getPlaca())) {
 					envios = ControladorBD.getShipments("trailer", listaTrailers.get(i).getPatente());
 				}
 			}

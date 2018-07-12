@@ -149,12 +149,12 @@
 
 					}
 
-					console.log('Mapa Inicializado');
+					console.log('Servicio de mapas inicializado');
 				}
 
 
 				$(document).ready(function () {
-
+					
 					$.ajax({
 						url: "/getEnvios",
 						type: "GET",
@@ -200,8 +200,10 @@
 						getRoutes(response);
 
 					}).fail(function (xhr, status, errorThrown) {
-						Android.showToast('Algo ha fallado')
-						console.log('Failed Request To Servlet /getEnvios')
+						if (typeof Android != 'undefined') {
+							Android.showToast('Algo ha fallado');
+						}
+						console.log('Failed Request To Servlet /getEnvios');
 					}).always(function (xhr, status) {
 						$("#spinner").fadeOut("slow");
 					});
