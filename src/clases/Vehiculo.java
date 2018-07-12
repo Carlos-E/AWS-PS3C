@@ -2,14 +2,14 @@ package clases;
 
 public class Vehiculo {
 
-	String placa, tipo, peso, espacio, estado, usuario, empresa;
+	String placa, tipo, peso, espacio, estado, usuario, empresa, latitud, longitud;
 	
 	public Vehiculo() {
 		super();
 	}
 
-	public Vehiculo(String placa, String tipo, String peso, String espacio, String estado,
-			String ubicacion, String usuario, String empresa) {
+	public Vehiculo(String placa, String tipo, String peso, String espacio, String estado, String usuario,
+			String empresa, String latitud, String longitud) {
 		super();
 		this.placa = placa;
 		this.tipo = tipo;
@@ -18,6 +18,8 @@ public class Vehiculo {
 		this.estado = estado;
 		this.usuario = usuario;
 		this.empresa = empresa;
+		this.latitud = latitud;
+		this.longitud = longitud;
 	}
 
 	public String getPlaca() {
@@ -76,10 +78,27 @@ public class Vehiculo {
 		this.empresa = empresa;
 	}
 
+	public String getLatitud() {
+		return latitud;
+	}
+
+	public void setLatitud(String latitud) {
+		this.latitud = latitud;
+	}
+
+	public String getLongitud() {
+		return longitud;
+	}
+
+	public void setLongitud(String longitud) {
+		this.longitud = longitud;
+	}
+
 	@Override
 	public String toString() {
 		return "Vehiculo [placa=" + placa + ", tipo=" + tipo + ", peso=" + peso + ", espacio=" + espacio + ", estado="
-				+ estado + ", usuario=" + usuario + ", empresa=" + empresa + "]";
+				+ estado + ", usuario=" + usuario + ", empresa=" + empresa + ", latitud=" + latitud + ", longitud="
+				+ longitud + "]";
 	}
-	
+
 }
