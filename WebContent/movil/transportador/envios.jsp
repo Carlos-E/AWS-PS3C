@@ -38,7 +38,7 @@
 
 							<div class="card-block">
 								<h3 class="card-title">
-									Datos
+									Env&iacute;os
 									<i id="spinner" class="fa fa-circle-notch fa-spin" style="font-size: 30px"></i>
 								</h3>
 								<h6 class="text-muted mb-4"></h6>
@@ -53,17 +53,9 @@
 									</div>
 									<div class="row">
 										<div class="col-sm-12 small">
-											<table id="tabla" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info"
-											 style="width: 100%;">
-												<thead>
+											<table id="table" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info"
+											 style="width: 100%;font-size: 0.65rem !important;">
 
-												</thead>
-												<tfoot>
-
-												</tfoot>
-												<tbody>
-
-												</tbody>
 											</table>
 										</div>
 									</div>
@@ -106,20 +98,22 @@
 
 					directionsService = new google.maps.DirectionsService;
 
-					function calculateRoute(directionsService, origin, destination, i) {
+					function calculateRoute(directionsService, origin, destination, i,tipoEnvio) {
 						directionsService.route({
 							origin: origin,
 							destination: destination,
 							travelMode: 'DRIVING'
 						}, function (response, status) {
 							if (status === 'OK') {
-								console.log(JSON.stringify(response.routes[0].legs[0].distance.text, null, 2));
-								console.log(JSON.stringify(response.routes[0].legs[0].duration.text, null, 2));
+								//console.log(JSON.stringify(response.routes[0].legs[0].distance.text, null, 2));
+								//console.log(JSON.stringify(response.routes[0].legs[0].duration.text, null, 2));
 
 								i++;
-								let rows = document.getElementById("tabla").rows;
-								rows[i].insertCell(rows[i].cells.length).innerHTML = "Distancia " + response.routes[0].legs[0].distance.text + "<br>Duraci&oacute;n " + response.routes[0].legs[0].duration.text;
+								let rows = document.getElementById("table").rows;
+								//rows[i].insertCell(rows[i].cells.length).innerHTML = 'Distancia ' + response.routes[0].legs[0].distance.text + '<br>Duraci&oacute;n ' + response.routes[0].legs[0].duration.text;
+								rows[i].insertCell(rows[i].cells.length).innerHTML = 'Para '+tipoEnvio+':<br>Distancia ' + response.routes[0].legs[0].distance.text + "<br>Duraci&oacute;n " + response.routes[0].legs[0].duration.text;
 
+								
 							} else {
 								if (typeof Android != 'undefined') {
 									Android.showToast('Directions request failed due to '
@@ -138,13 +132,12 @@
 							miUbicacion = coords;
 						}
 
-						document.getElementById("tabla").rows[0].insertCell(document.getElementById("tabla").rows[0].cells.length).outerHTML = '<th>Origen</th>';
-						//document.getElementById('tabla').tHead.children[0].appendChild(document.createElement('th').innerHTML);
-						document.getElementById("tabla").rows[0].insertCell(document.getElementById("tabla").rows[0].cells.length).outerHTML = '<th>Destino</th>';
+						document.getElementById("table").rows[0].insertCell(1).outerHTML = '<td>Origen</td>';
+						document.getElementById("table").rows[0].insertCell(2).outerHTML = '<td>Destino</td>';
 
 						envios.forEach(function callback(envio, index, envios) {
-							calculateRoute(directionsService, miUbicacion, envio.origenLatLong, index);
-							calculateRoute(directionsService, miUbicacion, envio.destinoLatLong, index);
+							calculateRoute(directionsService, miUbicacion, envio.origenLatLong, index, "origen");
+							calculateRoute(directionsService, miUbicacion, envio.destinoLatLong, index, "destino");
 						});
 
 					}
@@ -154,13 +147,13 @@
 
 
 				$(document).ready(function () {
-					
+
 					$.ajax({
 						url: "/getEnvios",
 						type: "GET",
 						dataType: "json",
 					}).done(function (response) {
-						console.log(response);
+						//console.log(JSON.stringify(response, null, 2));
 
 						dataSet = [];
 
@@ -168,7 +161,7 @@
 
 							response.forEach(element => {
 
-								var aux = "<select class='custom-select'>" +
+								var aux = '<select class="custom-select">' +
 									"<option>" + element.fecha + "</option>" +
 									"<option disabled>Cliente: " + element.usuario + "</option>" +
 									"<option disabled>Origen: " + element.origen + "</option>" +
@@ -185,19 +178,23 @@
 
 						}
 
-						console.log(dataSet);
-
-						$('#tabla').DataTable({
+						$('#table').DataTable({
 							data: dataSet,
 							language: {
 								url: "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
 							},
 							columns: [
 								{ title: "Envio" }
-							]
+							],
+							columnDefs: [
+							    { width: "50%", targets: 0 }
+							],
+							initComplete: function (settings, json) {
+								getRoutes(response);
+								$("#table_info").hide();
+							}
 						});
 
-						getRoutes(response);
 
 					}).fail(function (xhr, status, errorThrown) {
 						if (typeof Android != 'undefined') {
