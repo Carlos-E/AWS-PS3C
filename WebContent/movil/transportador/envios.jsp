@@ -81,16 +81,6 @@
 			<!-- /FIN -->
 
 			<script>
-				var coords = '0.0,0.0';
-
-				if (typeof Android != 'undefined') {
-					setInterval(function () {
-						var coords = Android.getBestLocation();
-					}, 1000);
-				}
-			</script>
-
-			<script>
 				var directionsService;
 				var dataSet;
 
@@ -126,8 +116,14 @@
 
 					getRoutes = (envios) => {
 
-						let miUbicacion = '10.390467,-75.5014747';
-
+						let miUbicacion = '0.0,0.0';
+						let coords = '0.0,0.0';
+						
+						if (typeof Android != 'undefined') {
+							coords = Android.getBestLocation();
+							Android.showToast(coords);
+						}
+						
 						if (coords != '0.0,0.0') {
 							miUbicacion = coords;
 						}

@@ -511,16 +511,12 @@
 
 				<script>
 					var coords = '0.0,0.0';
-
+					
 					if (typeof Android != 'undefined') {
 
-						var BestIsOn = true;
-						//var GPSIsOn = false;
-						//var networkIsOn = false;
-
-						Android.toggleBestUpdates(BestIsOn);
-						//Android.toggleGPSUpdates(GPSIsOn);
-						//Android.toggleNetworkUpdates(networkIsOn);
+						//Android.toggleBestUpdates(true);
+						//Android.toggleGPSUpdates(false);
+						//Android.toggleNetworkUpdates(false);
 
 						setInterval(
 							function () {
@@ -531,7 +527,7 @@
 									.split(",")[0];
 								document.getElementById('lng').innerHTML = coords
 									.split(",")[1];
-
+								
 							}, 1000);
 					}
 				</script>
