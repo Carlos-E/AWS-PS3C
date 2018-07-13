@@ -20,8 +20,7 @@
 
 				<title>Rutas</title>
 				<style>
-					/* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
+					/* Always set the map height explicitly to define the size of the div element that contains the map. */
 
 					#map {
 						height: 100%;
@@ -79,7 +78,7 @@
 
 			<body>
 
-				<div class="floating-panel" style="top: 0.25rem; right: 0.5rem;">
+				<div class="floating-panel" style="top: 0.35rem; right: 0.7rem;">
 					<div class="row">
 						<div class="col">
 							<!-- 				<a class="btn btn-light" href="https://www.google.com/maps/dir/?api=1&destination="+destination+"&travelmode=driving&dir_action=navigate" onclick="Android.openOnGoogleMaps(document.getElementById('end').value)">Abrir en Google Maps</a>
@@ -98,7 +97,7 @@
 				</div>
 
 
-				<div class="floating-panel" style="bottom: 2rem; left: 0.5rem;">
+				<div class="floating-panel" style="bottom: 2.5rem; left: 0.8rem;">
 
 					<div class="row" style="font-size: 0.5rem;">
 						<div class="col">
@@ -152,7 +151,7 @@
 
 					</div>
 
-					<div class="row">
+					<div class="row" style="font-size: 0.65rem !important;">
 						<div class="col">
 							<div class="card">
 
@@ -417,7 +416,7 @@
 											Android
 												.showToast('Envios descargados correctamente');
 										}
-										
+
 										envios = response;
 
 										directionsDisplay.setMap(map);
@@ -465,7 +464,6 @@
 										}
 									}
 
-
 								}).fail(function (xhr, status, errorThrown) {
 									console.log('Failed Request To Servlet /getEnvios')
 									if (typeof Android != 'undefined') {
@@ -511,23 +509,19 @@
 
 				<script>
 					var coords = '0.0,0.0';
-					
-					if (typeof Android != 'undefined') {
 
-						//Android.toggleBestUpdates(true);
-						//Android.toggleGPSUpdates(false);
-						//Android.toggleNetworkUpdates(false);
+					if (typeof Android != 'undefined') {
 
 						setInterval(
 							function () {
 
 								coords = Android.getBestLocation();
-								
+
 								document.getElementById('lat').innerHTML = coords
 									.split(",")[0];
 								document.getElementById('lng').innerHTML = coords
 									.split(",")[1];
-								
+
 							}, 1000);
 					}
 				</script>

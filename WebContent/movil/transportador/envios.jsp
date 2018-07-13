@@ -121,7 +121,6 @@
 						
 						if (typeof Android != 'undefined') {
 							coords = Android.getBestLocation();
-							Android.showToast(coords);
 						}
 						
 						if (coords != '0.0,0.0') {
