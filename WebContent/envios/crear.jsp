@@ -199,16 +199,9 @@
 							function() {
 								var place = autocomplete.getPlace();
 								var latlon = place.geometry.location.lat()
-										+ "," + place.geometry.location.lng();
-								
-								/* document.getElementById('latitud_Destino').value = place.geometry.location
-										.lat();
-								document.getElementById('longitud_Destino').value = place.geometry.location
-										.lng();
-								 */
-								document.getElementById('destinoLatLong').value = place.geometry.location
-										.lat()
-										+ "," + place.geometry.location.lng();
+										+ ',' + place.geometry.location.lng();
+
+								document.getElementById('destinoLatLong').value = latlon;
 							});
 		};
 	</script>
@@ -225,15 +218,10 @@
 								var place = autocomplete.getPlace();
 								var latlon = place.geometry.location.lat()
 										+ "," + place.geometry.location.lng();
+
 								getRoutes(latlon);
-								/* document.getElementById('latitud_Origen').value = place.geometry.location
-										.lat();
-								document.getElementById('longitud_Origen').value = place.geometry.location
-										.lng();
-								 */
-								document.getElementById('origenLatLong').value = place.geometry.location
-								.lat()
-								+ "," + place.geometry.location.lng();
+
+								document.getElementById('origenLatLong').value = latlon;
 							});
 		};
 	</script>

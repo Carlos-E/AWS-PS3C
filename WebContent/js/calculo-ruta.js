@@ -1,7 +1,7 @@
 var directionsService;
 var dataSet;
 var getRoutes;
-var list = [];
+var listaDatosRutas = [];
 
 function initMap() {
   directionsService = new google.maps.DirectionsService();
@@ -30,25 +30,60 @@ function initMap() {
       }
     );
   }
-  getRoutes = (ruta) => {
+  
+  getRoutes = (origenEnvio) => {
+	  console.log('Calculando Rutas Con Origen De Envio');
+	  
     $(document).ready(function() {
       $.ajax({
         url: '/scanTable',
         data: { tabla: 'vehiculos' },
         type: 'POST',
         dataType: 'json'
-      }).done(function(ubicacionesCamiones) {
-    	  list = [];
-    	  list = JSON.stringify(ubicacionesCamiones, null, 2);
+      }).done(function(vehiculos) {
+    	  console.log('Vehiculos: '+JSON.stringify(vehiculos,null,2));
+    	  
+    	  for(let i=0;i<vehiculos.length;i++){
+    		  
+    		  directionsService.route(
+    			      {
+    			        origin: vehiculos[i].latitud+','+vehiculos[i].longitud,
+    			        destination: origenEnvio,
+    			        travelMode: 'DRIVING'
+    			      },
+    			      function(response, status) {
+    			        if (status === 'OK') {
+    			        	
+    			        	console.log('Rutas:');
+    			            console.log(JSON.stringify(response.routes[0].legs[0].distance, null, 2));
+    			            console.log(JSON.stringify(response.routes[0].legs[0].duration, null, 2));
+    			        	
+    		                 //HACER LAS COSAS AQUI   	
+    			        	
+    			        	listaDatosRutas.push({
+        			            placa: vehiculos[i].placa,
+        			            distancia: response.routes[0].legs[0].distance,
+        			            duracion: response.routes[0].legs[0].duration
+        			          })
+        			          
+        			          console.log(listaDatosRutas);
+    			        	
+    			        } else {
+    			          console.log('Ah ocurrido un error con calculando ESTA ruta');
+    			        }
+    			      }
+    			    );
+    	  }
+    	  
+    	  
                   //HACER LAS COSAS AQUI   	
-                	directionsService = new google.maps.DirectionsService;
-                	var select = document.getElementById('asignado');
-                	var listaDistancia = [];
-                	var listaDistanciaOrd = [];
-                	var listaOrdenada = []
-                	console.log(list); 
-                	var latlon = list[1].latitud+","+list[1].longitud;
-                	console.log(latlon); 
+//                	var select = document.getElementById('asignado');
+//                	var listaDistancia = [];
+//                	var listaDistanciaOrd = [];
+//                	var listaOrdenada = []
+//                	console.log(list); 
+//                	var latlon = list[1].latitud+","+list[1].longitud;
+//                	console.log(latlon); 
                 	/*for (var i=0;i<list.length;i++){
                 		var latlon = list[i].latitud.value+","+list[i].longitud.value;
                 		console.log(latlon);
