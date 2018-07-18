@@ -6,31 +6,31 @@ var listaDatosRutas = [];
 function initMap() {
   directionsService = new google.maps.DirectionsService();
 
-  function calculateRoute(directionsService, placa, origin, destination, callback) {
-    directionsService.route(
-      {
-        origin: origin,
-        destination: destination,
-        travelMode: 'DRIVING'
-      },
-      function(response, status) {
-        if (status === 'OK') {
-          // console.log(JSON.stringify(response, null, 2));
-          //console.log(JSON.stringify(response.routes[0].legs[0].distance, null, 2));
-          //console.log(JSON.stringify(response.routes[0].legs[0].duration, null, 2));
-          callback({
-            placa: placa,
-            distancia: response.routes[0].legs[0].distance,
-            duracion: response.routes[0].legs[0].duration
-          });
-        } else {
-        	return "fuera";
-          console.log('Ah ocurrido un error con calculando las rutas');
-        }
-      }
-    );
-  }
-  
+//  function calculateRoute(directionsService, placa, origin, destination, callback) {
+//    directionsService.route(
+//      {
+//        origin: origin,
+//        destination: destination,
+//        travelMode: 'DRIVING'
+//      },
+//      function(response, status) {
+//        if (status === 'OK') {
+//          // console.log(JSON.stringify(response, null, 2));
+//          //console.log(JSON.stringify(response.routes[0].legs[0].distance, null, 2));
+//          //console.log(JSON.stringify(response.routes[0].legs[0].duration, null, 2));
+//          callback({
+//            placa: placa,
+//            distancia: response.routes[0].legs[0].distance,
+//            duracion: response.routes[0].legs[0].duration
+//          });
+//        } else {
+//        	return "fuera";
+//          console.log('Ah ocurrido un error con calculando las rutas');
+//        }
+//      }
+//    );
+//  }
+
   getRoutes = (origenEnvio) => {
 	  console.log('Calculando Rutas Con Origen De Envio');
 	  
@@ -106,7 +106,7 @@ function initMap() {
 
         })
         .fail(function(xhr, status, errorThrown) {
-          console.log('Failed Request To Servlet /getEnvios');
+          console.log('Failed getRoutes');
         })
         .always(function(xhr, status) {
           $('#spinner').fadeOut('slow');
@@ -145,26 +145,6 @@ function quicksort(primero,ultimo){
     }
 }
 return arreglo;
-}
-
-function calculateRoute(directionsService, origin, destination) {
-	directionsService.route({
-		origin: origin,
-		destination: destination,
-		travelMode: 'DRIVING'
-	}, function (response, status) {
-		if (status === 'OK') {
-			//console.log(JSON.stringify(response.routes[0].legs[0].distance.text, null, 2));
-			//console.log(JSON.stringify(response.routes[0].legs[0].duration.text, null, 2));
-			console.log(':<br>Distancia ' + response.routes[0].legs[0].distance.text + "<br>Duraci&oacute;n " + response.routes[0].legs[0].duration.text);
-		} else {
-			if (typeof Android != 'undefined') {
-				console.log('Directions request failed due to '
-					+ status);
-			}
-			console.log('Ah ocurrido un error con las rutas');
-		}
-	});
 }
 
 
