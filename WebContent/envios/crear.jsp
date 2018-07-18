@@ -225,9 +225,6 @@
 								var place = autocomplete.getPlace();
 								var latlon = place.geometry.location.lat()
 										+ "," + place.geometry.location.lng();
-								console.log(latlon);
-								var test = getRoutes(latlon);
-								console.log(test);
 								/* document.getElementById('latitud_Origen').value = place.geometry.location
 										.lat();
 								document.getElementById('longitud_Origen').value = place.geometry.location

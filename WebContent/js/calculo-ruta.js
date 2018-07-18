@@ -34,7 +34,7 @@ function initMap() {
     $(document).ready(function() {
       $.ajax({
         url: '/scanTable',
-        data: { tabla: 'ubicaciones' },
+        data: { tabla: 'vehiculo' },
         type: 'POST',
         dataType: 'json'
       }).done(function(ubicacionesCamiones) {
@@ -52,37 +52,15 @@ function initMap() {
               function(listItem) {
                 list.push(listItem);
                 itemsProcessed++;
-                if (itemsProcessed === ubicacionesCamiones.length) {
+                if (itemsProcessed === ubicacionesCamiones.length) { 
                   //HACER LAS COSAS AQUI
-                	var select = document.getElementById('asignado');
-                	var listaDistancia = [];
-                	var listaDistanciaOrd = [];
-                	var listaOrdenada = []
-                	console.log(list); 
-                	for (var i=0;i<list.length;i++){
-                		listaDistancia.push(list[i].distancia.value)
-                	}
-                	listaDistanciaOrd = test(listaDistancia);
-                	for (var i=0;i<list.length;i++){
-                		for (var j=0;j<listaDistanciaOrd.length;j++){
-                			if(listaDistanciaOrd[i] == list[j].distancia.value){
-                				listaOrdenada.push(list[j]);
-                			}
-                    	}
-                	}
-                	console.log(listaOrdenada);
-                	for (var i=0;i<listaOrdenada.length;i++){
-                		var option = document.createElement("option");
-                		option.text = "Placa: "+listaOrdenada[i].placa+" Distancia: "+listaOrdenada[i].distancia.text;
-                    	select.add(option);
-                	}
+                	console.log(list);
                 }
               }
             );
           });
         })
         .fail(function(xhr, status, errorThrown) {
-          Android.showToast('Algo ha fallado');
           console.log('Failed Request To Servlet /getEnvios');
         })
         .always(function(xhr, status) {
