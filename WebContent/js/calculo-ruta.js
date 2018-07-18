@@ -4,32 +4,8 @@ var getRoutes;
 var listaDatosRutas = [];
 
 function initMap() {
-  directionsService = new google.maps.DirectionsService();
 
-//  function calculateRoute(directionsService, placa, origin, destination, callback) {
-//    directionsService.route(
-//      {
-//        origin: origin,
-//        destination: destination,
-//        travelMode: 'DRIVING'
-//      },
-//      function(response, status) {
-//        if (status === 'OK') {
-//          // console.log(JSON.stringify(response, null, 2));
-//          //console.log(JSON.stringify(response.routes[0].legs[0].distance, null, 2));
-//          //console.log(JSON.stringify(response.routes[0].legs[0].duration, null, 2));
-//          callback({
-//            placa: placa,
-//            distancia: response.routes[0].legs[0].distance,
-//            duracion: response.routes[0].legs[0].duration
-//          });
-//        } else {
-//        	return "fuera";
-//          console.log('Ah ocurrido un error con calculando las rutas');
-//        }
-//      }
-//    );
-//  }
+  directionsService = new google.maps.DirectionsService();
 
   getRoutes = (origenEnvio) => {
 	  console.log('Calculando Rutas Con Origen De Envio');
@@ -45,6 +21,7 @@ function initMap() {
     	  
     	  for(let i=0;i<vehiculos.length;i++){
     		  
+    		  // Se llama directamente al servicio
     		  directionsService.route(
     			      {
     			        origin: vehiculos[i].latitud+','+vehiculos[i].longitud,
@@ -54,11 +31,11 @@ function initMap() {
     			      function(response, status) {
     			        if (status === 'OK') {
     			        	
-    			        	console.log('Rutas:');
+    			        	console.log('Rutas: '+vehiculos[i].placa);
     			            console.log(JSON.stringify(response.routes[0].legs[0].distance, null, 2));
     			            console.log(JSON.stringify(response.routes[0].legs[0].duration, null, 2));
     			        	
-    		                 //HACER LAS COSAS AQUI   	
+    		                 // HACER LAS COSAS AQUI
     			        	
     			        	listaDatosRutas.push({
         			            placa: vehiculos[i].placa,
@@ -66,6 +43,7 @@ function initMap() {
         			            duracion: response.routes[0].legs[0].duration
         			          })
         			          
+        			          // Logea mientras se va llenando la lista
         			          console.log(listaDatosRutas);
     			        	
     			        } else {
@@ -76,33 +54,28 @@ function initMap() {
     	  }
     	  
     	  
-                  //HACER LAS COSAS AQUI   	
-//                	var select = document.getElementById('asignado');
-//                	var listaDistancia = [];
-//                	var listaDistanciaOrd = [];
-//                	var listaOrdenada = []
-//                	console.log(list); 
-//                	var latlon = list[1].latitud+","+list[1].longitud;
-//                	console.log(latlon); 
-                	/*for (var i=0;i<list.length;i++){
-                		var latlon = list[i].latitud.value+","+list[i].longitud.value;
-                		console.log(latlon);
-                		calculateRoute(directionsService, latlon, ruta)         		
-                	}
-                	listaDistanciaOrd = test(listaDistancia);
-                	for (var i=0;i<list.length;i++){
-                		for (var j=0;j<listaDistanciaOrd.length;j++){
-                			if(listaDistanciaOrd[i] == list[j].distancia.value){
-                				listaOrdenada.push(list[j]);
-                			}
-                    	}
-                	}
-                	console.log(listaOrdenada);
-                	for (var i=0;i<listaOrdenada.length;i++){
-                		var option = document.createElement("option");
-                		option.text = "Placa: "+listaOrdenada[i].placa+" Distancia: "+listaOrdenada[i].distancia.text;
-                    	select.add(option);
-                	}*/
+                  // HACER LAS COSAS AQUI
+// var select = document.getElementById('asignado');
+// var listaDistancia = [];
+// var listaDistanciaOrd = [];
+// var listaOrdenada = []
+// console.log(list);
+// var latlon = list[1].latitud+","+list[1].longitud;
+// console.log(latlon);
+                	/*
+					 * for (var i=0;i<list.length;i++){ var latlon =
+					 * list[i].latitud.value+","+list[i].longitud.value;
+					 * console.log(latlon); calculateRoute(directionsService,
+					 * latlon, ruta) } listaDistanciaOrd = test(listaDistancia);
+					 * for (var i=0;i<list.length;i++){ for (var j=0;j<listaDistanciaOrd.length;j++){
+					 * if(listaDistanciaOrd[i] == list[j].distancia.value){
+					 * listaOrdenada.push(list[j]); } } }
+					 * console.log(listaOrdenada); for (var i=0;i<listaOrdenada.length;i++){
+					 * var option = document.createElement("option");
+					 * option.text = "Placa: "+listaOrdenada[i].placa+"
+					 * Distancia: "+listaOrdenada[i].distancia.text;
+					 * select.add(option); }
+					 */
 
         })
         .fail(function(xhr, status, errorThrown) {
@@ -146,11 +119,3 @@ function quicksort(primero,ultimo){
 }
 return arreglo;
 }
-
-
-
-
-
-
-
-
