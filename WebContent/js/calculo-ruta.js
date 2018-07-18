@@ -51,18 +51,19 @@ function initMap() {
 
         			        	// AQUI AQUI AQUI AQUI AQUI AQUI AQUI AQUI
           			        	console.log('Haciendo cosas');
-
+          			        		listaTiempo = test(listaTiempo);
         			        	  let select = document.getElementById('asignado');
-        			        	  for(let i=0;i<listaTiempo.length;i++){
+        			        	  for(var x=0;x<listaTiempo.length;x++){
         			        		  for(let j=0;j<listaDatosRutas.length;j++){
-        			        			  if(listaTiempo[i]==listaDatosRutas[j].distancia.value){
-        			        				  listaOrdenada.push(listaDatosRutas);
+        			        			  if(listaTiempo[x]==listaDatosRutas[j].duracion.value){
+        			        				  listaOrdenada.push(listaDatosRutas[j]);
+        			        				  console.log(listaDatosRutas);
         			        			  }
         			        		  }
         			        	  }
-        			        	  for (let i=0;i<listaOrdenada.length;i++){
+        			        	  for (let k=0;k<listaOrdenada.length;k++){
         			        		  let option = document.createElement("option");
-        			        		  option.text = "Placa: "+listaOrdenada[i].placa+"Distancia: "+listaOrdenada[i].distancia.text;
+        			        		  option.text = "Placa: "+listaOrdenada[k].placa+"Distancia: "+listaOrdenada[k].distancia.text;
         			        		  console.log(option.text);
         			        		  select.add(option);
         			        	  }
