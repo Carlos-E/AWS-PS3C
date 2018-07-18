@@ -97,7 +97,6 @@
 							if (status === 'OK') {
 								//console.log(JSON.stringify(response.routes[0].legs[0].distance.text, null, 2));
 								//console.log(JSON.stringify(response.routes[0].legs[0].duration.text, null, 2));
-
 								i++;
 								let rows = document.getElementById("table").rows;
 								//rows[i].insertCell(rows[i].cells.length).innerHTML = 'Distancia ' + response.routes[0].legs[0].distance.text + '<br>Duraci&oacute;n ' + response.routes[0].legs[0].duration.text;
