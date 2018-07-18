@@ -2,7 +2,8 @@ var directionsService;
 var dataSet;
 var getRoutes;
 var listaDatosRutas = [];
-
+var listaTiempo = [];
+var listaOrdenada = [];
 function initMap() {
 
   directionsService = new google.maps.DirectionsService();
@@ -43,6 +44,7 @@ function initMap() {
         			            duracion: response.routes[0].legs[0].duration
         			          })
         			          
+        			         listaTiempo.push(response.routes[0].legs[0].duration.value); 
         			          // Logea mientras se va llenando la lista
         			          console.log('listaDatosRutas: ' + JSON.stringify(listaDatosRutas,null,2));
     			        	
@@ -52,9 +54,23 @@ function initMap() {
     			      }
     			    );
     	  }
+    	  // HACER LAS COSAS AQUI
+    	  var select = document.getElementById('asignado');
+    	  var listaTiempo = test(listaTiempo);
+    	  for(var i=0;i<listaTiempo.length;i++){
+    		  for(var j=0;j<listaDatosRutas.length;j++){
+    			  if(listaTiempo[i]==listaDatosRutas[j].distancia.value){
+    				  listaOrdenada.push(listaDatosRutas);
+    			  }
+    		  }
+    	  }
+    	  for (var i=0;i<listaOrdenada.length;i++){
+    		  var option = document.createElement("option");
+    		  option.text = "Placa: "+listaOrdenada[i].placa+"Distancia: "+listaOrdenada[i].distancia.text;
+    		  console.log(option.text);
+    		  select.add(option);
+    	  }
     	  
-    	  
-                  // HACER LAS COSAS AQUI
 // var select = document.getElementById('asignado');
 // var listaDistancia = [];
 // var listaDistanciaOrd = [];
