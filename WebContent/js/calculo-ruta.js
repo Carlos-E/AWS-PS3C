@@ -32,44 +32,53 @@ function initMap() {
     			      function(response, status) {
     			        if (status === 'OK') {
     			        	
-    			        	console.log('Rutas de: '+vehiculos[i].placa);
-    			            console.log(JSON.stringify(response.routes[0].legs[0].distance, null, 2));
+    			        	console.log('Duracion de: '+vehiculos[i].placa);
     			            console.log(JSON.stringify(response.routes[0].legs[0].duration, null, 2));
-    			        	
-    		                 // HACER LAS COSAS AQUI
-    			        	
-    			        	listaDatosRutas.push({
+
+    			            listaDatosRutas.push({
         			            placa: vehiculos[i].placa,
         			            distancia: response.routes[0].legs[0].distance,
         			            duracion: response.routes[0].legs[0].duration
         			          })
         			          
         			         listaTiempo.push(response.routes[0].legs[0].duration.value); 
-        			          // Logea mientras se va llenando la lista
-        			          console.log('listaDatosRutas: ' + JSON.stringify(listaDatosRutas,null,2));
+        			          
+    			            //Este if solo se ejecuta en el ultimo ciclo del FOR(al menos eso creo)
+        			          if(i==vehiculos.length-1){
+        			        	  
+            			          console.log('listaDatosRutas: ' + JSON.stringify(listaDatosRutas,null,2));
+            			          console.log('listaTiempo: ' + JSON.stringify(listaTiempo,null,2));
+
+        			        	// AQUI AQUI AQUI AQUI AQUI AQUI AQUI AQUI
+          			        	console.log('Haciendo cosas');
+
+        			        	  let select = document.getElementById('asignado');
+        			        	  for(let i=0;i<listaTiempo.length;i++){
+        			        		  for(let j=0;j<listaDatosRutas.length;j++){
+        			        			  if(listaTiempo[i]==listaDatosRutas[j].distancia.value){
+        			        				  listaOrdenada.push(listaDatosRutas);
+        			        			  }
+        			        		  }
+        			        	  }
+        			        	  for (let i=0;i<listaOrdenada.length;i++){
+        			        		  let option = document.createElement("option");
+        			        		  option.text = "Placa: "+listaOrdenada[i].placa+"Distancia: "+listaOrdenada[i].distancia.text;
+        			        		  console.log(option.text);
+        			        		  select.add(option);
+        			        	  }
+        			        	  
+            			        	console.log('Lista ordenada: '+JSON.stringify(listaOrdenada,null,2));
+        			        	  
+        			          }
     			        	
     			        } else {
     			          console.log('Error calculando la ruta de: '+vehiculos[i].placa);
     			        }
     			      }
     			    );
+    		  
     	  }
-    	  // HACER LAS COSAS AQUI
-    	  var select = document.getElementById('asignado');
-    	  var listaTiempo = test(listaTiempo);
-    	  for(var i=0;i<listaTiempo.length;i++){
-    		  for(var j=0;j<listaDatosRutas.length;j++){
-    			  if(listaTiempo[i]==listaDatosRutas[j].distancia.value){
-    				  listaOrdenada.push(listaDatosRutas);
-    			  }
-    		  }
-    	  }
-    	  for (var i=0;i<listaOrdenada.length;i++){
-    		  var option = document.createElement("option");
-    		  option.text = "Placa: "+listaOrdenada[i].placa+"Distancia: "+listaOrdenada[i].distancia.text;
-    		  console.log(option.text);
-    		  select.add(option);
-    	  }
+    	 
     	  
 // var select = document.getElementById('asignado');
 // var listaDistancia = [];
