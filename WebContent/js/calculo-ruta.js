@@ -31,7 +31,7 @@ function initMap() {
     			      function(response, status) {
     			        if (status === 'OK') {
     			        	
-    			        	console.log('Rutas: '+vehiculos[i].placa);
+    			        	console.log('Rutas de: '+vehiculos[i].placa);
     			            console.log(JSON.stringify(response.routes[0].legs[0].distance, null, 2));
     			            console.log(JSON.stringify(response.routes[0].legs[0].duration, null, 2));
     			        	
@@ -44,10 +44,10 @@ function initMap() {
         			          })
         			          
         			          // Logea mientras se va llenando la lista
-        			          console.log(listaDatosRutas);
+        			          console.log('listaDatosRutas: ' + JSON.stringify(listaDatosRutas,null,2));
     			        	
     			        } else {
-    			          console.log('Ah ocurrido un error con calculando ESTA ruta');
+    			          console.log('Error calculando la ruta de: '+vehiculos[i].placa);
     			        }
     			      }
     			    );
