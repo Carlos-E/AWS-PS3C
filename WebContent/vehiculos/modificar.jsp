@@ -135,7 +135,7 @@
 							<input class="form-control" type="text" name="tipo" id="tipo" readonly>
 						</div>
 					</div>
-					<div class="form-group row">
+					<div class="form-group row" id="peso-espacio">
 						<label class="col-md-2 col-form-label text-capitalize">Peso m&aacute;ximo</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="peso" placeholder="peso" id="peso" required>
@@ -218,9 +218,11 @@
 						if(objeto.tipo=='remolque'){
 							$('#peso').attr('readonly','true');
 							$('#espacio').attr('readonly','true');
+							$('#peso-espacio').hide();
 						}else{
 							$('#peso').attr('readonly','false');
 							$('#espacio').attr('readonly','false');
+							$('#peso-espacio').show();
 						}
 						$('#peso').val(objeto.peso);
 						$('#espacio').val(objeto.espacio);
