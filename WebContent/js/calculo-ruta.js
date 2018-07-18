@@ -37,8 +37,8 @@ function initMap() {
 
     			            listaDatosRutas.push({
         			            placa: vehiculos[i].placa,
-        			            distancia: response.routes[0].legs[0].distance,
-        			            duracion: response.routes[0].legs[0].duration
+        			            distancia: response.routes[0].legs[0].distance.value,
+        			            duracion: response.routes[0].legs[0].duration.value
         			          })
         			          
         			         listaTiempo.push(response.routes[0].legs[0].duration.value); 
@@ -46,30 +46,36 @@ function initMap() {
     			            //Este if solo se ejecuta en el ultimo ciclo del FOR(al menos eso creo)
         			          if(i==vehiculos.length-1){
         			        	  
-            			          console.log('listaDatosRutas: ' + JSON.stringify(listaDatosRutas,null,2));
-            			          console.log('listaTiempo: ' + JSON.stringify(listaTiempo,null,2));
+            			        console.log('listaDatosRutas: ' + JSON.stringify(listaDatosRutas,null,2));
+            			        console.log('listaTiempo: ' + JSON.stringify(listaTiempo,null,2));
 
+        			        	listaDatosRutas = quickSort(listaDatosRutas,0,listaDatosRutas.length-1,'duracion');
+          			        	
+        			        	console.log('listaDatosRutas(ordenada?): ' + JSON.stringify(listaDatosRutas,null,2));
+
+            			          
         			        	// AQUI AQUI AQUI AQUI AQUI AQUI AQUI AQUI
-          			        	console.log('Haciendo cosas');
-          			        		listaTiempo = test(listaTiempo);
-        			        	  let select = document.getElementById('asignado');
-        			        	  for(var x=0;x<listaTiempo.length;x++){
-        			        		  for(let j=0;j<listaDatosRutas.length;j++){
-        			        			  if(listaTiempo[x]==listaDatosRutas[j].duracion.value){
-        			        				  listaOrdenada.push(listaDatosRutas[j]);
-        			        				  console.log(listaDatosRutas);
-        			        			  }
-        			        		  }
-        			        	  }
-        			        	  for (let k=0;k<listaOrdenada.length;k++){
-        			        		  let option = document.createElement("option");
-        			        		  option.text = "Placa: "+listaOrdenada[k].placa+"Distancia: "+listaOrdenada[k].distancia.text;
-        			        		  console.log(option.text);
-        			        		  select.add(option);
-        			        	  }
-        			        	  
-            			        	console.log('Lista ordenada: '+JSON.stringify(listaOrdenada,null,2));
-        			        	  
+//          			        	console.log('Haciendo cosas');
+//      			        		listaTiempo = test(listaTiempo);
+//      			        		
+//        			        	  let select = document.getElementById('asignado');
+//        			        	  for(var x=0;x<listaTiempo.length;x++){
+//        			        		  for(let j=0;j<listaDatosRutas.length;j++){
+//        			        			  if(listaTiempo[x]==listaDatosRutas[j].duracion.value){
+//        			        				  listaOrdenada.push(listaDatosRutas[j]);
+//        			        				  console.log(listaDatosRutas);
+//        			        			  }
+//        			        		  }
+//        			        	  }
+//        			        	  for (let k=0;k<listaOrdenada.length;k++){
+//        			        		  let option = document.createElement("option");
+//        			        		  option.text = "Placa: "+listaOrdenada[k].placa+"Distancia: "+listaOrdenada[k].distancia.text;
+//        			        		  console.log(option.text);
+//        			        		  select.add(option);
+//        			        	  }
+//        			        	  
+//            			        	console.log('Lista ordenada: '+JSON.stringify(listaOrdenada,null,2));
+//        			        	  
         			          }
     			        	
     			        } else {
@@ -144,4 +150,60 @@ function quicksort(primero,ultimo){
     }
 }
 return arreglo;
+}
+
+
+
+
+function swap(items, firstIndex, secondIndex){
+    var temp = items[firstIndex];
+    items[firstIndex] = items[secondIndex];
+    items[secondIndex] = temp;
+}
+
+function partition(items, left, right, criteria) {
+
+    let pivot   = items[Math.floor((right + left) / 2)];
+    let  i       = left;
+    let  j       = right;
+
+    while (i <= j) {
+
+        while (items[i][criteria] < pivot[criteria]) {
+            i++;
+        }
+
+        while (items[j][criteria] > pivot[criteria]) {
+            j--;
+        }
+
+        if (i <= j) {
+            swap(items, i, j, criteria);
+            i++;
+            j--;
+        }
+    }
+
+    return i;
+}
+
+function quickSort(items, left, right,criteria) {
+
+    let index;
+
+    if (items.length > 1) {
+
+        index = partition(items, left, right,criteria);
+
+        if (left < index - 1) {
+            quickSort(items, left, index - 1,criteria);
+        }
+
+        if (index < right) {
+            quickSort(items, index, right,criteria);
+        }
+
+    }
+
+    return items;
 }
