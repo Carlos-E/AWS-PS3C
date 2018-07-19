@@ -55,28 +55,6 @@ function initMap() {
           			        	
         			        	console.log('listaDatosRutas(ordenada?): ' + JSON.stringify(listaDatosRutas,null,2));
 
-            			          
-        			        	// AQUI AQUI AQUI AQUI AQUI AQUI AQUI AQUI
-//          			        	console.log('Haciendo cosas');
-//      			        		listaTiempo = test(listaTiempo);
-//      			        		
-//        			        	  let select = document.getElementById('asignado');
-//        			        	  for(var x=0;x<listaTiempo.length;x++){
-//        			        		  for(let j=0;j<listaDatosRutas.length;j++){
-//        			        			  if(listaTiempo[x]==listaDatosRutas[j].duracion.value){
-//        			        				  listaOrdenada.push(listaDatosRutas[j]);
-//        			        				  console.log(listaDatosRutas);
-//        			        			  }
-//        			        		  }
-//        			        	  }
-//        			        	  for (let k=0;k<listaOrdenada.length;k++){
-//        			        		  let option = document.createElement("option");
-//        			        		  option.text = "Placa: "+listaOrdenada[k].placa+"Distancia: "+listaOrdenada[k].distancia.text;
-//        			        		  console.log(option.text);
-//        			        		  select.add(option);
-//        			        	  }
-//        			        	  
-//            			        	console.log('Lista ordenada: '+JSON.stringify(listaOrdenada,null,2));
         			        	var select = document.getElementById('asignado');
         			        	for(let l=select.length;l>1;l--){
         			        		console.log("se elimina :"+select.length);
@@ -98,30 +76,6 @@ function initMap() {
     			    );
     		  
     	  }
-    	 
-    	  
-// var select = document.getElementById('asignado');
-// var listaDistancia = [];
-// var listaDistanciaOrd = [];
-// var listaOrdenada = []
-// console.log(list);
-// var latlon = list[1].latitud+","+list[1].longitud;
-// console.log(latlon);
-                	/*
-					 * for (var i=0;i<list.length;i++){ var latlon =
-					 * list[i].latitud.value+","+list[i].longitud.value;
-					 * console.log(latlon); calculateRoute(directionsService,
-					 * latlon, ruta) } listaDistanciaOrd = test(listaDistancia);
-					 * for (var i=0;i<list.length;i++){ for (var j=0;j<listaDistanciaOrd.length;j++){
-					 * if(listaDistanciaOrd[i] == list[j].distancia.value){
-					 * listaOrdenada.push(list[j]); } } }
-					 * console.log(listaOrdenada); for (var i=0;i<listaOrdenada.length;i++){
-					 * var option = document.createElement("option");
-					 * option.text = "Placa: "+listaOrdenada[i].placa+"
-					 * Distancia: "+listaOrdenada[i].distancia.text;
-					 * select.add(option); }
-					 */
-
         })
         .fail(function(xhr, status, errorThrown) {
           console.log('Failed getRoutes');
@@ -134,39 +88,6 @@ function initMap() {
 
   console.log('Mapa Inicializado');
 }
-
-function test(arrel){
-	var arreglo = arrel;
-	quicksort(0,(arreglo.length -1));
-function quicksort(primero,ultimo){
-	i = primero
-    j = ultimo
-    pivote = arreglo[parseInt((i+j)/2)];
-    do{
-        while(arreglo[i]<pivote){
-        	i++;
-            j--;
-        }
-        if(i<=j){
-        	aux=arreglo[j];
-            arreglo[j] = arreglo[i]
-            arreglo[i] = aux
-            i++;
-            j--;
-        }
-    }while(i<j);
-    if(primero<j){
-    	quicksort(primero,j);
-    }
-    if(ultimo>i){
-    	quicksort(i,ultimo); 
-    }
-}
-return arreglo;
-}
-
-
-
 
 function swap(items, firstIndex, secondIndex){
     var temp = items[firstIndex];
