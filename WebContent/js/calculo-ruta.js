@@ -1,7 +1,6 @@
 var directionsService;
 var dataSet;
 var getRoutes;
-var listaDatosRutas = [];
 var listaTiempo = [];
 var listaOrdenada = [];
 function initMap() {
@@ -9,6 +8,7 @@ function initMap() {
   directionsService = new google.maps.DirectionsService();
 
   getRoutes = (origenEnvio) => {
+	  var listaDatosRutas = [];
 	  console.log('Calculando Rutas Con Origen De Envio');
 	  
     $(document).ready(function() {
@@ -78,6 +78,11 @@ function initMap() {
 //        			        	  
 //            			        	console.log('Lista ordenada: '+JSON.stringify(listaOrdenada,null,2));
         			        	var select = document.getElementById('asignado');
+        			        	for(let l=select.length;l>1;l--){
+        			        		console.log("se elimina :"+select.length);
+        			        		console.log("se elimina :"+select.options[l-1].text);
+        			        		select.remove(l-1);
+        			        	}
         			        	for (let k=0;k<listaDatosRutas.length;k++){
         			        		let option = document.createElement("option");
         			        		option.text = "Placa: "+listaDatosRutas[k].placa+" - Distancia: "+listaDatosRutas[k].distanciaT;
