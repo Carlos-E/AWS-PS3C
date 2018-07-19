@@ -48,9 +48,12 @@ function initMap() {
     			    );
     		  
     		  
-    		// Este if solo se ejecuta en el ultimo ciclo del FOR(al menos eso creo)
+    		// Este if solo se ejecuta en el ultimo ciclo del FOR(al menos eso
+			// creo)
 	          if(i==vehiculos.length-1){
-	        	  //la funcion se ejecuta despues de 3 segundos, le da tiempo a la funcion asincrona de directionsService para completar
+	        	  // la funcion se ejecuta despues de 3 segundos, le da tiempo
+					// a la funcion asincrona de directionsService para
+					// completar
 	        	  setTimeout(function(){
 	        		  
 	        		  	console.log('listaDatosRutas: ' + JSON.stringify(listaDatosRutas,null,2));
@@ -58,16 +61,24 @@ function initMap() {
 			        	listaDatosRutas = quickSort(listaDatosRutas,0,listaDatosRutas.length-1,'duracion');
 			        	
 			        	console.log('listaDatosRutas(ordenada?): ' + JSON.stringify(listaDatosRutas,null,2));
-
-			        	var select = document.getElementById('asignado');
-			        	for(let l=select.length;l>1;l--){
-			        		console.log("se elimina: "+select.length);
-			        		console.log("se elimina: "+select.options[l-1].text);
-			        		select.remove(l-1);
+			        	
+			        	// Limpiar select
+			        	let select = document.getElementById('asignado');
+			        	let length = select.options.length;
+			        	for (i = 0; i < length; i++) {
+			        	  select.options[i] = null;
 			        	}
+			        	// Poner Seleccionar... de primero
+			        	let option = document.createElement("option");
+			        	option.text = 'Selecionar...';
+			        	option.value = '';   	
+			        	select.add(option);
+			        	
+			        	// Llenar select
 			        	for (let k=0;k<listaDatosRutas.length;k++){
 			        		let option = document.createElement("option");
 			        		option.text = "Placa: "+listaDatosRutas[k].placa+" - Distancia: "+listaDatosRutas[k].distanciaT;
+				        	option.value = listaDatosRutas[k].placa;   	
 			        		console.log(option.text);
 			        		select.add(option);
 			        	}
