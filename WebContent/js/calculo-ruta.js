@@ -97,7 +97,7 @@ function initMap() {
     });
   };
 
-  console.log('Mapa Inicializado');
+  console.log('Servicio de rutas inicializado');
 }
 
 function swap(items, firstIndex, secondIndex){
