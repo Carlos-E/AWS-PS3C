@@ -1,14 +1,12 @@
 var directionsService;
-var dataSet;
 var getRoutes;
-var listaTiempo = [];
-var listaOrdenada = [];
+
 function initMap() {
 
   directionsService = new google.maps.DirectionsService();
 
   getRoutes = (origenEnvio) => {
-	  var listaDatosRutas = [];
+	  let listaDatosRutas = [];
 	  console.log('Calculando Rutas Con Origen De Envio');
 	  
     $(document).ready(function() {
@@ -41,33 +39,7 @@ function initMap() {
         			            duracion: response.routes[0].legs[0].duration.value,
         			            distanciaT: response.routes[0].legs[0].distance.text,
         			            duracionT: response.routes[0].legs[0].duration.text
-        			          })
-        			          
-        			         listaTiempo.push(response.routes[0].legs[0].duration.value); 
-        			          
-    			            //Este if solo se ejecuta en el ultimo ciclo del FOR(al menos eso creo)
-        			          if(i==vehiculos.length-1){
-        			        	  
-            			        console.log('listaDatosRutas: ' + JSON.stringify(listaDatosRutas,null,2));
-            			        console.log('listaTiempo: ' + JSON.stringify(listaTiempo,null,2));
-
-        			        	listaDatosRutas = quickSort(listaDatosRutas,0,listaDatosRutas.length-1,'duracion');
-          			        	
-        			        	console.log('listaDatosRutas(ordenada?): ' + JSON.stringify(listaDatosRutas,null,2));
-
-        			        	var select = document.getElementById('asignado');
-        			        	for(let l=select.length;l>1;l--){
-        			        		console.log("se elimina :"+select.length);
-        			        		console.log("se elimina :"+select.options[l-1].text);
-        			        		select.remove(l-1);
-        			        	}
-        			        	for (let k=0;k<listaDatosRutas.length;k++){
-        			        		let option = document.createElement("option");
-        			        		option.text = "Placa: "+listaDatosRutas[k].placa+" - Distancia: "+listaDatosRutas[k].distanciaT;
-        			        		console.log(option.text);
-        			        		select.add(option);
-        			        	}
-        			          }
+        			          });
     			        	
     			        } else {
     			          console.log('Error calculando la ruta de: '+vehiculos[i].placa);
@@ -75,7 +47,35 @@ function initMap() {
     			      }
     			    );
     		  
-    	  }
+    		  
+    		// Este if solo se ejecuta en el ultimo ciclo del FOR(al menos eso creo)
+	          if(i==vehiculos.length-1){
+	        	  //la funcion se ejecuta despues de 3 segundos, le da tiempo a la funcion asincrona de directionsService para completar
+	        	  setTimeout(function(){
+	        		  
+	        		  	console.log('listaDatosRutas: ' + JSON.stringify(listaDatosRutas,null,2));
+
+			        	listaDatosRutas = quickSort(listaDatosRutas,0,listaDatosRutas.length-1,'duracion');
+			        	
+			        	console.log('listaDatosRutas(ordenada?): ' + JSON.stringify(listaDatosRutas,null,2));
+
+			        	var select = document.getElementById('asignado');
+			        	for(let l=select.length;l>1;l--){
+			        		console.log("se elimina: "+select.length);
+			        		console.log("se elimina: "+select.options[l-1].text);
+			        		select.remove(l-1);
+			        	}
+			        	for (let k=0;k<listaDatosRutas.length;k++){
+			        		let option = document.createElement("option");
+			        		option.text = "Placa: "+listaDatosRutas[k].placa+" - Distancia: "+listaDatosRutas[k].distanciaT;
+			        		console.log(option.text);
+			        		select.add(option);
+			        	}
+	        	  },3000);        
+	          }// if
+    		  
+    	  }// for
+    	  
         })
         .fail(function(xhr, status, errorThrown) {
           console.log('Failed getRoutes');
