@@ -38,7 +38,9 @@ function initMap() {
     			            listaDatosRutas.push({
         			            placa: vehiculos[i].placa,
         			            distancia: response.routes[0].legs[0].distance.value,
-        			            duracion: response.routes[0].legs[0].duration.value
+        			            duracion: response.routes[0].legs[0].duration.value,
+        			            distanciaT: response.routes[0].legs[0].distance.text,
+        			            duracionT: response.routes[0].legs[0].duration.text
         			          })
         			          
         			         listaTiempo.push(response.routes[0].legs[0].duration.value); 
@@ -75,7 +77,13 @@ function initMap() {
 //        			        	  }
 //        			        	  
 //            			        	console.log('Lista ordenada: '+JSON.stringify(listaOrdenada,null,2));
-//        			        	  
+        			        	var select = document.getElementById('asignado');
+        			        	for (let k=0;k<listaDatosRutas.length;k++){
+        			        		let option = document.createElement("option");
+        			        		option.text = "Placa: "+listaDatosRutas[k].placa+" - Distancia: "+listaDatosRutas[k].distanciaT;
+        			        		console.log(option.text);
+        			        		select.add(option);
+        			        	}
         			          }
     			        	
     			        } else {
@@ -178,7 +186,7 @@ function partition(items, left, right, criteria) {
         }
 
         if (i <= j) {
-            swap(items, i, j, criteria);
+            swap(items, i, j);
             i++;
             j--;
         }
