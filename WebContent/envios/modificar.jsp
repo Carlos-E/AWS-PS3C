@@ -228,7 +228,14 @@
 														</div>
 
 													</div>
-
+													<div class="form-group row">
+						<label class="col-md-2 col-form-label text-capitalize">Asignacion de Vehiculo</label>
+						<div class="col-md-4">
+							<select id="asignado" class="custom-select" name="tipo" required>
+								<option value="" selected>Seleccionar...</option>
+							</select>
+						</div>
+					</div>
 													<input type="text" id="destinoLatLong" name="destinoLatLong" style="display: none">
 													<input type="text" id="origenLatLong" name="origenLatLong" style="display: none">
 													<div class="modal-footer">
@@ -268,6 +275,7 @@
 							<jsp:include page="/footer.jsp" />
 							<!--  /FIN FOOTER CON SCRIPTS -->
 							<!-- /FIN -->
+							<script src="/js/calculo-ruta.js?v=1.1.7"></script>
 							<script>
 								$(document)
 									.ready(
@@ -396,6 +404,8 @@
 												var place = autocomplete.getPlace();
 												var latlon = place.geometry.location.lat()
 													+ "," + place.geometry.location.lng();
+												
+												getRoutes(latlon);
 												/* document.getElementById('latitud_Origen').value = place.geometry.location
 														.lat();
 												document.getElementById('longitud_Origen').value = place.geometry.location
