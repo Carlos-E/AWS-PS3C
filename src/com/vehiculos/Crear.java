@@ -32,18 +32,23 @@ public class Crear extends HttpServlet {
 
 		String peso = request.getParameter("peso").toLowerCase();
 		String espacio = request.getParameter("espacio").toLowerCase();
-		
+		String conductor = request.getParameter("conductor").toLowerCase();
 		if (request.getParameter("tipo").toLowerCase().equals("remolque")) {
 			peso = "ninguno";
 			espacio = "ninguno";
-		}		
+		}
+		if(conductor.equals("ninguno")) {
+			vehiculo.setEstado("sin conductor");
+		}else {
+			vehiculo.setEstado("disponible");
+		}
 		vehiculo.setPlaca(request.getParameter("placa").toLowerCase());
 		vehiculo.setPeso("0");
 		vehiculo.setPesoMax(peso);
 		vehiculo.setTipo(request.getParameter("tipo").toLowerCase());
 		vehiculo.setEspacioMax(espacio);
 		vehiculo.setEspacio("0");
-		vehiculo.setEstado("disponible");
+		
 		vehiculo.setUsuario(request.getParameter("conductor").toLowerCase());
 		vehiculo.setEmpresa(request.getParameter("empresa"));
 		//CODIGO NUEVO 12 JUL 2018

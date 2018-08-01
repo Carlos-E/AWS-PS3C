@@ -138,10 +138,20 @@
 					<div class="form-group row" id="peso-espacio">
 						<label class="col-md-2 col-form-label text-capitalize">Peso m&aacute;ximo</label>
 						<div class="col-md-4">
+							<input class="form-control" type="text" name="pesoMax" placeholder="peso Maximo" id="pesoMax" required>
+						</div>
+						<label class="col-md-2 col-form-label text-capitalize">Espacio m&aacute;ximo</label>
+						<div class="col-md-4"> 
+							<input class="form-control" type="text" name="espacioMax" placeholder="espacio Maximo" id="espacioMax" required>
+						</div>
+					</div>
+					<div class="form-group row" id="peso-espacio">
+						<label class="col-md-2 col-form-label text-capitalize">Peso</label>
+						<div class="col-md-4">
 							<input class="form-control" type="text" name="peso" placeholder="peso" id="peso" required>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Espacio</label>
-						<div class="col-md-4">
+						<div class="col-md-4"> 
 							<input class="form-control" type="text" name="espacio" placeholder="espacio" id="espacio" required>
 						</div>
 					</div>

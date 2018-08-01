@@ -33,6 +33,8 @@ public class Modificar extends HttpServlet {
 		vehiculo = (clases.Vehiculo) ControladorBD.getItem("vehiculos", "placa", placa);
 		String peso = request.getParameter("peso").toLowerCase();
 		String espacio = request.getParameter("espacio").toLowerCase();
+		String pesoMax = request.getParameter("pesoMax").toLowerCase();
+		String espacioMax = request.getParameter("espacioMax").toLowerCase();
 		String conductor = null;
 		
 		if (request.getParameter("conductor").equals("null")) {
@@ -46,12 +48,22 @@ public class Modificar extends HttpServlet {
 		boolean cambio = false;
 		if (!vehiculo.getPeso().equals(peso)) {
 			vehiculo.setPeso(peso);
-			ControladorBD.actualizarValor("vehiculos", "placa", placa, "capacidad", peso);
+			ControladorBD.actualizarValor("vehiculos", "placa", placa, "peso", peso);
 			cambio = true;
 		}
 		if (!vehiculo.getEspacio().equals(espacio)) {
 			vehiculo.setEspacio(espacio);
 			ControladorBD.actualizarValor("vehiculos", "placa", placa, "espacio", espacio);
+			cambio = true;
+		}
+		if (!vehiculo.getPeso().equals(pesoMax)) {
+			vehiculo.setPeso(pesoMax);
+			ControladorBD.actualizarValor("vehiculos", "placa", placa, "pesoMax", pesoMax);
+			cambio = true;
+		}
+		if (!vehiculo.getEspacio().equals(espacioMax)) {
+			vehiculo.setEspacio(espacioMax);
+			ControladorBD.actualizarValor("vehiculos", "placa", placa, "espacioMax", espacioMax);
 			cambio = true;
 		}
 		if (!vehiculo.getUsuario().equals(conductor)) {

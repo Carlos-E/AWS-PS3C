@@ -136,7 +136,7 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Asignacion de Vehiculo</label>
 						<div class="col-md-4">
-							<select id="asignado" class="custom-select" name="tipo" required>
+							<select id="asignado" class="custom-select" name="asignado" required>
 								<option value="" selected>Seleccionar...</option>
 							</select>
 						</div>
