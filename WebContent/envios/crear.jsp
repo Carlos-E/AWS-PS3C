@@ -225,25 +225,17 @@
 		};
 	</script>
 	<script type="text/javascript">
-		var busqueda;
 		var i=0;
 		function uno(){
-			busqueda = setInterval('generar()',1000);
-		}
-		function generar(){
-			if(true){
-				//getRoutes(this.latlon);
-				var latlon = document.getElementById('origenLatLong').value;
-				var peso = document.getElementById('peso').value;
-				var espacio = document.getElementById('espacio').value;
-				if(latlon != ""){
-					if(peso != "" && espacio != ""){
+			var peso = document.getElementById('peso').value;
+			var espacio = document.getElementById('espacio').value;
+			if(peso != "" && espacio != ""){
+				setTimeout(function(){
+					var latlon = document.getElementById('origenLatLong').value;
+					if(latlon != ""){
 						getRoutes(latlon);
 					}
-					clearInterval(busqueda);
-				}
-				i++;
-				console.log(i);
+				}, 1000);
 			}
 		}
 		
