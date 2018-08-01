@@ -56,9 +56,19 @@
 
 				<form class="form" action="/envios/crear" method="post">
 					<div class="form-group row">
+						<label class="col-md-2 col-form-label text-capitalize" >Peso</label>
+						<div class="col-md-4">
+							<input class="form-control" type="number" name="peso" id="peso" placeholder="peso en kg" onchange="uno()" required>
+						</div>
+						<label class="col-md-2 col-form-label text-capitalize">espacio</label>
+						<div class="col-md-4">
+							<input class="form-control" type="number" name="espacio" id="espacio" placeholder="en metros cubicos" onchange="uno()" required>
+						</div>
+					</div>
+					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">origen</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="origen" placeholder="origen" id="origen" required>
+							<input class="form-control" type="text" name="origen" placeholder="origen" id="origen" onchange="uno()" required>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">destino</label>
 						<div class="col-md-4">
@@ -118,21 +128,12 @@
 								<option value="perecedero">perecedero</option>
 							</select>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">espacio</label>
-						<div class="col-md-4">
-							<input class="form-control" type="number" name="espacio" placeholder="en metros cubicos" required>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Peso maximo</label>
-						<div class="col-md-4">
-							<input class="form-control" type="number" name="peso" placeholder="peso en kg" required>
-						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Descripci&oacute;n</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="descripcion" placeholder="descripci&oacute;n" required>
-						</div>
+						</div>						
 					</div>
+					
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Asignacion de Vehiculo</label>
 						<div class="col-md-4">
@@ -218,12 +219,34 @@
 								var place = autocomplete.getPlace();
 								var latlon = place.geometry.location.lat()
 										+ "," + place.geometry.location.lng();
-
-								getRoutes(latlon);
-
+								
 								document.getElementById('origenLatLong').value = latlon;
 							});
 		};
+	</script>
+	<script type="text/javascript">
+		var busqueda;
+		var i=0;
+		function uno(){
+			busqueda = setInterval('generar()',1000);
+		}
+		function generar(){
+			if(true){
+				//getRoutes(this.latlon);
+				var latlon = document.getElementById('origenLatLong').value;
+				var peso = document.getElementById('peso').value;
+				var espacio = document.getElementById('espacio').value;
+				if(latlon != ""){
+					if(peso != "" && espacio != ""){
+						getRoutes(latlon);
+					}
+					clearInterval(busqueda);
+				}
+				i++;
+				console.log(i);
+			}
+		}
+		
 	</script>
 </body>
 
