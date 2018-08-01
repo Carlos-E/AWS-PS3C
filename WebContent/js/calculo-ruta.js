@@ -64,10 +64,8 @@ function initMap() {
 			        	
 			        	// Limpiar select
 			        	let select = document.getElementById('asignado');
-			        	let length = select.options.length;
-			        	for (i = 0; i < length; i++) {
-			        	  select.options[i] = null;
-			        	}
+			            $("#asignado option").remove();
+
 			        	// Poner Seleccionar... de primero
 			        	let option = document.createElement("option");
 			        	option.text = 'Selecionar...';
