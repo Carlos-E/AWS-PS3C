@@ -5,19 +5,21 @@ import org.json.JSONObject;
 
 public class Vehiculo {
 
-	String placa, tipo, peso, espacio, estado, usuario, empresa, latitud, longitud;
+	String placa, tipo, peso, espacio, pesoMax, espacioMax, estado, usuario, empresa, latitud, longitud;
 
 	public Vehiculo() {
 		super();
 	}
 
-	public Vehiculo(String placa, String tipo, String peso, String espacio, String estado, String usuario,
-			String empresa, String latitud, String longitud) {
+	public Vehiculo(String placa, String tipo, String peso, String espacio, String pesoMax, String espacioMax,
+			String estado, String usuario, String empresa, String latitud, String longitud) {
 		super();
 		this.placa = placa;
 		this.tipo = tipo;
 		this.peso = peso;
 		this.espacio = espacio;
+		this.pesoMax = pesoMax;
+		this.espacioMax = espacioMax;
 		this.estado = estado;
 		this.usuario = usuario;
 		this.empresa = empresa;
@@ -55,6 +57,22 @@ public class Vehiculo {
 
 	public void setEspacio(String espacio) {
 		this.espacio = espacio;
+	}
+
+	public String getPesoMax() {
+		return pesoMax;
+	}
+
+	public void setPesoMax(String pesoMax) {
+		this.pesoMax = pesoMax;
+	}
+
+	public String getEspacioMax() {
+		return espacioMax;
+	}
+
+	public void setEspacioMax(String espacioMax) {
+		this.espacioMax = espacioMax;
 	}
 
 	public String getEstado() {
@@ -99,34 +117,11 @@ public class Vehiculo {
 
 	@Override
 	public String toString() {
-		return "Vehiculo [placa=" + placa + ", tipo=" + tipo + ", peso=" + peso + ", espacio=" + espacio + ", estado="
-				+ estado + ", usuario=" + usuario + ", empresa=" + empresa + ", latitud=" + latitud + ", longitud="
-				+ longitud + "]";
+		return "Vehiculo [placa=" + placa + ", tipo=" + tipo + ", peso=" + peso + ", espacio=" + espacio + ", pesoMax="
+				+ pesoMax + ", espacioMax=" + espacioMax + ", estado=" + estado + ", usuario=" + usuario + ", empresa="
+				+ empresa + ", latitud=" + latitud + ", longitud=" + longitud + "]";
 	}
 
-	public String toJSON() {
-
-		JSONObject jsonObject = new JSONObject();
-
-		try {
-
-			jsonObject.put("placa", getPlaca());
-			jsonObject.put("tipo", getTipo());
-			jsonObject.put("peso", getPeso());
-			jsonObject.put("espacio", getEspacio());
-			jsonObject.put("estado", getEstado());
-			jsonObject.put("usuario", getUsuario());
-			jsonObject.put("empresa", getEmpresa());
-			jsonObject.put("latitud", getLatitud());
-			jsonObject.put("longitud", getLongitud());
-
-			return jsonObject.toString();
-
-		} catch (JSONException e) {
-			e.printStackTrace();
-			return null;
-		}
-
-	}
+	
 
 }
