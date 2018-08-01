@@ -38,9 +38,11 @@ public class Crear extends HttpServlet {
 			espacio = "ninguno";
 		}		
 		vehiculo.setPlaca(request.getParameter("placa").toLowerCase());
-		vehiculo.setPeso(peso);
+		vehiculo.setPeso("0");
+		vehiculo.setPesoMax(peso);
 		vehiculo.setTipo(request.getParameter("tipo").toLowerCase());
-		vehiculo.setEspacio(espacio);
+		vehiculo.setEspacioMax(espacio);
+		vehiculo.setEspacio("0");
 		vehiculo.setEstado("disponible");
 		vehiculo.setUsuario(request.getParameter("conductor").toLowerCase());
 		vehiculo.setEmpresa(request.getParameter("empresa"));

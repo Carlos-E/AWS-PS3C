@@ -107,7 +107,7 @@
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="peso" placeholder="peso en kg" id="peso" value="0" required>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Espacio</label>
+						<label class="col-md-2 col-form-label text-capitalize">Espacio maximo</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="espacio" placeholder="en metros cubicos" id="espacio" value="0" required>
 						</div>
