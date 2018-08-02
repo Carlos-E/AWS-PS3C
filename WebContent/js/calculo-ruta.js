@@ -175,8 +175,13 @@ function setTrailers(pesoEnvio,espacioEnvio){
 	    	  
 	    	  for(let i=0;i<trailers.length;i++){
 	    		  
-	    		  if(trailers[i].peso < pesoEnvio || trailers[i].espacio < espacioEnvio){
-			        	console.log(trailers[i].patente+' no soporta las dimensiones del envio');
+	    		  if(pesoEnvio > parseFloat(trailers[i].peso)){
+			        	console.log(trailers[i].patente+' no soporta el peso del envio');		        	
+			        	continue;
+	    		  }
+	    		  
+	    		  if(espacioEnvio > parseFloat(trailers[i].espacio)){
+			        	console.log(trailers[i].patente+' no soporta el espacio del envio');
 			        	continue;
 	    		  }
 
