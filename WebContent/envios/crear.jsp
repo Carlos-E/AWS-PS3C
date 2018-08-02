@@ -233,7 +233,7 @@
 				setTimeout(function(){
 					var latlon = document.getElementById('origenLatLong').value;
 					if(latlon != ""){
-						getRoutes(latlon,peso,espacio);
+						getRoutes(latlon,parseFloat(peso),parseFloat(espacio));
 					}
 				}, 1000);
 			}

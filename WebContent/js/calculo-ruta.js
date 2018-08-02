@@ -25,10 +25,13 @@ function initMap() {
     			  continue;
     		  }
     		  
-    		  if(vehiculos[i].peso < pesoEnvio || vehiculos[i].espacio < espacioEnvio){
-		        	console.log(vehiculos[i].placa+' no soporta las dimensiones del envio');
-		        	console.log(vehiculos[i].peso+' < '+pesoEnvio);
-		        	console.log(vehiculos[i].espacio+' < '+espacioEnvio);
+    		  if(pesoEnvio > parseFloat(vehiculos[i].peso)){
+		        	console.log(vehiculos[i].placa+' no soporta el peso del envio');		        	
+		        	continue;
+    		  }
+    		  
+    		  if(espacioEnvio > parseFloat(vehiculos[i].espacio)){
+		        	console.log(vehiculos[i].placa+' no soporta el espacio del envio');
 		        	continue;
     		  }
     		  
