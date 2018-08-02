@@ -5,7 +5,7 @@ function initMap() {
 
   directionsService = new google.maps.DirectionsService();
 
-  getRoutes = (origenEnvio) => {
+  getRoutes = (origenEnvio, pesoEnvio, espacioEnvio) => {
 	  let listaDatosRutas = [];
 	  console.log('Calculando Rutas Con Origen De Envio');
 	  
@@ -19,6 +19,16 @@ function initMap() {
     	  console.log('Vehiculos: '+JSON.stringify(vehiculos,null,2));
     	  
     	  for(let i=0;i<vehiculos.length;i++){
+    		  
+    		  if(vehiculos[i].tipo == 'remolque'){
+    			  console.log(vehiculos[i].placa+' es un remolque, descartado');
+    			  continue;
+    		  }
+    		  
+    		  if(vehiculos[i].peso < pesoEnvio || vehiculos[i].espacio < espacioEnvio){
+		        	console.log(vehiculos[i].placa+' no soporta las dimensiones del envio');
+		        	continue;
+    		  }
     		  
     		  // Se llama directamente al servicio
     		  directionsService.route(
@@ -47,43 +57,34 @@ function initMap() {
     			      }
     			    );
     		  
-    		  
-    		// Este if solo se ejecuta en el ultimo ciclo del FOR(al menos eso
-			// creo)
-	          if(i==vehiculos.length-1){
-	        	  // la funcion se ejecuta despues de 3 segundos, le da tiempo
-					// a la funcion asincrona de directionsService para
-					// completar
-	        	  setTimeout(function(){
-	        		  
-	        		  	console.log('listaDatosRutas: ' + JSON.stringify(listaDatosRutas,null,2));
-
-			        	listaDatosRutas = quickSort(listaDatosRutas,0,listaDatosRutas.length-1,'duracion');
-			        	
-			        	console.log('listaDatosRutas(ordenada?): ' + JSON.stringify(listaDatosRutas,null,2));
-			        	
-			        	// Limpiar select
-			        	let select = document.getElementById('asignado');
-			            $("#asignado option").remove();
-
-			        	// Poner Seleccionar... de primero
-			        	let option = document.createElement("option");
-			        	option.text = 'Selecionar...';
-			        	option.value = '';   	
-			        	select.add(option);
-			        	
-			        	// Llenar select
-			        	for (let k=0;k<listaDatosRutas.length;k++){
-			        		let option = document.createElement("option");
-			        		option.text = "Placa: "+listaDatosRutas[k].placa+" - Distancia: "+listaDatosRutas[k].distanciaT;
-				        	option.value = listaDatosRutas[k].placa;   	
-			        		console.log(option.text);
-			        		select.add(option);
-			        	}
-	        	  },3000);        
-	          }// if
-    		  
     	  }// for
+    	  
+    	  
+    	  setTimeout(function(){
+    		  
+	        	listaDatosRutas = quickSort(listaDatosRutas,0,listaDatosRutas.length-1,'duracion');
+	        	
+	        	// Limpiar select
+	        	let select = document.getElementById('asignado');
+	            $("#asignado option").remove();
+
+	        	// Poner Seleccionar... de primero
+	        	let option = document.createElement("option");
+	        	option.text = 'Selecionar...';
+	        	option.value = '';   	
+	        	select.add(option);
+	        	
+        		console.log('Datos validos:');
+
+	        	// Llenar select
+	        	for (let k=0;k<listaDatosRutas.length;k++){
+	        		let option = document.createElement("option");
+	        		option.text = "Placa: "+listaDatosRutas[k].placa+" - Distancia: "+listaDatosRutas[k].distanciaT;
+		        	option.value = listaDatosRutas[k].placa;   	
+	        		console.log(option.text);
+	        		select.add(option);
+	        	}
+  	  },3000);//SetTimeOut 
     	  
         })
         .fail(function(xhr, status, errorThrown) {
