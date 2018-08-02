@@ -135,7 +135,7 @@
 					</div>
 					
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Asignacion de Vehiculo</label>
+						<label class="col-md-2 col-form-label text-capitalize">Asignaci&oacute;n de veh&iacute;culo o trailer</label>
 						<div class="col-md-4">
 							<select id="asignado" class="custom-select" name="asignado" required>
 								<option value="" selected>Seleccionar...</option>

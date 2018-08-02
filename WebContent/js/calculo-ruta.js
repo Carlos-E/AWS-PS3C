@@ -84,7 +84,9 @@ function initMap() {
 	        		console.log(option.text);
 	        		select.add(option);
 	        	}
-  	  },3000);//SetTimeOut 
+	        	
+	        	setTrailers(pesoEnvio,espacioEnvio);
+  	  },3000);// SetTimeOut
     	  
         })
         .fail(function(xhr, status, errorThrown) {
@@ -150,4 +152,47 @@ function quickSort(items, left, right,criteria) {
     }
 
     return items;
+}
+
+
+function setTrailers(pesoEnvio,espacioEnvio){	
+	
+	$(document).ready(function() {
+	      $.ajax({
+	        url: '/scanTable',
+	        data: { tabla: 'trailers' },
+	        type: 'POST',
+	        dataType: 'json'
+	      }).done(function(trailers) {
+	    	  console.log('Trailers: '+JSON.stringify(trailers,null,2));
+	    	  
+      		console.log('Trailers validos:');
+	    	  
+	    	  for(let i=0;i<trailers.length;i++){
+	    		  
+	    		  if(trailers[i].peso < pesoEnvio || trailers[i].espacio < espacioEnvio){
+			        	console.log(trailers[i].patente+' no soporta las dimensiones del envio');
+			        	continue;
+	    		  }
+
+	    		  let select = document.getElementById('asignado');
+
+		        	// Llenar select
+		        	let option = document.createElement("option");	
+		        	option.text = "Patente: "+trailers[i].patente+" - Distancia: NA";
+			        option.value = trailers[i].patente;   	
+		        	console.log(option.text);
+		        	select.add(option);
+		        	
+	    	  }
+	    	  
+	        })
+	        .fail(function(xhr, status, errorThrown) {
+	          console.log('Failed setTrailers');
+	        })
+	        .always(function(xhr, status) {
+	          $('#spinner').fadeOut('slow');
+	        });
+	    });
+	
 }
