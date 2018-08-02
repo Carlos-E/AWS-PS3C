@@ -27,6 +27,8 @@ function initMap() {
     		  
     		  if(vehiculos[i].peso < pesoEnvio || vehiculos[i].espacio < espacioEnvio){
 		        	console.log(vehiculos[i].placa+' no soporta las dimensiones del envio');
+		        	console.log(vehiculos[i].peso+' < '+pesoEnvio);
+		        	console.log(vehiculos[i].espacio+' < '+espacioEnvio);
 		        	continue;
     		  }
     		  
