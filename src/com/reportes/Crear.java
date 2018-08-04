@@ -28,6 +28,8 @@ public class Crear extends HttpServlet {
 
 	AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard().withRegion(Regions.US_EAST_1)
 			.withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build();
+	
+	DynamoDBMapper mapper = new DynamoDBMapper(client);
 
 	public Crear() {
 		super();
@@ -58,7 +60,6 @@ public class Crear extends HttpServlet {
 		reporte.setNota(request.getParameter("nota").toLowerCase());
 		reporte.setVisto(false);
 		
-		DynamoDBMapper mapper = new DynamoDBMapper(client);
 		mapper.save(reporte);
 
 		com.logica.Dibujar.mensaje(response.getWriter(), "Reporte Creado",

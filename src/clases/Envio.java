@@ -1,17 +1,55 @@
 package clases;
 
+import java.util.List;
+
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTyped;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperFieldModel.DynamoDBAttributeType;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 
+@DynamoDBTable(tableName = "envios")
 public class Envio {
 
-	String  usuario, fecha, destino, origen, destinoLatLong, origenLatLong, estado, peso, espacio, tipo, camion, trailer, empresa, descripcion;
+	BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAJSINT4F7K5BSGDRA",
+			"512NOFNfUl4hAZMyFEHpt7ygdmksBVzmfXr6xLsR");
+
+	DynamoDBMapper mapper = new DynamoDBMapper(AmazonDynamoDBClientBuilder.standard().withRegion(Regions.US_EAST_1)
+			.withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build());
+
+	String usuario, fecha, destino, origen, destinoLatLong, origenLatLong, estado, peso, espacio, tipo, camion, trailer,
+			empresa, descripcion;
 	boolean chequeoCarga, chequeoDescarga;
-	
+
 	public Envio() {
 		super();
+	}
+
+	public Envio load(String usuario, String fecha) {
+		return mapper.load(Envio.class, usuario, fecha);
+	}
+
+	public void save() {
+		mapper.save(this);
+	}
+
+	public void delete() {
+		mapper.delete(this);
+	}
+	
+	public List<Envio> scan() {
+		return mapper.scan(Envio.class, new DynamoDBScanExpression());
+	}
+
+	public List<Envio> scan(DynamoDBScanExpression dynamoDBScanExpression) {
+		return mapper.scan(Envio.class, dynamoDBScanExpression);
 	}
 
 	@DynamoDBHashKey
@@ -23,7 +61,7 @@ public class Envio {
 		this.usuario = usuario;
 	}
 
-	@DynamoDBAttribute
+	@DynamoDBRangeKey
 	public String getFecha() {
 		return fecha;
 	}
@@ -146,7 +184,6 @@ public class Envio {
 		return chequeoCarga;
 	}
 
-	
 	public void setChequeoCarga(boolean chequeoCarga) {
 		this.chequeoCarga = chequeoCarga;
 	}
@@ -169,5 +206,5 @@ public class Envio {
 				+ trailer + ", empresa=" + empresa + ", descripcion=" + descripcion + ", chequeoCarga=" + chequeoCarga
 				+ ", chequeoDescarga=" + chequeoDescarga + "]";
 	}
-	
+
 }

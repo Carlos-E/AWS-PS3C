@@ -2,9 +2,7 @@ package com.util;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,9 +20,6 @@ import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.ItemCollection;
 import com.amazonaws.services.dynamodbv2.document.Table;
 import com.amazonaws.services.dynamodbv2.document.ScanOutcome;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.logica.ControladorBD;
 
 @WebServlet("/scanTable")
 public class scanTable extends HttpServlet {
@@ -34,8 +29,7 @@ public class scanTable extends HttpServlet {
 	BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAJSINT4F7K5BSGDRA",
 			"512NOFNfUl4hAZMyFEHpt7ygdmksBVzmfXr6xLsR");
 
-	AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
-			.withRegion(Regions.US_EAST_1)
+	AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard().withRegion(Regions.US_EAST_1)
 			.withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build();
 
 	DynamoDB dynamoDB = new DynamoDB(client);
@@ -44,7 +38,7 @@ public class scanTable extends HttpServlet {
 	public scanTable() {
 		super();
 	}
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.sendRedirect("/404.jsp");
@@ -53,30 +47,24 @@ public class scanTable extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		try{
-		
-		// ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-		// response.setContentType("application/json");
-		// response.getWriter().print(ow.writeValueAsString(ControladorBD.escanearTabla(request.getParameter("tabla"))));
-		// response.getWriter().close();
-		// CODIGO DE PRUEBA
-		Table table = dynamoDB.getTable(request.getParameter("tabla"));
-		ItemCollection<ScanOutcome> result = table.scan();
-		ArrayList<String> Items = new ArrayList<String>();
-		Iterator<Item> iterator = result.iterator();
-		while (iterator.hasNext()) {
-			Items.add(iterator.next().toJSON().toString());
+		try {
+
+			Table table = dynamoDB.getTable(request.getParameter("tabla"));
+			ItemCollection<ScanOutcome> result = table.scan();
+			ArrayList<String> Items = new ArrayList<String>();
+			Iterator<Item> iterator = result.iterator();
+			while (iterator.hasNext()) {
+				Items.add(iterator.next().toJSON().toString());
+			}
+			response.setContentType("application/json");
+			response.getWriter().print(Items);
+			response.getWriter().close();
+
+		} catch (Exception e) {
+			com.logica.Dibujar.mensaje(response.getWriter(),
+					"Ocurrio un error al intentar escanear la tabla: " + request.getParameter("tabla"));
 		}
-		response.setContentType("application/json");
-		response.getWriter().print(Items);
-		response.getWriter().close();
-		// CODIGO DE PRUEBA
-		
-	}catch(Exception e){
-		com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar modificar el Usuario", request.getContextPath() + "./index.jsp");
-	}
-		
-		
+
 	}
 
 }
