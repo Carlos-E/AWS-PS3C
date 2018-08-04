@@ -29,10 +29,14 @@ public class Modificar extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		response.setContentType("text/html");
 
 		request.setCharacterEncoding("UTF-8");
+		
 		String usuario = request.getParameter("cliente").toString();
 		String fecha = request.getParameter("fecha").toString();
+		
 		envio = (clases.Envio) ControladorBD.getItem("envios", "usuario", usuario, "fecha", fecha);
 
 		String destino = request.getParameter("destino");
@@ -130,7 +134,6 @@ public class Modificar extends HttpServlet {
 			com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getRequestURL() + ".jsp");
 		} else {
 			System.out.println("no se cambio nada");
-			response.setContentType("text/html");
 			com.logica.Dibujar.mensaje(response.getWriter(), "No se cambio nada", request.getRequestURL() + ".jsp");
 		}
 	}
