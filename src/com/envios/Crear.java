@@ -10,13 +10,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.logica.ControladorBD;
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 
 import clases.*;
 
 @WebServlet("/envios/crear")
 public class Crear extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAJSINT4F7K5BSGDRA",
+			"512NOFNfUl4hAZMyFEHpt7ygdmksBVzmfXr6xLsR");
+
+	AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard().withRegion(Regions.US_EAST_1)
+			.withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build();
 
 	public Crear() {
 		super();
@@ -29,56 +40,72 @@ public class Crear extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		Envio envio = new clases.Envio();
+		
 		request.setCharacterEncoding("UTF-8");
-		Calendar calendar = Calendar.getInstance();
-		DecimalFormat mFormat = new DecimalFormat("00");
+		response.setContentType("text/html");
+		
+		DynamoDBMapper mapper = new DynamoDBMapper(client);
 
-		String destinoLatLong = request.getParameter("destinoLatLong").toLowerCase();
-		String origenLatLong = request.getParameter("origenLatLong").toLowerCase();
-		String asignado = request.getParameter("asignado").toLowerCase();
-		System.out.println(asignado);
-		String fecha = calendar.get(Calendar.YEAR) + "-"
-				+ mFormat.format(Double.valueOf(calendar.get(Calendar.MONTH) + 1)) + "-"
-				+ mFormat.format(Double.valueOf(calendar.get(Calendar.DAY_OF_MONTH))) + " "
-				+ mFormat.format(calendar.get(Calendar.HOUR_OF_DAY)) + ":"
-				+ mFormat.format(calendar.get(Calendar.MINUTE)) + ":" + mFormat.format(calendar.get(Calendar.SECOND));
-		envio.setPeso(request.getParameter("peso").toLowerCase());
-		envio.setEspacio(request.getParameter("espacio").toLowerCase());
-		envio.setCamion(asignado);
-		envio.setTrailer("ninguno");
-		envio.setEmpresa(request.getParameter("empresa").toLowerCase());
-		envio.setFecha(fecha);
-		envio.setDestino(request.getParameter("destino"));
-		envio.setOrigen(request.getParameter("origen"));
-		envio.setDestinoLatLong(destinoLatLong);
-		envio.setOrigenLatLong(origenLatLong);
-		envio.setEstado("asignado");
-		envio.setEspacio(request.getParameter("espacio").toLowerCase());
-		envio.setTipo(request.getParameter("tipo").toLowerCase());
-
+		// GENERAR ENVIO
+		Envio envio = new Envio();
+		
 		if (request.getSession().getAttribute("rol").equals("cliente")) {
 			envio.setUsuario(request.getSession().getAttribute("username").toString().toLowerCase());
 		} else {
 			envio.setUsuario(request.getParameter("cliente").toLowerCase());
 		}
+		
+		Calendar calendar = Calendar.getInstance();
+		DecimalFormat mFormat = new DecimalFormat("00");
 
+		String fecha = calendar.get(Calendar.YEAR) + "-"
+				+ mFormat.format(Double.valueOf(calendar.get(Calendar.MONTH) + 1)) + "-"
+				+ mFormat.format(Double.valueOf(calendar.get(Calendar.DAY_OF_MONTH))) + " "
+				+ mFormat.format(calendar.get(Calendar.HOUR_OF_DAY)) + ":"
+				+ mFormat.format(calendar.get(Calendar.MINUTE)) + ":" + mFormat.format(calendar.get(Calendar.SECOND));
+		
+		envio.setFecha(fecha);
+
+		envio.setPeso(request.getParameter("peso").toLowerCase());
+		envio.setEspacio(request.getParameter("espacio").toLowerCase());
+		envio.setEmpresa(request.getParameter("empresa").toLowerCase());
+		envio.setDestino(request.getParameter("destino"));
+		envio.setOrigen(request.getParameter("origen"));
+		envio.setDestinoLatLong(request.getParameter("destinoLatLong").toLowerCase());
+		envio.setOrigenLatLong(request.getParameter("origenLatLong").toLowerCase());
+		envio.setEspacio(request.getParameter("espacio").toLowerCase());
+		envio.setTipo(request.getParameter("tipo").toLowerCase());
+		envio.setDescripcion(request.getParameter("descripcion").toLowerCase());
+		
+		envio.setEstado("asignado");
+		
 		envio.setChequeoCarga(false);
 		envio.setChequeoDescarga(false);
-		envio.setDescripcion(request.getParameter("descripcion").toLowerCase());
-		ControladorBD.registrarItem("envios", envio);
+		
+		System.out.println(request.getParameter("asignado").toLowerCase());
 
-		// Generar Reporte
+		envio.setCamion(request.getParameter("asignado").toLowerCase());
+		envio.setTrailer("ninguno");
+		
+		//Guardar Envio en base de datos
+		mapper.save(envio);
+		// GENERAR ENVIO
+
+		
+		
+		// GENERAR REPORTE
 		Reporte reporte = new Reporte();
+		
 		reporte.setHora(fecha);
 		reporte.setNota("Hay un nuevo envio del cliente: " + envio.getUsuario() + " Con Fecha: " + fecha);
 		reporte.setUsuario(envio.getUsuario());
-		reporte.setVisto("false");
-		ControladorBD.registrarItem("reportes", reporte);
-		// Generar Reporte
-		response.setContentType("text/html");
+		reporte.setVisto(false);
+		
+		//Guardar Reporte en base de datos
+		mapper.save(reporte);
+		// GENERAR REPORTE
 
+		
 		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa, Reporte generado.",
 				request.getContextPath() + "/envios/crear.jsp");
 

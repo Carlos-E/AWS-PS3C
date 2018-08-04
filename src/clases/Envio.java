@@ -1,5 +1,10 @@
 package clases;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTyped;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperFieldModel.DynamoDBAttributeType;
+
 public class Envio {
 
 	String  usuario, fecha, destino, origen, destinoLatLong, origenLatLong, estado, peso, espacio, tipo, camion, trailer, empresa, descripcion;
@@ -7,31 +12,9 @@ public class Envio {
 	
 	public Envio() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public Envio(String usuario, String fecha, String destino, String origen, String destinoLatLong,
-			String origenLatLong, String estado, String peso, String espacio, String tipo, String camion,
-			String trailer, String empresa, String descripcion, boolean chequeoCarga, boolean chequeoDescarga) {
-		super();
-		this.usuario = usuario;
-		this.fecha = fecha;
-		this.destino = destino;
-		this.origen = origen;
-		this.destinoLatLong = destinoLatLong;
-		this.origenLatLong = origenLatLong;
-		this.estado = estado;
-		this.peso = peso;
-		this.espacio = espacio;
-		this.tipo = tipo;
-		this.camion = camion;
-		this.trailer = trailer;
-		this.empresa = empresa;
-		this.descripcion = descripcion;
-		this.chequeoCarga = chequeoCarga;
-		this.chequeoDescarga = chequeoDescarga;
-	}
-
+	@DynamoDBHashKey
 	public String getUsuario() {
 		return usuario;
 	}
@@ -40,6 +23,7 @@ public class Envio {
 		this.usuario = usuario;
 	}
 
+	@DynamoDBAttribute
 	public String getFecha() {
 		return fecha;
 	}
@@ -48,6 +32,7 @@ public class Envio {
 		this.fecha = fecha;
 	}
 
+	@DynamoDBAttribute
 	public String getDestino() {
 		return destino;
 	}
@@ -56,6 +41,7 @@ public class Envio {
 		this.destino = destino;
 	}
 
+	@DynamoDBAttribute
 	public String getOrigen() {
 		return origen;
 	}
@@ -64,6 +50,7 @@ public class Envio {
 		this.origen = origen;
 	}
 
+	@DynamoDBAttribute
 	public String getDestinoLatLong() {
 		return destinoLatLong;
 	}
@@ -72,6 +59,7 @@ public class Envio {
 		this.destinoLatLong = destinoLatLong;
 	}
 
+	@DynamoDBAttribute
 	public String getOrigenLatLong() {
 		return origenLatLong;
 	}
@@ -80,6 +68,7 @@ public class Envio {
 		this.origenLatLong = origenLatLong;
 	}
 
+	@DynamoDBAttribute
 	public String getEstado() {
 		return estado;
 	}
@@ -88,6 +77,7 @@ public class Envio {
 		this.estado = estado;
 	}
 
+	@DynamoDBAttribute
 	public String getPeso() {
 		return peso;
 	}
@@ -96,6 +86,7 @@ public class Envio {
 		this.peso = peso;
 	}
 
+	@DynamoDBAttribute
 	public String getEspacio() {
 		return espacio;
 	}
@@ -104,6 +95,7 @@ public class Envio {
 		this.espacio = espacio;
 	}
 
+	@DynamoDBAttribute
 	public String getTipo() {
 		return tipo;
 	}
@@ -112,6 +104,7 @@ public class Envio {
 		this.tipo = tipo;
 	}
 
+	@DynamoDBAttribute
 	public String getCamion() {
 		return camion;
 	}
@@ -120,6 +113,7 @@ public class Envio {
 		this.camion = camion;
 	}
 
+	@DynamoDBAttribute
 	public String getTrailer() {
 		return trailer;
 	}
@@ -128,6 +122,7 @@ public class Envio {
 		this.trailer = trailer;
 	}
 
+	@DynamoDBAttribute
 	public String getEmpresa() {
 		return empresa;
 	}
@@ -136,6 +131,7 @@ public class Envio {
 		this.empresa = empresa;
 	}
 
+	@DynamoDBAttribute
 	public String getDescripcion() {
 		return descripcion;
 	}
@@ -144,14 +140,19 @@ public class Envio {
 		this.descripcion = descripcion;
 	}
 
+	@DynamoDBAttribute
+	@DynamoDBTyped(DynamoDBAttributeType.BOOL)
 	public boolean isChequeoCarga() {
 		return chequeoCarga;
 	}
 
+	
 	public void setChequeoCarga(boolean chequeoCarga) {
 		this.chequeoCarga = chequeoCarga;
 	}
 
+	@DynamoDBAttribute
+	@DynamoDBTyped(DynamoDBAttributeType.BOOL)
 	public boolean isChequeoDescarga() {
 		return chequeoDescarga;
 	}
