@@ -129,8 +129,6 @@ public class Modificar extends HttpServlet {
 		}
 		if (cambio) {
 			System.out.println("algo se cambio");
-			response.setContentType("text/html");
-
 			com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getRequestURL() + ".jsp");
 		} else {
 			System.out.println("no se cambio nada");
