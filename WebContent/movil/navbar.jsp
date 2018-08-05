@@ -1,16 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.io.*,java.util.*"%>
 <%
 	if (session.getAttribute("rol") == null) {
 		response.sendRedirect("/movil/login.jsp");
 	}
-%>
-<%@ page import="com.logica.*"%>
-<%@ page import="clases.*"%>
-<%
-	Usuario usuario = new Usuario();
-	usuario = (Usuario) com.logica.ControladorBD.getItem("usuarios", "usuario",
-			session.getAttribute("username").toString());
 %>
 <nav class="sidebar col-xs-12 col-sm-4 col-lg-3 col-xl-2">
 	<h1 class="site-title">

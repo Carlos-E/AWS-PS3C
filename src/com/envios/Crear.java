@@ -89,8 +89,6 @@ public class Crear extends HttpServlet {
 		new DB().save(reporte);
 		// GENERAR REPORTE
 		
-
-		
 		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa, Reporte generado.",
 				request.getContextPath() + "/envios/crear.jsp");
 

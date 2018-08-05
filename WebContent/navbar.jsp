@@ -7,9 +7,11 @@
 		response.sendRedirect("/login.jsp");
 	}
 
+	/* 
 	Usuario usuario = new Usuario();
 	usuario = (Usuario) com.logica.ControladorBD.getItem("usuarios", "usuario",
-			session.getAttribute("username").toString());
+	 		session.getAttribute("username").toString());
+	*/
 %>
 <nav class="sidebar col-xs-12 col-sm-4 col-lg-3 col-xl-2">
 	<h1 class="site-title">

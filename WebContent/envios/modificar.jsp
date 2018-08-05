@@ -153,7 +153,7 @@
 								<option value="" selected>Seleccionar...</option>
 								
 								<%
-									List<Empresa> listaEmpresas = new DB().getMapper().scan(Empresa.class, new DynamoDBScanExpression());
+									List<Empresa> listaEmpresas = new DB().scan(Empresa.class, new DynamoDBScanExpression());
 
 									for (int i = 0; i < listaEmpresas.size(); i++) {
 								%>
