@@ -2,12 +2,7 @@ package clases;
 
 import java.util.List;
 
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperFieldModel.DynamoDBAttributeType;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
@@ -16,13 +11,6 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTyped;
 
 @DynamoDBTable(tableName = "reportes")
 public class Reporte {
-
-	private BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAJSINT4F7K5BSGDRA",
-			"512NOFNfUl4hAZMyFEHpt7ygdmksBVzmfXr6xLsR");
-
-	private DynamoDBMapper mapper = new DynamoDBMapper(AmazonDynamoDBClientBuilder.standard().withRegion(Regions.US_EAST_1)
-			.withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build());
-
 
 	private String hora;
 	private String nota;
@@ -34,25 +22,23 @@ public class Reporte {
 		super();
 	}
 
+	// METODOS PARA MANIPULAR LA BD
 	public Reporte load(String usuario, String fecha) {
-		return mapper.load(Reporte.class, usuario, fecha);
+		return new DB().getMapper().load(Reporte.class, usuario, fecha);
+	}
+
+	public List<Reporte> scan() {
+		return new DB().getMapper().scan(Reporte.class, new DynamoDBScanExpression());
 	}
 
 	public void save() {
-		mapper.save(this);
+		new DB().getMapper().save(this);
 	}
 
 	public void delete() {
-		mapper.delete(this);
+		new DB().getMapper().delete(this);
 	}
-	
-	public List<Reporte> scan() {
-		return mapper.scan(Reporte.class, new DynamoDBScanExpression());
-	}
-
-	public List<Reporte> scan(DynamoDBScanExpression dynamoDBScanExpression) {
-		return mapper.scan(Reporte.class, dynamoDBScanExpression);
-	}
+	// METODOS PARA MANIPULAR LA BD
 
 	@DynamoDBHashKey
 	public String getUsuario() {
@@ -84,7 +70,7 @@ public class Reporte {
 	public boolean isVisto() {
 		return visto;
 	}
-	
+
 	public void setVisto(boolean visto) {
 		this.visto = visto;
 	}

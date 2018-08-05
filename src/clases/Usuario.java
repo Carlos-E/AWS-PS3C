@@ -2,21 +2,12 @@ package clases;
 
 import java.util.List;
 
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
+@DynamoDBTable(tableName = "usuarios")
 public class Usuario {
-
-	private BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAJSINT4F7K5BSGDRA",
-			"512NOFNfUl4hAZMyFEHpt7ygdmksBVzmfXr6xLsR");
-
-	private DynamoDBMapper mapper = new DynamoDBMapper(AmazonDynamoDBClientBuilder.standard().withRegion(Regions.US_EAST_1)
-			.withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build());
 
 	private String usuario, rol, nombre, apellido, clave, correo, direccion, telefono;
 
@@ -25,24 +16,20 @@ public class Usuario {
 	}
 
 	// METODOS PARA MANIPULAR LA BD
-	public Usuario load(String patente) {
-		System.out.println("Loading object");
-		return mapper.load(Usuario.class, patente);
+	public Usuario load(String usuario, String fecha) {
+		return new DB().getMapper().load(Usuario.class, usuario, fecha);
 	}
 
 	public List<Usuario> scan() {
-		System.out.println("Scaning table");
-		return mapper.scan(Usuario.class, new DynamoDBScanExpression());
+		return new DB().getMapper().scan(Usuario.class, new DynamoDBScanExpression());
 	}
 
 	public void save() {
-		System.out.println("Saving object");
-		mapper.save(this);
+		new DB().getMapper().save(this);
 	}
 
 	public void delete() {
-		System.out.println("Deleting object");
-		mapper.delete(this);
+		new DB().getMapper().delete(this);
 	}
 	// METODOS PARA MANIPULAR LA BD
 
@@ -120,9 +107,9 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Usuario [awsCreds=" + awsCreds + ", mapper=" + mapper + ", usuario=" + usuario + ", rol=" + rol
-				+ ", nombre=" + nombre + ", apellido=" + apellido + ", clave=" + clave + ", correo=" + correo
-				+ ", direccion=" + direccion + ", telefono=" + telefono + "]";
+		return "Usuario [usuario=" + usuario + ", rol=" + rol + ", nombre=" + nombre + ", apellido=" + apellido
+				+ ", clave=" + clave + ", correo=" + correo + ", direccion=" + direccion + ", telefono=" + telefono
+				+ "]";
 	}
 
 }

@@ -2,21 +2,12 @@ package clases;
 
 import java.util.List;
 
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
+@DynamoDBTable(tableName = "trailers")
 public class Trailer {
-
-	private BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAJSINT4F7K5BSGDRA",
-			"512NOFNfUl4hAZMyFEHpt7ygdmksBVzmfXr6xLsR");
-
-	private DynamoDBMapper mapper = new DynamoDBMapper(AmazonDynamoDBClientBuilder.standard().withRegion(Regions.US_EAST_1)
-			.withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build());
 
 	private String patente, tipo, peso, espacio, estado, camion, empresa;
 
@@ -25,24 +16,20 @@ public class Trailer {
 	}
 
 	// METODOS PARA MANIPULAR LA BD
-	public Trailer load(String patente) {
-		System.out.println("Loading object");
-		return mapper.load(Trailer.class, patente);
+	public Trailer load(String usuario, String fecha) {
+		return new DB().getMapper().load(Trailer.class, usuario, fecha);
 	}
 
 	public List<Trailer> scan() {
-		System.out.println("Scaning table");
-		return mapper.scan(Trailer.class, new DynamoDBScanExpression());
+		return new DB().getMapper().scan(Trailer.class, new DynamoDBScanExpression());
 	}
 
 	public void save() {
-		System.out.println("Saving object");
-		mapper.save(this);
+		new DB().getMapper().save(this);
 	}
 
 	public void delete() {
-		System.out.println("Deleting object");
-		mapper.delete(this);
+		new DB().getMapper().delete(this);
 	}
 	// METODOS PARA MANIPULAR LA BD
 
@@ -55,7 +42,6 @@ public class Trailer {
 		this.patente = patente;
 	}
 
-	 
 	public String getTipo() {
 		return tipo;
 	}
@@ -64,7 +50,6 @@ public class Trailer {
 		this.tipo = tipo;
 	}
 
-	 
 	public String getPeso() {
 		return peso;
 	}
@@ -73,7 +58,6 @@ public class Trailer {
 		this.peso = peso;
 	}
 
-	 
 	public String getEspacio() {
 		return espacio;
 	}
@@ -82,7 +66,6 @@ public class Trailer {
 		this.espacio = espacio;
 	}
 
-	 
 	public String getEstado() {
 		return estado;
 	}
@@ -91,7 +74,6 @@ public class Trailer {
 		this.estado = estado;
 	}
 
-	 
 	public String getCamion() {
 		return camion;
 	}
@@ -100,7 +82,6 @@ public class Trailer {
 		this.camion = camion;
 	}
 
-	 
 	public String getEmpresa() {
 		return empresa;
 	}

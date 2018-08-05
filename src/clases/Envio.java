@@ -2,12 +2,7 @@ package clases;
 
 import java.util.List;
 
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTyped;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperFieldModel.DynamoDBAttributeType;
@@ -16,12 +11,6 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 
 @DynamoDBTable(tableName = "envios")
 public class Envio {
-
-	private BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAJSINT4F7K5BSGDRA",
-			"512NOFNfUl4hAZMyFEHpt7ygdmksBVzmfXr6xLsR");
-
-	private DynamoDBMapper mapper = new DynamoDBMapper(AmazonDynamoDBClientBuilder.standard().withRegion(Regions.US_EAST_1)
-			.withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build());
 
 	private String usuario, fecha, destino, origen, destinoLatLong, origenLatLong;
 	private String estado, peso, espacio, tipo, camion, trailer, empresa, descripcion;
@@ -33,28 +22,19 @@ public class Envio {
 
 	// METODOS PARA MANIPULAR LA BD
 	public Envio load(String usuario, String fecha) {
-		System.out.println("Loading object");
-		return mapper.load(Envio.class, usuario, fecha);
-	}
-
-	public void save() {
-		System.out.println("Saving object");
-		mapper.save(this);
-	}
-
-	public void delete() {
-		System.out.println("Deleting object");
-		mapper.delete(this);
+		return new DB().getMapper().load(Envio.class, usuario, fecha);
 	}
 
 	public List<Envio> scan() {
-		System.out.println("Scaning table");
-		return mapper.scan(Envio.class, new DynamoDBScanExpression());
+		return new DB().getMapper().scan(Envio.class, new DynamoDBScanExpression());
 	}
 
-	public List<Envio> scan(DynamoDBScanExpression dynamoDBScanExpression) {
-		System.out.println("Scaning table");
-		return mapper.scan(Envio.class, dynamoDBScanExpression);
+	public void save() {
+		new DB().getMapper().save(this);
+	}
+
+	public void delete() {
+		new DB().getMapper().delete(this);
 	}
 	// METODOS PARA MANIPULAR LA BD
 

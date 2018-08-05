@@ -2,21 +2,12 @@ package clases;
 
 import java.util.List;
 
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
+@DynamoDBTable(tableName = "vehiculos")
 public class Vehiculo {
-
-	private BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAJSINT4F7K5BSGDRA",
-			"512NOFNfUl4hAZMyFEHpt7ygdmksBVzmfXr6xLsR");
-
-	private DynamoDBMapper mapper = new DynamoDBMapper(AmazonDynamoDBClientBuilder.standard()
-			.withRegion(Regions.US_EAST_1).withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build());
 
 	private String placa, tipo, peso, espacio, pesoMax, espacioMax, estado, usuario, empresa, latitud, longitud;
 
@@ -25,24 +16,20 @@ public class Vehiculo {
 	}
 
 	// METODOS PARA MANIPULAR LA BD
-	public Vehiculo load(String patente) {
-		System.out.println("Loading object");
-		return mapper.load(Vehiculo.class, patente);
+	public Vehiculo load(String usuario, String fecha) {
+		return new DB().getMapper().load(Vehiculo.class, usuario, fecha);
 	}
 
 	public List<Vehiculo> scan() {
-		System.out.println("Scaning table");
-		return mapper.scan(Vehiculo.class, new DynamoDBScanExpression());
+		return new DB().getMapper().scan(Vehiculo.class, new DynamoDBScanExpression());
 	}
 
 	public void save() {
-		System.out.println("Saving object");
-		mapper.save(this);
+		new DB().getMapper().save(this);
 	}
 
 	public void delete() {
-		System.out.println("Deleting object");
-		mapper.delete(this);
+		new DB().getMapper().delete(this);
 	}
 	// METODOS PARA MANIPULAR LA BD
 
@@ -55,7 +42,6 @@ public class Vehiculo {
 		this.placa = placa;
 	}
 
-	
 	public String getTipo() {
 		return tipo;
 	}
@@ -64,7 +50,6 @@ public class Vehiculo {
 		this.tipo = tipo;
 	}
 
-	
 	public String getPeso() {
 		return peso;
 	}
@@ -73,7 +58,6 @@ public class Vehiculo {
 		this.peso = peso;
 	}
 
-	
 	public String getEspacio() {
 		return espacio;
 	}
@@ -82,7 +66,6 @@ public class Vehiculo {
 		this.espacio = espacio;
 	}
 
-	
 	public String getPesoMax() {
 		return pesoMax;
 	}
@@ -91,7 +74,6 @@ public class Vehiculo {
 		this.pesoMax = pesoMax;
 	}
 
-	
 	public String getEspacioMax() {
 		return espacioMax;
 	}
@@ -100,7 +82,6 @@ public class Vehiculo {
 		this.espacioMax = espacioMax;
 	}
 
-	
 	public String getEstado() {
 		return estado;
 	}
@@ -109,7 +90,6 @@ public class Vehiculo {
 		this.estado = estado;
 	}
 
-	
 	public String getUsuario() {
 		return usuario;
 	}
@@ -118,7 +98,6 @@ public class Vehiculo {
 		this.usuario = usuario;
 	}
 
-	
 	public String getEmpresa() {
 		return empresa;
 	}
@@ -127,7 +106,6 @@ public class Vehiculo {
 		this.empresa = empresa;
 	}
 
-	
 	public String getLatitud() {
 		return latitud;
 	}
@@ -136,7 +114,6 @@ public class Vehiculo {
 		this.latitud = latitud;
 	}
 
-	
 	public String getLongitud() {
 		return longitud;
 	}
