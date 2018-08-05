@@ -1,27 +1,52 @@
 package clases;
 
+import java.util.List;
+
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
+
 public class Usuario {
-	
-	String usuario, rol, nombre, apellido, clave, correo, direccion, telefono;
+
+	private BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAJSINT4F7K5BSGDRA",
+			"512NOFNfUl4hAZMyFEHpt7ygdmksBVzmfXr6xLsR");
+
+	private DynamoDBMapper mapper = new DynamoDBMapper(AmazonDynamoDBClientBuilder.standard().withRegion(Regions.US_EAST_1)
+			.withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build());
+
+	private String usuario, rol, nombre, apellido, clave, correo, direccion, telefono;
 
 	public Usuario() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public Usuario(String usuario, String rol, String nombre, String apellido, String clave, String correo,
-			String direccion, String telefono) {
-		super();
-		this.usuario = usuario;
-		this.rol = rol;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.clave = clave;
-		this.correo = correo;
-		this.direccion = direccion;
-		this.telefono = telefono;
+	// METODOS PARA MANIPULAR LA BD
+	public Usuario load(String patente) {
+		System.out.println("Loading object");
+		return mapper.load(Usuario.class, patente);
 	}
 
+	public List<Usuario> scan() {
+		System.out.println("Scaning table");
+		return mapper.scan(Usuario.class, new DynamoDBScanExpression());
+	}
+
+	public void save() {
+		System.out.println("Saving object");
+		mapper.save(this);
+	}
+
+	public void delete() {
+		System.out.println("Deleting object");
+		mapper.delete(this);
+	}
+	// METODOS PARA MANIPULAR LA BD
+
+	@DynamoDBHashKey
 	public String getUsuario() {
 		return usuario;
 	}
@@ -30,6 +55,7 @@ public class Usuario {
 		this.usuario = usuario;
 	}
 
+	
 	public String getRol() {
 		return rol;
 	}
@@ -38,6 +64,7 @@ public class Usuario {
 		this.rol = rol;
 	}
 
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -46,6 +73,7 @@ public class Usuario {
 		this.nombre = nombre;
 	}
 
+	
 	public String getApellido() {
 		return apellido;
 	}
@@ -54,6 +82,7 @@ public class Usuario {
 		this.apellido = apellido;
 	}
 
+	
 	public String getClave() {
 		return clave;
 	}
@@ -62,6 +91,7 @@ public class Usuario {
 		this.clave = clave;
 	}
 
+	
 	public String getCorreo() {
 		return correo;
 	}
@@ -70,6 +100,7 @@ public class Usuario {
 		this.correo = correo;
 	}
 
+	
 	public String getDireccion() {
 		return direccion;
 	}
@@ -78,6 +109,7 @@ public class Usuario {
 		this.direccion = direccion;
 	}
 
+	
 	public String getTelefono() {
 		return telefono;
 	}
@@ -88,10 +120,9 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "usuario [usuario=" + usuario + ", rol=" + rol + ", nombre=" + nombre + ", apellido=" + apellido
-				+ ", clave=" + clave + ", correo=" + correo + ", direccion=" + direccion + ", telefono=" + telefono
-				+ "]";
+		return "Usuario [awsCreds=" + awsCreds + ", mapper=" + mapper + ", usuario=" + usuario + ", rol=" + rol
+				+ ", nombre=" + nombre + ", apellido=" + apellido + ", clave=" + clave + ", correo=" + correo
+				+ ", direccion=" + direccion + ", telefono=" + telefono + "]";
 	}
 
-	
 }

@@ -1,32 +1,52 @@
 package clases;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import java.util.List;
+
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 
 public class Vehiculo {
 
-	String placa, tipo, peso, espacio, pesoMax, espacioMax, estado, usuario, empresa, latitud, longitud;
+	private BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAJSINT4F7K5BSGDRA",
+			"512NOFNfUl4hAZMyFEHpt7ygdmksBVzmfXr6xLsR");
+
+	private DynamoDBMapper mapper = new DynamoDBMapper(AmazonDynamoDBClientBuilder.standard()
+			.withRegion(Regions.US_EAST_1).withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build());
+
+	private String placa, tipo, peso, espacio, pesoMax, espacioMax, estado, usuario, empresa, latitud, longitud;
 
 	public Vehiculo() {
 		super();
 	}
 
-	public Vehiculo(String placa, String tipo, String peso, String espacio, String pesoMax, String espacioMax,
-			String estado, String usuario, String empresa, String latitud, String longitud) {
-		super();
-		this.placa = placa;
-		this.tipo = tipo;
-		this.peso = peso;
-		this.espacio = espacio;
-		this.pesoMax = pesoMax;
-		this.espacioMax = espacioMax;
-		this.estado = estado;
-		this.usuario = usuario;
-		this.empresa = empresa;
-		this.latitud = latitud;
-		this.longitud = longitud;
+	// METODOS PARA MANIPULAR LA BD
+	public Vehiculo load(String patente) {
+		System.out.println("Loading object");
+		return mapper.load(Vehiculo.class, patente);
 	}
 
+	public List<Vehiculo> scan() {
+		System.out.println("Scaning table");
+		return mapper.scan(Vehiculo.class, new DynamoDBScanExpression());
+	}
+
+	public void save() {
+		System.out.println("Saving object");
+		mapper.save(this);
+	}
+
+	public void delete() {
+		System.out.println("Deleting object");
+		mapper.delete(this);
+	}
+	// METODOS PARA MANIPULAR LA BD
+
+	@DynamoDBHashKey
 	public String getPlaca() {
 		return placa;
 	}
@@ -35,6 +55,7 @@ public class Vehiculo {
 		this.placa = placa;
 	}
 
+	
 	public String getTipo() {
 		return tipo;
 	}
@@ -43,6 +64,7 @@ public class Vehiculo {
 		this.tipo = tipo;
 	}
 
+	
 	public String getPeso() {
 		return peso;
 	}
@@ -51,6 +73,7 @@ public class Vehiculo {
 		this.peso = peso;
 	}
 
+	
 	public String getEspacio() {
 		return espacio;
 	}
@@ -59,6 +82,7 @@ public class Vehiculo {
 		this.espacio = espacio;
 	}
 
+	
 	public String getPesoMax() {
 		return pesoMax;
 	}
@@ -67,6 +91,7 @@ public class Vehiculo {
 		this.pesoMax = pesoMax;
 	}
 
+	
 	public String getEspacioMax() {
 		return espacioMax;
 	}
@@ -75,6 +100,7 @@ public class Vehiculo {
 		this.espacioMax = espacioMax;
 	}
 
+	
 	public String getEstado() {
 		return estado;
 	}
@@ -83,6 +109,7 @@ public class Vehiculo {
 		this.estado = estado;
 	}
 
+	
 	public String getUsuario() {
 		return usuario;
 	}
@@ -91,6 +118,7 @@ public class Vehiculo {
 		this.usuario = usuario;
 	}
 
+	
 	public String getEmpresa() {
 		return empresa;
 	}
@@ -99,6 +127,7 @@ public class Vehiculo {
 		this.empresa = empresa;
 	}
 
+	
 	public String getLatitud() {
 		return latitud;
 	}
@@ -107,6 +136,7 @@ public class Vehiculo {
 		this.latitud = latitud;
 	}
 
+	
 	public String getLongitud() {
 		return longitud;
 	}
@@ -121,7 +151,5 @@ public class Vehiculo {
 				+ pesoMax + ", espacioMax=" + espacioMax + ", estado=" + estado + ", usuario=" + usuario + ", empresa="
 				+ empresa + ", latitud=" + latitud + ", longitud=" + longitud + "]";
 	}
-
-	
 
 }

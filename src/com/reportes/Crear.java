@@ -10,26 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-
 import clases.Reporte;
 
 @WebServlet("/reportes/crear")
 public class Crear extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAJSINT4F7K5BSGDRA",
-			"512NOFNfUl4hAZMyFEHpt7ygdmksBVzmfXr6xLsR");
-
-	AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard().withRegion(Regions.US_EAST_1)
-			.withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build();
-	
-	DynamoDBMapper mapper = new DynamoDBMapper(client);
 
 	public Crear() {
 		super();
@@ -60,8 +45,8 @@ public class Crear extends HttpServlet {
 		reporte.setNota(request.getParameter("nota").toLowerCase());
 		reporte.setVisto(false);
 		
-		mapper.save(reporte);
-
+		reporte.save();
+		
 		com.logica.Dibujar.mensaje(response.getWriter(), "Reporte Creado",
 				request.getContextPath() + "/movil/transportador/reportes.jsp");
 

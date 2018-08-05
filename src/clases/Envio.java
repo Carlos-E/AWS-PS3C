@@ -6,7 +6,6 @@ import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
@@ -18,39 +17,46 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 @DynamoDBTable(tableName = "envios")
 public class Envio {
 
-	BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAJSINT4F7K5BSGDRA",
+	private BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAJSINT4F7K5BSGDRA",
 			"512NOFNfUl4hAZMyFEHpt7ygdmksBVzmfXr6xLsR");
 
-	DynamoDBMapper mapper = new DynamoDBMapper(AmazonDynamoDBClientBuilder.standard().withRegion(Regions.US_EAST_1)
+	private DynamoDBMapper mapper = new DynamoDBMapper(AmazonDynamoDBClientBuilder.standard().withRegion(Regions.US_EAST_1)
 			.withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build());
 
-	String usuario, fecha, destino, origen, destinoLatLong, origenLatLong, estado, peso, espacio, tipo, camion, trailer,
-			empresa, descripcion;
-	boolean chequeoCarga, chequeoDescarga;
+	private String usuario, fecha, destino, origen, destinoLatLong, origenLatLong;
+	private String estado, peso, espacio, tipo, camion, trailer, empresa, descripcion;
+	private boolean chequeoCarga, chequeoDescarga;
 
 	public Envio() {
 		super();
 	}
 
+	// METODOS PARA MANIPULAR LA BD
 	public Envio load(String usuario, String fecha) {
+		System.out.println("Loading object");
 		return mapper.load(Envio.class, usuario, fecha);
 	}
 
 	public void save() {
+		System.out.println("Saving object");
 		mapper.save(this);
 	}
 
 	public void delete() {
+		System.out.println("Deleting object");
 		mapper.delete(this);
 	}
-	
+
 	public List<Envio> scan() {
+		System.out.println("Scaning table");
 		return mapper.scan(Envio.class, new DynamoDBScanExpression());
 	}
 
 	public List<Envio> scan(DynamoDBScanExpression dynamoDBScanExpression) {
+		System.out.println("Scaning table");
 		return mapper.scan(Envio.class, dynamoDBScanExpression);
 	}
+	// METODOS PARA MANIPULAR LA BD
 
 	@DynamoDBHashKey
 	public String getUsuario() {
@@ -70,7 +76,6 @@ public class Envio {
 		this.fecha = fecha;
 	}
 
-	@DynamoDBAttribute
 	public String getDestino() {
 		return destino;
 	}
@@ -79,7 +84,6 @@ public class Envio {
 		this.destino = destino;
 	}
 
-	@DynamoDBAttribute
 	public String getOrigen() {
 		return origen;
 	}
@@ -88,7 +92,6 @@ public class Envio {
 		this.origen = origen;
 	}
 
-	@DynamoDBAttribute
 	public String getDestinoLatLong() {
 		return destinoLatLong;
 	}
@@ -97,7 +100,6 @@ public class Envio {
 		this.destinoLatLong = destinoLatLong;
 	}
 
-	@DynamoDBAttribute
 	public String getOrigenLatLong() {
 		return origenLatLong;
 	}
@@ -106,7 +108,6 @@ public class Envio {
 		this.origenLatLong = origenLatLong;
 	}
 
-	@DynamoDBAttribute
 	public String getEstado() {
 		return estado;
 	}
@@ -115,7 +116,6 @@ public class Envio {
 		this.estado = estado;
 	}
 
-	@DynamoDBAttribute
 	public String getPeso() {
 		return peso;
 	}
@@ -124,7 +124,6 @@ public class Envio {
 		this.peso = peso;
 	}
 
-	@DynamoDBAttribute
 	public String getEspacio() {
 		return espacio;
 	}
@@ -133,7 +132,6 @@ public class Envio {
 		this.espacio = espacio;
 	}
 
-	@DynamoDBAttribute
 	public String getTipo() {
 		return tipo;
 	}
@@ -142,7 +140,6 @@ public class Envio {
 		this.tipo = tipo;
 	}
 
-	@DynamoDBAttribute
 	public String getCamion() {
 		return camion;
 	}
@@ -151,7 +148,6 @@ public class Envio {
 		this.camion = camion;
 	}
 
-	@DynamoDBAttribute
 	public String getTrailer() {
 		return trailer;
 	}
@@ -160,7 +156,6 @@ public class Envio {
 		this.trailer = trailer;
 	}
 
-	@DynamoDBAttribute
 	public String getEmpresa() {
 		return empresa;
 	}
@@ -169,7 +164,6 @@ public class Envio {
 		this.empresa = empresa;
 	}
 
-	@DynamoDBAttribute
 	public String getDescripcion() {
 		return descripcion;
 	}
@@ -178,7 +172,6 @@ public class Envio {
 		this.descripcion = descripcion;
 	}
 
-	@DynamoDBAttribute
 	@DynamoDBTyped(DynamoDBAttributeType.BOOL)
 	public boolean isChequeoCarga() {
 		return chequeoCarga;
@@ -188,7 +181,6 @@ public class Envio {
 		this.chequeoCarga = chequeoCarga;
 	}
 
-	@DynamoDBAttribute
 	@DynamoDBTyped(DynamoDBAttributeType.BOOL)
 	public boolean isChequeoDescarga() {
 		return chequeoDescarga;

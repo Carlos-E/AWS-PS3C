@@ -1,32 +1,54 @@
 package clases;
 
-public class Empresa {
-	
-	String nombre, nit, rut, direccion, telefono, correo;
+import java.util.List;
 
-	public Empresa(String nombre, String nit, String rut, String direccion, String telefono, String correo) {
-		super();
-		this.nombre = nombre;
-		this.nit = nit;
-		this.rut = rut;
-		this.direccion = direccion;
-		this.telefono = telefono;
-		this.correo = correo;
-	}
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+
+@DynamoDBTable(tableName = "empresas")
+public class Empresa {
+
+	private BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAJSINT4F7K5BSGDRA",
+			"512NOFNfUl4hAZMyFEHpt7ygdmksBVzmfXr6xLsR");
+
+	private DynamoDBMapper mapper = new DynamoDBMapper(AmazonDynamoDBClientBuilder.standard().withRegion(Regions.US_EAST_1)
+			.withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build());
+
+	private String nombre, nit, rut, direccion, telefono, correo;
 
 	public Empresa() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public String getNombre() {
-		return nombre;
+	// METODOS PARA MANIPULAR LA BD
+	public Empresa load(String nit) {
+		System.out.println("Loading object");
+		return mapper.load(Empresa.class, nit);
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public List<Empresa> scan() {
+		System.out.println("Scaning table");
+		return mapper.scan(Empresa.class, new DynamoDBScanExpression());
 	}
 
+	public void save() {
+		System.out.println("Saving object");
+		mapper.save(this);
+	}
+
+	public void delete() {
+		System.out.println("Deleting object");
+		mapper.delete(this);
+	}
+	// METODOS PARA MANIPULAR LA BD
+
+	@DynamoDBHashKey
 	public String getNit() {
 		return nit;
 	}
@@ -35,6 +57,16 @@ public class Empresa {
 		this.nit = nit;
 	}
 
+	 
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	 
 	public String getRut() {
 		return rut;
 	}
@@ -43,6 +75,7 @@ public class Empresa {
 		this.rut = rut;
 	}
 
+	 
 	public String getDireccion() {
 		return direccion;
 	}
@@ -51,6 +84,7 @@ public class Empresa {
 		this.direccion = direccion;
 	}
 
+	 
 	public String getTelefono() {
 		return telefono;
 	}
@@ -59,6 +93,7 @@ public class Empresa {
 		this.telefono = telefono;
 	}
 
+	 
 	public String getCorreo() {
 		return correo;
 	}
