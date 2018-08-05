@@ -47,7 +47,7 @@ public class Crear extends HttpServlet {
 		reporte.setVisto(false);
 		
 		//Guardar en la base de datos
-		new DB().getMapper().save(reporte);
+		new DB().save(reporte);
 		
 		com.logica.Dibujar.mensaje(response.getWriter(), "Reporte Creado",
 				request.getContextPath() + "/movil/transportador/reportes.jsp");

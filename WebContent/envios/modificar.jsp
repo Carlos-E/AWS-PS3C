@@ -3,6 +3,8 @@
 <%@ page import="com.logica.*"%>
 <%@ page import="clases.*"%>
 <%@ page import="java.util.ArrayList"%>
+<%@ page import="com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression"%>
+
 <%
 	if (session.getAttribute("rol") == null) {
 		response.sendError(400, "Acceso incorrecto"); //cambiar
@@ -149,9 +151,9 @@
  -->
 							<select class="form-control" name="empresa" id="empresa">
 								<option value="" selected>Seleccionar...</option>
-
+								
 								<%
-									List<Empresa> listaEmpresas = new Empresa().scan();
+									List<Empresa> listaEmpresas = new DB().getMapper().scan(Empresa.class, new DynamoDBScanExpression());
 
 									for (int i = 0; i < listaEmpresas.size(); i++) {
 								%>
