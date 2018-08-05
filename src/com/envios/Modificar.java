@@ -52,19 +52,25 @@ public class Modificar extends HttpServlet {
 		envio.setEspacio(request.getParameter("espacio"));
 		envio.setPeso(request.getParameter("peso"));
 		envio.setTipo(request.getParameter("tipo"));
-		envio.setEstado(request.getParameter("estado"));
+		//envio.setEstado(request.getParameter("estado"));
 		envio.setDescripcion(request.getParameter("descripcion"));
 
 		if (request.getParameter("camion") == null) {
-			envio.setCamion(request.getParameter("ninguno"));
+			envio.setCamion("ninguno");
+			envio.setEstado("no asignado");
+
 		} else {
 			envio.setCamion(request.getParameter("camion"));
+			envio.setEstado("asignado");
 		}
 
 		if (request.getParameter("trailer") == null) {
 			envio.setTrailer("ninguno");
+			envio.setEstado("no asignado");
+
 		} else {
 			envio.setTrailer(request.getParameter("trailer"));
+			envio.setEstado("asignado");
 		}
 
 		new DB().save(envio);
