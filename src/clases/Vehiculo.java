@@ -1,9 +1,6 @@
 package clases;
 
-import java.util.List;
-
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
 @DynamoDBTable(tableName = "vehiculos")
@@ -14,24 +11,6 @@ public class Vehiculo {
 	public Vehiculo() {
 		super();
 	}
-
-	// METODOS PARA MANIPULAR LA BD
-	public Vehiculo load(String usuario, String fecha) {
-		return new DB().getMapper().load(Vehiculo.class, usuario, fecha);
-	}
-
-	public List<Vehiculo> scan() {
-		return new DB().getMapper().scan(Vehiculo.class, new DynamoDBScanExpression());
-	}
-
-	public void save() {
-		new DB().getMapper().save(this);
-	}
-
-	public void delete() {
-		new DB().getMapper().delete(this);
-	}
-	// METODOS PARA MANIPULAR LA BD
 
 	@DynamoDBHashKey
 	public String getPlaca() {

@@ -1,9 +1,6 @@
 package clases;
 
-import java.util.List;
-
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
 @DynamoDBTable(tableName = "empresas")
@@ -15,24 +12,6 @@ public class Empresa {
 		super();
 	}
 
-	// METODOS PARA MANIPULAR LA BD
-	public Empresa load(String usuario, String fecha) {
-		return new DB().getMapper().load(Empresa.class, usuario, fecha);
-	}
-
-	public List<Empresa> scan() {
-		return new DB().getMapper().scan(Empresa.class, new DynamoDBScanExpression());
-	}
-
-	public void save() {
-		new DB().getMapper().save(this);
-	}
-
-	public void delete() {
-		new DB().getMapper().delete(this);
-	}
-	// METODOS PARA MANIPULAR LA BD
-
 	@DynamoDBHashKey
 	public String getNit() {
 		return nit;
@@ -42,7 +21,6 @@ public class Empresa {
 		this.nit = nit;
 	}
 
-	 
 	public String getNombre() {
 		return nombre;
 	}
@@ -51,7 +29,6 @@ public class Empresa {
 		this.nombre = nombre;
 	}
 
-	 
 	public String getRut() {
 		return rut;
 	}
@@ -60,7 +37,6 @@ public class Empresa {
 		this.rut = rut;
 	}
 
-	 
 	public String getDireccion() {
 		return direccion;
 	}
@@ -69,7 +45,6 @@ public class Empresa {
 		this.direccion = direccion;
 	}
 
-	 
 	public String getTelefono() {
 		return telefono;
 	}
@@ -78,7 +53,6 @@ public class Empresa {
 		this.telefono = telefono;
 	}
 
-	 
 	public String getCorreo() {
 		return correo;
 	}
