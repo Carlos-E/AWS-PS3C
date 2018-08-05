@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import clases.DB;
 import clases.Reporte;
 
 @WebServlet("/reportes/crear")
@@ -45,7 +46,8 @@ public class Crear extends HttpServlet {
 		reporte.setNota(request.getParameter("nota").toLowerCase());
 		reporte.setVisto(false);
 		
-		reporte.save();
+		//Guardar en la base de datos
+		new DB().getMapper().save(reporte);
 		
 		com.logica.Dibujar.mensaje(response.getWriter(), "Reporte Creado",
 				request.getContextPath() + "/movil/transportador/reportes.jsp");

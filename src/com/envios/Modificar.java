@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+
+import clases.DB;
 import clases.Envio;
 
 @WebServlet("/envios/modificar")
@@ -28,9 +31,12 @@ public class Modificar extends HttpServlet {
 
 		response.setContentType("text/html");
 		request.setCharacterEncoding("UTF-8");
+		
+		DynamoDBMapper mapper = new DB().getMapper();
+
 
 		// Buscar el objeto en la base de datos e instanciarlo
-		Envio envio = new Envio().load(request.getParameter("cliente"), request.getParameter("fecha"));
+		Envio envio = mapper.load(Envio.class,request.getParameter("cliente"), request.getParameter("fecha"));
 
 		// Si no encontro nada, soltar mensaje de error y recargar pagina
 		if (envio == null) {
@@ -65,7 +71,7 @@ public class Modificar extends HttpServlet {
 			envio.setTrailer(request.getParameter("trailer"));
 		}
 
-		envio.save();
+		mapper.save(envio);
 
 		com.logica.Dibujar.mensaje(response.getWriter(), "Envio actualizado correctamente", "/envios/modificar.jsp");
 

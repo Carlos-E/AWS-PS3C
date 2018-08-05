@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+
 import clases.*;
 
 @WebServlet("/envios/crear")
@@ -30,6 +32,8 @@ public class Crear extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
+		
+		DynamoDBMapper mapper = new DB().getMapper();
 		
 		// GENERAR ENVIO
 		Envio envio = new Envio();
@@ -73,7 +77,8 @@ public class Crear extends HttpServlet {
 		envio.setTrailer("ninguno");
 		
 		//Guardar Envio en base de datos
-		envio.save();
+		
+		mapper.save(envio);
 		// GENERAR ENVIO
 
 		
@@ -87,7 +92,7 @@ public class Crear extends HttpServlet {
 		reporte.setVisto(false);
 		
 		//Guardar Reporte en base de datos
-		reporte.save();
+		mapper.save(reporte);
 		// GENERAR REPORTE
 
 		
