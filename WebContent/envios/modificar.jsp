@@ -82,7 +82,7 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">origen</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="origen" placeholder="origen" id="origen" required>
+							<input class="form-control" type="text" name="origen" placeholder="origen" onchange="uno()"  id="origen" required>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">destino</label>
 						<div class="col-md-4">
@@ -110,7 +110,7 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">espacio</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="espacio" placeholder="espacio" id="espacio" required>
+							<input class="form-control" type="text" name="espacio" placeholder="espacio" onchange="uno()"  id="espacio" required>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">estado</label>
 						<div class="col-md-4">
@@ -127,7 +127,7 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">peso</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="peso" placeholder="peso" id="peso" required>
+							<input class="form-control" type="text" name="peso" placeholder="peso" onchange="uno()"  id="peso" required>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">descripci&oacute;n</label>
 						<div class="col-md-4">
@@ -405,11 +405,24 @@
 								var latlon = place.geometry.location.lat()
 										+ "," + place.geometry.location.lng();
 
-								getRoutes(latlon);
-
 								document.getElementById('origenLatLong').value = latlon;
 							});
 		};
+	</script>
+	<script type="text/javascript">
+		var i=0;
+		function uno(){
+			var peso = document.getElementById('peso').value;
+			var espacio = document.getElementById('espacio').value;
+			if(peso != "" && espacio != ""){
+				setTimeout(function(){
+					var latlon = document.getElementById('origenLatLong').value;
+					if(latlon != ""){
+						getRoutes(latlon,parseFloat(peso),parseFloat(espacio));
+					}
+				}, 1000);
+			}
+		}
 	</script>
 
 </body>
