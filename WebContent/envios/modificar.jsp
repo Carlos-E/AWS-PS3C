@@ -188,7 +188,7 @@
 								<option value="ninguno">ninguno</option>
 
 								<%
-									ArrayList<Vehiculo> listaVehiculos = ControladorBD.escanearTabla("vehiculos");
+									List<Vehiculo> listaVehiculos = new DB().scan(Vehiculo.class, new DynamoDBScanExpression());
 									for (int i = 0; i < listaVehiculos.size(); i++) {
 										if (listaVehiculos.get(i).getTipo().equals("camion")) {
 								%>
@@ -211,7 +211,7 @@
 								<option value="" selected>Seleccionar...</option>
 								<option value="ninguno">ninguno</option>
 								<%
-									ArrayList<Trailer> listaTraileres = ControladorBD.escanearTabla("trailers");
+									List<Trailer> listaTraileres = new DB().scan(Trailer.class, new DynamoDBScanExpression());;
 									for (int i = 0; i < listaTraileres.size(); i++) {
 								%>
 								<option value="<%out.print(listaTraileres.get(i).getPatente());%>">

@@ -3,6 +3,7 @@
 <%@ page import="com.logica.*"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="clases.*"%>
+<%@ page import="com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression"%>
 <%
 	if (session.getAttribute("rol") == null) {
 		response.sendRedirect("/login.jsp");
@@ -31,9 +32,9 @@
 		</div>
 	</div>
 	<%
-		ArrayList<Usuario> listaUsuarios = ControladorBD.escanearTabla("usuarios");
-		ArrayList<Usuario> listaClientes = new ArrayList<Usuario>();
-		ArrayList<Empresa> listaEmpresas = ControladorBD.escanearTabla("empresas");
+		List<Usuario> listaUsuarios = new DB().scan(Usuario.class, new DynamoDBScanExpression());
+		List<Usuario> listaClientes = new ArrayList<Usuario>();
+		List<Empresa> listaEmpresas = new DB().scan(Empresa.class, new DynamoDBScanExpression());
 		for (int i = 0; i < listaUsuarios.size(); i++) {
 			if (listaUsuarios.get(i).getRol().equals("cliente")) {
 				if (!ControladorBD.estaOcupado(listaUsuarios.get(i).getNombre(), "null")) {

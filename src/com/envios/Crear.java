@@ -62,14 +62,11 @@ public class Crear extends HttpServlet {
 		envio.setTipo(request.getParameter("tipo").toLowerCase());
 		envio.setDescripcion(request.getParameter("descripcion").toLowerCase());
 		
-		envio.setEstado("asignado");
-		
 		envio.setChequeoCarga(false);
 		envio.setChequeoDescarga(false);
 		
-		System.out.println(request.getParameter("asignado").toLowerCase());
-
-		envio.setCamion(request.getParameter("asignado").toLowerCase());
+		envio.setEstado("no asignado");
+		envio.setCamion("ninguno");
 		envio.setTrailer("ninguno");
 		
 		//Guardar Envio en base de datos
@@ -80,9 +77,9 @@ public class Crear extends HttpServlet {
 		// GENERAR REPORTE
 		Reporte reporte = new Reporte();
 		
+		reporte.setUsuario(envio.getUsuario());
 		reporte.setHora(fecha);
 		reporte.setNota("Hay un nuevo envio del cliente: " + envio.getUsuario() + " Con Fecha: " + fecha);
-		reporte.setUsuario(envio.getUsuario());
 		reporte.setVisto(false);
 		
 		//Guardar Reporte en base de datos
