@@ -6,7 +6,8 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 @DynamoDBTable(tableName = "vehiculos")
 public class Vehiculo {
 
-	private String placa, tipo, peso, espacio, pesoMax, espacioMax, estado, usuario, empresa, latitud, longitud;
+	private String placa, tipo, peso, pesoMax, espacio, espacioMax;
+	private String estado, usuario, empresa, latitud, longitud;
 
 	public Vehiculo() {
 		super();

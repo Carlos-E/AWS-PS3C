@@ -91,7 +91,7 @@
 		$(document).ready(function() {
 						
 			$.ajax({
-				url : "/scanTable",
+				url : "/envios/listar",
 				data : {
 					tabla : 'envios'
 				},

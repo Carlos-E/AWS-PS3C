@@ -67,7 +67,7 @@ public class Modificar extends HttpServlet {
 			envio.setTrailer(request.getParameter("trailer"));
 		}
 
-		new DB().save(envio);;
+		new DB().save(envio);
 
 		com.logica.Dibujar.mensaje(response.getWriter(), "Envio actualizado correctamente", "/envios/modificar.jsp");
 
