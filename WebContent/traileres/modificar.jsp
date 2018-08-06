@@ -2,6 +2,8 @@
 <%@ page import="java.io.*,java.util.*"%>
 <%@ page import="com.logica.*"%>
 <%@ page import="clases.*"%>
+<%@ page import="com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression"%>
+
 <%
 	if (session.getAttribute("rol") == null) {
 		//response.sendError(400, "Acceso incorrecto"); //cambiar
@@ -29,10 +31,10 @@
 		</div>
 	</div>
 	<%
-		ArrayList<Usuario> listaUsuarios = ControladorBD.escanearTabla("usuarios");
-		ArrayList<Vehiculo> listaVehiculos = ControladorBD.escanearTabla("vehiculos");
-		ArrayList<Usuario> listaConductor = new ArrayList<Usuario>();
-		ArrayList<Empresa> listaEmpresas = ControladorBD.escanearTabla("empresas");
+		List<Usuario> listaUsuarios = new DB().scan(Usuario.class, new DynamoDBScanExpression());
+		List<Vehiculo> listaVehiculos = new DB().scan(Vehiculo.class, new DynamoDBScanExpression());
+		List<Usuario> listaConductor = new ArrayList<Usuario>();
+		List<Empresa> listaEmpresas = new DB().scan(Empresa.class, new DynamoDBScanExpression());
 		for (int i = 0; i < listaUsuarios.size(); i++) {
 			if (listaUsuarios.get(i).getRol().equals("conductor")) {
 				if (!ControladorBD.estaOcupado(listaUsuarios.get(i).getNombre(), "null")) {
@@ -135,7 +137,7 @@
 								%>
 							</select>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Remolque</label>
+						<label class="col-md-2 col-form-label text-capitalize">Remolques Disponibles</label>
 						<div class="col-md-4">
 							<!-- 							<input class="form-control" type="text" name="vehiculo" placeholder="vehiculo" id="vehiculo" required>
  -->
@@ -163,11 +165,11 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Peso maximo</label>
+						<label class="col-md-2 col-form-label text-capitalize">Peso m&aacute;ximo</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="peso" placeholder="peso" id="peso" required>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Espacio</label>
+						<label class="col-md-2 col-form-label text-capitalize">Espacio  m&aacute;ximo</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="espacio" placeholder="espacio" id="espacio" required>
 						</div>
@@ -206,8 +208,8 @@
 	<jsp:include page="/footer.jsp" />
 	<!-- /FIN -->
 	<script>
-		$(document).ready(
-				function() {
+		$(document).ready(function() {
+			
 					var lista;
 					$.ajax({
 						url : "/scanTable",
@@ -216,8 +218,8 @@
 						},
 						type : "POST",
 						dataType : "json",
-					}).done(
-							function(response) {
+					}).done(function(response) {
+						
 								console.log(response);
 								lista = response;
 								$(response).each(
@@ -228,11 +230,13 @@
 													$("<option>").attr('value',
 															value).text(text));
 										});
-							}).fail(function(xhr, status, errorThrown) {
+					}).fail(function(xhr, status, errorThrown) {
+						
 						alert("Algo ha salido mal");
-						console.log('Failed Request To Servlet /scanTable')
-					}).always(function(xhr, status) {
+						console.log('Failed Request To Servlet /scanTable');
+						
 					});
+					
 					$('#buscar').click(function() {
 						let selectedIndex = $('#select').prop('selectedIndex');
 						console.log(lista[selectedIndex]);
@@ -248,10 +252,12 @@
 						$('#form').removeAttr('hidden');
 						$('#form').show();
 					});
+					
 					$('#atras').click(function() {
 						$('#buscar-form').show();
 						$('#form').hide();
 					});
+					
 				});
 	</script>
 

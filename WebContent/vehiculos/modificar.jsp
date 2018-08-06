@@ -90,7 +90,7 @@
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="conductorAsignado" id="conductorAsignado" readonly>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Conductor</label>
+						<label class="col-md-2 col-form-label text-capitalize">Conductores disponibles</label>
 						<div class="col-md-4">
 							<select class="form-control" name="conductor" id="conductor" required>
 								<option value="null" selected>Seleccionar...</option>
@@ -135,7 +135,8 @@
 							<input class="form-control" type="text" name="tipo" id="tipo" readonly>
 						</div>
 					</div>
-					<div class="form-group row" id="peso-espacio">
+					<div id="peso-espacio">
+					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Peso m&aacute;ximo</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="pesoMax" placeholder="peso Maximo" id="pesoMax" required>
@@ -145,15 +146,16 @@
 							<input class="form-control" type="text" name="espacioMax" placeholder="espacio Maximo" id="espacioMax" required>
 						</div>
 					</div>
-					<div class="form-group row" id="peso-espacio">
-						<label class="col-md-2 col-form-label text-capitalize">Peso</label>
+					<div class="form-group row" >
+						<label class="col-md-2 col-form-label text-capitalize">Peso Actual</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="peso" placeholder="peso" id="peso" required>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Espacio</label>
+						<label class="col-md-2 col-form-label text-capitalize">Espacio Actual</label>
 						<div class="col-md-4"> 
 							<input class="form-control" type="text" name="espacio" placeholder="espacio" id="espacio" required>
 						</div>
+					</div>
 					</div>
 
 					<div class="modal-footer">
@@ -217,6 +219,7 @@
 						console.log('Failed Request To Servlet /scanTable')
 					}).always(function(xhr, status) {
 					});
+					
 					$('#buscar').click(function() {
 						let selectedIndex = $('#select').prop('selectedIndex');
 						console.log(lista[selectedIndex]);
@@ -234,8 +237,13 @@
 							$('#espacio').attr('readonly','false');
 							$('#peso-espacio').show();
 						}
+						
 						$('#peso').val(objeto.peso);
 						$('#espacio').val(objeto.espacio);
+						
+						$('#pesoMax').val(objeto.pesoMax);
+						$('#espacioMax').val(objeto.espacioMax);
+						
 						$('#empresa').val(objeto.empresa);
 						$('#conductorAsignado').val(objeto.usuario);
 						
@@ -244,10 +252,12 @@
 						$('#form').show();
 						
 					});
+					
 					$('#atras').click(function() {
 						$('#buscar-form').show();
 						$('#form').hide();
 					});
+					
 				});
 	</script>
 </body>

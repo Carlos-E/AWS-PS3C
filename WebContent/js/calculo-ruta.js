@@ -75,7 +75,7 @@ function initMap() {
 
 	        	// Poner Seleccionar... de primero
 	        	let option = document.createElement("option");
-	        	option.text = 'Selecionar...';
+	        	option.text = 'Seleccionar...';
 	        	option.value = '';   	
 	        	select.add(option);
 	        	
@@ -98,7 +98,6 @@ function initMap() {
           console.log('Failed getRoutes');
         })
         .always(function(xhr, status) {
-          $('#spinner').fadeOut('slow');
         });
     });
   };
