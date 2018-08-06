@@ -210,7 +210,7 @@
 							<select id="trailer" class="form-control" name="trailer" id="trailer" required>
 								<option value="" selected>Seleccionar...</option>
 								<option value="ninguno">ninguno</option>
-								<%
+								<%-- <%
 									List<Trailer> listaTraileres = new DB().scan(Trailer.class, new DynamoDBScanExpression());;
 									for (int i = 0; i < listaTraileres.size(); i++) {
 								%>
@@ -221,7 +221,7 @@
 								</option>
 								<%
 									}
-								%>
+								%> --%>
 							</select>
 						</div>
 

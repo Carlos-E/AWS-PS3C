@@ -76,6 +76,7 @@ function initMap() {
 	        	// Poner Seleccionar... de primero
 	        	let option = document.createElement("option");
 	        	option.text = 'Seleccionar...';
+	        	option.text = 'ninguno';
 	        	option.value = '';   	
 	        	select.add(option);
 	        	
@@ -184,7 +185,15 @@ function setTrailers(pesoEnvio,espacioEnvio){
 			        	continue;
 	    		  }
 
-	    		  let select = document.getElementById('asignado');
+	    		  let select = document.getElementById('trailer');
+	    		  $("#trailer option").remove();
+
+		        	// Poner Seleccionar... de primero
+	    		  let option = document.createElement("option");
+	    		  option.text = 'Seleccionar...';
+	    		  option.text = 'ninguno';
+	    		  option.value = '';   	
+	    		  select.add(option);
 
 		        	// Llenar select
 		        	let option = document.createElement("option");	
