@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
-import com.logica.ControladorBD;
+//import com.logica.ControladorBD;
 
 import clases.DB;
 import clases.Envio;
@@ -27,42 +27,48 @@ public class chequeoCarga extends HttpServlet {
 			throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
-
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		response.setContentType("text/html");
+
 		try {
 
-			List<Envio> envios = new DB().scan(Envio.class, new DynamoDBScanExpression());
-			String chequeoCarga = "jeje saludos";
-			
+			DB DB = new DB();
+
+			List<Envio> envios = DB.scan(Envio.class, new DynamoDBScanExpression());
+
 			for (int i = 0; i < envios.size(); i++) {
-				
+
 				System.out.println(envios.get(i).getFecha());
 				try {
-					
+
 					if (request.getParameter(envios.get(i).getFecha()) == null) {
-						chequeoCarga = "false";
+						envios.get(i).setChequeoCarga(false);
+						envios.get(i).setChequeoDescarga(false);
 					} else {
-						chequeoCarga = "true";
+						envios.get(i).setChequeoCarga(true);
 					}
-					ControladorBD.actualizarValor("envios", "usuario", envios.get(i).getUsuario(), "fecha",
-							envios.get(i).getFecha(), "chequeoCarga", chequeoCarga);
-				
+
+					System.out.println("Guardando envio");
+					DB.save(envios.get(i));
+
 				} catch (Exception e) {
 					System.out.println("no encontro una fecha, algo anda mal");
 				}
-				
+
 			}
 
-			response.setContentType("text/html");
 			com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa",
-					request.getContextPath() + "chequeo/chequeoDeCarga.jsp");
+					request.getContextPath() + "/chequeo/recogido.jsp");
 
 		} catch (Exception e) {
+
 			com.logica.Dibujar.mensaje(response.getWriter(),
 					"Ocurrio un error al intentar chequear los envios cargados",
-					request.getContextPath() + "./index.jsp");
+					request.getContextPath() + "/chequeo/recogido.jsp");
+
 		}
 	}
 }
