@@ -36,16 +36,42 @@ public class UpdateShipment extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		DB DB = new DB();
 
-		System.out.println(
-				"\n\n\nKey and Value: " + request.getParameter("key") + " " + request.getParameter("value") + "\n");
+		String usuarioEnvio = request.getParameter("client");
+		String fechaEnvio = request.getParameter("date");
 
-		boolean result = ControladorBD.updateShipment(request.getParameter("client"), request.getParameter("date"),request.getParameter("key"), request.getParameter("value"));
+		Envio envio = DB.load(Envio.class, usuarioEnvio, fechaEnvio);
+
+		String variable = request.getParameter("key");
+		String valor = request.getParameter("value");
+
+		if (variable.equals("chequeoCarga")) {
+
+			if (valor.equals("true")) {
+				envio.setChequeoCarga(true);
+			} else if (valor.equals("false")) {
+				envio.setChequeoCarga(false);
+			}
+
+		}else if(variable.equals("chequeoDescarga")){
+			
+			if (valor.equals("true")) {
+				envio.setChequeoDescarga(true);
+			} else if (valor.equals("false")) {
+				envio.setChequeoDescarga(false);
+			}
+		}
+
+		DB.save(envio);
+		
+		//boolean result = ControladorBD.updateShipment(usuarioEnvio, fechaEnvio, variable, valor);
 
 		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 
 		response.setContentType("application/json");
-		response.getWriter().print(ow.writeValueAsString(result));
+		response.getWriter().print(ow.writeValueAsString(true));
 		response.getWriter().close();
 	}
 
