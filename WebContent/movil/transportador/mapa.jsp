@@ -253,14 +253,6 @@
 
 								});
 
-						/* document.getElementById('recogido').addEventListener('click', function () {
-						///////ACTUALIZAR ENVIO
-							let cliente = envios[document.getElementById('envios').selectedIndex].usuario;
-							let fecha = envios[document.getElementById('envios').selectedIndex].fecha;
-							updateShipment(cliente,fecha,'chequeoCarga', document.getElementById('recogido').checked);
-							///////ACTUALIZAR ENVIO
-						}); */
-
 						document
 							.getElementById('recogido')
 							.addEventListener(
@@ -279,8 +271,9 @@
 											.getElementById('envios').selectedIndex].destinoLatLong;
 
 										envios[document.getElementById('envios').selectedIndex].chequeoCarga = true;
-										updateShipment(cliente, fecha,
-											'chequeoCarga', true);
+										
+										updateShipment("/chequeo/recogida",cliente, fecha, true);
+
 
 										////
 										calculateAndDisplayRoute(directionsService,
@@ -290,12 +283,14 @@
 											.getElementById('envios').selectedIndex].origenLatLong;
 
 										envios[document.getElementById('envios').selectedIndex].chequeoCarga = false
-										updateShipment(cliente, fecha,
-											'chequeoCarga', false);
+										
+										updateShipment("/chequeo/recogida",cliente, fecha, false);
+
 
 										envios[document.getElementById('envios').selectedIndex].chequeoDescarga = false;
-										updateShipment(cliente, fecha,
-											'chequeoDescarga', false);
+										
+										updateShipment("/chequeo/entrega",cliente, fecha, false);
+
 
 										document.getElementById('entregado').checked = false;
 										////
@@ -303,14 +298,6 @@
 											directionsDisplay);
 									}
 								});
-
-						/* document.getElementById('entregado').addEventListener('click', function () {
-						///////ACTUALIZAR ENVIO
-							let cliente = envios[document.getElementById('envios').selectedIndex].usuario;
-							let fecha = envios[document.getElementById('envios').selectedIndex].fecha;
-							updateShipment(cliente,fecha,'chequeoDescarga', document.getElementById('entregado').checked);
-							///////ACTUALIZAR ENVIO
-						}); */
 
 						document
 							.getElementById('entregado')
@@ -328,13 +315,14 @@
 									if (document.getElementById('entregado').checked) {
 										//ENTREGADO o DESCARGA
 										envios[document.getElementById('envios').selectedIndex].chequeoDescarga = true;
-										updateShipment(cliente, fecha,
-											'chequeoDescarga', true);
+										
+										updateShipment("/chequeo/entrega",cliente, fecha, true);
 
 										//RECOGIDO o CARGA
 										envios[document.getElementById('envios').selectedIndex].chequeoCarga = true
-										updateShipment(cliente, fecha,
-											'chequeoCarga', true);
+										
+										updateShipment("/chequeo/recogida",cliente, fecha, true);
+
 
 										document.getElementById('recogido').checked = true;
 										document.getElementById('recogido').disable = true;
@@ -347,8 +335,8 @@
 											.getElementById('envios').selectedIndex].destinoLatLong;
 
 										envios[document.getElementById('envios').selectedIndex].chequeoDescarga = false;
-										updateShipment(cliente, fecha,
-											'chequeoDescarga', false);
+										
+										updateShipment("/chequeo/entrega",cliente, fecha, false);
 
 										document.getElementById('recogido').checked = true;
 										document.getElementById('recogido').disable = false;
@@ -474,14 +462,15 @@
 
 					}
 
-					function updateShipment(client, date, key, value) {
+					
+					
+					function updateShipment(url,client, date, value) {
 
 						$.ajax({
-							url: "/updateShipment",
+							url: url,
 							data: {
 								client: client,
 								date: date,
-								key: key,
 								value: value
 							},
 							type: "POST",
@@ -495,11 +484,12 @@
 							}
 
 						}).fail(function (xhr, status, errorThrown) {
-							console.log('Failed Request To Servlet /updateShipment')
+							
+							console.log('Failed Request To Servlet /updateShipment');
+							
 							if (typeof Android != 'undefined') {
 								Android.showToast('Error: envio no actualizado');
 							}
-						}).always(function (xhr, status) {
 						});
 
 					}

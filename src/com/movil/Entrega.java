@@ -27,7 +27,7 @@ public class Entrega extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		DB DB = new DB();
 
 		Envio envio = DB.load(Envio.class, request.getParameter("client"), request.getParameter("date"));
@@ -39,6 +39,9 @@ public class Entrega extends HttpServlet {
 		} else if (valor.equals("false")) {
 			envio.setChequeoDescarga(false);
 		}
+
+		System.out.println("Chequeo Entrega/Descarga: " + request.getParameter("client") + " "
+				+ request.getParameter("date") + " : " + valor);
 
 		DB.save(envio);
 

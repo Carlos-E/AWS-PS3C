@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
 import clases.*;
-
 
 @WebServlet("/chequeo/recogida")
 public class Recogida extends HttpServlet {
@@ -30,7 +28,7 @@ public class Recogida extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		DB DB = new DB();
 
 		Envio envio = DB.load(Envio.class, request.getParameter("client"), request.getParameter("date"));
@@ -42,6 +40,9 @@ public class Recogida extends HttpServlet {
 		} else if (valor.equals("false")) {
 			envio.setChequeoCarga(false);
 		}
+
+		System.out.println("Chequeo Recogida/Carga: " + request.getParameter("client") + " "
+				+ request.getParameter("date") + " : " + valor);
 
 		DB.save(envio);
 
