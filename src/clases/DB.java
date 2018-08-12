@@ -19,5 +19,5 @@ public class DB extends DynamoDBMapper {
 	public DB() {
 		super(AmazonDynamoDBClientBuilder.standard().withRegion(region).withCredentials(staticCreds).build());
 	}
-
+	
 }
