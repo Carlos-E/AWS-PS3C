@@ -176,7 +176,7 @@
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Trailer:</label>
 						<div class="col-md-4">
-							<input id="rTrailer" type="radio" name="asignacion" onclick="ocultar()" required>
+							<input id="rTrailer" type="radio" name="asignacion" onclick="ocultar()" disabled="true" required>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -200,7 +200,7 @@
 						<label id="trailer1" class="col-md-2 col-form-label text-capitalize">Trailer</label>
 						<div id="trailer2" class="col-md-4">
 							<!--<input class="form-control" type="text" name="camion" placeholder="camion" id="camion" required>-->
-							<select id="trailer" class="form-control" name="trailer" disabled="true" required>
+							<select id="trailer" class="form-control" name="trailer" required>
 							</select>
 						</div>
 					</div>					
