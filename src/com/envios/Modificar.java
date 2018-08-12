@@ -39,21 +39,16 @@ public class Modificar extends HttpServlet {
 
 		// Buscar el objeto en la base de datos e instanciarlo
 		Envio envio = new DB().load(Envio.class,request.getParameter("cliente"), request.getParameter("fecha"));
-
 		// Si no encontro nada, soltar mensaje de error y recargar pagina
 		if (envio == null) {
 			com.logica.Dibujar.mensaje(response.getWriter(), "Envio no encontrado", "/envios/modificar.jsp");
 			return;
 		}
-
 		// System.out.println("Objeto encontrado en tabla Envios: " + envio);
-
 		envio.setOrigen(request.getParameter("origen"));
 		envio.setDestino(request.getParameter("destino"));
-
 		envio.setOrigenLatLong(request.getParameter("origenLatLong"));
 		envio.setDestinoLatLong(request.getParameter("destinoLatLong"));
-
 		envio.setEmpresa(request.getParameter("empresa"));
 		envio.setEspacio(request.getParameter("espacio"));
 		envio.setPeso(request.getParameter("peso"));

@@ -186,21 +186,6 @@
 							<select id="camion" class="form-control" name="camion" id="camion" required>
 								<option value="" selected>Seleccionar...</option>
 								<option value="ninguno">ninguno</option>
-
-								<%
-									List<Vehiculo> listaVehiculos = new DB().scan(Vehiculo.class, new DynamoDBScanExpression());
-									for (int i = 0; i < listaVehiculos.size(); i++) {
-										if (listaVehiculos.get(i).getTipo().equals("camion")) {
-								%>
-								<option value="<%out.print(listaVehiculos.get(i).getPlaca());%>">
-									<%
-										out.print(listaVehiculos.get(i).getPlaca());
-									%>
-								</option>
-								<%
-									}
-									}
-								%>
 							</select>
 						</div>
 						<label id="trailer1" class="col-md-2 col-form-label text-capitalize">Trailer</label>
@@ -232,7 +217,6 @@
 							<select id="asignado" class="custom-select" name="tipo" required>
 								<option value="" selected>Seleccionar...</option>
 							</select>
-							
 						</div>
 						<div class="col-md-3">
 							<div id="spinner">

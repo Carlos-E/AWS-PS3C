@@ -64,7 +64,7 @@ function initMap() {
             listaDatosRutas = quickSort(listaDatosRutas, 0, listaDatosRutas.length - 1, 'duracion');
 
             // Limpiar select
-            let select = document.getElementById('asignado');
+            let select = document.getElementById('camion');
             $('#asignado option').remove();
 
             // Poner Seleccionar... de primero
