@@ -39,12 +39,13 @@ public class Recogida extends HttpServlet {
 			envio.setChequeoCarga(true);
 		} else if (valor.equals("false")) {
 			envio.setChequeoCarga(false);
+			envio.setChequeoDescarga(false);;
 		}
 
-		System.out.println("Chequeo Recogida/Carga: " + request.getParameter("client") + " "
-				+ request.getParameter("date") + " : " + valor);
-		
 		DB.save(envio);
+		
+		System.out.println("Chequeo Recogida/Carga: " + envio.getUsuario() + " "
+				+ envio.getFecha() + " : " + envio.isChequeoCarga());
 
 		response.setContentType("application/json");
 		response.getWriter().print(new ObjectMapper().writer().writeValueAsString(true));

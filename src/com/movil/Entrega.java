@@ -36,14 +36,15 @@ public class Entrega extends HttpServlet {
 
 		if (valor.equals("true")) {
 			envio.setChequeoDescarga(true);
+			envio.setChequeoCarga(true);
 		} else if (valor.equals("false")) {
 			envio.setChequeoDescarga(false);
 		}
-
-		System.out.println("Chequeo Entrega/Descarga: " + request.getParameter("client") + " "
-				+ request.getParameter("date") + " : " + valor);
 		
 		DB.save(envio);
+		
+		System.out.println("Chequeo Entrega/Descarga: " + envio.getUsuario() + " "
+				+ envio.getFecha() + " : " + envio.isChequeoDescarga());
 
 		response.setContentType("application/json");
 		response.getWriter().print(new ObjectMapper().writer().writeValueAsString(true));
