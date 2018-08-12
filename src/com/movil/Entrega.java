@@ -27,7 +27,7 @@ public class Entrega extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
 		DB DB = new DB();
 
 		Envio envio = DB.load(Envio.class, request.getParameter("client"), request.getParameter("date"));
