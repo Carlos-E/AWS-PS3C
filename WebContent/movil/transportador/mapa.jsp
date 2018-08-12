@@ -274,7 +274,6 @@
 										
 										updateShipment("/chequeo/recogida",cliente, fecha, true);
 
-
 										////
 										calculateAndDisplayRoute(directionsService,
 											directionsDisplay);

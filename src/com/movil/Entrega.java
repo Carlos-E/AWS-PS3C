@@ -42,7 +42,7 @@ public class Entrega extends HttpServlet {
 
 		System.out.println("Chequeo Entrega/Descarga: " + request.getParameter("client") + " "
 				+ request.getParameter("date") + " : " + valor);
-
+		
 		DB.save(envio);
 
 		response.setContentType("application/json");

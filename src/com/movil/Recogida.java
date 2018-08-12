@@ -43,7 +43,7 @@ public class Recogida extends HttpServlet {
 
 		System.out.println("Chequeo Recogida/Carga: " + request.getParameter("client") + " "
 				+ request.getParameter("date") + " : " + valor);
-
+		
 		DB.save(envio);
 
 		response.setContentType("application/json");
