@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import clases.*;
 
 
-@WebServlet("/updateShipment")
+@WebServlet("/chequeo/recogida")
 public class Recogida extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	clases.Usuario usuario = new clases.Usuario();
