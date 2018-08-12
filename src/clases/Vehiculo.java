@@ -1,6 +1,7 @@
 package clases;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIndexHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
 @DynamoDBTable(tableName = "vehiculos")
@@ -70,6 +71,7 @@ public class Vehiculo {
 		this.estado = estado;
 	}
 
+	@DynamoDBIndexHashKey(globalSecondaryIndexName="usuario")
 	public String getUsuario() {
 		return usuario;
 	}
