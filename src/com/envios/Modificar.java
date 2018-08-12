@@ -1,6 +1,8 @@
 package com.envios;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,8 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
+
 import clases.DB;
+import clases.Empresa;
 import clases.Envio;
+import clases.Trailer;
 
 @WebServlet("/envios/modificar")
 public class Modificar extends HttpServlet {
@@ -54,6 +60,12 @@ public class Modificar extends HttpServlet {
 		envio.setTipo(request.getParameter("tipo"));
 		envio.setDescripcion(request.getParameter("descripcion"));
 
+
+		List<Envio> envios = new DB().scan(Envio.class, new DynamoDBScanExpression());
+        List<Empresa> empresas = new DB().scan(Empresa.class, new DynamoDBScanExpression());
+        List<Trailer> trailers = new DB().scan(Trailer.class, new DynamoDBScanExpression());
+		
+		
 		if (request.getParameter("camion") == null) {
 			envio.setCamion("ninguno");
 			envio.setEstado("no asignado");
