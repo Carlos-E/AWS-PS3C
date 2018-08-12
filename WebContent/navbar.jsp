@@ -269,15 +269,15 @@
 			</ul>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" href="/chequeo/chequeoDeCarga.jsp">
+			<a class="nav-link" href="/chequeo/recogido.jsp">
 				<em class="fa fa-check-square"></em>
-				Chequeo Carga
+				Chequeo de Recogida
 			</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" href="/chequeo/chequeoDeDescarga.jsp">
+			<a class="nav-link" href="/chequeo/entregado.jsp">
 				<em class="fa fa-check-square"></em>
-				Chequeo Descarga
+				Chequeo de Entrega
 			</a>
 		</li>
 

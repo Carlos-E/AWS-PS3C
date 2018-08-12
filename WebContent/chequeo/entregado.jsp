@@ -4,7 +4,7 @@
 		//response.sendError(400, "Acceso incorrecto"); //cambiar
 		response.sendRedirect("/error.jsp");
 	}
-	session.setAttribute("pagina", "Chequear Env&iacute;os Descargados");
+	session.setAttribute("pagina", "Chequear Env&iacute;os Entregados");
 %>
 <!DOCTYPE html>
 <html lang="es">
