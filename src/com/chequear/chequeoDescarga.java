@@ -1,8 +1,7 @@
 package com.chequear;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,60 +9,65 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.logica.ControladorBD;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 
+import clases.DB;
 import clases.Envio;
 
-/**
- * Servlet implementation class chequeoDescarga
- */
 @WebServlet("/chequeoDescarga")
 public class chequeoDescarga extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public chequeoDescarga() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	public chequeoDescarga() {
+		super();
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
-		try {
-		ArrayList<Envio> envios = ControladorBD.escanearTabla("envios");
-		String chequeoDescarga = "jeje saludos";
-		System.out.println(chequeoDescarga);
-		for(int i=0;i<envios.size();i++){			
-			try{
-				if(request.getParameter(envios.get(i).getFecha())==null){
-					chequeoDescarga="false";
-				}else {
-					chequeoDescarga="true";
-				}
-				ControladorBD.actualizarValor("envios", "usuario", envios.get(i).getUsuario(), "fecha", envios.get(i).getFecha(), "chequeoDescarga", chequeoDescarga);
-			}catch (Exception e) {
-				System.out.println("no encontro una fecha, algo anda mal");				
-			}
-		}
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.sendError(404);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
 		response.setContentType("text/html");
-		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getContextPath() + "chequeo/chequeoDeDescarga.jsp");
-		}catch(Exception e){
-			com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar chequear los envios descargados", request.getContextPath() + "./index.jsp");
+
+		try {
+
+			DB DB = new DB();
+
+			List<Envio> envios = DB.scan(Envio.class, new DynamoDBScanExpression());
+
+			for (int i = 0; i < envios.size(); i++) {
+
+				System.out.println(envios.get(i).getFecha());
+				try {
+
+					if (request.getParameter(envios.get(i).getFecha()) == null) {
+						envios.get(i).setChequeoDescarga(false);
+					} else {
+						envios.get(i).setChequeoDescarga(true);
+						envios.get(i).setChequeoCarga(true);
+					}
+
+					System.out.println("Guardando envio");
+					DB.save(envios.get(i));
+
+				} catch (Exception e) {
+					System.out.println("no encontro una fecha, algo anda mal");
+				}
+
+			}
+
+			com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa",
+					request.getContextPath() + "/chequeo/entregado.jsp");
+
+		} catch (Exception e) {
+
+			com.logica.Dibujar.mensaje(response.getWriter(),
+					"Ocurrio un error al intentar chequear los envios cargados",
+					request.getContextPath() + "/chequeo/entregado.jsp");
+
 		}
 	}
-
 }
