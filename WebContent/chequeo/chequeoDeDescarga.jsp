@@ -111,6 +111,7 @@
 						element.usuario,
 						element.empresa,
 						element.origen,
+						element.estado,
 						element.destino,
 						element.descripcion,
 						aux
@@ -129,6 +130,7 @@
 			            { title: "Usuario" },
 			            { title: "Empresa" },
 			            { title: "Origen" },
+			            { title: "Estado" },
 			            { title: "Destino" },
 			            { title: "Descripci&oacute;n" },
 			            { title: "Chequeo" }
