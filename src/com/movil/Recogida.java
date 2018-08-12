@@ -37,9 +37,11 @@ public class Recogida extends HttpServlet {
 
 		if (valor.equals("true")) {
 			envio.setChequeoCarga(true);
+			envio.setEstado("en tránsito");
 		} else if (valor.equals("false")) {
 			envio.setChequeoCarga(false);
-			envio.setChequeoDescarga(false);;
+			envio.setChequeoDescarga(false);
+			envio.setEstado("asignado");
 		}
 
 		DB.save(envio);

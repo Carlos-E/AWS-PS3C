@@ -37,6 +37,7 @@ public class GetEnvios extends HttpServlet {
 
 		Map<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
 		eav.put(":v1", new AttributeValue().withS(conductor));
+
 		List<Vehiculo> vehiculosdelConductor = new DB().query(Vehiculo.class,
 				new DynamoDBQueryExpression<Vehiculo>().withIndexName("usuario").withConsistentRead(false)
 						.withKeyConditionExpression("usuario = :v1").withExpressionAttributeValues(eav));

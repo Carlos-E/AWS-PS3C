@@ -37,8 +37,10 @@ public class Entrega extends HttpServlet {
 		if (valor.equals("true")) {
 			envio.setChequeoDescarga(true);
 			envio.setChequeoCarga(true);
+			envio.setEstado("entregado");
 		} else if (valor.equals("false")) {
 			envio.setChequeoDescarga(false);
+			envio.setEstado("en tránsito ");
 		}
 		
 		DB.save(envio);
