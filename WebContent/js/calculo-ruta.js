@@ -65,13 +65,11 @@ function initMap() {
 
             // Limpiar select
             let select = document.getElementById('camion');
-            $('#asignado option').remove();
 
             // Poner Seleccionar... de primero
             let option = document.createElement('option');
-            option.text = 'Seleccionar...';
             option.text = 'ninguno';
-            option.value = '';
+            option.value = 'ninguno';
             select.add(option);
 
             console.log('Datos validos:');
@@ -161,12 +159,8 @@ function setTrailers(pesoEnvio, espacioEnvio) {
         // Borrar select completo
 
         let select = document.getElementById('trailer');
-        $('#trailer option').remove();
         // Poner Seleccionar... de primero
         let option = document.createElement('option');
-        option.text = 'Seleccionar...';
-        option.value = '';
-        select.add(option);
         option.text = 'ninguno';
         option.value = 'ninguno';
         select.add(option);
@@ -183,6 +177,7 @@ function setTrailers(pesoEnvio, espacioEnvio) {
           }
 
           // Llenar select
+          let option = document.createElement('option');
           option.text = 'Patente: ' + trailers[i].patente + ' - Distancia: NA';
           option.value = trailers[i].patente;
           console.log(option.text);

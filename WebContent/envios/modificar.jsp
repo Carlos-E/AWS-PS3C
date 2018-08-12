@@ -118,9 +118,10 @@
  -->
 							<select class="custom-select" name="estado" id="estado" required>
 								<option value="" selected>Seleccionar...</option>
-								<option value="no asignado">no asignado</option>
-								<option value="asignado">asignado</option>
-								<option value="completado">completado</option>
+								<option value="no asignado">No Asignado</option>
+								<option value="asignado">Asignado</option>
+								<option value="en trancito">En Tr&aacute;ncito</option>
+								<option value="entregado">Entregado</option>
 							</select>
 						</div>
 					</div>
@@ -167,56 +168,21 @@
 								%>
 							</select>
 						</div>
-
-
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Cami&oacute;n:</label>
+						<label class="col-md-2 col-form-label text-capitalize">veh&iacute;culo:</label>
 						<div class="col-md-4">
-							<input type="radio" name="tipo" onclick="mostrar()" required>
+							<input id="rCamion" type="radio" name="asignacion" onclick="mostrar()" checked="true" required>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Trailer:</label>
 						<div class="col-md-4">
-							<input type="radio" name="tipo" onclick="ocultar()" required>
+							<input id="rTrailer" type="radio" name="asignacion" onclick="ocultar()" disabled="true" required>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label id="camion1" class="col-md-2 col-form-label text-capitalize">Cami&oacute;n</label>
-						<div id="camion2" class="col-md-4">
-							<select id="camion" class="form-control" name="camion" id="camion" required>
-								<option value="" selected>Seleccionar...</option>
-								<option value="ninguno">ninguno</option>
-							</select>
-						</div>
-						<label id="trailer1" class="col-md-2 col-form-label text-capitalize">Trailer</label>
-						<div id="trailer2" class="col-md-4">
-							<!-- 							<input class="form-control" type="text" name="camion" placeholder="camion" id="camion" required>
- -->
-							<select id="trailer" class="form-control" name="trailer" id="trailer" required>
-								<option value="" selected>Seleccionar...</option>
-								<option value="ninguno">ninguno</option>
-								<%-- <%
-									List<Trailer> listaTraileres = new DB().scan(Trailer.class, new DynamoDBScanExpression());;
-									for (int i = 0; i < listaTraileres.size(); i++) {
-								%>
-								<option value="<%out.print(listaTraileres.get(i).getPatente());%>">
-									<%
-										out.print(listaTraileres.get(i).getPatente());
-									%>
-								</option>
-								<%
-									}
-								%> --%>
-							</select>
-						</div>
-
-					</div>
-					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Asignaci&oacute;n de veh&iacute;culo o trailer</label>
+						<label class="col-md-2 col-form-label text-capitalize">veh&iacute;culo o trailer asginado:</label>
 						<div class="col-md-4">
-							<select id="asignado" class="custom-select" name="tipo" required>
-								<option value="" selected>Seleccionar...</option>
-							</select>
+							<input class="form-control" type="text" name="asignado" placeholder="asignado" id="asignado" readonly>
 						</div>
 						<div class="col-md-3">
 							<div id="spinner">
@@ -225,6 +191,19 @@
 							</div>
 						</div>
 					</div>
+					<div class="form-group row">
+						<label id="camion1" class="col-md-2 col-form-label text-capitalize">veh&iacute;culo</label>
+						<div id="camion2" class="col-md-4">
+							<select id="camion" class="form-control" name="camion"required>								
+							</select>
+						</div>
+						<label id="trailer1" class="col-md-2 col-form-label text-capitalize">Trailer</label>
+						<div id="trailer2" class="col-md-4">
+							<!--<input class="form-control" type="text" name="camion" placeholder="camion" id="camion" required>-->
+							<select id="trailer" class="form-control" name="trailer" required>
+							</select>
+						</div>
+					</div>					
 					<input type="text" id="destinoLatLong" name="destinoLatLong" style="display: none">
 					<input type="text" id="origenLatLong" name="origenLatLong" style="display: none">
 					<div class="modal-footer">
@@ -263,7 +242,6 @@
 	<jsp:include page="/footer.jsp" />
 	<!--  /FIN FOOTER CON SCRIPTS -->
 	<!-- /FIN -->
-
 	<script>
 									$(document).ready(function () {
 										var lista;
@@ -278,7 +256,6 @@
 										}).done(function (response) {
 											console.log(response);
 											lista = response;
-
 											$(response).each(function () {
 												$('#select').append($(
 													"<option>")
@@ -301,20 +278,23 @@
 														.log('Failed Request To Servlet /scanTable')
 												}).always(function (xhr, status) {
 												});
-
 										$('#buscar').click(
 											function () {
-
 												let selectedIndex = $('#select').prop(
 													'selectedIndex');
-
 												console.log(lista[selectedIndex]);
-
 												let objeto = lista[selectedIndex];
-
+												let asignado = "ninguno";
+												if(objeto.trailer != "ninguno"){
+													asignado = objeto.trailer;
+												}else if(objeto.camion != "ninguno"){
+													asignado = objeto.camion;
+												}else{
+													asignado = "ninguno";
+												}
 												$('#cliente').val(objeto.usuario);
 												$('#fecha').val(objeto.fecha);
-
+												$('#asignado').val(asignado);
 												$('#origen').val(objeto.origen);
 												$('#destino').val(objeto.destino);
 												$('#usuario').val(objeto.usuario);
@@ -331,25 +311,19 @@
 												$('#trailer').val(objeto.trailer);
 												$('#descripcion').val(
 													objeto.descripcion);
-
 												$('#destinoLatLong').val(
 													objeto.destinoLatLong);
 												$('#origenLatLong').val(
 													objeto.origenLatLong);
-
 												$('#buscar-form').hide();
 												$('#form').removeAttr('hidden');
 												$('#form').show();
-
 												uno();
-
 											});
-
 										$('#atras').click(function () {
 											$('#buscar-form').show();
 											$('#form').hide();
 										});
-
 									});
 								</script>
 								<script type="text/javascript">
