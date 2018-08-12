@@ -62,9 +62,9 @@ public class Crear extends HttpServlet {
 		envio.setTipo(request.getParameter("tipo").toLowerCase());
 		envio.setDescripcion(request.getParameter("descripcion").toLowerCase());
 		
+		
 		envio.setChequeoCarga(false);
 		envio.setChequeoDescarga(false);
-		
 		envio.setEstado("no asignado");
 		envio.setCamion("ninguno");
 		envio.setTrailer("ninguno");

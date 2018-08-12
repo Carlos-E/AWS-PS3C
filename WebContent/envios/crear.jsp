@@ -138,7 +138,6 @@
 					<input type="text" id="destinoLatLong" name="destinoLatLong" style="display: none">
 					<input type="text" id="origenLatLong" name="origenLatLong" style="display: none">
 					
-
 					<div class="modal-footer">
 						<button type="submit" name="submit" class="btn btn-primary btn-md float-right">Registrar</button>
 						<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger btn-md float-right">Cancelar</button>
@@ -177,35 +176,36 @@
 	<!--  /FIN FOOTER CON SCRIPTS -->
 	<!-- /FIN -->
 
+	<script src="/js/calculo-ruta.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsQwNmnSYTDtkrlXKeKnfP0x8TNwVJ2uI&libraries=places&callback=initMap"></script>
-	
 	<script type="text/javascript">
-	
-	google.maps.event.addDomListener(window, 'load', intilize);
-		
+		google.maps.event.addDomListener(window, 'load', intilize);
 		function intilize() {
-		
-			var autocomplete = new google.maps.places.Autocomplete(document.getElementById("destino"));
-			
-			google.maps.event.addListener(autocomplete,'place_changed',function() {
-								
-						var place = autocomplete.getPlace();
-						var latlon = place.geometry.location.lat()+ ',' + place.geometry.location.lng();
+			var autocomplete = new google.maps.places.Autocomplete(document
+					.getElementById("destino"));
+			google.maps.event
+					.addListener(
+							autocomplete,
+							'place_changed',
+							function() {
+								var place = autocomplete.getPlace();
+								var latlon = place.geometry.location.lat()
+										+ ',' + place.geometry.location.lng();
 
-						document.getElementById('destinoLatLong').value = latlon;
-						});
+								document.getElementById('destinoLatLong').value = latlon;
+							});
 		};
 	</script>
-	
 	<script type="text/javascript">
-	
 		google.maps.event.addDomListener(window, 'load', intilize);
-		
 		function intilize() {
-		
-			var autocomplete = new google.maps.places.Autocomplete(document.getElementById("origen"));
-			
-			google.maps.event.addListener(autocomplete,'place_changed',function() {
+			var autocomplete = new google.maps.places.Autocomplete(document
+					.getElementById("origen"));
+			google.maps.event
+					.addListener(
+							autocomplete,
+							'place_changed',
+							function() {
 								var place = autocomplete.getPlace();
 								var latlon = place.geometry.location.lat()
 										+ "," + place.geometry.location.lng();
@@ -214,7 +214,7 @@
 							});
 		};
 	</script>
-	
+
 </body>
 
 </html>
