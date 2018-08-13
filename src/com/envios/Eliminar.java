@@ -30,9 +30,8 @@ public class Eliminar extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String env = "lo que sea que venga aqui para poder llamar el envio";
 		DB DB = new DB();
-		Envio envio = DB.load(Envio.class, env);
+		Envio envio = DB.load(Envio.class, request.getParameter("usuario"), request.getParameter("fecha"));
 		if(envio.getTrailer().equals("ninguno")) {
 			Vehiculo vehiculo = DB.load(Vehiculo.class, envio.getCamion());
 			double espacio = Double.valueOf(vehiculo.getEspacio()) - Double.valueOf(envio.getEspacio());

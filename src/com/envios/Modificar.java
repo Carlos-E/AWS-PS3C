@@ -90,8 +90,7 @@ public class Modificar extends HttpServlet {
 			envio.setTrailer(trailer.getPatente());
 			envio.setEstado("asignado");
 		}else {
-			String env = "lo que sea que venga aqui para poder llamar el envio";
-			Envio envioAsignado = DB.load(Envio.class, env);
+			Envio envioAsignado = DB.load(Envio.class, request.getParameter("usuario"), request.getParameter("fecha"));
 			double espacioEnvAsignado = Double.valueOf(envioAsignado.getEspacio());
 			double newEspacioEnvAsginado = Double.valueOf(envio.getEspacio());
 			double pesoEnvAsignado = Double.valueOf(envioAsignado.getPeso());
