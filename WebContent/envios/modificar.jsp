@@ -120,7 +120,7 @@
 								<option value="" selected>Seleccionar...</option>
 								<option value="no asignado">No Asignado</option>
 								<option value="asignado">Asignado</option>
-								<option value="en trancito">En Tr&aacute;ncito</option>
+								<option value="en tráncito">En Tr&aacute;ncito</option>
 								<option value="entregado">Entregado</option>
 							</select>
 						</div>

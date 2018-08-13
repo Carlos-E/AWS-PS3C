@@ -60,23 +60,39 @@ public class Modificar extends HttpServlet {
         List<Empresa> empresas = new DB().scan(Empresa.class, new DynamoDBScanExpression());
         List<Trailer> trailers = new DB().scan(Trailer.class, new DynamoDBScanExpression());
 		
+        switch(request.getParameter("estado")) {
+        case "":
+        	envio.setEstado("no asignado");
+            break;
+        case "asignado":
+        	envio.setEstado("asignado");
+            break;
+        case "en trancito":
+        	envio.setEstado("en tráncito");
+            break;
+        case "entregado":
+        	envio.setEstado("entregado");
+            break;
+        default:
+        	envio.setEstado("no asignado");
+        	}
 		
-		if (request.getParameter("camion") == null) {
+		if (request.getParameter("camion").equals("ninguno")) {
 			envio.setCamion("ninguno");
-			envio.setEstado("no asignado");
-
 		} else {
 			envio.setCamion(request.getParameter("camion"));
 			envio.setEstado("asignado");
 		}
 
-		if (request.getParameter("trailer") == null) {
+		if (request.getParameter("trailer").equals("ninguno")) {
 			envio.setTrailer("ninguno");
-			envio.setEstado("no asignado");
-
 		} else {
 			envio.setTrailer(request.getParameter("trailer"));
 			envio.setEstado("asignado");
+		}
+		
+		if(request.getParameter("trailer").equals("ninguno") && request.getParameter("camion").equals("ninguno")) {
+			envio.setTrailer(request.getParameter("asignado"));
 		}
 
 		new DB().save(envio);
