@@ -64,18 +64,6 @@ public class Modificar extends HttpServlet {
 		if (vehiculo.equals("ninguno")) {
 			envio.setCamion("ninguno");
 		} else {
-			for(int i=0;i<vehiculos.size();i++) {
-				if(vehiculos.get(i).getPlaca().equals(vehiculo)) {
-					String espacioEnvV = request.getParameter("espacio");
-					String pesoEnvV = request.getParameter("peso");
-					String espacioV = vehiculos.get(i).getEspacio();
-					String pesoV = vehiculos.get(i).getPeso();
-					double espacioTmpV = Double.valueOf(espacioV)-Double.valueOf(espacioEnvV);
-					double pesoTmpV = Double.valueOf(pesoV)-Double.valueOf(pesoEnvV);
-					vehiculos.get(i).setEspacio(String.valueOf(espacioTmpV));
-					vehiculos.get(i).setPeso(String.valueOf(pesoTmpV));
-				}
-			}
 			Vehiculo vehiculoEncontrado = DB.load(Vehiculo.class,vehiculo);
 			double espacioTmpV = Double.valueOf(vehiculoEncontrado.getEspacio())-Double.valueOf( request.getParameter("espacio"));
 			double pesoTmpV = Double.valueOf(vehiculoEncontrado.getPeso())-Double.valueOf(request.getParameter("peso"));
