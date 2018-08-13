@@ -92,12 +92,30 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">usuario</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="usuario" placeholder="usuario" id="usuario" required>
+<!-- 							<input class="form-control" type="text" name="usuario" placeholder="usuario" id="usuario" required>
+ -->							<select class="form-control" name="empresa" id="usuario">
+								<option value="" selected>Seleccionar...</option>
+
+								<%
+									List<Usuario> usuarios = new DB().scan(Usuario.class, new DynamoDBScanExpression());
+
+									for (int i = 0; i < usuarios.size(); i++) {
+										if(usuarios.get(i).getRol().equals("cliente")){
+								%>
+								<option value="<%out.print(usuarios.get(i).getCorreo());%>">
+									<%
+										out.print(usuarios.get(i).getNombre());
+									%>
+								</option>
+								<%
+									}
+									}
+								%>
+							</select>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">tipo</label>
 						<div class="col-md-4">
-							<!-- 							<input class="form-control" type="text" name="tipo" placeholder="tipo" id="tipo" required>
- -->
+
 							<select class="custom-select" name="tipo" id="tipo" required>
 								<option value="" selected>Seleccionar...</option>
 								<option value="normal">normal</option>
@@ -118,10 +136,10 @@
  -->
 							<select class="custom-select" name="estado" id="estado" required>
 								<option value="" selected>Seleccionar...</option>
-								<option value="no asignado">No Asignado</option>
-								<option value="asignado">Asignado</option>
-								<option value="en tránsito">En Tr&aacute;nsito</option>
-								<option value="entregado">Entregado</option>
+								<option value="no asignado">no Asignado</option>
+								<option value="asignado">asignado</option>
+								<option value="en tránsito">en tr&aacute;nsito</option>
+								<option value="entregado">entregado</option>
 							</select>
 						</div>
 					</div>
@@ -148,11 +166,8 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">empresa</label>
 						<div class="col-md-4">
-							<!-- 							<input class="form-control" type="text" name="empresa" placeholder="empresa" id="empresa" required>
- -->
 							<select class="form-control" name="empresa" id="empresa">
 								<option value="" selected>Seleccionar...</option>
-
 								<%
 									List<Empresa> listaEmpresas = new DB().scan(Empresa.class, new DynamoDBScanExpression());
 
