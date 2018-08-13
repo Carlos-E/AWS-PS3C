@@ -35,7 +35,7 @@ public class Modificar extends HttpServlet {
 
 		response.setContentType("text/html");
 		request.setCharacterEncoding("UTF-8");
-	
+		DB DB = new DB();
 
 		// Buscar el objeto en la base de datos e instanciarlo
 		Envio envio = new DB().load(Envio.class,request.getParameter("cliente"), request.getParameter("fecha"));
@@ -54,31 +54,12 @@ public class Modificar extends HttpServlet {
 		envio.setPeso(request.getParameter("peso"));
 		envio.setTipo(request.getParameter("tipo"));
 		envio.setDescripcion(request.getParameter("descripcion"));
-
-
+		envio.setEstado(request.getParameter("estado"));
 		List<Envio> envios = new DB().scan(Envio.class, new DynamoDBScanExpression());
         List<Vehiculo> vehiculos = new DB().scan(Vehiculo.class, new DynamoDBScanExpression());
         List<Trailer> trailers = new DB().scan(Trailer.class, new DynamoDBScanExpression());
         String vehiculo = request.getParameter("camion").toLowerCase();
         String trailer = request.getParameter("trailer").toLowerCase();
-        
-		
-        switch(request.getParameter("estado")) {
-        case "":
-        	envio.setEstado("no asignado");
-            break;
-        case "asignado":
-        	envio.setEstado("asignado");
-            break;
-        case "en transito":
-        	envio.setEstado("en tránsito");
-            break;
-        case "entregado":
-        	envio.setEstado("entregado");
-            break;
-        default:
-        	envio.setEstado("no asignado");
-        	}
 		
 		if (vehiculo.equals("ninguno")) {
 			envio.setCamion("ninguno");
@@ -95,30 +76,26 @@ public class Modificar extends HttpServlet {
 					vehiculos.get(i).setPeso(String.valueOf(pesoTmpV));
 				}
 			}
+			Vehiculo vehiculoEncontrado = DB.load(Vehiculo.class,vehiculo);
+			double espacioTmpV = Double.valueOf(vehiculoEncontrado.getEspacio())-Double.valueOf( request.getParameter("espacio"));
+			double pesoTmpV = Double.valueOf(vehiculoEncontrado.getPeso())-Double.valueOf(request.getParameter("peso"));
+			vehiculoEncontrado.setEspacio(String.valueOf(espacioTmpV));
+			vehiculoEncontrado.setPeso(String.valueOf(pesoTmpV));
+			DB.save(vehiculoEncontrado);
 			envio.setCamion(vehiculo);
 			envio.setEstado("asignado");
 		}
 		if (trailer.equals("ninguno")) {
 			envio.setTrailer("ninguno");
 		} else {
-			for(int i=0;i<trailers.size();i++) {
-				if(trailers.get(i).getPatente().equals(trailer)) {
-					String espacioEnvT = request.getParameter("espacio");
-					String pesoEnvT = request.getParameter("peso");
-					String espacioT = vehiculos.get(i).getEspacio();
-					String pesoT = vehiculos.get(i).getPeso();
-					double espacioTmpT = Double.valueOf(espacioT)-Double.valueOf(espacioEnvT);
-					double pesoTmpT = Double.valueOf(pesoT)-Double.valueOf(pesoEnvT);
-					trailers.get(i).setEspacio(String.valueOf(espacioTmpT));
-					trailers.get(i).setPeso(String.valueOf(pesoTmpT));
-				}
-			}
+			Trailer trailerEncontrado = DB.load(Trailer.class,trailer);
+			double espacioTmpT = Double.valueOf(trailerEncontrado.getEspacio())-Double.valueOf(request.getParameter("espacio"));
+			double pesoTmpT = Double.valueOf(trailerEncontrado.getPeso())-Double.valueOf(request.getParameter("peso"));
+			trailerEncontrado.setEspacio(String.valueOf(espacioTmpT));
+			trailerEncontrado.setPeso(String.valueOf(pesoTmpT));
+			DB.save(trailerEncontrado);
 			envio.setTrailer(trailer);
 			envio.setEstado("asignado");
-		}
-		
-		if(trailer.equals("ninguno") && vehiculo.equals("ninguno")) {
-			envio.setTrailer(request.getParameter("asignado"));
 		}
 
 		new DB().save(envio);
