@@ -12,41 +12,25 @@ import javax.servlet.http.HttpSession;
 import clases.*;
 import com.logica.ControladorBD;
 
-/**
- * Servlet implementation class login
- */
 @WebServlet("/login")
 public class login extends HttpServlet {
 
-	clases.Usuario usuario;
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
+	clases.Usuario usuario;
+
 	public login() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		request.getRequestDispatcher("login.jsp").forward(request, response);
+		response.sendError(404);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		// doGet(request, response);
+
 		String uname = request.getParameter("username");
 		String pass = request.getParameter("password");
 		if (ControladorBD.validarLogin(uname, pass)) {
