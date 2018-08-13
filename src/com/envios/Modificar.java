@@ -70,7 +70,7 @@ public class Modificar extends HttpServlet {
         case "asignado":
         	envio.setEstado("asignado");
             break;
-        case "en trancito":
+        case "en transito":
         	envio.setEstado("en tránsito");
             break;
         case "entregado":
