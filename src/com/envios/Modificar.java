@@ -44,7 +44,7 @@ public class Modificar extends HttpServlet {
 			com.logica.Dibujar.mensaje(response.getWriter(), "Envio no encontrado", "/envios/modificar.jsp");
 			return;
 		}
-		// System.out.println("Objeto encontrado en tabla Envios: " + envio);
+	
 		envio.setOrigen(request.getParameter("origen"));
 		envio.setDestino(request.getParameter("destino"));
 		envio.setOrigenLatLong(request.getParameter("origenLatLong"));
@@ -55,9 +55,6 @@ public class Modificar extends HttpServlet {
 		envio.setTipo(request.getParameter("tipo"));
 		envio.setDescripcion(request.getParameter("descripcion"));
 		envio.setEstado(request.getParameter("estado"));
-		List<Envio> envios = new DB().scan(Envio.class, new DynamoDBScanExpression());
-        List<Vehiculo> vehiculos = new DB().scan(Vehiculo.class, new DynamoDBScanExpression());
-        List<Trailer> trailers = new DB().scan(Trailer.class, new DynamoDBScanExpression());
         String vehiculo = request.getParameter("camion").toLowerCase();
         String trailer = request.getParameter("trailer").toLowerCase();
 		
