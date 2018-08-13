@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 
 import clases.DB;
-import clases.Empresa;
 import clases.Envio;
 import clases.Trailer;
+import clases.Vehiculo;
 
 @WebServlet("/envios/modificar")
 public class Modificar extends HttpServlet {
@@ -57,8 +57,11 @@ public class Modificar extends HttpServlet {
 
 
 		List<Envio> envios = new DB().scan(Envio.class, new DynamoDBScanExpression());
-        List<Empresa> empresas = new DB().scan(Empresa.class, new DynamoDBScanExpression());
+        List<Vehiculo> vehiculos = new DB().scan(Vehiculo.class, new DynamoDBScanExpression());
         List<Trailer> trailers = new DB().scan(Trailer.class, new DynamoDBScanExpression());
+        String vehiculo = request.getParameter("camion").toLowerCase();
+        String trailer = request.getParameter("trailer").toLowerCase();
+        
 		
         switch(request.getParameter("estado")) {
         case "":
@@ -77,21 +80,44 @@ public class Modificar extends HttpServlet {
         	envio.setEstado("no asignado");
         	}
 		
-		if (request.getParameter("camion").equals("ninguno")) {
+		if (vehiculo.equals("ninguno")) {
 			envio.setCamion("ninguno");
 		} else {
-			envio.setCamion(request.getParameter("camion"));
+			for(int i=0;i<vehiculos.size();i++) {
+				if(vehiculos.get(i).getPlaca().equals(vehiculo)) {
+					String espacioEnvV = request.getParameter("espacio");
+					String pesoEnvV = request.getParameter("peso");
+					String espacioV = vehiculos.get(i).getEspacio();
+					String pesoV = vehiculos.get(i).getPeso();
+					double espacioTmpV = Double.valueOf(espacioV)-Double.valueOf(espacioEnvV);
+					double pesoTmpV = Double.valueOf(pesoV)-Double.valueOf(pesoEnvV);
+					vehiculos.get(i).setEspacio(String.valueOf(espacioTmpV));
+					vehiculos.get(i).setPeso(String.valueOf(pesoTmpV));
+				}
+			}
+			envio.setCamion(vehiculo);
 			envio.setEstado("asignado");
 		}
-
-		if (request.getParameter("trailer").equals("ninguno")) {
+		if (trailer.equals("ninguno")) {
 			envio.setTrailer("ninguno");
 		} else {
-			envio.setTrailer(request.getParameter("trailer"));
+			for(int i=0;i<trailers.size();i++) {
+				if(trailers.get(i).getPatente().equals(trailer)) {
+					String espacioEnvT = request.getParameter("espacio");
+					String pesoEnvT = request.getParameter("peso");
+					String espacioT = vehiculos.get(i).getEspacio();
+					String pesoT = vehiculos.get(i).getPeso();
+					double espacioTmpT = Double.valueOf(espacioT)-Double.valueOf(espacioEnvT);
+					double pesoTmpT = Double.valueOf(pesoT)-Double.valueOf(pesoEnvT);
+					trailers.get(i).setEspacio(String.valueOf(espacioTmpT));
+					trailers.get(i).setPeso(String.valueOf(pesoTmpT));
+				}
+			}
+			envio.setTrailer(trailer);
 			envio.setEstado("asignado");
 		}
 		
-		if(request.getParameter("trailer").equals("ninguno") && request.getParameter("camion").equals("ninguno")) {
+		if(trailer.equals("ninguno") && vehiculo.equals("ninguno")) {
 			envio.setTrailer(request.getParameter("asignado"));
 		}
 
