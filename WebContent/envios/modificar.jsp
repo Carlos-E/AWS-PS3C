@@ -93,7 +93,7 @@
 						<label class="col-md-2 col-form-label text-capitalize">usuario</label>
 						<div class="col-md-4">
 <!-- 							<input class="form-control" type="text" name="usuario" placeholder="usuario" id="usuario" required>
- -->							<select class="form-control" name="empresa" id="usuario">
+ -->							<select class="form-control" name="usuario" id="usuario">
 								<option value="" selected>Seleccionar...</option>
 
 								<%
@@ -209,7 +209,7 @@
 					<div class="form-group row">
 						<label id="camion1" class="col-md-2 col-form-label text-capitalize">veh&iacute;culo</label>
 						<div id="camion2" class="col-md-4">
-							<select id="camion" class="form-control" name="camion"required>								
+							<select id="camion" class="form-control" name="camion" required>								
 							</select>
 						</div>
 						<label id="trailer1" class="col-md-2 col-form-label text-capitalize">Trailer</label>
