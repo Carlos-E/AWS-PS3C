@@ -123,7 +123,7 @@ public class Modificar extends HttpServlet {
 				} else {
 					// es un trailer
 					System.out.println("es un trailer");
-					Trailer tra = DB.load(Trailer.class, envioAsignado.getCamion());
+					Trailer tra = DB.load(Trailer.class, envioAsignado.getTrailer());
 					double espacioTemporal = espacioEnvAsignado - newEspacioEnvAsginado;
 					String operacion = String.valueOf(Double.valueOf(tra.getEspacio()) + espacioTemporal);
 					tra.setEspacio(operacion);
