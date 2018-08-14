@@ -56,16 +56,23 @@ public class Modificar extends HttpServlet {
 		envio.setEstado(request.getParameter("estado"));
 		String placaVehiculo = request.getParameter("camion");
 		String patenteTrailer = request.getParameter("trailer");
-		String asignado = request.getParameter("asignado");
+		
+		//String asignado = request.getParameter("asignado");
+
 		// Set por defecto
 		envio.setCamion("ninguno");
 		// Set por defecto
 		envio.setTrailer("ninguno");
-		if (false) {
+		
+		envio.setEstado("no asignado");
+
+		if (request.getParameter("camion") != null && !request.getParameter("camion").equals("ninguno")) {
+			System.out.println("parte camion");
 
 			Vehiculo vehiculo = DB.load(Vehiculo.class, placaVehiculo.toLowerCase());
 
-			double espacioTmpV = Double.valueOf(vehiculo.getEspacio()) - Double.valueOf(request.getParameter("espacio"));
+			double espacioTmpV = Double.valueOf(vehiculo.getEspacio())
+					- Double.valueOf(request.getParameter("espacio"));
 			double pesoTmpV = Double.valueOf(vehiculo.getPeso()) - Double.valueOf(request.getParameter("peso"));
 			vehiculo.setEspacio(String.valueOf(espacioTmpV));
 			vehiculo.setPeso(String.valueOf(pesoTmpV));
@@ -74,7 +81,10 @@ public class Modificar extends HttpServlet {
 
 			envio.setCamion(vehiculo.getPlaca());
 			envio.setEstado("asignado");
-		}else if (false) {
+			
+		} else if (request.getParameter("trailer") != null && !request.getParameter("trailer").equals("ninguno")) {
+			
+			System.out.println("parte trailer");
 
 			Trailer trailer = DB.load(Trailer.class, patenteTrailer.toLowerCase());
 
@@ -88,27 +98,30 @@ public class Modificar extends HttpServlet {
 			envio.setCamion(trailer.getCamion());
 			envio.setTrailer(trailer.getPatente());
 			envio.setEstado("asignado");
-		}else {
+		} else {
+			
 			System.out.println("entre aca");
-			Envio envioAsignado = DB.load(Envio.class, request.getParameter("usuario"), request.getParameter("fecha"));
+			Envio envioAsignado = DB.load(Envio.class, request.getParameter("cliente"), request.getParameter("fecha"));
 			double espacioEnvAsignado = Double.valueOf(envioAsignado.getEspacio());
 			double newEspacioEnvAsginado = Double.valueOf(envio.getEspacio());
 			double pesoEnvAsignado = Double.valueOf(envioAsignado.getPeso());
 			double newpesoEnvAsignado = Double.valueOf(envio.getPeso());
 			System.out.println("a los if");
-			if(espacioEnvAsignado > newEspacioEnvAsginado) {
-				//tiene que aumentar el espacio dispobible del vehiculo o trailer
+			
+			if (espacioEnvAsignado > newEspacioEnvAsginado) {
+				// tiene que aumentar el espacio dispobible del vehiculo o
+				// trailer
 				System.out.println("viejo es mayor");
-				if(envioAsignado.getTrailer().equals("ninguno")) {
-					//es un camion
+				if (envioAsignado.getTrailer().equals("ninguno")) {
+					// es un camion
 					System.out.println("es un camion");
 					Vehiculo veh = DB.load(Vehiculo.class, envioAsignado.getCamion());
 					double espacioTemporal = espacioEnvAsignado - newEspacioEnvAsginado;
 					String operacion = String.valueOf(Double.valueOf(veh.getEspacio()) + espacioTemporal);
 					veh.setEspacio(operacion);
 					DB.save(veh);
-				}else {
-					//es un trailer
+				} else {
+					// es un trailer
 					System.out.println("es un trailer");
 					Trailer tra = DB.load(Trailer.class, envioAsignado.getCamion());
 					double espacioTemporal = espacioEnvAsignado - newEspacioEnvAsginado;
@@ -116,19 +129,20 @@ public class Modificar extends HttpServlet {
 					tra.setEspacio(operacion);
 					DB.save(tra);
 				}
-			}else if(espacioEnvAsignado < newEspacioEnvAsginado){
-				//tiene que disminuir el espacio dispobibl edel vehiculo o trailer
+			} else if (espacioEnvAsignado < newEspacioEnvAsginado) {
+				// tiene que disminuir el espacio dispobibl edel vehiculo o
+				// trailer
 				System.out.println("viejo es menor");
-				if(envioAsignado.getTrailer().equals("ninguno")) {
-					//es un camion
+				if (envioAsignado.getTrailer().equals("ninguno")) {
+					// es un camion
 					System.out.println("es un camion");
 					Vehiculo veh = DB.load(Vehiculo.class, envioAsignado.getCamion());
 					double espacioTemporal = newEspacioEnvAsginado - espacioEnvAsignado;
 					String operacion = String.valueOf(Double.valueOf(veh.getEspacio()) - espacioTemporal);
 					veh.setEspacio(operacion);
 					DB.save(veh);
-				}else {
-					//es un trailer
+				} else {
+					// es un trailer
 					System.out.println("es un trailer");
 					Trailer tra = DB.load(Trailer.class, envioAsignado.getCamion());
 					double espacioTemporal = newEspacioEnvAsginado - espacioEnvAsignado;
@@ -137,34 +151,36 @@ public class Modificar extends HttpServlet {
 					DB.save(tra);
 				}
 			}
-			if(pesoEnvAsignado > newpesoEnvAsignado) {
-				//tiene que disminuir el espacio dispobible del vehiculo o trailer
-				if(envioAsignado.getTrailer().equals("ninguno")) {
-					//es un camion
+			if (pesoEnvAsignado > newpesoEnvAsignado) {
+				// tiene que disminuir el espacio dispobible del vehiculo o
+				// trailer
+				if (envioAsignado.getTrailer().equals("ninguno")) {
+					// es un camion
 					Vehiculo veh = DB.load(Vehiculo.class, envioAsignado.getCamion());
 					double espacioTemporal = pesoEnvAsignado - newpesoEnvAsignado;
 					String operacion = String.valueOf(Double.valueOf(veh.getEspacio()) + espacioTemporal);
 					veh.setEspacio(operacion);
 					DB.save(veh);
-				}else {
-					//es un trailer
+				} else {
+					// es un trailer
 					Trailer tra = DB.load(Trailer.class, envioAsignado.getCamion());
 					double espacioTemporal = pesoEnvAsignado - newpesoEnvAsignado;
 					String operacion = String.valueOf(Double.valueOf(tra.getEspacio()) + espacioTemporal);
 					tra.setEspacio(operacion);
 					DB.save(tra);
 				}
-			}else if(pesoEnvAsignado < newpesoEnvAsignado){
-				//tiene que aumnetar el espacio dispobibl edel vehiculo o trailer
-				if(envioAsignado.getTrailer().equals("ninguno")) {
-					//es un camion
+			} else if (pesoEnvAsignado < newpesoEnvAsignado) {
+				// tiene que aumnetar el espacio dispobibl edel vehiculo o
+				// trailer
+				if (envioAsignado.getTrailer().equals("ninguno")) {
+					// es un camion
 					Vehiculo veh = DB.load(Vehiculo.class, envioAsignado.getCamion());
 					double espacioTemporal = newpesoEnvAsignado - pesoEnvAsignado;
 					String operacion = String.valueOf(Double.valueOf(veh.getEspacio()) - espacioTemporal);
 					veh.setEspacio(operacion);
 					DB.save(veh);
-				}else {
-					//es un trailer
+				} else {
+					// es un trailer
 					Trailer tra = DB.load(Trailer.class, envioAsignado.getCamion());
 					double espacioTemporal = newpesoEnvAsignado - pesoEnvAsignado;
 					String operacion = String.valueOf(Double.valueOf(tra.getEspacio()) - espacioTemporal);
@@ -173,7 +189,10 @@ public class Modificar extends HttpServlet {
 				}
 			}
 		}
+		
+		
 		DB.save(envio);
 		com.logica.Dibujar.mensaje(response.getWriter(), "Envio actualizado correctamente", "/envios/modificar.jsp");
+		
 	}
 }
