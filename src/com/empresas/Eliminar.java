@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.logica.ControladorBD;
+import clases.DB;
+import clases.Empresa;
 
 
 @WebServlet("/empresas/eliminar")
@@ -25,13 +26,15 @@ public class Eliminar extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-		ControladorBD.borrarItem("empresas", "nit", request.getParameter("nit").toString());
+		
 		response.setContentType("text/html");
+		
+		Empresa empresa = new Empresa();
+		empresa.setNit(request.getParameter("nit").toLowerCase());
+		
+		new DB().delete(empresa);
+		
 		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getContextPath() + "/empresas/eliminar.jsp");
-		}catch(Exception e){
-			com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar eliminar la Empresa", request.getContextPath() + "./index.jsp");
-		}
 	}
 
 }
