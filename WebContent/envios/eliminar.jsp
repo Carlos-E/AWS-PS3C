@@ -87,10 +87,6 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">usuario</label>
-						<div class="col-md-4">
-							<input class="form-control" type="text" name="usuario" placeholder="usuario" id="usuario" readonly>
-						</div>
 						<label class="col-md-2 col-form-label text-capitalize">tipo</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="tipo" placeholder="tipo" id="tipo" readonly>
@@ -101,23 +97,9 @@
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="espacio" placeholder="espacio" id="espacio" readonly>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">estado</label>
-						<div class="col-md-4">
-							<input class="form-control" type="text" name="estado" placeholder="estado" id="estado" readonly>
-						</div>
 						<label class="col-md-2 col-form-label text-capitalize">peso</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="peso" placeholder="peso" id="peso" readonly>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">tiempoCarga</label>
-						<div class="col-md-4">
-							<input class="form-control" type="text" name="tiempoCarga" placeholder="tiempoCarga" id="tiempoCarga" readonly>
-						</div>
-						<label class="col-md-2 col-form-label text-capitalize">tiempoDescarga</label>
-						<div class="col-md-4">
-							<input class="form-control" type="text" name="tiempoDescarga" placeholder="tiempoDescarga" id="tiempoDescarga" readonly>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -125,7 +107,10 @@
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="empresa" placeholder="empresa" id="empresa" readonly>
 						</div>
-
+						<label class="col-md-2 col-form-label text-capitalize">estado</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="estado" placeholder="estado" id="estado" readonly>
+						</div>
 					</div>
 					<input type="text" id="longitud_Destino" name="longitud_Destino" style="display: none">
 					<input type="text" id="latitud_Destino" name="latitud_Destino" style="display: none">
@@ -170,7 +155,6 @@
 	<!-- /FIN -->
 	
 	<script>
-	
 		$(document).ready(function() {
 			
 			var lista;
@@ -210,12 +194,10 @@
 
 				$('#origen').val(objeto.origen);
 				$('#destino').val(objeto.destino);
-				$('#usuario').val(objeto.usuario);
 				$('#tipo').val(objeto.tipo);
 				$('#espacio').val(objeto.espacio);
+				$('#peso').val(objeto.peso);
 				$('#estado').val(objeto.estado);
-				$('#tiempoCarga').val(objeto.tiempoCarga);
-				$('#tiempoDescarga').val(objeto.tiempoDescargaUsuario);
 				$('#empresa').val(objeto.empresa);
 
 				$('#buscar-form').hide();

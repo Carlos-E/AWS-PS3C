@@ -10,9 +10,10 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
 @DynamoDBTable(tableName = "envios")
 public class Envio {
 
-	private String usuario, fecha, destino, origen, destinoLatLong, origenLatLong;
-	private String estado, tipo, camion, trailer, empresa, descripcion;
+	private String usuario, fecha;
+	private String destino, origen, estado, tipo, camion, trailer, empresa, descripcion;
 	private double peso, espacio;
+	private String destinoLatLong, origenLatLong;
 	private boolean chequeoCarga, chequeoDescarga;
 
 	public Envio() {
@@ -101,7 +102,7 @@ public class Envio {
 		this.tipo = tipo;
 	}
 
-	@DynamoDBIndexHashKey(globalSecondaryIndexName="camion")
+	@DynamoDBIndexHashKey(globalSecondaryIndexName = "camion")
 	public String getCamion() {
 		return camion;
 	}
@@ -110,7 +111,7 @@ public class Envio {
 		this.camion = camion;
 	}
 
-	@DynamoDBIndexHashKey(globalSecondaryIndexName="trailer")
+	@DynamoDBIndexHashKey(globalSecondaryIndexName = "trailer")
 	public String getTrailer() {
 		return trailer;
 	}
