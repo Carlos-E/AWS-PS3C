@@ -8,12 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.logica.ControladorBD;
-
 import clases.DB;
 import clases.Envio;
-import clases.Trailer;
-import clases.Vehiculo;
 
 @WebServlet("/envios/eliminar")
 public class Eliminar extends HttpServlet {
@@ -31,9 +27,15 @@ public class Eliminar extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		DB DB = new DB();
-		Envio envio = DB.load(Envio.class, request.getParameter("usuario"), request.getParameter("fecha"));
+		response.setContentType("text/html");
 		
+		Envio envio = new Envio();
+		
+		envio.setUsuario(request.getParameter("usuario").toLowerCase());
+		envio.setFecha(request.getParameter("fecha").toLowerCase());
+		
+		new DB().delete(envio);
+
 		/*		
   		if (envio.getTrailer().equals("ninguno")) {
 			Vehiculo vehiculo = DB.load(Vehiculo.class, envio.getCamion());
@@ -52,10 +54,8 @@ public class Eliminar extends HttpServlet {
 		}
 		*/
 		
-		DB.delete(envio);
 		//ControladorBD.borrarItem("envios", "usuario", request.getParameter("usuario"), "fecha",request.getParameter("fecha"));
 		
-		response.setContentType("text/html");
 		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getRequestURL() + ".jsp");
 	}
 }
