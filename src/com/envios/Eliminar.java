@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import clases.DB;
 import clases.Envio;
+import clases.Trailer;
+import clases.Vehiculo;
 
 @WebServlet("/envios/eliminar")
 public class Eliminar extends HttpServlet {
@@ -26,36 +28,48 @@ public class Eliminar extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		response.setContentType("text/html");
-		
+
+		DB DB = new DB();
+
 		Envio envio = new Envio();
-		
+
 		envio.setUsuario(request.getParameter("usuario").toLowerCase());
 		envio.setFecha(request.getParameter("fecha").toLowerCase());
-		
-		new DB().delete(envio);
 
-		/*		
-  		if (envio.getTrailer().equals("ninguno")) {
-			Vehiculo vehiculo = DB.load(Vehiculo.class, envio.getCamion());
-			double espacio = Double.valueOf(vehiculo.getEspacio()) - Double.valueOf(envio.getEspacio());
-			double peso = Double.valueOf(vehiculo.getPeso()) - Double.valueOf(envio.getPeso());
-			vehiculo.setEspacio(String.valueOf(espacio));
-			vehiculo.setEspacio(String.valueOf(peso));
-			DB.save(vehiculo);
-		} else {
-			Trailer trailer = DB.load(Trailer.class, envio.getCamion());
-			double espacio = Double.valueOf(trailer.getEspacio()) - Double.valueOf(envio.getEspacio());
-			double peso = Double.valueOf(trailer.getPeso()) - Double.valueOf(envio.getPeso());
-			trailer.setEspacio(String.valueOf(espacio));
-			trailer.setEspacio(String.valueOf(peso));
-			DB.save(trailer);
+		envio = DB.load(envio);
+
+		DB.delete(envio);
+
+		if (envio.getTrailer().equals("ninguno") && !envio.getCamion().equals("ninguno")) {
+
+			if (DB.getEnviosVehiculo(envio.getCamion()) == null) {
+				System.out.println(
+						"El camion " + envio.getCamion() + " no tiene mas envios, cambiando estado a \"no asignado\"");
+
+				Vehiculo vehiculo = new Vehiculo();
+				vehiculo.setPlaca(envio.getCamion());
+				vehiculo = DB.load(vehiculo);
+				vehiculo.setEstado("no asignado");
+				DB.save(vehiculo);
+			}
+
+		} else if (!envio.getTrailer().equals("ninguno")) {
+			
+			if (DB.getEnviosTrailer(envio.getTrailer()) == null) {
+				System.out.println(
+						"El trailer " + envio.getTrailer() + " no tiene mas envios, cambiando estado a \"no asignado\"");
+
+				Trailer trailer = new Trailer();
+				trailer.setPatente(envio.getTrailer());
+				trailer = DB.load(trailer);
+				trailer.setEstado("no asignado");
+				DB.save(trailer);
+			}
+
 		}
-		*/
-		
-		//ControladorBD.borrarItem("envios", "usuario", request.getParameter("usuario"), "fecha",request.getParameter("fecha"));
-		
+
 		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getRequestURL() + ".jsp");
 	}
 }
