@@ -109,8 +109,8 @@
 						element.usuario,
 						element.tipo,
 						element.estado,
-						element.peso,
-						element.espacio,
+						element.pesoMax,
+						element.espacioMax,
 						element.empresa
 				]);
 				});

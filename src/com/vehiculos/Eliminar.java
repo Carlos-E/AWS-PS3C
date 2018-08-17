@@ -8,12 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.logica.ControladorBD;
+import clases.DB;
+import clases.Vehiculo;
 
 @WebServlet("/vehiculos/eliminar")
 public class Eliminar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	clases.Usuario usuario = new clases.Usuario();
 
 	public Eliminar() {
 		super();
@@ -26,18 +26,16 @@ public class Eliminar extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		try {
-			ControladorBD.borrarItem("vehiculos", "placa", request.getParameter("placa").toString());
-			ControladorBD.borrarItem("ubicaciones", "placa", request.getParameter("placa").toString());
 
-			response.setContentType("text/html");
-			com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa",
-					request.getContextPath() + "/vehiculos/eliminar.jsp");
-		} catch (Exception e) {
-			com.logica.Dibujar.mensaje(response.getWriter(),
-					"Ocurrio un error al intentar eliminar el vehiculo o Remolque",
-					request.getContextPath() + "./index.jsp");
-		}
+		Vehiculo vehiculo = new Vehiculo();
+
+		vehiculo.setPlaca(request.getParameter("placa").toLowerCase());
+
+		new DB().delete(vehiculo);
+
+		response.setContentType("text/html");
+		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa",
+				request.getContextPath() + "/vehiculos/eliminar.jsp");
 	}
 
 }

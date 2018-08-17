@@ -6,7 +6,8 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 @DynamoDBTable(tableName = "trailers")
 public class Trailer {
 
-	private String patente, tipo, peso, espacio, estado, camion, empresa;
+	private String patente, tipo, estado, camion, empresa;
+	private double pesoMax, espacioMax;
 
 	public Trailer() {
 		super();
@@ -27,22 +28,6 @@ public class Trailer {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
-	}
-
-	public String getPeso() {
-		return peso;
-	}
-
-	public void setPeso(String peso) {
-		this.peso = peso;
-	}
-
-	public String getEspacio() {
-		return espacio;
-	}
-
-	public void setEspacio(String espacio) {
-		this.espacio = espacio;
 	}
 
 	public String getEstado() {
@@ -69,10 +54,26 @@ public class Trailer {
 		this.empresa = empresa;
 	}
 
+	public double getPesoMax() {
+		return pesoMax;
+	}
+
+	public void setPesoMax(double pesoMax) {
+		this.pesoMax = pesoMax;
+	}
+
+	public double getEspacioMax() {
+		return espacioMax;
+	}
+
+	public void setEspacioMax(double espacioMax) {
+		this.espacioMax = espacioMax;
+	}
+
 	@Override
 	public String toString() {
-		return "Trailer [patente=" + patente + ", tipo=" + tipo + ", peso=" + peso + ", espacio=" + espacio
-				+ ", estado=" + estado + ", camion=" + camion + ", empresa=" + empresa + "]";
+		return "Trailer [patente=" + patente + ", tipo=" + tipo + ", estado=" + estado + ", camion=" + camion
+				+ ", empresa=" + empresa + ", pesoMax=" + pesoMax + ", espacioMax=" + espacioMax + "]";
 	}
 
 }

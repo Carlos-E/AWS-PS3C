@@ -7,8 +7,9 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 @DynamoDBTable(tableName = "vehiculos")
 public class Vehiculo {
 
-	private String placa, tipo, peso, pesoMax, espacio, espacioMax;
-	private String estado, usuario, empresa, latitud, longitud;
+	private String placa;
+	private String tipo, estado, usuario, empresa, latitud, longitud;
+	private double pesoMax,espacioMax;
 
 	public Vehiculo() {
 		super();
@@ -31,35 +32,19 @@ public class Vehiculo {
 		this.tipo = tipo;
 	}
 
-	public String getPeso() {
-		return peso;
-	}
-
-	public void setPeso(String peso) {
-		this.peso = peso;
-	}
-
-	public String getEspacio() {
-		return espacio;
-	}
-
-	public void setEspacio(String espacio) {
-		this.espacio = espacio;
-	}
-
-	public String getPesoMax() {
+	public double getPesoMax() {
 		return pesoMax;
 	}
 
-	public void setPesoMax(String pesoMax) {
+	public void setPesoMax(double pesoMax) {
 		this.pesoMax = pesoMax;
 	}
 
-	public String getEspacioMax() {
+	public double getEspacioMax() {
 		return espacioMax;
 	}
 
-	public void setEspacioMax(String espacioMax) {
+	public void setEspacioMax(double espacioMax) {
 		this.espacioMax = espacioMax;
 	}
 
@@ -106,9 +91,9 @@ public class Vehiculo {
 
 	@Override
 	public String toString() {
-		return "Vehiculo [placa=" + placa + ", tipo=" + tipo + ", peso=" + peso + ", espacio=" + espacio + ", pesoMax="
-				+ pesoMax + ", espacioMax=" + espacioMax + ", estado=" + estado + ", usuario=" + usuario + ", empresa="
-				+ empresa + ", latitud=" + latitud + ", longitud=" + longitud + "]";
+		return "Vehiculo [placa=" + placa + ", tipo=" + tipo + ", estado=" + estado + ", usuario=" + usuario
+				+ ", empresa=" + empresa + ", latitud=" + latitud + ", longitud=" + longitud + ", pesoMax=" + pesoMax
+				+ ", espacioMax=" + espacioMax + "]";
 	}
 
 }

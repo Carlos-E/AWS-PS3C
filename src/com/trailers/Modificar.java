@@ -10,10 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.logica.ControladorBD;
 
+import clases.DB;
+import clases.Trailer;
+
 @WebServlet("/traileres/modificar")
 public class Modificar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	clases.Trailer trailer = new clases.Trailer();
 
 	public Modificar() {
 		super();
@@ -27,15 +29,21 @@ public class Modificar extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String patente = request.getParameter("patente").toString();
+		response.setContentType("text/html");
 
-		trailer = (clases.Trailer) ControladorBD.getItem("trailers", "patente", patente);
+		DB DB = new DB();
 
-		String peso = request.getParameter("peso").toLowerCase();
-		String espacio = request.getParameter("espacio").toLowerCase();
-		String estado = request.getParameter("estado").toLowerCase();
-		
-		//String camion = request.getParameter("remolque").toLowerCase();
+		Trailer trailer = new Trailer();
+
+		trailer.setPatente(request.getParameter("patente").toLowerCase());
+
+		trailer = DB.load(trailer);
+
+		trailer.setPesoMax(Double.valueOf(request.getParameter("peso").toLowerCase()));
+		trailer.setEspacioMax(Double.valueOf(request.getParameter("espacio").toLowerCase()));
+		trailer.setEstado(request.getParameter("estado").toLowerCase());
+
+		// String camion = request.getParameter("remolque").toLowerCase();
 		String camion = null;
 
 		if (request.getParameter("remolque").equals("null")) {
@@ -44,52 +52,12 @@ public class Modificar extends HttpServlet {
 			camion = request.getParameter("remolque").toLowerCase();
 		}
 
-		String tipo = request.getParameter("tipo").toLowerCase();
-		String empresa = request.getParameter("empresa").toLowerCase();
-		boolean cambio = false;
+		trailer.setCamion(camion);
 
-		response.setContentType("text/html");
+		trailer.setTipo(request.getParameter("tipo").toLowerCase());
+		trailer.setEmpresa(request.getParameter("empresa").toLowerCase());
 
-		if (!trailer.getPeso().equals(peso)) {
-			trailer.setPeso(peso);
-			ControladorBD.actualizarValor("trailers", "patente", patente, "peso", peso);
-			cambio = true;
-		}
-		if (!trailer.getEspacio().equals(espacio)) {
-			trailer.setEspacio(espacio);
-			ControladorBD.actualizarValor("trailers", "patente", patente, "espacio", espacio);
-			cambio = true;
-		}
-		if (!trailer.getEstado().equals(estado)) {
-			trailer.setEstado(estado);
-			ControladorBD.actualizarValor("trailers", "patente", patente, "estado", estado);
-			cambio = true;
-		}
-		if (!trailer.getCamion().equals(camion)) {
-			trailer.setCamion(camion);
-			ControladorBD.actualizarValor("trailers", "patente", patente, "camion", camion);
-			cambio = true;
-		}
-		if (!trailer.getTipo().equals(tipo)) {
-			trailer.setTipo(tipo);
-			ControladorBD.actualizarValor("trailers", "patente", patente, "tipo", tipo);
-			cambio = true;
-		}
-		if (!trailer.getEmpresa().equals(empresa)) {
-			trailer.setTipo(empresa);
-			ControladorBD.actualizarValor("trailers", "patente", patente, "empresa", empresa);
-			cambio = true;
-		}
-
-		if (cambio) {
-			System.out.println("algo se cambio");
-			com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa",
-					request.getSession().getAttribute("origin").toString());
-		} else {
-			System.out.println("no se cambio nada");
-			com.logica.Dibujar.mensaje(response.getWriter(), "No ha habido cambio",
-					request.getSession().getAttribute("origin").toString());
-		}
+		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", "/traileres/modificar.jsp");
 
 	}
 

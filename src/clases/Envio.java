@@ -1,6 +1,7 @@
 package clases;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIndexHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTyped;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperFieldModel.DynamoDBAttributeType;
@@ -10,7 +11,8 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
 public class Envio {
 
 	private String usuario, fecha, destino, origen, destinoLatLong, origenLatLong;
-	private String estado, peso, espacio, tipo, camion, trailer, empresa, descripcion;
+	private String estado, tipo, camion, trailer, empresa, descripcion;
+	private double peso, espacio;
 	private boolean chequeoCarga, chequeoDescarga;
 
 	public Envio() {
@@ -75,19 +77,19 @@ public class Envio {
 		this.estado = estado;
 	}
 
-	public String getPeso() {
+	public double getPeso() {
 		return peso;
 	}
 
-	public void setPeso(String peso) {
+	public void setPeso(double peso) {
 		this.peso = peso;
 	}
 
-	public String getEspacio() {
+	public double getEspacio() {
 		return espacio;
 	}
 
-	public void setEspacio(String espacio) {
+	public void setEspacio(double espacio) {
 		this.espacio = espacio;
 	}
 
@@ -99,6 +101,7 @@ public class Envio {
 		this.tipo = tipo;
 	}
 
+	@DynamoDBIndexHashKey(globalSecondaryIndexName="camion")
 	public String getCamion() {
 		return camion;
 	}
@@ -107,6 +110,7 @@ public class Envio {
 		this.camion = camion;
 	}
 
+	@DynamoDBIndexHashKey(globalSecondaryIndexName="trailer")
 	public String getTrailer() {
 		return trailer;
 	}

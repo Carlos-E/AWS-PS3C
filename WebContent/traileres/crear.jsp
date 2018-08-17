@@ -3,6 +3,7 @@
 <%@ page import="com.logica.*"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="clases.*"%>
+<%@ page import="com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression"%>
 <%
 	if (session.getAttribute("rol") == null) {
 		response.sendError(400, "Acceso incorrecto"); //cambiar
@@ -28,13 +29,15 @@
 		</div>
 	</div>
 	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER --> <%
- 	ArrayList<Usuario> listaUsuarios = ControladorBD.escanearTabla("usuarios");
- 	ArrayList<Vehiculo> listaVehiculos = ControladorBD.escanearTabla("vehiculos");
- 	ArrayList<Usuario> listaConductor = new ArrayList<Usuario>();
- 	ArrayList<Empresa> listaEmpresas = ControladorBD.escanearTabla("empresas");
+ 	
+	DB DB = new DB();
+	List<Usuario> listaUsuarios = DB.scan(Usuario.class, new DynamoDBScanExpression());
+ 	List<Vehiculo> listaVehiculos = DB.scan(Vehiculo.class, new DynamoDBScanExpression());
+ 	List<Usuario> listaConductor = new ArrayList<Usuario>();
+ 	List<Empresa> listaEmpresas = DB.scan(Empresa.class, new DynamoDBScanExpression());
  	for (int i = 0; i < listaUsuarios.size(); i++) {
  		if (listaUsuarios.get(i).getRol().equals("conductor")) {
- 			if (!ControladorBD.estaOcupado(listaUsuarios.get(i).getNombre(), "null")) {
+ 			if (!DB.estaOcupado(listaUsuarios.get(i).getNombre(), "null")) {
  				listaConductor.add(listaUsuarios.get(i));
  			}
  		}
@@ -103,7 +106,7 @@
 
 								<%
 									for (int i = 0; i < listaVehiculos.size(); i++) {
-										if (!ControladorBD.estaOcupado("null", listaVehiculos.get(i).getPlaca())
+										if (!DB.estaOcupado("null", listaVehiculos.get(i).getPlaca())
 												&& listaVehiculos.get(i).getTipo().equals("remolque")) {
 											ControladorBD.actualizarValor("vehiculos", "placa", listaVehiculos.get(i).getPlaca(), "estado",
 													"Asignado");
@@ -124,11 +127,11 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Peso maximo</label>
+						<label class="col-md-2 col-form-label text-capitalize">Peso m&aacute;ximo</label>
 						<div class="col-md-4">
 							<input class="form-control" type="number" name="peso" placeholder="peso en kg" id="peso" required>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Espacio</label>
+						<label class="col-md-2 col-form-label text-capitalize">Espacio m&aacute;ximo</label>
 						<div class="col-md-4">
 							<input class="form-control" type="number" name="espacio" placeholder="en metros cubicos" id="espacio" required>
 						</div>

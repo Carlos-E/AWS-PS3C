@@ -32,9 +32,9 @@ public class Crear extends HttpServlet {
 		Trailer trailer = new clases.Trailer();
 
 		trailer.setPatente(request.getParameter("patente").toLowerCase());
-		trailer.setPeso(request.getParameter("peso").toLowerCase());
+		trailer.setPesoMax(Double.valueOf(request.getParameter("peso").toLowerCase()));
 		trailer.setTipo(request.getParameter("tipo").toLowerCase());
-		trailer.setEspacio(request.getParameter("espacio").toLowerCase());
+		trailer.setEspacioMax(Double.valueOf(request.getParameter("espacio").toLowerCase()));
 		trailer.setEstado("disponible");
 		trailer.setEmpresa(request.getParameter("empresa").toLowerCase());
 		

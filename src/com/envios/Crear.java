@@ -51,14 +51,14 @@ public class Crear extends HttpServlet {
 		
 		envio.setFecha(fecha);
 
-		envio.setPeso(request.getParameter("peso").toLowerCase());
-		envio.setEspacio(request.getParameter("espacio").toLowerCase());
+		envio.setPeso(Double.valueOf(request.getParameter("peso").toLowerCase()));
+		envio.setEspacio(Double.valueOf(request.getParameter("espacio").toLowerCase()));
+		
 		envio.setEmpresa(request.getParameter("empresa").toLowerCase());
 		envio.setDestino(request.getParameter("destino"));
 		envio.setOrigen(request.getParameter("origen"));
 		envio.setDestinoLatLong(request.getParameter("destinoLatLong").toLowerCase());
 		envio.setOrigenLatLong(request.getParameter("origenLatLong").toLowerCase());
-		envio.setEspacio(request.getParameter("espacio").toLowerCase());
 		envio.setTipo(request.getParameter("tipo").toLowerCase());
 		envio.setDescripcion(request.getParameter("descripcion").toLowerCase());
 		

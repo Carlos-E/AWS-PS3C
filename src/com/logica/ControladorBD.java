@@ -941,6 +941,7 @@ public class ControladorBD {
 		return resultado;
 	}
 	
+	/*
 	public static ArrayList<Envio> getShipments(String key, String value) {
 
 
@@ -1019,6 +1020,7 @@ public class ControladorBD {
         }
     }
 	
+	*/
 	
 	public static String checkPlaca(String usuario) {
 

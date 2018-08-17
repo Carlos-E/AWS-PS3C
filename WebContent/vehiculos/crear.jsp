@@ -3,6 +3,7 @@
 <%@ page import="com.logica.*"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="clases.*"%>
+<%@ page import="com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression"%>
 <%
 	if (session.getAttribute("rol") == null) {
 		response.sendError(400, "Acceso incorrecto"); //cambiar
@@ -28,13 +29,14 @@
 		</div>
 	</div>
 	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER --> <%
- 	ArrayList<Usuario> listaUsuarios = ControladorBD.escanearTabla("usuarios");
- 	ArrayList<Vehiculo> listaCamiones = ControladorBD.escanearTabla("vehiculos");
- 	ArrayList<Usuario> listaConductor = new ArrayList<Usuario>();
- 	ArrayList<Empresa> listaEmpresas = ControladorBD.escanearTabla("empresas");
+ 	DB DB = new DB();
+	List<Usuario> listaUsuarios = DB.scan(Usuario.class, new DynamoDBScanExpression());
+ 	List<Vehiculo> listaCamiones = DB.scan(Vehiculo.class, new DynamoDBScanExpression());
+ 	List<Usuario> listaConductor = new ArrayList<Usuario>();
+ 	List<Empresa> listaEmpresas = DB.scan(Empresa.class, new DynamoDBScanExpression());
  	for (int i = 0; i < listaUsuarios.size(); i++) {
  		if (listaUsuarios.get(i).getRol().equals("conductor")) {
- 			if (!ControladorBD.estaOcupado(listaUsuarios.get(i).getUsuario(), "null")) {
+ 			if (!DB.estaOcupado(listaUsuarios.get(i).getUsuario(), "null")) {
  				listaConductor.add(listaUsuarios.get(i));
  			}
  		}

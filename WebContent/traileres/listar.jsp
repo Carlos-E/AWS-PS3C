@@ -109,8 +109,8 @@
 						/* element.usuario, */
 						element.camion,
 						element.tipo,
-						element.peso,
-						element.espacio,
+						element.pesoMax,
+						element.espacioMax,
 						element.empresa
 				]);
 				});

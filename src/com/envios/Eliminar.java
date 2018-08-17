@@ -30,16 +30,19 @@ public class Eliminar extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		DB DB = new DB();
 		Envio envio = DB.load(Envio.class, request.getParameter("usuario"), request.getParameter("fecha"));
-		if(envio.getTrailer().equals("ninguno")) {
+		
+		/*		
+  		if (envio.getTrailer().equals("ninguno")) {
 			Vehiculo vehiculo = DB.load(Vehiculo.class, envio.getCamion());
 			double espacio = Double.valueOf(vehiculo.getEspacio()) - Double.valueOf(envio.getEspacio());
 			double peso = Double.valueOf(vehiculo.getPeso()) - Double.valueOf(envio.getPeso());
 			vehiculo.setEspacio(String.valueOf(espacio));
 			vehiculo.setEspacio(String.valueOf(peso));
 			DB.save(vehiculo);
-		}else {
+		} else {
 			Trailer trailer = DB.load(Trailer.class, envio.getCamion());
 			double espacio = Double.valueOf(trailer.getEspacio()) - Double.valueOf(envio.getEspacio());
 			double peso = Double.valueOf(trailer.getPeso()) - Double.valueOf(envio.getPeso());
@@ -47,8 +50,11 @@ public class Eliminar extends HttpServlet {
 			trailer.setEspacio(String.valueOf(peso));
 			DB.save(trailer);
 		}
-		ControladorBD.borrarItem("envios", "usuario", request.getParameter("usuario"), "fecha",
-				request.getParameter("fecha"));
+		*/
+		
+		DB.delete(envio);
+		//ControladorBD.borrarItem("envios", "usuario", request.getParameter("usuario"), "fecha",request.getParameter("fecha"));
+		
 		response.setContentType("text/html");
 		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getRequestURL() + ".jsp");
 	}

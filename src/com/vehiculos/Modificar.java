@@ -8,14 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.logica.ControladorBD;
-
+import clases.DB;
 import clases.Vehiculo;
 
 @WebServlet("/vehiculos/modificar")
 public class Modificar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	Vehiculo vehiculo = new Vehiculo();
 
 	public Modificar() {
 		super();
@@ -29,66 +27,34 @@ public class Modificar extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String placa = request.getParameter("placa").toString();
-		vehiculo = (clases.Vehiculo) ControladorBD.getItem("vehiculos", "placa", placa);
-		String peso = request.getParameter("peso").toLowerCase();
-		String espacio = request.getParameter("espacio").toLowerCase();
-		String pesoMax = request.getParameter("pesoMax").toLowerCase();
-		String espacioMax = request.getParameter("espacioMax").toLowerCase();
-		String conductor = null;
-		
+		DB DB = new DB();
+
+		Vehiculo vehiculo = new Vehiculo();
+
+		vehiculo.setPlaca(request.getParameter("placa").toLowerCase());
+
+		vehiculo = DB.load(vehiculo);
+
+		vehiculo.setPesoMax(Double.valueOf(request.getParameter("pesoMax")));
+		vehiculo.setEspacioMax(Double.valueOf(request.getParameter("espacioMax")));
+		vehiculo.setEmpresa(request.getParameter("empresa").toLowerCase());
+
 		if (request.getParameter("conductor").equals("null")) {
-			conductor = request.getParameter("conductorAsignado").toLowerCase();
+			vehiculo.setUsuario(request.getParameter("conductorAsignado").toLowerCase());
 		} else {
-			conductor = request.getParameter("conductor").toLowerCase();
+			vehiculo.setUsuario(request.getParameter("conductor").toLowerCase());
 		}
-		
-		String empresa = request.getParameter("empresa").toLowerCase();
 
-		boolean cambio = false;
-		if (!vehiculo.getPeso().equals(peso)) {
-			vehiculo.setPeso(peso);
-			ControladorBD.actualizarValor("vehiculos", "placa", placa, "peso", peso);
-			cambio = true;
-		}
-		if (!vehiculo.getEspacio().equals(espacio)) {
-			vehiculo.setEspacio(espacio);
-			ControladorBD.actualizarValor("vehiculos", "placa", placa, "espacio", espacio);
-			cambio = true;
-		}
-		if (!vehiculo.getPeso().equals(pesoMax)) {
-			vehiculo.setPeso(pesoMax);
-			ControladorBD.actualizarValor("vehiculos", "placa", placa, "pesoMax", pesoMax);
-			cambio = true;
-		}
-		if (!vehiculo.getEspacio().equals(espacioMax)) {
-			vehiculo.setEspacio(espacioMax);
-			ControladorBD.actualizarValor("vehiculos", "placa", placa, "espacioMax", espacioMax);
-			cambio = true;
-		}
-		if (!vehiculo.getUsuario().equals(conductor)) {
-			vehiculo.setUsuario(conductor);
-			ControladorBD.actualizarValor("vehiculos", "placa", placa, "usuario", conductor);
-			cambio = true;
-		}
-		if (!vehiculo.getEmpresa().equals(empresa)) {
-			vehiculo.setUsuario(empresa);
-			ControladorBD.actualizarValor("vehiculos", "placa", placa, "empresa", empresa);
-			cambio = true;
-		}
-		if (cambio) {
-			response.setContentType("text/html");
-
-			com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa",
-					request.getContextPath() + "/vehiculos/modificar.jsp");
+		if (vehiculo.getUsuario().equals("ninguno")) {
+			vehiculo.setEstado("sin conductor");
 		} else {
-			System.out.println("no se cambio nada");
-			response.setContentType("text/html");
-
-			com.logica.Dibujar.mensaje(response.getWriter(), "No ha habido cambio",
-					request.getContextPath() + "/vehiculos/modificar.jsp");
-
+			vehiculo.setEstado("no asignado");
 		}
+
+		DB.save(vehiculo);
+
+		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", "/vehiculos/modificar.jsp");
+
 	}
 
 }

@@ -2,6 +2,7 @@
 <%@ page import="java.io.*,java.util.*"%>
 <%@ page import="com.logica.*"%>
 <%@ page import="clases.*"%>
+<%@ page import="com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression"%>
 <%
 	if (session.getAttribute("rol") == null) {
 		response.sendRedirect("/error.jsp");
@@ -28,13 +29,14 @@
 		</div>
 	</div>
 	<%
-		ArrayList<Usuario> listaUsuarios = ControladorBD.escanearTabla("usuarios");
-		ArrayList<Vehiculo> listavehiculos = ControladorBD.escanearTabla("vehiculos");
-		ArrayList<Usuario> listaConductor = new ArrayList<Usuario>();
-		ArrayList<Empresa> listaEmpresas = ControladorBD.escanearTabla("empresas");
+	 	DB DB = new DB();
+		List<Usuario> listaUsuarios = DB.scan(Usuario.class, new DynamoDBScanExpression());
+		List<Vehiculo> listavehiculos = DB.scan(Vehiculo.class, new DynamoDBScanExpression());
+		List<Usuario> listaConductor = new ArrayList<Usuario>();
+		List<Empresa> listaEmpresas = DB.scan(Empresa.class, new DynamoDBScanExpression());
 		for (int i = 0; i < listaUsuarios.size(); i++) {
 			if (listaUsuarios.get(i).getRol().equals("conductor")) {
-				if (!ControladorBD.estaOcupado(listaUsuarios.get(i).getUsuario(), "null")) {
+				if (!DB.estaOcupado(listaUsuarios.get(i).getUsuario(), "null")) {
 					listaConductor.add(listaUsuarios.get(i));
 				}
 			}
@@ -146,16 +148,6 @@
 							<input class="form-control" type="text" name="espacioMax" placeholder="espacio Maximo" id="espacioMax" required>
 						</div>
 					</div>
-					<div class="form-group row" >
-						<label class="col-md-2 col-form-label text-capitalize">Peso Actual</label>
-						<div class="col-md-4">
-							<input class="form-control" type="text" name="peso" placeholder="peso" id="peso" required>
-						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Espacio Actual</label>
-						<div class="col-md-4"> 
-							<input class="form-control" type="text" name="espacio" placeholder="espacio" id="espacio" required>
-						</div>
-					</div>
 					</div>
 
 					<div class="modal-footer">
@@ -237,9 +229,6 @@
 							$('#espacio').attr('readonly','false');
 							$('#peso-espacio').show();
 						}
-						
-						$('#peso').val(objeto.peso);
-						$('#espacio').val(objeto.espacio);
 						
 						$('#pesoMax').val(objeto.pesoMax);
 						$('#espacioMax').val(objeto.espacioMax);

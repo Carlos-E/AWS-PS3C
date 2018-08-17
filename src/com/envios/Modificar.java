@@ -49,11 +49,13 @@ public class Modificar extends HttpServlet {
 		envio.setOrigenLatLong(request.getParameter("origenLatLong"));
 		envio.setDestinoLatLong(request.getParameter("destinoLatLong"));
 		envio.setEmpresa(request.getParameter("empresa"));
-		envio.setEspacio(request.getParameter("espacio"));
-		envio.setPeso(request.getParameter("peso"));
+		
+		envio.setEspacio(Double.valueOf(request.getParameter("espacio")));
+		envio.setPeso(Double.valueOf(request.getParameter("peso")));
+		
 		envio.setTipo(request.getParameter("tipo"));
 		envio.setDescripcion(request.getParameter("descripcion"));
-		envio.setEstado(request.getParameter("estado"));
+		
 		String placaVehiculo = request.getParameter("camion");
 		String patenteTrailer = request.getParameter("trailer");
 		
@@ -63,42 +65,34 @@ public class Modificar extends HttpServlet {
 		envio.setCamion("ninguno");
 		// Set por defecto
 		envio.setTrailer("ninguno");
-		
+		// No asignado hasta que se demuestre lo contrario
 		envio.setEstado("no asignado");
 
-		if (request.getParameter("camion") != null && !request.getParameter("camion").equals("ninguno")) {
-			System.out.println("parte camion");
+		if (placaVehiculo != null && !placaVehiculo.equals("ninguno")) {
+			System.out.println("Se selecciono un Camion");
 
 			Vehiculo vehiculo = DB.load(Vehiculo.class, placaVehiculo.toLowerCase());
-
-			double espacioTmpV = Double.valueOf(vehiculo.getEspacio())
-					- Double.valueOf(request.getParameter("espacio"));
-			double pesoTmpV = Double.valueOf(vehiculo.getPeso()) - Double.valueOf(request.getParameter("peso"));
-			vehiculo.setEspacio(String.valueOf(espacioTmpV));
-			vehiculo.setPeso(String.valueOf(pesoTmpV));
-
+			vehiculo.setEstado("asignado");
 			DB.save(vehiculo);
 
 			envio.setCamion(vehiculo.getPlaca());
 			envio.setEstado("asignado");
 			
-		} else if (request.getParameter("trailer") != null && !request.getParameter("trailer").equals("ninguno")) {
-			
-			System.out.println("parte trailer");
+		} else if (patenteTrailer != null && !patenteTrailer.equals("ninguno")) {
+			System.out.println("Se selecciono un Trailer");
 
 			Trailer trailer = DB.load(Trailer.class, patenteTrailer.toLowerCase());
-
-			double espacioTmpT = Double.valueOf(trailer.getEspacio()) - Double.valueOf(request.getParameter("espacio"));
-			double pesoTmpT = Double.valueOf(trailer.getPeso()) - Double.valueOf(request.getParameter("peso"));
-			trailer.setEspacio(String.valueOf(espacioTmpT));
-			trailer.setPeso(String.valueOf(pesoTmpT));
-
+			trailer.setEstado("asignado");
 			DB.save(trailer);
 
 			envio.setCamion(trailer.getCamion());
 			envio.setTrailer(trailer.getPatente());
 			envio.setEstado("asignado");
-		} else {
+		}
+		
+		/* 
+		  } else {
+		 
 			
 			System.out.println("entre aca");
 			Envio envioAsignado = DB.load(Envio.class, request.getParameter("cliente"), request.getParameter("fecha"));
@@ -190,6 +184,7 @@ public class Modificar extends HttpServlet {
 			}
 		}
 		
+		*/
 		
 		DB.save(envio);
 		com.logica.Dibujar.mensaje(response.getWriter(), "Envio actualizado correctamente", "/envios/modificar.jsp");

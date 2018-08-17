@@ -82,6 +82,12 @@
 						</div>
 					</div>
 					<div class="form-group row">
+						<label class="col-md-2 col-form-label text-capitalize">Tipo</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="tipo" id="tipo" readonly>
+						</div>
+					</div>
+					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Peso maximo</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="peso" id="peso" readonly>
@@ -158,10 +164,11 @@
 						let objeto = lista[selectedIndex];
 						$('#placa').val(objeto.placa);
 						$('#estado').val(objeto.estado);
-						$('#peso').val(objeto.peso);
-						$('#espacio').val(objeto.espacio);
+						$('#peso').val(objeto.pesoMax);
+						$('#espacio').val(objeto.espacioMax);
 						$('#conductor').val(objeto.usuario);
 						$('#empresa').val(objeto.empresa);
+						$('#tipo').val(objeto.tipo);
 						$('#buscar-form').hide();
 						$('#form').removeAttr('hidden');
 						$('#form').show();

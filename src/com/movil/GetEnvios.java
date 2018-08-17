@@ -1,7 +1,6 @@
 package com.movil;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +15,6 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.logica.ControladorBD;
 
 import clases.*;
 
@@ -30,6 +28,8 @@ public class GetEnvios extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		DB DB = new DB();
 
 		String conductor = request.getSession().getAttribute("username").toString();
 
@@ -38,7 +38,7 @@ public class GetEnvios extends HttpServlet {
 		Map<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
 		eav.put(":v1", new AttributeValue().withS(conductor));
 
-		List<Vehiculo> vehiculosdelConductor = new DB().query(Vehiculo.class,
+		List<Vehiculo> vehiculosdelConductor = DB.query(Vehiculo.class,
 				new DynamoDBQueryExpression<Vehiculo>().withIndexName("usuario").withConsistentRead(false)
 						.withKeyConditionExpression("usuario = :v1").withExpressionAttributeValues(eav));
 
@@ -48,7 +48,7 @@ public class GetEnvios extends HttpServlet {
 
 		System.out.println("Placa del vehiculo del conductor: " + vehiculo.getPlaca());
 
-		ArrayList<Envio> envios = null;
+		List<Envio> envios = null;
 
 		if (vehiculo.getTipo().equals("camion")) {
 
@@ -61,14 +61,16 @@ public class GetEnvios extends HttpServlet {
 			// OJO AQUI, PROBAR
 			// OJO AQUI, PROBAR
 
-			envios = ControladorBD.getShipments("camion", vehiculo.getPlaca());
+			//envios = ControladorBD.getShipments("camion", vehiculo.getPlaca());
+			envios = DB.getEnviosVehiculo(vehiculo.getPlaca());
 		} else {
 
 			List<Trailer> listaTrailers = new DB().scan(Trailer.class, new DynamoDBScanExpression());
 
 			for (int i = 0; i < listaTrailers.size(); i++) {
 				if (listaTrailers.get(i).getCamion().equals(vehiculo.getPlaca())) {
-					envios = ControladorBD.getShipments("trailer", listaTrailers.get(i).getPatente());
+					//envios = ControladorBD.getShipments("trailer", listaTrailers.get(i).getPatente());
+					envios = DB.getEnviosTrailer(listaTrailers.get(i).getPatente());
 					break;
 				}
 			}
