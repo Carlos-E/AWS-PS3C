@@ -99,8 +99,11 @@ function setTrailers(pesoEnvio, espacioEnvio) {
 	
 	  $(document).ready(function() {
 	    $.ajax({
-	      url: '/scanTable',
-	      data: { tabla: 'trailers' },
+	      url: '/disponibilidadDeTrailers',
+	      data: { 
+	        	pesoEnvio: pesoEnvio, 
+	        	espacioEnvio: espacioEnvio 
+	        },
 	      type: 'POST',
 	      dataType: 'json'
 	    }).done(function(trailers) {
