@@ -10,8 +10,11 @@ function initMap() {
 
     $(document).ready(function() {
       $.ajax({
-        url: '/scanTable',
-        data: { tabla: 'vehiculos' },
+        url: '/disponibilidadDeVehiculos',
+        data: { 
+        	pesoEnvio: pesoEnvio, 
+        	espacioEnvio: espacioEnvio 
+        },
         type: 'POST',
         dataType: 'json'
       })
