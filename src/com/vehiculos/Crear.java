@@ -57,8 +57,8 @@ public class Crear extends HttpServlet {
 		vehiculo.setUsuario(request.getParameter("conductor").toLowerCase());
 		vehiculo.setEmpresa(request.getParameter("empresa"));
 
-		vehiculo.setLatitud("0.0");
-		vehiculo.setLongitud("0.0");
+		vehiculo.setLatitud("10.403242");
+		vehiculo.setLongitud("-75.505819");
 
 		new DB().save(vehiculo);
 		

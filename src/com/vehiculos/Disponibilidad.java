@@ -1,6 +1,7 @@
 package com.vehiculos;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import clases.DB;
 import clases.Vehiculo;
@@ -25,7 +27,7 @@ public class Disponibilidad extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.sendRedirect("/404.jsp");
+		response.sendError(404);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -36,12 +38,21 @@ public class Disponibilidad extends HttpServlet {
 		double espacioEnvio = Double.valueOf(request.getParameter("espacioEnvio"));
 		double pesoEnvio = Double.valueOf(request.getParameter("pesoEnvio"));
 
-		List<Vehiculo> vehiculos = DB.scan(Vehiculo.class, new DynamoDBScanExpression());
+		List<Vehiculo> vehiculos = new ArrayList<Vehiculo>(DB.scan(Vehiculo.class, new DynamoDBScanExpression()));
 
 		Iterator<Vehiculo> iteratorVehiculos = vehiculos.iterator();
 
+		System.out.println("Lista Original");
 		while (iteratorVehiculos.hasNext()) {
 			Vehiculo vehiculo = iteratorVehiculos.next();
+
+			System.out.println(vehiculo);
+
+			if (vehiculo.getTipo().equals("remolque")) {
+				System.out.println("Remolque detectado, descartando");
+				iteratorVehiculos.remove();
+				continue;
+			}
 
 			double pesoOcupado = DB.getPesoVehiculo(vehiculo.getPlaca());
 			double espacioOcupado = DB.getEspacioVehiculo(vehiculo.getPlaca());
@@ -58,12 +69,21 @@ public class Disponibilidad extends HttpServlet {
 			}
 
 			if (espacioDisponible < espacioEnvio || pesoDisponible < pesoEnvio) {
+				System.out.println("Camion sin espacio, descartando");
 				iteratorVehiculos.remove();
 			}
 
 		}
 
+		System.out.println("Lista resultante");
+		iteratorVehiculos = vehiculos.iterator();
+		while (iteratorVehiculos.hasNext()) {
+			System.out.println(iteratorVehiculos.next());
+		}
 
+		response.setContentType("application/json");
+		response.getWriter().print(new ObjectMapper().writeValueAsString(vehiculos));
+		response.getWriter().close();
 	}
 
 }

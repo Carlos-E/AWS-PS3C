@@ -1,4 +1,4 @@
-package com.logica;
+package com.envios;
 
 import java.io.IOException;
 
@@ -9,6 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
+
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
+import com.logica.ControladorBD;
+
+import clases.DB;
+import clases.Envio;
 
 @WebServlet("/fechaEnvios")
 public class fechaEnvios extends HttpServlet {
@@ -21,7 +27,7 @@ public class fechaEnvios extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		JSONArray jsonObject = new JSONArray(com.logica.ControladorBD.escanearTabla("envios"));
+		JSONArray jsonObject = new JSONArray(new DB().scan(Envio.class, new DynamoDBScanExpression()));
 		String json = jsonObject.toString();
 
 		System.out.println("Json: " + jsonObject);

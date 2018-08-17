@@ -408,8 +408,10 @@
 													var latlon = document
 														.getElementById('origenLatLong').value;
 													if (latlon != "") {
-														getRoutes(latlon, parseFloat(peso),
-															parseFloat(espacio));
+														
+														getRoutes(latlon, parseFloat(peso),parseFloat(espacio));
+											            setTrailers(parseFloat(peso),parseFloat(espacio));
+
 													}
 												}, 1000);
 										}

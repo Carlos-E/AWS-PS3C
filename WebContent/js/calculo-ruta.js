@@ -17,25 +17,10 @@ function initMap() {
         },
         type: 'POST',
         dataType: 'json'
-      })
-        .done(function(vehiculos) {
+      }).done(function(vehiculos) {
           console.log('Vehiculos: ' + JSON.stringify(vehiculos, null, 2));
 
           for (let i = 0; i < vehiculos.length; i++) {
-            if (vehiculos[i].tipo == 'remolque') {
-              console.log(vehiculos[i].placa + ' es un remolque, descartado');
-              continue;
-            }
-
-            if (pesoEnvio > parseFloat(vehiculos[i].peso)) {
-              console.log(vehiculos[i].placa + ' no soporta el peso del envio');
-              continue;
-            }
-
-            if (espacioEnvio > parseFloat(vehiculos[i].espacio)) {
-              console.log(vehiculos[i].placa + ' no soporta el espacio del envio');
-              continue;
-            }
 
             // Se llama directamente al servicio
             directionsService.route(
@@ -64,40 +49,99 @@ function initMap() {
           } // for
 
           setTimeout(function() {
-            listaDatosRutas = quickSort(listaDatosRutas, 0, listaDatosRutas.length - 1, 'duracion');
+           
+        	listaDatosRutas = quickSort(listaDatosRutas, 0, listaDatosRutas.length - 1, 'duracion');
 
             // Limpiar select
+            $('#camion').find('option').remove()
             let select = document.getElementById('camion');
 
-            // Poner Seleccionar... de primero
-            let option = document.createElement('option');
+            let option;
+            
+            option = document.createElement('option');
+            option.text = 'Seleccionar...';
+            option.value = '';
+            select.add(option);
+           
+            option = document.createElement('option');
             option.text = 'ninguno';
             option.value = 'ninguno';
             select.add(option);
 
-            console.log('Datos validos:');
+            console.log('Camiones validos:');
 
             // Llenar select
             for (let k = 0; k < listaDatosRutas.length; k++) {
-              let option = document.createElement('option');
+              option = document.createElement('option');
               option.text = 'Placa: ' + listaDatosRutas[k].placa + ' - Distancia: ' + listaDatosRutas[k].distanciaT;
               option.value = listaDatosRutas[k].placa;
               console.log(option.text);
               select.add(option);
             }
 
-            setTrailers(pesoEnvio, espacioEnvio);
-          }, 3000); // SetTimeOut
+          }, 2500); // SetTimeOut
+          
         })
         .fail(function(xhr, status, errorThrown) {
           console.log('Failed getRoutes');
         })
-        .always(function(xhr, status) {});
+        .always(function(xhr, status) {	        
+        	$('#spinner').fadeOut('slow');
+        });
     });
   };
 
   console.log('Servicio de rutas inicializado');
 }
+
+
+function setTrailers(pesoEnvio, espacioEnvio) {
+	
+	  $(document).ready(function() {
+	    $.ajax({
+	      url: '/scanTable',
+	      data: { tabla: 'trailers' },
+	      type: 'POST',
+	      dataType: 'json'
+	    }).done(function(trailers) {
+	        console.log('Trailers: ' + JSON.stringify(trailers, null, 2));
+
+	        // Borrar select completo
+            $('#trailer').find('option').remove();
+	        let select = document.getElementById('trailer');
+	        
+	        let option;
+
+	        option = document.createElement('option');
+	        option.text = 'Seleccionar...';
+	        option.value = '';
+	        select.add(option);
+	        
+	        option = document.createElement('option');
+	        option.text = 'ninguno';
+	        option.value = 'ninguno';
+	        select.add(option);
+
+	        console.log('Trailers validos:');
+	        for (let i = 0; i < trailers.length; i++) {
+	          // Llenar select
+	          option = document.createElement('option');
+	          option.text = 'Patente: ' + trailers[i].patente + ' - Distancia: NA';
+	          option.value = trailers[i].patente;
+	          console.log(option.text);
+	          select.add(option);
+	        }
+	      }).fail(function(xhr, status, errorThrown) {
+	        console.log('Failed setTrailers');
+	      });
+	  });
+}
+
+
+
+
+
+// QuickSort
 
 function swap(items, firstIndex, secondIndex) {
   var temp = items[firstIndex];
@@ -147,51 +191,3 @@ function quickSort(items, left, right, criteria) {
   return items;
 }
 
-function setTrailers(pesoEnvio, espacioEnvio) {
-  $(document).ready(function() {
-    $.ajax({
-      url: '/scanTable',
-      data: { tabla: 'trailers' },
-      type: 'POST',
-      dataType: 'json'
-    })
-      .done(function(trailers) {
-        console.log('Trailers: ' + JSON.stringify(trailers, null, 2));
-
-        console.log('Trailers validos:');
-        // Borrar select completo
-
-        let select = document.getElementById('trailer');
-        // Poner Seleccionar... de primero
-        let option = document.createElement('option');
-        option.text = 'ninguno';
-        option.value = 'ninguno';
-        select.add(option);
-
-        for (let i = 0; i < trailers.length; i++) {
-          if (pesoEnvio > parseFloat(trailers[i].peso)) {
-            console.log(trailers[i].patente + ' no soporta el peso del envio');
-            continue;
-          }
-
-          if (espacioEnvio > parseFloat(trailers[i].espacio)) {
-            console.log(trailers[i].patente + ' no soporta el espacio del envio');
-            continue;
-          }
-
-          // Llenar select
-          let option = document.createElement('option');
-          option.text = 'Patente: ' + trailers[i].patente + ' - Distancia: NA';
-          option.value = trailers[i].patente;
-          console.log(option.text);
-          select.add(option);
-        }
-      })
-      .fail(function(xhr, status, errorThrown) {
-        console.log('Failed setTrailers');
-      })
-      .always(function(xhr, status) {
-        $('#spinner').fadeOut('slow');
-      });
-  });
-}
