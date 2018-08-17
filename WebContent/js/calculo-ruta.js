@@ -12,6 +12,7 @@ function initMap() {
       $.ajax({
         url: '/disponibilidadDeVehiculos',
         data: { 
+        	origenEnvio: origenEnvio,
         	pesoEnvio: pesoEnvio, 
         	espacioEnvio: espacioEnvio 
         },
