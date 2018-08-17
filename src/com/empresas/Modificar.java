@@ -14,7 +14,6 @@ import clases.Empresa;
 @WebServlet("/modificarEmpresa")
 public class Modificar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	clases.Empresa empresa = new clases.Empresa();
 
 	public Modificar() {
 		super();

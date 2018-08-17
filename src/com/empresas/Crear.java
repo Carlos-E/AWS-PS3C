@@ -8,12 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.logica.ControladorBD;
+import clases.DB;
+import clases.Empresa;
 
 @WebServlet("/empresas/crear")
 public class Crear extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	clases.Empresa empresa = new clases.Empresa();
 
 	public Crear() {
 		super();
@@ -26,7 +26,11 @@ public class Crear extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-try {
+		
+		response.setContentType("text/html");
+		
+		Empresa empresa = new clases.Empresa();
+
 		empresa.setNit(request.getParameter("nit").toLowerCase());
 		empresa.setRut(request.getParameter("rut").toLowerCase());
 		empresa.setNombre(request.getParameter("nombre").toLowerCase());
@@ -34,14 +38,10 @@ try {
 		empresa.setTelefono(request.getParameter("telefono").toLowerCase());
 		empresa.setCorreo(request.getParameter("correo").toLowerCase());
 		
-		ControladorBD.registrarItem("empresas", empresa);
+		new DB().save(empresa);
 
-		response.setContentType("text/html");
-		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa",
-				request.getContextPath() + "/empresas/crear.jsp");
-}catch(Exception e){
-	com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar crear la Empresa", request.getContextPath() + "./index.jsp");
-}
+		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa","/empresas/crear.jsp");
+
 	}
 
 }
