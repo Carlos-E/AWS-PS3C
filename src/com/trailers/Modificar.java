@@ -56,6 +56,8 @@ public class Modificar extends HttpServlet {
 
 		trailer.setTipo(request.getParameter("tipo").toLowerCase());
 		trailer.setEmpresa(request.getParameter("empresa").toLowerCase());
+		
+		DB.save(trailer);
 
 		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", "/traileres/modificar.jsp");
 

@@ -32,12 +32,13 @@
 		</div>
 	</div>
 	<%
-		List<Usuario> listaUsuarios = new DB().scan(Usuario.class, new DynamoDBScanExpression());
+		DB DB = new DB();
+		List<Usuario> listaUsuarios = DB.scan(Usuario.class, new DynamoDBScanExpression());
 		List<Usuario> listaClientes = new ArrayList<Usuario>();
-		List<Empresa> listaEmpresas = new DB().scan(Empresa.class, new DynamoDBScanExpression());
+		List<Empresa> listaEmpresas = DB.scan(Empresa.class, new DynamoDBScanExpression());
 		for (int i = 0; i < listaUsuarios.size(); i++) {
 			if (listaUsuarios.get(i).getRol().equals("cliente")) {
-				if (!ControladorBD.estaOcupado(listaUsuarios.get(i).getNombre(), "null")) {
+				if (!DB.estaOcupado(listaUsuarios.get(i).getNombre(), "null")) {
 					listaClientes.add(listaUsuarios.get(i));
 				}
 			}

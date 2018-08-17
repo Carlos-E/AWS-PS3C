@@ -76,17 +76,24 @@
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="empresa" placeholder="empresa" id="empresa" readonly>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Cami&oacute;n</label>
+						<label class="col-md-2 col-form-label text-capitalize">Tipo</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="vehiculo" placeholder="vehiculo" id="vehiculo" readonly>
+							<input class="form-control" type="text" name="tipo" placeholder="tipo" id="tipo" readonly>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Peso Maximo</label>
+						
+						<label class="col-md-2 col-form-label text-capitalize">Remolque</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="remolque" placeholder="remolque" id="remolque" readonly>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-2 col-form-label text-capitalize">Peso M&aacute;ximo</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="pesoMax" id="pesoMax" readonly>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Espacio Maximo</label>
+						<label class="col-md-2 col-form-label text-capitalize">Espacio M&aacute;ximo</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="espacioMax" id="espacioMax" readonly>
 						</div>
@@ -157,10 +164,11 @@
 						console.log(lista[selectedIndex]);
 						let objeto = lista[selectedIndex];
 						$('#patente').val(objeto.patente);
+						$('#tipo').val(objeto.tipo);
 						$('#estado').val(objeto.estado);
 						$('#pesoMax').val(objeto.pesoMax);
 						$('#espacioMax').val(objeto.espacioMax);
-						$('#vehiculo').val(objeto.vehiculo);
+						$('#remolque').val(objeto.camion);
 						$('#empresa').val(objeto.empresa);
 						$('#buscar-form').hide();
 						$('#form').removeAttr('hidden');
