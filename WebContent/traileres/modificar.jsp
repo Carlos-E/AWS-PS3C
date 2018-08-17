@@ -31,7 +31,7 @@
 		</div>
 	</div>
 	<%
- 		DB DB = new DB();
+		DB DB = new DB();
 		List<Usuario> listaUsuarios = DB.scan(Usuario.class, new DynamoDBScanExpression());
 		List<Vehiculo> listaVehiculos = DB.scan(Vehiculo.class, new DynamoDBScanExpression());
 		List<Usuario> listaConductor = new ArrayList<Usuario>();
@@ -82,17 +82,38 @@
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="patente" placeholder="patente" id="patente" readonly>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Remolque Asignado</label>
-						<div class="col-md-4">
-							<input class="form-control" type="text" name="remolqueAsignado" id="remolqueAsignado" readonly>
-						</div>
-
-					</div>
-					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Estado</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="estado" id="estado" readonly>
 						</div>
+
+					</div>
+					<div class="form-group row">
+
+
+
+						<label class="col-md-2 col-form-label text-capitalize">Empresa</label>
+						<div class="col-md-4">
+							<!-- 							<input class="form-control" type="text" name="empresa" placeholder="empresa" id="empresa" required>
+ -->
+							<select class="form-control" name="empresa" id="empresa" required>
+								<option value="" selected>Seleccionar...</option>
+
+								<%
+									for (int i = 0; i < listaEmpresas.size(); i++) {
+								%>
+								<option value="<%out.print(listaEmpresas.get(i).getNombre());%>">
+									<%
+										out.print(listaEmpresas.get(i).getNombre());
+									%>
+								</option>
+								<%
+									}
+								%>
+							</select>
+						</div>
+
+
 						<label class="col-md-2 col-form-label text-capitalize">Tipo</label>
 						<div class="col-md-4">
 							<select class="custom-select" name="tipo" id="tipo" required>
@@ -118,25 +139,9 @@
 
 
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Empresa</label>
+						<label class="col-md-2 col-form-label text-capitalize">Remolque Asignado</label>
 						<div class="col-md-4">
-							<!-- 							<input class="form-control" type="text" name="empresa" placeholder="empresa" id="empresa" required>
- -->
-							<select class="form-control" name="empresa" id="empresa" required>
-								<option value="" selected>Seleccionar...</option>
-
-								<%
-									for (int i = 0; i < listaEmpresas.size(); i++) {
-								%>
-								<option value="<%out.print(listaEmpresas.get(i).getNombre());%>">
-									<%
-										out.print(listaEmpresas.get(i).getNombre());
-									%>
-								</option>
-								<%
-									}
-								%>
-							</select>
+							<input class="form-control" type="text" name="remolqueAsignado" id="remolqueAsignado" readonly>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Remolques Disponibles</label>
 						<div class="col-md-4">
@@ -170,7 +175,7 @@
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="peso" placeholder="peso" id="peso" required>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Espacio  m&aacute;ximo</label>
+						<label class="col-md-2 col-form-label text-capitalize">Espacio m&aacute;ximo</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="espacio" placeholder="espacio" id="espacio" required>
 						</div>
@@ -209,8 +214,9 @@
 	<jsp:include page="/footer.jsp" />
 	<!-- /FIN -->
 	<script>
-		$(document).ready(function() {
-			
+		$(document).ready(
+				function() {
+
 					var lista;
 					$.ajax({
 						url : "/scanTable",
@@ -219,8 +225,9 @@
 						},
 						type : "POST",
 						dataType : "json",
-					}).done(function(response) {
-						
+					}).done(
+							function(response) {
+
 								console.log(response);
 								lista = response;
 								$(response).each(
@@ -231,13 +238,13 @@
 													$("<option>").attr('value',
 															value).text(text));
 										});
-					}).fail(function(xhr, status, errorThrown) {
-						
+							}).fail(function(xhr, status, errorThrown) {
+
 						alert("Algo ha salido mal");
 						console.log('Failed Request To Servlet /scanTable');
-						
+
 					});
-					
+
 					$('#buscar').click(function() {
 						let selectedIndex = $('#select').prop('selectedIndex');
 						console.log(lista[selectedIndex]);
@@ -245,20 +252,20 @@
 						$('#patente').val(objeto.patente);
 						$('#tipo').val(objeto.tipo);
 						$('#estado').val(objeto.estado);
-						$('#peso').val(objeto.peso);
-						$('#espacio').val(objeto.espacio);
+						$('#peso').val(objeto.pesoMax);
+						$('#espacio').val(objeto.espacioMax);
 						$('#empresa').val(objeto.empresa);
 						$('#remolqueAsignado').val(objeto.camion);
 						$('#buscar-form').hide();
 						$('#form').removeAttr('hidden');
 						$('#form').show();
 					});
-					
+
 					$('#atras').click(function() {
 						$('#buscar-form').show();
 						$('#form').hide();
 					});
-					
+
 				});
 	</script>
 
