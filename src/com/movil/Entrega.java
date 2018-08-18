@@ -38,6 +38,35 @@ public class Entrega extends HttpServlet {
 			envio.setChequeoDescarga(true);
 			envio.setChequeoCarga(true);
 			envio.setEstado("entregado");
+			
+			if (envio.getTrailer().equals("ninguno") && !envio.getCamion().equals("ninguno")) {
+
+				if (DB.getEnviosVehiculo(envio.getCamion()) == null) {
+					System.out.println(
+							"El camion " + envio.getCamion() + " no tiene mas envios, cambiando estado a \"no asignado\"");
+
+					Vehiculo vehiculo = new Vehiculo();
+					vehiculo.setPlaca(envio.getCamion());
+					vehiculo = DB.load(vehiculo);
+					vehiculo.setEstado("no asignado");
+					DB.save(vehiculo);
+				}
+
+			} else if (!envio.getTrailer().equals("ninguno")) {
+				
+				if (DB.getEnviosTrailer(envio.getTrailer()) == null) {
+					System.out.println(
+							"El trailer " + envio.getTrailer() + " no tiene mas envios, cambiando estado a \"no asignado\"");
+
+					Trailer trailer = new Trailer();
+					trailer.setPatente(envio.getTrailer());
+					trailer = DB.load(trailer);
+					trailer.setEstado("no asignado");
+					DB.save(trailer);
+				}
+
+			}
+			
 		} else if (valor.equals("false")) {
 			envio.setChequeoDescarga(false);
 			envio.setEstado("en tránsito ");
