@@ -69,13 +69,15 @@ public class Disponibilidad extends HttpServlet {
 			}
 
 		}
-
+		
+		/*
 		System.out.println("Lista resultante");
 		iteratorTrailers = trailers.iterator();
 		while (iteratorTrailers.hasNext()) {
 			System.out.println(iteratorTrailers.next());
 		}
-
+		*/
+		
 		response.setContentType("application/json");
 		response.getWriter().print(new ObjectMapper().writeValueAsString(trailers));
 		response.getWriter().close();

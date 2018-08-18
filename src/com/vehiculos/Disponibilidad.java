@@ -75,12 +75,14 @@ public class Disponibilidad extends HttpServlet {
 
 		}
 
+		/*
 		System.out.println("Lista resultante");
 		iteratorVehiculos = vehiculos.iterator();
 		while (iteratorVehiculos.hasNext()) {
 			System.out.println(iteratorVehiculos.next());
 		}
-
+		*/
+		
 		response.setContentType("application/json");
 		response.getWriter().print(new ObjectMapper().writeValueAsString(vehiculos));
 		response.getWriter().close();
