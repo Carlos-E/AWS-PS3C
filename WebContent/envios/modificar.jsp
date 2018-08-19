@@ -136,7 +136,7 @@
  -->
 							<select class="custom-select" name="estado" id="estado" required>
 								<option value="" selected>Seleccionar...</option>
-								<option value="no asignado">no Asignado</option>
+								<option value="no asignado">no asignado</option>
 								<option value="asignado">asignado</option>
 								<option value="en tránsito">en tr&aacute;nsito</option>
 								<option value="entregado">entregado</option>
@@ -153,16 +153,6 @@
 							<input class="form-control" type="text" name="descripcion" placeholder="descripcion" id="descripcion" required>
 						</div>
 					</div>
-					<!-- <div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">tiempoCarga</label>
-						<div class="col-md-4">
-							<input class="form-control" type="text" name="tiempoCarga" placeholder="tiempoCarga" id="tiempoCarga" required>
-						</div>
-						<label class="col-md-2 col-form-label text-capitalize">tiempoDescarga</label>
-						<div class="col-md-4">
-							<input class="form-control" type="text" name="tiempoDescarga" placeholder="tiempoDescarga" id="tiempoDescarga" required>
-						</div>
-					</div> -->
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">empresa</label>
 						<div class="col-md-4">
@@ -185,6 +175,12 @@
 						</div>
 					</div>
 					<div class="form-group row">
+						<label class="col-md-2 col-form-label text-capitalize">veh&iacute;culo o trailer asignado</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="asignado" placeholder="asignado" id="asignado" readonly>
+						</div>
+					</div>
+					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">veh&iacute;culo</label>
 						<div class="col-md-4">
 							<input id="rCamion" type="radio" name="asignacion" onclick="mostrar()" checked="true" required>
@@ -195,26 +191,15 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">veh&iacute;culo o trailer asignado</label>
+						<label class="col-md-2 col-form-label text-capitalize">veh&iacute;culos Disponibles</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="asignado" placeholder="asignado" id="asignado" readonly>
-						</div>
-						<div class="col-md-3">
-							<div id="spinner">
-								<i class="fa fa-circle-notch fa-spin" style="font-size: 30px"></i>
-								<p>Buscando</p>
-							</div>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label id="camion1" class="col-md-2 col-form-label text-capitalize">veh&iacute;culos Disponibles</label>
-						<div id="camion2" class="col-md-4">
+							<i id="spinner1" class="fa fa-circle-notch fa-spin" style="font-size: 35px"></i>
 							<select id="camion" class="form-control" name="camion" required>								
 							</select>
 						</div>
-						<label id="trailer1" class="col-md-2 col-form-label text-capitalize">Traileres Disponibles</label>
-						<div id="trailer2" class="col-md-4">
-							<!--<input class="form-control" type="text" name="camion" placeholder="camion" id="camion" required>-->
+						<label class="col-md-2 col-form-label text-capitalize">Traileres Disponibles</label>
+						<div class="col-md-4">
+							<i id="spinner2" class="fa fa-circle-notch fa-spin" style="font-size: 35px"></i>
 							<select id="trailer" class="form-control" name="trailer" disabled="true" required>
 							</select>
 						</div>
@@ -398,7 +383,10 @@
 									var i = 0;
 									function uno() {
 										
-								        $('#spinner').fadeIn('slow');
+								        $('#spinner1').fadeIn('slow');
+								        $('#spinner2').fadeIn('slow');
+								        $('#camion').hide();
+								        $('#trailer').hide();
 								          
 										var peso = document.getElementById('peso').value;
 										var espacio = document.getElementById('espacio').value;

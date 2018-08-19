@@ -77,7 +77,8 @@ function initMap() {
                   select.add(option);
                   
                   if(i==vehiculos.length-1){
-                  	$('#spinner').fadeOut('slow');
+                    	$('#spinner1').hide();
+                      	$('#camion').show();
                   }
                   
                 } else {
@@ -161,6 +162,9 @@ function setTrailers(pesoEnvio, espacioEnvio) {
 	        
 	      }).fail(function(xhr, status, errorThrown) {
 	        console.log('Failed setTrailers');
+	      }).always(function(){
+		        $('#spinner2').hide();
+		        $('#trailer').show();
 	      });
 	    
 	  });
