@@ -13,7 +13,6 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import clases.DB;
-import clases.Empresa;
 import clases.Trailer;
 
 @WebServlet("/trailers/modificar/listar")
