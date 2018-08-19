@@ -42,8 +42,6 @@ public class Modificar extends HttpServlet {
 		trailer.setTipo(request.getParameter("tipo").toLowerCase());
 		trailer.setEmpresa(request.getParameter("empresa").toLowerCase());
 
-		System.out.println(request.getRequestURI());
-
 		trailer.setEspacioMax(Double.valueOf(request.getParameter("espacioMax")));
 		if (trailer.getEspacioMax() < DB.getEspacioTrailer(trailer.getPatente())) {
 			Dibujar.mensaje(response.getWriter(),

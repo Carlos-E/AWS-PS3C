@@ -173,11 +173,11 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Peso m&aacute;ximo</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" placeholder="peso" name="pesoMax" id="pesoMax" required>
+							<input class="form-control" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" placeholder="peso" name="pesoMax" id="pesoMax" required>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Espacio m&aacute;ximo</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" placeholder="espacio" name="espacioMax"  id="espacioMax" required>
+							<input class="form-control" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" placeholder="espacio" name="espacioMax"  id="espacioMax" required>
 						</div>
 					</div>
 					<div class="modal-footer">
