@@ -128,11 +128,11 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Peso m&aacute;ximo</label>
 						<div class="col-md-4">
-							<input class="form-control" type="number" name="peso" placeholder="peso en kg" id="peso" required>
+							<input class="form-control" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" name="peso" placeholder="peso en kg" id="peso" required>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Espacio m&aacute;ximo</label>
 						<div class="col-md-4">
-							<input class="form-control" type="number" name="espacio" placeholder="en metros cubicos" id="espacio" required>
+							<input class="form-control" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" name="espacio" placeholder="en metros cubicos" id="espacio" required>
 						</div>
 					</div>
 					

@@ -107,11 +107,11 @@
 					<div id="oculto" class="form-group row" style="display: none;">
 						<label class="col-md-2 col-form-label text-capitalize">Peso m&aacute;ximo</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="peso" placeholder="peso en kg" id="peso" value="0" required>
+							<input class="form-control" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" name="peso" placeholder="peso en kg" id="peso" value="0" required>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Espacio m&aacute;ximo</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="espacio" placeholder="en metros cubicos" id="espacio" value="0" required>
+							<input class="form-control" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" name="espacio" placeholder="en metros cubicos" id="espacio" value="0" required>
 						</div>
 					</div>
 					<input type="text" id="longitud_Destino" name="longitud_Destino" style="display: none">

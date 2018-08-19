@@ -132,15 +132,15 @@
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">estado</label>
 						<div class="col-md-4">
-							<!-- 							<input class="form-control" type="text" name="estado" placeholder="estado" id="estado" required>
- -->
-							<select class="custom-select" name="estado" id="estado" required>
+							<input class="form-control" type="text" name="estado" id="estado" disabled>
+
+							<!-- <select class="custom-select" name="estado" id="estado" required>
 								<option value="" selected>Seleccionar...</option>
 								<option value="no asignado">no asignado</option>
 								<option value="asignado">asignado</option>
 								<option value="en tránsito">en tr&aacute;nsito</option>
 								<option value="entregado">entregado</option>
-							</select>
+							</select> -->
 						</div>
 					</div>
 					<div class="form-group row">

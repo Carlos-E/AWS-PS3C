@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.logica.Dibujar;
+
 import clases.DB;
 import clases.Vehiculo;
 
@@ -35,9 +37,19 @@ public class Modificar extends HttpServlet {
 
 		vehiculo = DB.load(vehiculo);
 
-		vehiculo.setPesoMax(Double.valueOf(request.getParameter("pesoMax")));
-		vehiculo.setEspacioMax(Double.valueOf(request.getParameter("espacioMax")));
 		vehiculo.setEmpresa(request.getParameter("empresa").toLowerCase());
+		
+		vehiculo.setEspacioMax(Double.valueOf(request.getParameter("espacioMax")));
+		if (vehiculo.getEspacioMax() <= DB.getEspacioVehiculo(vehiculo.getPlaca())) {
+			Dibujar.mensaje(response.getWriter(), "El espacio no puede ser menor a la cantidad consumida por los envios asignados", "/vehiculos/modificar.jsp");
+			return;
+		}
+
+		vehiculo.setPesoMax(Double.valueOf(request.getParameter("pesoMax")));
+		if (vehiculo.getPesoMax() <= DB.getPesoVehiculo(vehiculo.getPlaca())) {
+			Dibujar.mensaje(response.getWriter(), "El peso no puede ser menor a la cantidad consumida por los envios asignados", "/vehiculos/modificar.jsp");
+			return;
+		}
 
 		if (request.getParameter("conductor").equals("null")) {
 			vehiculo.setUsuario(request.getParameter("conductorAsignado").toLowerCase());
@@ -47,7 +59,7 @@ public class Modificar extends HttpServlet {
 
 		DB.save(vehiculo);
 
-		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", "/vehiculos/modificar.jsp");
+		Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", "/vehiculos/modificar.jsp");
 
 	}
 

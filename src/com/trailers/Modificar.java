@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.logica.Dibujar;
+
 import clases.DB;
 import clases.Trailer;
 
@@ -37,10 +39,27 @@ public class Modificar extends HttpServlet {
 
 		trailer = DB.load(trailer);
 
-		trailer.setPesoMax(Double.valueOf(request.getParameter("peso").toLowerCase()));
-		trailer.setEspacioMax(Double.valueOf(request.getParameter("espacio").toLowerCase()));
+		trailer.setTipo(request.getParameter("tipo").toLowerCase());
+		trailer.setEmpresa(request.getParameter("empresa").toLowerCase());
 
-		// String camion = request.getParameter("remolque").toLowerCase();
+		System.out.println(request.getRequestURI());
+
+		trailer.setEspacioMax(Double.valueOf(request.getParameter("espacioMax")));
+		if (trailer.getEspacioMax() < DB.getEspacioTrailer(trailer.getPatente())) {
+			Dibujar.mensaje(response.getWriter(),
+					"El espacio no puede ser menor a la cantidad consumida por los envios asignados",
+					request.getRequestURI() + ".jsp");
+			return;
+		}
+
+		trailer.setPesoMax(Double.valueOf(request.getParameter("pesoMax")));
+		if (trailer.getPesoMax() < DB.getPesoTrailer(trailer.getPatente())) {
+			Dibujar.mensaje(response.getWriter(),
+					"El peso no puede ser menor a la cantidad consumida por los envios asignados",
+					request.getRequestURI() + ".jsp");
+			return;
+		}
+
 		String camion = null;
 
 		if (request.getParameter("remolque").equals("null")) {
@@ -51,12 +70,9 @@ public class Modificar extends HttpServlet {
 
 		trailer.setCamion(camion);
 
-		trailer.setTipo(request.getParameter("tipo").toLowerCase());
-		trailer.setEmpresa(request.getParameter("empresa").toLowerCase());
-		
 		DB.save(trailer);
 
-		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", "/traileres/modificar.jsp");
+		Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getRequestURI() + ".jsp");
 
 	}
 

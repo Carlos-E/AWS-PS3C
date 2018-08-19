@@ -173,11 +173,11 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Peso m&aacute;ximo</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="peso" placeholder="peso" id="peso" required>
+							<input class="form-control" type="text" placeholder="peso" name="pesoMax" id="pesoMax" required>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Espacio m&aacute;ximo</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="espacio" placeholder="espacio" id="espacio" required>
+							<input class="form-control" type="text" placeholder="espacio" name="espacioMax"  id="espacioMax" required>
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -252,8 +252,8 @@
 						$('#patente').val(objeto.patente);
 						$('#tipo').val(objeto.tipo);
 						$('#estado').val(objeto.estado);
-						$('#peso').val(objeto.pesoMax);
-						$('#espacio').val(objeto.espacioMax);
+						$('#pesoMax').val(objeto.pesoMax);
+						$('#espacioMax').val(objeto.espacioMax);
 						$('#empresa').val(objeto.empresa);
 						$('#remolqueAsignado').val(objeto.camion);
 						$('#buscar-form').hide();
