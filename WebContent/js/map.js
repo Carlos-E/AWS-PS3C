@@ -117,7 +117,9 @@ function getVehiculo(plate) {
 		$('#myModalBody').html(`
 		<p>Estado: ${vehiculo.estado}
 		<br>Envios pendientes: ${vehiculo.numEnviosPendientes}
-		<br>Conductor: ${vehiculo.usuario}</p>`);
+		<br>Conductor: ${vehiculo.usuario}
+		<br>Tipo: ${vehiculo.tipo}
+		<br>Trailer: ${vehiculo.trailer!=null ? vehiculo.trailer : "ninguno"}</p>`);
 
 	}).fail(function(xhr, status, errorThrown) {
 

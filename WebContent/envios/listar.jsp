@@ -169,7 +169,7 @@ table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_des
 							{ title: "Descripci&oacute;n" }
 						],
 						search: {
-						    search: getParameterByName('search') ? null : ""
+						    search: getParameterByName('search') != null ? getParameterByName('search') : ""
 						},
 						initComplete: function(){
 							$("#spinner").fadeOut("slow");

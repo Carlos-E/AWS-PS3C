@@ -68,10 +68,8 @@ html, body {
 				</div>
 				<div class="modal-body" id="myModalBody"></div>
 				<div class="modal-footer">
+					<button type="button" class="btn btn-primary btn-md float-right" id="myModalButton">Ver Envios</button>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-					<!-- <form name="form" action="/cancelar" method="post">
-						<button type="submit" class="btn btn-danger btn-md float-right">Cancelar</button>
-					</form> -->
 				</div>
 			</div>
 		</div>
@@ -96,6 +94,15 @@ html, body {
 				ponerMarcadores(data);
 			});
 		}, 5000);
+		
+		$(document).ready(function(){
+
+			$('#myModalButton').click(function(){
+				console.log('hi');
+				window.location = '/envios/listar.jsp?search='+$('#myModalTitle').html();
+			});
+		
+		});
 	</script>
 
 	<script src="/js/map.js">

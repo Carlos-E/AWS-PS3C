@@ -42,6 +42,11 @@ public class Leer extends HttpServlet {
 		map.put("usuario", vehiculo.getUsuario());
 		map.put("estado", DB.getEstadoVehiculo(placa));
 		map.put("numEnviosPendientes", DB.getEnviosPendientesVehiculo(placa).size());
+		map.put("tipo", vehiculo.getTipo());
+		
+		if(vehiculo.getTipo().equals("remolque")){			
+			map.put("trailer", DB.getTrailerRemolque(placa).getPatente());
+		}
 
 		response.setContentType("application/json");
 		response.getWriter().print(new ObjectMapper().writeValueAsString(map));
