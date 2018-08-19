@@ -92,7 +92,7 @@
 		$(document).ready(function() {
 			
 			$.ajax({
-				url : "/scanTable",
+				url : "/trailers/listar",
 				data : {
 					tabla : 'trailers'
 				},

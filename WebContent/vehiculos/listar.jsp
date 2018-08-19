@@ -92,7 +92,7 @@
 		$(document).ready(function() {
 			
 			$.ajax({
-				url : "/scanTable",
+				url : "/vehiculos/listar",
 				data : {
 					tabla : 'vehiculos'
 				},
