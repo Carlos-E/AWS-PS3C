@@ -109,6 +109,7 @@
 						/* element.usuario, */
 						element.camion,
 						element.tipo,
+						element.estado,
 						element.pesoMax,
 						element.espacioMax,
 						element.empresa
@@ -125,8 +126,9 @@
 			        columns: [
 			            { title: "Patente" },
 			            /* { title: "Conductor" }, */
-			            { title: "Placa de Remolque" },
-			            { title: "Tipo de Trailer" },
+			            { title: "Remolque" },
+			            { title: "Tipo" },
+			            { title: "Estado" },
 			            { title: "Peso" },
 			            { title: "Espacio" },
 			            { title: "Empresa" }

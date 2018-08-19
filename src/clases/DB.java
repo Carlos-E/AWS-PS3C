@@ -200,7 +200,7 @@ public class DB extends DynamoDBMapper {
 		return trailers.get(0);
 	}
 
-	public String checkEstadoVehiculo(String placa) {
+	public String getEstadoVehiculo(String placa) {
 
 		String estado = "";
 
@@ -227,6 +227,34 @@ public class DB extends DynamoDBMapper {
 				}
 
 			}
+		}
+
+		return estado;
+	}
+	
+	public String getEstadoTrailer(String patente) {
+
+		String estado = "";
+
+		Trailer trailer = new Trailer();
+		trailer.setPatente(patente);
+
+		trailer = this.load(trailer);
+
+		if (trailer != null) {
+
+			if (trailer.getCamion().equals("ninguno")){
+				estado = estado + "sin remolque";
+			}else{
+				estado = estado + "con remolque";
+			}
+			
+			if (this.getEnviosTrailer(trailer.getPatente()).size() > 0) {
+				estado = estado + " con envios";
+			} else {
+				estado = estado + " sin envios";
+			}
+
 		}
 
 		return estado;

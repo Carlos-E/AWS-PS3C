@@ -219,7 +219,7 @@
 
 					var lista;
 					$.ajax({
-						url : "/scanTable",
+						url : "/trailers/modificar/listar",
 						data : {
 							tabla : 'trailers'
 						},

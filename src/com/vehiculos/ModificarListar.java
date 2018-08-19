@@ -13,14 +13,13 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import clases.DB;
-import clases.Empresa;
 import clases.Vehiculo;
 
-@WebServlet("/vehiculos/listar")
-public class Listar extends HttpServlet {
+@WebServlet("/vehiculos/modificar/listar")
+public class ModificarListar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public Listar() {
+	public ModificarListar() {
 		super();
 	}
 
@@ -35,17 +34,17 @@ public class Listar extends HttpServlet {
 		DB DB = new DB();
 
 		List<Vehiculo> vehiculos = DB.scan(Vehiculo.class, new DynamoDBScanExpression());
-		List<Empresa> empresas = DB.scan(Empresa.class, new DynamoDBScanExpression());
+		//List<Empresa> empresas = DB.scan(Empresa.class, new DynamoDBScanExpression());
 
 		for (int i = 0; i < vehiculos.size(); i++) {
-
+			/*
 			for (int j = 0; j < empresas.size(); j++) {
 				if (vehiculos.get(i).getEmpresa().equals(empresas.get(j).getNit())) {
 					vehiculos.get(i).setEmpresa(empresas.get(j).getNombre());
 					break;
 				} // if
 			} // for
-			
+			*/
 			vehiculos.get(i).setEstado(DB.getEstadoVehiculo(vehiculos.get(i).getPlaca()));
 
 		} // for

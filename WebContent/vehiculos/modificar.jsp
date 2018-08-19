@@ -188,7 +188,7 @@
 				function() {
 					var lista;
 					$.ajax({
-						url : "/scanTable",
+						url : "/vehiculos/modificar/listar",
 						data : {
 							tabla : 'vehiculos'
 						},

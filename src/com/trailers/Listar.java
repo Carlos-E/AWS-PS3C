@@ -45,6 +45,8 @@ public class Listar extends HttpServlet {
 					break;
 				} // if
 			} // for
+			
+			trailers.get(i).setEstado(DB.getEstadoTrailer(trailers.get(i).getPatente()));
 
 		} // for
 

@@ -1,4 +1,4 @@
-package com.vehiculos;
+package com.trailers;
 
 import java.io.IOException;
 import java.util.List;
@@ -14,13 +14,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import clases.DB;
 import clases.Empresa;
-import clases.Vehiculo;
+import clases.Trailer;
 
-@WebServlet("/vehiculos/listar")
-public class Listar extends HttpServlet {
+@WebServlet("/trailers/modificar/listar")
+public class ModificarListar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public Listar() {
+	public ModificarListar() {
 		super();
 	}
 
@@ -34,24 +34,24 @@ public class Listar extends HttpServlet {
 		
 		DB DB = new DB();
 
-		List<Vehiculo> vehiculos = DB.scan(Vehiculo.class, new DynamoDBScanExpression());
-		List<Empresa> empresas = DB.scan(Empresa.class, new DynamoDBScanExpression());
+		List<Trailer> trailers = DB.scan(Trailer.class, new DynamoDBScanExpression());
+		//List<Empresa> empresas = DB.scan(Empresa.class, new DynamoDBScanExpression());
 
-		for (int i = 0; i < vehiculos.size(); i++) {
-
+		for (int i = 0; i < trailers.size(); i++) {
+			/*
 			for (int j = 0; j < empresas.size(); j++) {
-				if (vehiculos.get(i).getEmpresa().equals(empresas.get(j).getNit())) {
-					vehiculos.get(i).setEmpresa(empresas.get(j).getNombre());
+				if (trailers.get(i).getEmpresa().equals(empresas.get(j).getNit())) {
+					trailers.get(i).setEmpresa(empresas.get(j).getNombre());
 					break;
 				} // if
 			} // for
-			
-			vehiculos.get(i).setEstado(DB.getEstadoVehiculo(vehiculos.get(i).getPlaca()));
+			*/
+			trailers.get(i).setEstado(DB.getEstadoTrailer(trailers.get(i).getPatente()));
 
 		} // for
 
 		response.setContentType("application/json");
-		response.getWriter().print(new ObjectMapper().writeValueAsString(vehiculos));
+		response.getWriter().print(new ObjectMapper().writeValueAsString(trailers));
 		response.getWriter().close();
 
 	}
