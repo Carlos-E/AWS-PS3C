@@ -34,7 +34,7 @@ public class DB extends DynamoDBMapper {
 		Map<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
 		eav.put(":v1", new AttributeValue().withS(patente));
 
-		List<Envio> EnviosEnTrailer = new DB().query(Envio.class,
+		List<Envio> EnviosEnTrailer = this.query(Envio.class,
 				new DynamoDBQueryExpression<Envio>().withIndexName("trailer").withConsistentRead(false)
 						.withKeyConditionExpression("trailer = :v1").withExpressionAttributeValues(eav));
 
@@ -52,7 +52,7 @@ public class DB extends DynamoDBMapper {
 		Map<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
 		eav.put(":v1", new AttributeValue().withS(placa));
 
-		List<Envio> EnviosEnVehiculo = new DB().query(Envio.class,
+		List<Envio> EnviosEnVehiculo = this.query(Envio.class,
 				new DynamoDBQueryExpression<Envio>().withIndexName("camion").withConsistentRead(false)
 						.withKeyConditionExpression("camion = :v1").withExpressionAttributeValues(eav));
 
@@ -70,7 +70,7 @@ public class DB extends DynamoDBMapper {
 		Map<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
 		eav.put(":v1", new AttributeValue().withS(patente));
 
-		List<Envio> EnviosEnTrailer = new DB().query(Envio.class,
+		List<Envio> EnviosEnTrailer = this.query(Envio.class,
 				new DynamoDBQueryExpression<Envio>().withIndexName("trailer").withConsistentRead(false)
 						.withKeyConditionExpression("trailer = :v1").withExpressionAttributeValues(eav));
 
@@ -88,7 +88,7 @@ public class DB extends DynamoDBMapper {
 		Map<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
 		eav.put(":v1", new AttributeValue().withS(placa));
 
-		List<Envio> EnviosEnVehiculo = new DB().query(Envio.class,
+		List<Envio> EnviosEnVehiculo = this.query(Envio.class,
 				new DynamoDBQueryExpression<Envio>().withIndexName("camion").withConsistentRead(false)
 						.withKeyConditionExpression("camion = :v1").withExpressionAttributeValues(eav));
 
@@ -103,7 +103,7 @@ public class DB extends DynamoDBMapper {
 		Map<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
 		eav.put(":v1", new AttributeValue().withS(patente));
 
-		return new DB().query(Envio.class,
+		return this.query(Envio.class,
 				new DynamoDBQueryExpression<Envio>().withIndexName("trailer").withConsistentRead(false)
 						.withKeyConditionExpression("trailer = :v1").withExpressionAttributeValues(eav));
 	}
@@ -112,7 +112,7 @@ public class DB extends DynamoDBMapper {
 		Map<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
 		eav.put(":v1", new AttributeValue().withS(placa));
 
-		return new DB().query(Envio.class,
+		return this.query(Envio.class,
 				new DynamoDBQueryExpression<Envio>().withIndexName("camion").withConsistentRead(false)
 						.withKeyConditionExpression("camion = :v1").withExpressionAttributeValues(eav));
 
@@ -123,7 +123,7 @@ public class DB extends DynamoDBMapper {
 		eav.put(":v1", new AttributeValue().withS(patente));
 		eav.put(":v2", new AttributeValue().withS("entregado"));
 
-		return new DB().query(Envio.class,
+		return this.query(Envio.class,
 				new DynamoDBQueryExpression<Envio>().withIndexName("trailer").withConsistentRead(false)
 						.withKeyConditionExpression("trailer = :v1").withFilterExpression("estado <> :v2")
 						.withExpressionAttributeValues(eav));
@@ -135,7 +135,7 @@ public class DB extends DynamoDBMapper {
 		eav.put(":v1", new AttributeValue().withS(placa));
 		eav.put(":v2", new AttributeValue().withS("entregado"));
 
-		return new DB().query(Envio.class,
+		return this.query(Envio.class,
 				new DynamoDBQueryExpression<Envio>().withIndexName("camion").withConsistentRead(false)
 						.withKeyConditionExpression("camion = :v1").withFilterExpression("estado <> :v2")
 						.withExpressionAttributeValues(eav));
@@ -146,8 +146,8 @@ public class DB extends DynamoDBMapper {
 
 		boolean resultado = false;
 
-		List<Vehiculo> vehiculos = new DB().scan(Vehiculo.class, new DynamoDBScanExpression());
-		List<Trailer> trailers = new DB().scan(Trailer.class, new DynamoDBScanExpression());
+		List<Vehiculo> vehiculos = this.scan(Vehiculo.class, new DynamoDBScanExpression());
+		List<Trailer> trailers = this.scan(Trailer.class, new DynamoDBScanExpression());
 
 		if (vehiculo.equals("null")) {
 			for (int i = 0; i < vehiculos.size(); i++) {
@@ -168,10 +168,12 @@ public class DB extends DynamoDBMapper {
 
 	public String checkPlaca(String conductor) {
 
+		System.out.println("Chequeando vehiculo de conductor:" + conductor);
+
 		Map<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
 		eav.put(":v1", new AttributeValue().withS(conductor));
 
-		List<Vehiculo> Vehiculos = new DB().query(Vehiculo.class,
+		List<Vehiculo> Vehiculos = this.query(Vehiculo.class,
 				new DynamoDBQueryExpression<Vehiculo>().withIndexName("usuario").withConsistentRead(false)
 						.withKeyConditionExpression("usuario = :v1").withExpressionAttributeValues(eav));
 
@@ -180,6 +182,54 @@ public class DB extends DynamoDBMapper {
 		}
 
 		return Vehiculos.get(0).getPlaca();
+	}
+
+	public Trailer getTrailerRemolque(String placa) {
+
+		Map<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
+		eav.put(":v1", new AttributeValue().withS(placa));
+
+		List<Trailer> trailers = this.query(Trailer.class,
+				new DynamoDBQueryExpression<Trailer>().withIndexName("camion").withConsistentRead(false)
+						.withKeyConditionExpression("camion = :v1").withExpressionAttributeValues(eav));
+
+		if (trailers.size() == 0) {
+			return null;
+		}
+
+		return trailers.get(0);
+	}
+
+	public String checkEstadoVehiculo(String placa) {
+
+		String estado = "";
+
+		Vehiculo vehiculo = new Vehiculo();
+		vehiculo.setPlaca(placa);
+
+		vehiculo = this.load(vehiculo);
+
+		if (vehiculo != null) {
+
+			if (vehiculo.getUsuario().equals("ninguno")) {
+				estado = estado + "sin conductor";
+			}
+
+			if (this.getEnviosVehiculo(vehiculo.getPlaca()).size() > 0) {
+				estado = estado + " con envios";
+			} else {
+				estado = estado + " sin envios";
+			}
+
+			if (vehiculo.getTipo().equals("remolque")) {
+				if (this.getTrailerRemolque(vehiculo.getPlaca()) == null) {
+					estado = estado + " sin trailer";
+				}
+
+			}
+		}
+
+		return estado;
 	}
 
 }

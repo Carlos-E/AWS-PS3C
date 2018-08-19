@@ -31,9 +31,11 @@ public class Listar extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		DB DB = new DB();
 
-		List<Trailer> trailers = new DB().scan(Trailer.class, new DynamoDBScanExpression());
-		List<Empresa> empresas = new DB().scan(Empresa.class, new DynamoDBScanExpression());
+		List<Trailer> trailers = DB.scan(Trailer.class, new DynamoDBScanExpression());
+		List<Empresa> empresas = DB.scan(Empresa.class, new DynamoDBScanExpression());
 
 		for (int i = 0; i < trailers.size(); i++) {
 

@@ -31,9 +31,11 @@ public class Listar extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		DB DB = new DB();
 
-		List<Vehiculo> vehiculos = new DB().scan(Vehiculo.class, new DynamoDBScanExpression());
-		List<Empresa> empresas = new DB().scan(Empresa.class, new DynamoDBScanExpression());
+		List<Vehiculo> vehiculos = DB.scan(Vehiculo.class, new DynamoDBScanExpression());
+		List<Empresa> empresas = DB.scan(Empresa.class, new DynamoDBScanExpression());
 
 		for (int i = 0; i < vehiculos.size(); i++) {
 
@@ -43,6 +45,8 @@ public class Listar extends HttpServlet {
 					break;
 				} // if
 			} // for
+			
+			vehiculos.get(i).setEstado(DB.checkEstadoVehiculo(vehiculos.get(i).getPlaca()));
 
 		} // for
 
