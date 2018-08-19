@@ -155,8 +155,8 @@
 									for (int i = 0; i < listaVehiculos.size(); i++) {
 										if (!DB.estaOcupado("null", listaVehiculos.get(i).getPlaca())
 												&& listaVehiculos.get(i).getTipo().equals("remolque")) {
-											ControladorBD.actualizarValor("vehiculos", "placa", listaVehiculos.get(i).getPlaca(), "estado",
-													"Asignado");
+											/*ControladorBD.actualizarValor("vehiculos", "placa", listaVehiculos.get(i).getPlaca(), "estado",
+													"Asignado");*/
 								%>
 								<option value="<%out.print(listaVehiculos.get(i).getPlaca());%>">
 									<%
