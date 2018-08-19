@@ -34,18 +34,10 @@ public class Crear extends HttpServlet {
 
 		double peso = Double.valueOf(request.getParameter("peso"));
 		double espacio = Double.valueOf(request.getParameter("espacio"));
-		
-		String conductor = request.getParameter("conductor").toLowerCase();
-		
+				
 		if (request.getParameter("tipo").toLowerCase().equals("remolque")) {
 			peso = 0;
 			espacio = 0;
-		}
-		
-		if(conductor.equals("ninguno")) {
-			vehiculo.setEstado("sin conductor");
-		}else {
-			vehiculo.setEstado("disponible");
 		}
 		
 		vehiculo.setPlaca(request.getParameter("placa").toLowerCase());

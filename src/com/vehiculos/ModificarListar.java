@@ -32,23 +32,13 @@ public class ModificarListar extends HttpServlet {
 			throws ServletException, IOException {
 		
 		DB DB = new DB();
-
+		
 		List<Vehiculo> vehiculos = DB.scan(Vehiculo.class, new DynamoDBScanExpression());
-		//List<Empresa> empresas = DB.scan(Empresa.class, new DynamoDBScanExpression());
 
 		for (int i = 0; i < vehiculos.size(); i++) {
-			/*
-			for (int j = 0; j < empresas.size(); j++) {
-				if (vehiculos.get(i).getEmpresa().equals(empresas.get(j).getNit())) {
-					vehiculos.get(i).setEmpresa(empresas.get(j).getNombre());
-					break;
-				} // if
-			} // for
-			*/
 			vehiculos.get(i).setEstado(DB.getEstadoVehiculo(vehiculos.get(i).getPlaca()));
-
-		} // for
-
+		}
+		
 		response.setContentType("application/json");
 		response.getWriter().print(new ObjectMapper().writeValueAsString(vehiculos));
 		response.getWriter().close();

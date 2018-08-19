@@ -45,12 +45,6 @@ public class Modificar extends HttpServlet {
 			vehiculo.setUsuario(request.getParameter("conductor").toLowerCase());
 		}
 
-		if (vehiculo.getUsuario().equals("ninguno")) {
-			vehiculo.setEstado("sin conductor");
-		} else {
-			vehiculo.setEstado("no asignado");
-		}
-
 		DB.save(vehiculo);
 
 		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", "/vehiculos/modificar.jsp");

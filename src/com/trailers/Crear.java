@@ -36,7 +36,6 @@ public class Crear extends HttpServlet {
 		trailer.setPesoMax(Double.valueOf(request.getParameter("peso").toLowerCase()));
 		trailer.setEspacioMax(Double.valueOf(request.getParameter("espacio").toLowerCase()));
 		
-		trailer.setEstado("disponible");
 		trailer.setEmpresa(request.getParameter("empresa").toLowerCase());
 		
 		if (request.getParameter("remolque").equals("ninguno")) {

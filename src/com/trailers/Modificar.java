@@ -39,7 +39,6 @@ public class Modificar extends HttpServlet {
 
 		trailer.setPesoMax(Double.valueOf(request.getParameter("peso").toLowerCase()));
 		trailer.setEspacioMax(Double.valueOf(request.getParameter("espacio").toLowerCase()));
-		trailer.setEstado(request.getParameter("estado").toLowerCase());
 
 		// String camion = request.getParameter("remolque").toLowerCase();
 		String camion = null;

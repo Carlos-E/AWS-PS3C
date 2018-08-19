@@ -215,7 +215,7 @@ public class DB extends DynamoDBMapper {
 				estado = estado + "sin conductor";
 			}
 
-			if (this.getEnviosVehiculo(vehiculo.getPlaca()).size() > 0) {
+			if (this.getEnviosPendientesVehiculo(vehiculo.getPlaca()).size() > 0) {
 				estado = estado + " con envios";
 			} else {
 				estado = estado + " sin envios";
@@ -249,7 +249,7 @@ public class DB extends DynamoDBMapper {
 				estado = estado + "con remolque";
 			}
 			
-			if (this.getEnviosTrailer(trailer.getPatente()).size() > 0) {
+			if (this.getEnviosPendientesTrailer(trailer.getPatente()).size() > 0) {
 				estado = estado + " con envios";
 			} else {
 				estado = estado + " sin envios";
