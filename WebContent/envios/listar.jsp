@@ -144,7 +144,7 @@
 							{ title: "Tipo" },
 							{ title: "Peso" },
 							{ title: "Espacio" },
-							{ title: "Cami&oacute;n/Remolque" },
+							{ title: "Remolque" },
 							{ title: "Trailer" },
 							{ title: "Descripci&oacute;n" }
 						]

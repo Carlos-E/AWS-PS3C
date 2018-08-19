@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import clases.DB;
 import clases.Envio;
-import clases.Trailer;
-import clases.Vehiculo;
 
 @WebServlet("/envios/eliminar")
 public class Eliminar extends HttpServlet {
@@ -41,34 +39,6 @@ public class Eliminar extends HttpServlet {
 		envio = DB.load(envio);
 
 		DB.delete(envio);
-
-		if (envio.getTrailer().equals("ninguno") && !envio.getCamion().equals("ninguno")) {
-
-			if (DB.getEnviosVehiculo(envio.getCamion()) == null) {
-				System.out.println(
-						"El camion " + envio.getCamion() + " no tiene mas envios, cambiando estado a \"no asignado\"");
-
-				Vehiculo vehiculo = new Vehiculo();
-				vehiculo.setPlaca(envio.getCamion());
-				vehiculo = DB.load(vehiculo);
-				vehiculo.setEstado("no asignado");
-				DB.save(vehiculo);
-			}
-
-		} else if (!envio.getTrailer().equals("ninguno")) {
-			
-			if (DB.getEnviosTrailer(envio.getTrailer()) == null) {
-				System.out.println(
-						"El trailer " + envio.getTrailer() + " no tiene mas envios, cambiando estado a \"no asignado\"");
-
-				Trailer trailer = new Trailer();
-				trailer.setPatente(envio.getTrailer());
-				trailer = DB.load(trailer);
-				trailer.setEstado("no asignado");
-				DB.save(trailer);
-			}
-
-		}
 
 		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getRequestURL() + ".jsp");
 	}
