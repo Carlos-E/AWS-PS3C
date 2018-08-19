@@ -165,18 +165,21 @@ public class DB extends DynamoDBMapper {
 		}
 		return resultado;
 	}
-	
-	public String checkPlaca(String conductor) {
 
+	public String checkPlaca(String conductor) {
 
 		Map<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
 		eav.put(":v1", new AttributeValue().withS(conductor));
 
-		List<Vehiculo> Vehiculo = new DB().query(Vehiculo.class,
+		List<Vehiculo> Vehiculos = new DB().query(Vehiculo.class,
 				new DynamoDBQueryExpression<Vehiculo>().withIndexName("usuario").withConsistentRead(false)
 						.withKeyConditionExpression("usuario = :v1").withExpressionAttributeValues(eav));
 
-		return Vehiculo.get(0).getPlaca();
+		if (Vehiculos.size() == 0) {
+			return null;
+		}
+
+		return Vehiculos.get(0).getPlaca();
 	}
 
 }
