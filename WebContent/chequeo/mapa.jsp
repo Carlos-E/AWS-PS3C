@@ -26,7 +26,6 @@ html, body {
 	height: 70vh;
 	width: 80vw;
 }
-
 </style>
 
 </head>
@@ -54,8 +53,29 @@ html, body {
 		<div class="container">
 			<button id="botonlocalizar" onclick="localizar()" class="btn btn-primary">Localizarte</button>
 		</div>
+	</div> --> </section> </main>
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="myModalTitle"></h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" id="myModalBody"></div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+					<!-- <form name="form" action="/cancelar" method="post">
+						<button type="submit" class="btn btn-danger btn-md float-right">Cancelar</button>
+					</form> -->
+				</div>
+			</div>
+		</div>
 	</div>
-	 --> </section> </main>
 
 	<!--  FOOTER CON SCRIPTS -->
 	<jsp:include page="/footer.jsp" />

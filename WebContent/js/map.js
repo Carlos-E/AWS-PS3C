@@ -2,26 +2,26 @@ var map;
 var markers = [];
 
 function initMap() {
-	
+
 	var directionsService = new google.maps.DirectionsService;
 	var directionsDisplay = new google.maps.DirectionsRenderer;
-	
+
 	map = new google.maps.Map(document.getElementById('map'), {
 		center : {
 			lat : 10.4015094,
 			lng : -75.4959313
 		},
 		zoom : 13,
-		fullscreenControl: true
+		fullscreenControl : true
 	});
-	
+
 }
 
 function localizar() {
 
-	 var infoWindow = new google.maps.InfoWindow({
+	var infoWindow = new google.maps.InfoWindow({
 	// map : map
-	 });
+	});
 
 	// Try HTML5 geolocation.
 	if (navigator.geolocation) {
@@ -64,36 +64,63 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 
 function ponerMarcadores(data) {
-	
-	//console.log("Borrando Marcadores");
+
+	// console.log("Borrando Marcadores");
 	deleteMarkers();
-	
-	for (var i = 0;  i < data.length; i++) {
 
-		//console.log(data[i].placa);
-		//console.log(data[i].latitud);
-		//console.log(data[i].longitud);
+	for (var i = 0; i < data.length; i++) {
 
-		//console.log("Antes Marcador");
-		
-		var myLatlng = new google.maps.LatLng(parseFloat(data[i].latitud),parseFloat(data[i].longitud));
-		
+		// console.log(data[i].placa);
+		// console.log(data[i].latitud);
+		// console.log(data[i].longitud);
+
+		// console.log("Antes Marcador");
+
+		var myLatlng = new google.maps.LatLng(parseFloat(data[i].latitud),
+				parseFloat(data[i].longitud));
+
 		var marker = new google.maps.Marker({
 			map : map,
 			position : myLatlng,
 			title : 'Marcador',
 			label : data[i].placa
 		});
-		
+
 		markers.push(marker);
 		marker.setMap(map);
-		
-		google.maps.event.addListener(marker, 'click', function() {
-			alert(this.label);
-			});
 
-		//console.log("Despues Marcador");
+		google.maps.event.addListener(marker, 'click', function() {
+			getVehiculo(this.label);
+		});
+
+		// console.log("Despues Marcador");
 	}
+
+}
+
+
+function getVehiculo(plate) {
+
+	$.ajax({
+		url : "/vehicle/read",
+		data : {
+			plate : plate
+		},
+		type : "POST",
+		dataType : "json",
+	}).done(function(vehiculo) {
+		console.log(JSON.stringify(vehiculo,null,2));
+		
+		$('#myModal').modal('show');
+		$('#myModalTitle').html(vehiculo.placa.toUpperCase());
+
+		$('#myModalBody').html(`<p>Estado: ${vehiculo.estado}<br>Envios pendientes: ${vehiculo.numEnviosPendiente}<br>Conductor: ${vehiculo.usuario}</p>`);
+
+	}).fail(function(xhr, status, errorThrown) {
+
+	}).always(function(xhr, status) {
+
+	});
 
 }
 
