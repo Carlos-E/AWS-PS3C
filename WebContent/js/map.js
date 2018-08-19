@@ -1,12 +1,11 @@
 var map;
-var guia = 0;
-var datonuevo, datoviejo;
-var ultimalatitud, ultimalongitud;
 var markers = [];
 
 function initMap() {
+	
 	var directionsService = new google.maps.DirectionsService;
 	var directionsDisplay = new google.maps.DirectionsRenderer;
+	
 	map = new google.maps.Map(document.getElementById('map'), {
 		center : {
 			lat : 10.4015094,
@@ -15,6 +14,7 @@ function initMap() {
 		zoom : 13,
 		fullscreenControl: true
 	});
+	
 }
 
 function localizar() {
@@ -65,17 +65,16 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 function ponerMarcadores(data) {
 	
-	console.log("Borrando Marcadores");
+	//console.log("Borrando Marcadores");
 	deleteMarkers();
-	
 	
 	for (var i = 0;  i < data.length; i++) {
 
-		console.log(data[i].placa);
-		console.log(data[i].latitud);
-		console.log(data[i].longitud);
+		//console.log(data[i].placa);
+		//console.log(data[i].latitud);
+		//console.log(data[i].longitud);
 
-		console.log("Antes Marcador");
+		//console.log("Antes Marcador");
 		
 		var myLatlng = new google.maps.LatLng(parseFloat(data[i].latitud),parseFloat(data[i].longitud));
 		
@@ -88,9 +87,12 @@ function ponerMarcadores(data) {
 		
 		markers.push(marker);
 		marker.setMap(map);
+		
+		google.maps.event.addListener(marker, 'click', function() {
+			alert(this.label);
+			});
 
-		console.log("Despues Marcador");
-
+		//console.log("Despues Marcador");
 	}
 
 }
