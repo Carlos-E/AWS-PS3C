@@ -15,7 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import clases.DB;
 import clases.Trailer;
 
-@WebServlet("/trailers/modificar/listar")
+@WebServlet("/traileres/modificar/listar")
 public class ModificarListar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

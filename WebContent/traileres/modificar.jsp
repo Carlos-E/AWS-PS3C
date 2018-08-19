@@ -219,7 +219,7 @@
 
 					var lista;
 					$.ajax({
-						url : "/trailers/modificar/listar",
+						url : "/traileres/modificar/listar",
 						data : {
 							tabla : 'trailers'
 						},
