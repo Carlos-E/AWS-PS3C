@@ -60,11 +60,11 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize" >Peso</label>
 						<div class="col-md-4">
-							<input class="form-control" type="number" name="peso" id="peso" placeholder="peso en kg" onchange="uno()" required>
+							<input class="form-control" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" name="peso" id="peso" placeholder="peso en kg" onchange="uno()" required>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">espacio</label>
 						<div class="col-md-4">
-							<input class="form-control" type="number" name="espacio" id="espacio" placeholder="en metros cubicos" onchange="uno()" required>
+							<input class="form-control" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" name="espacio" id="espacio" placeholder="en metros cubicos" onchange="uno()" required>
 						</div>
 					</div>
 					<div class="form-group row">

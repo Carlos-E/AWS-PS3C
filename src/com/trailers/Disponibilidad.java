@@ -44,16 +44,18 @@ public class Disponibilidad extends HttpServlet {
 
 		System.out.println("Lista Original");
 		while (iteratorTrailers.hasNext()) {
-			
+
 			Trailer trailer = iteratorTrailers.next();
 
 			System.out.println(trailer);
 
-			double pesoOcupado = DB.getPesoVehiculo(trailer.getPatente());
-			double espacioOcupado = DB.getEspacioVehiculo(trailer.getPatente());
+			double pesoOcupado = DB.getPesoTrailer(trailer.getPatente());
+			double espacioOcupado = DB.getEspacioTrailer(trailer.getPatente());
+
+			System.out.println("Peso maximo del trailer: " + trailer.getPesoMax());
+			System.out.println("Peso ocupado en el trailer: " + pesoOcupado);
 
 			double pesoDisponible = 0;
-
 			if (trailer.getPesoMax() > pesoOcupado) {
 				pesoDisponible = trailer.getPesoMax() - pesoOcupado;
 			}
@@ -69,15 +71,13 @@ public class Disponibilidad extends HttpServlet {
 			}
 
 		}
-		
+
 		/*
-		System.out.println("Lista resultante");
-		iteratorTrailers = trailers.iterator();
-		while (iteratorTrailers.hasNext()) {
-			System.out.println(iteratorTrailers.next());
-		}
-		*/
-		
+		 * System.out.println("Lista resultante"); iteratorTrailers =
+		 * trailers.iterator(); while (iteratorTrailers.hasNext()) {
+		 * System.out.println(iteratorTrailers.next()); }
+		 */
+
 		response.setContentType("application/json");
 		response.getWriter().print(new ObjectMapper().writeValueAsString(trailers));
 		response.getWriter().close();

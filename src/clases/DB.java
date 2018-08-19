@@ -33,10 +33,11 @@ public class DB extends DynamoDBMapper {
 
 		Map<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
 		eav.put(":v1", new AttributeValue().withS(patente));
+		eav.put(":v2", new AttributeValue().withS("entregado"));
 
 		List<Envio> EnviosEnTrailer = this.query(Envio.class,
 				new DynamoDBQueryExpression<Envio>().withIndexName("trailer").withConsistentRead(false)
-						.withKeyConditionExpression("trailer = :v1").withExpressionAttributeValues(eav));
+						.withKeyConditionExpression("trailer = :v1").withFilterExpression("estado <> :v2").withExpressionAttributeValues(eav));
 
 		for (int i = 0; i < EnviosEnTrailer.size(); i++) {
 			space = space + EnviosEnTrailer.get(i).getEspacio();
@@ -51,10 +52,11 @@ public class DB extends DynamoDBMapper {
 
 		Map<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
 		eav.put(":v1", new AttributeValue().withS(placa));
+		eav.put(":v2", new AttributeValue().withS("entregado"));
 
 		List<Envio> EnviosEnVehiculo = this.query(Envio.class,
 				new DynamoDBQueryExpression<Envio>().withIndexName("camion").withConsistentRead(false)
-						.withKeyConditionExpression("camion = :v1").withExpressionAttributeValues(eav));
+						.withKeyConditionExpression("camion = :v1").withFilterExpression("estado <> :v2").withExpressionAttributeValues(eav));
 
 		for (int i = 0; i < EnviosEnVehiculo.size(); i++) {
 			space = space + EnviosEnVehiculo.get(i).getEspacio();
@@ -69,10 +71,11 @@ public class DB extends DynamoDBMapper {
 
 		Map<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
 		eav.put(":v1", new AttributeValue().withS(patente));
+		eav.put(":v2", new AttributeValue().withS("entregado"));
 
 		List<Envio> EnviosEnTrailer = this.query(Envio.class,
 				new DynamoDBQueryExpression<Envio>().withIndexName("trailer").withConsistentRead(false)
-						.withKeyConditionExpression("trailer = :v1").withExpressionAttributeValues(eav));
+						.withKeyConditionExpression("trailer = :v1").withFilterExpression("estado <> :v2").withExpressionAttributeValues(eav));
 
 		for (int i = 0; i < EnviosEnTrailer.size(); i++) {
 			peso = peso + EnviosEnTrailer.get(i).getPeso();
@@ -87,10 +90,12 @@ public class DB extends DynamoDBMapper {
 
 		Map<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
 		eav.put(":v1", new AttributeValue().withS(placa));
+		eav.put(":v2", new AttributeValue().withS("entregado"));
 
 		List<Envio> EnviosEnVehiculo = this.query(Envio.class,
 				new DynamoDBQueryExpression<Envio>().withIndexName("camion").withConsistentRead(false)
-						.withKeyConditionExpression("camion = :v1").withExpressionAttributeValues(eav));
+						.withKeyConditionExpression("camion = :v1").withFilterExpression("estado <> :v2")
+						.withExpressionAttributeValues(eav));
 
 		for (int i = 0; i < EnviosEnVehiculo.size(); i++) {
 			peso = peso + EnviosEnVehiculo.get(i).getPeso();
@@ -231,7 +236,7 @@ public class DB extends DynamoDBMapper {
 
 		return estado;
 	}
-	
+
 	public String getEstadoTrailer(String patente) {
 
 		String estado = "";
@@ -243,12 +248,12 @@ public class DB extends DynamoDBMapper {
 
 		if (trailer != null) {
 
-			if (trailer.getCamion().equals("ninguno")){
+			if (trailer.getCamion().equals("ninguno")) {
 				estado = estado + "sin remolque";
-			}else{
+			} else {
 				estado = estado + "con remolque";
 			}
-			
+
 			if (this.getEnviosPendientesTrailer(trailer.getPatente()).size() > 0) {
 				estado = estado + " con envios";
 			} else {

@@ -128,7 +128,7 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">espacio</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="espacio" placeholder="espacio" onchange="uno()" id="espacio" required>
+							<input class="form-control" name="espacio" placeholder="espacio" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" onchange="uno()" id="espacio" required>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">estado</label>
 						<div class="col-md-4">
@@ -146,7 +146,7 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">peso</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="peso" placeholder="peso" onchange="uno()" id="peso" required>
+							<input class="form-control" name="peso" placeholder="peso" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" onchange="uno()" id="peso" required>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">descripci&oacute;n</label>
 						<div class="col-md-4">
