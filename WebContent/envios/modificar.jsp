@@ -185,17 +185,17 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">veh&iacute;culo:</label>
+						<label class="col-md-2 col-form-label text-capitalize">veh&iacute;culo</label>
 						<div class="col-md-4">
 							<input id="rCamion" type="radio" name="asignacion" onclick="mostrar()" checked="true" required>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Trailer:</label>
+						<label class="col-md-2 col-form-label text-capitalize">Trailer</label>
 						<div class="col-md-4">
 							<input id="rTrailer" type="radio" name="asignacion" onclick="ocultar()" required>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">veh&iacute;culo o trailer asginado:</label>
+						<label class="col-md-2 col-form-label text-capitalize">veh&iacute;culo o trailer asignado</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="asignado" placeholder="asignado" id="asignado" readonly>
 						</div>
@@ -207,12 +207,12 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label id="camion1" class="col-md-2 col-form-label text-capitalize">veh&iacute;culo</label>
+						<label id="camion1" class="col-md-2 col-form-label text-capitalize">veh&iacute;culos Disponibles</label>
 						<div id="camion2" class="col-md-4">
 							<select id="camion" class="form-control" name="camion" required>								
 							</select>
 						</div>
-						<label id="trailer1" class="col-md-2 col-form-label text-capitalize">Trailer</label>
+						<label id="trailer1" class="col-md-2 col-form-label text-capitalize">Traileres Disponibles</label>
 						<div id="trailer2" class="col-md-4">
 							<!--<input class="form-control" type="text" name="camion" placeholder="camion" id="camion" required>-->
 							<select id="trailer" class="form-control" name="trailer" disabled="true" required>
