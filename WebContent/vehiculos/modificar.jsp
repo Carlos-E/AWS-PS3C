@@ -130,8 +130,6 @@
 								%>
 							</select>
 						</div>
-					</div>
-					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Tipo</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="tipo" id="tipo" readonly>
