@@ -119,7 +119,11 @@ function getVehiculo(plate) {
 		<br>Envios pendientes: ${vehiculo.numEnviosPendientes}
 		<br>Conductor: ${vehiculo.usuario}
 		<br>Tipo: ${vehiculo.tipo}
-		<br>Trailer: ${vehiculo.trailer!=null ? vehiculo.trailer : "ninguno"}</p>`);
+		<br>Trailer: ${vehiculo.trailer!=null ? vehiculo.trailer : "ninguno"}
+		<br>Peso Maximo: ${vehiculo.pesoMax}
+		    - Disponible: ${vehiculo.pesoDisponible}
+		<br>Espacio Maximo: ${vehiculo.espacioMax}
+		    - Disponible: ${vehiculo.espacioDisponible}</p>`);
 
 	}).fail(function(xhr, status, errorThrown) {
 

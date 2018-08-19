@@ -33,7 +33,7 @@ public class Modificar extends HttpServlet {
 
 		response.setContentType("text/html");
 		request.setCharacterEncoding("UTF-8");
-		
+
 		DB DB = new DB();
 
 		// Buscar el objeto en la base de datos e instanciarlo
@@ -58,14 +58,18 @@ public class Modificar extends HttpServlet {
 		String placaVehiculo = request.getParameter("camion");
 		String patenteTrailer = request.getParameter("trailer");
 
-		// Set por defecto
-		envio.setCamion("ninguno");
-		// Set por defecto
-		envio.setTrailer("ninguno");
+		System.out.println("placaVehiculo: " + placaVehiculo);
+		System.out.println("patenteTrailer: " + patenteTrailer);
+
 		// No asignado hasta que se demuestre lo contrario
+		if (!((placaVehiculo != null && placaVehiculo.equals(""))
+				|| (patenteTrailer != null && patenteTrailer.equals("")))) {
+			envio.setCamion("ninguno");
+			envio.setTrailer("ninguno");
+		}
 		envio.setEstado("no asignado");
 
-		if (placaVehiculo != null && !placaVehiculo.equals("ninguno")) {
+		if (placaVehiculo != null && !placaVehiculo.equals("ninguno") && !placaVehiculo.equals("")) {
 			System.out.println("Se selecciono un Camion");
 
 			Vehiculo vehiculo = DB.load(Vehiculo.class, placaVehiculo.toLowerCase());
@@ -73,7 +77,7 @@ public class Modificar extends HttpServlet {
 			envio.setCamion(vehiculo.getPlaca());
 			envio.setEstado("asignado");
 
-		} else if (patenteTrailer != null && !patenteTrailer.equals("ninguno")) {
+		} else if (patenteTrailer != null && !patenteTrailer.equals("ninguno") && !patenteTrailer.equals("")) {
 			System.out.println("Se selecciono un Trailer");
 
 			Trailer trailer = DB.load(Trailer.class, patenteTrailer.toLowerCase());
@@ -84,7 +88,7 @@ public class Modificar extends HttpServlet {
 		}
 
 		DB.save(envio);
-		
+
 		Dibujar.mensaje(response.getWriter(), "Envio actualizado correctamente", "/envios/modificar.jsp");
 
 	}

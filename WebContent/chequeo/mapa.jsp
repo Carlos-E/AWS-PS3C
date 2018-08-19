@@ -99,7 +99,7 @@ html, body {
 
 			$('#myModalButton').click(function(){
 				console.log('hi');
-				window.location = '/envios/listar.jsp?search='+$('#myModalTitle').html();
+				window.open('/envios/listar.jsp?search='+$('#myModalTitle').html(), '_blank');
 			});
 		
 		});
