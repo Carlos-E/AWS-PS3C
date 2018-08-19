@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.logica.Dibujar;
+
 import clases.DB;
 import clases.Vehiculo;
 
@@ -27,15 +29,22 @@ public class Eliminar extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		DB DB = new DB();
+
 		Vehiculo vehiculo = new Vehiculo();
 
 		vehiculo.setPlaca(request.getParameter("placa").toLowerCase());
 
-		new DB().delete(vehiculo);
+		if (DB.getEnviosPendientesVehiculo(vehiculo.getPlaca()).size() != 0) {
+			Dibujar.mensaje(response.getWriter(), "Este vehículo contiene envíos sin entregar",
+					"/vehiculos/eliminar.jsp");
+			return;
+		}
+
+		DB.delete(vehiculo);
 
 		response.setContentType("text/html");
-		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa",
-				request.getContextPath() + "/vehiculos/eliminar.jsp");
+		Dibujar.mensaje(response.getWriter(), "Operación Exitosa", "/vehiculos/eliminar.jsp");
 	}
 
 }

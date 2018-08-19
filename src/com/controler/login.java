@@ -55,7 +55,7 @@ public class login extends HttpServlet {
 				break;
 			case "conductor":
 				session.setAttribute("rol", "conductor");
-				session.setAttribute("placa", ControladorBD.checkPlaca(uname));
+				session.setAttribute("placa", new DB().checkPlaca(uname));
 				response.sendRedirect("/movil/index.jsp");
 				break;
 			}

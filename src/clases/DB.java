@@ -118,6 +118,30 @@ public class DB extends DynamoDBMapper {
 
 	}
 
+	public List<Envio> getEnviosPendientesTrailer(String patente) {
+		Map<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
+		eav.put(":v1", new AttributeValue().withS(patente));
+		eav.put(":v2", new AttributeValue().withS("entregado"));
+
+		return new DB().query(Envio.class,
+				new DynamoDBQueryExpression<Envio>().withIndexName("trailer").withConsistentRead(false)
+						.withKeyConditionExpression("trailer = :v1").withFilterExpression("estado <> :v2")
+						.withExpressionAttributeValues(eav));
+
+	}
+
+	public List<Envio> getEnviosPendientesVehiculo(String placa) {
+		Map<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
+		eav.put(":v1", new AttributeValue().withS(placa));
+		eav.put(":v2", new AttributeValue().withS("entregado"));
+
+		return new DB().query(Envio.class,
+				new DynamoDBQueryExpression<Envio>().withIndexName("camion").withConsistentRead(false)
+						.withKeyConditionExpression("camion = :v1").withFilterExpression("estado <> :v2")
+						.withExpressionAttributeValues(eav));
+
+	}
+
 	public boolean estaOcupado(String nombre, String vehiculo) {
 
 		boolean resultado = false;
@@ -140,6 +164,19 @@ public class DB extends DynamoDBMapper {
 			}
 		}
 		return resultado;
+	}
+	
+	public String checkPlaca(String conductor) {
+
+
+		Map<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
+		eav.put(":v1", new AttributeValue().withS(conductor));
+
+		List<Vehiculo> Vehiculo = new DB().query(Vehiculo.class,
+				new DynamoDBQueryExpression<Vehiculo>().withIndexName("usuario").withConsistentRead(false)
+						.withKeyConditionExpression("usuario = :v1").withExpressionAttributeValues(eav));
+
+		return Vehiculo.get(0).getPlaca();
 	}
 
 }

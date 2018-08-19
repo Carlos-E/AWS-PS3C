@@ -6,7 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.logica.ControladorBD;
+import com.logica.Dibujar;
 
 import clases.*;
 
@@ -20,35 +20,34 @@ public class Crear extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.sendRedirect("/404.jsp");
+		response.sendError(404);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		response.setContentType("text/html");
 
-		Vehiculo vehiculo = (Vehiculo) ControladorBD.getItem("vehiculos", "placa",
-				request.getParameter("remolque").toLowerCase());
-
-		Trailer trailer = new clases.Trailer();
+		Trailer trailer = new Trailer();
 
 		trailer.setPatente(request.getParameter("patente").toLowerCase());
-		trailer.setPesoMax(Double.valueOf(request.getParameter("peso").toLowerCase()));
 		trailer.setTipo(request.getParameter("tipo").toLowerCase());
+		
+		trailer.setPesoMax(Double.valueOf(request.getParameter("peso").toLowerCase()));
 		trailer.setEspacioMax(Double.valueOf(request.getParameter("espacio").toLowerCase()));
+		
 		trailer.setEstado("disponible");
 		trailer.setEmpresa(request.getParameter("empresa").toLowerCase());
 		
 		if (request.getParameter("remolque").equals("ninguno")) {
 			trailer.setCamion("ninguno");
 		} else {
-			trailer.setCamion(vehiculo.getPlaca());
+			trailer.setCamion(request.getParameter("remolque"));
 		}
 
-		ControladorBD.registrarItem("trailers", trailer);
+		new DB().save(trailer);
 
-		response.setContentType("text/html");
-		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa",
-				request.getContextPath() + "/traileres/crear.jsp");
+		Dibujar.mensaje(response.getWriter(), "Operacion Exitosa","/traileres/crear.jsp");
 
 	}
 }

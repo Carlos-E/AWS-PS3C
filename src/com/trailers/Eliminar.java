@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.logica.Dibujar;
+
 import clases.DB;
 import clases.Trailer;
 
@@ -26,16 +28,24 @@ public class Eliminar extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
+		DB DB = new DB();
+
 		response.setContentType("text/html");
 
 		Trailer trailer = new Trailer();
-		
+
 		trailer.setPatente(request.getParameter("patente").toLowerCase());
-		
-		new DB().delete(trailer);
-		
-		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", "/traileres/eliminar.jsp");
+
+		if (DB.getEnviosPendientesTrailer(trailer.getPatente()).size() != 0) {
+			Dibujar.mensaje(response.getWriter(), "Este trailer contiene envíos sin entregar",
+					"/traileres/eliminar.jsp");
+			return;
+		}
+
+		DB.delete(trailer);
+
+		Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", "/traileres/eliminar.jsp");
 
 	}
 
