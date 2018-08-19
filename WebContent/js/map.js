@@ -114,7 +114,10 @@ function getVehiculo(plate) {
 		$('#myModal').modal('show');
 		$('#myModalTitle').html(vehiculo.placa.toUpperCase());
 
-		$('#myModalBody').html(`<p>Estado: ${vehiculo.estado}<br>Envios pendientes: ${vehiculo.numEnviosPendiente}<br>Conductor: ${vehiculo.usuario}</p>`);
+		$('#myModalBody').html(`
+		<p>Estado: ${vehiculo.estado}
+		<br>Envios pendientes: ${vehiculo.numEnviosPendientes}
+		<br>Conductor: ${vehiculo.usuario}</p>`);
 
 	}).fail(function(xhr, status, errorThrown) {
 
