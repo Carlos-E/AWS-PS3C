@@ -19,7 +19,7 @@ function initMap() {
 
 function localizar() {
 
-	var infoWindow = new google.maps.InfoWindow({
+	let infoWindow = new google.maps.InfoWindow({
 	// map : map
 	});
 
@@ -27,7 +27,7 @@ function localizar() {
 	if (navigator.geolocation) {
 
 		navigator.geolocation.getCurrentPosition(function(position) {
-			var pos = {
+			let pos = {
 				lat : position.coords.latitude,
 				lng : position.coords.longitude
 			};
@@ -37,7 +37,7 @@ function localizar() {
 			map.setCenter(pos);
 			map.setZoom(14);
 
-			var marker = new google.maps.Marker({
+			let marker = new google.maps.Marker({
 				map : map,
 				position : pos,
 				title : 'Tu Posicion',
@@ -68,7 +68,7 @@ function ponerMarcadores(data) {
 	// console.log("Borrando Marcadores");
 	deleteMarkers();
 
-	for (var i = 0; i < data.length; i++) {
+	for (let i = 0; i < data.length; i++) {
 
 		// console.log(data[i].placa);
 		// console.log(data[i].latitud);
@@ -76,15 +76,15 @@ function ponerMarcadores(data) {
 
 		// console.log("Antes Marcador");
 
-		var myLatlng = new google.maps.LatLng(parseFloat(data[i].latitud),
+		let myLatlng = new google.maps.LatLng(parseFloat(data[i].latitud),
 				parseFloat(data[i].longitud));
 
-		var marker = new google.maps.Marker({
+		let marker = new google.maps.Marker({
 			map : map,
 			position : myLatlng,
 			title : 'Marcador',
 			label : data[i].placa
-		});
+			});
 
 		markers.push(marker);
 		marker.setMap(map);
@@ -117,7 +117,13 @@ function getVehiculo(plate) {
 		$('#myModalBody').html(`
 		<p>Estado: ${vehiculo.estado}
 		<br>Envios pendientes: ${vehiculo.numEnviosPendientes}
-		<br>Conductor: ${vehiculo.usuario}</p>`);
+		<br>Conductor: ${vehiculo.usuario}
+		<br>Tipo: ${vehiculo.tipo}
+		<br>Trailer: ${vehiculo.trailer!=null ? vehiculo.trailer : "ninguno"}
+		<br>Peso Maximo: ${vehiculo.pesoMax}
+		    - Disponible: ${vehiculo.pesoDisponible}
+		<br>Espacio Maximo: ${vehiculo.espacioMax}
+		    - Disponible: ${vehiculo.espacioDisponible}</p>`);
 
 	}).fail(function(xhr, status, errorThrown) {
 
@@ -129,7 +135,7 @@ function getVehiculo(plate) {
 
 // Adds a marker to the map and push to the array.
 function addMarker(location) {
-	var marker = new google.maps.Marker({
+	let marker = new google.maps.Marker({
 		position : location,
 		map : map
 	});
@@ -138,7 +144,7 @@ function addMarker(location) {
 
 // Sets the map on all markers in the array.
 function setMapOnAll(map) {
-	for (var i = 0; i < markers.length; i++) {
+	for (let i = 0; i < markers.length; i++) {
 		markers[i].setMap(map);
 	}
 }

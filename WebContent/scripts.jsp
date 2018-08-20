@@ -29,7 +29,7 @@ $(document).ready(function() {
 
 $("#messageNotification").hide();
 <%
-if (!session.getAttribute("rol").equals("cliente")&&!session.getAttribute("pagina").equals("Consultar Reportes")) {
+if (!session.getAttribute("rol").equals("cliente")||!session.getAttribute("pagina").equals("Consultar Reportes")) {
 %>		
 
 $(document).ready(function() {

@@ -33,7 +33,7 @@ public class Eliminar extends HttpServlet {
 
 		Envio envio = new Envio();
 
-		envio.setUsuario(request.getParameter("usuario").toLowerCase());
+		envio.setUsuario(request.getParameter("cliente").toLowerCase());
 		envio.setFecha(request.getParameter("fecha").toLowerCase());
 
 		envio = DB.load(envio);

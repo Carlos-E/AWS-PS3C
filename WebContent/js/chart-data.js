@@ -225,7 +225,7 @@ function makeDoughnut() {
 
 				camiones.forEach(function (camion, j, camiones) {
 
-					if (camion.empresa.toLowerCase() === empresa.nombre.toLowerCase()) {
+					if (camion.empresa.toLowerCase() === empresa.nit.toLowerCase()) {
 						//Numero de envios por empresa
 						contador++;
 					}
