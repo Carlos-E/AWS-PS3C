@@ -125,12 +125,13 @@ function initMap() {
 }
 
 
-function setTrailers(pesoEnvio, espacioEnvio) {
+function setTrailers(origenEnvio, pesoEnvio, espacioEnvio) {
 	
 	  $(document).ready(function() {
 	    $.ajax({
 	      url: '/disponibilidadDeTrailers',
-	      data: { 
+	      data: {
+            origenEnvio: origenEnvio,
 	        	pesoEnvio: pesoEnvio, 
 	        	espacioEnvio: espacioEnvio 
 	        },
