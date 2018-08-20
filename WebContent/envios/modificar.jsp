@@ -398,7 +398,7 @@
 													if (latlon != "") {
 														
 														getRoutes(latlon, parseFloat(peso),parseFloat(espacio));
-											            setTrailers(parseFloat(peso),parseFloat(espacio));
+											            setTrailers(latlon, parseFloat(peso),parseFloat(espacio));
 
 													}
 												}, 1000);
