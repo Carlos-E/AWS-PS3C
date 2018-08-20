@@ -49,17 +49,11 @@ public class Modificar extends HttpServlet {
 		envio.setDestinoLatLong(request.getParameter("destinoLatLong"));
 		envio.setEmpresa(request.getParameter("empresa"));
 
-		envio.setEspacio(Double.valueOf(request.getParameter("espacio")));
-		envio.setPeso(Double.valueOf(request.getParameter("peso")));
-
 		envio.setTipo(request.getParameter("tipo"));
 		envio.setDescripcion(request.getParameter("descripcion"));
 
 		String placaVehiculo = request.getParameter("camion");
 		String patenteTrailer = request.getParameter("trailer");
-
-		System.out.println("placaVehiculo: " + placaVehiculo);
-		System.out.println("patenteTrailer: " + patenteTrailer);
 
 		// No asignado hasta que se demuestre lo contrario
 		if (!((placaVehiculo != null && placaVehiculo.equals(""))
@@ -73,7 +67,7 @@ public class Modificar extends HttpServlet {
 			System.out.println("Se selecciono un Camion");
 
 			Vehiculo vehiculo = DB.load(Vehiculo.class, placaVehiculo.toLowerCase());
-
+		
 			envio.setCamion(vehiculo.getPlaca());
 			envio.setEstado("asignado");
 
@@ -86,6 +80,43 @@ public class Modificar extends HttpServlet {
 			envio.setTrailer(trailer.getPatente());
 			envio.setEstado("asignado");
 		}
+		
+		
+		
+		
+		if(envio.getTrailer().equals("ninguno")&&!envio.getCamion().equals("ninguno")){
+			
+			Vehiculo vehiculo = DB.load(Vehiculo.class, envio.getCamion());
+			
+			if((vehiculo.getPesoMax()-DB.getPesoVehiculo(vehiculo.getPlaca())) < Double.valueOf(request.getParameter("peso")) ){
+				Dibujar.mensaje(response.getWriter(), "Peso muy grande para el camion: " +vehiculo.getPlaca(), "/envios/modificar.jsp");
+				return;
+			}
+			
+			if(((vehiculo.getEspacioMax()-DB.getEspacioVehiculo(vehiculo.getPlaca()))<Double.valueOf(request.getParameter("espacio")))){
+				Dibujar.mensaje(response.getWriter(), "Espacio muy grande para el camion: " +vehiculo.getPlaca(), "/envios/modificar.jsp");
+				return;
+			}
+			
+			
+		}else if (!envio.getTrailer().equals("ninguno")){			
+			
+			Trailer trailer = DB.load(Trailer.class, envio.getTrailer());
+
+			if( (trailer.getPesoMax()-DB.getPesoTrailer(trailer.getPatente())) < Double.valueOf(request.getParameter("peso")) ){
+				Dibujar.mensaje(response.getWriter(), "Peso muy grande para el trailer: " +trailer.getPatente(), "/envios/modificar.jsp");
+				return;
+			}
+			
+			if(((trailer.getEspacioMax()-DB.getEspacioTrailer(trailer.getPatente()))<Double.valueOf(request.getParameter("espacio")))){
+				Dibujar.mensaje(response.getWriter(), "Espacio muy grande para el trailer: " +trailer.getPatente(), "/envios/modificar.jsp");
+				return;
+			}
+		}
+
+		envio.setEspacio(Double.valueOf(request.getParameter("espacio")));
+		envio.setPeso(Double.valueOf(request.getParameter("peso")));
+
 
 		DB.save(envio);
 
