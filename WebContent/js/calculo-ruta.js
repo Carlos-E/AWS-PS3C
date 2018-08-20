@@ -37,11 +37,6 @@ function initMap() {
           option.value = 'ninguno';
           select.add(option);
           // Limpiar select
-          
-          if(vehiculos.length==0){
-          		$('#spinner1').hide();
-            	$('#camion').show();
-          }
 
           for (let i = 0; i < vehiculos.length; i++) {
 

@@ -194,13 +194,13 @@
 						<label class="col-md-2 col-form-label text-capitalize">veh&iacute;culos Disponibles</label>
 						<div class="col-md-4">
 							<i id="spinner1" class="fa fa-circle-notch fa-spin" style="font-size: 35px"></i>
-							<select id="camion" class="form-control" name="camion">								
+							<select id="camion" class="form-control" name="camion" required>								
 							</select>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Traileres Disponibles</label>
 						<div class="col-md-4">
 							<i id="spinner2" class="fa fa-circle-notch fa-spin" style="font-size: 35px"></i>
-							<select id="trailer" class="form-control" name="trailer" disabled="true">
+							<select id="trailer" class="form-control" name="trailer" disabled="true" required>
 							</select>
 						</div>
 					</div>					
