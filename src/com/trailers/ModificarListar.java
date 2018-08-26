@@ -34,19 +34,9 @@ public class ModificarListar extends HttpServlet {
 		DB DB = new DB();
 
 		List<Trailer> trailers = DB.scan(Trailer.class, new DynamoDBScanExpression());
-		//List<Empresa> empresas = DB.scan(Empresa.class, new DynamoDBScanExpression());
 
 		for (int i = 0; i < trailers.size(); i++) {
-			/*
-			for (int j = 0; j < empresas.size(); j++) {
-				if (trailers.get(i).getEmpresa().equals(empresas.get(j).getNit())) {
-					trailers.get(i).setEmpresa(empresas.get(j).getNombre());
-					break;
-				} // if
-			} // for
-			*/
 			trailers.get(i).setEstado(DB.getEstadoTrailer(trailers.get(i).getPatente()));
-
 		} // for
 
 		response.setContentType("application/json");

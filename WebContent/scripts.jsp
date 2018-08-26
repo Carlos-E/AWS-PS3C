@@ -27,7 +27,7 @@ $(document).ready(function() {
 
 <script>
 
-$("#messageNotification").hide();
+//$("#messageNotification").hide();
 <%
 if (!session.getAttribute("rol").equals("cliente")||!session.getAttribute("pagina").equals("Consultar Reportes")) {
 %>		
@@ -37,7 +37,7 @@ $(document).ready(function() {
 	// request permission on page load
 	document.addEventListener('DOMContentLoaded', function () {
 	  if (!Notification) {
-	    alert('Notificaciones no disponibles en tu navagador.'); 
+	    alert('Notificaciones no disponibles en tu navegador.'); 
 	    return;
 	  }
 
@@ -76,7 +76,7 @@ $(document).ready(function() {
 				type : "POST",
 				dataType : "json",
 			}).done(function(response) {
-				//console.log(response);
+				console.log(response);
 				
 		        $("#numMessages").html(response.num);
 		    
@@ -100,6 +100,7 @@ $(document).ready(function() {
 		}
 	}
 	
+	//console.log('Checking Messages');
 	checkMessages();
 	setInterval(checkMessages,5000);
 	

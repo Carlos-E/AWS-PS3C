@@ -18,7 +18,7 @@ public class Trailer {
 		return patente;
 	}
 
-	public void setPatente(String patente) {
+	public void setPatente(String patente) {		
 		this.patente = patente;
 	}
 
