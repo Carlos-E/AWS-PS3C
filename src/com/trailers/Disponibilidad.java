@@ -81,7 +81,7 @@ public class Disponibilidad extends HttpServlet {
 		 * trailers.iterator(); while (iteratorTrailers.hasNext()) {
 		 * System.out.println(iteratorTrailers.next()); }
 		 
-		 com.vehiculo leer ---leee esta monda!!
+		 com.vehiculo leer ---leee esto!!
 */      Map<String, Object> map = new HashMap<String, Object>();
 		
 		for(int j = 0; j <trailers.size();j++) {
