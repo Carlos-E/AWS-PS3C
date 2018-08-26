@@ -17,7 +17,6 @@ public class login extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-
 	public login() {
 		super();
 	}
@@ -34,14 +33,14 @@ public class login extends HttpServlet {
 
 		String uname = request.getParameter("username");
 		String pass = request.getParameter("password");
-		
+
 		if (ControladorBD.validarLogin(uname, pass)) {
-			
+
 			HttpSession session = request.getSession();
 			session.setAttribute("username", uname);
-			
-			Usuario usuario = new DB().load(Usuario.class,uname);
-			
+
+			Usuario usuario = new DB().load(Usuario.class, uname);
+
 			switch (usuario.getRol()) {
 			case "null":
 				response.sendError(400, "Sin roll");
@@ -67,7 +66,8 @@ public class login extends HttpServlet {
 					session.setAttribute("placa", placa);
 					response.sendRedirect("/movil/index.jsp");
 				} else {
-					Dibujar.mensaje(response.getWriter(), "El conductor no tiene ningun vehículo asignado","/login.jsp");
+					Dibujar.mensaje(response.getWriter(), "El conductor no tiene ningun vehículo asignado",
+							"/login.jsp");
 				}
 
 				break;
