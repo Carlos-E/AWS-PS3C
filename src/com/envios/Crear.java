@@ -98,13 +98,13 @@ public class Crear extends HttpServlet {
 							"<br>Peso: ",String.valueOf(envio.getPeso()), "Kg",
 							"<br>Tipo:", envio.getTipo(), 
 							"<br>Descripci&oacute;n: ",envio.getDescripcion(), 
-							"<br>Estado del env&iacute;o: ",envio.getEstado()," </p>"));
+							"<br>Estado del env&iacute;o: <strong>",envio.getEstado(),"</strong> </p>"));
 
 		} catch (Exception e) {
 
 			Dibujar.mensaje(response.getWriter(), "Operacion Exitosa, reporte generado, el correo no se envio.", "/envios/crear.jsp");
 			e.printStackTrace();
-
+			return;
 		}
 		// ENVIAR CORREO
 
