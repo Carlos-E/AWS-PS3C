@@ -91,22 +91,24 @@ public class Crear extends HttpServlet {
 
 			Usuario usuario = new DB().load(Usuario.class, envio.getUsuario());
 			new Email(usuario.getCorreo(), "Notificación de envio PS3C",
-					String.join(System.getProperty("line.separator"), "<h2>Envio creado</h2>", 
+					String.join(System.getProperty("line.separator"), "<h2>Hemos creado tu envio en PS3C</h2>", 
 							"<p>Origen: ",envio.getOrigen(), 
 							"<br>Destino:", envio.getDestino(), 
-							"<br>Espacio: ",String.valueOf(envio.getEspacio()), "metros cubicos <br>Peso: ",
-							String.valueOf(envio.getPeso()), "Kg<br>Tipo:", envio.getTipo(), "<br>Descripci&oacute;n: ",
-							envio.getDescripcion(), "<br>Estado del env&iacute;o: ",envio.getEstado()," </p>"));
+							"<br>Espacio: ",String.valueOf(envio.getEspacio()), "metros cubicos ",
+							"<br>Peso: ",String.valueOf(envio.getPeso()), "Kg",
+							"<br>Tipo:", envio.getTipo(), 
+							"<br>Descripci&oacute;n: ",envio.getDescripcion(), 
+							"<br>Estado del env&iacute;o: ",envio.getEstado()," </p>"));
 
 		} catch (Exception e) {
 
-			Dibujar.mensaje(response.getWriter(), "Operacion Exitosa, Reporte generado, el correo no se envio", "/envios/crear.jsp");
+			Dibujar.mensaje(response.getWriter(), "Operacion Exitosa, reporte generado, el correo no se envio.", "/envios/crear.jsp");
 			e.printStackTrace();
 
 		}
 		// ENVIAR CORREO
 
-		Dibujar.mensaje(response.getWriter(), "Operacion Exitosa, Reporte generado. Correo enviado", "/envios/crear.jsp");
+		Dibujar.mensaje(response.getWriter(), "Operacion Exitosa, reporte generado, correo enviado.", "/envios/crear.jsp");
 
 	}
 

@@ -9,19 +9,20 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class Email {
-
-	static final String FROM = "noresponder@ps3c.com";
-	static final String FROMNAME = "PS3C Mail";
+	
+	static final String HOST = "snap.wnkserver8.com";
+	static final int PORT = 587;
 
 	static final String SMTP_USERNAME = "sistemas@nauticaintegral.com";
 	static final String SMTP_PASSWORD = "JGzRbG8zpAD5sGkk";
-
+	
 	static final String CONFIGSET = "ConfigSet";
 
-	static final String HOST = "snap.wnkserver8.com";
+	
+	static final String FROM = "noresponder@ps3c.com";
+	static final String FROMNAME = "PS3C Mail";
 
-	static final int PORT = 587;
-
+	
 	public Email(String TO, String SUBJECT, String BODY) throws Exception {
 
 		// Create a Properties object to contain connection configuration
@@ -54,19 +55,21 @@ public class Email {
 		try {
 			System.out.println("Sending...");
 
-			// Connect to Amazon SES using the SMTP username and password you
-			// specified above.
 			transport.connect(HOST, SMTP_USERNAME, SMTP_PASSWORD);
-
-			// Send the email.
 			transport.sendMessage(msg, msg.getAllRecipients());
+			
 			System.out.println("Email sent!");
+			
 		} catch (Exception ex) {
+			
 			System.out.println("The email was not sent.");
 			System.out.println("Error message: " + ex.getMessage());
+			
 		} finally {
+			
 			// Close and terminate the connection.
 			transport.close();
 		}
 	}
+	
 }
