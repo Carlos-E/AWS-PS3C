@@ -20,7 +20,24 @@ public class AuthFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws ServletException, IOException {
+		
+		/*
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletResponse res = (HttpServletResponse) response;
+        HttpSession session = req.getSession(false);
+        String loginURI = req.getContextPath() + "/login";
 
+        boolean loggedIn = session != null && session.getAttribute("user") != null;
+        boolean loginRequest = req.getRequestURI().equals(loginURI);
+
+        if (loggedIn || loginRequest) {
+            chain.doFilter(req, res);
+        } else {
+            res.sendRedirect(loginURI);
+        }
+		//*/
+		
+		//*
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		HttpSession session = req.getSession(false);
@@ -40,6 +57,8 @@ public class AuthFilter implements Filter {
 			res.sendRedirect("/login.jsp");
 			return;
 		}
+		//*/
+		
 	}
 
 	@Override
