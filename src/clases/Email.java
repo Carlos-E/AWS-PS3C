@@ -10,15 +10,18 @@ import javax.mail.internet.MimeMessage;
 
 public class Email {
 	
+	
+	//VARIABLES
 	static final String HOST = "smtp.gmail.com";
 	static final int PORT = 587;
 
 	static final String SMTP_USERNAME = "ps3c.mail@gmail.com";
 	static final String SMTP_PASSWORD = "a1234567890*";
+	//VARIABLES
+
 	
 	static final String CONFIGSET = "ConfigSet";
 
-	
 	static final String FROM = "no-responder@ps3c.com";
 	static final String FROMNAME = "PS3C Mail";
 

@@ -15,8 +15,10 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
 public class DB extends DynamoDBMapper {
 
+	//VARIABLES
 	private final static String AccessKeyID = "AKIAJSINT4F7K5BSGDRA";
 	private final static String SecretKey = "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";
+	//VARIABLES
 
 	private static Regions region = Regions.US_EAST_1;
 
