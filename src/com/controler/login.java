@@ -38,7 +38,12 @@ public class login extends HttpServlet {
 		if (ControladorBD.validarLogin(uname, pass)) {
 
 			HttpSession session = request.getSession();
+			//Vida de la sesion
+			session.setMaxInactiveInterval(60*60*4);
+			
 			session.setAttribute("username", uname);
+			
+			System.out.println("session.getMaxInactiveInterval():"+session.getMaxInactiveInterval());
 
 			Usuario usuario = new DB().load(Usuario.class, uname);
 
