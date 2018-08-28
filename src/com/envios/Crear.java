@@ -89,19 +89,11 @@ public class Crear extends HttpServlet {
 		// GENERAR REPORTE
 
 		// ENVIAR CORREO
-		try {
-			new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Envío Creado",
-					"Su envío ha sido creado y pronto sera asignado.", envio);
-		} catch (Exception e) {
-
-			Dibujar.mensaje(response.getWriter(), "Operacion Exitosa, reporte generado, el correo no se envio.",
-					"/envios/crear.jsp");
-			e.printStackTrace();
-			return;
-		}
+		new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Envío Creado",
+				"Su envío ha sido creado y pronto sera asignado.", envio);
 		// ENVIAR CORREO
 
-		Dibujar.mensaje(response.getWriter(), "Operacion Exitosa, reporte generado, correo enviado.",
+		Dibujar.mensaje(response.getWriter(), "Operacion Exitosa, reporte generado.",
 				"/envios/crear.jsp");
 
 	}

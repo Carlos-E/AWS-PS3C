@@ -42,12 +42,8 @@ public class Eliminar extends HttpServlet {
 
 		DB.delete(envio);
 
-		try {
-			new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Envío Eliminado",
-					"Su envío ha sido elimindo del sistema PS3C.", envio);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Envío Eliminado",
+				"Su envío ha sido elimindo del sistema PS3C.", envio);
 
 		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getRequestURL() + ".jsp");
 	}

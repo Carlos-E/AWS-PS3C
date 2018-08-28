@@ -29,11 +29,11 @@ public class GetEnvios extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		System.out.println("Buscando envios");
+		
 		DB DB = new DB();
 
 		String conductor = request.getSession().getAttribute("username").toString();
-
-		System.out.println("Conductor: " + conductor);
 
 		Map<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
 		eav.put(":v1", new AttributeValue().withS(conductor));
@@ -46,22 +46,9 @@ public class GetEnvios extends HttpServlet {
 		// conductor a la vez
 		Vehiculo vehiculo = vehiculosdelConductor.get(0);
 
-		System.out.println("Placa del vehiculo del conductor: " + vehiculo.getPlaca());
-
 		List<Envio> envios = null;
 
 		if (vehiculo.getTipo().equals("camion")) {
-
-			// OJO AQUI, PROBAR
-			// OJO AQUI, PROBAR
-			// OJO AQUI, PROBAR
-			// OJO AQUI, PROBAR
-			// OJO AQUI, PROBAR
-			// OJO AQUI, PROBAR
-			// OJO AQUI, PROBAR
-			// OJO AQUI, PROBAR
-
-			//envios = ControladorBD.getShipments("camion", vehiculo.getPlaca());
 			envios = DB.getEnviosVehiculo(vehiculo.getPlaca());
 		} else {
 
@@ -75,8 +62,6 @@ public class GetEnvios extends HttpServlet {
 				}
 			}
 		}
-
-		System.out.print("Envios: " + envios);
 
 		response.setContentType("application/json");
 		response.getWriter().print(new ObjectMapper().writer().writeValueAsString(envios));

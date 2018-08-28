@@ -35,52 +35,24 @@ public class Entrega extends HttpServlet {
 		String valor = request.getParameter("value");
 
 		if (valor.equals("true")) {
+			
 			envio.setChequeoDescarga(true);
 			envio.setChequeoCarga(true);
 			envio.setEstado("entregado");
 			
-			if (envio.getTrailer().equals("ninguno") && !envio.getCamion().equals("ninguno")) {
-
-				if (DB.getEnviosVehiculo(envio.getCamion()) == null) {
-					System.out.println(
-							"El camion " + envio.getCamion() + " no tiene mas envios, cambiando estado a \"no asignado\"");
-
-					Vehiculo vehiculo = new Vehiculo();
-					vehiculo.setPlaca(envio.getCamion());
-					vehiculo = DB.load(vehiculo);
-					vehiculo.setEstado("no asignado");
-					DB.save(vehiculo);
-				}
-
-			} else if (!envio.getTrailer().equals("ninguno")) {
-				
-				if (DB.getEnviosTrailer(envio.getTrailer()) == null) {
-					System.out.println(
-							"El trailer " + envio.getTrailer() + " no tiene mas envios, cambiando estado a \"no asignado\"");
-
-					Trailer trailer = new Trailer();
-					trailer.setPatente(envio.getTrailer());
-					trailer = DB.load(trailer);
-					trailer.setEstado("no asignado");
-					DB.save(trailer);
-				}
-
-			}
+			new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Envío Entregado",
+					"Hemos entregado su envío.", envio);
 			
 		} else if (valor.equals("false")) {
+			
 			envio.setChequeoDescarga(false);
-			envio.setEstado("en tránsito ");
+			envio.setEstado("en tránsito");
+			
+			new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Envío Revertido",
+					"Hemos revertido el estado de su envio.", envio);
 		}
 		
 		DB.save(envio);
-		
-		try {
-			new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Envío Entregado",
-					"Hemos entregado su envío.", envio);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		System.out.println("Chequeo Entrega/Descarga: " + envio.getUsuario() + " "
 				+ envio.getFecha() + " : " + envio.isChequeoDescarga());

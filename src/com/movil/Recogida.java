@@ -36,22 +36,26 @@ public class Recogida extends HttpServlet {
 		String valor = request.getParameter("value");
 
 		if (valor.equals("true")) {
+			
 			envio.setChequeoCarga(true);
 			envio.setEstado("en tránsito");
+			
+			new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Envío En Tránsito",
+					"Su envío ha sido recogido y esta en tránsito hacia su destino.", envio);
+			
 		} else if (valor.equals("false")) {
+			
 			envio.setChequeoCarga(false);
 			envio.setChequeoDescarga(false);
 			envio.setEstado("asignado");
+			
+			new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Envío Revertido",
+					"Hemos revertido el estado de su envio.", envio);
 		}
 
 		DB.save(envio);
 		
-		try {
-			new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Envío en tránsito",
-					"Su envío ha sido recogido y esta en tránsito hacia su destino.", envio);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		
 		
 		System.out.println("Chequeo Recogida/Carga: " + envio.getUsuario() + " "
 				+ envio.getFecha() + " : " + envio.isChequeoCarga());

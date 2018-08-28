@@ -124,15 +124,9 @@ public class Modificar extends HttpServlet {
 		
 		
 		if(envio.getEstado().equals("asignado")){
-	
-			try {
-				new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Asignación de envío",
-						"Su envío ha sido asignado correctamente y pronto lo recogeran.", envio);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
+			new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Asignación de envío",
+					"Su envío ha sido asignado correctamente y pronto lo recogeran.", envio);
+
 		}
 
 		Dibujar.mensaje(response.getWriter(), "Envio actualizado correctamente", "/envios/modificar.jsp");

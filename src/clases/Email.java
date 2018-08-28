@@ -23,7 +23,9 @@ public class Email {
 	static final String FROMNAME = "PS3C Mail";
 
 	
-	public Email(String TO, String SUBJECT, String BODY) throws Exception {
+	public Email(String TO, String SUBJECT, String BODY) {
+		
+		try {
 
 		// Create a Properties object to contain connection configuration
 		// information.
@@ -52,11 +54,12 @@ public class Email {
 		Transport transport = session.getTransport();
 
 		// Send the message.
-		try {
+		
 			System.out.println("Sending...");
 
 			transport.connect(HOST, SMTP_USERNAME, SMTP_PASSWORD);
 			transport.sendMessage(msg, msg.getAllRecipients());
+			transport.close();
 			
 			System.out.println("Email sent!");
 			
@@ -65,15 +68,11 @@ public class Email {
 			System.out.println("The email was not sent.");
 			System.out.println("Error message: " + ex.getMessage());
 			
-		} finally {
-			
-			// Close and terminate the connection.
-			transport.close();
 		}
 	}
 	
 	
-	public Email(String TO, String SUBJECT,String HEADER, Envio envio) throws Exception {
+	public Email(String TO, String SUBJECT,String HEADER, Envio envio) {
 		
 		String BODY = String.join(System.getProperty("line.separator"), "<h2>",HEADER,"</h2>", 
 				"<p>Origen: ",envio.getOrigen(), 
@@ -83,6 +82,8 @@ public class Email {
 				"<br>Tipo:", envio.getTipo(), 
 				"<br>Descripci&oacute;n: ",envio.getDescripcion(), 
 				"<br>Estado del env&iacute;o: <strong>",envio.getEstado(),"</strong> </p>");
+		
+		try {
 
 		// Create a Properties object to contain connection configuration
 		// information.
@@ -111,11 +112,11 @@ public class Email {
 		Transport transport = session.getTransport();
 
 		// Send the message.
-		try {
 			System.out.println("Sending...");
 
 			transport.connect(HOST, SMTP_USERNAME, SMTP_PASSWORD);
 			transport.sendMessage(msg, msg.getAllRecipients());
+			transport.close();
 			
 			System.out.println("Email sent!");
 			
@@ -124,10 +125,6 @@ public class Email {
 			System.out.println("The email was not sent.");
 			System.out.println("Error message: " + ex.getMessage());
 			
-		} finally {
-			
-			// Close and terminate the connection.
-			transport.close();
 		}
 	}
 	
