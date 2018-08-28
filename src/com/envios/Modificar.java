@@ -124,8 +124,8 @@ public class Modificar extends HttpServlet {
 		
 		
 		if(envio.getEstado().equals("asignado")){
-			new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Asignación de envío",
-					"Su envío ha sido asignado correctamente y pronto lo recogeran.", envio);
+			new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Envío Asignado",
+					"Su envío ha sido asignado correctamente y pronto sera recogido.", envio);
 
 		}
 

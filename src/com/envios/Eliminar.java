@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import clases.DB;
-import clases.Email;
 import clases.Envio;
-import clases.Usuario;
 
 @WebServlet("/envios/eliminar")
 public class Eliminar extends HttpServlet {
@@ -42,9 +40,9 @@ public class Eliminar extends HttpServlet {
 
 		DB.delete(envio);
 
-		new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Envío Eliminado",
-				"Su envío ha sido elimindo del sistema PS3C.", envio);
-
+		/*new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Envío Eliminado",
+				"Su envío ha sido elimindo del sistema PS3C.", envio);*/
+		
 		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getRequestURL() + ".jsp");
 	}
 }
