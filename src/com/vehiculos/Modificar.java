@@ -40,13 +40,13 @@ public class Modificar extends HttpServlet {
 		vehiculo.setEmpresa(request.getParameter("empresa").toLowerCase());
 		
 		vehiculo.setEspacioMax(Double.valueOf(request.getParameter("espacioMax")));
-		if (vehiculo.getEspacioMax() <= DB.getEspacioVehiculo(vehiculo.getPlaca())) {
+		if (vehiculo.getEspacioMax() < DB.getEspacioVehiculo(vehiculo.getPlaca())) {
 			Dibujar.mensaje(response.getWriter(), "El espacio no puede ser menor a la cantidad consumida por los envios asignados", "/vehiculos/modificar.jsp");
 			return;
 		}
 
 		vehiculo.setPesoMax(Double.valueOf(request.getParameter("pesoMax")));
-		if (vehiculo.getPesoMax() <= DB.getPesoVehiculo(vehiculo.getPlaca())) {
+		if (vehiculo.getPesoMax() < DB.getPesoVehiculo(vehiculo.getPlaca())) {
 			Dibujar.mensaje(response.getWriter(), "El peso no puede ser menor a la cantidad consumida por los envios asignados", "/vehiculos/modificar.jsp");
 			return;
 		}
