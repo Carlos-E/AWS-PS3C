@@ -74,6 +74,14 @@ public class Entrega extends HttpServlet {
 		
 		DB.save(envio);
 		
+		try {
+			new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Envío Entregado",
+					"Hemos entregado su envío.", envio);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		System.out.println("Chequeo Entrega/Descarga: " + envio.getUsuario() + " "
 				+ envio.getFecha() + " : " + envio.isChequeoDescarga());
 

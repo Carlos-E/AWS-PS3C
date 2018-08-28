@@ -58,14 +58,12 @@ function initMap() {
                   console.log(JSON.stringify(response.routes[0].legs[0].duration, null, 2));
 
                   /*
-                  listaDatosRutas.push({
-                    placa: vehiculos[i].placa,
-                    distancia: response.routes[0].legs[0].distance.value,
-                    duracion: response.routes[0].legs[0].duration.value,
-                    distanciaT: response.routes[0].legs[0].distance.text,
-                    duracionT: response.routes[0].legs[0].duration.text
-                  });
-                  */
+					 * listaDatosRutas.push({ placa: vehiculos[i].placa,
+					 * distancia: response.routes[0].legs[0].distance.value,
+					 * duracion: response.routes[0].legs[0].duration.value,
+					 * distanciaT: response.routes[0].legs[0].distance.text,
+					 * duracionT: response.routes[0].legs[0].duration.text });
+					 */
                   
                   listaDatosRutas = {
                       placa: vehiculos[i].placa,
@@ -94,23 +92,20 @@ function initMap() {
           } // for
 
           /*
-          setTimeout(function() {
-           
-        	listaDatosRutas = quickSort(listaDatosRutas, 0, listaDatosRutas.length - 1, 'duracion');
-
-            console.log('Camiones validos:');
-
-            // Llenar select
-            for (let k = 0; k < listaDatosRutas.length; k++) {
-              option = document.createElement('option');
-              option.text = 'Placa: ' + listaDatosRutas[k].placa + ' - Distancia: ' + listaDatosRutas[k].distanciaT;
-              option.value = listaDatosRutas[k].placa;
-              console.log(option.text);
-              select.add(option);
-            }
-
-          }, 2500); // SetTimeOut
-          */
+			 * setTimeout(function() {
+			 * 
+			 * listaDatosRutas = quickSort(listaDatosRutas, 0,
+			 * listaDatosRutas.length - 1, 'duracion');
+			 * 
+			 * console.log('Camiones validos:');
+			 *  // Llenar select for (let k = 0; k < listaDatosRutas.length;
+			 * k++) { option = document.createElement('option'); option.text =
+			 * 'Placa: ' + listaDatosRutas[k].placa + ' - Distancia: ' +
+			 * listaDatosRutas[k].distanciaT; option.value =
+			 * listaDatosRutas[k].placa; console.log(option.text);
+			 * select.add(option); }
+			 *  }, 2500); // SetTimeOut
+			 */
           
         })
         .fail(function(xhr, status, errorThrown) {
@@ -157,6 +152,12 @@ function setTrailers(origenEnvio, pesoEnvio, espacioEnvio) {
 	        select.add(option);
 
 	        console.log('Trailers validos:');
+	        
+	        if(0==trailers.length){
+            	$('#spinner2').hide();
+              	$('#trailer').show();
+	        }
+	        
           for (let i = 0; i < trailers.length; i++) {
 
             // Se llama directamente al servicio
@@ -172,14 +173,12 @@ function setTrailers(origenEnvio, pesoEnvio, espacioEnvio) {
                   console.log(JSON.stringify(response.routes[0].legs[0].duration, null, 2));
 
                   /*
-                  listaDatosRutas.push({
-                    placa: vehiculos[i].placa,
-                    distancia: response.routes[0].legs[0].distance.value,
-                    duracion: response.routes[0].legs[0].duration.value,
-                    distanciaT: response.routes[0].legs[0].distance.text,
-                    duracionT: response.routes[0].legs[0].duration.text
-                  });
-                  */
+					 * listaDatosRutas.push({ placa: vehiculos[i].placa,
+					 * distancia: response.routes[0].legs[0].distance.value,
+					 * duracion: response.routes[0].legs[0].duration.value,
+					 * distanciaT: response.routes[0].legs[0].distance.text,
+					 * duracionT: response.routes[0].legs[0].duration.text });
+					 */
                   
                   listaDatosRutas = {
                       patente: trailers[i].patente,
@@ -208,23 +207,20 @@ function setTrailers(origenEnvio, pesoEnvio, espacioEnvio) {
           } // for
 
           /*
-          setTimeout(function() {
-           
-        	listaDatosRutas = quickSort(listaDatosRutas, 0, listaDatosRutas.length - 1, 'duracion');
-
-            console.log('Camiones validos:');
-
-            // Llenar select
-            for (let k = 0; k < listaDatosRutas.length; k++) {
-              option = document.createElement('option');
-              option.text = 'Placa: ' + listaDatosRutas[k].placa + ' - Distancia: ' + listaDatosRutas[k].distanciaT;
-              option.value = listaDatosRutas[k].placa;
-              console.log(option.text);
-              select.add(option);
-            }
-
-          }, 2500); // SetTimeOut
-          */
+			 * setTimeout(function() {
+			 * 
+			 * listaDatosRutas = quickSort(listaDatosRutas, 0,
+			 * listaDatosRutas.length - 1, 'duracion');
+			 * 
+			 * console.log('Camiones validos:');
+			 *  // Llenar select for (let k = 0; k < listaDatosRutas.length;
+			 * k++) { option = document.createElement('option'); option.text =
+			 * 'Placa: ' + listaDatosRutas[k].placa + ' - Distancia: ' +
+			 * listaDatosRutas[k].distanciaT; option.value =
+			 * listaDatosRutas[k].placa; console.log(option.text);
+			 * select.add(option); }
+			 *  }, 2500); // SetTimeOut
+			 */
           
         })
         .fail(function(xhr, status, errorThrown) {

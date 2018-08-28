@@ -33,6 +33,8 @@ public class Crear extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
 
+		DB DB = new DB();
+
 		// GENERAR ENVIO
 		Envio envio = new Envio();
 
@@ -71,7 +73,7 @@ public class Crear extends HttpServlet {
 		envio.setTrailer("ninguno");
 
 		// Guardar Envio en base de datos
-		new DB().save(envio);
+		DB.save(envio);
 		// GENERAR ENVIO
 
 		// GENERAR REPORTE
@@ -83,32 +85,24 @@ public class Crear extends HttpServlet {
 		reporte.setVisto(false);
 
 		// Guardar Reporte en base de datos
-		new DB().save(reporte);
+		DB.save(reporte);
 		// GENERAR REPORTE
 
 		// ENVIAR CORREO
 		try {
-
-			Usuario usuario = new DB().load(Usuario.class, envio.getUsuario());
-			new Email(usuario.getCorreo(), "Notificación de envio PS3C",
-					String.join(System.getProperty("line.separator"), "<h2>Hemos creado tu envio en PS3C</h2>", 
-							"<p>Origen: ",envio.getOrigen(), 
-							"<br>Destino:", envio.getDestino(), 
-							"<br>Espacio: ",String.valueOf(envio.getEspacio()), "metros cubicos ",
-							"<br>Peso: ",String.valueOf(envio.getPeso()), "Kg",
-							"<br>Tipo:", envio.getTipo(), 
-							"<br>Descripci&oacute;n: ",envio.getDescripcion(), 
-							"<br>Estado del env&iacute;o: <strong>",envio.getEstado(),"</strong> </p>"));
-
+			new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Envío Creado",
+					"Su envío ha sido creado y pronto sera asignado.", envio);
 		} catch (Exception e) {
 
-			Dibujar.mensaje(response.getWriter(), "Operacion Exitosa, reporte generado, el correo no se envio.", "/envios/crear.jsp");
+			Dibujar.mensaje(response.getWriter(), "Operacion Exitosa, reporte generado, el correo no se envio.",
+					"/envios/crear.jsp");
 			e.printStackTrace();
 			return;
 		}
 		// ENVIAR CORREO
 
-		Dibujar.mensaje(response.getWriter(), "Operacion Exitosa, reporte generado, correo enviado.", "/envios/crear.jsp");
+		Dibujar.mensaje(response.getWriter(), "Operacion Exitosa, reporte generado, correo enviado.",
+				"/envios/crear.jsp");
 
 	}
 

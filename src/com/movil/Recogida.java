@@ -46,6 +46,13 @@ public class Recogida extends HttpServlet {
 
 		DB.save(envio);
 		
+		try {
+			new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Envío en tránsito",
+					"Su envío ha sido recogido y esta en tránsito hacia su destino.", envio);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		System.out.println("Chequeo Recogida/Carga: " + envio.getUsuario() + " "
 				+ envio.getFecha() + " : " + envio.isChequeoCarga());
 

@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.logica.Dibujar;
 
 import clases.DB;
+import clases.Email;
 import clases.Envio;
 import clases.Trailer;
+import clases.Usuario;
 import clases.Vehiculo;
 
 @WebServlet("/envios/modificar")
@@ -119,6 +121,19 @@ public class Modificar extends HttpServlet {
 
 
 		DB.save(envio);
+		
+		
+		if(envio.getEstado().equals("asignado")){
+	
+			try {
+				new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Asignación de envío",
+						"Su envío ha sido asignado correctamente y pronto lo recogeran.", envio);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
 
 		Dibujar.mensaje(response.getWriter(), "Envio actualizado correctamente", "/envios/modificar.jsp");
 
