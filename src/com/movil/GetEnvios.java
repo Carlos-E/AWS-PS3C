@@ -49,7 +49,7 @@ public class GetEnvios extends HttpServlet {
 		List<Envio> envios = null;
 
 		if (vehiculo.getTipo().equals("camion")) {
-			envios = DB.getEnviosVehiculo(vehiculo.getPlaca());
+			envios = DB.getEnviosPendientesVehiculo(vehiculo.getPlaca());
 		} else {
 
 			List<Trailer> listaTrailers = new DB().scan(Trailer.class, new DynamoDBScanExpression());
@@ -57,7 +57,7 @@ public class GetEnvios extends HttpServlet {
 			for (int i = 0; i < listaTrailers.size(); i++) {
 				if (listaTrailers.get(i).getCamion().equals(vehiculo.getPlaca())) {
 					//envios = ControladorBD.getShipments("trailer", listaTrailers.get(i).getPatente());
-					envios = DB.getEnviosTrailer(listaTrailers.get(i).getPatente());
+					envios = DB.getEnviosPendientesTrailer(listaTrailers.get(i).getPatente());
 					break;
 				}
 			}
