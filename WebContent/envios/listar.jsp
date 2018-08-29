@@ -21,7 +21,7 @@ table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_des
 	table.dataTable thead>tr>th.sorting, table.dataTable thead>tr>td.sorting_asc,
 	table.dataTable thead>tr>td.sorting_desc, table.dataTable thead>tr>td.sorting
 	{
-	padding-right: 20px;
+	padding-right: 15px;
 }
 </style>
 </head>
@@ -58,7 +58,7 @@ table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_des
 						</div>
 						<div class="row">
 							<div class="col-sm-12">
-								<table id="table" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%; font-size: 0.66rem;">
+								<table id="table" class="table table-striped table-bordered dataTable" cellspacing="0" role="grid" aria-describedby="example_info" style="width: 100%; font-size: 0.60rem;">
 									<thead>
 
 									</thead>
