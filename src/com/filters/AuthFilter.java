@@ -54,7 +54,7 @@ public class AuthFilter implements Filter {
 			return;
 		} else {
 			System.out.println("Filtering... " + request.getRemoteAddr() + " is not authenticated");
-			res.sendRedirect("/login.jsp");
+			res.sendRedirect("/");
 			return;
 		}
 		//*/
