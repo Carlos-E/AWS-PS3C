@@ -13,7 +13,9 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 //import com.logica.ControladorBD;
 
 import clases.DB;
+import clases.Email;
 import clases.Envio;
+import clases.Usuario;
 
 @WebServlet("/chequeoCarga")
 public class chequeoCarga extends HttpServlet {
@@ -45,10 +47,20 @@ public class chequeoCarga extends HttpServlet {
 				try {
 
 					if (request.getParameter(envios.get(i).getFecha()) == null) {
+						
 						envios.get(i).setChequeoCarga(false);
 						envios.get(i).setChequeoDescarga(false);
+						envios.get(i).setEstado("asignado");
+						
+						new Email(DB.load(Usuario.class, envios.get(i).getUsuario()).getCorreo(), "PS3C - Envío Revertido",
+								"Hemos revertido el estado de su envio.", envios.get(i));
+
 					} else {
 						envios.get(i).setChequeoCarga(true);
+						envios.get(i).setEstado("en transito");
+						
+						new Email(DB.load(Usuario.class, envios.get(i).getUsuario()).getCorreo(), "PS3C - Envío En Tránsito",
+								"Su envío ha sido recogido y esta en tránsito hacia su destino.", envios.get(i));
 					}
 
 					System.out.println("Guardando envio");
