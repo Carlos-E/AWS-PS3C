@@ -271,13 +271,13 @@
 		<li class="nav-item">
 			<a class="nav-link" href="/chequeo/recogido.jsp">
 				<em class="fa fa-check-square"></em>
-				Chequeo de Recogida
+				Chequeo de recogida
 			</a>
 		</li>
 		<li class="nav-item">
 			<a class="nav-link" href="/chequeo/entregado.jsp">
 				<em class="fa fa-check-square"></em>
-				Chequeo de Entrega
+				Chequeo de entrega
 			</a>
 		</li>
 
@@ -293,6 +293,6 @@
 	</ul>
 	<a href="/logout" class="nav-link">
 		<em class="fa fa-power-off"></em>
-		Cerrar Sesi&oacute;n
+		Cerrar sesi&oacute;n
 	</a>
 </nav>

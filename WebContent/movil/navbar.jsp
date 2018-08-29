@@ -44,6 +44,6 @@
 	</ul>
 	<a href="/logout" class="nav-link">
 		<em class="fa fa-power-off"></em>
-		Cerrar Sesi&oacute;n
+		Cerrar sesi&oacute;n
 	</a>
 </nav>

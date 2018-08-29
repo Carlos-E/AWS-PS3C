@@ -67,47 +67,47 @@
 				</h3>
 				<form class="form" action="/envios/eliminar" method="post">
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">cliente</label>
+						<label class="col-md-2 col-form-label text-capitalize">Cliente</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="cliente" placeholder="" id="cliente" readonly>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">fecha</label>
+						<label class="col-md-2 col-form-label text-capitalize">Fecha</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="fecha" placeholder="" id="fecha" readonly>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">origen</label>
+						<label class="col-md-2 col-form-label text-capitalize">Origen</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="origen" placeholder="origen" id="origen" readonly>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">destino</label>
+						<label class="col-md-2 col-form-label text-capitalize">Destino</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="destino" placeholder="destino" id="destino" readonly>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">tipo</label>
+						<label class="col-md-2 col-form-label text-capitalize">Tipo</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="tipo" placeholder="tipo" id="tipo" readonly>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">espacio</label>
+						<label class="col-md-2 col-form-label text-capitalize">Espacio</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="espacio" placeholder="espacio" id="espacio" readonly>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">peso</label>
+						<label class="col-md-2 col-form-label text-capitalize">Peso</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="peso" placeholder="peso" id="peso" readonly>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">empresa</label>
+						<label class="col-md-2 col-form-label text-capitalize">Empresa</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="empresa" placeholder="empresa" id="empresa" readonly>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">estado</label>
+						<label class="col-md-2 col-form-label text-capitalize">Estado</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="estado" placeholder="estado" id="estado" readonly>
 						</div>

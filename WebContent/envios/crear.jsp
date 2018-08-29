@@ -62,17 +62,17 @@
 						<div class="col-md-4">
 							<input class="form-control" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" name="peso" id="peso" placeholder="peso en kg" onchange="uno()" required>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">espacio</label>
+						<label class="col-md-2 col-form-label text-capitalize">Espacio</label>
 						<div class="col-md-4">
 							<input class="form-control" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" name="espacio" id="espacio" placeholder="en metros cubicos" onchange="uno()" required>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">origen</label>
+						<label class="col-md-2 col-form-label text-capitalize">Origen</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="origen" placeholder="origen" id="origen" onchange="uno()" required>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">destino</label>
+						<label class="col-md-2 col-form-label text-capitalize">Destino</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="destino" placeholder="destino" id="destino" required>
 						</div>
@@ -81,7 +81,7 @@
 						<%
 							if (session.getAttribute("rol").equals("admin") || session.getAttribute("rol").equals("empleado")) {
 						%>
-						<label class="col-md-2 col-form-label text-capitalize">cliente</label>
+						<label class="col-md-2 col-form-label text-capitalize">Cliente</label>
 						<div class="col-md-4">
 							<select class="form-control" name="cliente" id="cliente" required>
 								<option value="" selected>Seleccionar...</option>
@@ -120,7 +120,7 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">tipo</label>
+						<label class="col-md-2 col-form-label text-capitalize">Tipo</label>
 						<div class="col-md-4">
 							<select class="custom-select" name="tipo" required>
 								<option value="" selected>Seleccionar...</option>

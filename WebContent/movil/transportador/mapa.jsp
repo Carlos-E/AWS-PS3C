@@ -83,7 +83,7 @@
 						<div class="col">
 							<!-- 				<a class="btn btn-light" href="https://www.google.com/maps/dir/?api=1&destination="+destination+"&travelmode=driving&dir_action=navigate" onclick="Android.openOnGoogleMaps(document.getElementById('end').value)">Abrir en Google Maps</a>
  -->
-							<a id="goMaps" class="btn btn-light">Abrir en Google Maps</a>
+							<a id="goMaps" class="btn btn-light">Abrir en google maps</a>
 						</div>
 					</div>
 

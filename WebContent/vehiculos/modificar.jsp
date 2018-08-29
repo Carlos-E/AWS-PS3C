@@ -88,7 +88,7 @@
 					
 
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Conductor Asignado</label>
+						<label class="col-md-2 col-form-label text-capitalize">Conductor asignado</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="conductorAsignado" id="conductorAsignado" readonly>
 						</div>

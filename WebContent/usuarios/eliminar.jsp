@@ -63,11 +63,11 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">nombre</label>
+						<label class="col-md-2 col-form-label text-capitalize">Nombre</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="nombre" placeholder="nombre" id="nombre" readonly>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">apellido</label>
+						<label class="col-md-2 col-form-label text-capitalize">Apellido</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="apellido" placeholder="apellido" id="apellido" readonly>
 						</div>
@@ -79,27 +79,27 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">clave</label>
+						<label class="col-md-2 col-form-label text-capitalize">Clave</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="clave" placeholder="clave" id="clave" readonly>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">repita clave</label>
+						<label class="col-md-2 col-form-label text-capitalize">Repita clave</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="repita clave" placeholder="repita clave" id="repita-clave" readonly>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">telefono</label>
+						<label class="col-md-2 col-form-label text-capitalize">Telefono</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="telefono" placeholder="telefono" id="telefono" readonly>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">direcci&oacute;n</label>
+						<label class="col-md-2 col-form-label text-capitalize">Direcci&oacute;n</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="direccion" placeholder="direccion" id="direccion" readonly>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">correo</label>
+						<label class="col-md-2 col-form-label text-capitalize">Correo</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="correo" placeholder="correo" id="correo" readonly>
 						</div>

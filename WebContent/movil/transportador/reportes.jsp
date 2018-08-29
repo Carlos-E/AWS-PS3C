@@ -60,7 +60,7 @@
 					<br>
 					<br>
 					<div class="form-group">
-						<label class="col-12 control-label no-padding" for="message">Escriba su Reporte</label>
+						<label class="col-12 control-label no-padding" for="message">Escriba su reporte</label>
 						<div class="col-12 no-padding">
 							<textarea class="form-control" id="nota" name="nota" placeholder="Escriba aqui su reporte..." rows="5"></textarea>
 						</div>

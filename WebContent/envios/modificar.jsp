@@ -70,27 +70,27 @@
 				</h3>
 				<form class="form" action="/envios/modificar" method="post">
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">cliente</label>
+						<label class="col-md-2 col-form-label text-capitalize">Cliente</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="cliente" placeholder="" id="cliente" readonly>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">fecha</label>
+						<label class="col-md-2 col-form-label text-capitalize">Fecha</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="fecha" placeholder="" id="fecha" readonly>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">origen</label>
+						<label class="col-md-2 col-form-label text-capitalize">Origen</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="origen" placeholder="origen" onchange="uno()" id="origen" required>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">destino</label>
+						<label class="col-md-2 col-form-label text-capitalize">Destino</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="destino" placeholder="destino" id="destino" required>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">usuario</label>
+						<label class="col-md-2 col-form-label text-capitalize">Usuario</label>
 						<div class="col-md-4">
 <!-- 							<input class="form-control" type="text" name="usuario" placeholder="usuario" id="usuario" required>
  -->							<select class="form-control" name="usuario" id="usuario">
@@ -113,7 +113,7 @@
 								%>
 							</select>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">tipo</label>
+						<label class="col-md-2 col-form-label text-capitalize">Tipo</label>
 						<div class="col-md-4">
 
 							<select class="custom-select" name="tipo" id="tipo" required>
@@ -126,11 +126,11 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">espacio</label>
+						<label class="col-md-2 col-form-label text-capitalize">Espacio</label>
 						<div class="col-md-4">
 							<input class="form-control" name="espacio" placeholder="espacio" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" onchange="uno()" id="espacio" required>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">estado</label>
+						<label class="col-md-2 col-form-label text-capitalize">Estado</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="estado" id="estado" disabled>
 
@@ -144,17 +144,17 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">peso</label>
+						<label class="col-md-2 col-form-label text-capitalize">Peso</label>
 						<div class="col-md-4">
 							<input class="form-control" name="peso" placeholder="peso" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" onchange="uno()" id="peso" required>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">descripci&oacute;n</label>
+						<label class="col-md-2 col-form-label text-capitalize">Descripci&oacute;n</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="descripcion" placeholder="descripcion" id="descripcion" required>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">empresa</label>
+						<label class="col-md-2 col-form-label text-capitalize">Empresa</label>
 						<div class="col-md-4">
 							<select class="form-control" name="empresa" id="empresa">
 								<option value="" selected>Seleccionar...</option>
@@ -175,13 +175,13 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">veh&iacute;culo o trailer asignado</label>
+						<label class="col-md-2 col-form-label text-capitalize">Veh&iacute;culo o trailer asignado</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="asignado" placeholder="asignado" id="asignado" readonly>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">veh&iacute;culo</label>
+						<label class="col-md-2 col-form-label text-capitalize">Veh&iacute;culo</label>
 						<div class="col-md-4">
 							<input id="rCamion" type="radio" name="asignacion" onclick="mostrar()" checked="true" required>
 						</div>
@@ -191,13 +191,13 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">veh&iacute;culos Disponibles</label>
+						<label class="col-md-2 col-form-label text-capitalize">Veh&iacute;culos disponibles</label>
 						<div class="col-md-4">
 							<i id="spinner1" class="fa fa-circle-notch fa-spin" style="font-size: 35px"></i>
 							<select id="camion" class="form-control" name="camion">								
 							</select>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Traileres Disponibles</label>
+						<label class="col-md-2 col-form-label text-capitalize">Traileres disponibles</label>
 						<div class="col-md-4">
 							<i id="spinner2" class="fa fa-circle-notch fa-spin" style="font-size: 35px"></i>
 							<select id="trailer" class="form-control" name="trailer" disabled="true">

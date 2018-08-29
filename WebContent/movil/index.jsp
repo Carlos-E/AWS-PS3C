@@ -52,7 +52,7 @@
 					<p>
 						Eres conductor o camionero?
 						<a href="https://s3.amazonaws.com/ps3c/app.apk" target="_blank">
-							Descargala Aqu&iacute;!!
+							Descargala aqu&iacute;!!
 							<em class="fa fa-download"></em>
 						</a>
 					</p>

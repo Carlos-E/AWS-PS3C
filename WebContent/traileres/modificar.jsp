@@ -139,11 +139,11 @@
 
 
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Remolque Asignado</label>
+						<label class="col-md-2 col-form-label text-capitalize">Remolque asignado</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="remolqueAsignado" id="remolqueAsignado" readonly>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Remolques Disponibles</label>
+						<label class="col-md-2 col-form-label text-capitalize">Remolques disponibles</label>
 						<div class="col-md-4">
 							<!-- 							<input class="form-control" type="text" name="vehiculo" placeholder="vehiculo" id="vehiculo" required>
  -->

@@ -40,12 +40,12 @@
 		<div class="dropdown-menu dropdown-menu-right" style="margin-right: 1.5rem;" aria-labelledby="dropdownMenuLink">
 			<a class="dropdown-item" href="/usuarios/perfil.jsp">
 				<em class="fa fa-user-circle mr-1"></em>
-				Actualizar Perfil
+				Actualizar perfil
 			</a>
 
 			<a class="dropdown-item" href="/logout">
 				<em class="fa fa-power-off mr-1"></em>
-				Cerrar Sesi&oacute;n
+				Cerrar sesi&oacute;n
 			</a>
 		</div>
 	</div>

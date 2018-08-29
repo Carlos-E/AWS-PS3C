@@ -67,7 +67,7 @@
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="clave" placeholder="clave" id="clave" required>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Repita Contrase&ntilde;a</label>
+						<label class="col-md-2 col-form-label text-capitalize">Repita contrase&ntilde;a</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="repita clave" placeholder="repita clave" id="repita-clave" required>
 						</div>

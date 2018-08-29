@@ -28,11 +28,11 @@
 					<div class="error-actions">
 						<a href="/login.jsp" class="btn btn-primary btn-lg">
 							<span class="glyphicon glyphicon-home"></span>
-							Llévame a Casa
+							Llévame a casa
 						</a>
 						<a href="/soporte.html" class="btn btn-default btn-lg" hidden>
 							<span class="glyphicon glyphicon-envelope"></span>
-							Contactar Soporte
+							Contactar soporte
 						</a>
 					</div>
 				</div>

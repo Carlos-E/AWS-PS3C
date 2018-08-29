@@ -50,7 +50,7 @@
 						<div class="col-md-4">
 							<input class="form-control" type="password" name="clave1" placeholder="contraseña" required>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Repetir-Contraseña</label>
+						<label class="col-md-2 col-form-label text-capitalize">Repetir-contraseña</label>
 						<div class="col-md-4">
 							<input class="form-control" type="password" name="clave2" placeholder="contraseña" required>
 						</div>
