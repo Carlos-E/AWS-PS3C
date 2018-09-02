@@ -1,6 +1,7 @@
 package com.envios;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.logica.Dibujar;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import clases.DB;
 import clases.Email;
@@ -27,14 +28,16 @@ public class Modificar extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.sendRedirect("/error.jsp");
+		response.sendRedirect("/404.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		response.setContentType("text/html");
 		request.setCharacterEncoding("UTF-8");
+		
+		response.setContentType("application/json");
+		response.setCharacterEncoding("utf-8");
 
 		DB DB = new DB();
 
@@ -42,9 +45,20 @@ public class Modificar extends HttpServlet {
 		Envio envio = new DB().load(Envio.class, request.getParameter("cliente"), request.getParameter("fecha"));
 		// Si no encontro nada, soltar mensaje de error y recargar pagina
 		if (envio == null) {
-			Dibujar.mensaje(response.getWriter(), "Envio no encontrado", "/envios/modificar.jsp");
+			// Dibujar.mensaje(response.getWriter(), "Envio no encontrado",
+			// "/envios/modificar.jsp");
+			response.setStatus(400);
+			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+				private static final long serialVersionUID = 1L;
+				{
+					put("title", "Operaci&oacute;n fallida");
+					put("message", "Envio no encontrado");
+				}
+			}));
 			return;
 		}
+
+
 		envio.setOrigen(request.getParameter("origen"));
 		envio.setDestino(request.getParameter("destino"));
 		envio.setOrigenLatLong(request.getParameter("origenLatLong"));
@@ -69,7 +83,7 @@ public class Modificar extends HttpServlet {
 			System.out.println("Se selecciono un Camion");
 
 			Vehiculo vehiculo = DB.load(Vehiculo.class, placaVehiculo.toLowerCase());
-		
+
 			envio.setCamion(vehiculo.getPlaca());
 			envio.setEstado("asignado");
 
@@ -82,36 +96,75 @@ public class Modificar extends HttpServlet {
 			envio.setTrailer(trailer.getPatente());
 			envio.setEstado("asignado");
 		}
-		
-		
-		
-		
-		if(envio.getTrailer().equals("ninguno")&&!envio.getCamion().equals("ninguno")){
-			
+
+		if (envio.getTrailer().equals("ninguno") && !envio.getCamion().equals("ninguno")) {
+
 			Vehiculo vehiculo = DB.load(Vehiculo.class, envio.getCamion());
-			
-			if((vehiculo.getPesoMax()-DB.getPesoVehiculo(vehiculo.getPlaca())) < Double.valueOf(request.getParameter("peso")) ){
-				Dibujar.mensaje(response.getWriter(), "Peso muy grande para el camion: " +vehiculo.getPlaca(), "/envios/modificar.jsp");
+
+			if ((vehiculo.getPesoMax() - DB.getPesoVehiculo(vehiculo.getPlaca())) < Double
+					.valueOf(request.getParameter("peso"))) {
+				// Dibujar.mensaje(response.getWriter(), "Peso muy grande para
+				// el camion: " +vehiculo.getPlaca(), "/envios/modificar.jsp");
+				response.setStatus(400);
+				response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+					private static final long serialVersionUID = 1L;
+					{
+						put("title", "Operaci&oacute;n fallida");
+						put("message", "Peso muy grande para el camion: " + vehiculo.getPlaca());
+					}
+				}));
 				return;
 			}
-			
-			if(((vehiculo.getEspacioMax()-DB.getEspacioVehiculo(vehiculo.getPlaca()))<Double.valueOf(request.getParameter("espacio")))){
-				Dibujar.mensaje(response.getWriter(), "Espacio muy grande para el camion: " +vehiculo.getPlaca(), "/envios/modificar.jsp");
+
+			if (((vehiculo.getEspacioMax() - DB.getEspacioVehiculo(vehiculo.getPlaca())) < Double
+					.valueOf(request.getParameter("espacio")))) {
+				// Dibujar.mensaje(response.getWriter(), "Espacio muy grande
+				// para el camion: " +vehiculo.getPlaca(),
+				// "/envios/modificar.jsp");
+				response.setStatus(400);
+				response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+					private static final long serialVersionUID = 1L;
+					{
+						put("title", "Operaci&oacute;n fallida");
+						put("message", "Espacio muy grande para el camion: " + vehiculo.getPlaca());
+					}
+				}));
 				return;
 			}
-			
-			
-		}else if (!envio.getTrailer().equals("ninguno")){			
-			
+
+		} else if (!envio.getTrailer().equals("ninguno")) {
+
 			Trailer trailer = DB.load(Trailer.class, envio.getTrailer());
 
-			if( (trailer.getPesoMax()-DB.getPesoTrailer(trailer.getPatente())) < Double.valueOf(request.getParameter("peso")) ){
-				Dibujar.mensaje(response.getWriter(), "Peso muy grande para el trailer: " +trailer.getPatente(), "/envios/modificar.jsp");
+			if ((trailer.getPesoMax() - DB.getPesoTrailer(trailer.getPatente())) < Double
+					.valueOf(request.getParameter("peso"))) {
+				// Dibujar.mensaje(response.getWriter(), "Peso muy grande para
+				// el trailer: " +trailer.getPatente(),
+				// "/envios/modificar.jsp");
+				response.setStatus(400);
+				response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+					private static final long serialVersionUID = 1L;
+					{
+						put("title", "Operaci&oacute;n fallida");
+						put("message", "Peso muy grande para el trailer: " + trailer.getPatente());
+					}
+				}));
 				return;
 			}
-			
-			if(((trailer.getEspacioMax()-DB.getEspacioTrailer(trailer.getPatente()))<Double.valueOf(request.getParameter("espacio")))){
-				Dibujar.mensaje(response.getWriter(), "Espacio muy grande para el trailer: " +trailer.getPatente(), "/envios/modificar.jsp");
+
+			if (((trailer.getEspacioMax() - DB.getEspacioTrailer(trailer.getPatente())) < Double
+					.valueOf(request.getParameter("espacio")))) {
+				// Dibujar.mensaje(response.getWriter(), "Espacio muy grande
+				// para el trailer: " +trailer.getPatente(),
+				// "/envios/modificar.jsp");
+				response.setStatus(400);
+				response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+					private static final long serialVersionUID = 1L;
+					{
+						put("title", "Operaci&oacute;n fallida");
+						put("message", "Espacio muy grande para el trailer: " + trailer.getPatente());
+					}
+				}));
 				return;
 			}
 		}
@@ -119,17 +172,22 @@ public class Modificar extends HttpServlet {
 		envio.setEspacio(Double.valueOf(request.getParameter("espacio")));
 		envio.setPeso(Double.valueOf(request.getParameter("peso")));
 
-
 		DB.save(envio);
-		
-		
-		if(envio.getEstado().equals("asignado")){
+
+		if (envio.getEstado().equals("asignado")) {
 			new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Envío Asignado",
 					"Su envío ha sido asignado correctamente y pronto sera recogido.", envio);
 
 		}
 
-		Dibujar.mensaje(response.getWriter(), "Envio actualizado correctamente", "/envios/modificar.jsp");
-
+		response.setStatus(200);
+		response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+			private static final long serialVersionUID = 1L;
+			{
+				put("title", "Operaci&oacuten exitosa");
+				put("message", "Envío actualizado");
+			}
+		}));
+		return;
 	}
 }

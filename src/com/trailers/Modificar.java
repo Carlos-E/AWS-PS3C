@@ -1,6 +1,7 @@
 package com.trailers;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.logica.Dibujar;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import clases.DB;
 import clases.Trailer;
@@ -29,8 +30,10 @@ public class Modificar extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		response.setContentType("text/html");
-
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json");
+		response.setCharacterEncoding("utf-8");
+		
 		DB DB = new DB();
 
 		Trailer trailer = new Trailer();
@@ -44,19 +47,34 @@ public class Modificar extends HttpServlet {
 
 		trailer.setEspacioMax(Double.valueOf(request.getParameter("espacioMax")));
 		if (trailer.getEspacioMax() < DB.getEspacioTrailer(trailer.getPatente())) {
-			Dibujar.mensaje(response.getWriter(),
-					"El espacio no puede ser menor a la cantidad consumida por los envios asignados",
-					request.getRequestURI() + ".jsp");
+//			Dibujar.mensaje(response.getWriter(),
+//					"El espacio no puede ser menor a la cantidad consumida por los envios asignados",
+//					request.getRequestURI() + ".jsp");
+			response.setStatus(400);
+			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+				private static final long serialVersionUID = 1L;
+				{
+					put("title", "Operaci&oacute;n exitosa");
+					put("message", "El espacio no puede ser menor a la cantidad consumida por los envios asignados");
+				}
+			}));
 			return;
 		}
 
 		trailer.setPesoMax(Double.valueOf(request.getParameter("pesoMax")));
 		if (trailer.getPesoMax() < DB.getPesoTrailer(trailer.getPatente())) {
-			Dibujar.mensaje(response.getWriter(),
-					"El peso no puede ser menor a la cantidad consumida por los envios asignados",
-					request.getRequestURI() + ".jsp");
-			return;
-		}
+//			Dibujar.mensaje(response.getWriter(),
+//					"El peso no puede ser menor a la cantidad consumida por los envios asignados",
+//					request.getRequestURI() + ".jsp");
+			response.setStatus(400);
+			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+				private static final long serialVersionUID = 1L;
+				{
+					put("title", "Operaci&oacute;n exitosa");
+					put("message", "El peso no puede ser menor a la cantidad consumida por los envios asignados");
+				}
+			}));
+			return;		}
 
 		String camion = null;
 
@@ -70,8 +88,15 @@ public class Modificar extends HttpServlet {
 
 		DB.save(trailer);
 
-		Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getRequestURI() + ".jsp");
-
+		response.setStatus(201);
+		response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+			private static final long serialVersionUID = 1L;
+			{
+				put("title", "Operaci&oacute;n exitosa");
+				put("message", "Trailer actualizado");
+			}
+		}));
+		return;
 	}
 
 }

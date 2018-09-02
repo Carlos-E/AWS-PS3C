@@ -3,6 +3,7 @@ package com.envios;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.logica.Dibujar;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import clases.*;
 
@@ -30,8 +31,9 @@ public class Crear extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html");
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("application/json");
+		response.setCharacterEncoding("utf-8");
 
 		DB DB = new DB();
 
@@ -93,8 +95,16 @@ public class Crear extends HttpServlet {
 				"Su envío ha sido creado y pronto sera asignado.", envio);
 		// ENVIAR CORREO
 
-		Dibujar.mensaje(response.getWriter(), "Operacion Exitosa, reporte generado.",
-				"/envios/crear.jsp");
+		// response.getWriter().write(new Item().withString("message", "Envío creado").toJSONPretty().toString());
+		response.setStatus(201);
+		response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+			private static final long serialVersionUID = 1L;
+			{
+				put("title", "Operaci&oacute;n exitosa");
+				put("message", "Envío creado");
+			}
+		}));
+		return;
 
 	}
 

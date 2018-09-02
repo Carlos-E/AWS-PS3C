@@ -1,6 +1,7 @@
 package com.controler;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,8 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import clases.*;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.logica.ControladorBD;
-import com.logica.Dibujar;
 
 @WebServlet("/login")
 public class login extends HttpServlet {
@@ -23,27 +25,30 @@ public class login extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-        //request.getRequestDispatcher("/login.jsp").forward(request, response);
+		// request.getRequestDispatcher("/login.jsp").forward(request,
+		// response);
 		response.sendRedirect("/login.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		response.setContentType("text/html");
-
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("application/json");
+		response.setCharacterEncoding("utf-8");
+		
 		String uname = request.getParameter("username");
 		String pass = request.getParameter("password");
 
 		if (ControladorBD.validarLogin(uname, pass)) {
 
 			HttpSession session = request.getSession();
-			//Vida de la sesion
-			session.setMaxInactiveInterval(60*60*4);
-			
+			// Vida de la sesion
+			session.setMaxInactiveInterval(60 * 60 * 4);
+
 			session.setAttribute("username", uname);
-			
-			System.out.println("session.getMaxInactiveInterval():"+session.getMaxInactiveInterval());
+
+			System.out.println("session.getMaxInactiveInterval():" + session.getMaxInactiveInterval());
 
 			Usuario usuario = new DB().load(Usuario.class, uname);
 
@@ -72,15 +77,35 @@ public class login extends HttpServlet {
 					session.setAttribute("placa", placa);
 					response.sendRedirect("/movil/index.jsp");
 				} else {
-					Dibujar.mensaje(response.getWriter(), "El conductor no tiene ningun vehículo asignado",
-							"/login.jsp");
+					// Dibujar.mensaje(response.getWriter(), "El conductor no
+					// tiene ningun vehículo asignado",
+					// "/login.jsp");
+					response.setStatus(200);
+					response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+						private static final long serialVersionUID = 1L;
+						{
+							put("title", "Operaci&oacute;n fallida");
+							put("message", "El conductor no tiene ningun vehículo asignado");
+						}
+					}));
+					return;
 				}
 
 				break;
 			}
 
 		} else {
-			Dibujar.mensaje(response.getWriter(), "Usuario o contraseña incorrecto", "/login.jsp");
+			// Dibujar.mensaje(response.getWriter(), "Usuario o contraseña
+			// incorrecto", "/login.jsp");
+			response.setStatus(400);
+			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+				private static final long serialVersionUID = 1L;
+				{
+					put("title", "Operaci&oacute;n fallida");
+					put("message", "Usuario o contraseña incorrectos");
+				}
+			}));
+			return;
 		}
 	}
 }

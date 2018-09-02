@@ -1,6 +1,7 @@
 package com.chequear;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import clases.DB;
 import clases.Email;
@@ -31,7 +33,7 @@ public class chequeoDescarga extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		response.setContentType("text/html");
 
 		try {
@@ -48,17 +50,17 @@ public class chequeoDescarga extends HttpServlet {
 					if (request.getParameter(envios.get(i).getFecha()) == null) {
 						envios.get(i).setChequeoDescarga(false);
 						envios.get(i).setEstado("en tránsito");
-						
-						new Email(DB.load(Usuario.class, envios.get(i).getUsuario()).getCorreo(), "PS3C - Envío Revertido",
-								"Hemos revertido el estado de su envio.", envios.get(i));
+
+						new Email(DB.load(Usuario.class, envios.get(i).getUsuario()).getCorreo(),
+								"PS3C - Envío Revertido", "Hemos revertido el estado de su envio.", envios.get(i));
 
 					} else {
 						envios.get(i).setChequeoDescarga(true);
 						envios.get(i).setChequeoCarga(true);
 						envios.get(i).setEstado("entregado");
-						
-						new Email(DB.load(Usuario.class, envios.get(i).getUsuario()).getCorreo(), "PS3C - Envío Entregado",
-								"Hemos entregado su envío.", envios.get(i));
+
+						new Email(DB.load(Usuario.class, envios.get(i).getUsuario()).getCorreo(),
+								"PS3C - Envío Entregado", "Hemos entregado su envío.", envios.get(i));
 
 					}
 
@@ -71,14 +73,35 @@ public class chequeoDescarga extends HttpServlet {
 
 			}
 
-			com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa",
-					request.getContextPath() + "/chequeo/entregado.jsp");
+			// com.logica.Dibujar.mensaje(response.getWriter(), "Operacion
+			// Exitosa",
+			// request.getContextPath() + "/chequeo/entregado.jsp");
+
+			response.setStatus(200);
+			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+				private static final long serialVersionUID = 1L;
+				{
+					put("title", "Operaci&oacute;n fallida");
+					put("message", "Env&iacute;os actualizados");
+				}
+			}));
+			return;
 
 		} catch (Exception e) {
 
-			com.logica.Dibujar.mensaje(response.getWriter(),
-					"Ocurrio un error al intentar chequear los envios cargados",
-					request.getContextPath() + "/chequeo/entregado.jsp");
+			// com.logica.Dibujar.mensaje(response.getWriter(),
+			// "Ocurrio un error al intentar chequear los envios cargados",
+			// request.getContextPath() + "/chequeo/entregado.jsp");
+
+			response.setStatus(500);
+			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+				private static final long serialVersionUID = 1L;
+				{
+					put("title", "Operaci&oacute;n fallida");
+					put("message", "Ocurrio un error al intentar chequear los env&iacute;os cargados");
+				}
+			}));
+			return;
 
 		}
 	}

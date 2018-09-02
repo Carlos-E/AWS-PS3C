@@ -34,7 +34,7 @@
 						out.print(session.getAttribute("pagina").toString());
 					%>
 				</h3>
-				<form class="form" action="/usuarios/crear" method="post">
+				<form id="myForm" class="form" action="/usuarios/crear" method="post">
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Nombre</label>
 						<div class="col-md-4">
@@ -95,7 +95,9 @@
 					<input type="text" id="latitud_Origen" name="latitud_Origen" style="display: none">
 					<input type="text" id="longitud_Origen" name="longitud_Origen" style="display: none">
 					<div class="modal-footer">
-						<button type="submit" name="submit" class="btn btn-primary btn-md float-right">Registrar</button>
+						<button type="reset" class="btn float-left"><i id="reset" class="fas fa-eraser fa-2x"></i></button>
+						<button id="submit" type="submit" class="btn btn-primary btn-md float-right">Confirmar</button>
+						
 						<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger btn-md float-right">Cancelar</button>
 					</div>
 				</form>

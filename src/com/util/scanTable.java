@@ -2,6 +2,7 @@ package com.util;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 import javax.servlet.ServletException;
@@ -19,6 +20,7 @@ import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.ItemCollection;
 import com.amazonaws.services.dynamodbv2.document.Table;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.amazonaws.services.dynamodbv2.document.ScanOutcome;
 
 @WebServlet("/scanTable")
@@ -47,6 +49,10 @@ public class scanTable extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("application/json");
+		response.setCharacterEncoding("utf-8");
+
 		try {
 
 			Table table = dynamoDB.getTable(request.getParameter("tabla"));
@@ -61,8 +67,19 @@ public class scanTable extends HttpServlet {
 			response.getWriter().close();
 
 		} catch (Exception e) {
-			com.logica.Dibujar.mensaje(response.getWriter(),
-					"Ocurrio un error al intentar escanear la tabla: " + request.getParameter("tabla"));
+			// com.logica.Dibujar.mensaje(response.getWriter(),
+			// "Ocurrio un error al intentar escanear la tabla: " +
+			// request.getParameter("tabla"));
+
+			response.setStatus(500);
+			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+				private static final long serialVersionUID = 1L;
+				{
+					put("title", "Operaci&oacute;n fallida");
+					put("message", "Ocurrio un error al intentar escanear la tabla: " + request.getParameter("tabla"));
+				}
+			}));
+			return;
 		}
 
 	}

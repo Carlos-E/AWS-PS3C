@@ -3,12 +3,15 @@ package com.reportes;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import clases.DB;
 import clases.Reporte;
@@ -29,8 +32,9 @@ public class Crear extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html");
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("application/json");
+		response.setCharacterEncoding("utf-8");
 
 		//Instancio el calendario y hago la hora
 		Calendar calendar = Calendar.getInstance();
@@ -50,8 +54,18 @@ public class Crear extends HttpServlet {
 		//Guardar en la base de datos
 		new DB().save(reporte);
 		
-		com.logica.Dibujar.mensaje(response.getWriter(), "Reporte Creado",
-				request.getContextPath() + "/movil/transportador/reportes.jsp");
+//		com.logica.Dibujar.mensaje(response.getWriter(), "Reporte Creado",
+//				request.getContextPath() + "/movil/transportador/reportes.jsp");
+		
+		response.setStatus(201);
+		response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+			private static final long serialVersionUID = 1L;
+			{
+				put("title", "Operaci&oacute;n exitosa");
+				put("message", "Reporte creado");
+			}
+		}));
+		return;
 
 	}
 

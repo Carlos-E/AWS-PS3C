@@ -1,6 +1,7 @@
 package com.reportes;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.logica.ControladorBD;
 
 import clases.DB;
@@ -30,6 +32,10 @@ public class Visto extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("application/json");
+		response.setCharacterEncoding("utf-8");
 
 		List<Reporte> reportes = new DB().scan(Reporte.class, new DynamoDBScanExpression());
 
@@ -49,9 +55,18 @@ public class Visto extends HttpServlet {
 			}
 		}
 
-		response.setContentType("text/html");
-		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa",
-				request.getContextPath() + "/envios/reportes.jsp");
+//		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa",
+//				request.getContextPath() + "/envios/reportes.jsp");
+		
+		response.setStatus(200);
+		response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+			private static final long serialVersionUID = 1L;
+			{
+				put("title", "Operaci&oacute;n exitosa");
+				put("message", "Reportes modificados");
+			}
+		}));
+		return;
 
 	}
 

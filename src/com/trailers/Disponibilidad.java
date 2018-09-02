@@ -43,21 +43,22 @@ public class Disponibilidad extends HttpServlet {
 
 		List<Trailer> trailers = new ArrayList<Trailer>(DB.scan(Trailer.class, new DynamoDBScanExpression()));
 		ArrayList<Map<String, Object>> test = new ArrayList<Map<String, Object>>();
-		
+
 		Iterator<Trailer> iteratorTrailers = trailers.iterator();
 
-		System.out.println("Lista Original");
+		// System.out.println("Lista Original");
 		while (iteratorTrailers.hasNext()) {
-			
+
 			Trailer trailer = iteratorTrailers.next();
-			
-			System.out.println(trailer);
+
+			// System.out.println(trailer);
 
 			double pesoOcupado = DB.getPesoTrailer(trailer.getPatente());
 			double espacioOcupado = DB.getEspacioTrailer(trailer.getPatente());
 
-			System.out.println("Peso maximo del trailer: " + trailer.getPesoMax());
-			System.out.println("Peso ocupado en el trailer: " + pesoOcupado);
+			// System.out.println("Peso maximo del trailer: " +
+			// trailer.getPesoMax());
+			// System.out.println("Peso ocupado en el trailer: " + pesoOcupado);
 
 			double pesoDisponible = 0;
 			if (trailer.getPesoMax() > pesoOcupado) {
@@ -70,37 +71,40 @@ public class Disponibilidad extends HttpServlet {
 			}
 
 			if (espacioDisponible < espacioEnvio || pesoDisponible < pesoEnvio) {
-				System.out.println("Trailer sin espacio, descartando");
+				// System.out.println("Trailer sin espacio, descartando");
 				iteratorTrailers.remove();
 			}
 
 		}
-		System.out.println("Lista Original");
+		
+		// System.out.println("Lista Original");
 		/*
 		 * System.out.println("Lista resultante"); iteratorTrailers =
 		 * trailers.iterator(); while (iteratorTrailers.hasNext()) {
 		 * System.out.println(iteratorTrailers.next()); }
-		 
-		 com.vehiculo leer ---leee esto!!
-*/      Map<String, Object> map = new HashMap<String, Object>();
+		 * 
+		 * com.vehiculo leer ---leee esto!!
+		 */ 
 		
-		for(int j = 0; j <trailers.size();j++) {
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		for (int j = 0; j < trailers.size(); j++) {
 			map = new HashMap<String, Object>();
 			map.put("patente", trailers.get(j).getPatente());
-			if(trailers.get(j).getCamion() != "ninguno") {
+			if (trailers.get(j).getCamion() != "ninguno") {
 				Vehiculo vehiculo = DB.load(Vehiculo.class, trailers.get(j).getCamion());
 				map.put("latitud", vehiculo.getLatitud());
 				map.put("longitud", vehiculo.getLongitud());
-			}else {
+			} else {
 				map.put("latitud", "NA");
 				map.put("longitud", "NA");
 			}
 			test.add(map);
-			System.out.println(map);
-			
+			// System.out.println(map);
+
 		}
-		System.out.println(test);
-		
+		// System.out.println(test);
+
 		response.setContentType("application/json");
 		response.getWriter().print(new ObjectMapper().writeValueAsString(test));
 		response.getWriter().close();

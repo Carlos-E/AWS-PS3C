@@ -1,11 +1,15 @@
 package com.trailers;
 
 import java.io.IOException;
+import java.util.HashMap;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.logica.Dibujar;
 
 import clases.*;
@@ -25,19 +29,21 @@ public class Crear extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		response.setContentType("text/html");
+
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json");
+		response.setCharacterEncoding("utf-8");
 
 		Trailer trailer = new Trailer();
 
 		trailer.setPatente(request.getParameter("patente").toLowerCase());
 		trailer.setTipo(request.getParameter("tipo").toLowerCase());
-		
+
 		trailer.setPesoMax(Double.valueOf(request.getParameter("peso").toLowerCase()));
 		trailer.setEspacioMax(Double.valueOf(request.getParameter("espacio").toLowerCase()));
-		
+
 		trailer.setEmpresa(request.getParameter("empresa").toLowerCase());
-		
+
 		if (request.getParameter("remolque").equals("ninguno")) {
 			trailer.setCamion("ninguno");
 		} else {
@@ -46,7 +52,15 @@ public class Crear extends HttpServlet {
 
 		new DB().save(trailer);
 
-		Dibujar.mensaje(response.getWriter(), "Operacion Exitosa","/traileres/crear.jsp");
-
+		// Response
+		response.setStatus(200);
+		response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+			private static final long serialVersionUID = 1L;
+			{
+				put("title", "Operaci&oacuten exitosa");
+				put("message", "Trailer creado");
+			}
+		}));
+		return;
 	}
 }

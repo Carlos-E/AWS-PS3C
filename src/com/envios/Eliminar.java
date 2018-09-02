@@ -1,12 +1,15 @@
 package com.envios;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import clases.DB;
 import clases.Envio;
@@ -27,8 +30,10 @@ public class Eliminar extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		response.setContentType("text/html");
+		request.setCharacterEncoding("UTF-8");
 
+		response.setContentType("application/json");
+		response.setCharacterEncoding("utf-8");
 		DB DB = new DB();
 
 		Envio envio = new Envio();
@@ -40,9 +45,16 @@ public class Eliminar extends HttpServlet {
 
 		DB.delete(envio);
 
-		/*new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Envío Eliminado",
-				"Su envío ha sido elimindo del sistema PS3C.", envio);*/
-		
-		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getRequestURL() + ".jsp");
+		//Response
+		response.setStatus(200);
+		response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+			private static final long serialVersionUID = 1L;
+			{
+				put("title", "Operaci&oacuten exitosa");
+				put("message", "Envío eliminado");
+			}
+		}));
+		return;
+
 	}
 }

@@ -8,7 +8,7 @@
 	if (session.getAttribute("rol") == null) {
 		response.sendRedirect("/login.jsp");
 	}
-	session.setAttribute("pagina", "Crear Envíos");
+	session.setAttribute("pagina", "Crear envíos");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="es">
@@ -56,7 +56,7 @@
 					%>
 				</h3>
 
-				<form class="form" action="/envios/crear" method="post">
+				<form id="myForm" class="form" action="/envios/crear" method="post">
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize" >Peso</label>
 						<div class="col-md-4">
@@ -140,7 +140,8 @@
 					<input type="text" id="origenLatLong" name="origenLatLong" style="display: none">
 					
 					<div class="modal-footer">
-						<button type="submit" name="submit" class="btn btn-primary btn-md float-right">Registrar</button>
+						<button type="reset" class="btn float-left"><i id="reset" class="fas fa-eraser fa-2x"></i></button>
+						<button id="submit" type="submit" class="btn btn-primary btn-md float-right">Confirmar</button>
 						<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger btn-md float-right">Cancelar</button>
 					</div>
 				</form>
@@ -164,7 +165,7 @@
 				<div class="modal-body">Desea cancelar?</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-					<form name="form" action="/cancelar" method="post">
+					<form action="/cancelar" method="post">
 						<button type="submit" class="btn btn-danger btn-md float-right">Cancelar</button>
 					</form>
 				</div>

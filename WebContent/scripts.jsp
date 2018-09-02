@@ -76,7 +76,7 @@ $(document).ready(function() {
 				type : "POST",
 				dataType : "json",
 			}).done(function(response) {
-				console.log(response);
+				//console.log(response);
 				
 		        $("#numMessages").html(response.num);
 		    
@@ -109,4 +109,58 @@ $(document).ready(function() {
 }
 %>
 	
+</script>
+
+<script>
+	$(document).ready(function() {
+
+		$('#myForm').submit(function(e) {
+			
+			e.preventDefault();
+
+			$('#ModalButton').hide();
+
+			$("#reset").attr('class', 'fas fa-circle-notch fa-spin fa-2x');
+			
+			let url = $(this).attr('action');
+			let data = $(this).serializeArray();
+			
+			console.log('URL: '+ JSON.stringify(url,null,2));
+			console.log('Data: '+ JSON.stringify(data,null,2));
+			
+			$.ajax({
+				url : url,
+				data : data,
+				type : "POST",
+				dataType : "json",
+			}).done(function(data, textStatus, xhr) {
+				console.log(JSON.stringify(xhr, null, 2));
+
+				$('#ModalTitle').html('Operaci&oacute;n exitosa');
+				//$('#ModalBody').html(xhr.responseJSON.message);
+				$('#ModalBody').html('Operaci&oacute;n completada');
+				
+			}).fail(function(xhr, textStatus) {
+				console.log(JSON.stringify(xhr, null, 2));
+
+				$('#ModalTitle').html('C&oacute;digo de Estado: ' + xhr.status);
+				$('#ModalBody').html('Oopss a ocurrido un error');
+				
+			}).always(function(data, textStatus, xhr) {
+				
+				if (typeof xhr.responseJSON != 'undefined') {
+					if (typeof xhr.responseJSON.title != 'undefined') {
+						$('#ModalTitle').html(xhr.responseJSON.title);
+					}
+					if (typeof xhr.responseJSON.message != 'undefined') {
+						$('#ModalBody').html(xhr.responseJSON.message);
+					}
+				}
+				
+				$("#Modal").modal();
+				$("#reset").attr('class', 'fas fa-eraser fa-2x');
+			});
+
+		});
+	});
 </script>

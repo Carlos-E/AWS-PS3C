@@ -18,6 +18,7 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.ScanRequest;
 import com.amazonaws.services.dynamodbv2.model.ScanResult;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebServlet("/getNumReports")
 public class GetNumReports extends HttpServlet {
@@ -40,7 +41,7 @@ public class GetNumReports extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		try {
 
 			Map<String, AttributeValue> expressionAttributeValues = new HashMap<String, AttributeValue>();
@@ -57,7 +58,17 @@ public class GetNumReports extends HttpServlet {
 			response.getWriter().close();
 
 		} catch (Exception e) {
-			com.logica.Dibujar.mensaje(response.getWriter(), "Error al cargar el numero de Reportes");
+			// com.logica.Dibujar.mensaje(response.getWriter(), "Error al cargar
+			// el numero de Reportes");
+			response.setStatus(500);
+			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+				private static final long serialVersionUID = 1L;
+				{
+					put("title", "Operaci&oacute;n fallida");
+					put("message", "Error al cargar el numero de Reportes");
+				}
+			}));
+			return;
 		}
 
 	}

@@ -1,12 +1,15 @@
 package com.vehiculos;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import clases.DB;
 import clases.Vehiculo;
@@ -29,8 +32,9 @@ public class Crear extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		response.setContentType("text/html");
-		
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json");
+		response.setCharacterEncoding("utf-8");		
 
 		double peso = Double.valueOf(request.getParameter("peso"));
 		double espacio = Double.valueOf(request.getParameter("espacio"));
@@ -54,7 +58,14 @@ public class Crear extends HttpServlet {
 
 		new DB().save(vehiculo);
 		
-		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa", request.getContextPath() + "/vehiculos/crear.jsp");
-
+		response.setStatus(201);
+		response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+			private static final long serialVersionUID = 1L;
+			{
+				put("title", "Operaci&oacute;n exitosa");
+				put("message", "Veh&iacute;culo creado");
+			}
+		}));
+		return;
 	}
 }
