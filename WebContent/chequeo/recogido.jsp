@@ -37,7 +37,7 @@
 						<i id="spinner" class="fa fa-circle-notch fa-spin" style="font-size: 30px"></i>
 					</h3>
 					<h6 class="text-muted mb-4"></h6>
-					<form action="/chequeoCarga" method="post">
+					<form id="myForm" action="/chequeoCarga" method="post">
 					<div id="example_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
 						<div class="row">
 							<div class="col-sm-12 col-md-6">

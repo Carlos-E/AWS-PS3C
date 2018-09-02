@@ -81,7 +81,7 @@ public class chequeoDescarga extends HttpServlet {
 			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put("title", "Operaci&oacute;n fallida");
+					put("title", "Operaci&oacute;n exitosa");
 					put("message", "Env&iacute;os actualizados");
 				}
 			}));

@@ -41,8 +41,6 @@ public class Eliminar extends HttpServlet {
 		envio.setUsuario(request.getParameter("cliente").toLowerCase());
 		envio.setFecha(request.getParameter("fecha").toLowerCase());
 
-		envio = DB.load(envio);
-
 		DB.delete(envio);
 
 		//Response
