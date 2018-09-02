@@ -180,6 +180,8 @@ table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_des
 				        let column = table.column( $(this).attr('data-column') );
 				        column.visible( ! column.visible() );
 				    } );
+					
+					columns[0].title = columns[0].title + '- Y/M/D - Hora';
 
 					let table = $('#table').DataTable({
 						data: dataSet,
