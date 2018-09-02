@@ -115,12 +115,8 @@
 							<input class="form-control" type="text" name="correo" placeholder="correo" id="correo" required>
 						</div>
 					</div>					
-					<input type="text" id="longitud_Destino" name="longitud_Destino" style="display: none">
-					<input type="text" id="latitud_Destino" name="latitud_Destino" style="display: none">
-					<input type="text" id="latitud_Origen" name="latitud_Origen" style="display: none">
-					<input type="text" id="longitud_Origen" name="longitud_Origen" style="display: none">
 					<div class="modal-footer">
-						<button type="reset" class="btn float-left"><i id="reset" class="fas fa-eraser fa-2x"></i></button>
+						<button type="reset" class="btn btn-secondary float-left"><i id="reset" class="fas fa-eraser fa-2x"></i></button>
 						<button id="submit" type="submit" class="btn btn-primary btn-md float-right">Confirmar</button>
 						<button id="atras" type="button" data-target="#" class="btn btn-danger btn-md float-right">Atras</button>
 					</div>

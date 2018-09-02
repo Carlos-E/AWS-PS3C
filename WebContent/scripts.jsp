@@ -133,26 +133,31 @@ $(document).ready(function() {
 				data : data,
 				type : "POST",
 				dataType : "json",
-			}).done(function(data, textStatus, xhr) {
-				console.log(JSON.stringify(xhr, null, 2));
+			}).done(function(data, statusText, xhr) {
 
 				$('#ModalTitle').html('Operaci&oacute;n exitosa');
-				//$('#ModalBody').html(xhr.responseJSON.message);
 				$('#ModalBody').html('Operaci&oacute;n completada');
 				
-			}).fail(function(xhr, textStatus) {
-				console.log(JSON.stringify(xhr, null, 2));
+			}).fail(function(xhr, statusText) {
 
 				$('#ModalTitle').html('C&oacute;digo de Estado: ' + xhr.status);
 				$('#ModalBody').html('Oopss a ocurrido un error');
 				
-			}).always(function(data, textStatus, xhr) {
+			}).always(function(xhr, statusText,a) {
 				
+				if(a!=''){
+					xhr = a;
+				}
+				
+				console.log(JSON.stringify(xhr, null, 2));
+
 				if (typeof xhr.responseJSON != 'undefined') {
 					if (typeof xhr.responseJSON.title != 'undefined') {
+						console.log('mensaje titulo');
 						$('#ModalTitle').html(xhr.responseJSON.title);
 					}
 					if (typeof xhr.responseJSON.message != 'undefined') {
+						console.log('mensaje cuerpo');
 						$('#ModalBody').html(xhr.responseJSON.message);
 					}
 				}
