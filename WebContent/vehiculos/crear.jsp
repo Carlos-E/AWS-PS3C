@@ -107,17 +107,14 @@
 					<div id="oculto" class="form-group row" style="display: none;">
 						<label class="col-md-2 col-form-label text-capitalize">Peso m&aacute;ximo</label>
 						<div class="col-md-4">
-							<input class="form-control" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" name="peso" placeholder="peso en kg" id="peso" value="1" required>
+							<input class="form-control" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" name="peso" placeholder="peso en kg" id="peso" value="0" disabled required>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Espacio m&aacute;ximo</label>
 						<div class="col-md-4">
-							<input class="form-control" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" name="espacio" placeholder="en metros cubicos" id="espacio" value="1" required>
+							<input class="form-control" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" name="espacio" placeholder="en metros cubicos" id="espacio" value="0" disabled required>
 						</div>
 					</div>
-					<input type="text" id="longitud_Destino" name="longitud_Destino" style="display: none">
-					<input type="text" id="latitud_Destino" name="latitud_Destino" style="display: none">
-					<input type="text" id="latitud_Origen" name="latitud_Origen" style="display: none">
-					<input type="text" id="longitud_Origen" name="longitud_Origen" style="display: none">
+					
 					<div class="modal-footer">
 						<button type="reset" class="btn float-left"><i id="reset" class="fas fa-eraser fa-2x"></i></button>
 						<button id="submit" type="submit" class="btn btn-primary btn-md float-right">Confirmar</button>
@@ -154,10 +151,14 @@
 	<script type="text/javascript">
 		function mostrar() {
 			document.getElementById('oculto').style.display = '';
+			$('#peso').prop('disabled',false);
+			$('#espacio').prop('disabled',false);
 		}
 
 		function ocultar() {
 			document.getElementById('oculto').style.display = 'none';
+			$('#peso').prop('disabled',true);
+			$('#espacio').prop('disabled',true);
 		}
 	</script>
 </body>

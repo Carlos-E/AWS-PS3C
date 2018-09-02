@@ -53,17 +53,13 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Telefono</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="telefono" placeholder="telefono" required>
+							<input class="form-control" type="number" name="telefono" placeholder="telefono" required>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Direcci&oacute;n</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="direccion" placeholder="dirección" required>
 						</div>
 					</div>
-					<input type="text" id="longitud_Destino" name="longitud_Destino" style="display: none">
-					<input type="text" id="latitud_Destino" name="latitud_Destino" style="display: none">
-					<input type="text" id="latitud_Origen" name="latitud_Origen" style="display: none">
-					<input type="text" id="longitud_Origen" name="longitud_Origen" style="display: none">
 					<div class="modal-footer">
 						<button type="reset" class="btn float-left">
 							<i id="reset" class="fas fa-eraser fa-2x"></i>

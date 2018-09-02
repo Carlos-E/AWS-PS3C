@@ -84,7 +84,7 @@
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Telefono</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="telefono" placeholder="telefono" id="telefono" required>
+							<input class="form-control" type="number" name="telefono" placeholder="telefono" id="telefono" required>
 						</div>
 					</div>					
 					<input type="text" id="longitud_Destino" name="longitud_Destino" style="display: none">

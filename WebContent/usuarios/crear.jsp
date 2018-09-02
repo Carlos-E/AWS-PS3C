@@ -38,11 +38,11 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Nombre</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="nombre" placeholder="nombre" id="nombre" required>
+							<input class="form-control" pattern="[a-zA-Z]" type="text" name="nombre" placeholder="nombre" id="nombre" required>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Apellido</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="apellido" placeholder="apellido" id="apellido" required>
+							<input class="form-control" pattern="[a-zA-Z]" type="text" name="apellido" placeholder="apellido" id="apellido" required>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -68,7 +68,7 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Telefono</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="telefono" placeholder="telefono" required>
+							<input class="form-control" type="number" name="telefono" placeholder="telefono" required>
 						</div>
 						<%
 							if (session.getAttribute("rol").equals("admin") || session.getAttribute("rol").equals("empleado")) {
@@ -90,10 +90,6 @@
 							//out.print(session.getAttribute("rol").toString());
 						%>
 					</div>
-					<input type="text" id="longitud_Destino" name="longitud_Destino" style="display: none">
-					<input type="text" id="latitud_Destino" name="latitud_Destino" style="display: none">
-					<input type="text" id="latitud_Origen" name="latitud_Origen" style="display: none">
-					<input type="text" id="longitud_Origen" name="longitud_Origen" style="display: none">
 					<div class="modal-footer">
 						<button type="reset" class="btn float-left"><i id="reset" class="fas fa-eraser fa-2x"></i></button>
 						<button id="submit" type="submit" class="btn btn-primary btn-md float-right">Confirmar</button>

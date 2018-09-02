@@ -76,11 +76,11 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Nombre</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="nombre" placeholder="nombre" id="nombre" required>
+							<input class="form-control" pattern="[a-zA-Z]" type="text" name="nombre" placeholder="nombre" id="nombre" required>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Apellido</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="apellido" placeholder="apellido" id="apellido" required>
+							<input class="form-control" pattern="[a-zA-Z]" type="text" name="apellido" placeholder="apellido" id="apellido" required>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -102,7 +102,7 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Telefono</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="telefono" placeholder="telefono" id="telefono" required>
+							<input class="form-control" type="number" name="telefono" placeholder="telefono" id="telefono" required>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Direcci&oacute;n</label>
 						<div class="col-md-4">
@@ -112,7 +112,7 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Correo</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="correo" placeholder="correo" id="correo" required>
+							<input class="form-control" type="email" name="correo" placeholder="correo" id="correo" required>
 						</div>
 					</div>					
 					<div class="modal-footer">

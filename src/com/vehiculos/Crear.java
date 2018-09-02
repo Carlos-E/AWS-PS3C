@@ -34,22 +34,22 @@ public class Crear extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json");
-		response.setCharacterEncoding("utf-8");		
+		response.setCharacterEncoding("utf-8");
 
-		double peso = Double.valueOf(request.getParameter("peso"));
-		double espacio = Double.valueOf(request.getParameter("espacio"));
-				
-		if (request.getParameter("tipo").toLowerCase().equals("remolque")) {
-			peso = 0;
-			espacio = 0;
+		double peso = 0;
+		double espacio = 0;
+
+		if (request.getParameter("tipo").toLowerCase().equals("camion")) {
+			peso = Double.valueOf(request.getParameter("peso"));
+			espacio = Double.valueOf(request.getParameter("espacio"));
 		}
-		
+
 		vehiculo.setPlaca(request.getParameter("placa").toLowerCase());
 		vehiculo.setTipo(request.getParameter("tipo").toLowerCase());
 
 		vehiculo.setEspacioMax(espacio);
 		vehiculo.setPesoMax(peso);
-		
+
 		vehiculo.setUsuario(request.getParameter("conductor").toLowerCase());
 		vehiculo.setEmpresa(request.getParameter("empresa"));
 
@@ -57,7 +57,7 @@ public class Crear extends HttpServlet {
 		vehiculo.setLongitud("-75.505819");
 
 		new DB().save(vehiculo);
-		
+
 		response.setStatus(201);
 		response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 			private static final long serialVersionUID = 1L;
