@@ -10,7 +10,7 @@
 		//response.sendError(400, "Acceso incorrecto"); //cambiar
 		response.sendRedirect("/error.jsp");
 	}
-	session.setAttribute("pagina", "Listar Empresas");
+	session.setAttribute("pagina", "Listar empresas");
 %>
 <!DOCTYPE html>
 <html lang="es">

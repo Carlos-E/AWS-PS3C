@@ -42,6 +42,7 @@ public class Modificar extends HttpServlet {
 
 		empresa = DB.load(empresa);
 
+		empresa.setRut(request.getParameter("rut").toLowerCase());
 		empresa.setNombre(request.getParameter("nombre").toLowerCase());
 		empresa.setTelefono(request.getParameter("telefono").toLowerCase());
 		empresa.setDireccion(request.getParameter("nombre").toLowerCase());

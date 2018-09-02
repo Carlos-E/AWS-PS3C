@@ -10,7 +10,7 @@
 
 <jsp:include page="/head.jsp" />
 <%
-	session.setAttribute("pagina", "Eliminar Empresa");
+	session.setAttribute("pagina", "Eliminar empresa");
 %>
 </head>
 
@@ -60,6 +60,10 @@
 						<label class="col-md-2 col-form-label text-capitalize">NIT</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="nit" placeholder="nit" id="nit" readonly>
+						</div>
+						<label class="col-md-2 col-form-label text-capitalize">RUT</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="rut" placeholder="rut" id="rut" readonly>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -148,6 +152,7 @@
 				console.log(lista[selectedIndex]);
 				let objeto = lista[selectedIndex];	
 				$('#nit').val(objeto.nit);
+				$('#rut').val(objeto.rut);
 				$('#nombre').val(objeto.nombre);
 				$('#telefono').val(objeto.telefono);
 				$('#direccion').val(objeto.direccion);
