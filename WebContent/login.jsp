@@ -106,8 +106,23 @@
 
 			$('#ModalButton').hide();
 
-			$("#reset").attr('class', 'fas fa-circle-notch fa-spin fa-2x');
-			
+			switch (Math.floor((Math.random() * 5) + 1)) {
+			case 1:
+				$('#submit').html('<i class="fas fa-spinner fa-spin fa-lg"></i>');
+				break;
+			case 2:
+				$('#submit').html('<i class="fas fa-circle-notch fa-spin fa-lg"></i>');
+				break;
+			case 3:
+				$('#submit').html('<i class="fas fa-sync fa-spin fa-lg"></i>');
+				break;
+			case 4:
+				$('#submit').html('<i class="fas fa-cog fa-spin fa-lg"></i>');
+				break;
+			case 5:
+				$('#submit').html('<i class="fas fa-spinner fa-pulse fa-lg"></i>');
+				break;
+		}			
 			let url = $(this).attr('action');
 			let data = $(this).serializeArray();
 			
@@ -126,10 +141,6 @@
 			    }
 			}).done(function(data, statusText, xhr) {
 				
-				if(data.sendRedirect){
-			   		window.location.replace(data.sendRedirect); 
-				}
-
 				$('#ModalTitle').html('Operaci&oacute;n exitosa');
 				$('#ModalBody').html('Operaci&oacute;n completada');
 				
@@ -155,13 +166,12 @@
 						console.log('mensaje cuerpo');
 						$('#ModalBody').html(xhr.responseJSON.message);
 					}
-					/* if(typeof xhr.responseJSON.sendRedirect != 'undefined'){
-						
-					 }*/
+					if(typeof xhr.responseJSON.sendRedirect != 'undefined'){
+						window.location.replace(xhr.responseJSON.sendRedirect);
+					}
 				}
 				
 				$("#Modal").modal();
-				$("#reset").attr('class', 'fas fa-eraser fa-2x');
 			});
 
 		});
