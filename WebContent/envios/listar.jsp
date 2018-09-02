@@ -46,6 +46,12 @@ table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_des
 						Datos
 						<i id="spinner" class="fa fa-circle-notch fa-spin" style="font-size: 30px"></i>
 					</h3>
+
+					<div id="toggleColumn">
+						<!-- Toggle column:
+						<a class="toggle-vis" data-column="0">Name</a> -->
+					</div>
+
 					<h6 class="text-muted mb-4"></h6>
 					<div id="example_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
 						<div class="row">
@@ -148,26 +154,39 @@ table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_des
 					});
 					
 					let search = getParameterByName('search');
+					
+					let columns = [
+						{ title: "Fecha" },
+						{ title: "Usuario" },
+						{ title: "Empresa" },
+						{ title: "Origen" },
+						{ title: "Destino" },
+						{ title: "Estado" },
+						{ title: "Tipo" },
+						{ title: "Peso" },
+						{ title: "Espacio" },
+						{ title: "Remolque" },
+						{ title: "Trailer" },
+						{ title: "Descripci&oacute;n" }
+					];
+					
+					$('#toggleColumn').append('Filtro');
+					columns.forEach(function(currentValue, index, array) {						
+						$('#toggleColumn').append(' - <a style="color:rgb(213, 108, 62) !important;font-size:0.7rem;" class="toggle-vis" data-column="'+index+'">'+currentValue.title+'</a>');
+					});
+					
+					$('a.toggle-vis').on('click', function (e) {
+				        e.preventDefault();
+				        let column = table.column( $(this).attr('data-column') );
+				        column.visible( ! column.visible() );
+				    } );
 
-					$('#table').DataTable({
+					let table = $('#table').DataTable({
 						data: dataSet,
 						language: {
 							url: "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
 						},
-						columns: [
-							{ title: "Fecha" },
-							{ title: "Usuario" },
-							{ title: "Empresa" },
-							{ title: "Origen" },
-							{ title: "Destino" },
-							{ title: "Estado" },
-							{ title: "Tipo" },
-							{ title: "Peso" },
-							{ title: "Espacio" },
-							{ title: "Remolque" },
-							{ title: "Trailer" },
-							{ title: "Descripci&oacute;n" }
-						],
+						columns: columns,
 						search: {
 						    search: getParameterByName('search') != null ? getParameterByName('search') : ""
 						},
@@ -176,9 +195,9 @@ table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_des
 						}
 					});
 					
-					
 				}
-			</script>
+				
+	</script>
 </body>
 
 </html>
