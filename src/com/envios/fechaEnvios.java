@@ -29,8 +29,6 @@ public class fechaEnvios extends HttpServlet {
 		JSONArray jsonObject = new JSONArray(new DB().scan(Envio.class, new DynamoDBScanExpression()));
 		String json = jsonObject.toString();
 
-		System.out.println("Json: " + jsonObject);
-
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().write(json);
