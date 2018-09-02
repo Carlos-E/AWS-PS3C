@@ -76,7 +76,7 @@
 						out.print(session.getAttribute("pagina").toString());
 					%>
 				</h3>
-				<form id="form2" class="form" action="/traileres/modificar" method="post">
+				<form id="myForm" class="form" action="/traileres/modificar" method="post">
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Patente</label>
 						<div class="col-md-4">
@@ -181,7 +181,8 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button id="submit" type="submit" class="btn btn-primary btn-md float-right">Modificar</button>
+						<button type="reset" class="btn float-left"><i id="reset" class="fas fa-eraser fa-2x"></i></button>
+						<button id="submit" type="submit" class="btn btn-primary btn-md float-right">Confirmar</button>
 						<button id="atras" type="button" data-target="#" class="btn btn-danger btn-md float-right">Atras</button>
 					</div>
 				</form>

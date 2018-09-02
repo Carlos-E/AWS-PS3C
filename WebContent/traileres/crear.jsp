@@ -51,7 +51,7 @@
 						out.print(session.getAttribute("pagina").toString());
 					%>
 				</h3>
-				<form class="form" action="/trailers/crear" method="post">
+				<form id="myForm" class="form" action="/trailers/crear" method="post">
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Patente</label>
 						<div class="col-md-4">
@@ -137,7 +137,8 @@
 					</div>
 					
 					<div class="modal-footer">
-						<button type="submit" name="submit" class="btn btn-primary btn-md float-right">Registrar</button>
+						<button type="reset" class="btn float-left"><i id="reset" class="fas fa-eraser fa-2x"></i></button>
+						<button id="submit" type="submit" class="btn btn-primary btn-md float-right">Confirmar</button>
 						<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger btn-md float-right">Cancelar</button>
 					</div>
 				</form>

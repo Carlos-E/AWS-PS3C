@@ -55,7 +55,7 @@
 						out.print(session.getAttribute("pagina").toString());
 					%>
 				</h3>
-				<form id="form2" class="form" action="/empresas/eliminar" method="post">
+				<form id="myForm" class="form" action="/empresas/eliminar" method="post">
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">NIT</label>
 						<div class="col-md-4">
@@ -87,7 +87,8 @@
 					<input type="text" id="latitud_Origen" name="latitud_Origen" style="display: none">
 					<input type="text" id="longitud_Origen" name="longitud_Origen" style="display: none">
 					<div class="modal-footer">
-						<button id="submit" type="submit" class="btn btn-primary btn-md float-right">Eliminar</button>
+						<button type="button" class="btn float-left"><i id="reset"></i></button>
+						<button id="submit" type="submit" class="btn btn-primary btn-md float-right">Confirmar</button>
 						<button id="atras" type="button" data-target="#" class="btn btn-danger btn-md float-right">Atras</button>
 					</div>
 				</form>

@@ -12,10 +12,14 @@
 <html lang="es">
 <head>
 <jsp:include page="/head.jsp" />
-<title><%out.print(session.getAttribute("pagina").toString());%></title>
+<title>
+	<%
+		out.print(session.getAttribute("pagina").toString());
+	%>
+</title>
 </head>
 <body>
-<div class="container-fluid" id="wrapper">
+	<div class="container-fluid" id="wrapper">
 		<div class="row">
 			<!-- INICIO NAVBAR -->
 			<jsp:include page="/navbar.jsp" />
@@ -23,32 +27,39 @@
 		</div>
 	</div>
 
-<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER --> <section class="row">
+	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER --> <section class="row">
 	<div class="col-md-12 col-lg-12">
 		<div class="card mb-4">
 			<!-- INICIO CONTAINER -->
-			<form action="/reportes/visto" method="post">
-			<div class="card-block">
-				<h3 class="card-title"><% out.print(session.getAttribute("pagina").toString()); %></h3>
-						
-							<div class="col-sm-12">
-								<table id="tabla" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;font-size: 0.65rem;">
-									<thead>
+			<form id="myForm" action="/reportes/visto" method="post">
+				<div class="card-block">
+					<h3 class="card-title">
+						<%
+							out.print(session.getAttribute("pagina").toString());
+						%>
+					</h3>
 
-									</thead>
-									<tfoot>
+					<div class="col-sm-12">
+						<table id="tabla" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%; font-size: 0.65rem;">
+							<thead>
 
-									</tfoot>
-									<tbody>
+							</thead>
+							<tfoot>
 
-									</tbody>
-								</table>
-							</div>
-			</div>
-			<div class="modal-footer">
-				<button id="modificar" type="submit" class="btn btn-primary btn-md float-right">Actualizar</button>
-				<button id="atras" type="button" data-target="#" class="btn btn-danger btn-md float-right">Atras</button>
-			</div>
+							</tfoot>
+							<tbody>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="reset" class="btn float-left">
+						<i id="reset" class="fas fa-eraser fa-2x"></i>
+					</button>
+					<button id="submit" type="submit" class="btn btn-primary btn-md float-right">Confirmar</button>
+					<button id="atras" type="button" data-target="#" class="btn btn-danger btn-md float-right">Atras</button>
+				</div>
 			</form>
 			<!-- /FIN CONTAINER -->
 		</div>
