@@ -7,7 +7,7 @@
 	if (session.getAttribute("rol") == null) {
 		response.sendRedirect("/error.jsp");
 	}
-	session.setAttribute("pagina", "Eliminar Trailer");
+	session.setAttribute("pagina", "Eliminar trailer");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>

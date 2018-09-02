@@ -4,7 +4,7 @@
 		//response.sendError(400, "Acceso incorrecto"); //cambiar
 		response.sendRedirect("/error.jsp");
 	}
-	session.setAttribute("pagina", "Listar Env&iacute;os");
+	session.setAttribute("pagina", "Listar env&iacute;os");
 %>
 		<!DOCTYPE html>
 		<html lang="es">

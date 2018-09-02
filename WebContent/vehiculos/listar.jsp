@@ -10,7 +10,7 @@
 		//response.sendError(400, "Acceso incorrecto"); //cambiar
 		response.sendRedirect("/error.jsp");
 	}
-	session.setAttribute("pagina", "Listar Veh&iacute;culos");
+	session.setAttribute("pagina", "Listar veh&iacute;culos");
 %>
 <!DOCTYPE html>
 <html lang="es">

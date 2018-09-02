@@ -7,7 +7,7 @@
 	if (session.getAttribute("rol") == null) {
 		response.sendRedirect("/error.jsp");
 	}
-	session.setAttribute("pagina", "Modificar Veh&iacute;culo");
+	session.setAttribute("pagina", "Modificar veh&iacute;culo");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -220,12 +220,12 @@
 						$('#tipo').val(objeto.tipo);
 						
 						if(objeto.tipo=='remolque'){
-							$('#peso').attr('readonly','true');
-							$('#espacio').attr('readonly','true');
+							$('#pesoMax').prop('disabled',true);
+							$('#espacioMax').prop('disabled',true);
 							$('#peso-espacio').hide();
 						}else{
-							$('#peso').attr('readonly','false');
-							$('#espacio').attr('readonly','false');
+							$('#pesoMax').prop('disabled',false);
+							$('#espacioMax').prop('disabled',false);
 							$('#peso-espacio').show();
 						}
 						

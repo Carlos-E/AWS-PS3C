@@ -5,7 +5,7 @@
 	if (session.getAttribute("rol") == null) {
 		response.sendError(400, "Acceso incorrecto"); //cambiar
 	}
-	session.setAttribute("pagina", "Seguimiento de Mercancía");
+	session.setAttribute("pagina", "Seguimiento de mercancía");
 %>
 			<!DOCTYPE html>
 			<html>

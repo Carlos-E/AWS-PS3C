@@ -11,7 +11,7 @@
 <title>Generar Reporte</title>
 
 <jsp:include page="/head.jsp" />
-<% session.setAttribute("pagina", "Generar Reporte"); %>
+<% session.setAttribute("pagina", "Generar reporte"); %>
 </head>
 <body class="fondo">
 <!-- Header -->

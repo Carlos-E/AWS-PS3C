@@ -44,36 +44,43 @@ public class Modificar extends HttpServlet {
 
 		vehiculo.setEmpresa(request.getParameter("empresa").toLowerCase());
 
-		vehiculo.setEspacioMax(Double.valueOf(request.getParameter("espacioMax")));
-		if (vehiculo.getEspacioMax() < DB.getEspacioVehiculo(vehiculo.getPlaca())) {
-			// Dibujar.mensaje(response.getWriter(), "El espacio no puede ser
-			// menor a la cantidad consumida por los envios asignados",
-			// "/vehiculos/modificar.jsp");
-			response.setStatus(400);
-			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
-				private static final long serialVersionUID = 1L;
-				{
-					put("title", "Operaci&oacute;n fallida");
-					put("message", "El espacio no puede ser menor a la cantidad consumida por los envios asignados");
-				}
-			}));
-			return;
-		}
+		if (vehiculo.getTipo().equals("camion")) {
 
-		vehiculo.setPesoMax(Double.valueOf(request.getParameter("pesoMax")));
-		if (vehiculo.getPesoMax() < DB.getPesoVehiculo(vehiculo.getPlaca())) {
-			// Dibujar.mensaje(response.getWriter(), "El peso no puede ser menor
-			// a la cantidad consumida por los envios asignados",
-			// "/vehiculos/modificar.jsp");
-			response.setStatus(400);
-			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
-				private static final long serialVersionUID = 1L;
-				{
-					put("title", "Operaci&oacute;n fallida");
-					put("message", "El peso no puede ser menor a la cantidad consumida por los envios asignados");
-				}
-			}));
-			return;
+			vehiculo.setEspacioMax(Double.valueOf(request.getParameter("espacioMax")));
+			if (vehiculo.getEspacioMax() < DB.getEspacioVehiculo(vehiculo.getPlaca())) {
+				// Dibujar.mensaje(response.getWriter(), "El espacio no puede
+				// ser
+				// menor a la cantidad consumida por los envios asignados",
+				// "/vehiculos/modificar.jsp");
+				response.setStatus(400);
+				response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+					private static final long serialVersionUID = 1L;
+					{
+						put("title", "Operaci&oacute;n fallida");
+						put("message",
+								"El espacio no puede ser menor a la cantidad consumida por los envios asignados");
+					}
+				}));
+				return;
+			}
+
+			vehiculo.setPesoMax(Double.valueOf(request.getParameter("pesoMax")));
+			if (vehiculo.getPesoMax() < DB.getPesoVehiculo(vehiculo.getPlaca())) {
+				// Dibujar.mensaje(response.getWriter(), "El peso no puede ser
+				// menor
+				// a la cantidad consumida por los envios asignados",
+				// "/vehiculos/modificar.jsp");
+				response.setStatus(400);
+				response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+					private static final long serialVersionUID = 1L;
+					{
+						put("title", "Operaci&oacute;n fallida");
+						put("message", "El peso no puede ser menor a la cantidad consumida por los envios asignados");
+					}
+				}));
+				return;
+			}
+
 		}
 
 		if (request.getParameter("conductor").equals("null")) {

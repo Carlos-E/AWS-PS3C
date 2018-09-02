@@ -4,7 +4,7 @@
 	if (session.getAttribute("rol") == null) {
 		response.sendError(400, "Acceso incorrecto"); //cambiar
 	}
-	session.setAttribute("pagina", "Crear Usuario");
+	session.setAttribute("pagina", "Crear usuario");
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

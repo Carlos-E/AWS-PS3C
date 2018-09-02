@@ -10,7 +10,7 @@
 		//response.sendError(400, "Acceso incorrecto"); //cambiar
 		response.sendRedirect("/error.jsp");
 	}
-	session.setAttribute("pagina", "Listar Tralieres");
+	session.setAttribute("pagina", "Listar tralieres");
 %>
 <!DOCTYPE html>
 <html lang="es">
