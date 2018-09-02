@@ -64,7 +64,7 @@ table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_des
 						</div>
 						<div class="row">
 							<div class="col-sm-12">
-								<table id="table" class="table table-striped table-bordered dataTable" cellspacing="0" role="grid" aria-describedby="example_info" style="width: 100%; font-size: 0.60rem;">
+								<table id="table" class="table table-striped table-bordered dataTable" cellspacing="0" role="grid" aria-describedby="example_info" style="width: 100%; font-size: 0.65rem;">
 									<thead>
 
 									</thead>
@@ -172,7 +172,7 @@ table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_des
 					
 					$('#toggleColumn').append('Filtro');
 					columns.forEach(function(currentValue, index, array) {						
-						$('#toggleColumn').append(' - <a style="color:rgb(213, 108, 62) !important;font-size:0.7rem;" class="toggle-vis" data-column="'+index+'">'+currentValue.title+'</a>');
+						$('#toggleColumn').append(' - <a style="color:rgb(213, 108, 62) !important;font-size:0.7rem;cursor: pointer;" class="toggle-vis" data-column="'+index+'">'+currentValue.title+'</a>');
 					});
 					
 					$('a.toggle-vis').on('click', function (e) {
