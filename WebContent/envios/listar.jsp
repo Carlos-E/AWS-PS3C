@@ -190,6 +190,12 @@ table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_des
 						search: {
 						    search: getParameterByName('search') != null ? getParameterByName('search') : ""
 						},
+						columnDefs: [
+				            {
+				                targets: [ 2 ],
+				                visible: false,
+				            }
+				        ],
 						initComplete: function(){
 							$("#spinner").fadeOut("slow");
 						}
