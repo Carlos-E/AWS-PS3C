@@ -48,8 +48,6 @@ public class login extends HttpServlet {
 
 			session.setAttribute("username", uname);
 
-			System.out.println("session.getMaxInactiveInterval():" + session.getMaxInactiveInterval());
-
 			Usuario usuario = new DB().load(Usuario.class, uname);
 
 			switch (usuario.getRol()) {
@@ -58,15 +56,33 @@ public class login extends HttpServlet {
 				break;
 			case "cliente":
 				session.setAttribute("rol", "cliente");
-				response.sendRedirect("index.jsp");
+				response.setStatus(200);
+				response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+					private static final long serialVersionUID = 1L;
+					{
+						put("sendRedirect", "/index.jsp");
+					}
+				}));				
 				break;
 			case "empleado":
 				session.setAttribute("rol", "empleado");
-				response.sendRedirect("index.jsp");
+				response.setStatus(200);
+				response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+					private static final long serialVersionUID = 1L;
+					{
+						put("sendRedirect", "/index.jsp");
+					}
+				}));				
 				break;
 			case "admin":
 				session.setAttribute("rol", "admin");
-				response.sendRedirect("index.jsp");
+				response.setStatus(200);
+				response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+					private static final long serialVersionUID = 1L;
+					{
+						put("sendRedirect", "/index.jsp");
+					}
+				}));
 				break;
 			case "conductor":
 				session.setAttribute("rol", "conductor");
@@ -80,6 +96,7 @@ public class login extends HttpServlet {
 					// Dibujar.mensaje(response.getWriter(), "El conductor no
 					// tiene ningun vehículo asignado",
 					// "/login.jsp");
+					
 					response.setStatus(200);
 					response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 						private static final long serialVersionUID = 1L;

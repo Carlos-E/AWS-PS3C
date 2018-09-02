@@ -26,7 +26,7 @@
 
 	<div class="background-image"></div>
 
-	<form class="form-signin" method="post" action="/login" role="login">
+	<form id="myForm" class="form-signin" method="post" action="/login" role="login">
 
 		<h1 class="text-center h1 mt-3 mb-3 font-weight-normal">
 			<em class="fa fa-truck fa-sm"></em>
@@ -52,8 +52,7 @@
 			</label>
 		</div>
 
-
-		<button type="submit" name="go" class="btn btn-lg btn-primary btn-block">
+		<button id="submit" type="submit" class="btn btn-lg btn-primary btn-block">
 			<span class="glyphicon glyphicon-log-in"></span>
 			Ingresar
 		</button>
@@ -64,9 +63,28 @@
 
 		<p class="text-center mt-5 mb-3 text-muted">&copy; 2017-2018</p>
 	</form>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="ModalTitle"></h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body" id="ModalBody"></div>
+			<div class="modal-footer">
+ 				<button type="button" class="btn btn-primary btn-md float-right" id="ModalButton"></button>
+ 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+			</div>
+		</div>
+	</div>
+	</div>
 
 	<!-- Scripts -->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<!-- Scripts -->
@@ -78,6 +96,77 @@
 		document.getElementById('remember').setAttribute('hidden','true');
 	}
 	</script>
+	
+	<script>
+	$(document).ready(function() {
+
+		$('#myForm').submit(function(e) {
+			
+			e.preventDefault();
+
+			$('#ModalButton').hide();
+
+			$("#reset").attr('class', 'fas fa-circle-notch fa-spin fa-2x');
+			
+			let url = $(this).attr('action');
+			let data = $(this).serializeArray();
+			
+			console.log('URL: '+ JSON.stringify(url,null,2));
+			console.log('Data: '+ JSON.stringify(data,null,2));
+			
+			$.ajax({
+				url : url,
+				data : data,
+				type : "POST",
+				dataType : "json",
+			}).statusCode({
+			    303: function() { 
+			    	console.log('Redirection detected'); 
+			   		window.location.replace('/index.jsp'); 
+			    }
+			}).done(function(data, statusText, xhr) {
+				
+				if(data.sendRedirect){
+			   		window.location.replace(data.sendRedirect); 
+				}
+
+				$('#ModalTitle').html('Operaci&oacute;n exitosa');
+				$('#ModalBody').html('Operaci&oacute;n completada');
+				
+			}).fail(function(xhr, statusText) {
+
+				$('#ModalTitle').html('C&oacute;digo de Estado: ' + xhr.status);
+				$('#ModalBody').html('Oopss a ocurrido un error');
+				
+			}).always(function(xhr, statusText,a) {
+				
+				if(a!=''){
+					xhr = a;
+				}
+				
+				console.log(JSON.stringify(xhr, null, 2));
+
+				if (typeof xhr.responseJSON != 'undefined') {
+					if (typeof xhr.responseJSON.title != 'undefined') {
+						console.log('mensaje titulo');
+						$('#ModalTitle').html(xhr.responseJSON.title);
+					}
+					if (typeof xhr.responseJSON.message != 'undefined') {
+						console.log('mensaje cuerpo');
+						$('#ModalBody').html(xhr.responseJSON.message);
+					}
+					/* if(typeof xhr.responseJSON.sendRedirect != 'undefined'){
+						
+					 }*/
+				}
+				
+				$("#Modal").modal();
+				$("#reset").attr('class', 'fas fa-eraser fa-2x');
+			});
+
+		});
+	});
+</script>
 
 </body>
 </html>
