@@ -56,14 +56,6 @@ function initMap() {
                 if (status === 'OK') {
                   console.log('Duracion de: ' + vehiculos[i].placa);
                   console.log(JSON.stringify(response.routes[0].legs[0].duration, null, 2));
-
-                  /*
-					 * listaDatosRutas.push({ placa: vehiculos[i].placa,
-					 * distancia: response.routes[0].legs[0].distance.value,
-					 * duracion: response.routes[0].legs[0].duration.value,
-					 * distanciaT: response.routes[0].legs[0].distance.text,
-					 * duracionT: response.routes[0].legs[0].duration.text });
-					 */
                   
                   listaDatosRutas = {
                       placa: vehiculos[i].placa,
@@ -72,16 +64,25 @@ function initMap() {
                       distanciaT: response.routes[0].legs[0].distance.text,
                       duracionT: response.routes[0].legs[0].duration.text
                     };
-                  
-                  option = document.createElement('option');
-                  option.text = 'Placa: ' + listaDatosRutas.placa + ' - Distancia: ' + listaDatosRutas.distanciaT+ ' - Duración: ' + listaDatosRutas.duracionT;
-                  option.value = listaDatosRutas.placa;
-                  console.log(option.text);
-                  select.add(option);
                       
                 } else {
                   console.log('Error calculando la ruta de: ' + vehiculos[i].placa);
+                  
+                  listaDatosRutas = {
+                          placa: vehiculos[i].placa,
+                          distancia: 'NA',
+                          duracion: 'NA',
+                          distanciaT: 'NA',
+                          duracionT: 'NA'
+                        };
+                  
                 }
+                
+                option = document.createElement('option');
+                option.text = 'Placa: ' + listaDatosRutas.placa + ' - Distancia: ' + listaDatosRutas.distanciaT+ ' - Duración: ' + listaDatosRutas.duracionT;
+                option.value = listaDatosRutas.placa;
+                console.log(option.text);
+                select.add(option);
                 
                 if(i==vehiculos.length-1){
                 	$('#spinner1').hide();
@@ -90,28 +91,9 @@ function initMap() {
                 
               });
           } // for
-
-          /*
-			 * setTimeout(function() {
-			 * 
-			 * listaDatosRutas = quickSort(listaDatosRutas, 0,
-			 * listaDatosRutas.length - 1, 'duracion');
-			 * 
-			 * console.log('Camiones validos:');
-			 *  // Llenar select for (let k = 0; k < listaDatosRutas.length;
-			 * k++) { option = document.createElement('option'); option.text =
-			 * 'Placa: ' + listaDatosRutas[k].placa + ' - Distancia: ' +
-			 * listaDatosRutas[k].distanciaT; option.value =
-			 * listaDatosRutas[k].placa; console.log(option.text);
-			 * select.add(option); }
-			 *  }, 2500); // SetTimeOut
-			 */
           
-        })
-        .fail(function(xhr, status, errorThrown) {
+        }).fail(function(xhr, status, errorThrown) {
           console.log('Failed getRoutes');
-        })
-        .always(function(xhr, status) {	        
         });
     });
   };
@@ -121,9 +103,8 @@ function initMap() {
 
 
 function setTrailers(origenEnvio, pesoEnvio, espacioEnvio) {
-	
-	  $(document).ready(function() {
-	    $.ajax({
+		    
+		  $.ajax({
 	      url: '/disponibilidadDeTrailers',
 	      data: {
             origenEnvio: origenEnvio,
@@ -169,17 +150,10 @@ function setTrailers(origenEnvio, pesoEnvio, espacioEnvio) {
               },
               function(response, status) {
                 if (status === 'OK') {
-                  console.log('Duracion de: ' + trailers[i].patente);
-                  console.log(JSON.stringify(response.routes[0].legs[0].duration, null, 2));
-
-                  /*
-					 * listaDatosRutas.push({ placa: vehiculos[i].placa,
-					 * distancia: response.routes[0].legs[0].distance.value,
-					 * duracion: response.routes[0].legs[0].duration.value,
-					 * distanciaT: response.routes[0].legs[0].distance.text,
-					 * duracionT: response.routes[0].legs[0].duration.text });
-					 */
                   
+                	console.log('Duracion de: ' + trailers[i].patente);
+                	console.log(JSON.stringify(response.routes[0].legs[0].duration, null, 2));
+
                   listaDatosRutas = {
                       patente: trailers[i].patente,
                       distancia: response.routes[0].legs[0].distance.value,
@@ -188,17 +162,23 @@ function setTrailers(origenEnvio, pesoEnvio, espacioEnvio) {
                       duracionT: response.routes[0].legs[0].duration.text
                     };
                   
-                  option = document.createElement('option');
-                  option.text = 'Patente: ' + listaDatosRutas.patente + ' - Distancia: ' + listaDatosRutas.distanciaT+ ' - Duración: ' + listaDatosRutas.duracionT;
-                  option.value = listaDatosRutas.patente;
-                  console.log(option.text);
-                  select.add(option);
-                  
-                 
-                  
                 } else {
                   console.log('Error calculando la ruta de: ' + trailers[i].patente);
+                  
+                  listaDatosRutas = {
+                          patente: trailers[i].patente,
+                          distancia: 'NA',
+                          duracion: 'NA',
+                          distanciaT: 'NA',
+                          duracionT: 'NA'
+                        };
+                  
                 }
+                
+                option = document.createElement('option');
+                option.text = 'Patente: ' + listaDatosRutas.patente + ' - Distancia: ' + listaDatosRutas.distanciaT+ ' - Duración: ' + listaDatosRutas.duracionT;
+                option.value = listaDatosRutas.patente;
+                select.add(option);
                 
                 if(i==trailers.length-1){
                 	$('#spinner2').hide();
@@ -207,29 +187,10 @@ function setTrailers(origenEnvio, pesoEnvio, espacioEnvio) {
                 
               });
           } // for
-
-          /*
-			 * setTimeout(function() {
-			 * 
-			 * listaDatosRutas = quickSort(listaDatosRutas, 0,
-			 * listaDatosRutas.length - 1, 'duracion');
-			 * 
-			 * console.log('Camiones validos:');
-			 *  // Llenar select for (let k = 0; k < listaDatosRutas.length;
-			 * k++) { option = document.createElement('option'); option.text =
-			 * 'Placa: ' + listaDatosRutas[k].placa + ' - Distancia: ' +
-			 * listaDatosRutas[k].distanciaT; option.value =
-			 * listaDatosRutas[k].placa; console.log(option.text);
-			 * select.add(option); }
-			 *  }, 2500); // SetTimeOut
-			 */
           
-        })
-        .fail(function(xhr, status, errorThrown) {
-          console.log('Failed getRoutes');
+        }).fail(function(xhr, status, errorThrown) {
+          console.log('Failed getRoutesTrailer');	    
         });
-	    
-	  });
 }
 
 
