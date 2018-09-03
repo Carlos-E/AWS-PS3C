@@ -23,7 +23,7 @@ body {
 
 .nav-pills .nav-link.active, .badge-primary[href]:focus, .badge-primary[href]:hover,
 	a.bg-primary:focus, a.bg-primary:hover {
-	background: rgba(255, 204, 1, 0.8) !important;
+	background: rgba(255, 160, 1, 0.8) !important;
 	color: white;
 }
 

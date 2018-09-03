@@ -131,8 +131,6 @@ function setTrailers(origenEnvio, pesoEnvio, espacioEnvio) {
 	        option.text = 'ninguno';
 	        option.value = 'ninguno';
 	        select.add(option);
-
-	        console.log('Trailers validos:');
 	        
 	        if(0==trailers.length){
             	$('#spinner2').hide();
