@@ -29,8 +29,6 @@
 </head>
 
 <body>
-
-<div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 0%;position: fixed;left: auto;top: -1px;z-index:10000;"></div>
  
 	<div class="container-fluid" id="wrapper">
 		<div class="row">
@@ -61,7 +59,6 @@
 
 					<h3 class="card-title">
 						Env&iacute;os
-						<i id="spinner-1" class="fa fa-circle-notch fa-spin" style="font-size: 30px"></i>
 					</h3>
 					<h6 class="card-subtitle mb-1 text-muted">&Uacute;ltimos env&iacute;os</h6>
 					<div class="canvas-wrapper">
@@ -95,7 +92,6 @@
 				<div class="card-block">
 					<h3 class="card-title">
 						Env&iacute;os
-						<i id="spinner-2" class="fa fa-circle-notch fa-spin" style="font-size: 30px"></i>
 					</h3>
 					<h6 class="card-subtitle mb-2 text-muted">Por empresa</h6>
 					<div class="canvas-wrapper">
@@ -112,7 +108,6 @@
 
 					<h3 class="card-title">
 						Veh&iacute;culos
-						<i id="spinner-3" class="fa fa-circle-notch fa-spin" style="font-size: 30px"></i>
 					</h3>
 					<h6 class="card-subtitle mb-1 text-muted">Por empresa</h6>
 					<div class="canvas-wrapper">
@@ -132,6 +127,8 @@
 	<script src="/js/chart-data.js"></script>
 
 	<script>
+		fillProgressBar(document.getElementById("progressBar"),25);
+
 		setTimeout(function() {
 			makeChart();
 			makePie();

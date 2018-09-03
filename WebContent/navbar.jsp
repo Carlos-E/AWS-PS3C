@@ -13,6 +13,9 @@
 	 		session.getAttribute("username").toString());
 	*/
 %>
+
+<div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 0%;position: fixed;left: auto;top: -1px;z-index:10000;"></div>
+
 <nav class="sidebar col-xs-12 col-sm-4 col-lg-3 col-xl-2">
 	<h1 class="site-title">
 		<a id="nav-brand-link" href="/index.jsp">

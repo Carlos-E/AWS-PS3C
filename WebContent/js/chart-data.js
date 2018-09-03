@@ -74,8 +74,6 @@ function makeChart(){
 	
 	console.log('Making Chart');
 	
-	$("#spinner-1").attr('class', 'fa fa-circle-notch fa-spin');
-    $("#spinner-1").fadeIn("slow");
 
 $.ajax({
 	url: "/fechaEnvios",
@@ -95,12 +93,10 @@ $.ajax({
 		    	}
 		});
 		
-    $("#spinner-1").fadeOut("slow");
-	fillProgressBar(document.getElementById("progressBar"),33);
+	fillProgressBar(document.getElementById("progressBar"),25);
 
 
 }).fail(function (xhr, status, errorThrown) {
-    $("#spinner-1").attr('class', 'fa fa-exclamation-triangle');
 	console.log('Failed Request To Servlet /scanTable');
 });
 
@@ -116,9 +112,6 @@ labels: ['1','2','3']};
 function makePie() {
 	
 	console.log('Making Pie');
-	
-	$("#spinner-2").attr('class', 'fa fa-circle-notch fa-spin');
-    $("#spinner-2").fadeIn("slow");
 
 	$.ajax({
 		url: "/scanTable",
@@ -161,8 +154,7 @@ function makePie() {
 				data.labels.push(empresa.nombre);
 			});
 						
-	        $("#spinner-2").fadeOut("slow");
-	    	fillProgressBar(document.getElementById("progressBar"),34);
+	    	fillProgressBar(document.getElementById("progressBar"),25);
 
 			let ctx = document.getElementById('pie-chart').getContext('2d');
 			let chart = new Chart(ctx, {
@@ -175,12 +167,10 @@ function makePie() {
 			});
 
 		}).fail(function (xhr, status, errorThrown) {
-	        $("#spinner-2").attr('class', 'fa fa-exclamation-triangle');
 			console.log('Failed Request To Servlet /scanTable')
 		});
 
 	}).fail(function (xhr, status, errorThrown) {
-        $("#spinner-2").attr('class', 'fa fa-exclamation-triangle');
 		console.log('Failed Request To Servlet /scanTable')
 	});
 
@@ -238,8 +228,7 @@ function makeDoughnut() {
 				data.labels.push(empresa.nombre);
 			});
 						
-	        $("#spinner-3").fadeOut("slow");
-	        fillProgressBar(document.getElementById("progressBar"),23);
+	        fillProgressBar(document.getElementById("progressBar"),25);
 
 
 			let ctx = document.getElementById('doughnut-chart').getContext('2d');
@@ -253,12 +242,10 @@ function makeDoughnut() {
 			});
 
 		}).fail(function (xhr, status, errorThrown) {
-	        $("#spinner-3").attr('class', 'fa fa-exclamation-triangle');
 			console.log('Failed Request To Servlet /scanTable')
 		});
 
 	}).fail(function (xhr, status, errorThrown) {
-        $("#spinner-3").attr('class', 'fa fa-exclamation-triangle');
 		console.log('Failed Request To Servlet /scanTable')
 	});
 

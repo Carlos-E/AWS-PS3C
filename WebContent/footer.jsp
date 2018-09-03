@@ -13,8 +13,8 @@
 			</div>
 			<div class="modal-body" id="ModalBody"></div>
 			<div class="modal-footer">
- 				<button type="button" class="btn btn-primary btn-md float-right" id="ModalButton"></button>
- 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+				<button type="button" class="btn btn-primary btn-md float-right" id="ModalButton"></button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 			</div>
 		</div>
 	</div>
@@ -77,39 +77,6 @@
 </div>
 </main>
 
-<script>
-
-
-function fillProgressBar(progressBarElement,percentageTofill) {
-	  
-  	let progress=0;
-
-    let refreshIntervalId = setInterval(()=>{
-    	
-    if(Number(progressBarElement.style.width.replace(/[^\d\.\-]/g, '')) >= 100){
-    	console.log('Progress completed');
-    	$(progressBarElement).fadeOut(1200);
-    	setTimeout(()=>{progressBarElement.parentNode.removeChild(progressBarElement)},1300);
-    	clearInterval(refreshIntervalId);
-    	return;
-    }
-    
-    if(progress==percentageTofill){
-    	console.log('Limit reached');
-    	clearInterval(refreshIntervalId);
-    	return;
-    }
-    
-    progress++; 
-    progressBarElement.style.width = Number(progressBarElement.style.width.replace(/[^\d\.\-]/g, '')) + 1 + '%'; 
-        
-    },30);
-    
-  }
-  
-fillProgressBar(document.getElementById("progressBar"),10);
-
-
-</script>
+<script src="/js/progressBar.js"></script>
 
 <jsp:include page="/scripts.jsp" />

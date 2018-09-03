@@ -44,7 +44,6 @@ table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_des
 				<div class="card-block">
 					<h3 class="card-title">
 						Datos
-						<i id="spinner" class="fa fa-circle-notch fa-spin" style="font-size: 30px"></i>
 					</h3>
 
 					<div id="toggleColumn">
@@ -101,6 +100,7 @@ table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_des
 	<script>
 	
 				$(document).ready(function () {
+					
 
 					$.ajax({
 						url: "/envios/listar",
@@ -201,7 +201,6 @@ table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_des
 				            }
 				        ],
 						initComplete: function(){
-							$("#spinner").fadeOut("slow");
 						}
 					});
 					

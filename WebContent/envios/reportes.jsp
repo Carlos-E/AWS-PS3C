@@ -70,6 +70,8 @@
 		<jsp:include page="/footer.jsp" />
 	</div>
 	<script>
+	fillProgressBar(document.getElementById("progressBar"),30);
+
 		$(document).ready(function() {
 						
 			$.ajax({
@@ -80,6 +82,8 @@
 				type : "POST",
 				dataType : "json",
 			}).done(function(response) {
+				fillProgressBar(document.getElementById("progressBar"),30);
+
 				console.log(response);
 				
 				let dataSet = [];
@@ -119,9 +123,11 @@
 				alert("Algo ha salido mal");
 				console.log('Failed Request To Servlet /scanTable')
 			}).always(function(xhr, status) {
+				fillProgressBar(document.getElementById("progressBar"),40);
 			});		
 			
 		});
+		
 	</script>
 </body>
 </html>

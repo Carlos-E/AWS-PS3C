@@ -39,7 +39,6 @@
 				<div class="card-block">
 					<h3 class="card-title">
 						Datos
-						<i id="spinner" class="fa fa-circle-notch fa-spin" style="font-size: 30px"></i>
 					</h3>
 					<h6 class="text-muted mb-4"></h6>
 
@@ -89,6 +88,7 @@
 	<!-- /FIN -->
 
 	<script>
+
 		$(document).ready(function() {
 			
 			$.ajax({
@@ -135,13 +135,12 @@
 			        ]
 			    } );
 				
-		        $("#spinner").fadeOut("slow");
 			
 			}).fail(function(xhr, status, errorThrown) {
 				alert("Algo ha salido mal");
 				console.log('Failed Request To Servlet /scanTable')
 			}).always(function(xhr, status) {
-			});		
+			});	
 			
 		});
 	</script>

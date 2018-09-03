@@ -114,21 +114,15 @@ $(document).ready(function() {
 <script>
 	$(document).ready(function() {
 		
-		$('#confirmationSpinner').css('display','none');
-
 		$('#myForm').submit(function(e) {
-			
+						
 			e.preventDefault();
 
 			$('#ModalButton').hide();
 
-			$('#confirmationSpinner').css('display','');
 			
 			let url = $(this).attr('action');
 			let data = $(this).serializeArray();
-			
-			//console.log('URL: '+ JSON.stringify(url,null,2));
-			//console.log('Data: '+ JSON.stringify(data,null,2));
 			
 			$.ajax({
 				url : url,
@@ -146,7 +140,7 @@ $(document).ready(function() {
 				$('#ModalBody').html('Oopss a ocurrido un error');
 				
 			}).always(function(xhr, statusText,a) {
-				
+								
 				if(a!=''){
 					xhr = a;
 				}
@@ -163,8 +157,6 @@ $(document).ready(function() {
 				}
 				
 				$('#Modal').modal();
-
-				$('#confirmationSpinner').css('display','none');;
 				
 				if(typeof scanFunction != 'undefined'){
 				scanFunction(table);
@@ -177,4 +169,34 @@ $(document).ready(function() {
 		
 		
 	});
+</script>
+
+<script>
+
+$(document).ajaxSend(function(event, xhr, settings ){
+	
+	if(window.location.href.endsWith('index.jsp')){
+		return;
+	}
+	
+	if ( settings.url === '/getNumReports' ) {
+	 	return;
+	 }
+	
+	fillProgressBar(document.getElementById("progressBar"),50);
+});
+
+$( document ).ajaxComplete(function(event, xhr, settings  ) {
+	
+	if(window.location.href.endsWith('index.jsp')){
+		return;
+	} 
+	
+	if ( settings.url === '/getNumReports' ) {
+	 	return;
+	 }
+	
+	fillProgressBar(document.getElementById("progressBar"),100);
+});
+
 </script>
