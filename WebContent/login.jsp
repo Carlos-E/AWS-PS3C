@@ -126,8 +126,8 @@
 			let url = $(this).attr('action');
 			let data = $(this).serializeArray();
 			
-			console.log('URL: '+ JSON.stringify(url,null,2));
-			console.log('Data: '+ JSON.stringify(data,null,2));
+			//console.log('URL: '+ JSON.stringify(url,null,2));
+			//console.log('Data: '+ JSON.stringify(data,null,2));
 			
 			$.ajax({
 				url : url,
@@ -150,7 +150,7 @@
 					xhr = a;
 				}
 				
-				console.log(JSON.stringify(xhr, null, 2));
+				//console.log(JSON.stringify(xhr, null, 2));
 
 				if (typeof xhr.responseJSON != 'undefined') {
 					if (typeof xhr.responseJSON.title != 'undefined') {

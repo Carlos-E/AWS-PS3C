@@ -6,7 +6,6 @@ $(document).ready(function() {
 
 			$('#ModalButton').hide();
 
-			
 			let url = $(this).attr('action');
 			let data = $(this).serializeArray();
 			
@@ -45,7 +44,7 @@ $(document).ready(function() {
 				$('#Modal').modal();
 				
 				if(typeof scanFunction != 'undefined'){
-				scanFunction(table);
+					scanFunction(table);
 				}
 			});
 
