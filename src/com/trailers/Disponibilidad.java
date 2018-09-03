@@ -35,6 +35,8 @@ public class Disponibilidad extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		response.setContentType("application/json");
 
 		DB DB = new DB();
 
@@ -42,8 +44,13 @@ public class Disponibilidad extends HttpServlet {
 		double pesoEnvio = Double.valueOf(request.getParameter("pesoEnvio"));
 
 		List<Trailer> trailers = new ArrayList<Trailer>(DB.scan(Trailer.class, new DynamoDBScanExpression()));
-		ArrayList<Map<String, Object>> test = new ArrayList<Map<String, Object>>();
-
+		
+		if(trailers.size()==0){
+			response.getWriter().print(new ObjectMapper().writeValueAsString(null));
+			response.getWriter().close();
+			return;
+		}
+		
 		Iterator<Trailer> iteratorTrailers = trailers.iterator();
 
 		// System.out.println("Lista Original");
@@ -86,26 +93,32 @@ public class Disponibilidad extends HttpServlet {
 		 * com.vehiculo leer ---leee esto!!
 		 */ 
 		
+		ArrayList<Map<String, Object>> test = new ArrayList<Map<String, Object>>();
+
 		Map<String, Object> map = new HashMap<String, Object>();
 
-		for (int j = 0; j < trailers.size(); j++) {
-			map = new HashMap<String, Object>();
-			map.put("patente", trailers.get(j).getPatente());
-			if (trailers.get(j).getCamion() != "ninguno") {
-				Vehiculo vehiculo = DB.load(Vehiculo.class, trailers.get(j).getCamion());
+		for (int i = 0; i < trailers.size(); i++) {
+			
+			map.put("patente", trailers.get(i).getPatente());
+			
+			if (!trailers.get(i).getCamion().equals("ninguno")) {
+			
+				Vehiculo vehiculo = DB.load(Vehiculo.class, trailers.get(i).getCamion());
 				map.put("latitud", vehiculo.getLatitud());
 				map.put("longitud", vehiculo.getLongitud());
+			
 			} else {
+			
 				map.put("latitud", "NA");
 				map.put("longitud", "NA");
+				
 			}
+			
 			test.add(map);
 			// System.out.println(map);
-
 		}
 		// System.out.println(test);
 
-		response.setContentType("application/json");
 		response.getWriter().print(new ObjectMapper().writeValueAsString(test));
 		response.getWriter().close();
 	}

@@ -78,15 +78,15 @@ function initMap() {
                   option.value = listaDatosRutas.placa;
                   console.log(option.text);
                   select.add(option);
-                  
-                  if(i==vehiculos.length-1){
-                    	$('#spinner1').hide();
-                      	$('#camion').show();
-                  }
-                  
+                      
                 } else {
                   console.log('Error calculando la ruta de: ' + vehiculos[i].placa);
                 }
+                
+                if(i==vehiculos.length-1){
+                	$('#spinner1').hide();
+                  	$('#camion').show();
+              }
                 
               });
           } // for
@@ -194,14 +194,16 @@ function setTrailers(origenEnvio, pesoEnvio, espacioEnvio) {
                   console.log(option.text);
                   select.add(option);
                   
-                  if(i==trailers.length-1){
-                    	$('#spinner2').hide();
-                      	$('#trailer').show();
-                  }
+                 
                   
                 } else {
                   console.log('Error calculando la ruta de: ' + trailers[i].patente);
                 }
+                
+                if(i==trailers.length-1){
+                	$('#spinner2').hide();
+                  	$('#trailer').show();
+              }
                 
               });
           } // for
@@ -225,8 +227,6 @@ function setTrailers(origenEnvio, pesoEnvio, espacioEnvio) {
         })
         .fail(function(xhr, status, errorThrown) {
           console.log('Failed getRoutes');
-        })
-        .always(function(xhr, status) {	        
         });
 	    
 	  });
@@ -237,7 +237,7 @@ function setTrailers(origenEnvio, pesoEnvio, espacioEnvio) {
 
 
 // QuickSort
-
+/*
 function swap(items, firstIndex, secondIndex) {
   var temp = items[firstIndex];
   items[firstIndex] = items[secondIndex];
@@ -285,4 +285,4 @@ function quickSort(items, left, right, criteria) {
 
   return items;
 }
-
+*/

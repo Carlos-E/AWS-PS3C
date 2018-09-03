@@ -32,6 +32,8 @@ public class Disponibilidad extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		response.setContentType("application/json");
 
 		DB DB = new DB();
 
@@ -83,7 +85,6 @@ public class Disponibilidad extends HttpServlet {
 		}
 		*/
 		
-		response.setContentType("application/json");
 		response.getWriter().print(new ObjectMapper().writeValueAsString(vehiculos));
 		response.getWriter().close();
 	}
