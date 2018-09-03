@@ -39,6 +39,8 @@ public class Eliminar extends HttpServlet {
 		Vehiculo vehiculo = new Vehiculo();
 
 		vehiculo.setPlaca(request.getParameter("placa").toLowerCase());
+		
+		vehiculo = DB.load(vehiculo);
 
 		if (DB.getEnviosPendientesVehiculo(vehiculo.getPlaca()).size() != 0) {
 			// Dibujar.mensaje(response.getWriter(), "Este vehículo contiene
@@ -53,6 +55,20 @@ public class Eliminar extends HttpServlet {
 				}
 			}));
 			return;
+		}
+
+		if (vehiculo.getTipo().equals("remolque")) {
+			if (DB.getTrailerRemolque(vehiculo.getPlaca()) != null) {
+				response.setStatus(400);
+				response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+					private static final long serialVersionUID = 1L;
+					{
+						put("title", "Operaci&oacute;n fallida");
+						put("message", "Este vehículo tiene un trailer asignado");
+					}
+				}));
+				return;
+			}
 		}
 
 		DB.delete(vehiculo);
