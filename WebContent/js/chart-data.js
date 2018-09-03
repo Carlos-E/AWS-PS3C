@@ -96,7 +96,7 @@ $.ajax({
 		});
 		
     $("#spinner-1").fadeOut("slow");
-//	fillProgressBar(document.getElementById("progressBar"),33);
+	fillProgressBar(document.getElementById("progressBar"),33);
 
 
 }).fail(function (xhr, status, errorThrown) {
@@ -162,7 +162,7 @@ function makePie() {
 			});
 						
 	        $("#spinner-2").fadeOut("slow");
-//	    	fillProgressBar(document.getElementById("progressBar"),33);
+	    	fillProgressBar(document.getElementById("progressBar"),34);
 
 			let ctx = document.getElementById('pie-chart').getContext('2d');
 			let chart = new Chart(ctx, {
@@ -239,7 +239,7 @@ function makeDoughnut() {
 			});
 						
 	        $("#spinner-3").fadeOut("slow");
-//	        fillProgressBar(document.getElementById("progressBar"),33);
+	        fillProgressBar(document.getElementById("progressBar"),23);
 
 
 			let ctx = document.getElementById('doughnut-chart').getContext('2d');

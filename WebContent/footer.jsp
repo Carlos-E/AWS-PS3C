@@ -84,29 +84,30 @@ function fillProgressBar(progressBarElement,percentageTofill) {
 	  
   	let progress=0;
 
-    let totalProgress = Number(progressBarElement.style.width.replace(/[^\d\.\-]/g, ''));
-
     let refreshIntervalId = setInterval(()=>{
-    
-    if(progress==percentageTofill){
-    console.log('Limit reached');
-    clearInterval(refreshIntervalId);
-    return;
+    	
+    if(Number(progressBarElement.style.width.replace(/[^\d\.\-]/g, '')) >= 100){
+    	console.log('Progress completed');
+    	$(progressBarElement).fadeOut(1200);
+    	//progressBarElement.parentNode.removeChild(progressBarElement);
+    	clearInterval(refreshIntervalId);
+    	return;
     }
     
-    if(totalProgress >= 100){
-    console.log('Progress completed');
-    clearInterval(refreshIntervalId);
-    return;
+    if(progress==percentageTofill){
+    	console.log('Limit reached');
+    	clearInterval(refreshIntervalId);
+    	return;
     }
     
     progress++; 
-    totalProgress++;
-    progressBarElement.style.width = totalProgress + '%'; 
+    progressBarElement.style.width = Number(progressBarElement.style.width.replace(/[^\d\.\-]/g, '')) + 1 + '%'; 
         
-    },20);
+    },30);
     
   }
+  
+fillProgressBar(document.getElementById("progressBar"),10);
 
 
 </script>
