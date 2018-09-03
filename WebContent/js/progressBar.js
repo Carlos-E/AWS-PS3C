@@ -48,7 +48,7 @@ function fillProgressBar(progressBarElement,percentageTofill) {
     progress++; 
     progressBarElement.style.width = Number(progressBarElement.style.width.replace(/[^\d\.\-]/g, '')) + 1 + '%'; 
         
-    },10);
+    },5);
     
   }
 
