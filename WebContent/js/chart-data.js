@@ -96,6 +96,8 @@ $.ajax({
 		});
 		
     $("#spinner-1").fadeOut("slow");
+//	fillProgressBar(document.getElementById("progressBar"),33);
+
 
 }).fail(function (xhr, status, errorThrown) {
     $("#spinner-1").attr('class', 'fa fa-exclamation-triangle');
@@ -160,6 +162,7 @@ function makePie() {
 			});
 						
 	        $("#spinner-2").fadeOut("slow");
+//	    	fillProgressBar(document.getElementById("progressBar"),33);
 
 			let ctx = document.getElementById('pie-chart').getContext('2d');
 			let chart = new Chart(ctx, {
@@ -236,6 +239,8 @@ function makeDoughnut() {
 			});
 						
 	        $("#spinner-3").fadeOut("slow");
+//	        fillProgressBar(document.getElementById("progressBar"),33);
+
 
 			let ctx = document.getElementById('doughnut-chart').getContext('2d');
 			let chart = new Chart(ctx, {

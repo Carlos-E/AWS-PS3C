@@ -30,6 +30,8 @@
 
 <body>
 
+<!-- <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 0%;position: fixed;left: auto;top: 0px;z-index:10000;"></div>
+ --> 
 	<div class="container-fluid" id="wrapper">
 		<div class="row">
 			<!--  NAVBAR -->

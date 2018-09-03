@@ -77,4 +77,38 @@
 </div>
 </main>
 
+<script>
+
+
+function fillProgressBar(progressBarElement,percentageTofill) {
+	  
+  	let progress=0;
+
+    let totalProgress = Number(progressBarElement.style.width.replace(/[^\d\.\-]/g, ''));
+
+    let refreshIntervalId = setInterval(()=>{
+    
+    if(progress==percentageTofill){
+    console.log('Limit reached');
+    clearInterval(refreshIntervalId);
+    return;
+    }
+    
+    if(totalProgress >= 100){
+    console.log('Progress completed');
+    clearInterval(refreshIntervalId);
+    return;
+    }
+    
+    progress++; 
+    totalProgress++;
+    progressBarElement.style.width = totalProgress + '%'; 
+        
+    },20);
+    
+  }
+
+
+</script>
+
 <jsp:include page="/scripts.jsp" />
