@@ -89,7 +89,7 @@ function fillProgressBar(progressBarElement,percentageTofill) {
     if(Number(progressBarElement.style.width.replace(/[^\d\.\-]/g, '')) >= 100){
     	console.log('Progress completed');
     	$(progressBarElement).fadeOut(1200);
-    	//progressBarElement.parentNode.removeChild(progressBarElement);
+    	setTimeout(()=>{progressBarElement.parentNode.removeChild(progressBarElement)},1300);
     	clearInterval(refreshIntervalId);
     	return;
     }
