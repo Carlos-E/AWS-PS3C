@@ -181,7 +181,9 @@ table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_des
 				        column.visible( ! column.visible() );
 				    } );
 					
-					columns[0].title = columns[0].title + '- Y/M/D - Hora';
+					columns[0].title = columns[0].title + ' - Y/M/D - Hora';
+					columns[7].title = columns[7].title + ' - (Kg)';
+					columns[8].title = columns[8].title + ' - (m<sup>3</sup>)';
 
 					let table = $('#table').DataTable({
 						data: dataSet,

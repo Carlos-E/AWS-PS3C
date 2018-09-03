@@ -54,7 +54,7 @@
 						</div>
 						<div class="row">
 							<div class="col-sm-12">
-								<table id="tabla" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
+								<table id="tabla" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;font-size:0.8rem;">
 									<thead>
 
 									</thead>
@@ -129,8 +129,8 @@
 			            { title: "Remolque" },
 			            { title: "Tipo" },
 			            { title: "Estado" },
-			            { title: "Peso" },
-			            { title: "Espacio" },
+			            { title: "Peso - (Kg)" },
+			            { title: "Espacio - (m<sup>3</sup>)" },
 			            { title: "Empresa" }
 			        ]
 			    } );

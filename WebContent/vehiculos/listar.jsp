@@ -127,8 +127,8 @@
 			            { title: "Conductor" },
 			            { title: "Tipo" },
 			            { title: "Estado" },
-			            { title: "Peso" },
-			            { title: "Espacio" },
+			            { title: "Peso - (Kg)" },
+			            { title: "Espacio - (m<sup>3</sup>)" },
 			            { title: "Empresa" }
 			        ]
 			    } );
