@@ -6,6 +6,7 @@
 	}
 	session.setAttribute("origin", request.getRequestURI());
 %>
+
 <header class="page-header row justify-center">
 	<div class="col-md-12 col-lg-7 titulo">
 		<h2 class="float-left text-center text-md-left">
