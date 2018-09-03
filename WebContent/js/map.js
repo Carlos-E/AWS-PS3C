@@ -109,7 +109,7 @@ function getVehiculo(plate) {
 		type : "POST",
 		dataType : "json",
 	}).done(function(vehiculo) {
-		console.log(JSON.stringify(vehiculo,null,2));
+		//console.log(JSON.stringify(vehiculo,null,2));
 		
 		$('#myModal').modal('show');
 		$('#myModalTitle').html(vehiculo.placa.toUpperCase());

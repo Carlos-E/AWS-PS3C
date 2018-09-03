@@ -165,38 +165,5 @@ $(document).ready(function() {
 
 		});
 		
-		
-		
-		
 	});
-</script>
-
-<script>
-
-$(document).ajaxSend(function(event, xhr, settings ){
-	
-	if(window.location.href.endsWith('index.jsp')){
-		return;
-	}
-	
-	if ( settings.url === '/getNumReports' ) {
-	 	return;
-	 }
-	
-	fillProgressBar(document.getElementById("progressBar"),50);
-});
-
-$( document ).ajaxComplete(function(event, xhr, settings  ) {
-	
-	if(window.location.href.endsWith('index.jsp')){
-		return;
-	} 
-	
-	if ( settings.url === '/getNumReports' ) {
-	 	return;
-	 }
-	
-	fillProgressBar(document.getElementById("progressBar"),100);
-});
-
 </script>
