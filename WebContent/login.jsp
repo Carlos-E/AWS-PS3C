@@ -133,12 +133,7 @@
 				url : url,
 				data : data,
 				type : "POST",
-				dataType : "json",
-			}).statusCode({
-			    303: function() { 
-			    	console.log('Redirection detected'); 
-			   		window.location.replace('/index.jsp'); 
-			    }
+				dataType : "json"
 			}).done(function(data, statusText, xhr) {
 				
 				$('#ModalTitle').html('Operaci&oacute;n exitosa');
@@ -159,11 +154,9 @@
 
 				if (typeof xhr.responseJSON != 'undefined') {
 					if (typeof xhr.responseJSON.title != 'undefined') {
-						console.log('mensaje titulo');
 						$('#ModalTitle').html(xhr.responseJSON.title);
 					}
 					if (typeof xhr.responseJSON.message != 'undefined') {
-						console.log('mensaje cuerpo');
 						$('#ModalBody').html(xhr.responseJSON.message);
 					}
 					if(typeof xhr.responseJSON.sendRedirect != 'undefined'){
@@ -172,6 +165,8 @@
 				}
 				
 				$("#Modal").modal();
+				$('#submit').html('Ingresar');
+
 			});
 
 		});
