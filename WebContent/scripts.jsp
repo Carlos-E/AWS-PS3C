@@ -113,6 +113,8 @@ $(document).ready(function() {
 
 <script>
 	$(document).ready(function() {
+		
+		$('#confirmationSpinner').css('display','none');
 
 		$('#myForm').submit(function(e) {
 			
@@ -120,7 +122,7 @@ $(document).ready(function() {
 
 			$('#ModalButton').hide();
 
-			$("#reset").attr('class', 'fas fa-circle-notch fa-spin fa-2x');
+			$('#confirmationSpinner').css('display','');
 			
 			let url = $(this).attr('action');
 			let data = $(this).serializeArray();
@@ -160,8 +162,9 @@ $(document).ready(function() {
 					}
 				}
 				
-				$("#Modal").modal();
-				$("#reset").attr('class', 'fas fa-eraser fa-2x');
+				$('#Modal').modal();
+
+				$('#confirmationSpinner').css('display','none');;
 				
 				if(typeof scanFunction != 'undefined'){
 				scanFunction(table);

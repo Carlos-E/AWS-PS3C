@@ -58,7 +58,7 @@
 				<h3 class="card-title">
 					<%
 						out.print(session.getAttribute("pagina").toString());
-					%>
+					%> <i id="confirmationSpinner" class="fa fa-circle-notch fa-spin"></i>
 				</h3>
 				<form id="myForm" class="form" action="/vehiculos/eliminar" method="post">
 					<div class="form-group row">
@@ -98,7 +98,6 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn float-left"><i id="reset"></i></button>
 						<button id="submit" type="submit" class="btn btn-primary btn-md float-right">Confirmar</button>
 						<button id="atras" type="button" data-target="#" class="btn btn-danger btn-md float-right">Atras</button>
 					</div>
@@ -178,6 +177,8 @@
 						$('#buscar-form').hide();
 						$('#form').removeAttr('hidden');
 						$('#form').show();
+						$('#confirmationSpinner').css('display','none');
+
 					});
 					$('#atras').click(function() {
 						$('#buscar-form').show();
