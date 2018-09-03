@@ -91,7 +91,7 @@
 						%>
 					</div>
 					<div class="modal-footer">
-						<button type="reset" class="btn float-left"><i id="reset" class="fas fa-eraser fa-2x"></i></button>
+						<button type="reset" class="btn btn-secondary float-left"><i id="reset" class="fas fa-eraser fa-2x"></i></button>
 						<button id="submit" type="submit" class="btn btn-primary btn-md float-right">Confirmar</button>
 						<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger btn-md float-right">Cancelar</button>
 					</div>

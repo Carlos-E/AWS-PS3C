@@ -105,18 +105,18 @@
 						</div>
 					</div>
 					<div id="oculto" class="form-group row" style="display: none;">
-						<label class="col-md-2 col-form-label text-capitalize">Peso m&aacute;ximo</label>
+						<label class="col-md-2 col-form-label text-capitalize">Peso m&aacute;ximo(Kg)</label>
 						<div class="col-md-4">
-							<input class="form-control" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" name="peso" placeholder="peso en kg" id="peso" value="0" disabled required>
+							<input class="form-control" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" name="peso" placeholder="en kilogramos" id="peso" value="0" disabled required>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Espacio m&aacute;ximo</label>
+						<label class="col-md-2 col-form-label text-capitalize">Espacio m&aacute;ximo(m<sup>3</sup>)</label>
 						<div class="col-md-4">
-							<input class="form-control" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" name="espacio" placeholder="en metros cubicos" id="espacio" value="0" disabled required>
+							<input class="form-control" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" name="espacio" placeholder="en metros c&uacute;bicos" id="espacio" value="0" disabled required>
 						</div>
 					</div>
 					
 					<div class="modal-footer">
-						<button type="reset" class="btn float-left"><i id="reset" class="fas fa-eraser fa-2x"></i></button>
+						<button type="reset" class="btn btn-secondary float-left"><i id="reset" class="fas fa-eraser fa-2x"></i></button>
 						<button id="submit" type="submit" class="btn btn-primary btn-md float-right">Confirmar</button>
 						<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger btn-md float-right">Cancelar</button>
 					</div>

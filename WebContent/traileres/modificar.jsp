@@ -171,17 +171,17 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Peso m&aacute;ximo</label>
+						<label class="col-md-2 col-form-label text-capitalize">Peso m&aacute;ximo(Kg)</label>
 						<div class="col-md-4">
 							<input class="form-control" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" placeholder="peso" name="pesoMax" id="pesoMax" required>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Espacio m&aacute;ximo</label>
+						<label class="col-md-2 col-form-label text-capitalize">Espacio m&aacute;ximo(m<sup>3</sup>)</label>
 						<div class="col-md-4">
 							<input class="form-control" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" placeholder="espacio" name="espacioMax"  id="espacioMax" required>
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="reset" class="btn float-left"><i id="reset" class="fas fa-eraser fa-2x"></i></button>
+						<button type="reset" class="btn btn-secondary float-left"><i id="reset" class="fas fa-eraser fa-2x"></i></button>
 						<button id="submit" type="submit" class="btn btn-primary btn-md float-right">Confirmar</button>
 						<button id="atras" type="button" data-target="#" class="btn btn-danger btn-md float-right">Atras</button>
 					</div>

@@ -88,11 +88,11 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Peso maximo</label>
+						<label class="col-md-2 col-form-label text-capitalize">Peso m&aacute;ximo(Kg)</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="peso" id="peso" readonly>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Espacio</label>
+						<label class="col-md-2 col-form-label text-capitalize">Espacio m&aacute;ximo(m<sup>3</sup>)</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="espacio" placeholder="espacio" id="espacio" readonly>
 						</div>

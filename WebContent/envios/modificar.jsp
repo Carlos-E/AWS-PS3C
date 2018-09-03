@@ -126,9 +126,9 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Espacio</label>
+						<label class="col-md-2 col-form-label text-capitalize">Espacio(m<sup>3</sup>)</label>
 						<div class="col-md-4">
-							<input class="form-control" name="espacio" placeholder="espacio" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" onchange="uno()" id="espacio" required>
+							<input class="form-control" name="espacio" placeholder="en metros c&uacute;bicos" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" onchange="uno()" id="espacio" required>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Estado</label>
 						<div class="col-md-4">
@@ -144,9 +144,9 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Peso</label>
+						<label class="col-md-2 col-form-label text-capitalize">Peso(Kg)</label>
 						<div class="col-md-4">
-							<input class="form-control" name="peso" placeholder="peso" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" onchange="uno()" id="peso" required>
+							<input class="form-control" name="peso" placeholder="en kilogramos" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" onchange="uno()" id="peso" required>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Descripci&oacute;n</label>
 						<div class="col-md-4">
@@ -209,7 +209,7 @@
 					<input type="text" id="origenLatLong" name="origenLatLong" style="display: none">
 					
 					<div class="modal-footer">
-						<button type="reset" class="btn float-left"><i id="reset" class="fas fa-eraser fa-2x"></i></button>
+						<button type="reset" class="btn btn-secondary float-left"><i id="reset" class="fas fa-eraser fa-lg"></i></button>
 						<button id="submit" type="submit" class="btn btn-primary btn-md float-right">Confirmar</button>
 						<button id="atras" type="button" data-target="#" class="btn btn-danger btn-md float-right">Atras</button>
 					</div>

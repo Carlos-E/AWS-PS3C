@@ -94,11 +94,11 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Espacio</label>
+						<label class="col-md-2 col-form-label text-capitalize">Espacio(m<sup>3</sup>)</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="espacio" placeholder="espacio" id="espacio" readonly>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Peso</label>
+						<label class="col-md-2 col-form-label text-capitalize">Peso(Kg)</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="peso" placeholder="peso" id="peso" readonly>
 						</div>

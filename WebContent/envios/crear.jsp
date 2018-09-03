@@ -58,19 +58,19 @@
 
 				<form id="myForm" class="form" action="/envios/crear" method="post">
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize" >Peso</label>
+						<label class="col-md-2 col-form-label text-capitalize" >Peso(Kg)</label>
 						<div class="col-md-4">
-							<input class="form-control" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" name="peso" id="peso" placeholder="peso en kg" onchange="uno()" required>
+							<input class="form-control" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" name="peso" id="peso" placeholder="en kilogramos" required>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Espacio</label>
+						<label class="col-md-2 col-form-label text-capitalize">Espacio(m<sup>3</sup>)</label>
 						<div class="col-md-4">
-							<input class="form-control" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" name="espacio" id="espacio" placeholder="en metros cubicos" onchange="uno()" required>
+							<input class="form-control" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" name="espacio" id="espacio" placeholder="en metros c&uacute;bicos" required>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Origen</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="origen" placeholder="origen" id="origen" onchange="uno()" required>
+							<input class="form-control" type="text" name="origen" placeholder="origen" id="origen" required>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Destino</label>
 						<div class="col-md-4">
@@ -140,7 +140,7 @@
 					<input type="text" id="origenLatLong" name="origenLatLong" style="display: none">
 					
 					<div class="modal-footer">
-						<button type="reset" class="btn float-left"><i id="reset" class="fas fa-eraser fa-2x"></i></button>
+						<button type="reset" class="btn btn-secondary float-left"><i id="reset" class="fas fa-eraser fa-lg"></i></button>
 						<button id="submit" type="submit" class="btn btn-primary btn-md float-right">Confirmar</button>
 						<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger btn-md float-right">Cancelar</button>
 					</div>
