@@ -77,6 +77,4 @@
 </div>
 </main>
 
-<script src="/js/progressBar.js"></script>
-
 <jsp:include page="/scripts.jsp" />

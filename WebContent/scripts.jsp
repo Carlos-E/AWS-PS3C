@@ -23,4 +23,5 @@ if (!session.getAttribute("rol").equals("cliente")||!session.getAttribute("pagin
 	
 <script src="/js/form-modal.js"></script>
 
+<script src="/js/progressBar.js"></script>
 <script src="/js/progressBarListener.js"></script>
