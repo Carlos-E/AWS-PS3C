@@ -17,5 +17,8 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/aws-java-sdk-core-1.11.401.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/aws-java-sdk-dynamodb-1.11.401.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javax.mail.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

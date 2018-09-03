@@ -24,13 +24,16 @@ $(document).ready(function() {
 				$('#ModalTitle').html('C&oacute;digo de Estado: ' + xhr.status);
 				$('#ModalBody').html('Oopss a ocurrido un error');
 				
-			}).always(function(xhr, statusText,a) {
+			}).always(function(xhr, statusText,a,b) {
 								
 				if(a!=''){
 					xhr = a;
 				}
 				
-				//console.log(JSON.stringify(xhr, null, 2));
+				console.log(JSON.stringify(xhr, null, 2));
+				console.log(JSON.stringify(statusText, null, 2));
+				console.log(JSON.stringify(a, null, 2));
+				console.log(JSON.stringify(b, null, 2));
 
 				if (typeof xhr.responseJSON != 'undefined') {
 					if (typeof xhr.responseJSON.title != 'undefined') {
@@ -38,6 +41,9 @@ $(document).ready(function() {
 					}
 					if (typeof xhr.responseJSON.message != 'undefined') {
 						$('#ModalBody').html(xhr.responseJSON.message);
+					}
+					if(typeof xhr.responseJSON.sendRedirect != 'undefined'){
+						window.location.replace(xhr.responseJSON.sendRedirect);
 					}
 				}
 				
