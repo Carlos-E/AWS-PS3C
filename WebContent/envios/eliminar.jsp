@@ -18,9 +18,6 @@
 		out.print(session.getAttribute("pagina").toString());
 	%>
 </title>
-<%
-	session.setAttribute("pagina", "Eliminar Envíos");
-%>
 <jsp:include page="/head.jsp" />
 
 </head>

@@ -3,15 +3,23 @@
 <%@ page import="com.logica.*"%>
 <%@ page import="clases.*"%>
 <%@ page import="java.util.ArrayList"%>
+<%
+	if (session.getAttribute("rol") == null) {
+		response.sendRedirect("/error.jsp");
+	}
+	session.setAttribute("pagina", "Eliminar empresa");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Eliminar Empresa</title>
+<title>
+	<%
+		out.print(session.getAttribute("pagina").toString());
+	%>
+</title>
 
 <jsp:include page="/head.jsp" />
-<%
-	session.setAttribute("pagina", "Eliminar empresa");
-%>
+
 </head>
 
 <body>
@@ -27,7 +35,7 @@
 	<div class="col-md-12 col-lg-12">
 		<div class="card mb-4">
 			<!-- INICIO CONTAINER -->
-			
+
 			<div class="card-block" id="buscar-form">
 				<h3 class="card-title">
 					<%
@@ -48,7 +56,7 @@
 					</div>
 				</form>
 			</div>
-			
+
 			<div class="card-block" id="form" hidden="true">
 				<h3 class="card-title">
 					<%
@@ -85,20 +93,22 @@
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="telefono" placeholder="telefono" id="telefono" readonly>
 						</div>
-					</div>					
+					</div>
 					<input type="text" id="longitud_Destino" name="longitud_Destino" style="display: none">
 					<input type="text" id="latitud_Destino" name="latitud_Destino" style="display: none">
 					<input type="text" id="latitud_Origen" name="latitud_Origen" style="display: none">
 					<input type="text" id="longitud_Origen" name="longitud_Origen" style="display: none">
 					<div class="modal-footer">
-						<button type="button" class="btn float-left"><i id="reset"></i></button>
+						<button type="button" class="btn float-left">
+							<i id="reset"></i>
+						</button>
 						<button id="submit" type="submit" class="btn btn-primary btn-md float-right">Confirmar</button>
 						<button id="atras" type="button" data-target="#" class="btn btn-danger btn-md float-right">Atras</button>
 					</div>
 				</form>
-			</div>	
-		<!-- /FIN CONTAINER -->
-	</div>
+			</div>
+			<!-- /FIN CONTAINER -->
+		</div>
 	</div>
 	</section> </main>
 	<!-- Modal -->
@@ -176,6 +186,6 @@
 			});
 		});
 	</script>
-	</body>
+</body>
 
 </html>
