@@ -132,33 +132,38 @@
 	<jsp:include page="/footer.jsp" />
 	<!-- /FIN -->
 	<script>
-		$(document).ready(
-				function() {
-					var lista;
-					$.ajax({
-						url : "/scanTable",
-						data : {
-							tabla : 'vehiculos'
-						},
-						type : "POST",
-						dataType : "json",
-					}).done(
-							function(response) {
-								console.log(response);
-								lista = response;
-								$(response).each(
-										function() {
-											let value = this.placa;
-											let text = this.placa;
-											$('#select').append(
-													$("<option>").attr('value',
-															value).text(text));
-										});
-							}).fail(function(xhr, status, errorThrown) {
-						alert("Algo ha salido mal");
-						console.log('Failed Request To Servlet /scanTable')
-					}).always(function(xhr, status) {
+	var lista;
+	var table = 'vehiculos';
+	var scanFunction;
+	
+	$(document).ready(function() {
+			
+	scanFunction = (table) => {
+	
+		$.ajax({
+				url : "/scanTable",
+				data : {
+				tabla : table
+				},
+				type : "POST",
+				dataType : "json",
+				}).done(function(response) {
+								
+					lista = response;
+						
+					$('#select').find('option').remove();
+								
+					$(response).each(function() {
+						$('#select').append($("<option>").attr('value',this.placa).text(this.placa));
 					});
+								
+				}).fail(function(xhr, status, errorThrown) {
+					alert("Algo ha salido mal");
+					console.log('Failed Request To Servlet /scanTable')
+				});
+		}
+		scanFunction(table);
+				
 					$('#buscar').click(function() {
 						let selectedIndex = $('#select').prop('selectedIndex');
 						console.log(lista[selectedIndex]);

@@ -125,28 +125,37 @@
 	<jsp:include page="/footer.jsp" />
 	<!-- /FIN -->
 	<script>
-		$(document).ready(function() {		
-			var lista;	
+	var lista;
+	var table = 'empresas';
+	var scanFunction;
+	
+	$(document).ready(function() {
+			
+	scanFunction = (table) => {
+
 			$.ajax({
 				url : "/scanTable",
 				data : {
-					tabla : 'empresas'
+					tabla : table
 				},
 				type : "POST",
 				dataType : "json",
 			}).done(function(response) {
-				console.log(response);		
-				lista = response;			    	
-				 $(response).each(function() {
-					 let value = this.nombre;
-					 let text = this.nombre;
-				 	$('#select').append($("<option>").attr('value',value).text(text));
-				 	});			
+				lista = response;		
+
+				$('#select').find('option').remove();
+
+				$(response).each(function() {
+					$('#select').append($("<option>").attr('value',this.nombre).text(this.nombre));
+				});
+				 
 			}).fail(function(xhr, status, errorThrown) {
 				alert("Algo ha salido mal");
 				console.log('Failed Request To Servlet /scanTable')
-			}).always(function(xhr, status) {
 			});			
+	}
+	scanFunction(table);
+	
 			$('#buscar').click(function() {		
 				let selectedIndex = $('#select').prop('selectedIndex');	
 				console.log(lista[selectedIndex]);

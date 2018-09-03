@@ -13,7 +13,11 @@
 
 <head>
 
-<title><%out.print(session.getAttribute("pagina").toString());%></title>
+<title>
+	<%
+		out.print(session.getAttribute("pagina").toString());
+	%>
+</title>
 <%
 	session.setAttribute("pagina", "Eliminar Envíos");
 %>
@@ -48,7 +52,7 @@
 						<label class="col-md-3 col-form-label">Seleccione el env&iacute;o</label>
 						<div class="col-md-9">
 							<select class="custom-select form-control" id="select">
-								
+
 							</select>
 						</div>
 					</div>
@@ -117,7 +121,9 @@
 					<input type="text" id="latitud_Origen" name="latitud_Origen" style="display: none">
 					<input type="text" id="longitud_Origen" name="longitud_Origen" style="display: none">
 					<div class="modal-footer">
-						<button type="button" class="btn float-left"><i id="reset"></i></button>
+						<button type="button" class="btn float-left">
+							<i id="reset"></i>
+						</button>
 						<button id="submit" type="submit" class="btn btn-primary btn-md float-right">Confirmar</button>
 						<button id="atras" type="button" data-target="#" class="btn btn-danger btn-md float-right">Atras</button>
 					</div>
@@ -154,34 +160,45 @@
 	<jsp:include page="/footer.jsp" />
 	<!--  /FIN FOOTER CON SCRIPTS -->
 	<!-- /FIN -->
-	
+
 	<script>
-		$(document).ready(function() {
+	var lista;
+	var table = 'envios';
+	var scanFunction;
+	
+	$(document).ready(function() {
 			
-			var lista;
+	scanFunction = (table) => {
 			
 			$.ajax({
 				url : "/scanTable",
 				data : {
-					tabla : 'envios'
+					tabla : table
 				},
 				type : "POST",
 				dataType : "json",
 			}).done(function(response) {
-				console.log(response);
 				
 				lista = response;
+				
+				$('#select').find('option').remove();
 				    	
-				 $(response).each(function() {
-				 	$('#select').append($("<option>").attr('value',this.usuario+' : '+this.fecha).text(this.usuario+' : '+this.fecha));
-				 	});
+				$(response).each(function() {
+					$('#select').append($("<option>").attr('value',this.usuario+' : '+this.fecha).text(this.usuario+' : '+this.fecha));
+				});
 				
 			}).fail(function(xhr, status, errorThrown) {
+				
 				alert("Algo ha salido mal");
-				console.log('Failed Request To Servlet /scanTable')
-			}).always(function(xhr, status) {
-			});			
+				console.log('Failed Request To Servlet /scanTable');
+				
+			});
+			
+			}
+			
+			scanFunction(table);
 
+			
 			$('#buscar').click(function() {
 				
 				let selectedIndex = $('#select').prop('selectedIndex');

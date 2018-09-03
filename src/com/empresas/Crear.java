@@ -34,7 +34,7 @@ public class Crear extends HttpServlet {
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
 		
-		Empresa empresa = new clases.Empresa();
+		Empresa empresa = new Empresa();
 
 		empresa.setNit(request.getParameter("nit").toLowerCase());
 		empresa.setRut(request.getParameter("rut").toLowerCase());

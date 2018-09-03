@@ -133,33 +133,40 @@
 	<jsp:include page="/footer.jsp" />
 	<!-- /FIN -->
 	<script>
-		$(document).ready(
-				function() {
-					var lista;
-					$.ajax({
+	var lista;
+	var table = 'trailers';
+	var scanFunction;
+	
+	$(document).ready(function() {
+			
+	scanFunction = (table) => {
+					
+		$.ajax({
 						url : "/scanTable",
 						data : {
-							tabla : 'trailers'
+							tabla : table
 						},
 						type : "POST",
 						dataType : "json",
 					}).done(
 							function(response) {
-								console.log(response);
+
 								lista = response;
-								$(response).each(
-										function() {
-											let value = this.patente;
-											let text = this.patente;
-											$('#select').append(
-													$("<option>").attr('value',
-															value).text(text));
-										});
+								
+								$('#select').find('option').remove();
+								
+								$(response).each(function() {
+									$('#select').append($("<option>").attr('value',this.patente).text(this.patente));
+								});
+								
 							}).fail(function(xhr, status, errorThrown) {
 						alert("Algo ha salido mal");
 						console.log('Failed Request To Servlet /scanTable')
-					}).always(function(xhr, status) {
 					});
+	}
+	scanFunction(table);
+
+
 					$('#buscar').click(function() {
 						let selectedIndex = $('#select').prop('selectedIndex');
 						console.log(lista[selectedIndex]);
@@ -175,10 +182,12 @@
 						$('#form').removeAttr('hidden');
 						$('#form').show();
 					});
+					
 					$('#atras').click(function() {
 						$('#buscar-form').show();
 						$('#form').hide();
 					});
+					
 				});
 	</script>
 </body>

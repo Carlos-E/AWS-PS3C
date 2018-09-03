@@ -125,8 +125,8 @@ $(document).ready(function() {
 			let url = $(this).attr('action');
 			let data = $(this).serializeArray();
 			
-			console.log('URL: '+ JSON.stringify(url,null,2));
-			console.log('Data: '+ JSON.stringify(data,null,2));
+			//console.log('URL: '+ JSON.stringify(url,null,2));
+			//console.log('Data: '+ JSON.stringify(data,null,2));
 			
 			$.ajax({
 				url : url,
@@ -149,21 +149,23 @@ $(document).ready(function() {
 					xhr = a;
 				}
 				
-				console.log(JSON.stringify(xhr, null, 2));
+				//console.log(JSON.stringify(xhr, null, 2));
 
 				if (typeof xhr.responseJSON != 'undefined') {
 					if (typeof xhr.responseJSON.title != 'undefined') {
-						console.log('mensaje titulo');
 						$('#ModalTitle').html(xhr.responseJSON.title);
 					}
 					if (typeof xhr.responseJSON.message != 'undefined') {
-						console.log('mensaje cuerpo');
 						$('#ModalBody').html(xhr.responseJSON.message);
 					}
 				}
 				
 				$("#Modal").modal();
 				$("#reset").attr('class', 'fas fa-eraser fa-2x');
+				
+				if(typeof scanFunction != 'undefined'){
+				scanFunction(table);
+				}
 			});
 
 		});
