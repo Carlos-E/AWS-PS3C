@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.logica.ControladorBD;
 
 import clases.DB;
 import clases.Reporte;
@@ -39,31 +38,27 @@ public class Visto extends HttpServlet {
 
 		List<Reporte> reportes = new DB().scan(Reporte.class, new DynamoDBScanExpression());
 
-		String visto = "jeje saludos";
-
 		for (int i = 0; i < reportes.size(); i++) {
 			try {
 				if (request.getParameter(reportes.get(i).getHora()) == null) {
-					visto = "false";
+					reportes.get(i).setVisto(false);
 				} else {
-					visto = "true";
+					reportes.get(i).setVisto(true);
 				}
-				ControladorBD.actualizarValor("reportes", "usuario", reportes.get(i).getUsuario(), "hora",
-						reportes.get(i).getHora(), "visto", visto);
+								
+				new DB().save(reportes.get(i));
+				
 			} catch (Exception e) {
 				System.out.println("no encontro una fecha, algo anda mal");
 			}
 		}
 
-//		com.logica.Dibujar.mensaje(response.getWriter(), "Operacion Exitosa",
-//				request.getContextPath() + "/envios/reportes.jsp");
-		
 		response.setStatus(200);
 		response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 			private static final long serialVersionUID = 1L;
 			{
 				put("title", "Operaci&oacute;n exitosa");
-				put("message", "Reportes modificados");
+				put("message", "Reportes actualizados");
 			}
 		}));
 		return;
