@@ -300,46 +300,47 @@
 			}
 		}
 
-					fillInputs = () => {
+		fillInputs = () => {
 
-						let selectedIndex = $('#select').prop('selectedIndex');
+			let selectedIndex = $('#select').prop('selectedIndex');
+	
+			console.log(lista[selectedIndex]);
 
-						console.log(lista[selectedIndex]);
+			let objeto = lista[selectedIndex];
 
-						let objeto = lista[selectedIndex];
+			let asignado = "ninguno";
 
-						let asignado = "ninguno";
-
-						if (objeto.trailer != "ninguno") {
-							asignado = objeto.trailer;
-						} else if (objeto.camion != "ninguno") {
-							asignado = objeto.camion;
-						} else {
-							asignado = "ninguno";
-						}
-						$('#cliente').val(objeto.usuario);
-						$('#fecha').val(objeto.fecha);
-						$('#asignado').val(asignado);
-						$('#origen').val(objeto.origen);
-						$('#destino').val(objeto.destino);
-						$('#usuario').val(objeto.usuario);
-						$('#peso').val(objeto.peso);
-						$('#tipo').val(objeto.tipo);
-						$('#espacio').val(objeto.espacio);
-						$('#estado').val(objeto.estado);
-						$('#tiempoCarga').val(objeto.tiempoCarga);
-						$('#tiempoDescarga').val(objeto.tiempoDescargaUsuario);
-						$('#empresa').val(objeto.empresa);
-						$('#camion').val(objeto.camion);
-						$('#trailer').val(objeto.trailer);
-						$('#descripcion').val(objeto.descripcion);
-						$('#destinoLatLong').val(objeto.destinoLatLong);
-						$('#origenLatLong').val(objeto.origenLatLong);
-						$('#buscar-form').hide();
-						$('#form').removeAttr('hidden');
-						$('#form').show();
-						uno();
-					}
+			if (objeto.trailer != "ninguno") {
+				asignado = objeto.trailer;
+			} else if (objeto.camion != "ninguno") {
+				asignado = objeto.camion;
+			} else {
+				asignado = "ninguno";
+			}
+						
+			$('#cliente').val(objeto.usuario);
+			$('#fecha').val(objeto.fecha);
+			$('#asignado').val(asignado);
+			$('#origen').val(objeto.origen);
+			$('#destino').val(objeto.destino);
+			$('#usuario').val(objeto.usuario);
+			$('#peso').val(objeto.peso);
+			$('#tipo').val(objeto.tipo);
+			$('#espacio').val(objeto.espacio);
+			$('#estado').val(objeto.estado);
+			$('#tiempoCarga').val(objeto.tiempoCarga);
+			$('#tiempoDescarga').val(objeto.tiempoDescargaUsuario);
+			$('#empresa').val(objeto.empresa);
+			$('#camion').val(objeto.camion);
+			$('#trailer').val(objeto.trailer);
+			$('#descripcion').val(objeto.descripcion);
+			$('#destinoLatLong').val(objeto.destinoLatLong);
+			$('#origenLatLong').val(objeto.origenLatLong);
+			$('#buscar-form').hide();
+			$('#form').removeAttr('hidden');
+			$('#form').show();
+			uno();
+	}
 
 					$('#buscar').click(fillInputs);
 
