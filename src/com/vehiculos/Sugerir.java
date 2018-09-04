@@ -61,46 +61,13 @@ public class Sugerir extends HttpServlet {
 				iteratorVehiculos.remove();
 				continue;
 			}
+			
+			vehiculo.setPesoMax(vehiculo.getPesoMax() - DB.getPesoVehiculo(vehiculo.getPlaca()));
+			vehiculo.setEspacioMax(vehiculo.getEspacioMax() - DB.getEspacioVehiculo(vehiculo.getPlaca()));
 		}
 		
-		for (Vehiculo vehiculo : vehiculos) {
-			System.out.println(vehiculo);
-		}
-
-		System.out.println();
-		System.out.println();
-
-		//SORTING
 		vehiculos.sort(Comparator.comparing(Vehiculo::getEspacioMax));
 		Collections.reverse(vehiculos);
-
-		for (Vehiculo vehiculo : vehiculos) {
-			System.out.println(vehiculo);
-		}
-
-		iteratorVehiculos = vehiculos.iterator();
-		while (iteratorVehiculos.hasNext()) {
-			Vehiculo vehiculo = iteratorVehiculos.next();
-
-			double pesoOcupado = DB.getPesoVehiculo(vehiculo.getPlaca());
-			double espacioOcupado = DB.getEspacioVehiculo(vehiculo.getPlaca());
-
-			double pesoDisponible = 0;
-
-			if (vehiculo.getPesoMax() > pesoOcupado) {
-				pesoDisponible = vehiculo.getPesoMax() - pesoOcupado;
-			}
-
-			double espacioDisponible = 0;
-			if (vehiculo.getEspacioMax() > espacioOcupado) {
-				espacioDisponible = vehiculo.getEspacioMax() - espacioOcupado;
-			}
-
-			if (espacioDisponible < espacioEnvio || pesoDisponible < pesoEnvio) {
-				iteratorVehiculos.remove();
-			}
-
-		}
 
 		response.getWriter().print(new ObjectMapper().writeValueAsString(vehiculos));
 		response.getWriter().close();

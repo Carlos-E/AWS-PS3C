@@ -129,8 +129,8 @@
 			            { title: "Remolque" },
 			            { title: "Tipo" },
 			            { title: "Estado" },
-			            { title: "Peso(Kg) - Maximo/Ocupado/Disponible" },
-			            { title: "Espacio(m<sup>3</sup>) - Maximo/Ocupado/Disponible" },
+			            { title: "Peso(Kg) - M&aacute;ximo/Ocupado/Disponible" },
+			            { title: "Espacio(m<sup>3</sup>) - M&aacute;ximo/Ocupado/Disponible" },
 			            { title: "Empresa" }
 			        ]
 			    } );
