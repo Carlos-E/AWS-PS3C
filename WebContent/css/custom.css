@@ -82,6 +82,7 @@ canvas {
 	animation: fa-spin 0.1s infinite linear;
 }
 
-a {
-	/* color:rgb(213, 108, 62) !important; */
+table a {
+/* 	color:rgb(213, 108, 62) !important;
+ */	color:rgb(213, 130, 62) !important;
 }
