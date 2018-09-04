@@ -3,7 +3,7 @@ $(document).ready(function() {
 	
 	let href = ['index.jsp'];
 
-	let urls = ['/mapeoDeMercancia','/getNumReports','http://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json']
+	let urls = ['/mapeoDeMercancia','/getNumReports','/disponibilidadDeTrailers','/disponibilidadDeVehiculos','http://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json']
 
 
 $(document).ajaxSend(function(event, xhr, settings ){
@@ -33,7 +33,7 @@ $( document ).ajaxComplete(function(event, xhr, settings  ) {
 
 
 	for(let i=0;i<urls.length;i++){
-		if ( settings.url === urls[i] ) {
+		if ( settings.url.endsWith(urls[i])) {
 		 	return;
 		 }
 	}

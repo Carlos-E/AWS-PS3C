@@ -98,6 +98,8 @@ public class Modificar extends HttpServlet {
 		}
 
 		if (envio.getTrailer().equals("ninguno") && !envio.getCamion().equals("ninguno")) {
+			
+			envio.setEstado("asignado");
 
 			Vehiculo vehiculo = DB.load(Vehiculo.class, envio.getCamion());
 
@@ -133,6 +135,8 @@ public class Modificar extends HttpServlet {
 			}
 
 		} else if (!envio.getTrailer().equals("ninguno")) {
+			
+			envio.setEstado("asignado");
 
 			Trailer trailer = DB.load(Trailer.class, envio.getTrailer());
 
@@ -171,7 +175,7 @@ public class Modificar extends HttpServlet {
 
 		envio.setEspacio(Double.valueOf(request.getParameter("espacio")));
 		envio.setPeso(Double.valueOf(request.getParameter("peso")));
-
+		
 		DB.save(envio);
 
 		if (envio.getEstado().equals("asignado")) {
