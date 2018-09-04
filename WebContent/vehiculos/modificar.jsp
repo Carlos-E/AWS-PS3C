@@ -205,6 +205,12 @@
 													$("<option>").attr('value',
 															value).text(text));
 										});
+								
+								if(getParameterByName('select') != null ){
+									$('#select').val(getParameterByName('select'));
+									$('#buscar').click();
+								}
+								
 							}).fail(function(xhr, status, errorThrown) {
 						alert("Algo ha salido mal");
 						console.log('Failed Request To Servlet /scanTable')

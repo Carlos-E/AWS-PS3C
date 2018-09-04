@@ -105,7 +105,7 @@
 				
 				response.forEach(element => {
 					
-					let aTag = '<a href="/empresas/modificar.jsp?select='+element.nit+'">'+element.nit+'</a>';
+					let aTag = '<a href="/empresas/modificar.jsp?select='+element.nombre+'">'+element.nit+'</a>';
 					
 					dataSet.push([
 						aTag,

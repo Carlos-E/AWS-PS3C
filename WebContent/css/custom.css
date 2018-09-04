@@ -81,3 +81,7 @@ canvas {
 	-webkit-animation: fa-spin 0.1s infinite linear;
 	animation: fa-spin 0.1s infinite linear;
 }
+
+a {
+	/* color:rgb(213, 108, 62) !important; */
+}

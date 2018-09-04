@@ -104,8 +104,11 @@
 				let dataSet = [];
 				
 				response.forEach(element => {
+					
+					let aTag = '<a href="/usuarios/modificar.jsp?select='+element.usuario+'">'+element.usuario+'</a>';
+					
 					dataSet.push([
-						element.usuario,
+						aTag,
 						element.nombre,
 						element.apellido,
 						element.rol,

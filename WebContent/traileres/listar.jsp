@@ -104,9 +104,11 @@
 				let dataSet = [];
 				
 				response.forEach(element => {
+					
+					let aTag = '<a href="/traileres/modificar.jsp?select='+element.patente+'">'+element.patente+'</a>';
+					
 					dataSet.push([
-						element.patente,
-						/* element.usuario, */
+						aTag,
 						element.camion,
 						element.tipo,
 						element.estado,
