@@ -62,8 +62,8 @@ public class Listar extends HttpServlet {
 			double pesoDisponible = trailers.get(i).getPesoMax() -  pesoOcupado;
 			double espacioDisponible = trailers.get(i).getEspacioMax() - espacioOcupado;
 			
-			result.put("pesoMax",result.get("pesoMax")+"/"+pesoOcupado+"/"+pesoDisponible);
-			result.put("espacioMax",result.get("espacioMax")+"/"+espacioOcupado+"/"+espacioDisponible);
+			result.put("pesoMax",result.get("pesoMax")+" / "+pesoOcupado+" / "+pesoDisponible);
+			result.put("espacioMax",result.get("espacioMax")+" / "+espacioOcupado+" / "+espacioDisponible);
 			
 			results.add(result);
 
