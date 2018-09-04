@@ -22,7 +22,7 @@ public class Eliminar extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("/error.jsp");
+		response.sendRedirect("/404.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,7 +36,6 @@ public class Eliminar extends HttpServlet {
 		ControladorBD.borrarItem("usuarios", "usuario", usuario);
 		
 		response.setStatus(200);
-		
 		response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 			private static final long serialVersionUID = 1L;
 			{

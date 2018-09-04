@@ -36,7 +36,7 @@ public class mapeoDeMercancia extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.sendError(405);
+		response.sendRedirect("/404.jsp");
 	}
 
 }

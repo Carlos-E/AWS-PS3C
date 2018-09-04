@@ -122,7 +122,8 @@
 			case 5:
 				$('#submit').html('<i class="fas fa-spinner fa-pulse fa-lg"></i>');
 				break;
-		}			
+			}
+		
 			let url = $(this).attr('action');
 			let data = $(this).serializeArray();
 			
@@ -142,7 +143,7 @@
 			}).fail(function(xhr, statusText) {
 
 				$('#ModalTitle').html('C&oacute;digo de Estado: ' + xhr.status);
-				$('#ModalBody').html('Oopss a ocurrido un error');
+				$('#ModalBody').html('Usuario o contraseña incorrectos');
 				
 			}).always(function(xhr, statusText,a,b,c) {
 				

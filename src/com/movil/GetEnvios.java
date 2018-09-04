@@ -70,7 +70,7 @@ public class GetEnvios extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.sendError(404);
+		response.sendRedirect("/404.jsp");
 	}
 
 }

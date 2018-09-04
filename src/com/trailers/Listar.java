@@ -26,7 +26,7 @@ public class Listar extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.sendError(404);
+		response.sendRedirect("/404.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

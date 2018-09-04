@@ -48,7 +48,7 @@ public class Eliminar extends HttpServlet {
 				// Dibujar.mensaje(response.getWriter(), "Este vehículo contiene
 				// envíos sin entregar",
 				// "/vehiculos/eliminar.jsp");
-				response.setStatus(400);
+				response.setStatus(200);
 				response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 					private static final long serialVersionUID = 1L;
 					{
@@ -61,7 +61,7 @@ public class Eliminar extends HttpServlet {
 
 			if (vehiculo.getTipo().equals("remolque")) {
 				if (DB.getTrailerRemolque(vehiculo.getPlaca()) != null) {
-					response.setStatus(400);
+					response.setStatus(200);
 					response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 						private static final long serialVersionUID = 1L;
 						{

@@ -5,6 +5,24 @@ $(document).ready(function() {
 			e.preventDefault();
 
 			$('#ModalButton').hide();
+			
+			switch (Math.floor((Math.random() * 5) + 1)) {
+			case 1:
+				$('#submit').html('<i class="fas fa-spinner fa-spin fa-lg"></i>');
+				break;
+			case 2:
+				$('#submit').html('<i class="fas fa-circle-notch fa-spin fa-lg"></i>');
+				break;
+			case 3:
+				$('#submit').html('<i class="fas fa-sync fa-spin fa-lg"></i>');
+				break;
+			case 4:
+				$('#submit').html('<i class="fas fa-cog fa-spin fa-lg"></i>');
+				break;
+			case 5:
+				$('#submit').html('<i class="fas fa-spinner fa-pulse fa-lg"></i>');
+				break;
+			}
 
 			let url = $(this).attr('action');
 			let data = $(this).serializeArray();

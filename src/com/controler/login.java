@@ -111,7 +111,7 @@ public class login extends HttpServlet {
 			}
 
 		} else {
-			response.setStatus(401);
+			response.setStatus(200);
 			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 				private static final long serialVersionUID = 1L;
 				{

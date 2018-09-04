@@ -24,7 +24,7 @@ public class Modificar extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.sendRedirect("/error.jsp");
+		response.sendRedirect("/404.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

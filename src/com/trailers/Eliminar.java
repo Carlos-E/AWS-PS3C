@@ -41,10 +41,7 @@ public class Eliminar extends HttpServlet {
 		trailer.setPatente(request.getParameter("patente").toLowerCase());
 
 		if (DB.getEnviosPendientesTrailer(trailer.getPatente()).size() != 0) {
-			// Dibujar.mensaje(response.getWriter(), "Este trailer contiene
-			// envíos sin entregar",
-			// "/traileres/eliminar.jsp");
-			response.setStatus(400);
+			response.setStatus(200);
 			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 				private static final long serialVersionUID = 1L;
 				{

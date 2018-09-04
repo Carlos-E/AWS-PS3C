@@ -47,10 +47,7 @@ public class Modificar extends HttpServlet {
 
 		trailer.setEspacioMax(Double.valueOf(request.getParameter("espacioMax")));
 		if (trailer.getEspacioMax() < DB.getEspacioTrailer(trailer.getPatente())) {
-//			Dibujar.mensaje(response.getWriter(),
-//					"El espacio no puede ser menor a la cantidad consumida por los envios asignados",
-//					request.getRequestURI() + ".jsp");
-			response.setStatus(400);
+			response.setStatus(200);
 			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 				private static final long serialVersionUID = 1L;
 				{
@@ -63,10 +60,7 @@ public class Modificar extends HttpServlet {
 
 		trailer.setPesoMax(Double.valueOf(request.getParameter("pesoMax")));
 		if (trailer.getPesoMax() < DB.getPesoTrailer(trailer.getPatente())) {
-//			Dibujar.mensaje(response.getWriter(),
-//					"El peso no puede ser menor a la cantidad consumida por los envios asignados",
-//					request.getRequestURI() + ".jsp");
-			response.setStatus(400);
+			response.setStatus(200);
 			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 				private static final long serialVersionUID = 1L;
 				{

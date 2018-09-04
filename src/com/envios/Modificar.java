@@ -47,7 +47,7 @@ public class Modificar extends HttpServlet {
 		if (envio == null) {
 			// Dibujar.mensaje(response.getWriter(), "Envio no encontrado",
 			// "/envios/modificar.jsp");
-			response.setStatus(400);
+			response.setStatus(200);
 			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 				private static final long serialVersionUID = 1L;
 				{
@@ -105,7 +105,7 @@ public class Modificar extends HttpServlet {
 					.valueOf(request.getParameter("peso"))) {
 				// Dibujar.mensaje(response.getWriter(), "Peso muy grande para
 				// el camion: " +vehiculo.getPlaca(), "/envios/modificar.jsp");
-				response.setStatus(400);
+				response.setStatus(200);
 				response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 					private static final long serialVersionUID = 1L;
 					{
@@ -121,7 +121,7 @@ public class Modificar extends HttpServlet {
 				// Dibujar.mensaje(response.getWriter(), "Espacio muy grande
 				// para el camion: " +vehiculo.getPlaca(),
 				// "/envios/modificar.jsp");
-				response.setStatus(400);
+				response.setStatus(200);
 				response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 					private static final long serialVersionUID = 1L;
 					{
@@ -141,7 +141,7 @@ public class Modificar extends HttpServlet {
 				// Dibujar.mensaje(response.getWriter(), "Peso muy grande para
 				// el trailer: " +trailer.getPatente(),
 				// "/envios/modificar.jsp");
-				response.setStatus(400);
+				response.setStatus(200);
 				response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 					private static final long serialVersionUID = 1L;
 					{
@@ -157,7 +157,7 @@ public class Modificar extends HttpServlet {
 				// Dibujar.mensaje(response.getWriter(), "Espacio muy grande
 				// para el trailer: " +trailer.getPatente(),
 				// "/envios/modificar.jsp");
-				response.setStatus(400);
+				response.setStatus(200);
 				response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 					private static final long serialVersionUID = 1L;
 					{

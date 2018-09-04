@@ -52,7 +52,7 @@ public class Modificar extends HttpServlet {
 				// ser
 				// menor a la cantidad consumida por los envios asignados",
 				// "/vehiculos/modificar.jsp");
-				response.setStatus(400);
+				response.setStatus(200);
 				response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 					private static final long serialVersionUID = 1L;
 					{
@@ -70,7 +70,7 @@ public class Modificar extends HttpServlet {
 				// menor
 				// a la cantidad consumida por los envios asignados",
 				// "/vehiculos/modificar.jsp");
-				response.setStatus(400);
+				response.setStatus(200);
 				response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 					private static final long serialVersionUID = 1L;
 					{
