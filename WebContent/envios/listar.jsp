@@ -137,7 +137,7 @@ table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_des
 					envios.forEach(envio => {
 
 						dataSet.push([
-							envio.fecha,
+							'<a href="/envios/modificar.jsp?select='+envio.usuario+' : '+envio.fecha+'">'+envio.fecha+'</a>',
 							envio.usuario,
 							envio.empresa,
 							envio.origen,
