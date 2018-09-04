@@ -1,10 +1,12 @@
 var directionsService;
-var getRoutes;
 
 function initMap() {
   directionsService = new google.maps.DirectionsService();
+  console.log('Servicio de rutas inicializado');
+}
 
-  getRoutes = (origenEnvio, pesoEnvio, espacioEnvio) => {
+
+function setVehiculos(origenEnvio, pesoEnvio, espacioEnvio){
     let listaDatosRutas = [];
     console.log('Calculando Rutas Con Origen De Envio');
 
@@ -97,10 +99,7 @@ function initMap() {
           console.log('Failed getRoutes');
         });
     });
-  };
-
-  console.log('Servicio de rutas inicializado');
-}
+  }
 
 
 function setTrailers(origenEnvio, pesoEnvio, espacioEnvio) {

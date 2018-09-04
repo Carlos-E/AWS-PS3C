@@ -400,7 +400,7 @@
 														.getElementById('origenLatLong').value;
 													if (latlon != "") {
 														
-														getRoutes(latlon, parseFloat(peso),parseFloat(espacio));
+														setVehiculos(latlon, parseFloat(peso),parseFloat(espacio));
 											            setTrailers(latlon, parseFloat(peso),parseFloat(espacio));
 
 													}
