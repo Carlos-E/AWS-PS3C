@@ -103,7 +103,7 @@ public class Modificar extends HttpServlet {
 					
 					//com.logica.Dibujar.mensaje(response.getWriter(), "clave antigua incorrecta");
 					
-					response.setStatus(400);
+					response.setStatus(200);
 					response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 						private static final long serialVersionUID = 1L;
 						{
@@ -117,7 +117,7 @@ public class Modificar extends HttpServlet {
 					System.out.println("clave nueva no coincide");
 					//com.logica.Dibujar.mensaje(response.getWriter(), "clave nueva no coincide");
 					
-					response.setStatus(400);
+					response.setStatus(200);
 					response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 						private static final long serialVersionUID = 1L;
 						{
@@ -201,7 +201,7 @@ public class Modificar extends HttpServlet {
 		} catch (Exception e) {
 //			com.logica.Dibujar.mensaje(response.getWriter(), "Ocurrio un error al intentar modificar el Usuario",
 //					request.getContextPath() + "./index.jsp");
-			response.setStatus(500);
+			response.setStatus(200);
 			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 				private static final long serialVersionUID = 1L;
 				{

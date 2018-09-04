@@ -54,9 +54,6 @@ public class Crear extends HttpServlet {
 		//Guardar en la base de datos
 		new DB().save(reporte);
 		
-//		com.logica.Dibujar.mensaje(response.getWriter(), "Reporte Creado",
-//				request.getContextPath() + "/movil/transportador/reportes.jsp");
-		
 		response.setStatus(201);
 		response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 			private static final long serialVersionUID = 1L;
