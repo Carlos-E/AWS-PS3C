@@ -81,16 +81,16 @@ html, body {
 	<!-- JavaScript del mapa -->
 	<script>
 		$.getJSON('/mapeoDeMercancia', function(data) {
-			for (var i = 0; i < data.length; i++) {
+			/* for (var i = 0; i < data.length; i++) {
 				console.log(data[i]);
-			}
+			} */
 			ponerMarcadores(data);
 		});
 		setInterval(function() {
 			$.getJSON('/mapeoDeMercancia', function(data) {
-				for (var i = 0; i < data.length; i++) {
+				/* for (var i = 0; i < data.length; i++) {
 					console.log(data[i]);
-				}
+				} */
 				ponerMarcadores(data);
 			});
 		}, 5000);

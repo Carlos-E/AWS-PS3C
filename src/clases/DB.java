@@ -187,6 +187,8 @@ public class DB extends DynamoDBMapper {
 		if (Vehiculos.size() == 0) {
 			return null;
 		}
+		
+		System.out.println("Vehiculo del conductor:" + Vehiculos.get(0).getPlaca());
 
 		return Vehiculos.get(0).getPlaca();
 	}

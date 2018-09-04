@@ -128,9 +128,7 @@
 					</div>
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">
-							Espacio(m
-							<sup>3</sup>
-							)
+							Espacio(m<sup>3</sup>)
 						</label>
 						<div class="col-md-4">
 							<input class="form-control" name="espacio" placeholder="en metros c&uacute;bicos" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" onchange="uno()" id="espacio" required>

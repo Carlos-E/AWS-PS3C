@@ -65,16 +65,9 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 function ponerMarcadores(data) {
 
-	// console.log("Borrando Marcadores");
 	deleteMarkers();
 
 	for (let i = 0; i < data.length; i++) {
-
-		// console.log(data[i].placa);
-		// console.log(data[i].latitud);
-		// console.log(data[i].longitud);
-
-		// console.log("Antes Marcador");
 
 		let myLatlng = new google.maps.LatLng(parseFloat(data[i].latitud),
 				parseFloat(data[i].longitud));
@@ -92,14 +85,14 @@ function ponerMarcadores(data) {
 		google.maps.event.addListener(marker, 'click', function() {
 			getVehiculo(this.label);
 		});
-
-		// console.log("Despues Marcador");
 	}
 
 }
 
 
 function getVehiculo(plate) {
+	
+	console.log('getVehiculo');
 
 	$.ajax({
 		url : "/vehicle/read",
@@ -109,7 +102,7 @@ function getVehiculo(plate) {
 		type : "POST",
 		dataType : "json",
 	}).done(function(vehiculo) {
-		//console.log(JSON.stringify(vehiculo,null,2));
+		console.log(JSON.stringify(vehiculo,null,2));
 		
 		$('#myModal').modal('show');
 		$('#myModalTitle').html(vehiculo.placa.toUpperCase());
@@ -126,8 +119,9 @@ function getVehiculo(plate) {
 		    - Disponible: ${vehiculo.espacioDisponible}</p>`);
 
 	}).fail(function(xhr, status, errorThrown) {
-
-	}).always(function(xhr, status) {
+		console.log(JSON.stringify(xhr,null,2));
+		console.log(JSON.stringify(status,null,2));
+		console.log(JSON.stringify(errorThrown,null,2));
 
 	});
 

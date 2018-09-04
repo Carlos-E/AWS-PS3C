@@ -120,35 +120,27 @@ table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_des
 
 				});
 				
-				function getParameterByName(name, url) {
-				    if (!url) url = window.location.href;
-				    name = name.replace(/[\[\]]/g, '\\$&');
-				    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-				        results = regex.exec(url);
-				    if (!results) return null;
-				    if (!results[2]) return '';
-				    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-				}
-				
-				function loadTable(envios){
+				function loadTable(list){
 					
 					let dataSet = [];
 
-					envios.forEach(envio => {
+					list.forEach(element => {
+						
+						let aTag = '<a href="/envios/modificar.jsp?select='+element.usuario+' : '+element.fecha+'">'+element.fecha+'</a>';
 
 						dataSet.push([
-							'<a href="/envios/modificar.jsp?select='+envio.usuario+' : '+envio.fecha+'">'+envio.fecha+'</a>',
-							envio.usuario,
-							envio.empresa,
-							envio.origen,
-							envio.destino,
-							envio.estado,
-							envio.tipo,
-							envio.peso,
-							envio.espacio,
-							envio.camion,
-							envio.trailer,
-							envio.descripcion,
+							aTag,
+							element.usuario,
+							element.empresa,
+							element.origen,
+							element.destino,
+							element.estado,
+							element.tipo,
+							element.peso,
+							element.espacio,
+							element.camion,
+							element.trailer,
+							element.descripcion,
 						]);
 
 					});

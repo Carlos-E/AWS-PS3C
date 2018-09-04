@@ -104,8 +104,11 @@
 				let dataSet = [];
 				
 				response.forEach(element => {
+					
+					let aTag = '<a href="/empresas/modificar.jsp?select='+element.nit+'">'+element.nit+'</a>';
+					
 					dataSet.push([
-						element.nit,
+						aTag,
 						element.nombre,
 						element.rut,
 						element.correo,
@@ -135,7 +138,6 @@
 			}).fail(function(xhr, status, errorThrown) {
 				alert("Algo ha salido mal");
 				console.log('Failed Request To Servlet /scanTable')
-			}).always(function(xhr, status) {
 			});		
 			
 		});

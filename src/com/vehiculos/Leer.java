@@ -47,20 +47,35 @@ public class Leer extends HttpServlet {
 		if (vehiculo.getTipo().equals("remolque")) {
 
 			Trailer trailer = DB.getTrailerRemolque(placa);
-			
-			map.put("numEnviosPendientes", DB.getEnviosPendientesTrailer(trailer.getPatente()).size());
-			
-			map.put("espacioMax", trailer.getEspacioMax());
-			map.put("pesoMax", trailer.getPesoMax());
 
-			map.put("trailer", trailer.getPatente());
-			map.put("pesoDisponible", trailer.getPesoMax() - DB.getPesoTrailer(trailer.getPatente()));
-			map.put("espacioDisponible", trailer.getEspacioMax() - DB.getEspacioTrailer(trailer.getPatente()));
+			if (trailer != null) {
+
+				map.put("numEnviosPendientes", DB.getEnviosPendientesTrailer(trailer.getPatente()).size());
+
+				map.put("espacioMax", trailer.getEspacioMax());
+				map.put("pesoMax", trailer.getPesoMax());
+
+				map.put("trailer", trailer.getPatente());
+				map.put("pesoDisponible", trailer.getPesoMax() - DB.getPesoTrailer(trailer.getPatente()));
+				map.put("espacioDisponible", trailer.getEspacioMax() - DB.getEspacioTrailer(trailer.getPatente()));
+
+			} else {
+				
+				map.put("numEnviosPendientes", 0);
+
+				map.put("espacioMax", 0);
+				map.put("pesoMax", 0);
+
+				map.put("trailer", 0);
+				map.put("pesoDisponible", 0);
+				map.put("espacioDisponible", 0);
+
+			}
 
 		} else if (vehiculo.getTipo().equals("camion")) {
-			
+
 			map.put("numEnviosPendientes", DB.getEnviosPendientesVehiculo(placa).size());
-			
+
 			map.put("espacioMax", vehiculo.getEspacioMax());
 			map.put("pesoMax", vehiculo.getPesoMax());
 

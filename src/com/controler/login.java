@@ -93,7 +93,14 @@ public class login extends HttpServlet {
 
 				if (placa != null) {
 					session.setAttribute("placa", placa);
-					response.sendRedirect("/movil/index.jsp");
+					
+					response.setStatus(200);
+					response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+						private static final long serialVersionUID = 1L;
+						{
+							put("sendRedirect", "/movil/index.jsp");
+						}
+					}));
 				} else {
 					
 					response.setStatus(200);
