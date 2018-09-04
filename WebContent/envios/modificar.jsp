@@ -295,7 +295,6 @@
 			});
 			
 			if(getParameterByName('select') != null ){
-				console.log(getParameterByName('select'));
 				$('#select').val(getParameterByName('select'));
 				fillInputs();
 			}
