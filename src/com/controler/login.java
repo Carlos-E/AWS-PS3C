@@ -25,8 +25,6 @@ public class login extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// request.getRequestDispatcher("/login.jsp").forward(request,
-		// response);
 		response.sendRedirect("/login.jsp");
 	}
 
@@ -97,9 +95,6 @@ public class login extends HttpServlet {
 					session.setAttribute("placa", placa);
 					response.sendRedirect("/movil/index.jsp");
 				} else {
-					// Dibujar.mensaje(response.getWriter(), "El conductor no
-					// tiene ningun vehículo asignado",
-					// "/login.jsp");
 					
 					response.setStatus(200);
 					response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
@@ -116,9 +111,7 @@ public class login extends HttpServlet {
 			}
 
 		} else {
-			// Dibujar.mensaje(response.getWriter(), "Usuario o contraseña
-			// incorrecto", "/login.jsp");
-			response.setStatus(400);
+			response.setStatus(401);
 			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 				private static final long serialVersionUID = 1L;
 				{
