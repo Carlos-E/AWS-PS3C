@@ -3,7 +3,6 @@
 body {
 	background-color: #ffffff;
 	background-image: url("/img/pattern1.svg");
-	/* 	background-image: url("https://www.unicartagena.edu.co/images/fondo.png");*/
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -54,7 +53,7 @@ body {
 	text-shadow: 1px 1px black;
 }
 
-footer{
+footer {
 	padding-top: 2rem;
 }
 
@@ -83,6 +82,5 @@ canvas {
 }
 
 table a {
-/* 	color:rgb(213, 108, 62) !important;
- */	color:rgb(213, 130, 62) !important;
+	color: rgb(213, 130, 62) !important;
 }
