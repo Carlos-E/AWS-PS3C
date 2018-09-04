@@ -1,9 +1,12 @@
 
 $(document).ready(function() {
-
-$(document).ajaxSend(function(event, xhr, settings ){
 	
 	let href = ['index.jsp'];
+
+	let urls = ['/mapeoDeMercancia','/getNumReports','http://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json']
+
+
+$(document).ajaxSend(function(event, xhr, settings ){
 	
 	for(let i=0;i<href.length;i++){
 		if(window.location.href.endsWith(href[i])){
@@ -11,8 +14,6 @@ $(document).ajaxSend(function(event, xhr, settings ){
 		}
 	}
 	
-	let urls = ['/mapeoDeMercancia','/getNumReports']
-
 	for(let i=0;i<urls.length;i++){
 		if ( settings.url === urls[i] ) {
 		 	return;
@@ -23,16 +24,13 @@ $(document).ajaxSend(function(event, xhr, settings ){
 });
 
 $( document ).ajaxComplete(function(event, xhr, settings  ) {
-	
-	let href = ['index.jsp'];
-	
+		
 	for(let i=0;i<href.length;i++){
 		if(window.location.href.endsWith(href[i])){
 			return;
 		}
 	}
 
-	let urls = ['/mapeoDeMercancia','/getNumReports']
 
 	for(let i=0;i<urls.length;i++){
 		if ( settings.url === urls[i] ) {

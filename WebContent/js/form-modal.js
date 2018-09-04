@@ -29,6 +29,9 @@ $(document).ready(function() {
 			let url = $(this).attr('action');
 			let data = $(this).serializeArray();
 			
+			console.log('url'+JSON.stringify(url,null,2));
+			console.log('data'+JSON.stringify(data,null,2));
+			
 			$.ajax({
 				url : url,
 				data : data,

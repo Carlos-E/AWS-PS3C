@@ -8,7 +8,6 @@ function fadeOutEffect(element,rate) {
         } else {
             clearInterval(fadeEffect);
         	element.style.display = 'none';
-        	//console.log('fadeOutEffect completed');
         }
     }, rate);
 }
@@ -30,9 +29,8 @@ function fillProgressBar(progressBarElement,percentageTofill) {
     	
     	//Reset bar to 0 after completed
     	setTimeout(()=>{    	
-    		//console.log('Reseting bar');
     		progressBarElement.style.width = '0%';
-    		},1000);
+    	},1000);
     	
     	clearInterval(IntervalId);
     	return;
@@ -51,5 +49,3 @@ function fillProgressBar(progressBarElement,percentageTofill) {
     },5);
     
   }
-
-//fillProgressBar(document.getElementById("progressBar"),25);

@@ -54,9 +54,6 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="reset" class="btn float-left">
-						<i id="reset" class="fas fa-eraser fa-2x"></i>
-					</button>
 					<button id="submit" type="submit" class="btn btn-primary btn-md float-right">Confirmar</button>
 					<button id="atras" type="button" data-target="#" class="btn btn-danger btn-md float-right">Atras</button>
 				</div>
@@ -70,7 +67,6 @@
 		<jsp:include page="/footer.jsp" />
 	</div>
 	<script>
-	fillProgressBar(document.getElementById("progressBar"),30);
 
 		$(document).ready(function() {
 						
@@ -82,9 +78,6 @@
 				type : "POST",
 				dataType : "json",
 			}).done(function(response) {
-				fillProgressBar(document.getElementById("progressBar"),30);
-
-				console.log(response);
 				
 				let dataSet = [];
 				
@@ -102,7 +95,6 @@
 				]);
 				});
 				
-				console.log(dataSet);
 					
 				$('#tabla').DataTable( {
 			        data: dataSet,
@@ -117,13 +109,11 @@
 			        ]
 			    } );
 				
-		        $("#spinner").fadeOut("slow");
 			
 			}).fail(function(xhr, status, errorThrown) {
 				alert("Algo ha salido mal");
 				console.log('Failed Request To Servlet /scanTable')
 			}).always(function(xhr, status) {
-				fillProgressBar(document.getElementById("progressBar"),40);
 			});		
 			
 		});

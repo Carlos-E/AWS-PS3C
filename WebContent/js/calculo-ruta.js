@@ -38,9 +38,10 @@ function initMap() {
           select.add(option);
           // Limpiar select
           
-          if(vehiculos.length==0){
+          if(vehiculos==null){
           		$('#spinner1').hide();
             	$('#camion').show();
+            	return;
           }
 
           for (let i = 0; i < vehiculos.length; i++) {
@@ -132,9 +133,11 @@ function setTrailers(origenEnvio, pesoEnvio, espacioEnvio) {
 	        option.value = 'ninguno';
 	        select.add(option);
 	        
-	        if(0==trailers.length){
+	        
+	        if(trailers==null){
             	$('#spinner2').hide();
               	$('#trailer').show();
+              	return;
 	        }
 	        
           for (let i = 0; i < trailers.length; i++) {

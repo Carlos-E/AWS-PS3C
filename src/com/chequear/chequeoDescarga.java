@@ -14,9 +14,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import clases.DB;
-import clases.Email;
 import clases.Envio;
-import clases.Usuario;
 
 @WebServlet("/chequeoDescarga")
 public class chequeoDescarga extends HttpServlet {
@@ -28,7 +26,7 @@ public class chequeoDescarga extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.sendError(404);
+		response.sendRedirect("/404.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -51,16 +49,16 @@ public class chequeoDescarga extends HttpServlet {
 						envios.get(i).setChequeoDescarga(false);
 						envios.get(i).setEstado("en tránsito");
 
-						new Email(DB.load(Usuario.class, envios.get(i).getUsuario()).getCorreo(),
-								"PS3C - Envío Revertido", "Hemos revertido el estado de su envio.", envios.get(i));
+//						new Email(DB.load(Usuario.class, envios.get(i).getUsuario()).getCorreo(),
+//								"PS3C - Envío Revertido", "Hemos revertido el estado de su envio.", envios.get(i));
 
 					} else {
 						envios.get(i).setChequeoDescarga(true);
 						envios.get(i).setChequeoCarga(true);
 						envios.get(i).setEstado("entregado");
 
-						new Email(DB.load(Usuario.class, envios.get(i).getUsuario()).getCorreo(),
-								"PS3C - Envío Entregado", "Hemos entregado su envío.", envios.get(i));
+//						new Email(DB.load(Usuario.class, envios.get(i).getUsuario()).getCorreo(),
+//								"PS3C - Envío Entregado", "Hemos entregado su envío.", envios.get(i));
 
 					}
 
@@ -93,7 +91,7 @@ public class chequeoDescarga extends HttpServlet {
 			// "Ocurrio un error al intentar chequear los envios cargados",
 			// request.getContextPath() + "/chequeo/entregado.jsp");
 
-			response.setStatus(500);
+			response.setStatus(200);
 			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 				private static final long serialVersionUID = 1L;
 				{

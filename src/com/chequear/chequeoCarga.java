@@ -15,9 +15,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import clases.DB;
-import clases.Email;
 import clases.Envio;
-import clases.Usuario;
 
 @WebServlet("/chequeoCarga")
 public class chequeoCarga extends HttpServlet {
@@ -29,7 +27,7 @@ public class chequeoCarga extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.sendRedirect("/404.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -55,16 +53,16 @@ public class chequeoCarga extends HttpServlet {
 						envios.get(i).setChequeoDescarga(false);
 						envios.get(i).setEstado("asignado");
 
-						new Email(DB.load(Usuario.class, envios.get(i).getUsuario()).getCorreo(),
-								"PS3C - Envío Revertido", "Hemos revertido el estado de su envio.", envios.get(i));
+//						new Email(DB.load(Usuario.class, envios.get(i).getUsuario()).getCorreo(),
+//								"PS3C - Envío Revertido", "Hemos revertido el estado de su envio.", envios.get(i));
 
 					} else {
 						envios.get(i).setChequeoCarga(true);
 						envios.get(i).setEstado("en transito");
 
-						new Email(DB.load(Usuario.class, envios.get(i).getUsuario()).getCorreo(),
-								"PS3C - Envío En Tránsito",
-								"Su envío ha sido recogido y esta en tránsito hacia su destino.", envios.get(i));
+//						new Email(DB.load(Usuario.class, envios.get(i).getUsuario()).getCorreo(),
+//								"PS3C - Envío En Tránsito",
+//								"Su envío ha sido recogido y esta en tránsito hacia su destino.", envios.get(i));
 					}
 
 					System.out.println("Guardando envio");
@@ -95,7 +93,7 @@ public class chequeoCarga extends HttpServlet {
 			// com.logica.Dibujar.mensaje(response.getWriter(),
 			// "Ocurrio un error al intentar chequear los envios cargados",
 			// request.getContextPath() + "/chequeo/recogido.jsp");
-			response.setStatus(500);
+			response.setStatus(200);
 			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 				private static final long serialVersionUID = 1L;
 				{
