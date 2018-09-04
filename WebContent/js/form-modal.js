@@ -74,12 +74,14 @@ $(document).ready(function() {
 
 				$('#submit').html(submitText);
 				
-				if($('#buscar').length){
-				$('#buscar').click();
-				}
-				
-				if(typeof scanFunction != 'undefined'){
-					scanFunction(table);
+				if(typeof scanTable != 'undefined'){
+					console.log('scanFunction');
+					scanTable(table,function(list){
+						if(typeof fillInputs != 'undefined'){
+							console.log('fillInputs');
+							fillInputs();
+						}
+					});
 				}
 			});
 

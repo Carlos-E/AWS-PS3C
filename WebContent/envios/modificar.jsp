@@ -92,15 +92,16 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Usuario</label>
 						<div class="col-md-4">
-<!-- 							<input class="form-control" type="text" name="usuario" placeholder="usuario" id="usuario" required>
- -->							<select class="form-control" name="usuario" id="usuario">
+							<!-- 							<input class="form-control" type="text" name="usuario" placeholder="usuario" id="usuario" required>
+ -->
+							<select class="form-control" name="usuario" id="usuario">
 								<option value="" selected>Seleccionar...</option>
 
 								<%
 									List<Usuario> usuarios = new DB().scan(Usuario.class, new DynamoDBScanExpression());
 
 									for (int i = 0; i < usuarios.size(); i++) {
-										if(usuarios.get(i).getRol().equals("cliente")){
+										if (usuarios.get(i).getRol().equals("cliente")) {
 								%>
 								<option value="<%out.print(usuarios.get(i).getCorreo());%>">
 									<%
@@ -126,7 +127,11 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Espacio(m<sup>3</sup>)</label>
+						<label class="col-md-2 col-form-label text-capitalize">
+							Espacio(m
+							<sup>3</sup>
+							)
+						</label>
 						<div class="col-md-4">
 							<input class="form-control" name="espacio" placeholder="en metros c&uacute;bicos" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" onchange="uno()" id="espacio" required>
 						</div>
@@ -194,7 +199,7 @@
 						<label class="col-md-2 col-form-label text-capitalize">Veh&iacute;culos disponibles</label>
 						<div class="col-md-4">
 							<i id="spinner1" class="fa fa-circle-notch fa-spin" style="font-size: 35px"></i>
-							<select id="camion" class="form-control" name="camion">								
+							<select id="camion" class="form-control" name="camion">
 							</select>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Traileres disponibles</label>
@@ -203,13 +208,15 @@
 							<select id="trailer" class="form-control" name="trailer" disabled="true">
 							</select>
 						</div>
-					</div>	
-									
+					</div>
+
 					<input type="text" id="destinoLatLong" name="destinoLatLong" style="display: none">
 					<input type="text" id="origenLatLong" name="origenLatLong" style="display: none">
-					
+
 					<div class="modal-footer">
-						<button type="reset" class="btn btn-secondary float-left"><i class="fas fa-eraser fa-lg"></i></button>
+						<button type="reset" class="btn btn-secondary float-left">
+							<i class="fas fa-eraser fa-lg"></i>
+						</button>
 						<button id="submit" type="submit" class="btn btn-primary btn-md float-right">Confirmar</button>
 						<button id="atras" type="button" data-target="#" class="btn btn-danger btn-md float-right">Atras</button>
 					</div>
@@ -246,168 +253,183 @@
 	<!--  /FIN FOOTER CON SCRIPTS -->
 	<!-- /FIN -->
 	<script>
-									$(document).ready(function () {
-										var lista;
+	
+	var lista;
+	var table = 'envios';
+	
+	var scanTable;
+	var fillSelect;
+	var fillInputs;
+	
+	$(document).ready(function() {
 
-										$.ajax({
-											url: "/scanTable",
-											data: {
-												tabla: 'envios'
-											},
-											type: "POST",
-											dataType: "json",
-										}).done(function (response) {
-											console.log(response);
-											lista = response;
-											$(response).each(function () {
-												$('#select').append($(
-													"<option>")
-													.attr(
-														'value',
-														this.usuario
-														+ ' : '
-														+ this.fecha)
-													.text(
-														this.usuario
-														+ ' : '
-														+ this.fecha));
-											});
+		scanTable = (table, callback) => {
 
-										})
-											.fail(
-												function (xhr, status, errorThrown) {
-													alert("Algo ha salido mal");
-													console
-														.log('Failed Request To Servlet /scanTable')
-												}).always(function (xhr, status) {
-												});
-										$('#buscar').click(
-											function () {
-												let selectedIndex = $('#select').prop(
-													'selectedIndex');
-												console.log(lista[selectedIndex]);
-												let objeto = lista[selectedIndex];
-												let asignado = "ninguno";
-												if(objeto.trailer != "ninguno"){
-													asignado = objeto.trailer;
-												}else if(objeto.camion != "ninguno"){
-													asignado = objeto.camion;
-												}else{
-													asignado = "ninguno";
-												}
-												$('#cliente').val(objeto.usuario);
-												$('#fecha').val(objeto.fecha);
-												$('#asignado').val(asignado);
-												$('#origen').val(objeto.origen);
-												$('#destino').val(objeto.destino);
-												$('#usuario').val(objeto.usuario);
-												$('#peso').val(objeto.peso);
-												$('#tipo').val(objeto.tipo);
-												$('#espacio').val(objeto.espacio);
-												$('#estado').val(objeto.estado);
-												$('#tiempoCarga').val(
-													objeto.tiempoCarga);
-												$('#tiempoDescarga').val(
-													objeto.tiempoDescargaUsuario);
-												$('#empresa').val(objeto.empresa);
-												$('#camion').val(objeto.camion);
-												$('#trailer').val(objeto.trailer);
-												$('#descripcion').val(
-													objeto.descripcion);
-												$('#destinoLatLong').val(
-													objeto.destinoLatLong);
-												$('#origenLatLong').val(
-													objeto.origenLatLong);
-												$('#buscar-form').hide();
-												$('#form').removeAttr('hidden');
-												$('#form').show();
-												uno();
-											});
-										$('#atras').click(function () {
-											$('#buscar-form').show();
-											$('#form').hide();
-										});
-									});
-								</script>
-								<script type="text/javascript">
-									function mostrar() {
-										document.getElementById('trailer').value = "ninguno";
-										document.getElementById('trailer').disabled = true;
-										document.getElementById('camion').disabled = false;
-									}
+						$.ajax({
+							url : "/scanTable",
+							data : {
+								tabla : table
+							},
+							type : "POST",
+							dataType : "json",
+						}).done(function(response) {
+							console.log(response);
+							
+							lista = response;
 
-									function ocultar() {
-										document.getElementById('camion').value = "ninguno";
-										document.getElementById('camion').disabled = true;
-										document.getElementById('trailer').disabled = false;
-									}
-								</script>
-								<script src="/js/calculo-ruta.js?v=1.1.7"></script>
-								<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsQwNmnSYTDtkrlXKeKnfP0x8TNwVJ2uI&libraries=places&callback=initMap"></script>
+							callback(response);
+
+						}).fail(function(xhr, status, errorThrown) {
+							alert("Algo ha salido mal");
+							console.log('Failed Request To Servlet /scanTable')
+						});
+
+					}
+
+		fillSelect = (list) => {
+			$(list).each(function() {
+			$('#select')
+				.append($("<option>")
+					.attr('value',this.usuario + ' : '+ this.fecha)
+					.text(this.usuario + ' : '+ this.fecha));
+			});
+		}
+
+					fillInputs = () => {
+
+						let selectedIndex = $('#select').prop('selectedIndex');
+
+						console.log(lista[selectedIndex]);
+
+						let objeto = lista[selectedIndex];
+
+						let asignado = "ninguno";
+
+						if (objeto.trailer != "ninguno") {
+							asignado = objeto.trailer;
+						} else if (objeto.camion != "ninguno") {
+							asignado = objeto.camion;
+						} else {
+							asignado = "ninguno";
+						}
+						$('#cliente').val(objeto.usuario);
+						$('#fecha').val(objeto.fecha);
+						$('#asignado').val(asignado);
+						$('#origen').val(objeto.origen);
+						$('#destino').val(objeto.destino);
+						$('#usuario').val(objeto.usuario);
+						$('#peso').val(objeto.peso);
+						$('#tipo').val(objeto.tipo);
+						$('#espacio').val(objeto.espacio);
+						$('#estado').val(objeto.estado);
+						$('#tiempoCarga').val(objeto.tiempoCarga);
+						$('#tiempoDescarga').val(objeto.tiempoDescargaUsuario);
+						$('#empresa').val(objeto.empresa);
+						$('#camion').val(objeto.camion);
+						$('#trailer').val(objeto.trailer);
+						$('#descripcion').val(objeto.descripcion);
+						$('#destinoLatLong').val(objeto.destinoLatLong);
+						$('#origenLatLong').val(objeto.origenLatLong);
+						$('#buscar-form').hide();
+						$('#form').removeAttr('hidden');
+						$('#form').show();
+						uno();
+					}
+
+					$('#buscar').click(fillInputs);
+
+					$('#atras').click(function() {
+						$('#buscar-form').show();
+						$('#form').hide();
+					});
+					
+					scanTable('envios',function(list){
+						fillSelect(list);
+					});
+					
+				});
+	</script>
+	<script type="text/javascript">
+		function mostrar() {
+			document.getElementById('trailer').value = "ninguno";
+			document.getElementById('trailer').disabled = true;
+			document.getElementById('camion').disabled = false;
+		}
+
+		function ocultar() {
+			document.getElementById('camion').value = "ninguno";
+			document.getElementById('camion').disabled = true;
+			document.getElementById('trailer').disabled = false;
+		}
+	</script>
+	<script src="/js/calculo-ruta.js?v=1.1.7"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsQwNmnSYTDtkrlXKeKnfP0x8TNwVJ2uI&libraries=places&callback=initMap"></script>
 
 
-								<script type="text/javascript">
-									google.maps.event.addDomListener(window, 'load', intilize);
-									function intilize() {
-										var autocomplete = new google.maps.places.Autocomplete(document
-											.getElementById("destino"));
-										google.maps.event
-											.addListener(
-												autocomplete,
-												'place_changed',
-												function () {
-													var place = autocomplete.getPlace();
-													var latlon = place.geometry.location.lat()
-														+ "," + place.geometry.location.lng();
+	<script type="text/javascript">
+		google.maps.event.addDomListener(window, 'load', intilize);
+		function intilize() {
+			var autocomplete = new google.maps.places.Autocomplete(document
+					.getElementById("destino"));
+			google.maps.event
+					.addListener(
+							autocomplete,
+							'place_changed',
+							function() {
+								var place = autocomplete.getPlace();
+								var latlon = place.geometry.location.lat()
+										+ "," + place.geometry.location.lng();
 
-													document.getElementById('destinoLatLong').value = latlon;
-												});
-									};
-								</script>
-								<script>
-									google.maps.event.addDomListener(window, 'load', intilize);
-									function intilize() {
-										var autocomplete = new google.maps.places.Autocomplete(document
-											.getElementById("origen"));
-										google.maps.event
-											.addListener(
-												autocomplete,
-												'place_changed',
-												function () {
-													var place = autocomplete.getPlace();
-													var latlon = place.geometry.location.lat()
-														+ "," + place.geometry.location.lng();
+								document.getElementById('destinoLatLong').value = latlon;
+							});
+		};
+	</script>
+	<script>
+		google.maps.event.addDomListener(window, 'load', intilize);
+		function intilize() {
+			var autocomplete = new google.maps.places.Autocomplete(document
+					.getElementById("origen"));
+			google.maps.event
+					.addListener(
+							autocomplete,
+							'place_changed',
+							function() {
+								var place = autocomplete.getPlace();
+								var latlon = place.geometry.location.lat()
+										+ "," + place.geometry.location.lng();
 
-													document.getElementById('origenLatLong').value = latlon;
-												});
-									};
-								</script>
-								<script type="text/javascript">
-									var i = 0;
-									function uno() {
-										
-								        $('#spinner1').fadeIn('slow');
-								        $('#spinner2').fadeIn('slow');
-								        $('#camion').hide();
-								        $('#trailer').hide();
-								          
-										var peso = document.getElementById('peso').value;
-										var espacio = document.getElementById('espacio').value;
-										if (peso != "" && espacio != "") {
-											setTimeout(
-												function () {
-													var latlon = document
-														.getElementById('origenLatLong').value;
-													if (latlon != "") {
-														
-														setVehiculos(latlon, parseFloat(peso),parseFloat(espacio));
-											            setTrailers(latlon, parseFloat(peso),parseFloat(espacio));
+								document.getElementById('origenLatLong').value = latlon;
+							});
+		};
+	</script>
+	<script type="text/javascript">
+		var i = 0;
+		function uno() {
 
-													}
-												}, 1000);
-										}
-									}
-								</script>
+			$('#spinner1').fadeIn('slow');
+			$('#spinner2').fadeIn('slow');
+			$('#camion').hide();
+			$('#trailer').hide();
+
+			var peso = document.getElementById('peso').value;
+			var espacio = document.getElementById('espacio').value;
+			if (peso != "" && espacio != "") {
+				setTimeout(
+						function() {
+							var latlon = document
+									.getElementById('origenLatLong').value;
+							if (latlon != "") {
+
+								setVehiculos(latlon, parseFloat(peso),
+										parseFloat(espacio));
+								setTrailers(latlon, parseFloat(peso),
+										parseFloat(espacio));
+
+							}
+						}, 1000);
+			}
+		}
+	</script>
 
 </body>
 

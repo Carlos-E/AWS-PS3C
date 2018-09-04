@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class Sugerir extends HttpServlet {
 		//String criteria = request.getParameter("criterio");
 		
 		
-		String criteria = "peso";
+		String criteria = "espacio";
 		double espacioEnvio = 10;
 		double pesoEnvio = 10;
 
@@ -66,7 +67,15 @@ public class Sugerir extends HttpServlet {
 			vehiculo.setEspacioMax(vehiculo.getEspacioMax() - DB.getEspacioVehiculo(vehiculo.getPlaca()));
 		}
 		
-		vehiculos.sort(Comparator.comparing(Vehiculo::getEspacioMax));
+		switch (criteria) {
+		case "peso":
+			vehiculos.sort(Comparator.comparing(Vehiculo::getPesoMax));
+			break;
+		case "espacio":
+			vehiculos.sort(Comparator.comparing(Vehiculo::getEspacioMax));	
+			break;
+		}
+
 		Collections.reverse(vehiculos);
 
 		response.getWriter().print(new ObjectMapper().writeValueAsString(vehiculos));

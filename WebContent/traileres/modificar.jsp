@@ -215,8 +215,7 @@
 	<jsp:include page="/footer.jsp" />
 	<!-- /FIN -->
 	<script>
-		$(document).ready(
-				function() {
+		$(document).ready(function() {
 
 					var lista;
 					$.ajax({
@@ -226,20 +225,16 @@
 						},
 						type : "POST",
 						dataType : "json",
-					}).done(
-							function(response) {
+					}).done(function(response) {
 
-								console.log(response);
-								lista = response;
-								$(response).each(
-										function() {
-											let value = this.patente;
-											let text = this.patente;
-											$('#select').append(
-													$("<option>").attr('value',
-															value).text(text));
-										});
-							}).fail(function(xhr, status, errorThrown) {
+						console.log(response);
+						lista = response;
+						$(response).each(function() {
+							let value = this.patente;
+							let text = this.patente;
+							$('#select').append($("<option>").attr('value',value).text(text));});
+						
+					}).fail(function(xhr, status, errorThrown) {
 
 						alert("Algo ha salido mal");
 						console.log('Failed Request To Servlet /scanTable');
