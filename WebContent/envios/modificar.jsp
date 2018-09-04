@@ -342,18 +342,18 @@
 			uno();
 	}
 
-					$('#buscar').click(fillInputs);
+	$('#buscar').click(fillInputs);
 
-					$('#atras').click(function() {
-						$('#buscar-form').show();
-						$('#form').hide();
-					});
+	$('#atras').click(function() {
+		$('#buscar-form').show();
+		$('#form').hide();
+	});
 					
-					scanTable('envios',function(list){
-						fillSelect(list);
-					});
+	scanTable('envios',function(list){
+		fillSelect(list);
+	});
 					
-					function getParameterByName(name, url) {
+	function getParameterByName(name, url) {
 					    if (!url) url = window.location.href;
 					    name = name.replace(/[\[\]]/g, '\\$&');
 					    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
@@ -361,10 +361,10 @@
 					    if (!results) return null;
 					    if (!results[2]) return '';
 					    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-					}
+	}
 					
-				});
-	</script>
+});
+</script>
 	<script type="text/javascript">
 		function mostrar() {
 			document.getElementById('trailer').value = "ninguno";
