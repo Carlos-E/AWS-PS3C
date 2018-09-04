@@ -139,11 +139,11 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Peso m&aacute;ximo(Kg)</label>
 						<div class="col-md-4">
-							<input class="form-control" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" name="pesoMax" placeholder="peso Maximo" id="pesoMax" required>
+							<input class="form-control" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" name="pesoMax" placeholder="en kilogramos" id="pesoMax" required>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Espacio m&aacute;ximo(m<sup>3</sup>)</label>
 						<div class="col-md-4"> 
-							<input class="form-control" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" name="espacioMax" placeholder="espacio Maximo" id="espacioMax" required>
+							<input class="form-control" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" name="espacioMax" placeholder="en metros c&uacute;bicos" id="espacioMax" required>
 						</div>
 					</div>
 					</div>
