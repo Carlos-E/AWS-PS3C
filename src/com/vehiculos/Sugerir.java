@@ -2,6 +2,8 @@ package com.vehiculos;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -17,7 +19,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import clases.DB;
 import clases.Vehiculo;
 
-@WebServlet("/sugerirVehiculos")
+@WebServlet("/vehiculos/sugerir")
 public class Sugerir extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -27,23 +29,31 @@ public class Sugerir extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.sendError(404);
+		this.doPost(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		response.setContentType("application/json");
 
 		DB DB = new DB();
 
-		double espacioEnvio = Double.valueOf(request.getParameter("espacioEnvio"));
-		double pesoEnvio = Double.valueOf(request.getParameter("pesoEnvio"));
+		// double espacioEnvio =
+		// Double.valueOf(request.getParameter("espacioEnvio"));
+		// double pesoEnvio = Double.valueOf(request.getParameter("pesoEnvio"));
+		//String criteria = request.getParameter("criterio");
+		
+		
+		String criteria = "peso";
+		double espacioEnvio = 10;
+		double pesoEnvio = 10;
 
 		List<Vehiculo> vehiculos = new ArrayList<Vehiculo>(DB.scan(Vehiculo.class, new DynamoDBScanExpression()));
 
-		Iterator<Vehiculo> iteratorVehiculos = vehiculos.iterator();
-
+		Iterator<Vehiculo> iteratorVehiculos;
+		
+		iteratorVehiculos = vehiculos.iterator();
 		while (iteratorVehiculos.hasNext()) {
 			Vehiculo vehiculo = iteratorVehiculos.next();
 
@@ -51,6 +61,26 @@ public class Sugerir extends HttpServlet {
 				iteratorVehiculos.remove();
 				continue;
 			}
+		}
+		
+		for (Vehiculo vehiculo : vehiculos) {
+			System.out.println(vehiculo);
+		}
+
+		System.out.println();
+		System.out.println();
+
+		//SORTING
+		vehiculos.sort(Comparator.comparing(Vehiculo::getEspacioMax));
+		Collections.reverse(vehiculos);
+
+		for (Vehiculo vehiculo : vehiculos) {
+			System.out.println(vehiculo);
+		}
+
+		iteratorVehiculos = vehiculos.iterator();
+		while (iteratorVehiculos.hasNext()) {
+			Vehiculo vehiculo = iteratorVehiculos.next();
 
 			double pesoOcupado = DB.getPesoVehiculo(vehiculo.getPlaca());
 			double espacioOcupado = DB.getEspacioVehiculo(vehiculo.getPlaca());
@@ -72,8 +102,6 @@ public class Sugerir extends HttpServlet {
 
 		}
 
-		
-		
 		response.getWriter().print(new ObjectMapper().writeValueAsString(vehiculos));
 		response.getWriter().close();
 	}
