@@ -47,8 +47,12 @@ public class login extends HttpServlet {
 			session.setMaxInactiveInterval(60 * 60 * 4);
 
 			session.setAttribute("username", uname);
+			
+			Usuario usuario = new Usuario();
+			
+			usuario.setUsuario(uname);
 
-			Usuario usuario = new DB().load(Usuario.class, uname);
+			usuario = new DB().load(usuario);
 
 			switch (usuario.getRol()) {
 			case "null":
