@@ -6,6 +6,8 @@ $(document).ready(function() {
 
 			$('#ModalButton').hide();
 			
+			let submitText = $('#submit').html();
+			
 			switch (Math.floor((Math.random() * 5) + 1)) {
 			case 1:
 				$('#submit').html('<i class="fas fa-spinner fa-spin fa-lg"></i>');
@@ -66,6 +68,9 @@ $(document).ready(function() {
 				}
 				
 				$('#Modal').modal();
+
+				$('#submit').html(submitText);
+
 				
 				if(typeof scanFunction != 'undefined'){
 					scanFunction(table);

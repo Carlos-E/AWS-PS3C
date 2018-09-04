@@ -209,7 +209,7 @@
 					<input type="text" id="origenLatLong" name="origenLatLong" style="display: none">
 					
 					<div class="modal-footer">
-						<button type="reset" class="btn btn-secondary float-left"><i id="reset" class="fas fa-eraser fa-lg"></i></button>
+						<button type="reset" class="btn btn-secondary float-left"><i class="fas fa-eraser fa-lg"></i></button>
 						<button id="submit" type="submit" class="btn btn-primary btn-md float-right">Confirmar</button>
 						<button id="atras" type="button" data-target="#" class="btn btn-danger btn-md float-right">Atras</button>
 					</div>

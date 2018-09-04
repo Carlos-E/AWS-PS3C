@@ -71,7 +71,7 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button id="modificar" type="submit" class="btn btn-primary btn-md float-right">Chequear</button>
+						<button id="modificar" type="submit" class="btn btn-primary btn-md float-right">Confirmar</button>
 						<button id="atras" type="button" data-target="#" class="btn btn-danger btn-md float-right">Atras</button>
 					</div>
 					</form>
