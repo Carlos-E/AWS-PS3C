@@ -44,13 +44,34 @@ public class Sugerir extends HttpServlet {
 
 		Iterator<Vehiculo> iteratorVehiculos = vehiculos.iterator();
 
-		//System.out.println("Lista Original");
 		while (iteratorVehiculos.hasNext()) {
 			Vehiculo vehiculo = iteratorVehiculos.next();
 
+			if (vehiculo.getTipo().equals("remolque")) {
+				iteratorVehiculos.remove();
+				continue;
+			}
+
+			double pesoOcupado = DB.getPesoVehiculo(vehiculo.getPlaca());
+			double espacioOcupado = DB.getEspacioVehiculo(vehiculo.getPlaca());
+
+			double pesoDisponible = 0;
+
+			if (vehiculo.getPesoMax() > pesoOcupado) {
+				pesoDisponible = vehiculo.getPesoMax() - pesoOcupado;
+			}
+
+			double espacioDisponible = 0;
+			if (vehiculo.getEspacioMax() > espacioOcupado) {
+				espacioDisponible = vehiculo.getEspacioMax() - espacioOcupado;
+			}
+
+			if (espacioDisponible < espacioEnvio || pesoDisponible < pesoEnvio) {
+				iteratorVehiculos.remove();
+			}
 
 		}
-		
+
 		
 		
 		response.getWriter().print(new ObjectMapper().writeValueAsString(vehiculos));

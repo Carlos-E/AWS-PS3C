@@ -1,6 +1,8 @@
 package com.vehiculos;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -36,6 +38,9 @@ public class Listar extends HttpServlet {
 
 		List<Vehiculo> vehiculos = DB.scan(Vehiculo.class, new DynamoDBScanExpression());
 		List<Empresa> empresas = DB.scan(Empresa.class, new DynamoDBScanExpression());
+		
+		
+		List<HashMap<String,Object>> results = new ArrayList<HashMap<String, Object>>();
 
 		for (int i = 0; i < vehiculos.size(); i++) {
 
@@ -47,11 +52,27 @@ public class Listar extends HttpServlet {
 			} // for
 			
 			vehiculos.get(i).setEstado(DB.getEstadoVehiculo(vehiculos.get(i).getPlaca()));
+			
+			
+			@SuppressWarnings("unchecked")
+			HashMap<String,Object> result = new ObjectMapper().convertValue(vehiculos.get(i), HashMap.class);
+			
+			double pesoOcupado = DB.getPesoVehiculo(vehiculos.get(i).getPlaca());
+			double espacioOcupado = DB.getEspacioVehiculo(vehiculos.get(i).getPlaca());
+			
+			double pesoDisponible = vehiculos.get(i).getPesoMax() -  pesoOcupado;
+			double espacioDisponible = vehiculos.get(i).getEspacioMax() - espacioOcupado;
+			
+			result.put("pesoMax",result.get("pesoMax")+"/"+pesoOcupado+"/"+pesoDisponible);
+			result.put("espacioMax",result.get("espacioMax")+"/"+espacioOcupado+"/"+espacioDisponible);
+						
+			results.add(result);
 
 		} // for
-
+		
 		response.setContentType("application/json");
-		response.getWriter().print(new ObjectMapper().writeValueAsString(vehiculos));
+		//response.getWriter().print(new ObjectMapper().writeValueAsString(vehiculos));
+		response.getWriter().print(new ObjectMapper().writeValueAsString(results));
 		response.getWriter().close();
 
 	}

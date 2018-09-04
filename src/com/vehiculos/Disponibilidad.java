@@ -44,14 +44,10 @@ public class Disponibilidad extends HttpServlet {
 
 		Iterator<Vehiculo> iteratorVehiculos = vehiculos.iterator();
 
-		//System.out.println("Lista Original");
 		while (iteratorVehiculos.hasNext()) {
 			Vehiculo vehiculo = iteratorVehiculos.next();
 
-			//System.out.println(vehiculo);
-
 			if (vehiculo.getTipo().equals("remolque")) {
-				//System.out.println("Remolque detectado, descartando");
 				iteratorVehiculos.remove();
 				continue;
 			}
@@ -71,19 +67,10 @@ public class Disponibilidad extends HttpServlet {
 			}
 
 			if (espacioDisponible < espacioEnvio || pesoDisponible < pesoEnvio) {
-				//System.out.println("Camion sin espacio, descartando");
 				iteratorVehiculos.remove();
 			}
 
 		}
-
-		/*
-		System.out.println("Lista resultante");
-		iteratorVehiculos = vehiculos.iterator();
-		while (iteratorVehiculos.hasNext()) {
-			System.out.println(iteratorVehiculos.next());
-		}
-		*/
 		
 		response.getWriter().print(new ObjectMapper().writeValueAsString(vehiculos));
 		response.getWriter().close();

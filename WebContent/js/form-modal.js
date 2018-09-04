@@ -73,7 +73,10 @@ $(document).ready(function() {
 				$('#Modal').modal();
 
 				$('#submit').html(submitText);
-
+				
+				if($('#buscar').length){
+				$('#buscar').click();
+				}
 				
 				if(typeof scanFunction != 'undefined'){
 					scanFunction(table);
