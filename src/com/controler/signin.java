@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.logica.ControladorBD;
 
-import clases.*;
 
 /**
  * Servlet implementation class signin
