@@ -223,9 +223,9 @@ public class DB extends DynamoDBMapper {
 			}
 
 			if (this.getEnviosPendientesVehiculo(vehiculo.getPlaca()).size() > 0) {
-				estado = estado + " con envios";
+				estado = estado + " con envíos";
 			} else {
-				estado = estado + " sin envios";
+				estado = estado + " sin envíos";
 			}
 
 			if (vehiculo.getTipo().equals("remolque")) {
@@ -257,9 +257,9 @@ public class DB extends DynamoDBMapper {
 			}
 
 			if (this.getEnviosPendientesTrailer(trailer.getPatente()).size() > 0) {
-				estado = estado + " con envios";
+				estado = estado + " con envíos";
 			} else {
-				estado = estado + " sin envios";
+				estado = estado + " sin envíos";
 			}
 
 		}
