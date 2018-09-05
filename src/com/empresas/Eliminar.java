@@ -54,6 +54,8 @@ public class Eliminar extends HttpServlet {
 		List<Envio> envios = DB.scan(Envio.class,
 				new DynamoDBScanExpression().withFilterExpression("empresa = :v1 AND estado <> :v2").withExpressionAttributeValues(eav));
 
+		eav.remove(":v2");
+		
 		if (envios.size() > 0) {
 			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 				private static final long serialVersionUID = 1L;
