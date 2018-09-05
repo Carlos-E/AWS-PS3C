@@ -5,344 +5,230 @@ var map;
 var envios = [];
 
 function initMap() {
+  directionsService = new google.maps.DirectionsService();
+  directionsDisplay = new google.maps.DirectionsRenderer();
 
-	directionsService = new google.maps.DirectionsService;
-	directionsDisplay = new google.maps.DirectionsRenderer;
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 13,
+    center: {
+      lat: 10.4049383,
+      lng: -75.497829
+    }
+  });
 
-	map = new google.maps.Map(document.getElementById('map'), {
-		zoom: 13,
-		center: {
-			lat: 10.4049383,
-			lng: -75.497829
-		}
-	});
+  directionsDisplay.setMap(map);
 
-	directionsDisplay.setMap(map);
+  document.getElementById('sync').addEventListener('click', function() {
+    getEnvios();
 
-	document.getElementById('sync').addEventListener('click', function () {
-		getEnvios();
+    directionsDisplay.setMap(map);
+    if (document.getElementById('entregado').checked) {
+      directionsDisplay.setMap(null);
+    } else {
+      calculateAndDisplayRoute(directionsService, directionsDisplay);
+    }
+  });
 
-		directionsDisplay.setMap(map);
-		if (document.getElementById('entregado').checked) {
-			directionsDisplay.setMap(null);
-		} else {
-			calculateAndDisplayRoute(directionsService, directionsDisplay);
-		}
+  document.getElementById('envios').addEventListener('change', function() {
+    directionsDisplay.setMap(map);
 
-	});
+    console.log(envios[document.getElementById('envios').selectedIndex]);
 
-	document
-		.getElementById('envios')
-		.addEventListener(
-			'change',
-			function () {
-				directionsDisplay.setMap(map);
+    if (envios[document.getElementById('envios').selectedIndex].chequeoCarga) {
+      document.getElementById('recogido').checked = true;
+      document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].destinoLatLong;
+    } else {
+      document.getElementById('recogido').checked = false;
+      document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].origenLatLong;
+    }
 
-				console
-					.log(envios[document.getElementById('envios').selectedIndex]);
+    if (envios[document.getElementById('envios').selectedIndex].chequeoDescarga) {
+      document.getElementById('entregado').checked = true;
+      directionsDisplay.setMap(null);
+      if (typeof Android != 'undefined') {
+        Android.showToast('Envio completado');
+      }
+    } else {
+      document.getElementById('entregado').checked = false;
+      if (document.getElementById('recogido').checked) {
+        document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].destinoLatLong;
+      }
+      calculateAndDisplayRoute(directionsService, directionsDisplay);
+    }
+  });
 
-				if (envios[document.getElementById('envios').selectedIndex].chequeoCarga) {
-					document.getElementById('recogido').checked = true;
-					document.getElementById('end').value = envios[document
-						.getElementById('envios').selectedIndex].destinoLatLong;
+  document.getElementById('recogido').addEventListener('change', function() {
+    // /////ACTUALIZAR ENVIO
+    let cliente = envios[document.getElementById('envios').selectedIndex].usuario;
+    let fecha = envios[document.getElementById('envios').selectedIndex].fecha;
+    // /////ACTUALIZAR ENVIO
 
-				} else {
-					document.getElementById('recogido').checked = false;
-					document.getElementById('end').value = envios[document
-						.getElementById('envios').selectedIndex].origenLatLong;
-				}
+    directionsDisplay.setMap(map);
+    if (document.getElementById('recogido').checked) {
+      document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].destinoLatLong;
 
-				if (envios[document.getElementById('envios').selectedIndex].chequeoDescarga) {
-					document.getElementById('entregado').checked = true;
-					directionsDisplay.setMap(null);
-					if (typeof Android != 'undefined') {
-						Android.showToast('Envio completado');
-					}
-				} else {
-					document.getElementById('entregado').checked = false;
-					if (document.getElementById('recogido').checked) {
-						document.getElementById('end').value = envios[document
-							.getElementById('envios').selectedIndex].destinoLatLong;
-					}
-					calculateAndDisplayRoute(directionsService,
-						directionsDisplay);
+      envios[document.getElementById('envios').selectedIndex].chequeoCarga = true;
 
-				}
+      updateShipment('/chequeo/recogida', cliente, fecha, true);
 
-			});
+      // //
+      calculateAndDisplayRoute(directionsService, directionsDisplay);
+    } else {
+      document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].origenLatLong;
 
-	document
-		.getElementById('recogido')
-		.addEventListener(
-			'change',
-			function () {
-				// /////ACTUALIZAR ENVIO
-				let cliente = envios[document.getElementById('envios').selectedIndex].usuario;
-				let fecha = envios[document.getElementById('envios').selectedIndex].fecha;
-				// /////ACTUALIZAR ENVIO
+      envios[document.getElementById('envios').selectedIndex].chequeoCarga = false;
+      envios[document.getElementById('envios').selectedIndex].chequeoDescarga = false;
 
-				directionsDisplay.setMap(map);
-				if (document.getElementById('recogido').checked) {
+      document.getElementById('entregado').checked = false;
 
-					document.getElementById('end').value = envios[document
-						.getElementById('envios').selectedIndex].destinoLatLong;
+      updateShipment('/chequeo/recogida', cliente, fecha, false);
 
-					envios[document.getElementById('envios').selectedIndex].chequeoCarga = true;
+      // //
+      calculateAndDisplayRoute(directionsService, directionsDisplay);
+    }
+  });
 
-					updateShipment("/chequeo/recogida", cliente, fecha,
-						true);
+  document.getElementById('entregado').addEventListener('change', function() {
+    // /////ACTUALIZAR ENVIO
+    let cliente = envios[document.getElementById('envios').selectedIndex].usuario;
+    let fecha = envios[document.getElementById('envios').selectedIndex].fecha;
+    // /////ACTUALIZAR ENVIO
 
-					// //
-					calculateAndDisplayRoute(directionsService,
-						directionsDisplay);
-				} else {
-					document.getElementById('end').value = envios[document
-						.getElementById('envios').selectedIndex].origenLatLong;
+    directionsDisplay.setMap(map);
+    if (document.getElementById('entregado').checked) {
+      envios[document.getElementById('envios').selectedIndex].chequeoDescarga = true;
+      envios[document.getElementById('envios').selectedIndex].chequeoCarga = true;
 
-					envios[document.getElementById('envios').selectedIndex].chequeoCarga = false
-					envios[document.getElementById('envios').selectedIndex].chequeoDescarga = false;
+      document.getElementById('recogido').checked = true;
+      document.getElementById('recogido').disable = true;
+      directionsDisplay.setMap(null);
 
-					document.getElementById('entregado').checked = false;
+      updateShipment('/chequeo/entrega', cliente, fecha, true);
 
-					updateShipment("/chequeo/recogida", cliente, fecha,
-						false);
+      if (typeof Android != 'undefined') {
+        Android.showToast('Envio completado');
+      }
+    } else {
+      document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].destinoLatLong;
 
-					// //
-					calculateAndDisplayRoute(directionsService,
-						directionsDisplay);
-				}
-			});
+      envios[document.getElementById('envios').selectedIndex].chequeoDescarga = false;
 
-	document
-		.getElementById('entregado')
-		.addEventListener(
-			'change',
-			function () {
-				// /////ACTUALIZAR ENVIO
-				let cliente = envios[document.getElementById('envios').selectedIndex].usuario;
-				let fecha = envios[document.getElementById('envios').selectedIndex].fecha;
-				// /////ACTUALIZAR ENVIO
+      document.getElementById('recogido').checked = true;
+      document.getElementById('recogido').disable = false;
 
-				directionsDisplay.setMap(map);
-				if (document.getElementById('entregado').checked) {
-
-					envios[document.getElementById('envios').selectedIndex].chequeoDescarga = true;
-					envios[document.getElementById('envios').selectedIndex].chequeoCarga = true
-
-					document.getElementById('recogido').checked = true;
-					document.getElementById('recogido').disable = true;
-					directionsDisplay.setMap(null);
-
-					updateShipment("/chequeo/entrega", cliente, fecha,
-						true);
-
-					if (typeof Android != 'undefined') {
-						Android.showToast('Envio completado');
-					}
-				} else {
-					document.getElementById('end').value = envios[document
-						.getElementById('envios').selectedIndex].destinoLatLong;
-
-					envios[document.getElementById('envios').selectedIndex].chequeoDescarga = false;
-
-					document.getElementById('recogido').checked = true;
-					document.getElementById('recogido').disable = false;
-
-					updateShipment("/chequeo/entrega", cliente, fecha,
-						false);
-					// //
-					calculateAndDisplayRoute(directionsService,
-						directionsDisplay);
-				}
-			});
-
+      updateShipment('/chequeo/entrega', cliente, fecha, false);
+      // //
+      calculateAndDisplayRoute(directionsService, directionsDisplay);
+    }
+  });
 }
 
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-	directionsService.route({
-			origin: document.getElementById('lat').innerHTML + "," +
-				document.getElementById('lng').innerHTML,
-			destination: document.getElementById('end').value,
-			travelMode: 'DRIVING'
-		},
-		function (response, status) {
-			if (status === 'OK') {
-				directionsDisplay.setDirections(response);
-				// console.log(JSON.stringify(response, null, 2));
-				if (typeof Android != 'undefined') {
-					Android.showToast('Distancia: ' +
-						response.routes[0].legs[0].distance.text);
-					Android.showToast('Duración: ' +
-						response.routes[0].legs[0].duration.text);
-				}
-
-			} else {
-				if (typeof Android != 'undefined') {
-					Android.showToast('Directions request failed due to ' +
-						status);
-				}
-			}
-		});
+  directionsService.route(
+    {
+      origin: document.getElementById('lat').innerHTML + ',' + document.getElementById('lng').innerHTML,
+      destination: document.getElementById('end').value,
+      travelMode: 'DRIVING'
+    },
+    function(response, status) {
+      if (status === 'OK') {
+        directionsDisplay.setDirections(response);
+        // console.log(JSON.stringify(response, null, 2));
+        if (typeof Android != 'undefined') {
+          Android.showToast('Distancia: ' + response.routes[0].legs[0].distance.text);
+          Android.showToast('Duración: ' + response.routes[0].legs[0].duration.text);
+        }
+      } else {
+        if (typeof Android != 'undefined') {
+          Android.showToast('Directions request failed due to ' + status);
+        }
+      }
+    }
+  );
 }
 
-document.getElementById('goMaps').addEventListener('click',function () {
-	location.href = 'https://www.google.com/maps/dir/?api=1&destination='+document.getElementById('end').value+'&travelmode=driving&dir_action=navigate'
+document.getElementById('goMaps').addEventListener('click', function() {
+  location.href =
+    'https://www.google.com/maps/dir/?api=1&destination=' +
+    document.getElementById('end').value +
+    '&travelmode=driving&dir_action=navigate';
 });
 
 function getEnvios() {
+  $.getJSON('/getEnvios', function(response, textStatus, jqXHR) {
+    console.log('Envios:\n' + JSON.stringify(response, null, 2));
+    console.log('Length:\n' + JSON.stringify(response.length, null, 2));
 
-	$.getJSON( "/getEnvios", function(response,textStatus,jqXHR) {
-		
-		console.log('Envios:\n' +JSON.stringify(response, null, 2));
-		console.log('Length:\n' +JSON.stringify(response.length, null, 2));
+    if (response != null && response.length != 0) {
+      if (typeof Android != 'undefined') {
+        Android.showToast('Envios descargados correctamente');
+      }
 
-			if (response != null&&response.length!=0) {
+      envios = response;
 
-				if (typeof Android != 'undefined') {
-					Android
-						.showToast('Envios descargados correctamente');
-				}
+      directionsDisplay.setMap(map);
 
-				envios = response;
+      $('#envios').html('');
+      $(envios).each(function() {
+        $('#envios').append(
+          $('<option>')
+            .attr('value', this.usuario + ' : ' + this.fecha)
+            .text(this.usuario + ' : ' + this.fecha)
+        );
+      });
 
-				directionsDisplay.setMap(map);
+      if (envios[document.getElementById('envios').selectedIndex].chequeoCarga) {
+        document.getElementById('recogido').checked = true;
+        document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].destinoLatLong;
+      } else {
+        document.getElementById('recogido').checked = false;
+        document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].origenLatLong;
+      }
 
-				$('#envios').html('');
-				$(envios).each(function () {
-					$('#envios')
-						.append($("<option>")
-								.attr('value',this.usuario +' : ' +this.fecha)
-								.text(this.usuario +' : ' +this.fecha));
-				});
-
-				if (envios[document.getElementById('envios').selectedIndex].chequeoCarga) {
-					document.getElementById('recogido').checked = true;
-					document.getElementById('end').value = envios[document
-						.getElementById('envios').selectedIndex].destinoLatLong;
-				} else {
-					document.getElementById('recogido').checked = false;
-					document.getElementById('end').value = envios[document
-						.getElementById('envios').selectedIndex].origenLatLong;
-				}
-
-				if (envios[document.getElementById('envios').selectedIndex].chequeoDescarga) {
-					document.getElementById('entregado').checked = true;
-					directionsDisplay.setMap(null);
-					if (typeof Android != 'undefined') {
-						Android.showToast('Envio completado');
-					}
-				} else {
-					document.getElementById('entregado').checked = false;
-				}
-			}else{
-				if (typeof Android != 'undefined') {
-				Android.showToast('No tienes envios asignados');
-				}else{
-					alert('No tienes envíos asignados');
-				}
-			}
-		
-	});
-	
-//	
-//	$
-//		.ajax({
-//			url: "/getEnvios",
-//			type: "GET",
-//			dataType: "json",
-//		})
-//		.done(
-//			function (response) {
-//				console.log('Envios:\n' +
-//					JSON.stringify(response, null, 2));
-//
-//				if (response !== null) {
-//
-//					if (typeof Android != 'undefined') {
-//						Android
-//							.showToast('Envios descargados correctamente');
-//					}
-//
-//					envios = response;
-//
-//					directionsDisplay.setMap(map);
-//
-//					$('#envios').html('');
-//					$(envios)
-//						.each(
-//							function () {
-//								$('#envios')
-//									.append(
-//										$("<option>")
-//										.attr(
-//											'value',
-//											this.usuario +
-//											' : ' +
-//											this.fecha)
-//										.text(
-//											this.usuario +
-//											' : ' +
-//											this.fecha));
-//							});
-//
-//					if (envios[document.getElementById('envios').selectedIndex].chequeoCarga) {
-//						document.getElementById('recogido').checked = true;
-//						document.getElementById('end').value = envios[document
-//							.getElementById('envios').selectedIndex].destinoLatLong;
-//					} else {
-//						document.getElementById('recogido').checked = false;
-//						document.getElementById('end').value = envios[document
-//							.getElementById('envios').selectedIndex].origenLatLong;
-//					}
-//
-//					if (envios[document.getElementById('envios').selectedIndex].chequeoDescarga) {
-//						document.getElementById('entregado').checked = true;
-//						directionsDisplay.setMap(null);
-//						if (typeof Android != 'undefined') {
-//							Android.showToast('Envio completado');
-//						}
-//					} else {
-//						document.getElementById('entregado').checked = false;
-//					}
-//				}
-//
-//			}).fail(function (xhr, status, errorThrown) {
-//			console.log('Failed Request To Servlet /getEnvios')
-//			if (typeof Android != 'undefined') {
-//				Android.showToast('Error: envio no actualizado');
-//			}
-//		});
-
+      if (envios[document.getElementById('envios').selectedIndex].chequeoDescarga) {
+        document.getElementById('entregado').checked = true;
+        directionsDisplay.setMap(null);
+        if (typeof Android != 'undefined') {
+          Android.showToast('Envio completado');
+        }
+      } else {
+        document.getElementById('entregado').checked = false;
+      }
+    } else {
+      if (typeof Android != 'undefined') {
+        Android.showToast('No tienes envios asignados');
+      } else {
+        alert('No tienes envíos asignados');
+      }
+    }
+  });
 }
 
 function updateShipment(url, client, date, value) {
+  $.ajax({
+    url: url,
+    data: {
+      client: client,
+      date: date,
+      value: value
+    },
+    type: 'POST',
+    dataType: 'json'
+  })
+    .done(function(response) {
+      console.log('Envio actualizado correctamente');
 
-	$.ajax({
-		url: url,
-		data: {
-			client: client,
-			date: date,
-			value: value
-		},
-		type: "POST",
-		dataType: "json",
-	}).done(function (response) {
+      if (typeof Android != 'undefined') {
+        Android.showToast('Envio actualizado correctamente');
+      }
+    })
+    .fail(function(xhr, status, errorThrown) {
+      console.log('Failed Request To Servlet /updateShipment');
 
-		console.log('Envio actualizado correctamente');
-
-		if (typeof Android != 'undefined') {
-			Android.showToast('Envio actualizado correctamente');
-		}
-
-	}).fail(function (xhr, status, errorThrown) {
-
-		console.log('Failed Request To Servlet /updateShipment');
-
-		if (typeof Android != 'undefined') {
-			Android.showToast('Error: envio no actualizado');
-		}
-	});
-
+      if (typeof Android != 'undefined') {
+        Android.showToast('Error: envio no actualizado');
+      }
+    });
 }
 
 getEnvios();
@@ -350,13 +236,10 @@ getEnvios();
 var coords = '0.0,0.0';
 
 if (typeof Android != 'undefined') {
+  setInterval(function() {
+    coords = Android.getBestLocation();
 
-	setInterval(function () {
-
-		coords = Android.getBestLocation();
-
-		document.getElementById('lat').innerHTML = coords.split(",")[0];
-		document.getElementById('lng').innerHTML = coords.split(",")[1];
-
-	}, 1000);
+    document.getElementById('lat').innerHTML = coords.split(',')[0];
+    document.getElementById('lng').innerHTML = coords.split(',')[1];
+  }, 1000);
 }
