@@ -13,6 +13,9 @@ import javax.servlet.http.HttpSession;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.logica.ControladorBD;
 
+import clases.DB;
+import clases.Vehiculo;
+
 @WebServlet("/usuarios/modificar")
 public class Modificar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -29,6 +32,24 @@ public class Modificar extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+//		DB DB = new DB();
+//		
+//		if (request.getParameter("placa")!=null&&request.getParameter("usuario")!=null) {
+//			return;
+//		}
+//
+//		Vehiculo vehiculo = new Vehiculo();
+//		
+//		vehiculo.setPlaca(request.getParameter("placa"));
+//		
+//		vehiculo = DB.load(vehiculo);
+//		
+//		vehiculo.setUsuario(request.getParameter("usuario"));
+//
+//		DB.save(vehiculo);
+		
+		//OMG ESTE CODIGO
 
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json");
