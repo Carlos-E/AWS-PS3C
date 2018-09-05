@@ -32,17 +32,9 @@
 	</div>
 	<%
 		DB DB = new DB();
-		List<Usuario> listaUsuarios = DB.scan(Usuario.class, new DynamoDBScanExpression());
 		List<Vehiculo> listaVehiculos = DB.scan(Vehiculo.class, new DynamoDBScanExpression());
-		List<Usuario> listaConductor = new ArrayList<Usuario>();
 		List<Empresa> listaEmpresas = DB.scan(Empresa.class, new DynamoDBScanExpression());
-		for (int i = 0; i < listaUsuarios.size(); i++) {
-			if (listaUsuarios.get(i).getRol().equals("conductor")) {
-				if (!DB.estaOcupado(listaUsuarios.get(i).getNombre(), "null")) {
-					listaConductor.add(listaUsuarios.get(i));
-				}
-			}
-		}
+		
 	%>
 	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER --> <section class="row">
 	<div class="col-md-12 col-lg-12">
@@ -148,25 +140,6 @@
 							<!-- 							<input class="form-control" type="text" name="vehiculo" placeholder="vehiculo" id="vehiculo" required>
  -->
 							<select class="form-control" name="remolque" id="remolque" required>
-								<option value="null" selected>Seleccionar...</option>
-								<option value="ninguno">ninguno</option>
-
-								<%
-									for (int i = 0; i < listaVehiculos.size(); i++) {
-										if (!DB.estaOcupado("null", listaVehiculos.get(i).getPlaca())
-												&& listaVehiculos.get(i).getTipo().equals("remolque")) {
-											/*ControladorBD.actualizarValor("vehiculos", "placa", listaVehiculos.get(i).getPlaca(), "estado",
-													"Asignado");*/
-								%>
-								<option value="<%out.print(listaVehiculos.get(i).getPlaca());%>">
-									<%
-										out.print(listaVehiculos.get(i).getPlaca());
-									%>
-								</option>
-								<%
-									}
-									}
-								%>
 							</select>
 						</div>
 					</div>
@@ -279,6 +252,17 @@
 						$('#buscar-form').hide();
 						$('#form').removeAttr('hidden');
 						$('#form').show();
+						
+						$.getJSON( "/vehiculos/remolquesDisponibles", function(data,textStatus,jqXHR) {
+							$('#remolque').find('option').remove()
+					          
+							$('#remolque').append($("<option>").attr('value','').text('Seleccionar...'))
+							.append($("<option>").attr('value','ninguno').text('ninguno'));
+							
+							$(data).each(function() {
+								$('#conductor').append($("<option>").attr('value',this.usuario).text(this.nombre+' '+this.apellido));
+							});
+						});
 					}
 
 					$('#buscar').click(fillInputs);
