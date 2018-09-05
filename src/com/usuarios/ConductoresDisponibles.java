@@ -1,6 +1,7 @@
 package com.usuarios;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -26,37 +27,27 @@ public class ConductoresDisponibles extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.sendError(404);
+		this.doPost(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		DB DB = new DB();
-		
-		List<Usuario> usuarios = DB.scan(Usuario.class, new DynamoDBScanExpression());
-		//List<Usuario> conductores = new ArrayList<Usuario>();
 
-//		for (int i = 0; i < usuarios.size(); i++) {
-//			if (usuarios.get(i).getRol().equals("conductor")) {
-//				if (!DB.estaOcupado(usuarios.get(i).getUsuario(), "null")) {
-//					conductores.add(usuarios.get(i));
-//				}
-//			}
-//		}
-		
+		List<Usuario> usuarios = new ArrayList<Usuario>(DB.scan(Usuario.class, new DynamoDBScanExpression()));
+
 		Iterator<Usuario> iterator = usuarios.iterator();
 		while (iterator.hasNext()) {
 			Usuario usuario = iterator.next();
-			if(!usuario.getRol().equals("conductor")){
-				if (DB.estaOcupado(usuario.getUsuario(), "null")) {
-					iterator.remove();
-				}
+			if (!usuario.getRol().equals("conductor")||DB.estaOcupado(usuario.getUsuario(), "null")) {
+				iterator.remove();
 			}
 		}
-	
+
 		response.setContentType("application/json");
 		response.getWriter().print(new ObjectMapper().writeValueAsString(usuarios));
+		//response.getWriter().print(new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT).writer().writeValueAsString(usuarios));
 		response.getWriter().close();
 
 	}

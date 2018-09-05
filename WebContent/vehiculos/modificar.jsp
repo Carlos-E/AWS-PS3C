@@ -95,19 +95,7 @@
 						<label class="col-md-2 col-form-label text-capitalize">Conductores disponibles</label>
 						<div class="col-md-4">
 							<select class="form-control" name="conductor" id="conductor" required>
-								<option value="null" selected>Seleccionar...</option>
-								<option value="ninguno">ninguno</option>
-								<%
-									for (int i = 0; i < listaConductor.size(); i++) {
-								%>
-								<option value="<%out.print(listaConductor.get(i).getUsuario());%>">
-									<%
-										out.print(listaConductor.get(i).getUsuario());
-									%>
-								</option>
-								<%
-									}
-								%>
+								
 							</select>
 						</div>
 					</div>
@@ -216,6 +204,7 @@
 		}
 					
 		fillSelect = (list) => {
+			
 			$(list).each(function() {
 				$('#select').append($("<option>").attr('value',this.placa).text(this.placa));
 			});
@@ -228,33 +217,44 @@
 
 		fillInputs = () => {
 			
-						let selectedIndex = $('#select').prop('selectedIndex');
-						console.log(lista[selectedIndex]);
-						let objeto = lista[selectedIndex];
-						$('#placa').val(objeto.placa);
-						$('#estado').val(objeto.estado);
-						$('#tipo').val(objeto.tipo);
+			let selectedIndex = $('#select').prop('selectedIndex');
+			console.log(lista[selectedIndex]);
+			let objeto = lista[selectedIndex];
+			
+			$('#placa').val(objeto.placa);
+			$('#estado').val(objeto.estado);
+			$('#tipo').val(objeto.tipo);
 						
-						if(objeto.tipo=='remolque'){
-							$('#pesoMax').prop('disabled',true);
-							$('#espacioMax').prop('disabled',true);
-							$('#peso-espacio').hide();
-						}else{
-							$('#pesoMax').prop('disabled',false);
-							$('#espacioMax').prop('disabled',false);
-							$('#peso-espacio').show();
-						}
+			if(objeto.tipo=='remolque'){
+				$('#pesoMax').prop('disabled',true);
+				$('#espacioMax').prop('disabled',true);
+				$('#peso-espacio').hide();
+			}else{
+				$('#pesoMax').prop('disabled',false);
+				$('#espacioMax').prop('disabled',false);
+				$('#peso-espacio').show();
+			}
 						
-						$('#pesoMax').val(objeto.pesoMax);
-						$('#espacioMax').val(objeto.espacioMax);
+			$('#pesoMax').val(objeto.pesoMax);
+			$('#espacioMax').val(objeto.espacioMax);
 						
-						$('#empresa').val(objeto.empresa);
-						$('#conductorAsignado').val(objeto.usuario);
+			$('#empresa').val(objeto.empresa);
+			$('#conductorAsignado').val(objeto.usuario);
 						
-						$('#buscar-form').hide();
-						$('#form').removeAttr('hidden');
-						$('#form').show();
+			$('#buscar-form').hide();
+			$('#form').removeAttr('hidden');
+			$('#form').show();
 						
+			$.getJSON( "/usuarios/conductoresDisponibles", function(data,textStatus,jqXHR) {
+				$('#conductor').find('option').remove()
+		          
+				$('#conductor').append($("<option>").attr('value','').text('Seleccionar...'))
+				.append($("<option>").attr('value','ninguno').text('ninguno'));
+				
+				$(data).each(function() {
+					$('#conductor').append($("<option>").attr('value',this.usuario).text(this.nombre+' '+this.apellido));
+				});
+			});
 		}
 	
 		$('#buscar').click(fillInputs);
@@ -265,9 +265,7 @@
 		});
 						
 		scanTable('envios',function(list){
-			fillSelect(list);
-			
-			
+			fillSelect(list);			
 		});
 					
 	});
