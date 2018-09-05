@@ -260,7 +260,7 @@
 							.append($("<option>").attr('value','ninguno').text('ninguno'));
 							
 							$(data).each(function() {
-								$('#conductor').append($("<option>").attr('value',this.usuario).text(this.nombre+' '+this.apellido));
+								$('#remolque').append($("<option>").attr('value',this.placa).text(this.placa));
 							});
 						});
 					}

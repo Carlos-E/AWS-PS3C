@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 
 import clases.DB;
 import clases.Vehiculo;
@@ -47,8 +46,7 @@ public class RemolquesDisponibles extends HttpServlet {
 		}
 
 		response.setContentType("application/json");
-		//response.getWriter().print(new ObjectMapper().writeValueAsString(list));
-		response.getWriter().print(new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT).writer().writeValueAsString(list));
+		response.getWriter().print(new ObjectMapper().writeValueAsString(list));
 		response.getWriter().close();
 
 	}
