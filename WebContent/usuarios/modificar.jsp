@@ -150,35 +150,52 @@
 	<jsp:include page="/footer.jsp" />
 	<!-- /FIN -->
 	<script>
-		$(document).ready(function() {		
-			var lista;	
+	var lista;
+	var table = 'usuarios';
+	
+	var scanTable;
+	var fillSelect;
+	var fillInputs;
+	
+	$(document).ready(function() {
+
+		scanTable = (table, callback) => {
+			
 			$.ajax({
 				url : "/scanTable",
 				data : {
-					tabla : 'usuarios'
+					tabla : table
 				},
 				type : "POST",
 				dataType : "json",
 			}).done(function(response) {
+				
 				console.log(response);		
-				lista = response;			    	
-				 $(response).each(function() {
-					 let value = this.usuario;
-					 let text = this.usuario;
-				 	$('#select').append($("<option>").attr('value',value).text(text));
-				 	});	
-				 
-				 if(getParameterByName('select') != null ){
-						$('#select').val(getParameterByName('select'));
-						$('#buscar').click();
-					}
+				
+				lista = response;	
+				
+				callback(response);
 				 
 			}).fail(function(xhr, status, errorThrown) {
 				alert("Algo ha salido mal");
 				console.log('Failed Request To Servlet /scanTable')
-			}).always(function(xhr, status) {
-			});			
-			$('#buscar').click(function() {		
+			});
+		}
+			
+	fillSelect = (list) => {
+		$(list).each(function() {
+	 		$('#select').append($("<option>").attr('value',this.usuario).text(this.usuario));
+	 	});	
+	 
+	 	if(getParameterByName('select') != null ){
+			$('#select').val(getParameterByName('select'));
+			fillInputs();
+		}
+	}
+
+			
+	fillInputs = () => {
+	
 				let selectedIndex = $('#select').prop('selectedIndex');	
 				console.log(lista[selectedIndex]);
 				let objeto = lista[selectedIndex];	
@@ -192,12 +209,22 @@
 				$('#buscar-form').hide();
 				$('#form').removeAttr('hidden');
 				$('#form').show();
-			});
-			$('#atras').click(function() {
-				$('#buscar-form').show();
-				$('#form').hide();
-			});
-		});
-	</script>
+			
+	}
+	
+	$('#buscar').click(fillInputs);
+			
+	$('#atras').click(function() {
+		$('#buscar-form').show();
+		$('#form').hide();
+	});
+					
+	scanTable(table,function(list){
+		fillSelect(list);
+	});						
+			
+});
+	
+</script>
 </body>
 </html>

@@ -183,41 +183,51 @@
 	<jsp:include page="/footer.jsp" />
 	<!-- /FIN -->
 	<script>
-		$(document).ready(
-				function() {
-					var lista;
+	var lista;
+	var table = 'vehiculos';
+	
+	var scanTable;
+	var fillSelect;
+	var fillInputs;
+	
+	$(document).ready(function() {
+
+		scanTable = (table, callback) => {
+					
 					$.ajax({
 						url : "/vehiculos/modificar/listar",
 						data : {
-							tabla : 'vehiculos'
+							tabla : table
 						},
 						type : "POST",
 						dataType : "json",
-					}).done(
-							function(response) {
-								console.log(response);
-								lista = response;
-								$(response).each(
-										function() {
-											let value = this.placa;
-											let text = this.placa;
-											$('#select').append(
-													$("<option>").attr('value',
-															value).text(text));
-										});
+					}).done(function(response) {
+						console.log(response);
 								
-								if(getParameterByName('select') != null ){
-									$('#select').val(getParameterByName('select'));
-									$('#buscar').click();
-								}
+						lista = response;
 								
-							}).fail(function(xhr, status, errorThrown) {
+						callback(response);
+								
+					}).fail(function(xhr, status, errorThrown) {
 						alert("Algo ha salido mal");
 						console.log('Failed Request To Servlet /scanTable')
-					}).always(function(xhr, status) {
 					});
 					
-					$('#buscar').click(function() {
+		}
+					
+		fillSelect = (list) => {
+			$(list).each(function() {
+				$('#select').append($("<option>").attr('value',this.placa).text(this.placa));
+			});
+			
+			if(getParameterByName('select') != null ){
+				$('#select').val(getParameterByName('select'));
+				fillInputs();
+			}
+		}
+
+		fillInputs = () => {
+			
 						let selectedIndex = $('#select').prop('selectedIndex');
 						console.log(lista[selectedIndex]);
 						let objeto = lista[selectedIndex];
@@ -245,14 +255,20 @@
 						$('#form').removeAttr('hidden');
 						$('#form').show();
 						
-					});
+		}
+	
+		$('#buscar').click(fillInputs);
+
+		$('#atras').click(function() {
+			$('#buscar-form').show();
+			$('#form').hide();
+		});
+						
+		scanTable('envios',function(list){
+			fillSelect(list);
+		});
 					
-					$('#atras').click(function() {
-						$('#buscar-form').show();
-						$('#form').hide();
-					});
-					
-				});
+	});
 	</script>
 </body>
 </html>

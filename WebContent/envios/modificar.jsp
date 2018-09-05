@@ -159,7 +159,7 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Empresa</label>
 						<div class="col-md-4">
-							<select class="form-control" name="empresa" id="empresa">
+							<select class="form-control" name="empresa" id="empresa" required>
 								<option value="" selected>Seleccionar...</option>
 								<%
 									List<Empresa> listaEmpresas = new DB().scan(Empresa.class, new DynamoDBScanExpression());
@@ -350,16 +350,6 @@
 	scanTable('envios',function(list){
 		fillSelect(list);
 	});
-					
-	function getParameterByName(name, url) {
-					    if (!url) url = window.location.href;
-					    name = name.replace(/[\[\]]/g, '\\$&');
-					    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-					        results = regex.exec(url);
-					    if (!results) return null;
-					    if (!results[2]) return '';
-					    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-	}
 					
 });
 </script>
