@@ -13,18 +13,18 @@
 		out.print(session.getAttribute("pagina").toString());
 	%>
 </title>
-<jsp:include page="/head.jsp" />
+<jsp:include page="/movil/head.jsp" />
 </head>
 <body>
 	<!-- INICIO -->
 	<div class="container-fluid" id="wrapper">
 		<div class="row">
 			<!-- INICIO NAVBAR -->
-			<jsp:include page="/navbar.jsp" />
+			<jsp:include page="/movil/navbar.jsp" />
 			<!--  ./NAVBAR -->
 		</div>
 	</div>
-	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/header.jsp" /> <!--  ./HEADER --> <section class="row">
+	<main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto"> <!--  HEADER --> <jsp:include page="/movil/header.jsp" /> <!--  ./HEADER --> <section class="row">
 	<div class="col-md-12 col-lg-12">
 		<div class="card mb-4">
 			<!-- INICIO CONTAINER -->
@@ -135,7 +135,7 @@
 		</div>
 	</div>
 	<!--  FOOTER CON SCRIPTS -->
-	<jsp:include page="/footer.jsp" />
+	<jsp:include page="/movil/footer.jsp" />
 	<!-- /FIN -->
 	<script>
 		$(document).ready(function() {
