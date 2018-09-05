@@ -10,10 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.logica.ControladorBD;
 
-@WebServlet("/usuarios/perfil")
+import clases.DB;
+import clases.Usuario;
+
+@WebServlet("/usuarios/leer")
 public class ActualizarPerfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -29,19 +30,19 @@ public class ActualizarPerfil extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 
 		try {
-			
+
 			if (request.getSession().getAttribute("username") == null) {
 				response.sendRedirect("/error.jsp");
 			}
 
-			response.setContentType("application/json");
-			ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-			response.getWriter().print(ow.writeValueAsString(ControladorBD.getItem("usuarios", "usuario",
-					request.getSession().getAttribute("username").toString())));
+			Usuario usuario = new DB().load(Usuario.class,request.getSession().getAttribute("username").toString());
+			usuario.setClave(null);			
+			
+			response.getWriter().print(new ObjectMapper().writer().writeValueAsString(usuario));
 			response.getWriter().close();
-			
+
 		} catch (Exception e) {
-			
+
 			response.setStatus(200);
 			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 				private static final long serialVersionUID = 1L;

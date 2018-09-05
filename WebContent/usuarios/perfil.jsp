@@ -35,7 +35,7 @@
 						out.print(session.getAttribute("pagina").toString());
 					%>
 				</h3>
-				<form id="form2" class="form" action="/usuarios/modificar" method="post">
+				<form id="myForm" class="form" action="/usuarios/modificar" method="post">
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Usuario</label>
 						<div class="col-md-4">
@@ -75,11 +75,11 @@
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Telefono</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="telefono" placeholder="telefono" id="telefono" required>
+							<input class="form-control" type="number" name="telefono" placeholder="telefono" id="telefono" required>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Direcci&oacute;n</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="direccion" placeholder="direccion" id="direccion" required>
+							<input class="form-control" type="text" name="direccion" placeholder="direcci&oacute;n" id="direccion" required>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -129,7 +129,7 @@
 		$(document).ready(function() {
 
 			$.ajax({
-				url : "/usuarios/perfil",
+				url : "/usuarios/leer",
 				type : "GET",
 				dataType : "json",
 			}).done(function(response) {
@@ -147,7 +147,6 @@
 			}).fail(function(xhr, status, errorThrown) {
 				alert("Algo ha salido mal");
 				console.log('Failed Request To Servlet /scanTable')
-			}).always(function(xhr, status) {
 			});
 
 		});
