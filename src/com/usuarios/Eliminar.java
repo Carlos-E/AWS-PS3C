@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.logica.ControladorBD;
 
+import clases.DB;
+
 @WebServlet("/usuarios/eliminar")
 public class Eliminar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -33,9 +35,19 @@ public class Eliminar extends HttpServlet {
 		
 		String usuario = request.getParameter("usuario").toString();
 		
+		if(new DB().checkPlaca(usuario)!=null){
+			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+				private static final long serialVersionUID = 1L;
+				{
+					put("title", "Operaci&oacuten fallida");
+					put("message", "El usuario esta asignado a un veh&iacute;culo");
+				}
+			}));
+			return;
+		}
+		
 		ControladorBD.borrarItem("usuarios", "usuario", usuario);
 		
-		response.setStatus(200);
 		response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 			private static final long serialVersionUID = 1L;
 			{
