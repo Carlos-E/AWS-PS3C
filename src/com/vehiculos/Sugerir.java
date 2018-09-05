@@ -46,8 +46,8 @@ public class Sugerir extends HttpServlet {
 		
 		
 		String criteria = "espacio";
-		double espacioEnvio = 10;
-		double pesoEnvio = 10;
+		//double espacioEnvio = 10;
+		//double pesoEnvio = 10;
 
 		List<Vehiculo> vehiculos = new ArrayList<Vehiculo>(DB.scan(Vehiculo.class, new DynamoDBScanExpression()));
 

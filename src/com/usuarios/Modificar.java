@@ -13,8 +13,8 @@ import javax.servlet.http.HttpSession;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.logica.ControladorBD;
 
-import clases.DB;
-import clases.Vehiculo;
+//import clases.DB;
+//import clases.Vehiculo;
 
 @WebServlet("/usuarios/modificar")
 public class Modificar extends HttpServlet {
