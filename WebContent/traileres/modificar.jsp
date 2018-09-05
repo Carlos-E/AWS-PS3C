@@ -175,13 +175,17 @@
 						<div class="col-md-4">
 							<input class="form-control" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" placeholder="peso" name="pesoMax" id="pesoMax" required>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Espacio m&aacute;ximo(m<sup>3</sup>)</label>
+						<label class="col-md-2 col-form-label text-capitalize">
+							Espacio m&aacute;ximo(m<sup>3</sup>)
+						</label>
 						<div class="col-md-4">
-							<input class="form-control" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" placeholder="espacio" name="espacioMax"  id="espacioMax" required>
+							<input class="form-control" pattern="^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$" placeholder="espacio" name="espacioMax" id="espacioMax" required>
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="reset" class="btn btn-secondary float-left"><i class="fas fa-eraser fa-lg"></i></button>
+						<button type="reset" class="btn btn-secondary float-left">
+							<i class="fas fa-eraser fa-lg"></i>
+						</button>
 						<button id="submit" type="submit" class="btn btn-primary btn-md float-right">Confirmar</button>
 						<button id="atras" type="button" data-target="#" class="btn btn-danger btn-md float-right">Atras</button>
 					</div>
@@ -215,29 +219,31 @@
 	<jsp:include page="/footer.jsp" />
 	<!-- /FIN -->
 	<script>
-		$(document).ready(function() {
-
-					var lista;
+	var lista;
+	var table = 'trailers';
+	
+	var scanTable;
+	var fillSelect;
+	var fillInputs;
+	
+	$(document).ready(function() {
+					
+		scanTable = (table, callback) => {
+		
 					$.ajax({
 						url : "/traileres/modificar/listar",
 						data : {
-							tabla : 'trailers'
+							tabla : table
 						},
 						type : "POST",
 						dataType : "json",
 					}).done(function(response) {
 
 						console.log(response);
-						lista = response;
-						$(response).each(function() {
-							let value = this.patente;
-							let text = this.patente;
-							$('#select').append($("<option>").attr('value',value).text(text));});
 						
-						if(getParameterByName('select') != null ){
-							$('#select').val(getParameterByName('select'));
-							$('#buscar').click();
-						}
+						lista = response;
+						
+						callback(response);
 						
 					}).fail(function(xhr, status, errorThrown) {
 
@@ -245,8 +251,21 @@
 						console.log('Failed Request To Servlet /scanTable');
 
 					});
+					
+		}
 
-					$('#buscar').click(function() {
+					fillSelect = (list) => {
+							$(list).each(function() {
+								$('#select').append($("<option>").attr('value',this.patente).text(this.patente));
+							});
+						
+						if(getParameterByName('select') != null ){
+							$('#select').val(getParameterByName('select'));
+							fillInputs();
+						}
+					}
+
+					fillInputs = () => {
 						let selectedIndex = $('#select').prop('selectedIndex');
 						console.log(lista[selectedIndex]);
 						let objeto = lista[selectedIndex];
@@ -260,11 +279,17 @@
 						$('#buscar-form').hide();
 						$('#form').removeAttr('hidden');
 						$('#form').show();
-					});
+					}
+
+					$('#buscar').click(fillInputs);
 
 					$('#atras').click(function() {
 						$('#buscar-form').show();
 						$('#form').hide();
+					});
+									
+					scanTable('envios',function(list){
+						fillSelect(list);
 					});
 
 				});

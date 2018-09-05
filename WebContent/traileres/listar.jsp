@@ -127,7 +127,6 @@
 			        },
 			        columns: [
 			            { title: "Patente" },
-			            /* { title: "Conductor" }, */
 			            { title: "Remolque" },
 			            { title: "Tipo" },
 			            { title: "Estado" },
@@ -135,14 +134,13 @@
 			            { title: "Espacio(m<sup>3</sup>) - M&aacute;ximo/Ocupado/Disponible" },
 			            { title: "Empresa" }
 			        ]
-			    } );
+			    });
 				
 			
 			}).fail(function(xhr, status, errorThrown) {
 				alert("Algo ha salido mal");
 				console.log('Failed Request To Servlet /scanTable')
-			}).always(function(xhr, status) {
-			});	
+			});
 			
 		});
 	</script>
