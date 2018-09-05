@@ -47,7 +47,6 @@ public class ConductoresDisponibles extends HttpServlet {
 
 		response.setContentType("application/json");
 		response.getWriter().print(new ObjectMapper().writeValueAsString(usuarios));
-		//response.getWriter().print(new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT).writer().writeValueAsString(usuarios));
 		response.getWriter().close();
 
 	}
