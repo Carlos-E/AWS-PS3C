@@ -107,6 +107,7 @@
 					
 					let aTag = '<a href="/traileres/modificar.jsp?select='+element.patente+'">'+element.patente+'</a>';
 					let bTag = '<a class="linkNegro" href="/camiones/listar.jsp?search='+element.camion+'">'+element.camion+'</a>';
+					let cTag = '<a class="linkNegro" href="/empresas/listar.jsp?search='+element.empresa+'">'+element.empresa+'</a>';
 					
 					dataSet.push([
 						aTag,
@@ -115,7 +116,7 @@
 						element.estado,
 						element.pesoMax,
 						element.espacioMax,
-						element.empresa
+						cTag
 				]);
 				});
 				
