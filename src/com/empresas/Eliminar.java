@@ -89,7 +89,7 @@ public class Eliminar extends HttpServlet {
 				private static final long serialVersionUID = 1L;
 				{
 					put("title", "Operaci&oacute;n fallida");
-					put("message", "La empresa tiene tráileres");
+					put("message", "La empresa tiene trailers");
 				}
 			}));
 			return;

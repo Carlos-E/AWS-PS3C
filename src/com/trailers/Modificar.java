@@ -87,7 +87,7 @@ public class Modificar extends HttpServlet {
 			private static final long serialVersionUID = 1L;
 			{
 				put("title", "Operaci&oacute;n exitosa");
-				put("message", "Tráiler actualizado");
+				put("message", "Trailer actualizado");
 			}
 		}));
 		return;
