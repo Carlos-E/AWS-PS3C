@@ -57,7 +57,7 @@ public class Crear extends HttpServlet {
 			private static final long serialVersionUID = 1L;
 			{
 				put("title", "Operaci&oacuten exitosa");
-				put("message", "Trailer creado");
+				put("message", "Tráiler creado");
 			}
 		}));
 		return;
