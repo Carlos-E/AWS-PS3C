@@ -18,7 +18,6 @@
 .titulo h1 {
 	/* font-family: 'Faster One', cursive;
 	font-weight: normal; */
-	
 }
 </style>
 <!--  HEAD -->
