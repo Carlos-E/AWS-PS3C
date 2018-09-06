@@ -232,7 +232,7 @@ public class DB extends DynamoDBMapper {
 
 			if (vehiculo.getTipo().equals("remolque")) {
 				if (this.getTrailerRemolque(vehiculo.getPlaca()) == null) {
-					estado = estado + " sin trailer";
+					estado = estado + " sin tráiler";
 				}
 
 			}
