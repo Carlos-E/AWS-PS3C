@@ -231,8 +231,11 @@ public class DB extends DynamoDBMapper {
 			}
 
 			if (vehiculo.getTipo().equals("remolque")) {
-				if (this.getTrailerRemolque(vehiculo.getPlaca()) == null) {
+				Trailer trailer = this.getTrailerRemolque(vehiculo.getPlaca());
+				if (trailer == null) {
 					estado = estado + " sin tráiler";
+				}else{
+					estado = estado + " con tráiler <a href=\"/traileres/listar.jsp?search="+trailer.getPatente()+"\">"+trailer.getPatente()+"</a>";
 				}
 
 			}
