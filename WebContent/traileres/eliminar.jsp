@@ -131,7 +131,7 @@
 	<!--  FOOTER CON SCRIPTS -->
 	<jsp:include page="/footer.jsp" />
 	<!-- /FIN -->
-	<script>
+	<!-- <script>
 	var lista;
 	var table = 'trailers';
 	var scanFunction;
@@ -152,11 +152,7 @@
 
 								lista = response;
 								
-								$('#select').find('option').remove();
 								
-								$(response).each(function() {
-									$('#select').append($("<option>").attr('value',this.patente).text(this.patente));
-								});
 								
 							}).fail(function(xhr, status, errorThrown) {
 						alert("Algo ha salido mal");
@@ -188,6 +184,84 @@
 					});
 					
 				});
+	</script> -->
+	
+	<script>
+	var lista;
+	var table = 'trailers';
+	
+	var scanTable;
+	var fillSelect;
+	var fillInputs;
+	
+	$(document).ready(function() {
+
+		scanTable = (table, callback) => {	
+	
+			$.ajax({
+				url : "/scanTable",
+				data : {
+					tabla : table
+				},
+				type : "POST",
+				dataType : "json",
+			}).done(function(response) {
+				console.log(response);		
+				lista = response;
+
+				callback(response);
+				
+			}).fail(function(xhr, status, errorThrown) {
+				alert("Algo ha salido mal");
+				console.log('Failed Request To Servlet /scanTable')
+			});
+			
+		}
+		
+		fillSelect = (list,callback) => {
+			$('#select').find('option').remove();
+			
+			$(list).each(function() {
+				$('#select').append($("<option>").attr('value',this.patente).text(this.patente));
+			});		
+		 
+		 	if(getParameterByName('select') != null ){
+				$('#select').val(getParameterByName('select'));
+				fillInputs();
+			}
+		 	callback();
+		}
+		
+		$('#buscar').click(() => {
+			let selectedIndex = $('#select').prop('selectedIndex');
+			console.log(lista[selectedIndex]);
+			let objeto = lista[selectedIndex];
+			$('#patente').val(objeto.patente);
+			$('#tipo').val(objeto.tipo);
+			$('#estado').val(objeto.estado);
+			$('#pesoMax').val(objeto.pesoMax);
+			$('#espacioMax').val(objeto.espacioMax);
+			$('#remolque').val(objeto.camion);
+			$('#empresa').val(objeto.empresa);
+			$('#buscar-form').hide();
+			$('#form').removeAttr('hidden');
+			$('#form').show();
+		});
+
+		$('#atras').click(function() {
+			scanTable(table,function(list){
+				fillSelect(list,function(){
+					$('#buscar-form').show();
+					$('#form').hide();
+				});		
+			});		
+		});
+		
+		scanTable(table,function(list){
+			fillSelect(list,()=>{});
+		});
+		
+	});
 	</script>
 </body>
 

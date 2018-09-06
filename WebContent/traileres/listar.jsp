@@ -105,18 +105,18 @@
 				
 				response.forEach(element => {
 					
-					let aTag = '<a href="/traileres/modificar.jsp?select='+element.patente+'">'+element.patente+'</a>';
-					let bTag = '<a class="linkNegro" href="/camiones/listar.jsp?search='+element.camion+'">'+element.camion+'</a>';
-					let cTag = '<a class="linkNegro" href="/empresas/listar.jsp?search='+element.empresa+'">'+element.empresa+'</a>';
+					element.patente = '<a href="/traileres/modificar.jsp?select='+element.patente+'">'+element.patente+'</a>';
+					element.camion = '<a class="linkNegro" href="/camiones/listar.jsp?search='+element.camion+'">'+element.camion+'</a>';
+					element.empresa = '<a class="linkNegro" href="/empresas/listar.jsp?search='+element.empresa+'">'+element.empresa+'</a>';
 					
 					dataSet.push([
-						aTag,
-						bTag,
+						element.patente,
+						element.camion,
 						element.tipo,
 						element.estado,
 						element.pesoMax,
 						element.espacioMax,
-						cTag
+						element.empresa
 				]);
 				});
 				

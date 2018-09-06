@@ -141,7 +141,7 @@
 	<!--  FOOTER CON SCRIPTS -->
 	<jsp:include page="/footer.jsp" />
 	<!-- /FIN -->
-	<script>
+	<!-- <script>
 	var lista;
 	var table = 'usuarios';
 	var scanFunction;
@@ -195,6 +195,84 @@
 				$('#form').hide();
 			});
 		});
+	</script> -->
+	
+	<script>
+	var lista;
+	var table = 'usuarios';
+	
+	var scanTable;
+	var fillSelect;
+	var fillInputs;
+	
+	$(document).ready(function() {
+
+		scanTable = (table, callback) => {	
+	
+			$.ajax({
+				url : "/scanTable",
+				data : {
+					tabla : table
+				},
+				type : "POST",
+				dataType : "json",
+			}).done(function(response) {
+				console.log(response);		
+				lista = response;
+
+				callback(response);
+				
+			}).fail(function(xhr, status, errorThrown) {
+				alert("Algo ha salido mal");
+				console.log('Failed Request To Servlet /scanTable')
+			});
+			
+		}
+		
+		fillSelect = (list,callback) => {
+			$('#select').find('option').remove();
+			
+			$(list).each(function() {
+				$('#select').append($("<option>").attr('value',this.usuario).text(this.usuario));
+			});		
+		 
+		 	if(getParameterByName('select') != null ){
+				$('#select').val(getParameterByName('select'));
+				fillInputs();
+			}
+		 	callback();
+		}
+		
+		$('#buscar').click(() => {
+			let selectedIndex = $('#select').prop('selectedIndex');	
+			console.log(lista[selectedIndex]);	
+			let objeto = lista[selectedIndex];	
+			$('#usuario').val(objeto.usuario);
+			$('#nombre').val(objeto.nombre);
+			$('#rol').val(objeto.rol);
+			$('#apellido').val(objeto.apellido);
+			$('#telefono').val(objeto.telefono);
+			$('#direccion').val(objeto.direccion);
+			$('#correo').val(objeto.correo);
+			$('#buscar-form').hide();
+			$('#form').removeAttr('hidden');
+			$('#form').show();
+		});
+
+		$('#atras').click(function() {
+			scanTable(table,function(list){
+				fillSelect(list,function(){
+					$('#buscar-form').show();
+					$('#form').hide();
+				});		
+			});		
+		});
+		
+		scanTable(table,function(list){
+			fillSelect(list,()=>{});
+		});
+		
+	});
 	</script>
 </body>
 </html>

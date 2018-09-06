@@ -186,6 +186,84 @@
 					});
 				});
 	</script>
+	
+	<script>
+	var lista;
+	var table = 'usuarios';
+	
+	var scanTable;
+	var fillSelect;
+	var fillInputs;
+	
+	$(document).ready(function() {
+
+		scanTable = (table, callback) => {	
+	
+			$.ajax({
+				url : "/scanTable",
+				data : {
+					tabla : table
+				},
+				type : "POST",
+				dataType : "json",
+			}).done(function(response) {
+				console.log(response);		
+				lista = response;
+
+				callback(response);
+				
+			}).fail(function(xhr, status, errorThrown) {
+				alert("Algo ha salido mal");
+				console.log('Failed Request To Servlet /scanTable')
+			});
+			
+		}
+		
+		fillSelect = (list,callback) => {
+			$('#select').find('option').remove();
+			
+			$(list).each(function() {
+				$('#select').append($("<option>").attr('value',this.placa).text(this.placa));
+			});
+		 
+		 	if(getParameterByName('select') != null ){
+				$('#select').val(getParameterByName('select'));
+				fillInputs();
+			}
+		 	callback();
+		}
+		
+		$('#buscar').click(() => {
+			let selectedIndex = $('#select').prop('selectedIndex');
+			console.log(lista[selectedIndex]);
+			let objeto = lista[selectedIndex];
+			$('#placa').val(objeto.placa);
+			$('#estado').val(objeto.estado);
+			$('#peso').val(objeto.pesoMax);
+			$('#espacio').val(objeto.espacioMax);
+			$('#conductor').val(objeto.usuario);
+			$('#empresa').val(objeto.empresa);
+			$('#tipo').val(objeto.tipo);
+			$('#buscar-form').hide();
+			$('#form').removeAttr('hidden');
+			$('#form').show();
+		});
+
+		$('#atras').click(function() {
+			scanTable(table,function(list){
+				fillSelect(list,function(){
+					$('#buscar-form').show();
+					$('#form').hide();
+				});		
+			});		
+		});
+		
+		scanTable(table,function(list){
+			fillSelect(list,()=>{});
+		});
+		
+	});
+	</script>
 </body>
 
 </html>

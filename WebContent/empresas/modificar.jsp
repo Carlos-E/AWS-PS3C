@@ -166,7 +166,7 @@
 		 	if(getParameterByName('select') != null ){
 				$('#select').val(getParameterByName('select'));
 				fillInputs();
-			}
+			});
 		}
 		
 		fillInputs = () => {

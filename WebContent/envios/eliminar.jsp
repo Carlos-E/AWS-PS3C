@@ -158,7 +158,7 @@
 	<!--  /FIN FOOTER CON SCRIPTS -->
 	<!-- /FIN -->
 
-	<script>
+	<!-- <script>
 	var lista;
 	var table = 'envios';
 	var scanFunction;
@@ -178,11 +178,7 @@
 				
 				lista = response;
 				
-				$('#select').find('option').remove();
-				    	
-				$(response).each(function() {
-					$('#select').append($("<option>").attr('value',this.usuario+' : '+this.fecha).text(this.usuario+' : '+this.fecha));
-				});
+				callback(response);
 				
 			}).fail(function(xhr, status, errorThrown) {
 				
@@ -227,6 +223,91 @@
 			});
 
 		});
+	</script> -->
+	
+	<script>
+	var lista;
+	var table = 'envios';
+	
+	var scanTable;
+	var fillSelect;
+	var fillInputs;
+	
+	$(document).ready(function() {
+
+		scanTable = (table, callback) => {	
+	
+			$.ajax({
+				url : "/scanTable",
+				data : {
+					tabla : table
+				},
+				type : "POST",
+				dataType : "json",
+			}).done(function(response) {
+				console.log(response);		
+				lista = response;
+
+				callback(response);
+				
+			}).fail(function(xhr, status, errorThrown) {
+				alert("Algo ha salido mal");
+				console.log('Failed Request To Servlet /scanTable')
+			});
+			
+		}
+		
+		fillSelect = (list,callback) => {
+			$('#select').find('option').remove();
+	    	
+			$(list).each(function() {
+				$('#select').append($("<option>").attr('value',this.usuario+' : '+this.fecha).text(this.usuario+' : '+this.fecha));
+			});			
+		 
+		 	if(getParameterByName('select') != null ){
+				$('#select').val(getParameterByName('select'));
+				fillInputs();
+			}
+		 	callback();
+		}
+		
+		$('#buscar').click(() => {
+			let selectedIndex = $('#select').prop('selectedIndex');
+			
+			console.log(lista[selectedIndex]);
+			
+			let objeto = lista[selectedIndex];
+
+			$('#cliente').val(objeto.usuario);
+			$('#fecha').val(objeto.fecha);
+
+			$('#origen').val(objeto.origen);
+			$('#destino').val(objeto.destino);
+			$('#tipo').val(objeto.tipo);
+			$('#espacio').val(objeto.espacio);
+			$('#peso').val(objeto.peso);
+			$('#estado').val(objeto.estado);
+			$('#empresa').val(objeto.empresa);
+
+			$('#buscar-form').hide();
+			$('#form').removeAttr('hidden');
+			$('#form').show();
+		});
+
+		$('#atras').click(function() {
+			scanTable(table,function(list){
+				fillSelect(list,function(){
+					$('#buscar-form').show();
+					$('#form').hide();
+				});		
+			});		
+		});
+		
+		scanTable(table,function(list){
+			fillSelect(list,()=>{});
+		});
+		
+	});
 	</script>
 
 </body>
