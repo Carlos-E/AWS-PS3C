@@ -178,7 +178,7 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Veh&iacute;culo o trailer asignado</label>
+						<label class="col-md-2 col-form-label text-capitalize">Veh&iacute;culo o tr&aacute;iler asignado</label>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="asignado" placeholder="asignado" id="asignado" readonly>
 						</div>
@@ -188,7 +188,7 @@
 						<div class="col-md-4">
 							<input id="rCamion" type="radio" name="asignacion" onclick="mostrar()" checked="true" required>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Trailer</label>
+						<label class="col-md-2 col-form-label text-capitalize">Tr&aacute;iler</label>
 						<div class="col-md-4">
 							<input id="rTrailer" type="radio" name="asignacion" onclick="ocultar()" required>
 						</div>
@@ -200,7 +200,7 @@
 							<select id="camion" class="form-control" name="camion">
 							</select>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Traileres disponibles</label>
+						<label class="col-md-2 col-form-label text-capitalize">Tr&aacute;ileres disponibles</label>
 						<div class="col-md-4">
 							<i id="spinner2" class="fa fa-circle-notch fa-spin" style="font-size: 35px"></i>
 							<select id="trailer" class="form-control" name="trailer" disabled="true">
