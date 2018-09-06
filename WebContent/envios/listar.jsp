@@ -158,7 +158,7 @@ table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_des
 						{ title: "Peso" },
 						{ title: "Espacio" },
 						{ title: "Remolque" },
-						{ title: "Trailer" },
+						{ title: "Tráiler" },
 						{ title: "Descripci&oacute;n" }
 					];
 					

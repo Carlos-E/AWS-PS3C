@@ -186,7 +186,7 @@
 		<li class="parent nav-item">
 			<a class="nav-link" data-toggle="collapse" href="#sub-item-5">
 				<em class="fa fa-truck">&nbsp;</em>
-				Traileres
+				Tr&aacute;ileres
 				<span data-toggle="collapse" class="icon float-right">
 					<i class="fa fa-caret-down"></i>
 				</span>
@@ -259,7 +259,7 @@
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="/traileres/listar.jsp">
-						Traileres
+						Tr&aacute;ileres
 						<em class="fa fa-truck">&nbsp;</em>
 					</a>
 				</li>
