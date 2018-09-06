@@ -213,6 +213,8 @@
 		}
 		
 		fillSelect = (list,callback) => {
+			$('#select').find('option').remove();
+
 			 $(list).each(function() {
 			 	$('#select').append($("<option>").attr('value',this.nombre).text(this.nombre));
 			 });			
@@ -224,22 +226,20 @@
 		 	callback();
 		}
 		
-		fillInputs = () => {
-				let selectedIndex = $('#select').prop('selectedIndex');	
-				console.log(lista[selectedIndex]);
-				let objeto = lista[selectedIndex];	
-				$('#nit').val(objeto.nit);
-				$('#rut').val(objeto.rut);
-				$('#nombre').val(objeto.nombre);
-				$('#telefono').val(objeto.telefono);
-				$('#direccion').val(objeto.direccion);
-				$('#correo').val(objeto.correo);
-				$('#buscar-form').hide();
-				$('#form').removeAttr('hidden');
-				$('#form').show();
-		}
-		
-		$('#buscar').click(fillInputs);
+		$('#buscar').click(() => {
+			let selectedIndex = $('#select').prop('selectedIndex');	
+			console.log(lista[selectedIndex]);
+			let objeto = lista[selectedIndex];	
+			$('#nit').val(objeto.nit);
+			$('#rut').val(objeto.rut);
+			$('#nombre').val(objeto.nombre);
+			$('#telefono').val(objeto.telefono);
+			$('#direccion').val(objeto.direccion);
+			$('#correo').val(objeto.correo);
+			$('#buscar-form').hide();
+			$('#form').removeAttr('hidden');
+			$('#form').show();
+		});
 
 		$('#atras').click(function() {
 			scanTable(table,function(list){

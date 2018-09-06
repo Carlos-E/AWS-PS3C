@@ -285,6 +285,7 @@
 					}
 
 		fillSelect = (list) => {
+			$('#select').find('option').remove();
 			$(list).each(function() {
 			$('#select')
 				.append($("<option>")
