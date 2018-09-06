@@ -94,10 +94,6 @@
 							<input class="form-control" type="text" name="telefono" placeholder="telefono" id="telefono" readonly>
 						</div>
 					</div>
-					<input type="text" id="longitud_Destino" name="longitud_Destino" style="display: none">
-					<input type="text" id="latitud_Destino" name="latitud_Destino" style="display: none">
-					<input type="text" id="latitud_Origen" name="latitud_Origen" style="display: none">
-					<input type="text" id="longitud_Origen" name="longitud_Origen" style="display: none">
 					<div class="modal-footer">
 						<button id="submit" type="submit" class="btn btn-primary btn-md float-right">Confirmar</button>
 						<button id="atras" type="button" data-target="#" class="btn btn-danger btn-md float-right">Atras</button>
@@ -131,7 +127,7 @@
 	<!--  FOOTER CON SCRIPTS -->
 	<jsp:include page="/footer.jsp" />
 	<!-- /FIN -->
-	<script>
+	<!-- <script>
 	var lista;
 	var table = 'empresas';
 	var scanFunction;
@@ -182,6 +178,83 @@
 				$('#form').hide();
 			});
 		});
+	</script> -->
+	
+	<script>
+	var lista;
+	var table = 'empresas';
+	
+	var scanTable;
+	var fillSelect;
+	var fillInputs;
+	
+	$(document).ready(function() {
+
+		scanTable = (table, callback) => {	
+	
+			$.ajax({
+				url : "/scanTable",
+				data : {
+					tabla : table
+				},
+				type : "POST",
+				dataType : "json",
+			}).done(function(response) {
+				console.log(response);		
+				lista = response;
+
+				callback(response);
+				
+			}).fail(function(xhr, status, errorThrown) {
+				alert("Algo ha salido mal");
+				console.log('Failed Request To Servlet /scanTable')
+			});
+			
+		}
+		
+		fillSelect = (list,callback) => {
+			 $(list).each(function() {
+			 	$('#select').append($("<option>").attr('value',this.nombre).text(this.nombre));
+			 });			
+		 
+		 	if(getParameterByName('select') != null ){
+				$('#select').val(getParameterByName('select'));
+				fillInputs();
+			}
+		 	callback();
+		}
+		
+		fillInputs = () => {
+				let selectedIndex = $('#select').prop('selectedIndex');	
+				console.log(lista[selectedIndex]);
+				let objeto = lista[selectedIndex];	
+				$('#nit').val(objeto.nit);
+				$('#rut').val(objeto.rut);
+				$('#nombre').val(objeto.nombre);
+				$('#telefono').val(objeto.telefono);
+				$('#direccion').val(objeto.direccion);
+				$('#correo').val(objeto.correo);
+				$('#buscar-form').hide();
+				$('#form').removeAttr('hidden');
+				$('#form').show();
+		}
+		
+		$('#buscar').click(fillInputs);
+
+		$('#atras').click(function() {
+			scanTable(table,function(list){
+				fillSelect(list,function(){
+					$('#buscar-form').show();
+					$('#form').hide();
+				});		
+			});		
+		});
+		
+		scanTable(table,function(list){
+			fillSelect(list,()=>{});
+		});
+		
+	});
 	</script>
 </body>
 
