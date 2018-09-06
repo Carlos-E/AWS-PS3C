@@ -58,7 +58,7 @@
 				<h3 class="card-title">
 					<%
 						out.print(session.getAttribute("pagina").toString());
-					%> <i id="confirmationSpinner" class="fa fa-circle-notch fa-spin"></i>
+					%> 
 				</h3>
 				<form id="myForm" class="form" action="/vehiculos/eliminar" method="post">
 					<div class="form-group row">
@@ -130,7 +130,7 @@
 	<!--  FOOTER CON SCRIPTS -->
 	<jsp:include page="/footer.jsp" />
 	<!-- /FIN -->
-	<script>
+	<!-- <script>
 	var lista;
 	var table = 'vehiculos';
 	var scanFunction;
@@ -185,11 +185,11 @@
 						$('#form').hide();
 					});
 				});
-	</script>
+	</script> -->
 	
 	<script>
 	var lista;
-	var table = 'usuarios';
+	var table = 'vehiculos';
 	
 	var scanTable;
 	var fillSelect;
