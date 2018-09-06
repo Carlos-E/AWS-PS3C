@@ -236,7 +236,6 @@
 			}
 						
 			$('#pesoMax').val(objeto.pesoMax);
-			$('#espacioMax').val(objeto.espacioMax);
 						
 			$('#empresa').val(objeto.empresa);
 			$('#conductorAsignado').val(objeto.usuario);
@@ -254,6 +253,8 @@
 				$(data).each(function() {
 					$('#conductor').append($("<option>").attr('value',this.usuario).text(this.nombre+' '+this.apellido));
 				});
+		/* 		$('#conductor').append($("<option>").attr('value',objeto.usuario).text(objeto.usuario));
+				$('#conductor').val(objeto.usuario); */
 			});
 		}
 	
