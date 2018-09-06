@@ -258,7 +258,7 @@ public class DB extends DynamoDBMapper {
 			if (trailer.getCamion().equals("ninguno")) {
 				estado = estado + "sin remolque";
 			} else {
-				estado = estado + "con remolque";
+				estado = estado + " con remolque <a href=\"/traileres/listar.jsp?search="+trailer.getCamion()+"\">"+trailer.getCamion()+"</a>";
 			}
 
 			if (this.getEnviosPendientesTrailer(trailer.getPatente()).size() > 0) {
