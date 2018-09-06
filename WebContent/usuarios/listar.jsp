@@ -131,7 +131,10 @@
 			            { title: "Rol" },
 			            { title: "Correo" },
 			            { title: "Direcci&oacute;n" }
-			        ]
+			        ],
+			        search: {
+					    search: getParameterByName('search') != null ? getParameterByName('search') : ""
+					}
 			    } );
 							
 			}).fail(function(xhr, status, errorThrown) {

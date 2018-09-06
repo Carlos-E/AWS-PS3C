@@ -133,7 +133,10 @@
 			            { title: "Peso(Kg) - M&aacute;ximo/Ocupado/Disponible" },
 			            { title: "Espacio(m<sup>3</sup>) - M&aacute;ximo/Ocupado/Disponible" },
 			            { title: "Empresa" }
-			        ]
+			        ],
+			        search: {
+					    search: getParameterByName('search') != null ? getParameterByName('search') : ""
+					}
 			    } );
 							
 			}).fail(function(xhr, status, errorThrown) {

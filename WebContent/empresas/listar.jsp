@@ -131,7 +131,10 @@
 			            { title: "Correo" },
 			            { title: "Direcci&oacute;n" },
 			            { title: "Telefono" }
-			        ]
+			        ],
+			        search: {
+					    search: getParameterByName('search') != null ? getParameterByName('search') : ""
+					}
 			    } );
 				
 			
