@@ -106,10 +106,11 @@
 				response.forEach(element => {
 					
 					let aTag = '<a href="/vehiculos/modificar.jsp?select='+element.placa+'">'+element.placa+'</a>';
+					let bTag = '<a class="linkNegro" href="/usuarios/listar.jsp?search='+element.usuario+'">'+element.usuario+'</a>';
 
 					dataSet.push([
 						aTag,
-						element.usuario,
+						bTag,
 						element.tipo,
 						element.estado,
 						element.pesoMax,

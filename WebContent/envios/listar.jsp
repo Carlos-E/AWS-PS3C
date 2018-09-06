@@ -127,19 +127,23 @@ table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_des
 					list.forEach(element => {
 						
 						let aTag = '<a href="/envios/modificar.jsp?select='+element.usuario+' : '+element.fecha+'">'+element.fecha+'</a>';
+						let bTag = '<a class="linkNegro" href="/usuarios/listar.jsp?search='+element.usuario+'">'+element.usuario+'</a>';
+						let cTag = '<a class="linkNegro" href="/camiones/listar.jsp?search='+element.camion+'">'+element.camion+'</a>';
+						let dTag = '<a class="linkNegro" href="/trailers/listar.jsp?search='+element.trailer+'">'+element.trailer+'</a>';
+						let eTag = '<a class="linkNegro" href="/empresas/listar.jsp?search='+element.empresa+'">'+element.empresa+'</a>';
 
 						dataSet.push([
 							aTag,
-							element.usuario,
-							element.empresa,
+							bTag,
+							eTag,
 							element.origen,
 							element.destino,
 							element.estado,
 							element.tipo,
 							element.peso,
 							element.espacio,
-							element.camion,
-							element.trailer,
+							cTag,
+							dTag,
 							element.descripcion,
 						]);
 
