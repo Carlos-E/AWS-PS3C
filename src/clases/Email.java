@@ -47,7 +47,7 @@ public class Email {
 		msg.setFrom(new InternetAddress(FROM, FROMNAME));
 		msg.setRecipient(Message.RecipientType.TO, new InternetAddress(TO));
 		msg.setSubject(SUBJECT);
-		msg.setContent(BODY, "text/html; charset=UTF-8");
+		msg.setContent(BODY, "text/html; charset=utf-8");
 
 		// Add a configuration set header. Comment or delete the
 		// next line if you are not using a configuration set
@@ -105,7 +105,7 @@ public class Email {
 		msg.setFrom(new InternetAddress(FROM, FROMNAME));
 		msg.setRecipient(Message.RecipientType.TO, new InternetAddress(TO));
 		msg.setSubject(SUBJECT);
-		msg.setContent(BODY, "text/html; charset=UTF-8");
+		msg.setContent(BODY, "text/html; charset=utf-8");
 
 		// Add a configuration set header. Comment or delete the
 		// next line if you are not using a configuration set
