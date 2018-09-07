@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.io.*,java.util.*"%>
 <%
 	if (session.getAttribute("rol") == null) {
@@ -59,7 +59,7 @@
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Direcci&oacute;n</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="direccion" placeholder="dirección" required>
+							<input class="form-control" type="text" name="direccion" placeholder="direcciÃ³n" required>
 						</div>
 					</div>
 					<div class="modal-footer">

@@ -182,6 +182,10 @@
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="asignado" placeholder="asignado" id="asignado" readonly>
 						</div>
+						<label class="col-md-2 col-form-label text-capitalize">Sugerencia:</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="sugerencia" placeholder=""sugerencia"" id=""sugerencia"" readonly>
+						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-capitalize">Veh&iacute;culo</label>
