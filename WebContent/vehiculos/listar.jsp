@@ -105,19 +105,19 @@
 				
 				response.forEach(element => {
 					
-					let aTag = '<a href="/vehiculos/modificar.jsp?select='+element.placa+'">'+element.placa+'</a>';
-					let bTag = '<a class="linkNegro" href="/usuarios/listar.jsp?search='+element.usuario+'">'+element.usuario+'</a>';
-					let cTag = '<a class="linkNegro" href="/empresas/listar.jsp?search='+element.empresa+'">'+element.empresa+'</a>';
+					element.placa = '<a href="/vehiculos/modificar.jsp?select='+element.placa+'">'+element.placa+'</a>';
+					element.usuario = '<a class="linkNegro" href="/usuarios/listar.jsp?search='+element.usuario+'">'+element.usuario+'</a>';
+					element.empresa = '<a class="linkNegro" href="/empresas/listar.jsp?search='+element.empresa+'">'+element.empresa+'</a>';
 					
 
 					dataSet.push([
-						aTag,
-						bTag,
+						element.placa,
+						element.usuario,
 						element.tipo,
 						element.estado,
 						element.pesoMax,
 						element.espacioMax,
-						cTag
+						element.empresa
 				]);
 				});
 				

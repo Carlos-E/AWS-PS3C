@@ -105,16 +105,16 @@
 				
 				response.forEach(element => {
 					
-					let aTag = '<a href="/usuarios/modificar.jsp?select='+element.usuario+'">'+element.usuario+'</a>';
+					element.usuario = '<a href="/usuarios/modificar.jsp?select='+element.usuario+'">'+element.usuario+'</a>';
 					
 					dataSet.push([
-						aTag,
+						element.usuario,
 						element.nombre,
 						element.apellido,
 						element.rol,
 						element.correo,
 						element.direccion,
-				]);
+					]);
 				});
 				
 				console.log(dataSet);
