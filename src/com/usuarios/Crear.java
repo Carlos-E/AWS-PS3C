@@ -47,7 +47,7 @@ public class Crear extends HttpServlet {
 				private static final long serialVersionUID = 1L;
 				{
 					put("title", "Operaci&oacute;n fallida");
-					put("message", "El usuario ya existe");
+					put("message", "El correo del usuario ya existe");
 				}
 			}));
 			return;

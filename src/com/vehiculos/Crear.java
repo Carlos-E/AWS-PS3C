@@ -56,7 +56,7 @@ public class Crear extends HttpServlet {
 				private static final long serialVersionUID = 1L;
 				{
 					put("title", "Operaci&oacute;n fallida");
-					put("message", "El usuario ya existe");
+					put("message", "El veh&iacute;culo ya existe");
 				}
 			}));
 			return;
@@ -64,6 +64,8 @@ public class Crear extends HttpServlet {
 			vehiculo = new Vehiculo();
 		}
 		
+		vehiculo.setPlaca(request.getParameter("placa").toLowerCase());
+
 		vehiculo.setTipo(request.getParameter("tipo").toLowerCase());
 
 		vehiculo.setEspacioMax(espacio);
@@ -75,7 +77,7 @@ public class Crear extends HttpServlet {
 		vehiculo.setLatitud("10.403242");
 		vehiculo.setLongitud("-75.505819");
 
-		new DB().save(vehiculo);
+		DB.save(vehiculo);
 
 		response.setStatus(201);
 		response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {

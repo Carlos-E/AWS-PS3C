@@ -46,6 +46,17 @@ public class Crear extends HttpServlet {
 			envio.setUsuario(request.getParameter("cliente").toLowerCase());
 		}
 		
+		Calendar calendar = Calendar.getInstance();
+		DecimalFormat mFormat = new DecimalFormat("00");
+		
+		String fecha = calendar.get(Calendar.YEAR) + "-"
+				+ mFormat.format(Double.valueOf(calendar.get(Calendar.MONTH) + 1)) + "-"
+				+ mFormat.format(Double.valueOf(calendar.get(Calendar.DAY_OF_MONTH))) + " "
+				+ mFormat.format(calendar.get(Calendar.HOUR_OF_DAY)) + ":"
+				+ mFormat.format(calendar.get(Calendar.MINUTE)) + ":" + mFormat.format(calendar.get(Calendar.SECOND));
+		
+		envio.setFecha(fecha);
+		
 		envio = DB.load(envio);
 		
 		if(envio!=null){
@@ -67,15 +78,6 @@ public class Crear extends HttpServlet {
 		} else {
 			envio.setUsuario(request.getParameter("cliente").toLowerCase());
 		}
-
-		Calendar calendar = Calendar.getInstance();
-		DecimalFormat mFormat = new DecimalFormat("00");
-
-		String fecha = calendar.get(Calendar.YEAR) + "-"
-				+ mFormat.format(Double.valueOf(calendar.get(Calendar.MONTH) + 1)) + "-"
-				+ mFormat.format(Double.valueOf(calendar.get(Calendar.DAY_OF_MONTH))) + " "
-				+ mFormat.format(calendar.get(Calendar.HOUR_OF_DAY)) + ":"
-				+ mFormat.format(calendar.get(Calendar.MINUTE)) + ":" + mFormat.format(calendar.get(Calendar.SECOND));
 
 		envio.setFecha(fecha);
 
