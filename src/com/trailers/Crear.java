@@ -28,6 +28,8 @@ public class Crear extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		DB DB = new DB();
 
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json");
@@ -36,6 +38,24 @@ public class Crear extends HttpServlet {
 		Trailer trailer = new Trailer();
 
 		trailer.setPatente(request.getParameter("patente").toLowerCase());
+		
+		trailer = DB.load(trailer);
+		
+		if(trailer!=null){
+			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+				private static final long serialVersionUID = 1L;
+				{
+					put("title", "Operaci&oacute;n fallida");
+					put("message", "El tr&aacute;iler ya existe");
+				}
+			}));
+			return;
+		}else{
+			trailer = new Trailer();
+		}
+		
+		trailer.setPatente(request.getParameter("patente").toLowerCase());
+		
 		trailer.setTipo(request.getParameter("tipo").toLowerCase());
 
 		trailer.setPesoMax(Double.valueOf(request.getParameter("peso").toLowerCase()));

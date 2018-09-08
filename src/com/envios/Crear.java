@@ -38,8 +38,30 @@ public class Crear extends HttpServlet {
 		DB DB = new DB();
 
 		// GENERAR ENVIO
-		Envio envio = new Envio();
+		Envio envio = new Envio();		
 
+		if (request.getSession().getAttribute("rol").equals("cliente")) {
+			envio.setUsuario(request.getSession().getAttribute("username").toString().toLowerCase());
+		} else {
+			envio.setUsuario(request.getParameter("cliente").toLowerCase());
+		}
+		
+		envio = DB.load(envio);
+		
+		if(envio!=null){
+			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+				private static final long serialVersionUID = 1L;
+				{
+					put("title", "Operaci&oacute;n fallida");
+					put("message", "El env&iacute; ya existe");
+				}
+			}));
+			return;
+		}else{
+			envio = new Envio();
+		}
+		
+		
 		if (request.getSession().getAttribute("rol").equals("cliente")) {
 			envio.setUsuario(request.getSession().getAttribute("username").toString().toLowerCase());
 		} else {

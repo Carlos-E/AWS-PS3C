@@ -30,6 +30,8 @@ public class Crear extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		DB DB = new DB();
+		
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
@@ -37,13 +39,30 @@ public class Crear extends HttpServlet {
 		Empresa empresa = new Empresa();
 
 		empresa.setNit(request.getParameter("nit").toLowerCase());
+		
+		empresa = DB.load(empresa);
+		
+		if(empresa!=null){
+			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+				private static final long serialVersionUID = 1L;
+				{
+					put("title", "Operaci&oacute;n fallida");
+					put("message", "El empresa ya existe");
+				}
+			}));
+			return;
+		}else{
+			empresa = new Empresa();
+		}
+		
+		empresa.setNit(request.getParameter("nit").toLowerCase());
 		empresa.setRut(request.getParameter("rut").toLowerCase());
 		empresa.setNombre(request.getParameter("nombre").toLowerCase());
 		empresa.setDireccion(request.getParameter("direccion").toLowerCase());
 		empresa.setTelefono(request.getParameter("telefono").toLowerCase());
 		empresa.setCorreo(request.getParameter("correo").toLowerCase());
 		
-		new DB().save(empresa);
+		DB.save(empresa);
 
 		response.setStatus(201);
 		response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {

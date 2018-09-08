@@ -17,7 +17,6 @@ import clases.Vehiculo;
 @WebServlet("/vehiculos/crear")
 public class Crear extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	Vehiculo vehiculo = new Vehiculo();
 
 	public Crear() {
 		super();
@@ -35,6 +34,8 @@ public class Crear extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
+		
+		DB DB = new DB();
 
 		double peso = 0;
 		double espacio = 0;
@@ -43,8 +44,26 @@ public class Crear extends HttpServlet {
 			peso = Double.valueOf(request.getParameter("peso"));
 			espacio = Double.valueOf(request.getParameter("espacio"));
 		}
+		
+		Vehiculo vehiculo = new Vehiculo();
 
 		vehiculo.setPlaca(request.getParameter("placa").toLowerCase());
+		
+		vehiculo = DB.load(vehiculo);
+		
+		if(vehiculo!=null){
+			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+				private static final long serialVersionUID = 1L;
+				{
+					put("title", "Operaci&oacute;n fallida");
+					put("message", "El usuario ya existe");
+				}
+			}));
+			return;
+		}else{
+			vehiculo = new Vehiculo();
+		}
+		
 		vehiculo.setTipo(request.getParameter("tipo").toLowerCase());
 
 		vehiculo.setEspacioMax(espacio);
