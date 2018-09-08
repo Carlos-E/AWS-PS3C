@@ -106,7 +106,7 @@
 				response.forEach(element => {
 					
 					element.patente = '<a href="/traileres/modificar.jsp?select='+element.patente+'">'+element.patente+'</a>';
-					element.camion = '<a class="linkNegro" href="/camiones/listar.jsp?search='+element.camion+'">'+element.camion+'</a>';
+					element.camion = '<a class="linkNegro" href="/vehiculos/listar.jsp?search='+element.camion+'">'+element.camion+'</a>';
 					element.empresa = '<a class="linkNegro" href="/empresas/listar.jsp?search='+element.empresa+'">'+element.empresa+'</a>';
 					
 					dataSet.push([
