@@ -94,7 +94,7 @@
 						<div class="col-md-4">
 							<!-- 							<input class="form-control" type="text" name="usuario" placeholder="usuario" id="usuario" required>
  -->
-							<select class="form-control" name="usuario" id="usuario">
+							<select class="form-control" name="usuario" id="usuario" required>
 								<option value="" selected>Seleccionar...</option>
 
 								<%
