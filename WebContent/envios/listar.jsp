@@ -126,24 +126,24 @@ table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_des
 
 					list.forEach(element => {
 						
-						let aTag = '<a href="/envios/modificar.jsp?select='+element.usuario+' : '+element.fecha+'">'+element.fecha+'</a>';
-						let bTag = '<a class="linkNegro" href="/usuarios/listar.jsp?search='+element.usuario+'">'+element.usuario+'</a>';
-						let cTag = '<a class="linkNegro" href="/camiones/listar.jsp?search='+element.camion+'">'+element.camion+'</a>';
-						let dTag = '<a class="linkNegro" href="/trailers/listar.jsp?search='+element.trailer+'">'+element.trailer+'</a>';
-						let eTag = '<a class="linkNegro" href="/empresas/listar.jsp?search='+element.empresa+'">'+element.empresa+'</a>';
+						element.fecha = '<a href="/envios/modificar.jsp?select='+element.usuario+' : '+element.fecha+'">'+element.fecha+'</a>';
+						element.usuario = '<a class="linkNegro" href="/usuarios/listar.jsp?search='+element.usuario+'">'+element.usuario+'</a>';
+						element.empresa = '<a class="linkNegro" href="/empresas/listar.jsp?search='+element.empresa+'">'+element.empresa+'</a>';
+						element.camion = '<a class="linkNegro" href="/vehiculos/listar.jsp?search='+element.camion+'">'+element.camion+'</a>';
+						element.trailer = '<a class="linkNegro" href="/traileres/listar.jsp?search='+element.trailer+'">'+element.trailer+'</a>';
 
 						dataSet.push([
-							aTag,
-							bTag,
-							eTag,
+							element.fecha,
+							element.usuario,
+							element.empresa,
 							element.origen,
 							element.destino,
 							element.estado,
 							element.tipo,
 							element.peso,
 							element.espacio,
-							cTag,
-							dTag,
+							element.camion,
+							element.trailer,
 							element.descripcion,
 						]);
 
