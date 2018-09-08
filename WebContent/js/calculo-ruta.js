@@ -7,7 +7,7 @@ function initMap() {
 
 
 function setVehiculos(origenEnvio, pesoEnvio, espacioEnvio){
-    let listaDatosRutas = [];
+	let listaVehiculos = [];
     console.log('Calculando Rutas Con Origen De Envio');
 
     $(document).ready(function() {
@@ -67,7 +67,6 @@ function setVehiculos(origenEnvio, pesoEnvio, espacioEnvio){
                       distanciaT: response.routes[0].legs[0].distance.text,
                       duracionT: response.routes[0].legs[0].duration.text
                     };
-                      
                 } else {
                   console.log('Error calculando la ruta de: ' + vehiculos[i].placa);
                   
@@ -97,13 +96,15 @@ function setVehiculos(origenEnvio, pesoEnvio, espacioEnvio){
           
         }).fail(function(xhr, status, errorThrown) {
           console.log('Failed getRoutes');
-        });
+        }).always(castSugerir(listaVehiculos,"null"));
     });
   }
 
 
 function setTrailers(origenEnvio, pesoEnvio, espacioEnvio) {
-		    
+	
+	let listaTrailers = [];
+    
 		  $.ajax({
 	      url: '/disponibilidadDeTrailers',
 	      data: {
@@ -172,7 +173,6 @@ function setTrailers(origenEnvio, pesoEnvio, espacioEnvio) {
                           distanciaT: 'NA',
                           duracionT: 'NA'
                         };
-                  
                 }
                 
                 option = document.createElement('option');
@@ -190,11 +190,27 @@ function setTrailers(origenEnvio, pesoEnvio, espacioEnvio) {
           
         }).fail(function(xhr, status, errorThrown) {
           console.log('Failed getRoutesTrailer');	    
-        });
+        }).always(castSugerir("null",listaTrailers));
 }
 
 
-
+function castSugerir(listaVehiculos, listaTrailers){
+	if(listaTrailers.equals("null")){
+		$.ajax({
+		      url: '/vehiculos/sugerir',
+		      data: {
+		    	  listaVehiculos:listaVehiculos
+		        },
+		      type: 'GET',
+		      dataType: 'json'
+		    }).done();
+	}else if(listaVehiculos.equals("null")){
+		
+	}else{
+		console.log("error en la ejecucion de la funcion castSugerir");
+	}
+	
+}
 
 
 // QuickSort

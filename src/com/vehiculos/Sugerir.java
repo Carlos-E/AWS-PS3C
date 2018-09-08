@@ -29,12 +29,6 @@ public class Sugerir extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		this.doPost(request, response);
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
 		response.setContentType("application/json");
 
 		DB DB = new DB();
@@ -79,6 +73,14 @@ public class Sugerir extends HttpServlet {
 
 		response.getWriter().print(new ObjectMapper().writeValueAsString(vehiculos));
 		response.getWriter().close();
+	
+		
+		this.doPost(request, response);
+		
 	}
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		//this.send();
+	}
 }
