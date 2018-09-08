@@ -140,7 +140,6 @@
 					    search: getParameterByName('search') != null ? getParameterByName('search') : ""
 					}
 			    });
-				
 			
 			}).fail(function(xhr, status, errorThrown) {
 				alert("Algo ha salido mal");
