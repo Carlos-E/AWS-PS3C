@@ -107,7 +107,8 @@ public class Crear extends HttpServlet {
 
 		reporte.setUsuario(envio.getUsuario());
 		reporte.setHora(fecha);
-		reporte.setNota("Hay un nuevo envio del cliente: " + envio.getUsuario() + " Con Fecha: " + fecha);
+		String aTag = "<a>Modif&iacutequelo Aqu&iacute</a>";
+		reporte.setNota("Nuevo env&iacute;o del cliente: " + envio.getUsuario() + " "+aTag);
 		reporte.setVisto(false);
 
 		// Guardar Reporte en base de datos
