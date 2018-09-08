@@ -38,28 +38,28 @@ public class Crear extends HttpServlet {
 		DB DB = new DB();
 
 		// GENERAR ENVIO
-		Envio envio = new Envio();		
+		Envio envio = new Envio();
 
 		if (request.getSession().getAttribute("rol").equals("cliente")) {
 			envio.setUsuario(request.getSession().getAttribute("username").toString().toLowerCase());
 		} else {
 			envio.setUsuario(request.getParameter("cliente").toLowerCase());
 		}
-		
+
 		Calendar calendar = Calendar.getInstance();
 		DecimalFormat mFormat = new DecimalFormat("00");
-		
+
 		String fecha = calendar.get(Calendar.YEAR) + "-"
 				+ mFormat.format(Double.valueOf(calendar.get(Calendar.MONTH) + 1)) + "-"
 				+ mFormat.format(Double.valueOf(calendar.get(Calendar.DAY_OF_MONTH))) + " "
 				+ mFormat.format(calendar.get(Calendar.HOUR_OF_DAY)) + ":"
 				+ mFormat.format(calendar.get(Calendar.MINUTE)) + ":" + mFormat.format(calendar.get(Calendar.SECOND));
-		
+
 		envio.setFecha(fecha);
-		
+
 		envio = DB.load(envio);
-		
-		if(envio!=null){
+
+		if (envio != null) {
 			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 				private static final long serialVersionUID = 1L;
 				{
@@ -68,11 +68,10 @@ public class Crear extends HttpServlet {
 				}
 			}));
 			return;
-		}else{
+		} else {
 			envio = new Envio();
 		}
-		
-		
+
 		if (request.getSession().getAttribute("rol").equals("cliente")) {
 			envio.setUsuario(request.getSession().getAttribute("username").toString().toLowerCase());
 		} else {
@@ -107,11 +106,12 @@ public class Crear extends HttpServlet {
 
 		reporte.setUsuario(envio.getUsuario());
 		reporte.setHora(fecha);
-		String aTag = "<a>Modif&iacutequelo Aqu&iacute</a>";
-		reporte.setNota("Nuevo env&iacute;o del cliente: " + envio.getUsuario() + " "+aTag);
+		String usuarioTag = "<a href=\"/usuarios/listar.jsp?search=" + envio.getUsuario()+ "\">"+envio.getUsuario()+"</a>,";
+		String envioTag = "<a href=\"/envios/modificar.jsp?select=" + envio.getUsuario() + " : " + envio.getFecha()
+				+ "\"> Modif&iacutequelo aqu&iacute.</a>";
+		reporte.setNota("Nuevo env&iacute;o del cliente: " + usuarioTag + envioTag);
 		reporte.setVisto(false);
 
-		// Guardar Reporte en base de datos
 		DB.save(reporte);
 		// GENERAR REPORTE
 
@@ -120,7 +120,6 @@ public class Crear extends HttpServlet {
 				"Su envío ha sido creado y pronto sera asignado.", envio);
 		// ENVIAR CORREO
 
-		// response.getWriter().write(new Item().withString("message", "Envío creado").toJSONPretty().toString());
 		response.setStatus(201);
 		response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 			private static final long serialVersionUID = 1L;
