@@ -15,7 +15,9 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import clases.DB;
+import clases.Email;
 import clases.Envio;
+import clases.Usuario;
 
 @WebServlet("/chequeoCarga")
 public class chequeoCarga extends HttpServlet {
@@ -36,6 +38,7 @@ public class chequeoCarga extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
+		
 		try {
 
 			DB DB = new DB();
@@ -48,21 +51,28 @@ public class chequeoCarga extends HttpServlet {
 				try {
 
 					if (request.getParameter(envios.get(i).getFecha()) == null) {
+						
+						if(envios.get(i).isChequeoCarga()){
+							new Email(DB.load(Usuario.class, envios.get(i).getUsuario()).getCorreo(),
+							"PS3C - Envío Revertido", "Hemos revertido el estado de su envío.", envios.get(i));
+						}
 
 						envios.get(i).setChequeoCarga(false);
 						envios.get(i).setChequeoDescarga(false);
 						envios.get(i).setEstado("asignado");
 
-//						new Email(DB.load(Usuario.class, envios.get(i).getUsuario()).getCorreo(),
-//								"PS3C - Envío Revertido", "Hemos revertido el estado de su envio.", envios.get(i));
 
 					} else {
+						
+						if(!envios.get(i).isChequeoCarga()){
+							new Email(DB.load(Usuario.class, envios.get(i).getUsuario()).getCorreo(),
+							"PS3C - Envío En Tránsito",
+							"Su envío ha sido recogido y esta en tránsito hacia su destino.", envios.get(i));
+						}
+						
 						envios.get(i).setChequeoCarga(true);
-						envios.get(i).setEstado("en transito");
+						envios.get(i).setEstado("en tránsito");
 
-//						new Email(DB.load(Usuario.class, envios.get(i).getUsuario()).getCorreo(),
-//								"PS3C - Envío En Tránsito",
-//								"Su envío ha sido recogido y esta en tránsito hacia su destino.", envios.get(i));
 					}
 
 					System.out.println("Guardando envio");
@@ -74,11 +84,6 @@ public class chequeoCarga extends HttpServlet {
 
 			}
 
-			// com.logica.Dibujar.mensaje(response.getWriter(), "Operacion
-			// Exitosa",
-			// request.getContextPath() + "/chequeo/recogido.jsp");
-
-			response.setStatus(200);
 			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 				private static final long serialVersionUID = 1L;
 				{
@@ -90,10 +95,6 @@ public class chequeoCarga extends HttpServlet {
 
 		} catch (Exception e) {
 
-			// com.logica.Dibujar.mensaje(response.getWriter(),
-			// "Ocurrio un error al intentar chequear los envios cargados",
-			// request.getContextPath() + "/chequeo/recogido.jsp");
-			response.setStatus(200);
 			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 				private static final long serialVersionUID = 1L;
 				{

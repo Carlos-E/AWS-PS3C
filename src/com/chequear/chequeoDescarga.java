@@ -14,7 +14,9 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import clases.DB;
+import clases.Email;
 import clases.Envio;
+import clases.Usuario;
 
 @WebServlet("/chequeoDescarga")
 public class chequeoDescarga extends HttpServlet {
@@ -46,20 +48,26 @@ public class chequeoDescarga extends HttpServlet {
 				try {
 
 					if (request.getParameter(envios.get(i).getFecha()) == null) {
+						
+						if(envios.get(i).isChequeoDescarga()){
+							new Email(DB.load(Usuario.class, envios.get(i).getUsuario()).getCorreo(),
+									"PS3C - Envío Revertido", "Hemos revertido el estado de su envío.", envios.get(i));
+						}
+						
 						envios.get(i).setChequeoDescarga(false);
 						envios.get(i).setEstado("en tránsito");
 
-//						new Email(DB.load(Usuario.class, envios.get(i).getUsuario()).getCorreo(),
-//								"PS3C - Envío Revertido", "Hemos revertido el estado de su envio.", envios.get(i));
-
 					} else {
+						
+						if(!envios.get(i).isChequeoDescarga()){
+							new Email(DB.load(Usuario.class, envios.get(i).getUsuario()).getCorreo(),
+									"PS3C - Envío Entregado", "Hemos entregado su envío.", envios.get(i));
+						}
+						
 						envios.get(i).setChequeoDescarga(true);
 						envios.get(i).setChequeoCarga(true);
 						envios.get(i).setEstado("entregado");
-
-//						new Email(DB.load(Usuario.class, envios.get(i).getUsuario()).getCorreo(),
-//								"PS3C - Envío Entregado", "Hemos entregado su envío.", envios.get(i));
-
+						
 					}
 
 					System.out.println("Guardando envio");
