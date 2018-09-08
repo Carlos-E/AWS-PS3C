@@ -83,6 +83,10 @@ $(document).ready(function() {
 						}
 					});
 				}
+				
+				if(typeof getRemolquesDisponibles != 'undefined'){
+					getRemolquesDisponibles();
+				}
 			});
 
 		});

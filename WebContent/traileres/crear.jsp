@@ -98,30 +98,9 @@
 								%>
 							</select>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Remolque</label>
+						<label class="col-md-2 col-form-label text-capitalize">Remolques Disponibles</label>
 						<div class="col-md-4">
 							<select class="form-control" name="remolque" id="remolque" required>
-								<option value="" selected>Seleccionar...</option>
-								<option value="ninguno" >ninguno</option>
-
-								<%
-									for (int i = 0; i < listaVehiculos.size(); i++) {
-										if (!DB.estaOcupado("null", listaVehiculos.get(i).getPlaca())
-												&& listaVehiculos.get(i).getTipo().equals("remolque")) {
-											/* ControladorBD.actualizarValor("vehiculos", "placa", listaVehiculos.get(i).getPlaca(), "estado","Asignado"); */
-								%>
-								<option value="<%out.print(listaVehiculos.get(i).getPlaca());%>">
-									<%
-										out.print(listaVehiculos.get(i).getPlaca());
-									%> conducido por:
-									<%
-										out.print(listaVehiculos.get(i).getUsuario());
-									%>
-								</option>
-								<%
-									}
-									}
-								%>
 							</select>
 						</div>
 					</div>
@@ -169,6 +148,23 @@
 	</div>
 	<!--  FOOTER CON SCRIPTS -->
 	<jsp:include page="/footer.jsp" />
+	
+	<script>
+	
+	var getRemolquesDisponibles = () => {
+	$.getJSON( "/vehiculos/remolquesDisponibles", function(data,textStatus,jqXHR) {
+		$('#remolque').find('option').remove()
+          
+		$('#remolque').append($("<option>").attr('value','').text('Seleccionar...'))
+		.append($("<option>").attr('value','ninguno').text('ninguno'));
+		
+		$(data).each(function() {
+			$('#remolque').append($("<option>").attr('value',this.placa).text(this.placa));
+		});
+	});
+	};
+	getRemolquesDisponibles();
+	</script>
 	
 </body>
 </html>
