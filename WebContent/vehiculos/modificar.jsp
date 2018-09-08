@@ -237,6 +237,7 @@
 			}
 						
 			$('#pesoMax').val(objeto.pesoMax);
+			$('#espacioMax').val(objeto.pesoMax);
 						
 			$('#empresa').val(objeto.empresa);
 			$('#conductorAsignado').val(objeto.usuario);

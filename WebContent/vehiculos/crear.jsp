@@ -78,19 +78,6 @@
 						<label class="col-md-2 col-form-label text-capitalize">Conductor</label>
 						<div class="col-md-4">
 							<select class="form-control" name="conductor" id="conductor" required>
-								<option value="" selected>Seleccionar...</option>
-								<option value="ninguno" >ninguno</option>
-								<%
-									for (int i = 0; i < listaConductor.size(); i++) {
-								%>
-								<option value="<%out.print(listaConductor.get(i).getUsuario());%>">
-									<%
-										out.print(listaConductor.get(i).getUsuario());
-									%>
-								</option>
-								<%
-									}
-								%>
 							</select>
 						</div>
 					</div>
@@ -161,5 +148,23 @@
 			$('#espacio').prop('disabled',true);
 		}
 	</script>
+	
+	<script>
+	
+	var getConductoresDisponibles = () => {
+	$.getJSON( "/usuarios/conductoresDisponibles", function(data,textStatus,jqXHR) {
+		$('#conductor').find('option').remove()
+          
+		$('#conductor').append($("<option>").attr('value','').text('Seleccionar...'))
+		.append($("<option>").attr('value','ninguno').text('ninguno'));
+		
+		$(data).each(function() {
+			$('#conductor').append($("<option>").attr('value',this.correo).text(this.nombre+' '+this.apellido));
+		});
+	});
+	};
+	getConductoresDisponibles();
+	</script>
+	
 </body>
 </html>
