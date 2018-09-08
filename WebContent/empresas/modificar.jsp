@@ -166,8 +166,8 @@
 		 	if(getParameterByName('select') != null ){
 				$('#select').val(getParameterByName('select'));
 				fillInputs();
-			});
-		}
+			}
+		};
 		
 		fillInputs = () => {
 				let selectedIndex = $('#select').prop('selectedIndex');	
