@@ -106,7 +106,7 @@ public class Crear extends HttpServlet {
 
 		reporte.setUsuario(envio.getUsuario());
 		reporte.setHora(fecha);
-		String usuarioTag = "<a href=\"/usuarios/listar.jsp?search=" + envio.getUsuario()+ "\">"+envio.getUsuario()+"</a>,";
+		String usuarioTag = "<a class=\"linkNegro\" href=\"/usuarios/listar.jsp?search=" + envio.getUsuario()+ "\">"+envio.getUsuario()+"</a>,";
 		String envioTag = "<a href=\"/envios/modificar.jsp?select=" + envio.getUsuario() + " : " + envio.getFecha()
 				+ "\"> Modif&iacutequelo aqu&iacute.</a>";
 		reporte.setNota("Nuevo env&iacute;o del cliente: " + usuarioTag + envioTag);
