@@ -5,6 +5,8 @@ var listVehiculos = [];
 var listTrailers = [];
 var setVehiculo;
 var setTrailer;
+var pesoEnvioG = 0;
+var espacioEnvioG = 0;
 function initMap() {
   directionsService = new google.maps.DirectionsService();
   console.log('Servicio de rutas inicializado');
@@ -26,7 +28,8 @@ function setVehiculos(origenEnvio, pesoEnvio, espacioEnvio){
         dataType: 'json'
       }).done(function(vehiculos) {
           console.log('Vehiculos: ' + JSON.stringify(vehiculos, null, 2));
-          
+          pesoEnvioG = pesoEnvio;
+          espacioEnvioG = espacioEnvio;
           // Limpiar select
           $('#camion').find('option').remove()
           let select = document.getElementById('camion');
@@ -51,7 +54,7 @@ function setVehiculos(origenEnvio, pesoEnvio, espacioEnvio){
           		$('#labelSuge').show();
             	$('#camion').show();
               vehiculosDisponibles = false;
-              validacionDeDisponibilidad(origenEnvio, pesoEnvio, espacioEnvio);
+              //validacionDeDisponibilidad(origenEnvio, pesoEnvio, espacioEnvio);
             	return;
           }else{
             vehiculosDisponibles = true;
@@ -124,8 +127,9 @@ function setTrailers(origenEnvio, pesoEnvio, espacioEnvio) {
 	      type: 'POST',
 	      dataType: 'json'
 	    }).done(function(trailers) {
-	        console.log('Trailers: ' + JSON.stringify(trailers, null, 2));
-
+          console.log('Trailers: ' + JSON.stringify(trailers, null, 2));
+          pesoEnvioG = pesoEnvio;
+          espacioEnvioG = espacioEnvio;
 	        // Borrar select completo
             $('#trailer').find('option').remove();
 	        let select = document.getElementById('trailer');
@@ -149,7 +153,7 @@ function setTrailers(origenEnvio, pesoEnvio, espacioEnvio) {
                 $('#labelSuge').show();
                 $('#trailer').show();
                 trailersDisponibles = false;
-                validacionDeDisponibilidad(origenEnvio, pesoEnvio, espacioEnvio); 
+                //validacionDeDisponibilidad(origenEnvio, pesoEnvio, espacioEnvio); 
                 return;
 	        }else{
             trailersDisponibles = true;
@@ -295,15 +299,21 @@ function castSugerirVehiculos(origenEnvio, pesoEnvio, espacioEnvio) {
         });
 }
 
-function validacionDeDisponibilidad(origenEnvio, pesoEnvio, espacioEnvio){
-  $.when(setTrailer, setVehiculo).done(function(){
+  $.when(setTrailer, setVehiculo).then(function(){
+    sugerir();
+  });
+
+
+
+function sugerir(){
+  console.log("ejecucion de funcion sugerir()"); 
+  console.log("los trailers son: "+trailersDisponibles+" los vehiculos son: "+ vehiculosDisponibles); 
   if(!trailersDisponibles&&!vehiculosDisponibles){
     $.ajax({
       url: '/sugerir',
       data: {
-        origenEnvio: origenEnvio,
-        pesoEnvio: pesoEnvio, 
-        espacioEnvio: espacioEnvio 
+        pesoEnvio: pesoEnvioG, 
+        espacioEnvio: espacioEnvioG 
         },
       type: 'GET',
       dataType: 'json'
@@ -320,13 +330,15 @@ function validacionDeDisponibilidad(origenEnvio, pesoEnvio, espacioEnvio){
         label.innerHTML = "Se sugiere esperar a que un camion se encuentre disponible, ya que no hay una configuracion posible de embalaje";
       }
       console.log('segun aqui debe mandarla lista');	
-      console.log(JSON.stringify(lista.length, null, 2));    
+      console.log(JSON.stringify(lista.length, null, 2)); 
+      pesoEnvio=0;   
+      espacioEnvio=0;
       }).fail(function(xhr, status, errorThrown) {
         console.log('Failed getRoutesTrailer');	    
       });
   }
-});
 }
+
 
 function llenadoDeVehiculos(vehiculos){
   listVehiculos = vehiculos;
