@@ -25,7 +25,7 @@
 			</div>
 		</a>
 		<div class="dropdown-menu dropdown-menu-right" style="margin-right: 1.5rem;" aria-labelledby="dropdownMenuLink">
-			<a class="dropdown-item" href="/movil/transportador/perfil.jsp">
+			<a class="dropdown-item" href="/movil/transportador/perfil.jsp" hidden>
 				<em class="fa fa-user-circle mr-1"></em>
 				Actualizar perfil
 			</a>

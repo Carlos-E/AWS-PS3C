@@ -19,7 +19,9 @@ function initMap() {
       style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
       mapTypeIds: ['roadmap', 'terrain']
     },    
-    zoomControl: false
+    zoomControl: false,
+    streetViewControl: false,
+    fullscreenControl: false
   });
 
   directionsDisplay.setMap(map);
@@ -167,7 +169,7 @@ function getEnvios() {
 
     if (response != null && response.length != 0) {
       if (typeof Android != 'undefined') {
-        Android.showToast('Envios descargados correctamente');
+        Android.showToast('Envíos descargados correctamente');
       }
 
       envios = response;
