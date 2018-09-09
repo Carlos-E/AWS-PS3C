@@ -206,9 +206,9 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Sugerencia:</label>
-						<div class="col-md-4">
-							<input class="form-control" type="text" name="sugerencia" placeholder="sugerencia" id="sugerencia" readonly>
+						<label id="labelSuge" class="col-md-2 col-form-label text-capitalize">Sugerencia:</label>
+						<div class="col-md-10">
+							<p id="sugerencia" name="sugerencia" >Sugerencias</p>
 						</div>
 					</div>
 

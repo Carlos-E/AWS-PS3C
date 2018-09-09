@@ -1,5 +1,5 @@
 var directionsService;
-
+var listaDato=[];
 function initMap() {
   directionsService = new google.maps.DirectionsService();
   console.log('Servicio de rutas inicializado');
@@ -40,9 +40,14 @@ function setVehiculos(origenEnvio, pesoEnvio, espacioEnvio){
           // Limpiar select
           
           if(vehiculos==null||vehiculos.length==0){
+        	  	castSugerirVehiculos(origenEnvio, pesoEnvio, espacioEnvio);
           		$('#spinner1').hide();
+          		$('#labelSuge').show();
             	$('#camion').show();
             	return;
+          }else{
+        	  $('#labelSuge').hide();
+            document.getElementById('sugerencia').innerHTML="";
           }
 
           for (let i = 0; i < vehiculos.length; i++) {
@@ -99,10 +104,7 @@ function setVehiculos(origenEnvio, pesoEnvio, espacioEnvio){
   }
 
 
-function setTrailers(origenEnvio, pesoEnvio, espacioEnvio) {
-	
-	let listaTrailers = [];
-    
+function setTrailers(origenEnvio, pesoEnvio, espacioEnvio) {    
 		  $.ajax({
 	      url: '/disponibilidadDeTrailers',
 	      data: {
@@ -132,7 +134,7 @@ function setTrailers(origenEnvio, pesoEnvio, espacioEnvio) {
 	        select.add(option);
 	        
 	        
-	        if(trailers==null||trailers.length==0){
+	        if(trailers==null||trailers.length==0){		        	
             	$('#spinner2').hide();
               	$('#trailer').show();
               	return;
@@ -172,7 +174,6 @@ function setTrailers(origenEnvio, pesoEnvio, espacioEnvio) {
                           duracionT: 'NA'
                         };
                 }
-                
                 option = document.createElement('option');
                 option.text = 'Patente: ' + listaDatosRutas.patente + ' - Distancia: ' + listaDatosRutas.distanciaT+ ' - Duración: ' + listaDatosRutas.duracionT;
                 option.value = listaDatosRutas.patente;
@@ -190,6 +191,42 @@ function setTrailers(origenEnvio, pesoEnvio, espacioEnvio) {
           console.log('Failed getRoutesTrailer');	    
         });
 }
+
+
+
+function castSugerirVehiculos(origenEnvio, pesoEnvio, espacioEnvio) {	
+		  $.ajax({
+	      url: '/vehiculos/sugerir',
+	      data: {
+          origenEnvio: origenEnvio,
+	        pesoEnvio: pesoEnvio, 
+	        espacioEnvio: espacioEnvio 
+	        },
+	      type: 'GET',
+	      dataType: 'json'
+	    }).done(function(vehiculos) {
+        label = document.getElementById("sugerencia");
+        if(vehiculos.length!=0){
+          var aux = "Se sugiere divir el envio en "+vehiculos.length+" paquetes, con los siguinetes vehiculos: ";       
+          for (let i = 0; i < vehiculos.length; i++) { 
+            console.log(vehiculos[i].placa)     
+             aux += (i+1)+" - "+vehiculos[i].placa+"<br>";
+          } 
+          label.innerHTML = aux;
+        }else{
+          label.innerHTML = "Espere a que un camion se encuentre disponible";
+        }
+       
+        }).fail(function(xhr, status, errorThrown) {
+          console.log('Failed getRoutesTrailer');	    
+        });
+}
+
+
+function llamadaAtras(dato){
+  this.listaDato.add(dato);
+} 
+
 
 
 // QuickSort

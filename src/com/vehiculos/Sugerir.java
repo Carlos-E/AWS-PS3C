@@ -37,16 +37,16 @@ public class Sugerir extends HttpServlet {
 		// Double.valueOf(request.getParameter("espacioEnvio"));
 		// double pesoEnvio = Double.valueOf(request.getParameter("pesoEnvio"));
 		//String criteria = request.getParameter("criterio");
-		
-		
+		Double pesoEnvio = Double.valueOf(request.getParameter("pesoEnvio"));
+		Double espacioEnvio = Double.valueOf(request.getParameter("espacioEnvio"));
 		String criteria = "espacio";
 		//double espacioEnvio = 10;
 		//double pesoEnvio = 10;
 
 		List<Vehiculo> vehiculos = new ArrayList<Vehiculo>(DB.scan(Vehiculo.class, new DynamoDBScanExpression()));
-
+		List<Vehiculo> vehiculosSeleccionados = new ArrayList<Vehiculo>();
 		Iterator<Vehiculo> iteratorVehiculos;
-		
+		String validacion="false";
 		iteratorVehiculos = vehiculos.iterator();
 		while (iteratorVehiculos.hasNext()) {
 			Vehiculo vehiculo = iteratorVehiculos.next();
@@ -63,15 +63,56 @@ public class Sugerir extends HttpServlet {
 		switch (criteria) {
 		case "peso":
 			vehiculos.sort(Comparator.comparing(Vehiculo::getPesoMax));
+			Collections.reverse(vehiculos);
+			System.out.println("lista reorganizada, entrando a for para encontrar lista de vehiculos por peso");			
+			for(int i=0;i<vehiculos.size();i++) {
+				if(!pesoEnvio.equals(0)||!espacioEnvio.equals(0)) {
+					pesoEnvio = pesoEnvio - vehiculos.get(i).getPesoMax();
+					espacioEnvio = espacioEnvio - vehiculos.get(i).getEspacioMax();
+					if(pesoEnvio<0||espacioEnvio<0) {
+						System.out.println("saliendo del ciclo de busqueda por peso");
+						break;
+					}else {
+						vehiculosSeleccionados.add(vehiculos.get(i));
+						System.out.println("se agrega un nuevo vehiculo a la lisa indice: "+i);
+						if(i==vehiculos.size()-1 && (pesoEnvio>0 || espacioEnvio>0)) {
+							vehiculosSeleccionados = new ArrayList<Vehiculo>();						
+						}
+					}	
+				}else {
+					System.out.println("saliendo del ciclo de busqueda por peso");
+					break;
+				}
+			}
 			break;
 		case "espacio":
 			vehiculos.sort(Comparator.comparing(Vehiculo::getEspacioMax));	
+			Collections.reverse(vehiculos);
+			System.out.println("lista reorganizada, entrando a for para encontrar lista de vehiculos por espacio");			
+			for(int i=0;i<vehiculos.size();i++) {
+				if(!pesoEnvio.equals(0) || !espacioEnvio.equals(0)) {
+					pesoEnvio = pesoEnvio - vehiculos.get(i).getPesoMax();
+					espacioEnvio = espacioEnvio - vehiculos.get(i).getEspacioMax();
+					if(pesoEnvio<0||espacioEnvio<0) {
+						System.out.println("saliendo del ciclo de busqueda por espacio");
+						break;
+					}else {
+						vehiculosSeleccionados.add(vehiculos.get(i));
+						System.out.println("se agrega un nuevo vehiculo a la lisa indice: "+i);
+						if(i==vehiculos.size()-1 && (pesoEnvio>0 || espacioEnvio>0)) {
+							vehiculosSeleccionados = new ArrayList<Vehiculo>();						
+						}
+					}	
+				}else {
+					System.out.println("saliendo del ciclo de busqueda por espacio");
+					break;
+				}
+			}
 			break;
-		}
-
-		Collections.reverse(vehiculos);
-
-		response.getWriter().print(new ObjectMapper().writeValueAsString(vehiculos));
+		} 
+		
+		
+		response.getWriter().print(new ObjectMapper().writeValueAsString(vehiculosSeleccionados));
 		response.getWriter().close();
 	
 		
