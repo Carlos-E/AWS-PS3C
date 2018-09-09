@@ -3,6 +3,8 @@ var trailersDisponibles = true;
 var vehiculosDisponibles = true;
 var listVehiculos = [];
 var listTrailers = [];
+var setVehiculo;
+var setTrailer;
 function initMap() {
   directionsService = new google.maps.DirectionsService();
   console.log('Servicio de rutas inicializado');
@@ -13,7 +15,7 @@ function setVehiculos(origenEnvio, pesoEnvio, espacioEnvio){
     console.log('Calculando Rutas Con Origen De Envio');
 
     $(document).ready(function() {
-      $.ajax({
+      setVehiculo = $.ajax({
         url: '/disponibilidadDeVehiculos',
         data: { 
         	origenEnvio: origenEnvio,
@@ -49,7 +51,7 @@ function setVehiculos(origenEnvio, pesoEnvio, espacioEnvio){
           		$('#labelSuge').show();
             	$('#camion').show();
               vehiculosDisponibles = false;
-              //validacionDeDisponibilidad(origenEnvio, pesoEnvio, espacioEnvio);
+              validacionDeDisponibilidad(origenEnvio, pesoEnvio, espacioEnvio);
             	return;
           }else{
             vehiculosDisponibles = true;
@@ -98,7 +100,7 @@ function setVehiculos(origenEnvio, pesoEnvio, espacioEnvio){
                 
                 if(i==vehiculos.length-1){
                 	$('#spinner1').hide();
-                  	$('#camion').show();
+                  $('#camion').show();
               }
                 
               });
@@ -112,7 +114,7 @@ function setVehiculos(origenEnvio, pesoEnvio, espacioEnvio){
 
 
 function setTrailers(origenEnvio, pesoEnvio, espacioEnvio) {    
-		  $.ajax({
+        setTrailer = $.ajax({
 	      url: '/disponibilidadDeTrailers',
 	      data: {
             origenEnvio: origenEnvio,
@@ -196,7 +198,7 @@ function setTrailers(origenEnvio, pesoEnvio, espacioEnvio) {
                 
                 if(i==trailers.length-1){
                 	$('#spinner2').hide();
-                  	$('#trailer').show();
+                  $('#trailer').show();
               }
                 
               });
@@ -294,6 +296,7 @@ function castSugerirVehiculos(origenEnvio, pesoEnvio, espacioEnvio) {
 }
 
 function validacionDeDisponibilidad(origenEnvio, pesoEnvio, espacioEnvio){
+  $.when(setTrailer, setVehiculo).done(function(){
   if(!trailersDisponibles&&!vehiculosDisponibles){
     $.ajax({
       url: '/sugerir',
@@ -322,6 +325,7 @@ function validacionDeDisponibilidad(origenEnvio, pesoEnvio, espacioEnvio){
         console.log('Failed getRoutesTrailer');	    
       });
   }
+});
 }
 
 function llenadoDeVehiculos(vehiculos){
