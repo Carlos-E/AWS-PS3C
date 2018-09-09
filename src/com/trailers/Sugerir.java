@@ -49,13 +49,7 @@ public class Sugerir extends HttpServlet {
 		String validacion="false";
 		iteratorTrailers = trailers.iterator();
 		while (iteratorTrailers.hasNext()) {
-			Trailer trailer = iteratorTrailers.next();
-
-			if (trailer.getTipo().equals("remolque")) {
-				iteratorTrailers.remove();
-				continue;
-			}
-			
+			Trailer trailer = iteratorTrailers.next();			
 			trailer.setPesoMax(trailer.getPesoMax() - DB.getPesoTrailer(trailer.getPatente()));
 			trailer.setEspacioMax(trailer.getEspacioMax() - DB.getEspacioTrailer(trailer.getPatente()));
 		}
@@ -99,8 +93,8 @@ public class Sugerir extends HttpServlet {
 					}else {
 						trailersSeleccionados.add(trailers.get(i));
 						System.out.println("se agrega un nuevo trailer a la lisa indice: "+i);
-						/*if(i==vehiculos.size()-1 && (pesoEnvio>0 || espacioEnvio>0)) {
-							vehiculosSeleccionados = new ArrayList<Vehiculo>();						
+						/*if(i==trailers.size()-1 && (pesoEnvio>0 || espacioEnvio>0)) {
+							trailersSeleccionados = new ArrayList<Trailer>();						
 						}*/
 					}	
 				}else {

@@ -246,8 +246,14 @@ function elHombreClave(que, origenEnvio, pesoEnvio, espacioEnvio){
 	if(trailersDisponibles&&vehiculosDisponibles){
     $.when(testVehiculos,testTrailers).done(function(){
       var listaMAMONA = [];
-      listaMAMONA = testVehiculos + testTrailers;
-      console.log("el mierderoooooooooooooo<br>"+ listaMAMONA + " " + listaMAMONA.length);
+      for(var i=0;i<listVehiculos.length;i++){
+    	  listaMAMONA.push(listVehiculos[i]);
+      }
+      var num =listVehiculos.length + listTrailers.length;
+      for(var i=listVehiculos.length;i<listVehiculos.length + listTrailers.length;i++){
+    	  listaMAMONA.push(listTrailers[i]);
+      }
+      console.log("el mierderoooooooooooooo<br>"+ listaMAMONA.length);
     }); 
   }
 
