@@ -1,7 +1,9 @@
 package com.movil;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -62,9 +64,25 @@ public class GetEnvios extends HttpServlet {
 				}
 			}
 		}
+		
+		Iterator<Envio> iterator = envios.iterator();
+		
+		List<Map<String, Object>> results = new ArrayList<Map<String, Object>>();
+
+		while (iterator.hasNext()) {
+			Envio envio = iterator.next();
+			
+			@SuppressWarnings("unchecked")
+			Map<String, Object> result = new ObjectMapper().convertValue(envio, Map.class);
+			
+			result.put("cliente",DB.load(Usuario.class,envio.getUsuario()));
+			
+			results.add(result);
+			
+		}        
 
 		response.setContentType("application/json");
-		response.getWriter().print(new ObjectMapper().writer().writeValueAsString(envios));
+		response.getWriter().print(new ObjectMapper().writer().writeValueAsString(results));
 		response.getWriter().close();
 	}
 

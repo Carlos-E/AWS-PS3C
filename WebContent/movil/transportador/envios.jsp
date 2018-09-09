@@ -99,14 +99,18 @@
 								//console.log(JSON.stringify(response.routes[0].legs[0].duration.text, null, 2));
 								i++;
 								let rows = document.getElementById("table").rows;
+								
+								if(tipoEnvio=='origen'){
+									rows[i].insertCell(1).innerHTML = 'Para '+tipoEnvio+':<br>Distancia ' + response.routes[0].legs[0].distance.text + "<br>Duraci&oacute;n " + response.routes[0].legs[0].duration.text;
+								}else if(tipoEnvio=='destino'){
+									rows[i].insertCell(1).innerHTML = 'Para '+tipoEnvio+':<br>Distancia ' + response.routes[0].legs[0].distance.text + "<br>Duraci&oacute;n " + response.routes[0].legs[0].duration.text;
+								}
 								//rows[i].insertCell(rows[i].cells.length).innerHTML = 'Distancia ' + response.routes[0].legs[0].distance.text + '<br>Duraci&oacute;n ' + response.routes[0].legs[0].duration.text;
-								rows[i].insertCell(rows[i].cells.length).innerHTML = 'Para '+tipoEnvio+':<br>Distancia ' + response.routes[0].legs[0].distance.text + "<br>Duraci&oacute;n " + response.routes[0].legs[0].duration.text;
 
 								
 							} else {
 								if (typeof Android != 'undefined') {
-									Android.showToast('Directions request failed due to '
-										+ status);
+									Android.showToast('Directions request failed due to '+ status);
 								}
 								console.log('Ah ocurrido un error con las rutas');
 							}

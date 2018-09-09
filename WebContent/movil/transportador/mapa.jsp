@@ -153,7 +153,7 @@ html, body {
 
 					<div class="card-block">
 						<span for="recogido">Env&iacute;os:</span>
-						<select id="envios">
+						<select id="envios" class="selectpicker">
 						</select>
 						<span></span>
 					</div>

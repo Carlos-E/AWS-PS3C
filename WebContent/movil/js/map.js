@@ -54,7 +54,7 @@ function initMap() {
       document.getElementById('entregado').checked = true;
       directionsDisplay.setMap(null);
       if (typeof Android != 'undefined') {
-        Android.showToast('Envio completado');
+        Android.showToast('Envío completado');
       }
     } else {
       document.getElementById('entregado').checked = false;
@@ -114,7 +114,7 @@ function initMap() {
       updateShipment('/chequeo/entrega', cliente, fecha, true);
 
       if (typeof Android != 'undefined') {
-        Android.showToast('Envio completado');
+        Android.showToast('Envío completado');
       }
     } else {
       document.getElementById('end').value = envios[document.getElementById('envios').selectedIndex].destinoLatLong;
@@ -179,9 +179,10 @@ function getEnvios() {
       $('#envios').html('');
       $(envios).each(function() {
         $('#envios').append(
-          $('<option>')
-            .attr('value', this.usuario + ' : ' + this.fecha)
-            .text(this.usuario + ' : ' + this.fecha)
+        	$('<option>')
+    		.css('word-break','break-all')
+        		.attr('value', this.usuario + ' : ' + this.fecha)
+        		.text( this.cliente.nombre+' '+this.cliente.apellido+'-'+this.fecha)
         );
       });
 
@@ -197,14 +198,14 @@ function getEnvios() {
         document.getElementById('entregado').checked = true;
         directionsDisplay.setMap(null);
         if (typeof Android != 'undefined') {
-          Android.showToast('Envio completado');
+          Android.showToast('Envío completado');
         }
       } else {
         document.getElementById('entregado').checked = false;
       }
     } else {
       if (typeof Android != 'undefined') {
-        Android.showToast('No tienes envios asignados');
+        Android.showToast('No tienes envíos asignados');
       } else {
         alert('No tienes envíos asignados');
       }
@@ -224,17 +225,17 @@ function updateShipment(url, client, date, value) {
     dataType: 'json'
   })
     .done(function(response) {
-      console.log('Envio actualizado correctamente');
+      console.log('Envío actualizado correctamente');
 
       if (typeof Android != 'undefined') {
-        Android.showToast('Envio actualizado correctamente');
+        Android.showToast('Envío actualizado correctamente');
       }
     })
     .fail(function(xhr, status, errorThrown) {
       console.log('Failed Request To Servlet /updateShipment');
 
       if (typeof Android != 'undefined') {
-        Android.showToast('Error: envio no actualizado');
+        Android.showToast('Error: envío no actualizado');
       }
     });
 }
