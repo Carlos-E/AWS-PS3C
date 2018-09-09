@@ -98,7 +98,6 @@ function initMap() {
 						type: "GET",
 						dataType: "json",
 					}).done(function (response) {
-						//console.log(JSON.stringify(response, null, 2));
 
 						dataSet = [];
 
