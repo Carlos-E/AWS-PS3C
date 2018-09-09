@@ -182,7 +182,7 @@ function getEnvios() {
         	$('<option>')
     		.css('word-break','break-all')
         		.attr('value', this.usuario + ' : ' + this.fecha)
-        		.text( this.cliente.nombre+' '+this.cliente.apellido+'-'+this.fecha)
+        		.text( this.cliente.nombre.toUpperCase()+' '+this.cliente.apellido.toUpperCase()+'-'+this.fecha)
         );
       });
 
