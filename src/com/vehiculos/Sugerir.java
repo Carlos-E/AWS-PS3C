@@ -75,9 +75,9 @@ public class Sugerir extends HttpServlet {
 					}else {
 						vehiculosSeleccionados.add(vehiculos.get(i));
 						System.out.println("se agrega un nuevo vehiculo a la lisa indice: "+i);
-						if(i==vehiculos.size()-1 && (pesoEnvio>0 || espacioEnvio>0)) {
+						/*if(i==vehiculos.size()-1 && (pesoEnvio>0 || espacioEnvio>0)) {
 							vehiculosSeleccionados = new ArrayList<Vehiculo>();						
-						}
+						}*/
 					}	
 				}else {
 					System.out.println("saliendo del ciclo de busqueda por peso");
