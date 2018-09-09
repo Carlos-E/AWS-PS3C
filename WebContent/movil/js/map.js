@@ -13,7 +13,13 @@ function initMap() {
     center: {
       lat: 10.4049383,
       lng: -75.497829
-    }
+    },
+    mapTypeControl: false,
+    mapTypeControlOptions: {
+      style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+      mapTypeIds: ['roadmap', 'terrain']
+    },    
+    zoomControl: false
   });
 
   directionsDisplay.setMap(map);
