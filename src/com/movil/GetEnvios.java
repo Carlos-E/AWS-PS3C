@@ -76,7 +76,6 @@ public class GetEnvios extends HttpServlet {
 			Map<String, Object> result = new ObjectMapper().convertValue(envio, Map.class);
 			
 			result.put("cliente",DB.load(Usuario.class,envio.getUsuario()));
-			
 			results.add(result);
 			
 		}        

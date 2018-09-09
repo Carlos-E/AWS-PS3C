@@ -10,7 +10,7 @@ function initMap() {
 	console.log('Servicio de mapas inicializado');
 }
 				
-				calculateRoute = (origin, destination, i,tipoEnvio) => {
+				calculateRoute = (origin, destination, i,tipoEnvio,callback) => {
 					directionsService.route({
 						origin: origin,
 						destination: destination,
@@ -22,13 +22,10 @@ function initMap() {
 							i++;
 							let rows = document.getElementById("table").rows;
 							
-							if(tipoEnvio=='origen'){
-								rows[i].insertCell(1).innerHTML = 'Para '+tipoEnvio+':<br>Distancia ' + response.routes[0].legs[0].distance.text + "<br>Duraci&oacute;n " + response.routes[0].legs[0].duration.text;
-							}else if(tipoEnvio=='destino'){
-								rows[i].insertCell(1).innerHTML = 'Para '+tipoEnvio+':<br>Distancia ' + response.routes[0].legs[0].distance.text + "<br>Duraci&oacute;n " + response.routes[0].legs[0].duration.text;
-							}
+							rows[i].insertCell(rows[i].cells.length).innerHTML = 'Para '+tipoEnvio+':<br>Distancia ' + response.routes[0].legs[0].distance.text + "<br>Duraci&oacute;n " + response.routes[0].legs[0].duration.text;
+							
 							//rows[i].insertCell(rows[i].cells.length).innerHTML = 'Distancia ' + response.routes[0].legs[0].distance.text + '<br>Duraci&oacute;n ' + response.routes[0].legs[0].duration.text;
-
+							callback();
 							
 						} else {
 							if (typeof Android != 'undefined') {
@@ -56,8 +53,9 @@ function initMap() {
 					document.getElementById("table").rows[0].insertCell(2).outerHTML = '<td>Destino</td>';
 
 					envios.forEach(function callback(envio, index, envios) {
-						calculateRoute(miUbicacion, envio.origenLatLong, index, "origen");
-						calculateRoute(miUbicacion, envio.destinoLatLong, index, "destino");
+						calculateRoute(miUbicacion, envio.origenLatLong, index, "origen",function(){
+							calculateRoute(miUbicacion, envio.destinoLatLong, index, "destino",()=>{});
+						});
 					});
 
 				}
