@@ -208,7 +208,7 @@
 					<div class="form-group row">
 						<label id="labelSuge" class="col-md-2 col-form-label text-capitalize">Sugerencia:</label>
 						<div class="col-md-10">
-							<p id="sugerencia" name="sugerencia" >Sugerencias</p>
+							<p align="justify" id="sugerencia" name="sugerencia" >Sugerencias</p>
 						</div>
 					</div>
 

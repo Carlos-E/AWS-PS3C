@@ -1,4 +1,4 @@
-package com.vehiculos;
+package com.trailers;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,9 +17,9 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import clases.DB;
-import clases.Vehiculo;
+import clases.Trailer;
 
-@WebServlet("/vehiculos/sugerir")
+@WebServlet("/trailers/sugerir")
 public class Sugerir extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -43,40 +43,40 @@ public class Sugerir extends HttpServlet {
 		//double espacioEnvio = 10;
 		//double pesoEnvio = 10;
 
-		List<Vehiculo> vehiculos = new ArrayList<Vehiculo>(DB.scan(Vehiculo.class, new DynamoDBScanExpression()));
-		List<Vehiculo> vehiculosSeleccionados = new ArrayList<Vehiculo>();
-		Iterator<Vehiculo> iteratorVehiculos;
+		List<Trailer> trailers = new ArrayList<Trailer>(DB.scan(Trailer.class, new DynamoDBScanExpression()));
+		List<Trailer> trailersSeleccionados = new ArrayList<Trailer>();
+		Iterator<Trailer> iteratorTrailers;
 		String validacion="false";
-		iteratorVehiculos = vehiculos.iterator();
-		while (iteratorVehiculos.hasNext()) {
-			Vehiculo vehiculo = iteratorVehiculos.next();
+		iteratorTrailers = trailers.iterator();
+		while (iteratorTrailers.hasNext()) {
+			Trailer trailer = iteratorTrailers.next();
 
-			if (vehiculo.getTipo().equals("remolque")) {
-				iteratorVehiculos.remove();
+			if (trailer.getTipo().equals("remolque")) {
+				iteratorTrailers.remove();
 				continue;
 			}
 			
-			vehiculo.setPesoMax(vehiculo.getPesoMax() - DB.getPesoVehiculo(vehiculo.getPlaca()));
-			vehiculo.setEspacioMax(vehiculo.getEspacioMax() - DB.getEspacioVehiculo(vehiculo.getPlaca()));
+			trailer.setPesoMax(trailer.getPesoMax() - DB.getPesoTrailer(trailer.getPatente()));
+			trailer.setEspacioMax(trailer.getEspacioMax() - DB.getEspacioTrailer(trailer.getPatente()));
 		}
 		
 		switch (criteria) {
 		case "peso":
-			vehiculos.sort(Comparator.comparing(Vehiculo::getPesoMax));
-			Collections.reverse(vehiculos);
-			System.out.println("lista reorganizada, entrando a for para encontrar lista de vehiculos por peso");			
-			for(int i=0;i<vehiculos.size();i++) {
+			trailers.sort(Comparator.comparing(Trailer::getPesoMax));
+			Collections.reverse(trailers);
+			System.out.println("lista reorganizada, entrando a for para encontrar lista de trailers por peso");			
+			for(int i=0;i<trailers.size();i++) {
 				if(!pesoEnvio.equals(0)||!espacioEnvio.equals(0)) {
-					pesoEnvio = pesoEnvio - vehiculos.get(i).getPesoMax();
-					espacioEnvio = espacioEnvio - vehiculos.get(i).getEspacioMax();
+					pesoEnvio = pesoEnvio - trailers.get(i).getPesoMax();
+					espacioEnvio = espacioEnvio - trailers.get(i).getEspacioMax();
 					if(pesoEnvio<0||espacioEnvio<0) {
 						System.out.println("saliendo del ciclo de busqueda por peso");
 						break;
 					}else {
-						vehiculosSeleccionados.add(vehiculos.get(i));
-						System.out.println("se agrega un nuevo vehiculo a la lisa indice: "+i);
-						if(i==vehiculos.size()-1 && (pesoEnvio>0 || espacioEnvio>0)) {
-							vehiculosSeleccionados = new ArrayList<Vehiculo>();						
+						trailersSeleccionados.add(trailers.get(i));
+						System.out.println("se agrega un nuevo trailer a la lisa indice: "+i);
+						if(i==trailers.size()-1 && (pesoEnvio>0 || espacioEnvio>0)) {
+							trailersSeleccionados = new ArrayList<Trailer>();						
 						}
 					}	
 				}else {
@@ -86,19 +86,19 @@ public class Sugerir extends HttpServlet {
 			}
 			break;
 		case "espacio":
-			vehiculos.sort(Comparator.comparing(Vehiculo::getEspacioMax));	
-			Collections.reverse(vehiculos);
-			System.out.println("lista reorganizada, entrando a for para encontrar lista de vehiculos por espacio");			
-			for(int i=0;i<vehiculos.size();i++) {
+			trailers.sort(Comparator.comparing(Trailer::getEspacioMax));	
+			Collections.reverse(trailers);
+			System.out.println("lista reorganizada, entrando a for para encontrar lista de trailers por espacio");			
+			for(int i=0;i<trailers.size();i++) {
 				if(!pesoEnvio.equals(0) || !espacioEnvio.equals(0)) {
-					pesoEnvio = pesoEnvio - vehiculos.get(i).getPesoMax();
-					espacioEnvio = espacioEnvio - vehiculos.get(i).getEspacioMax();
+					pesoEnvio = pesoEnvio - trailers.get(i).getPesoMax();
+					espacioEnvio = espacioEnvio - trailers.get(i).getEspacioMax();
 					if(pesoEnvio<0||espacioEnvio<0) {
 						System.out.println("saliendo del ciclo de busqueda por espacio");
 						break;
 					}else {
-						vehiculosSeleccionados.add(vehiculos.get(i));
-						System.out.println("se agrega un nuevo vehiculo a la lisa indice: "+i);
+						trailersSeleccionados.add(trailers.get(i));
+						System.out.println("se agrega un nuevo trailer a la lisa indice: "+i);
 						/*if(i==vehiculos.size()-1 && (pesoEnvio>0 || espacioEnvio>0)) {
 							vehiculosSeleccionados = new ArrayList<Vehiculo>();						
 						}*/
@@ -112,7 +112,7 @@ public class Sugerir extends HttpServlet {
 		} 
 		
 		
-		response.getWriter().print(new ObjectMapper().writeValueAsString(vehiculosSeleccionados));
+		response.getWriter().print(new ObjectMapper().writeValueAsString(trailersSeleccionados));
 		response.getWriter().close();
 	
 		
