@@ -78,11 +78,12 @@ function initMap() {
 
 								var aux = '<select class="custom-select">' +
 									"<option>" + element.fecha + "</option>" +
-									"<option disabled>Cliente: " + element.usuario + "</option>" +
+									"<option disabled>Cliente: " + element.cliente.nombre.toUpperCase()+' '+element.cliente.apellido.toUpperCase() + "</option>" +
 									"<option disabled>Origen: " + element.origen + "</option>" +
 									"<option disabled>Destino: " + element.destino + "</option>" +
 									"<option disabled>Tipo: " + element.tipo + "</option>" +
-									"<option disabled>Espacio: " + element.espacio + "</option>" +
+									"<option disabled>Espacio: " + element.peso +' Kg'+ "</option>" +
+									"<option disabled>Espacio: " + element.espacio +' m<sup>3</sup>'+ "</option>" +
 									"<option disabled>Descripcion: " + element.descripcion + "</option>" +
 									"</select>";
 

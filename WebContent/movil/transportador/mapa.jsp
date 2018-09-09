@@ -164,7 +164,7 @@ html, body {
 
 	</div>
 
-	<input id="end" value="10.4233778,-75.5532186" hidden>
+	<input id="end" value="0.0,0.0" hidden>
 
 	<div id="map"></div>
 
