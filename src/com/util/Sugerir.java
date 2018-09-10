@@ -130,15 +130,19 @@ public class Sugerir extends HttpServlet {
 				System.out.println("Calculando en en vehiculo o trailer: "+test.get(i).get("id"));
 				Double pesoI = Double.parseDouble(test.get(i).get("peso").toString());
 				Double espacioI = Double.parseDouble(test.get(i).get("espacio").toString());
+				System.out.println("entrando al for");
 				for(int j=1;j<espacioEnvio;j++) {	
+					System.out.println("cPesoEnvio y cEspacioEnvio");
 					cEspacioEnvio--;
 					cPesoEnvio=j*criterio;
+					System.out.println("antes del if");
 					if(cPesoEnvio>pesoI||j>espacioI||cEspacioEnvio<-1||cPeso<0) {
+						System.out.println("dentro del if, deberia anorar um opbetjo");
 						j--;
 						cEspacio=cEspacio - j;
 						cPeso=cPeso - j*criterio;
 						if(j!=0) {							
-							System.out.println("CLICLOS - cPeso: "+cPeso+" cEspacio: "+cEspacio);
+							System.out.println("cPeso: "+cPeso+" cEspacio: "+cEspacio);
 							test.get(i).put("pesoAAsignar", j*criterio);
 							test.get(i).put("espacioAAsignar", j);	
 							seleccionados.add(test.get(i));															
@@ -163,14 +167,23 @@ public class Sugerir extends HttpServlet {
 				System.out.println("Calculando en en vehiculo o trailer: "+test.get(i).get("id"));
 				Double pesoI = Double.parseDouble(test.get(i).get("peso").toString());
 				Double espacioI = Double.parseDouble(test.get(i).get("espacio").toString());
-				for(int j=1;j<pesoEnvio;j++) {												
+				for(int j=1;j<=pesoI;j++) {												
 					cPesoEnvio--;
 					cEspacioEnvio=j*criterio;
-					if(cEspacioEnvio>espacioI||j>pesoI||cPesoEnvio<-1||cEspacio<0) {
+					if(j==pesoI&&(j*criterio)<=espacioI||(j*criterio)==espacioI) {
+						cPeso=cPeso - j;
+						cEspacio=cEspacio - j*criterio;						
+						System.out.println("CLICLOS - cPeso: "+cPeso+" cEspacio: "+cEspacio);
+						test.get(i).put("pesoAAsignar", j);
+						test.get(i).put("espacioAAsignar", j*criterio);	
+						seleccionados.add(test.get(i));							
+						break;	
+					}
+					/*if(cEspacioEnvio>espacioI||j>pesoI||cPesoEnvio<-1||cEspacio<0) {
 						j--;
 						cPeso=cPeso - j;
 						cEspacio=cEspacio - j*criterio;
-						if(j!=0) {							
+						if(true) {							
 							System.out.println("CLICLOS - cPeso: "+cPeso+" cEspacio: "+cEspacio);
 							test.get(i).put("pesoAAsignar", j);
 							test.get(i).put("espacioAAsignar", j*criterio);	
@@ -179,8 +192,11 @@ public class Sugerir extends HttpServlet {
 						}else {
 							break;	
 						}
-					}					
-				}				
+					}		*/			
+				}
+				if(cPeso==0) {
+					break;
+				}
 				if((cPeso>0 || cEspacio>0)&&(i==test.size()-1)) {
 					seleccionados = new ArrayList<Map<String, Object>>();
 					System.out.println("valor de cPesoEnvio: "+cPesoEnvio+" cEspacioEnvio: "+cEspacioEnvio);
