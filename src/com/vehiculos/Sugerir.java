@@ -203,6 +203,7 @@ public class Sugerir extends HttpServlet {
 				distribucion.put("mensaje", "los contenedores no alcanzan");
 				distribucion.put("pesoEnvioRestante", pesoEnvio);
 				distribucion.put("espacioEnvioRestante", espacioEnvio);
+				distribucion.put("fail", "true");
 
 				distribuciones.add(distribucion);
 
@@ -306,6 +307,7 @@ public class Sugerir extends HttpServlet {
 				distribucion.put("mensaje", "los contenedores no alcanzan");
 				distribucion.put("pesoEnvioRestante", pesoEnvio);
 				distribucion.put("espacioEnvioRestante", espacioEnvio);
+				distribucion.put("fail", "true");
 
 				distribuciones.add(distribucion);
 
