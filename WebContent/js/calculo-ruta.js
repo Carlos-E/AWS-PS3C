@@ -332,14 +332,14 @@ function sugerir(pesoEnvio, espacioEnvio){
     }).done(function(lista) {
       label = document.getElementById("sugerencia");
       if(lista.length!=0){
-        var aux = "Se sugiere divir el envío en "+lista.length+" paquetes, agrupandolos de la siguinete forma:<br>";       
+        var aux = "Se sugiere dividir el envío en "+lista.length+" paquetes, agrupandolos de la siguiente forma:<br>";       
         for (let i = 0; i < lista.length; i++) { 
           console.log(lista[i].id);     
-           aux += (i+1)+" - "+lista[i].id+" Peso: "+lista[i].pesoAAsignar+" Espacio: "+lista[i].espacioAAsignar+"<br>";
+           aux += (i+1)+" - En: "+lista[i].id+", "+lista[i].pesoAAsignar+"Kg, "+lista[i].espacioAAsignar+"m<sup>3</sup><br>";
         } 
         label.innerHTML = aux;
       }else{
-        label.innerHTML = "Se sugiere esperar a que un camion se encuentre disponible, ya que no hay una configuracion posible de embalaje";
+        label.innerHTML = "Se sugiere esperar a que un cami&oacute;n se encuentre disponible, ya que no hay una configuraci&oacute;n posible de embalaje";
       }
       console.log('segun aqui debe mandarla lista');	
       console.log(JSON.stringify(lista.length, null, 2)); 
