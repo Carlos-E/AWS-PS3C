@@ -113,7 +113,7 @@
 					dataSet.push([
 						element.placa,
 						element.usuario,
-						element.tipo=='camion' ? 'cami&oacute;n':'remolque',
+						element.tipo=='camion' ? 'cami&oacute;n':element.tipo,
 						element.estado,
 						element.pesoMax,
 						element.espacioMax,
