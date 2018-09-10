@@ -32,7 +32,7 @@
 
 					<div class="row">
 						<div class="col-md-12 col-lg">
-							<p>© 2017-2018 - Proyecto con fines academicos</p>
+							<p>© 2017-2018 - Proyecto con fines acad&eacute;micos</p>
 						</div>
 					</div>
 
