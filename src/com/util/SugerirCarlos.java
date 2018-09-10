@@ -44,18 +44,7 @@ public class SugerirCarlos extends HttpServlet {
 
 		String criteria = "espacio";
 		double relacion = 0.0;
-		//
-		// if (pesoEnvio < espacioEnvio) {
-		// criteria = "peso";
-		// relacion = espacioEnvio / pesoEnvio;
-		// } else if (pesoEnvio > espacioEnvio) {
-		// criteria = "espacio";
-		// relacion = pesoEnvio / espacioEnvio;
-		// } else if (pesoEnvio == espacioEnvio) {
-		// criteria = "unoAuno";
-		// relacion = 1.0;
-		// }
-		//
+		
 		criteria = "peso";
 		relacion = espacioEnvio / pesoEnvio;
 
