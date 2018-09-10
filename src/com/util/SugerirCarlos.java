@@ -130,16 +130,19 @@ public class SugerirCarlos extends HttpServlet {
 
 		List<HashMap<String, Object>> distribuciones = new ArrayList<HashMap<String, Object>>();
 
-		if (pesoEnvio < espacioEnvio) {
-			
-			System.out.println("pesoEnvio < espacioEnvio");
-			
+		// if (pesoEnvio < espacioEnvio) {
+		if (true) {
+
+			// System.out.println("pesoEnvio < espacioEnvio");
+
 			criteria = "peso";
 			relacion = espacioEnvio / pesoEnvio;
 
+			System.out.println("Relacion: " + relacion);
+
 			espacioEnvio = pesoEnvio * relacion;
 
-			for (int i = 0; i < seleccionados.size(); i++) {	
+			for (int i = 0; i < seleccionados.size(); i++) {
 
 				HashMap<String, Object> distribucion = new HashMap<String, Object>();
 
@@ -157,27 +160,111 @@ public class SugerirCarlos extends HttpServlet {
 						distribucion.put("placa", seleccionados.get(i).get("placa"));
 						distribucion.put("asignarPeso", pesoEnvio);
 						distribucion.put("asignarEspacio", espacioEnvio);
+						
+						System.out.println("Peso antes de la operacion: "+pesoEnvio);
+						System.out.println("Espacio antes de la operacion: "+espacioEnvio);
+						
+						pesoEnvio = pesoEnvio - pesoEnvio;
+						espacioEnvio = espacioEnvio - espacioEnvio;
+						
+						System.out.println("Peso restante del envio: "+pesoEnvio);
+						System.out.println("Espacio restante del envio: "+espacioEnvio);
 
 						distribuciones.add(distribucion);
 						break;
 					} else {
 						// cabe menos y soporta todo
-						System.out.println(seleccionados.get(i).get("placa") + " soporta peso y cabe menos");
+						System.out.println(seleccionados.get(i).get("placa") + " soporta menos y cabe menos");
 
 						distribucion.put("placa", seleccionados.get(i).get("placa"));
 						distribucion.put("asignarPeso", espacioDisponible / relacion);
 						distribucion.put("asignarEspacio", espacioDisponible);
+						
+						System.out.println("Peso antes de la operacion: "+pesoEnvio);
+						System.out.println("Espacio antes de la operacion: "+espacioEnvio);
 
 						pesoEnvio = pesoEnvio - espacioDisponible / relacion;
 						espacioEnvio = espacioEnvio - espacioDisponible;
+						
+						System.out.println("Peso restante del envio: "+pesoEnvio);
+						System.out.println("Espacio restante del envio: "+espacioEnvio);
 
 						distribuciones.add(distribucion);
 
 					}
 
-				}else{
-					System.out.println("pasando al siguiente");
+				} else if (espacioDisponible >= espacioEnvio) {
+					System.out.println(seleccionados.get(i).get("placa") + " cabe");
+
+					if (pesoDisponible >= pesoEnvio) {
+						System.out.println(seleccionados.get(i).get("placa") + " cabe y soporta peso");
+
+						distribucion.put("placa", seleccionados.get(i).get("placa"));
+						distribucion.put("asignarPeso", pesoEnvio);
+						distribucion.put("asignarEspacio", espacioDisponible);
+						
+						System.out.println("Peso antes de la operacion: "+pesoEnvio);
+						System.out.println("Espacio antes de la operacion: "+espacioEnvio);
+
+						pesoEnvio = pesoEnvio - espacioDisponible;
+						espacioEnvio = espacioEnvio - espacioDisponible;
+						
+						System.out.println("Peso restante del envio: "+pesoEnvio);
+						System.out.println("Espacio restante del envio: "+espacioEnvio);
+
+						distribuciones.add(distribucion);
+						break;
+
+					} else {
+						System.out.println(seleccionados.get(i).get("placa") + " cabe y soporta menos peso");
+
+						distribucion.put("placa", seleccionados.get(i).get("placa"));
+						distribucion.put("asignarPeso", pesoDisponible / relacion);
+						distribucion.put("asignarEspacio", pesoDisponible);
+						
+						System.out.println("Peso antes de la operacion: "+pesoEnvio);
+						System.out.println("Espacio antes de la operacion: "+espacioEnvio);
+
+						pesoEnvio = pesoEnvio - pesoDisponible / relacion;
+						espacioEnvio = espacioEnvio - pesoDisponible;
+						
+						System.out.println("Peso restante del envio: "+pesoEnvio);
+						System.out.println("Espacio restante del envio: "+espacioEnvio);
+
+						distribuciones.add(distribucion);
+						
+					}
+
+				} else {
+
+					// cabe menos y soporta todo
+					System.out.println(seleccionados.get(i).get("placa") + " soporta menos y cabe menos");
+
+					distribucion.put("placa", seleccionados.get(i).get("placa"));
+					distribucion.put("asignarPeso", espacioDisponible / relacion);
+					distribucion.put("asignarEspacio", espacioDisponible);
+
+					pesoEnvio = pesoEnvio - espacioDisponible / relacion;
+					espacioEnvio = espacioEnvio - espacioDisponible;
+
+					distribuciones.add(distribucion);
+
 				}
+
+			}
+			
+			System.out.println("Peso restante del envio: "+pesoEnvio);
+			System.out.println("Espacio restante del envio: "+espacioEnvio);
+
+			if (pesoEnvio > 0 || espacioEnvio > 0) {
+				distribuciones = new ArrayList<HashMap<String, Object>>();
+				HashMap<String, Object> distribucion = new HashMap<String, Object>();
+
+				distribucion.put("mensaje", "los vehiculos no alcanzan");
+				distribucion.put("pesoEnvioRestante", pesoEnvio);
+				distribucion.put("espacioEnvioRestante", espacioEnvio);
+
+				distribuciones.add(distribucion);
 
 			}
 		}
