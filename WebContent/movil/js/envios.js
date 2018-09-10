@@ -48,7 +48,7 @@ function initMap() {
 					}	
 					
 					if (typeof Android == 'undefined') {
-						//miUbicacion = '10.3898543,-75.5058491';
+						miUbicacion = '10.3898543,-75.5058491';
 					}
 					
 					var newData = [];
