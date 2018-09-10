@@ -65,9 +65,9 @@ function initMap() {
 									"<option disabled>Origen: " + envios[i].origen + "</option>" +
 									"<option disabled>Destino: " + envios[i].destino + "</option>" +
 									"<option disabled>Tipo: " + envios[i].tipo + "</option>" +
-									"<option disabled>Espacio: " + envios[i].peso +' Kg'+ "</option>" +
+									"<option disabled>Peso: " + envios[i].peso +' Kg'+ "</option>" +
 									"<option disabled>Espacio: " + envios[i].espacio +' m<sup>3</sup>'+ "</option>" +
-									"<option disabled>Descripcion: " + envios[i].descripcion + "</option>" +
+									"<option disabled>Descripci&oacute;n: " + envios[i].descripcion + "</option>" +
 									"</select>");
 							
 							row.push(data);

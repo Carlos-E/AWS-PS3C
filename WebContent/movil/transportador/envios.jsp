@@ -76,7 +76,7 @@
 	<jsp:include page="/movil/footer.jsp" />
 	<!-- /FIN -->
 
-	<script src="/movil/js/envios.js"></script>
+	<script src="/movil/js/envios.js?v=1.1.1"></script>
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsQwNmnSYTDtkrlXKeKnfP0x8TNwVJ2uI&language=es&callback=initMap"></script>
 
 </body>
