@@ -235,7 +235,7 @@ public class DB extends DynamoDBMapper {
 				if (trailer == null) {
 					estado = estado + " sin tráiler";
 				}else{
-					estado = estado + " con tráiler "+trailer.getPatente();
+					estado = estado + " con tráiler <a href=\"/traileres/listar.jsp?search="+trailer.getPatente()+"\">"+trailer.getPatente()+"</a>";
 				}
 
 			}
@@ -258,7 +258,7 @@ public class DB extends DynamoDBMapper {
 			if (trailer.getCamion().equals("ninguno")) {
 				estado = estado + "sin remolque";
 			} else {
-				estado = estado + " con remolque "+trailer.getCamion();
+				estado = estado + " con remolque <a href=\"/vehiculos/listar.jsp?search="+trailer.getCamion()+"\">"+trailer.getCamion()+"</a>";
 			}
 
 			if (this.getEnviosPendientesTrailer(trailer.getPatente()).size() > 0) {
