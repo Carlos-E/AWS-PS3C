@@ -129,18 +129,84 @@ public class Sugerir extends HttpServlet {
 		switch (criteria) {
 		case "peso":
 			for(int i=0;i<test.size();i++) {
-				if() {
-					
+				if(espacioEnvio!=cEspacioEnvio) {
+					System.out.println("Calculando en en vehiculo o trailer: "+test.get(i).get("id"));
+					Double pesoI = Double.parseDouble(test.get(i).get("peso").toString());
+					Double espacioI = Double.parseDouble(test.get(i).get("espacio").toString());
+					for(int j=0;j<espacioEnvio;j++) {
+						if(cEspacioEnvio<espacioI&&cPesoEnvio<pesoI&&cEspacioEnvio!=espacioEnvio) {
+							cEspacioEnvio++;
+							cPesoEnvio=cEspacioEnvio*criterio;
+						}else {
+							test.get(i).put("pesoAAsignar", cPesoEnvio);
+							test.get(i).put("espacioAAsignar", cEspacioEnvio);
+							seleccionados.add(test.get(i));	
+							break;
+						}
+					}
 				}else {
 					System.out.println("ya se agoto");
+				}				
+				if(i==test.size()-1&&(cEspacioEnvio<espacioEnvio)) {
+					seleccionados = new ArrayList<Map<String, Object>>();	
+					System.out.println("No fue posible encontrar vehiculos o trailers disponibles");
+					break;
 				}
 			}
 			break;
 		case "espacio":
-					
+			for(int i=0;i<test.size();i++) {
+				if(espacioEnvio!=cEspacioEnvio) {
+					System.out.println("Calculando en en vehiculo o trailer: "+test.get(i).get("id"));
+					Double pesoI = Double.parseDouble(test.get(i).get("peso").toString());
+					Double espacioI = Double.parseDouble(test.get(i).get("espacio").toString());
+					for(int j=0;j<pesoEnvio;j++) {
+						if(cEspacioEnvio<espacioI&&cPesoEnvio<pesoI&&cEspacioEnvio!=espacioEnvio) {
+							cEspacioEnvio=cPesoEnvio*criterio;
+							cPesoEnvio++;
+						}else {
+							test.get(i).put("pesoAAsignar", cPesoEnvio);
+							test.get(i).put("espacioAAsignar", cEspacioEnvio);
+							seleccionados.add(test.get(i));	
+							break;
+						}
+					}
+				}else {
+					System.out.println("ya se agoto");
+				}				
+				if(i==test.size()-1&&(cPesoEnvio<pesoEnvio)) {
+					seleccionados = new ArrayList<Map<String, Object>>();	
+					System.out.println("No fue posible encontrar vehiculos o trailers disponibles");
+					break;
+				}
+			}		
 			break;
 		case "unoAuno":
-			
+			for(int i=0;i<test.size();i++) {
+				if(espacioEnvio!=cEspacioEnvio) {
+					System.out.println("Calculando en en vehiculo o trailer: "+test.get(i).get("id"));
+					Double pesoI = Double.parseDouble(test.get(i).get("peso").toString());
+					Double espacioI = Double.parseDouble(test.get(i).get("espacio").toString());
+					for(int j=0;j<cEspacioEnvio;j++) {
+						if(cEspacioEnvio<espacioI&&cPesoEnvio<pesoI&&cEspacioEnvio!=espacioEnvio) {
+							cEspacioEnvio++;
+							cPesoEnvio=cEspacioEnvio*criterio;
+						}else {
+							test.get(i).put("pesoAAsignar", cPesoEnvio);
+							test.get(i).put("espacioAAsignar", cEspacioEnvio);
+							seleccionados.add(test.get(i));	
+							break;
+						}
+					}
+				}else {
+					System.out.println("ya se agoto");
+				}				
+				if(i==test.size()-1&&(cEspacioEnvio<espacioEnvio)) {
+					seleccionados = new ArrayList<Map<String, Object>>();	
+					System.out.println("No fue posible encontrar vehiculos o trailers disponibles");
+					break;
+				}
+			}
 			break;
 		}
 		
