@@ -27,14 +27,16 @@ function initMap() {
   directionsDisplay.setMap(map);
 
   document.getElementById('sync').addEventListener('click', function() {
-    getEnvios();
+    
+	  getEnvios(()=>{
+    	directionsDisplay.setMap(map);
+        if (document.getElementById('entregado').checked) {
+          directionsDisplay.setMap(null);
+        } else {
+          calculateAndDisplayRoute(directionsService, directionsDisplay);
+        }
+    });
 
-    directionsDisplay.setMap(map);
-    if (document.getElementById('entregado').checked) {
-      directionsDisplay.setMap(null);
-    } else {
-      calculateAndDisplayRoute(directionsService, directionsDisplay);
-    }
   });
 
   document.getElementById('envios').addEventListener('change', function() {
@@ -162,8 +164,10 @@ document.getElementById('goMaps').addEventListener('click', function() {
     '&travelmode=driving&dir_action=navigate';
 });
 
-function getEnvios() {
+function getEnvios(callback) {
+	
   $.getJSON('/getEnvios', function(response, textStatus, jqXHR) {
+	  
     console.log('Envios:\n' + JSON.stringify(response, null, 2));
     console.log('Length:\n' + JSON.stringify(response.length, null, 2));
 
@@ -210,6 +214,8 @@ function getEnvios() {
         alert('No tienes envíos asignados');
       }
     }
+    
+    callback();
   });
 }
 
@@ -240,7 +246,14 @@ function updateShipment(url, client, date, value) {
     });
 }
 
-getEnvios();
+getEnvios(()=>{
+	directionsDisplay.setMap(map);
+    if (document.getElementById('entregado').checked) {
+      directionsDisplay.setMap(null);
+    } else {
+      calculateAndDisplayRoute(directionsService, directionsDisplay);
+    }
+});
 
 var coords = '0.0,0.0';
 
