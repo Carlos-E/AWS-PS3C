@@ -160,15 +160,15 @@ public class SugerirCarlos extends HttpServlet {
 						distribucion.put("placa", seleccionados.get(i).get("placa"));
 						distribucion.put("asignarPeso", pesoEnvio);
 						distribucion.put("asignarEspacio", espacioEnvio);
-						
-						System.out.println("Peso antes de la operacion: "+pesoEnvio);
-						System.out.println("Espacio antes de la operacion: "+espacioEnvio);
-						
+
+						System.out.println("Peso antes de la operacion: " + pesoEnvio);
+						System.out.println("Espacio antes de la operacion: " + espacioEnvio);
+
 						pesoEnvio = pesoEnvio - pesoEnvio;
 						espacioEnvio = espacioEnvio - espacioEnvio;
-						
-						System.out.println("Peso restante del envio: "+pesoEnvio);
-						System.out.println("Espacio restante del envio: "+espacioEnvio);
+
+						System.out.println("Peso restante del envio: " + pesoEnvio);
+						System.out.println("Espacio restante del envio: " + espacioEnvio);
 
 						distribuciones.add(distribucion);
 						break;
@@ -179,15 +179,15 @@ public class SugerirCarlos extends HttpServlet {
 						distribucion.put("placa", seleccionados.get(i).get("placa"));
 						distribucion.put("asignarPeso", espacioDisponible / relacion);
 						distribucion.put("asignarEspacio", espacioDisponible);
-						
-						System.out.println("Peso antes de la operacion: "+pesoEnvio);
-						System.out.println("Espacio antes de la operacion: "+espacioEnvio);
+
+						System.out.println("Peso antes de la operacion: " + pesoEnvio);
+						System.out.println("Espacio antes de la operacion: " + espacioEnvio);
 
 						pesoEnvio = pesoEnvio - espacioDisponible / relacion;
 						espacioEnvio = espacioEnvio - espacioDisponible;
-						
-						System.out.println("Peso restante del envio: "+pesoEnvio);
-						System.out.println("Espacio restante del envio: "+espacioEnvio);
+
+						System.out.println("Peso restante del envio: " + pesoEnvio);
+						System.out.println("Espacio restante del envio: " + espacioEnvio);
 
 						distribuciones.add(distribucion);
 
@@ -202,15 +202,15 @@ public class SugerirCarlos extends HttpServlet {
 						distribucion.put("placa", seleccionados.get(i).get("placa"));
 						distribucion.put("asignarPeso", pesoEnvio);
 						distribucion.put("asignarEspacio", espacioDisponible);
-						
-						System.out.println("Peso antes de la operacion: "+pesoEnvio);
-						System.out.println("Espacio antes de la operacion: "+espacioEnvio);
+
+						System.out.println("Peso antes de la operacion: " + pesoEnvio);
+						System.out.println("Espacio antes de la operacion: " + espacioEnvio);
 
 						pesoEnvio = pesoEnvio - espacioDisponible;
 						espacioEnvio = espacioEnvio - espacioDisponible;
-						
-						System.out.println("Peso restante del envio: "+pesoEnvio);
-						System.out.println("Espacio restante del envio: "+espacioEnvio);
+
+						System.out.println("Peso restante del envio: " + pesoEnvio);
+						System.out.println("Espacio restante del envio: " + espacioEnvio);
 
 						distribuciones.add(distribucion);
 						break;
@@ -221,18 +221,18 @@ public class SugerirCarlos extends HttpServlet {
 						distribucion.put("placa", seleccionados.get(i).get("placa"));
 						distribucion.put("asignarPeso", pesoDisponible / relacion);
 						distribucion.put("asignarEspacio", pesoDisponible);
-						
-						System.out.println("Peso antes de la operacion: "+pesoEnvio);
-						System.out.println("Espacio antes de la operacion: "+espacioEnvio);
+
+						System.out.println("Peso antes de la operacion: " + pesoEnvio);
+						System.out.println("Espacio antes de la operacion: " + espacioEnvio);
 
 						pesoEnvio = pesoEnvio - pesoDisponible / relacion;
 						espacioEnvio = espacioEnvio - pesoDisponible;
-						
-						System.out.println("Peso restante del envio: "+pesoEnvio);
-						System.out.println("Espacio restante del envio: "+espacioEnvio);
+
+						System.out.println("Peso restante del envio: " + pesoEnvio);
+						System.out.println("Espacio restante del envio: " + espacioEnvio);
 
 						distribuciones.add(distribucion);
-						
+
 					}
 
 				} else {
@@ -252,9 +252,9 @@ public class SugerirCarlos extends HttpServlet {
 				}
 
 			}
-			
-			System.out.println("Peso restante del envio: "+pesoEnvio);
-			System.out.println("Espacio restante del envio: "+espacioEnvio);
+
+			System.out.println("Peso restante del envio: " + pesoEnvio);
+			System.out.println("Espacio restante del envio: " + espacioEnvio);
 
 			if (pesoEnvio > 0 || espacioEnvio > 0) {
 				distribuciones = new ArrayList<HashMap<String, Object>>();
