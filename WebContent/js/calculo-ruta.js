@@ -54,7 +54,7 @@ function setVehiculos(origenEnvio, pesoEnvio, espacioEnvio){
           		$('#labelSuge').show();
             	$('#camion').show();
               vehiculosDisponibles = false;
-              //validacionDeDisponibilidad(origenEnvio, pesoEnvio, espacioEnvio);
+              validacionDeDisponibilidad(pesoEnvio, espacioEnvio);
             	return;
           }else{
             vehiculosDisponibles = true;
@@ -153,7 +153,7 @@ function setTrailers(origenEnvio, pesoEnvio, espacioEnvio) {
                 $('#labelSuge').show();
                 $('#trailer').show();
                 trailersDisponibles = false;
-                //validacionDeDisponibilidad(origenEnvio, pesoEnvio, espacioEnvio); 
+                validacionDeDisponibilidad(pesoEnvio, espacioEnvio); 
                 return;
 	        }else{
             trailersDisponibles = true;
@@ -299,21 +299,25 @@ function castSugerirVehiculos(origenEnvio, pesoEnvio, espacioEnvio) {
         });
 }
 
+function validacionDeDisponibilidad(pesoEnvio, espacioEnvio){
   $.when(setTrailer, setVehiculo).then(function(){
-    sugerir();
+    sugerir(pesoEnvio, espacioEnvio);
   });
+}
+
+  
 
 
 
-function sugerir(){
+function sugerir(pesoEnvio, espacioEnvio){
   console.log("ejecucion de funcion sugerir()"); 
   console.log("los trailers son: "+trailersDisponibles+" los vehiculos son: "+ vehiculosDisponibles); 
   if(!trailersDisponibles&&!vehiculosDisponibles){
     $.ajax({
       url: '/sugerir',
       data: {
-        pesoEnvio: pesoEnvioG, 
-        espacioEnvio: espacioEnvioG 
+        pesoEnvio: pesoEnvio, 
+        espacioEnvio: espacioEnvio 
         },
       type: 'GET',
       dataType: 'json'
@@ -336,6 +340,8 @@ function sugerir(){
       }).fail(function(xhr, status, errorThrown) {
         console.log('Failed getRoutesTrailer');	    
       });
+  }else{
+    console.log("Por lo menos hay un camion o trailer disponible"); 
   }
 }
 
