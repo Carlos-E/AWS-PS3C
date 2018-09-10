@@ -302,12 +302,13 @@ function castSugerirVehiculos(origenEnvio, pesoEnvio, espacioEnvio) {
 
 function validacionDeDisponibilidad(pesoEnvio, espacioEnvio){
   $.when(setTrailer, setVehiculo).then(function(){
-    if(validacion<=0){
-      sugerir(pesoEnvio, espacioEnvio);
+    //if(validacion<=0){
+      
       validacion++;
-    }else{
+    //}else{
+      sugerir(pesoEnvio, espacioEnvio);
       validacion=0;
-    }
+    //}
     
   });
 }
