@@ -254,7 +254,7 @@ public class SugerirCarlos extends HttpServlet {
 				distribuciones.add(distribucion);
 
 			}
-		}else if (pesoEnvio > espacioEnvio){
+		}else if (pesoEnvio >= espacioEnvio){
 
 			System.out.println("pesoEnvio > espacioEnvio");
 
