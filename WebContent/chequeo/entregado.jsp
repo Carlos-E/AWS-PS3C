@@ -48,7 +48,7 @@
 						</div>
 						<div class="row">
 							<div class="col-sm-12">
-								<table id="tabla" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;font-size: 0.7rem;">
+								<table id="table" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;font-size: 0.7rem;">
 									<thead>
 
 									</thead>
@@ -88,8 +88,13 @@
 
 	<script>
 
+	var scanTable;
+	var tableObj=null;
+	
 		$(document).ready(function() {
-						
+	
+			scanTable = () => {
+			
 			$.ajax({
 				url : "/envios/listar",
 				data : {
@@ -99,13 +104,20 @@
 				dataType : "json",
 			}).done(function(response) {
 				console.log(response);				
+				
 				let dataSet = [];	
+				
 				response.forEach(element => {
 					var aux, chequeo = "unchecked";
 					if (element.chequeoDescarga==true) {
 						chequeo = "checked";
 					}
+					
 					aux = '<input id="'+element.fecha+'" name="'+element.fecha+'" value="'+element.chequeoDescarga+'" type="checkbox" '+chequeo+' >';
+					element.fecha = '<a href="/envios/modificar.jsp?select='+element.usuario+' : '+element.fecha+'">'+element.fecha+'</a>';
+					element.usuario = '<a class="linkNegro" href="/usuarios/listar.jsp?search='+element.usuario+'">'+element.usuario+'</a>';
+					element.empresa = '<a class="linkNegro" href="/empresas/listar.jsp?search='+element.empresa+'">'+element.empresa+'</a>';
+					
 					dataSet.push([
 						element.fecha,
 						element.usuario,
@@ -115,12 +127,16 @@
 						element.destino,
 						element.descripcion,
 						aux
-				]);
+					]);
 				});
 				
 				console.log(dataSet);
+				if(tableObj!=null){
+					tableObj.clear().rows.add(dataSet).draw();
+					return;
+				}
 					
-				$('#tabla').DataTable( {
+				tableObj = $('#table').DataTable( {
 			        data: dataSet,
 					language: {
 						url: "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
@@ -140,8 +156,11 @@
 			}).fail(function(xhr, status, errorThrown) {
 				alert("Algo ha salido mal");
 				console.log('Failed Request To Servlet /scanTable')
-			}).always(function(xhr, status) {
 			});
+			
+			}
+			
+			scanTable();
 			
 		});
 	</script>
