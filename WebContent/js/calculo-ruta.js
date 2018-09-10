@@ -324,10 +324,10 @@ function sugerir(pesoEnvio, espacioEnvio){
     }).done(function(lista) {
       label = document.getElementById("sugerencia");
       if(lista.length!=0){
-        var aux = "Se sugiere divir el envío en "+lista.length+" paquetes, cuales paquetes? ESTOOS PAQUETEEESS!! <br>";       
+        var aux = "Se sugiere divir el envío en "+lista.length+" paquetes, agrupandolos de la siguinete forma:<br>";       
         for (let i = 0; i < lista.length; i++) { 
           console.log(lista[i].id);     
-           aux += (i+1)+" - "+lista[i].id+"<br>";
+           aux += (i+1)+" - "+lista[i].id+" Peso: "+lista[i].pesoAAsignar+" Espacio: "+lista[i].espacioAAsignar+"<br>";
         } 
         label.innerHTML = aux;
       }else{

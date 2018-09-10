@@ -49,17 +49,13 @@ public class Sugerir extends HttpServlet {
 		Double cPesoEnvio = 0.0;
 		if(pesoEnvio<espacioEnvio) {
 			criteria = "espacio";
-			criterio = espacioEnvio/pesoEnvio;
-			cEspacioEnvio = criterio;
-			cPesoEnvio = 1.0;			
+			criterio = espacioEnvio/pesoEnvio;	
 		}else if(pesoEnvio>espacioEnvio) {
 			criteria = "peso";
 			criterio = pesoEnvio/espacioEnvio;
-			cEspacioEnvio = 1.0;
-			cPesoEnvio = criterio;	
 		}else {
 			criteria = "unoAuno";
-			criterio = 0.0;
+			criterio = 1.0;
 		}
 		List<Vehiculo> vehiculos = new ArrayList<Vehiculo>(DB.scan(Vehiculo.class, new DynamoDBScanExpression()));
 		List<Trailer> trailers = new ArrayList<Trailer>(DB.scan(Trailer.class, new DynamoDBScanExpression()));
@@ -128,48 +124,28 @@ public class Sugerir extends HttpServlet {
 		//seleccion de vehiculos y/o trailers
 		switch (criteria) {
 		case "peso":
-			for(int i=0;i<test.size();i++) {
-				if(espacioEnvio!=cEspacioEnvio) {
-					System.out.println("Calculando en en vehiculo o trailer: "+test.get(i).get("id"));
-					Double pesoI = Double.parseDouble(test.get(i).get("peso").toString());
-					Double espacioI = Double.parseDouble(test.get(i).get("espacio").toString());
-					for(int j=0;j<espacioEnvio;j++) {
-						if(cEspacioEnvio<espacioI&&cPesoEnvio<pesoI&&cEspacioEnvio!=espacioEnvio) {
-							cEspacioEnvio++;
-							cPesoEnvio=cEspacioEnvio*criterio;
-						}else {
-							test.get(i).put("pesoAAsignar", cPesoEnvio);
-							test.get(i).put("espacioAAsignar", cEspacioEnvio);
-							seleccionados.add(test.get(i));	
-							break;
-						}
-					}
-				}else {
-					System.out.println("ya se agoto");
-				}				
-				if(i==test.size()-1&&(cEspacioEnvio<espacioEnvio)) {
-					seleccionados = new ArrayList<Map<String, Object>>();	
-					System.out.println("No fue posible encontrar vehiculos o trailers disponibles");
-					break;
-				}
-			}
+			
 			break;
 		case "espacio":
 			for(int i=0;i<test.size();i++) {
-				if(espacioEnvio!=cEspacioEnvio) {
+				if(pesoEnvio!=cPesoEnvio) {
 					System.out.println("Calculando en en vehiculo o trailer: "+test.get(i).get("id"));
 					Double pesoI = Double.parseDouble(test.get(i).get("peso").toString());
 					Double espacioI = Double.parseDouble(test.get(i).get("espacio").toString());
-					for(int j=0;j<pesoEnvio;j++) {
-						if(cEspacioEnvio<espacioI&&cPesoEnvio<pesoI&&cEspacioEnvio!=espacioEnvio) {
-							cEspacioEnvio=cPesoEnvio*criterio;
-							cPesoEnvio++;
-						}else {
+					for(;;) {						
+						if(cEspacioEnvio>=espacioI || cPesoEnvio>=pesoI || cPesoEnvio>=pesoEnvio || cEspacioEnvio>=espacioEnvio) {
+							System.out.println("valor de Peso: "+cPesoEnvio+" Espaio: "+cEspacioEnvio);
+							System.out.println("valor de Peso: "+pesoI+" Espaio: "+espacioI);
+							System.out.println("valor de Peso: "+pesoEnvio+" Espaio: "+espacioEnvio);
 							test.get(i).put("pesoAAsignar", cPesoEnvio);
 							test.get(i).put("espacioAAsignar", cEspacioEnvio);
 							seleccionados.add(test.get(i));	
-							break;
+							cPesoEnvio=pesoEnvio-cPesoEnvio;
+							cEspacioEnvio=cPesoEnvio*criterio;
+							break;							
 						}
+						cPesoEnvio++;
+						cEspacioEnvio=cPesoEnvio*criterio;
 					}
 				}else {
 					System.out.println("ya se agoto");
@@ -182,31 +158,7 @@ public class Sugerir extends HttpServlet {
 			}		
 			break;
 		case "unoAuno":
-			for(int i=0;i<test.size();i++) {
-				if(espacioEnvio!=cEspacioEnvio) {
-					System.out.println("Calculando en en vehiculo o trailer: "+test.get(i).get("id"));
-					Double pesoI = Double.parseDouble(test.get(i).get("peso").toString());
-					Double espacioI = Double.parseDouble(test.get(i).get("espacio").toString());
-					for(int j=0;j<cEspacioEnvio;j++) {
-						if(cEspacioEnvio<espacioI&&cPesoEnvio<pesoI&&cEspacioEnvio!=espacioEnvio) {
-							cEspacioEnvio++;
-							cPesoEnvio=cEspacioEnvio*criterio;
-						}else {
-							test.get(i).put("pesoAAsignar", cPesoEnvio);
-							test.get(i).put("espacioAAsignar", cEspacioEnvio);
-							seleccionados.add(test.get(i));	
-							break;
-						}
-					}
-				}else {
-					System.out.println("ya se agoto");
-				}				
-				if(i==test.size()-1&&(cEspacioEnvio<espacioEnvio)) {
-					seleccionados = new ArrayList<Map<String, Object>>();	
-					System.out.println("No fue posible encontrar vehiculos o trailers disponibles");
-					break;
-				}
-			}
+			
 			break;
 		}
 		
