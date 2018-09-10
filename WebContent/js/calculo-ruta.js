@@ -7,6 +7,7 @@ var setVehiculo;
 var setTrailer;
 var pesoEnvioG = 0;
 var espacioEnvioG = 0;
+var validacion = 0;
 function initMap() {
   directionsService = new google.maps.DirectionsService();
   console.log('Servicio de rutas inicializado');
@@ -301,7 +302,13 @@ function castSugerirVehiculos(origenEnvio, pesoEnvio, espacioEnvio) {
 
 function validacionDeDisponibilidad(pesoEnvio, espacioEnvio){
   $.when(setTrailer, setVehiculo).then(function(){
-    sugerir(pesoEnvio, espacioEnvio);
+    if(validacion<=0){
+      sugerir(pesoEnvio, espacioEnvio);
+      validacion++;
+    }else{
+      validacion=0;
+    }
+    
   });
 }
 
