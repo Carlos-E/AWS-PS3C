@@ -27,7 +27,7 @@ function initMap() {
   directionsDisplay.setMap(map);
 
   document.getElementById('sync').addEventListener('click', function() {
-    
+	  
 	  getEnvios(()=>{
     	directionsDisplay.setMap(map);
         if (document.getElementById('entregado').checked) {
@@ -153,6 +153,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
           Android.showToast('Directions request failed due to ' + status);
         }
       }
+	  $('#spinner').removeClass('fa-spin');
     }
   );
 }
@@ -165,6 +166,8 @@ document.getElementById('goMaps').addEventListener('click', function() {
 });
 
 function getEnvios(callback) {
+	
+	$('#spinner').addClass('fa-spin');
 	
   $.getJSON('/getEnvios', function(response, textStatus, jqXHR) {
 	  
@@ -246,15 +249,6 @@ function updateShipment(url, client, date, value) {
     });
 }
 
-getEnvios(()=>{
-	directionsDisplay.setMap(map);
-    if (document.getElementById('entregado').checked) {
-      directionsDisplay.setMap(null);
-    } else {
-      calculateAndDisplayRoute(directionsService, directionsDisplay);
-    }
-});
-
 var coords = '0.0,0.0';
 
 if (typeof Android != 'undefined') {
@@ -265,3 +259,12 @@ if (typeof Android != 'undefined') {
     document.getElementById('lng').innerHTML = coords.split(',')[1];
   }, 1000);
 }
+
+getEnvios(()=>{
+	directionsDisplay.setMap(map);
+    if (document.getElementById('entregado').checked) {
+      directionsDisplay.setMap(null);
+    } else {
+      calculateAndDisplayRoute(directionsService, directionsDisplay);
+    }
+});

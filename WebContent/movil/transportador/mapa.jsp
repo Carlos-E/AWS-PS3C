@@ -74,7 +74,18 @@ html, body {
 
 <body>
 
+	<div class="floating-panel" style="top: 0.35rem; left: 0.7rem;">
+		<div class="row">
+			<div class="col">
+				<button id="sync" class="btn btn-light" >
+					<i id="spinner" class="fas fa-sync-alt" style="font-size: 1rem;"></i>
+				</button>
+			</div>
+		</div>
+		</div>
+
 	<div class="floating-panel" style="top: 0.35rem; right: 0.7rem;">
+		
 		<div class="row">
 			<div class="col">
 				<!-- 				<a class="btn btn-light" href="https://www.google.com/maps/dir/?api=1&destination="+destination+"&travelmode=driving&dir_action=navigate" onclick="Android.openOnGoogleMaps(document.getElementById('end').value)">Abrir en Google Maps</a>
@@ -83,13 +94,7 @@ html, body {
 			</div>
 		</div>
 
-		<div class="row">
-			<div class="col">
-				<button class="btn btn-light" id="sync">
-					<i class="fa fa-cloud-download-alt" style="font-size: 1.2rem;"></i>
-				</button>
-			</div>
-		</div>
+		
 	</div>
 
 
@@ -171,7 +176,7 @@ html, body {
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsQwNmnSYTDtkrlXKeKnfP0x8TNwVJ2uI&language=es&callback=initMap"></script>
 	
-	<script src="/movil/js/map.js?v=1.1.4"></script>
+	<script src="/movil/js/map.js?v=1.1.7"></script>
 
 </body>
 
