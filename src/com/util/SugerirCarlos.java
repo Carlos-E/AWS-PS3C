@@ -38,81 +38,69 @@ public class SugerirCarlos extends HttpServlet {
 
 		double pesoEnvio = Double.valueOf(request.getParameter("pesoEnvio"));
 		double espacioEnvio = Double.valueOf(request.getParameter("espacioEnvio"));
+		double relacion = 0.0;
 
 		System.out.println("pesoEnvio: " + pesoEnvio);
 		System.out.println("espacioEnvio: " + espacioEnvio);
-
-		String criteria = "espacio";
-		double relacion = 0.0;
 		
-		criteria = "peso";
-		relacion = espacioEnvio / pesoEnvio;
-
-		List<Vehiculo> vehiculos = new ArrayList<Vehiculo>(DB.scan(Vehiculo.class, new DynamoDBScanExpression()));
+		List<Vehiculo> lista = new ArrayList<Vehiculo>(DB.scan(Vehiculo.class, new DynamoDBScanExpression()));
 		Iterator<Vehiculo> iteratorVehiculos;
 
-		iteratorVehiculos = vehiculos.iterator();
+		iteratorVehiculos = lista.iterator();
 		while (iteratorVehiculos.hasNext()) {
-			Vehiculo vehiculo = iteratorVehiculos.next();
+			Vehiculo objeto = iteratorVehiculos.next();
 
-			double pesoOcupadoVehiculo = DB.getPesoVehiculo(vehiculo.getPlaca());
-			double espacioOcupadoVehiculo = DB.getEspacioVehiculo(vehiculo.getPlaca());
+			double pesoOcupadoVehiculo = DB.getPesoVehiculo(objeto.getPlaca());
+			double espacioOcupadoVehiculo = DB.getEspacioVehiculo(objeto.getPlaca());
 
-			if (vehiculo.getTipo().equals("remolque")) {
+			if (objeto.getTipo().equals("remolque")) {
 				iteratorVehiculos.remove();
 				continue;
 			}
 
-			if (vehiculo.getPesoMax() == pesoOcupadoVehiculo) {
+			if (objeto.getPesoMax() == pesoOcupadoVehiculo) {
 				iteratorVehiculos.remove();
 				continue;
 			}
 
-			if (vehiculo.getEspacioMax() == espacioOcupadoVehiculo) {
+			if (objeto.getEspacioMax() == espacioOcupadoVehiculo) {
 				iteratorVehiculos.remove();
 				continue;
 			}
 
-			if (vehiculo.getEspacioMax() == 0.0 || vehiculo.getPesoMax() == 0.0) {
+			if (objeto.getEspacioMax() == 0.0 || objeto.getPesoMax() == 0.0) {
 				iteratorVehiculos.remove();
 				continue;
 			}
 		}
 
 		// organizacion de la las listad dependiendo el criterio
-		switch (criteria) {
-		case "peso":
-			vehiculos.sort(Comparator.comparing(Vehiculo::getPesoMax));
-			Collections.reverse(vehiculos);
-			break;
-		case "espacio":
-			vehiculos.sort(Comparator.comparing(Vehiculo::getEspacioMax));
-			Collections.reverse(vehiculos);
-			break;
-		default:
-			vehiculos.sort(Comparator.comparing(Vehiculo::getPesoMax));
-			Collections.reverse(vehiculos);
-			break;
+		if(pesoEnvio < espacioEnvio){
+			lista.sort(Comparator.comparing(Vehiculo::getPesoMax));
+			Collections.reverse(lista);
+		}else{
+			lista.sort(Comparator.comparing(Vehiculo::getEspacioMax));
+			Collections.reverse(lista);
 		}
 
 		List<Map<String, Object>> seleccionados = new ArrayList<Map<String, Object>>();
 
-		iteratorVehiculos = vehiculos.iterator();
+		iteratorVehiculos = lista.iterator();
 		while (iteratorVehiculos.hasNext()) {
-			Vehiculo vehiculo = iteratorVehiculos.next();
+			Vehiculo objeto = iteratorVehiculos.next();
 
-			double pesoOcupadoVehiculo = DB.getPesoVehiculo(vehiculo.getPlaca());
-			double espacioOcupadoVehiculo = DB.getEspacioVehiculo(vehiculo.getPlaca());
+			double pesoOcupadoVehiculo = DB.getPesoVehiculo(objeto.getPlaca());
+			double espacioOcupadoVehiculo = DB.getEspacioVehiculo(objeto.getPlaca());
 
 			Map<String, Object> seleccionado = new HashMap<String, Object>();
 
-			seleccionado.put("placa", vehiculo.getPlaca());
-			seleccionado.put("pesoMax", vehiculo.getPesoMax());
+			seleccionado.put("placa", objeto.getPlaca());
+			seleccionado.put("pesoMax", objeto.getPesoMax());
 			seleccionado.put("pesoOcupado", pesoOcupadoVehiculo);
-			seleccionado.put("pesoDisponible", vehiculo.getPesoMax() - pesoOcupadoVehiculo);
-			seleccionado.put("espacioMax", vehiculo.getEspacioMax());
+			seleccionado.put("pesoDisponible", objeto.getPesoMax() - pesoOcupadoVehiculo);
+			seleccionado.put("espacioMax", objeto.getEspacioMax());
 			seleccionado.put("espacioOcupado", espacioOcupadoVehiculo);
-			seleccionado.put("espacioDisponible", vehiculo.getEspacioMax() - espacioOcupadoVehiculo);
+			seleccionado.put("espacioDisponible", objeto.getEspacioMax() - espacioOcupadoVehiculo);
 
 			seleccionados.add(seleccionado);
 		}
@@ -123,7 +111,6 @@ public class SugerirCarlos extends HttpServlet {
 
 			System.out.println("pesoEnvio < espacioEnvio");
 
-			criteria = "peso";
 			relacion = espacioEnvio / pesoEnvio;
 
 			System.out.println("Relacion: " + relacion);
@@ -225,7 +212,6 @@ public class SugerirCarlos extends HttpServlet {
 
 			System.out.println("pesoEnvio > espacioEnvio");
 
-			criteria = "espacio";
 			relacion =  pesoEnvio/espacioEnvio;
 
 			System.out.println("Relacion: " + relacion);
@@ -328,7 +314,6 @@ public class SugerirCarlos extends HttpServlet {
 			
 			System.out.println("pesoEnvio == espacioEnvio");
 
-			criteria = "espacio";
 			relacion =  1;
 
 			System.out.println("Relacion: " + relacion);
