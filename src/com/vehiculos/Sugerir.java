@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,11 +17,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 import clases.DB;
 import clases.Vehiculo;
 
-@WebServlet("/vehiculos/sugerir")
+@WebServlet("/vehiculos/sugerir/carlos")
 public class Sugerir extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -33,95 +36,404 @@ public class Sugerir extends HttpServlet {
 
 		DB DB = new DB();
 
-		// double espacioEnvio =
-		// Double.valueOf(request.getParameter("espacioEnvio"));
-		// double pesoEnvio = Double.valueOf(request.getParameter("pesoEnvio"));
-		//String criteria = request.getParameter("criterio");
-		Double pesoEnvio = Double.valueOf(request.getParameter("pesoEnvio"));
-		Double espacioEnvio = Double.valueOf(request.getParameter("espacioEnvio"));
-		String criteria = "espacio";
-		//double espacioEnvio = 10;
-		//double pesoEnvio = 10;
+		double pesoEnvio = Double.valueOf(request.getParameter("pesoEnvio"));
+		double espacioEnvio = Double.valueOf(request.getParameter("espacioEnvio"));
+		double relacion = 0.0;
 
-		List<Vehiculo> vehiculos = new ArrayList<Vehiculo>(DB.scan(Vehiculo.class, new DynamoDBScanExpression()));
-		List<Vehiculo> vehiculosSeleccionados = new ArrayList<Vehiculo>();
-		Iterator<Vehiculo> iteratorVehiculos;
-		String validacion="false";
-		iteratorVehiculos = vehiculos.iterator();
-		while (iteratorVehiculos.hasNext()) {
-			Vehiculo vehiculo = iteratorVehiculos.next();
+		System.out.println("pesoEnvio: " + pesoEnvio);
+		System.out.println("espacioEnvio: " + espacioEnvio);
 
-			if (vehiculo.getTipo().equals("remolque")) {
-				iteratorVehiculos.remove();
+		List<Vehiculo> lista = new ArrayList<Vehiculo>(DB.scan(Vehiculo.class, new DynamoDBScanExpression()));
+		Iterator<Vehiculo> iterator;
+
+		iterator = lista.iterator();
+		while (iterator.hasNext()) {
+			Vehiculo objeto = iterator.next();
+
+			double pesoOcupadoVehiculo = DB.getPesoVehiculo(objeto.getPlaca());
+			double espacioOcupadoVehiculo = DB.getEspacioVehiculo(objeto.getPlaca());
+
+			if (objeto.getTipo().equals("remolque")) {
+				iterator.remove();
 				continue;
 			}
-			
-			vehiculo.setPesoMax(vehiculo.getPesoMax() - DB.getPesoVehiculo(vehiculo.getPlaca()));
-			vehiculo.setEspacioMax(vehiculo.getEspacioMax() - DB.getEspacioVehiculo(vehiculo.getPlaca()));
+
+			if (objeto.getPesoMax() == pesoOcupadoVehiculo) {
+				iterator.remove();
+				continue;
+			}
+
+			if (objeto.getEspacioMax() == espacioOcupadoVehiculo) {
+				iterator.remove();
+				continue;
+			}
+
+			if (objeto.getEspacioMax() == 0.0 || objeto.getPesoMax() == 0.0) {
+				iterator.remove();
+				continue;
+			}
 		}
-		
-		switch (criteria) {
-		case "peso":
-			vehiculos.sort(Comparator.comparing(Vehiculo::getPesoMax));
-			Collections.reverse(vehiculos);
-			System.out.println("lista reorganizada, entrando a for para encontrar lista de vehiculos por peso");			
-			for(int i=0;i<vehiculos.size();i++) {
-				if(!pesoEnvio.equals(0)||!espacioEnvio.equals(0)) {
-					pesoEnvio = pesoEnvio - vehiculos.get(i).getPesoMax();
-					espacioEnvio = espacioEnvio - vehiculos.get(i).getEspacioMax();
-					if(pesoEnvio<0||espacioEnvio<0) {
-						System.out.println("saliendo del ciclo de busqueda por peso");
+
+		// organizacion de la las listad dependiendo el criterio
+		if (pesoEnvio < espacioEnvio) {
+			lista.sort(Comparator.comparing(Vehiculo::getPesoMax));
+			Collections.reverse(lista);
+		} else {
+			lista.sort(Comparator.comparing(Vehiculo::getEspacioMax));
+			Collections.reverse(lista);
+		}
+
+		List<Map<String, Object>> seleccionados = new ArrayList<Map<String, Object>>();
+
+		iterator = lista.iterator();
+		while (iterator.hasNext()) {
+			Vehiculo objeto = iterator.next();
+
+			double pesoOcupadoVehiculo = DB.getPesoVehiculo(objeto.getPlaca());
+			double espacioOcupadoVehiculo = DB.getEspacioVehiculo(objeto.getPlaca());
+
+			Map<String, Object> seleccionado = new HashMap<String, Object>();
+
+			seleccionado.put("placa", objeto.getPlaca());
+			seleccionado.put("pesoMax", objeto.getPesoMax());
+			seleccionado.put("pesoOcupado", pesoOcupadoVehiculo);
+			seleccionado.put("pesoDisponible", objeto.getPesoMax() - pesoOcupadoVehiculo);
+			seleccionado.put("espacioMax", objeto.getEspacioMax());
+			seleccionado.put("espacioOcupado", espacioOcupadoVehiculo);
+			seleccionado.put("espacioDisponible", objeto.getEspacioMax() - espacioOcupadoVehiculo);
+
+			seleccionados.add(seleccionado);
+		}
+
+		List<HashMap<String, Object>> distribuciones = new ArrayList<HashMap<String, Object>>();
+
+		if (pesoEnvio < espacioEnvio) {
+
+			System.out.println("pesoEnvio < espacioEnvio");
+
+			relacion = espacioEnvio / pesoEnvio;
+
+			System.out.println("Relacion: " + relacion);
+
+			espacioEnvio = pesoEnvio * relacion;
+
+			for (int i = 0; i < seleccionados.size(); i++) {
+
+				HashMap<String, Object> distribucion = new HashMap<String, Object>();
+
+				double espacioDisponible = (Double) seleccionados.get(i).get("pesoDisponible");
+				double pesoDisponible = (Double) seleccionados.get(i).get("espacioDisponible");
+
+				if (pesoDisponible >= pesoEnvio) {
+					// soporta
+					System.out.println(seleccionados.get(i).get("placa") + " soporta peso");
+
+					if (espacioDisponible >= espacioEnvio) {
+						// cabe y soporta todo el envio restante
+						System.out.println(seleccionados.get(i).get("placa") + " y cabe");
+
+						distribucion.put("placa", seleccionados.get(i).get("placa"));
+						distribucion.put("asignarPeso", pesoEnvio);
+						distribucion.put("asignarEspacio", espacioEnvio);
+
+						System.out.println("Peso antes de la operacion: " + pesoEnvio);
+						System.out.println("Espacio antes de la operacion: " + espacioEnvio);
+
+						pesoEnvio = pesoEnvio - pesoEnvio;
+						espacioEnvio = espacioEnvio - espacioEnvio;
+
+						System.out.println("Peso restante del envio: " + pesoEnvio);
+						System.out.println("Espacio restante del envio: " + espacioEnvio);
+
+						distribuciones.add(distribucion);
 						break;
-					}else {
-						vehiculosSeleccionados.add(vehiculos.get(i));
-						System.out.println("se agrega un nuevo vehiculo a la lisa indice: "+i);
-						/*if(i==vehiculos.size()-1 && (pesoEnvio>0 || espacioEnvio>0)) {
-							vehiculosSeleccionados = new ArrayList<Vehiculo>();						
-						}*/
-					}	
-				}else {
-					System.out.println("saliendo del ciclo de busqueda por peso");
-					break;
+					} else {
+						// cabe menos y soporta todo
+						System.out.println(seleccionados.get(i).get("placa") + " y cabe menos");
+
+						distribucion.put("placa", seleccionados.get(i).get("placa"));
+						distribucion.put("asignarPeso", espacioDisponible / relacion);
+						distribucion.put("asignarEspacio", espacioDisponible);
+
+						System.out.println("Peso antes de la operacion: " + pesoEnvio);
+						System.out.println("Espacio antes de la operacion: " + espacioEnvio);
+
+						pesoEnvio = pesoEnvio - espacioDisponible / relacion;
+						espacioEnvio = espacioEnvio - espacioDisponible;
+
+						System.out.println("Peso restante del envio: " + pesoEnvio);
+						System.out.println("Espacio restante del envio: " + espacioEnvio);
+
+						distribuciones.add(distribucion);
+
+					}
+
+				} else {
+
+					// cabe y soporta todo el envio restante
+					System.out.println(seleccionados.get(i).get("placa") + " sampale todo");
+
+					distribucion.put("placa", seleccionados.get(i).get("placa"));
+					distribucion.put("asignarPeso", pesoDisponible);
+					distribucion.put("asignarEspacio", espacioDisponible);
+
+					System.out.println("Peso antes de la operacion: " + pesoEnvio);
+					System.out.println("Espacio antes de la operacion: " + espacioEnvio);
+
+					pesoEnvio = pesoEnvio - pesoDisponible;
+
+					espacioEnvio = espacioEnvio - espacioDisponible;
+
+					System.out.println("Peso restante del envio: " + pesoEnvio);
+					System.out.println("Espacio restante del envio: " + espacioEnvio);
+
+					distribuciones.add(distribucion);
+
 				}
+
 			}
-			break;
-		case "espacio":
-			vehiculos.sort(Comparator.comparing(Vehiculo::getEspacioMax));	
-			Collections.reverse(vehiculos);
-			System.out.println("lista reorganizada, entrando a for para encontrar lista de vehiculos por espacio");			
-			for(int i=0;i<vehiculos.size();i++) {
-				if(!pesoEnvio.equals(0) || !espacioEnvio.equals(0)) {
-					pesoEnvio = pesoEnvio - vehiculos.get(i).getPesoMax();
-					espacioEnvio = espacioEnvio - vehiculos.get(i).getEspacioMax();
-					if(pesoEnvio<0||espacioEnvio<0) {
-						System.out.println("saliendo del ciclo de busqueda por espacio");
+
+			System.out.println("Peso restante del envio: " + pesoEnvio);
+			System.out.println("Espacio restante del envio: " + espacioEnvio);
+
+			if (pesoEnvio > 0 || espacioEnvio > 0) {
+				distribuciones = new ArrayList<HashMap<String, Object>>();
+				HashMap<String, Object> distribucion = new HashMap<String, Object>();
+
+				distribucion.put("mensaje", "los contenedores no alcanzan");
+				distribucion.put("pesoEnvioRestante", pesoEnvio);
+				distribucion.put("espacioEnvioRestante", espacioEnvio);
+
+				distribuciones.add(distribucion);
+
+			}
+
+		} else if (pesoEnvio > espacioEnvio) {
+
+			System.out.println("pesoEnvio > espacioEnvio");
+
+			relacion = pesoEnvio / espacioEnvio;
+
+			System.out.println("Relacion: " + relacion);
+
+			pesoEnvio = espacioEnvio * relacion;
+
+			for (int i = 0; i < seleccionados.size(); i++) {
+
+				HashMap<String, Object> distribucion = new HashMap<String, Object>();
+
+				double espacioDisponible = (Double) seleccionados.get(i).get("pesoDisponible");
+				double pesoDisponible = (Double) seleccionados.get(i).get("espacioDisponible");
+
+				if (espacioDisponible >= espacioEnvio) {
+					// soporta
+					System.out.println(seleccionados.get(i).get("placa") + " soporta peso");
+
+					if (pesoDisponible >= pesoEnvio) {
+						// cabe y soporta todo el envio restante
+						System.out.println(seleccionados.get(i).get("placa") + " y cabe");
+
+						distribucion.put("placa", seleccionados.get(i).get("placa"));
+						distribucion.put("asignarPeso", pesoEnvio);
+						distribucion.put("asignarEspacio", espacioEnvio);
+
+						System.out.println("Peso antes de la operacion: " + pesoEnvio);
+						System.out.println("Espacio antes de la operacion: " + espacioEnvio);
+
+						pesoEnvio = pesoEnvio - pesoEnvio;
+
+						espacioEnvio = espacioEnvio - espacioEnvio;
+
+						System.out.println("Peso restante del envio: " + pesoEnvio);
+						System.out.println("Espacio restante del envio: " + espacioEnvio);
+
+						distribuciones.add(distribucion);
 						break;
-					}else {
-						vehiculosSeleccionados.add(vehiculos.get(i));
-						System.out.println("se agrega un nuevo vehiculo a la lisa indice: "+i);
-						/*if(i==vehiculos.size()-1 && (pesoEnvio>0 || espacioEnvio>0)) {
-							vehiculosSeleccionados = new ArrayList<Vehiculo>();						
-						}*/
-					}	
-				}else {
-					System.out.println("saliendo del ciclo de busqueda por espacio");
-					break;
+					} else {
+						// cabe menos y soporta todo
+						System.out.println(seleccionados.get(i).get("placa") + " y cabe menos");
+
+						distribucion.put("placa", seleccionados.get(i).get("placa"));
+
+						distribucion.put("asignarPeso", pesoDisponible);
+						distribucion.put("asignarEspacio", pesoDisponible / relacion);
+
+						System.out.println("Peso antes de la operacion: " + pesoEnvio);
+						System.out.println("Espacio antes de la operacion: " + espacioEnvio);
+
+						pesoEnvio = pesoEnvio - pesoDisponible;
+						espacioEnvio = espacioEnvio - pesoDisponible / relacion;
+
+						System.out.println("Peso restante del envio: " + pesoEnvio);
+						System.out.println("Espacio restante del envio: " + espacioEnvio);
+
+						distribuciones.add(distribucion);
+
+					}
+
+				} else {
+
+					// cabe y soporta todo el envio restante
+					System.out.println(seleccionados.get(i).get("placa") + " sampale todo");
+
+					distribucion.put("placa", seleccionados.get(i).get("placa"));
+					distribucion.put("asignarPeso", pesoDisponible);
+					distribucion.put("asignarEspacio", espacioDisponible);
+
+					System.out.println("Peso antes de la operacion: " + pesoEnvio);
+					System.out.println("Espacio antes de la operacion: " + espacioEnvio);
+
+					pesoEnvio = pesoEnvio - pesoDisponible;
+
+					espacioEnvio = espacioEnvio - espacioDisponible;
+
+					System.out.println("Peso restante del envio: " + pesoEnvio);
+					System.out.println("Espacio restante del envio: " + espacioEnvio);
+
+					distribuciones.add(distribucion);
+
 				}
+
 			}
-			break;
-		} 
+
+			System.out.println("Peso restante del envio: " + pesoEnvio);
+			System.out.println("Espacio restante del envio: " + espacioEnvio);
+
+			if (pesoEnvio > 0 || espacioEnvio > 0) {
+				distribuciones = new ArrayList<HashMap<String, Object>>();
+				HashMap<String, Object> distribucion = new HashMap<String, Object>();
+
+				distribucion.put("mensaje", "los contenedores no alcanzan");
+				distribucion.put("pesoEnvioRestante", pesoEnvio);
+				distribucion.put("espacioEnvioRestante", espacioEnvio);
+
+				distribuciones.add(distribucion);
+
+			}
+		} else if (pesoEnvio == espacioEnvio) {
+
+			System.out.println("pesoEnvio == espacioEnvio");
+
+			relacion = 1;
+
+			System.out.println("Relacion: " + relacion);
+
+			for (int i = 0; i < seleccionados.size(); i++) {
+
+				HashMap<String, Object> distribucion = new HashMap<String, Object>();
+
+				double espacioDisponible = (Double) seleccionados.get(i).get("pesoDisponible");
+				double pesoDisponible = (Double) seleccionados.get(i).get("espacioDisponible");
+
+				if (espacioDisponible >= espacioEnvio) {
+					// soporta
+					System.out.println(seleccionados.get(i).get("placa") + " soporta peso");
+
+					if (pesoDisponible >= pesoEnvio) {
+						// cabe y soporta todo el envio restante
+						System.out.println(seleccionados.get(i).get("placa") + " y cabe");
+
+						distribucion.put("placa", seleccionados.get(i).get("placa"));
+						distribucion.put("asignarPeso", pesoEnvio);
+						distribucion.put("asignarEspacio", espacioEnvio);
+
+						System.out.println("Peso antes de la operacion: " + pesoEnvio);
+						System.out.println("Espacio antes de la operacion: " + espacioEnvio);
+
+						pesoEnvio = pesoEnvio - pesoEnvio;
+
+						espacioEnvio = espacioEnvio - espacioEnvio;
+
+						System.out.println("Peso restante del envio: " + pesoEnvio);
+						System.out.println("Espacio restante del envio: " + espacioEnvio);
+
+						distribuciones.add(distribucion);
+						break;
+					} else {
+						// cabe menos y soporta todo
+						System.out.println(seleccionados.get(i).get("placa") + " y cabe menos");
+
+						distribucion.put("placa", seleccionados.get(i).get("placa"));
+
+						distribucion.put("asignarPeso", pesoDisponible);
+						distribucion.put("asignarEspacio", pesoDisponible / relacion);
+
+						System.out.println("Peso antes de la operacion: " + pesoEnvio);
+						System.out.println("Espacio antes de la operacion: " + espacioEnvio);
+
+						pesoEnvio = pesoEnvio - pesoDisponible;
+						espacioEnvio = espacioEnvio - pesoDisponible / relacion;
+
+						System.out.println("Peso restante del envio: " + pesoEnvio);
+						System.out.println("Espacio restante del envio: " + espacioEnvio);
+
+						distribuciones.add(distribucion);
+
+					}
+
+				} else {
+
+					// cabe y soporta todo el envio restante
+					System.out.println(seleccionados.get(i).get("placa") + " sampale todo");
+
+					distribucion.put("placa", seleccionados.get(i).get("placa"));
+					distribucion.put("asignarPeso", pesoDisponible);
+					distribucion.put("asignarEspacio", espacioDisponible);
+
+					System.out.println("Peso antes de la operacion: " + pesoEnvio);
+					System.out.println("Espacio antes de la operacion: " + espacioEnvio);
+
+					pesoEnvio = pesoEnvio - pesoDisponible;
+
+					espacioEnvio = espacioEnvio - espacioDisponible;
+
+					System.out.println("Peso restante del envio: " + pesoEnvio);
+					System.out.println("Espacio restante del envio: " + espacioEnvio);
+
+					distribuciones.add(distribucion);
+				}
+
+			}
+
+			System.out.println("Peso restante del envio: " + pesoEnvio);
+			System.out.println("Espacio restante del envio: " + espacioEnvio);
+
+			if (pesoEnvio > 0 || espacioEnvio > 0) {
+				distribuciones = new ArrayList<HashMap<String, Object>>();
+				HashMap<String, Object> distribucion = new HashMap<String, Object>();
+
+				distribucion.put("mensaje", "los contenedores no alcanzan");
+				distribucion.put("pesoEnvioRestante", pesoEnvio);
+				distribucion.put("espacioEnvioRestante", espacioEnvio);
+				distribucion.put("fail", "true");
+
+				distribuciones.add(distribucion);
+
+			}
+
+		}
+
 		
-		
-		response.getWriter().print(new ObjectMapper().writeValueAsString(vehiculosSeleccionados));
+		//Poner como lo implemento puche
+		if (distribuciones.get(0).get("fail") == null) {
+			for (int i = 0; i < distribuciones.size(); i++) {
+				distribuciones.get(i).put("id", distribuciones.get(i).get("placa"));
+				distribuciones.get(i).remove("placa");
+				distribuciones.get(i).put("peso", distribuciones.get(i).get("asignarPeso"));
+				distribuciones.get(i).remove("asignarPeso");
+				distribuciones.get(i).put("espacio", distribuciones.get(i).get("asignarEspacio"));
+				distribuciones.get(i).remove("asignarEspacio");
+			}
+		}
+
+		response.getWriter().print(new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT).writer()
+				.writeValueAsString(distribuciones));
 		response.getWriter().close();
-	
-		
-		this.doPost(request, response);
-		
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//this.send();
+		response.sendRedirect("/404.jsp");
 	}
 }
