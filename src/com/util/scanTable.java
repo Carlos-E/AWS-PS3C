@@ -54,6 +54,8 @@ public class scanTable extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 
 		try {
+			
+			System.out.println("Scanning table: " + request.getParameter("tabla"));
 
 			Table table = dynamoDB.getTable(request.getParameter("tabla"));
 			ItemCollection<ScanOutcome> result = table.scan();
