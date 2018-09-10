@@ -1,6 +1,7 @@
 package com.trailers;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -388,13 +389,14 @@ public class Sugerir extends HttpServlet {
 
 		}
 
+		DecimalFormat df = new DecimalFormat("#.##");
 		// Poner como lo implemento puche
 		for (int i = 0; i < distribuciones.size(); i++) {
 			distribuciones.get(i).put("id", distribuciones.get(i).get("placa"));
 			distribuciones.get(i).remove("placa");
-			distribuciones.get(i).put("pesoAAsignar", distribuciones.get(i).get("asignarPeso"));
+			distribuciones.get(i).put("pesoAAsignar", df.format(Double.valueOf(distribuciones.get(i).get("asignarPeso").toString())));
 			distribuciones.get(i).remove("asignarPeso");
-			distribuciones.get(i).put("espacioAAsignar", distribuciones.get(i).get("asignarEspacio"));
+			distribuciones.get(i).put("espacioAAsignar",df.format(Double.valueOf(distribuciones.get(i).get("asignarEspacio").toString())));
 			distribuciones.get(i).remove("asignarEspacio");
 		}
 

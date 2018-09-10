@@ -209,13 +209,13 @@
 					</div>
 
 					<div id="labelSuge" class="form-group row">
-							<label class="col-md-2 col-form-label text-capitalize">Sugerencia:</label>
+							<label id="labelSugerenciaVehiculo" class="col-md-2 col-form-label text-capitalize"></label>
 							<div class="col-md-4">
-								<p align="justify" id="sugerenciaVehiculo" name="sugerenciaVehiculo">Sugerencias</p>
+								<p align="justify" id="pSugerenciaVehiculo" name="sugerenciaVehiculo"></p>
 							</div>
-							<label class="col-md-2 col-form-label text-capitalize">Sugerencia:</label>
+							<label id="labelSugerenciaTrailer" class="col-md-2 col-form-label text-capitalize"></label>
 							<div class="col-md-4">
-								<p align="justify" id="sugerenciaTrailer" name="sugerenciaTrailer">Sugerencias</p>
+								<p align="justify" id="pSugerenciaTrailer" name="sugerenciaTrailer"></p>
 							</div>
 					</div>
 
