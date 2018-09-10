@@ -51,7 +51,7 @@ public class Listar extends HttpServlet {
 				} // if
 			} // for
 			
-			trailers.get(i).setEstado(DB.getEstadoTrailer(trailers.get(i).getPatente()));
+			trailers.get(i).setEstado(DB.getEstadoTrailer(trailers.get(i).getPatente(),true));
 			
 			@SuppressWarnings("unchecked")
 			HashMap<String,Object> result = new ObjectMapper().convertValue(trailers.get(i), HashMap.class);

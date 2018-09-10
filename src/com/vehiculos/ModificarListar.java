@@ -37,7 +37,7 @@ public class ModificarListar extends HttpServlet {
 		List<Vehiculo> vehiculos = DB.scan(Vehiculo.class, new DynamoDBScanExpression());
 
 		for (int i = 0; i < vehiculos.size(); i++) {
-			vehiculos.get(i).setEstado(DB.getEstadoVehiculo(vehiculos.get(i).getPlaca()));
+			vehiculos.get(i).setEstado(DB.getEstadoVehiculo(vehiculos.get(i).getPlaca(),false));
 			if (!vehiculos.get(i).getUsuario().equals("ninguno")) {
 				Usuario usuario = DB.load(Usuario.class, vehiculos.get(i).getUsuario());
 				if (usuario != null) {

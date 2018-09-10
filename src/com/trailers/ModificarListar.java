@@ -36,7 +36,7 @@ public class ModificarListar extends HttpServlet {
 		List<Trailer> trailers = DB.scan(Trailer.class, new DynamoDBScanExpression());
 
 		for (int i = 0; i < trailers.size(); i++) {
-			trailers.get(i).setEstado(DB.getEstadoTrailer(trailers.get(i).getPatente()));
+			trailers.get(i).setEstado(DB.getEstadoTrailer(trailers.get(i).getPatente(),false));
 		} // for
 
 		response.setContentType("application/json");

@@ -41,7 +41,7 @@ public class Leer extends HttpServlet {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("placa", vehiculo.getPlaca());
 		map.put("usuario", vehiculo.getUsuario());
-		map.put("estado", DB.getEstadoVehiculo(placa));
+		map.put("estado", DB.getEstadoVehiculo(placa,false));
 		map.put("tipo", vehiculo.getTipo());
 
 		if (vehiculo.getTipo().equals("remolque")) {

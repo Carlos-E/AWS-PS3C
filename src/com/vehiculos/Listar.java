@@ -50,7 +50,7 @@ public class Listar extends HttpServlet {
 				} // if
 			} // for
 
-			vehiculos.get(i).setEstado(DB.getEstadoVehiculo(vehiculos.get(i).getPlaca()));
+			vehiculos.get(i).setEstado(DB.getEstadoVehiculo(vehiculos.get(i).getPlaca(),true));
 
 			@SuppressWarnings("unchecked")
 			HashMap<String, Object> result = new ObjectMapper().convertValue(vehiculos.get(i), HashMap.class);

@@ -209,7 +209,7 @@ public class DB extends DynamoDBMapper {
 		return trailers.get(0);
 	}
 
-	public String getEstadoVehiculo(String placa) {
+	public String getEstadoVehiculo(String placa,boolean withLink) {
 
 		String estado = "";
 
@@ -235,8 +235,13 @@ public class DB extends DynamoDBMapper {
 				if (trailer == null) {
 					estado = estado + " sin tráiler";
 				}else{
-					estado = estado + " con tráiler <a href=\"/traileres/listar.jsp?search="+trailer.getPatente()+"\">"+trailer.getPatente()+"</a>";
+					if(withLink){
+						estado = estado + " con tráiler <a href=\"/traileres/listar.jsp?search="+trailer.getPatente()+"\">"+trailer.getPatente()+"</a>";
+					}else{
+						estado = estado + " con tráiler "+trailer.getPatente();
+					}
 				}
+					
 
 			}
 		}
@@ -244,7 +249,7 @@ public class DB extends DynamoDBMapper {
 		return estado;
 	}
 
-	public String getEstadoTrailer(String patente) {
+	public String getEstadoTrailer(String patente,boolean withLink) {
 
 		String estado = "";
 
@@ -258,7 +263,11 @@ public class DB extends DynamoDBMapper {
 			if (trailer.getCamion().equals("ninguno")) {
 				estado = estado + "sin remolque";
 			} else {
-				estado = estado + " con remolque <a href=\"/vehiculos/listar.jsp?search="+trailer.getCamion()+"\">"+trailer.getCamion()+"</a>";
+				if(withLink){
+					estado = estado + " con remolque <a href=\"/vehiculos/listar.jsp?search="+trailer.getCamion()+"\">"+trailer.getCamion()+"</a>";
+				}else{
+					estado = estado + " con remolque "+trailer.getCamion();
+				}
 			}
 
 			if (this.getEnviosPendientesTrailer(trailer.getPatente()).size() > 0) {
