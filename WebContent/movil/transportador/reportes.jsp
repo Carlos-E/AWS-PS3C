@@ -17,6 +17,14 @@
 		out.print(session.getAttribute("pagina").toString());
 	%>
 </title>
+<style>
+.odd {
+	word-break: break-all;
+}
+.even {
+	word-break: break-all;
+}
+</style>
 </head>
 <body>
 
@@ -55,14 +63,11 @@
 				</div>
 
 				<form class="myForm" action="/reportes/crear" method="post">
-
-
-					<br>
 					<br>
 					<div class="form-group">
 						<label class="col-12 control-label no-padding" for="message">Escriba su reporte</label>
 						<div class="col-12 no-padding">
-							<textarea class="form-control" id="nota" name="nota" placeholder="Escriba aqui su reporte..." rows="5"></textarea>
+							<textarea class="form-control" id="nota" name="nota" placeholder="Escriba aqu&iacute; su reporte..." rows="5"></textarea>
 						</div>
 					</div>
 
@@ -101,7 +106,7 @@
 						element.hora,
 						//element.usuario,
 						element.nota,
-						element.visto
+						element.visto ? "si" : "no"
 				]);
 				});
 				
@@ -113,10 +118,10 @@
 			            url: "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
 			        },
 			        columns: [
-			            { title: "hora" },
+			            { title: "Hora" },
 			            //{ title: "usuario" },
-			            { title: "nota" },
-			            { title: "visto" }
+			            { title: "Nota" },
+			            { title: "Visto" }
 			        ],
 			        searching: false,
 			        info: false
@@ -128,8 +133,7 @@
 				if (typeof Android != 'undefined') {
 						Android.showToast('Ha ocurrido un error');
 				}
-			}).always(function(xhr, status) {
-			});		
+			});	
 			
 		});
 		</script>

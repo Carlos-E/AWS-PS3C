@@ -41,8 +41,14 @@ public class Visto extends HttpServlet {
 		for (int i = 0; i < reportes.size(); i++) {
 			try {
 				if (request.getParameter(reportes.get(i).getHora()) == null) {
+					if(!reportes.get(i).isVisto()){
+						continue;
+					}						
 					reportes.get(i).setVisto(false);
 				} else {
+					if(reportes.get(i).isVisto()){
+						continue;
+					}						
 					reportes.get(i).setVisto(true);
 				}
 								

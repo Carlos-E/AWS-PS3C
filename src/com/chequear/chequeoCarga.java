@@ -38,7 +38,7 @@ public class chequeoCarga extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
-		
+
 		try {
 
 			DB DB = new DB();
@@ -47,29 +47,32 @@ public class chequeoCarga extends HttpServlet {
 
 			for (int i = 0; i < envios.size(); i++) {
 
-				System.out.println(envios.get(i).getFecha());
 				try {
 
 					if (request.getParameter(envios.get(i).getFecha()) == null) {
-						
-						if(envios.get(i).isChequeoCarga()){
+
+						if (envios.get(i).isChequeoCarga()) {
 							new Email(DB.load(Usuario.class, envios.get(i).getUsuario()).getCorreo(),
-							"PS3C - Envío Revertido", "Hemos revertido el estado de su envío.", envios.get(i));
+									"PS3C - Envío Revertido", "Hemos revertido el estado de su envío.", envios.get(i));
+						} else {
+							continue;
 						}
 
 						envios.get(i).setChequeoCarga(false);
 						envios.get(i).setChequeoDescarga(false);
 						envios.get(i).setEstado("asignado");
 
-
 					} else {
-						
-						if(!envios.get(i).isChequeoCarga()){
+
+						if (!envios.get(i).isChequeoCarga()) {
 							new Email(DB.load(Usuario.class, envios.get(i).getUsuario()).getCorreo(),
-							"PS3C - Envío En Tránsito",
-							"Su envío ha sido recogido y esta en tránsito hacia su destino.", envios.get(i));
+									"PS3C - Envío En Tránsito",
+									"Su envío ha sido recogido y esta en tránsito hacia su destino.", envios.get(i));
+						} else {
+							
+							continue;
 						}
-						
+
 						envios.get(i).setChequeoCarga(true);
 						envios.get(i).setEstado("en tránsito");
 
