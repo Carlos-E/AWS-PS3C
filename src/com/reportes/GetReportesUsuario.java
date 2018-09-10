@@ -16,16 +16,12 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
-import com.amazonaws.services.dynamodbv2.model.ScanRequest;
-import com.amazonaws.services.dynamodbv2.model.ScanResult;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import clases.DB;
 import clases.Reporte;
-import clases.Vehiculo;
 
 @WebServlet("/getReportesDeUsuario")
 public class GetReportesUsuario extends HttpServlet {
@@ -54,12 +50,15 @@ public class GetReportesUsuario extends HttpServlet {
 		DB DB = new DB();
 
 		String usuario = request.getSession().getAttribute("username").toString();
+		
+		System.out.println("getReportesDeUsuario");
+		System.out.println("Username: " + request.getSession().getAttribute("username").toString());
 
 		Map<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
 		eav.put(":v1", new AttributeValue().withS(usuario));
 
 		List<Reporte> reportesDeUsuario = DB.scan(Reporte.class,
-				new DynamoDBScanExpression().withIndexName("usuario")
+				new DynamoDBScanExpression()
 						.withFilterExpression("usuario = :v1").withExpressionAttributeValues(eav));
 				
 		response.getWriter().print(new ObjectMapper().writer().writeValueAsString(reportesDeUsuario));

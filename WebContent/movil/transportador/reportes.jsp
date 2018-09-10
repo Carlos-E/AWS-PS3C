@@ -6,7 +6,7 @@
 	if (session.getAttribute("rol") == null) {
 		response.sendError(400, "Acceso incorrecto"); //cambiar
 	}
-	session.setAttribute("pagina", "Generar reportes");
+	session.setAttribute("pagina", "Mis reportes");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="es">
@@ -54,7 +54,7 @@
 					</table>
 				</div>
 
-				<form class="form" action="/reportes/crear" method="post">
+				<form class="myForm" action="/reportes/crear" method="post">
 
 
 					<br>
@@ -67,7 +67,7 @@
 					</div>
 
 					<div class="modal-footer">
-						<button type="submit" name="submit" class="btn btn-primary btn-md float-right">Reportar</button>
+						<button type="submit" id="submit" class="btn btn-primary btn-md float-right">Reportar</button>
 						<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger btn-md float-right">Cancelar</button>
 					</div>
 				</form>
@@ -85,7 +85,7 @@
 		$(document).ready(function() {
 						
 			$.ajax({
-				url : "/scanTable",
+				url : "/getReportesDeUsuario",
 				data : {
 					tabla : 'reportes'
 				},
@@ -99,7 +99,7 @@
 				response.forEach(element => {
 					dataSet.push([
 						element.hora,
-						element.usuario,
+						//element.usuario,
 						element.nota,
 						element.visto
 				]);
@@ -114,10 +114,12 @@
 			        },
 			        columns: [
 			            { title: "hora" },
-			            { title: "usuario" },
+			            //{ title: "usuario" },
 			            { title: "nota" },
 			            { title: "visto" }
-			        ]
+			        ],
+			        searching: false,
+			        info: false
 			    } );
 				
 		        $("#spinner").fadeOut("slow");
@@ -130,6 +132,8 @@
 			});		
 			
 		});
-	</script>
+		</script>
+	<script src="/js/form-modal.js"></script>
+	
 </body>
 </html>
