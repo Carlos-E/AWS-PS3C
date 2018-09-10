@@ -243,7 +243,7 @@
 			$('#espacio').val(objeto.espacioMax);
 			$('#conductor').val(objeto.usuario);
 			$('#empresa').val(objeto.empresa);
-			$('#tipo').val(objeto.tipo);
+			$('#tipo').val(objeto.tipo=='camion' ? 'camión':objeto.tipo);
 			$('#buscar-form').hide();
 			$('#form').removeAttr('hidden');
 			$('#form').show();

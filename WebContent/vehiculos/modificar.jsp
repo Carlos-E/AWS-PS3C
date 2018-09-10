@@ -224,7 +224,7 @@
 			
 			$('#placa').val(objeto.placa);
 			$('#estado').val(objeto.estado);
-			$('#tipo').val(objeto.tipo);
+			$('#tipo').val(objeto.tipo=='camion' ? 'camión':objeto.tipo);
 						
 			if(objeto.tipo=='remolque'){
 				$('#pesoMax').prop('disabled',true);
