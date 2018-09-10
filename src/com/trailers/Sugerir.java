@@ -198,15 +198,6 @@ public class Sugerir extends HttpServlet {
 
 			if (pesoEnvio > 0 || espacioEnvio > 0) {
 				distribuciones = new ArrayList<HashMap<String, Object>>();
-				HashMap<String, Object> distribucion = new HashMap<String, Object>();
-
-				distribucion.put("mensaje", "los contenedores no alcanzan");
-				distribucion.put("pesoEnvioRestante", pesoEnvio);
-				distribucion.put("espacioEnvioRestante", espacioEnvio);
-				distribucion.put("fail", "true");
-
-				distribuciones.add(distribucion);
-
 			}
 
 		} else if (pesoEnvio > espacioEnvio) {
@@ -302,15 +293,6 @@ public class Sugerir extends HttpServlet {
 
 			if (pesoEnvio > 0 || espacioEnvio > 0) {
 				distribuciones = new ArrayList<HashMap<String, Object>>();
-				HashMap<String, Object> distribucion = new HashMap<String, Object>();
-
-				distribucion.put("mensaje", "los contenedores no alcanzan");
-				distribucion.put("pesoEnvioRestante", pesoEnvio);
-				distribucion.put("espacioEnvioRestante", espacioEnvio);
-				distribucion.put("fail", "true");
-
-				distribuciones.add(distribucion);
-
 			}
 		} else if (pesoEnvio == espacioEnvio) {
 
@@ -402,30 +384,18 @@ public class Sugerir extends HttpServlet {
 
 			if (pesoEnvio > 0 || espacioEnvio > 0) {
 				distribuciones = new ArrayList<HashMap<String, Object>>();
-				HashMap<String, Object> distribucion = new HashMap<String, Object>();
-
-				distribucion.put("mensaje", "los contenedores no alcanzan");
-				distribucion.put("pesoEnvioRestante", pesoEnvio);
-				distribucion.put("espacioEnvioRestante", espacioEnvio);
-				distribucion.put("fail", "true");
-
-				distribuciones.add(distribucion);
-
 			}
 
 		}
 
-		
-		//Poner como lo implemento puche
-		if (distribuciones.get(0).get("fail") == null) {
-			for (int i = 0; i < distribuciones.size(); i++) {
-				distribuciones.get(i).put("id", distribuciones.get(i).get("placa"));
-				distribuciones.get(i).remove("placa");
-				distribuciones.get(i).put("peso", distribuciones.get(i).get("asignarPeso"));
-				distribuciones.get(i).remove("asignarPeso");
-				distribuciones.get(i).put("espacio", distribuciones.get(i).get("asignarEspacio"));
-				distribuciones.get(i).remove("asignarEspacio");
-			}
+		// Poner como lo implemento puche
+		for (int i = 0; i < distribuciones.size(); i++) {
+			distribuciones.get(i).put("id", distribuciones.get(i).get("placa"));
+			distribuciones.get(i).remove("placa");
+			distribuciones.get(i).put("pesoAAsignar", distribuciones.get(i).get("asignarPeso"));
+			distribuciones.get(i).remove("asignarPeso");
+			distribuciones.get(i).put("espacioAAsignar", distribuciones.get(i).get("asignarEspacio"));
+			distribuciones.get(i).remove("asignarEspacio");
 		}
 
 		response.getWriter().print(new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT).writer()
