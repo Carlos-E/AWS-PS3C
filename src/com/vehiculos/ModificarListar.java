@@ -41,7 +41,7 @@ public class ModificarListar extends HttpServlet {
 			if (!vehiculos.get(i).getUsuario().equals("ninguno")) {
 				Usuario usuario = DB.load(Usuario.class, vehiculos.get(i).getUsuario());
 				if (usuario != null) {
-					vehiculos.get(i).setUsuario(usuario.getNombre() + " " + usuario.getApellido());
+					vehiculos.get(i).setUsuario(usuario.getUsuario());
 				}
 			}
 		}

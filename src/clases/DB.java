@@ -218,6 +218,7 @@ public class DB extends DynamoDBMapper {
 
 		vehiculo = this.load(vehiculo);
 
+		System.out.println(vehiculo);
 		if (vehiculo != null) {
 
 			if (vehiculo.getUsuario().equals("ninguno")) {

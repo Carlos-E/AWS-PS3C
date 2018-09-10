@@ -1,10 +1,13 @@
 var map;
 var markers = [];
+var calculateAndDisplayRoute;
+var directionsService;
+var directionsDisplay;
 
 function initMap() {
 
-	var directionsService = new google.maps.DirectionsService;
-	var directionsDisplay = new google.maps.DirectionsRenderer;
+	directionsService = new google.maps.DirectionsService;
+	directionsDisplay = new google.maps.DirectionsRenderer;
 
 	map = new google.maps.Map(document.getElementById('map'), {
 		center : {
@@ -14,6 +17,8 @@ function initMap() {
 		zoom : 13,
 		fullscreenControl : true
 	});
+	
+	directionsDisplay.setMap(map);
 
 }
 
@@ -75,8 +80,9 @@ function ponerMarcadores(data) {
 		let marker = new google.maps.Marker({
 			map : map,
 			position : myLatlng,
-			title : 'Marcador',
-			label : data[i].placa
+			title : data[i].placa,
+			label : data[i].placa,
+			LatLng : data[i].latitud+','+data[i].longitud
 			});
 
 		markers.push(marker);
@@ -84,6 +90,7 @@ function ponerMarcadores(data) {
 
 		google.maps.event.addListener(marker, 'click', function() {
 			getVehiculo(this.label);
+			calculateAndDisplayRoute(this.label,this.LatLng,directionsService, directionsDisplay);
 		});
 	}
 
@@ -159,3 +166,64 @@ function deleteMarkers() {
 	markers = [];
 }
 
+// RUTAS
+
+function getEnvios(placa,callback) {
+  $.getJSON('/getEnviosVehiculo?placa='+placa, function(response, textStatus, jqXHR) {
+  callback(response)
+  });
+}
+
+calculateAndDisplayRoute = (placa,origin,directionsService, directionsDisplay) => {
+	
+	 console.log('placa: ' +placa);
+	 console.log('origen: '+origin);
+	
+	 getEnvios(placa,(envios)=>{
+		 					 
+		 if(envios==null||envios.length==0){
+			 console.log('Envios vacios o no existentes');
+			 return;
+		 }
+
+		 var waypoints = [];
+	     for (let i = 0; i < envios.length; i++) {
+			 if(!envios[i].chequeoCarga){
+				 waypoints.push({
+					 location: envios[i].origenLatLong,
+					 stopover: true
+				 });
+			 }
+			 if(!envios[i].chequeoDescarga){
+				 waypoints.push({
+					 location: envios[i].destinoLatLong,
+					 stopover: true
+				 });
+	    	 }
+	     }
+
+		 directionsService.route(
+		    {
+			  origin: origin,
+		      destination: '10.4032238,-75.5060763',
+		      waypoints: waypoints,
+		      optimizeWaypoints: true,
+		      travelMode: 'DRIVING'
+		    },
+		    function(response, status) {
+		      if (status === 'OK') {
+				console.log('status OK');
+		        directionsDisplay.setDirections(response);
+		      } else {
+		        if (typeof Android != 'undefined') {
+		          Android.showToast('Directions request failed due to ' + status);
+		        }else{
+					console.log('status FAIL');
+		        }
+		      }
+		    }
+		  );
+		 
+	 }); 
+	 
+}

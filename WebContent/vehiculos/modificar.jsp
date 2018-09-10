@@ -94,7 +94,7 @@
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Conductores disponibles</label>
 						<div class="col-md-4">
-							<select class="form-control" name="conductor" id="conductor" required>
+							<select class="form-control" name="conductor" id="conductor">
 								
 							</select>
 						</div>
@@ -237,7 +237,7 @@
 			}
 						
 			$('#pesoMax').val(objeto.pesoMax);
-			$('#espacioMax').val(objeto.pesoMax);
+			$('#espacioMax').val(objeto.espacioMax);
 						
 			$('#empresa').val(objeto.empresa);
 			$('#conductorAsignado').val(objeto.usuario);
@@ -253,7 +253,7 @@
 				.append($("<option>").attr('value','ninguno').text('ninguno'));
 				
 				$(data).each(function() {
-					$('#conductor').append($("<option>").attr('value',this.usuario).text(this.nombre+' '+this.apellido));
+					$('#conductor').append($("<option>").attr('value',this.usuario).text(this.usuario));
 				});
 		/* 		$('#conductor').append($("<option>").attr('value',objeto.usuario).text(objeto.usuario));
 				$('#conductor').val(objeto.usuario); */

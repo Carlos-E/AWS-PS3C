@@ -83,9 +83,11 @@ public class Modificar extends HttpServlet {
 
 		}
 
-		if (request.getParameter("conductor").equals("null")) {
+		if (request.getParameter("conductor").equals("")) {
+			System.out.println("CONDUCTOR: "+request.getParameter("conductorAsignado"));
 			vehiculo.setUsuario(request.getParameter("conductorAsignado").toLowerCase());
 		} else {
+			System.out.println("CONDUCTOR: "+request.getParameter("conductor"));
 			vehiculo.setUsuario(request.getParameter("conductor").toLowerCase());
 		}
 

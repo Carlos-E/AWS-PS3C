@@ -68,6 +68,7 @@ html, body {
 				</div>
 				<div class="modal-body" id="myModalBody"></div>
 				<div class="modal-footer">
+					<button type="button" class="btn btn-primary btn-md float-right" id="ruta">Ver ruta</button>
 					<button type="button" class="btn btn-primary btn-md float-right" id="myModalButton">Ver env&iacute;os</button>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 				</div>
@@ -79,37 +80,36 @@ html, body {
 	<jsp:include page="/footer.jsp" />
 
 	<!-- JavaScript del mapa -->
+	
+	<script src="/js/map.js"></script>
+
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsQwNmnSYTDtkrlXKeKnfP0x8TNwVJ2uI&language=es&callback=initMap"></script>
+	
+	
 	<script>
+	$(document).ready(function(){
+
+		$('#myModalButton').click(function(){
+			console.log('hi');
+			window.open('/envios/listar.jsp?search='+$('#myModalTitle').html(), '_blank');
+		});
+		
+		/* $('#ruta').click(function(){
+			console.log('Calculando ruta');
+			calculateAndDisplayRoute(directionsService, directionsDisplay);
+		}); */
+	
+	});
+	
+	
 		$.getJSON('/mapeoDeMercancia', function(data) {
-			/* for (var i = 0; i < data.length; i++) {
-				console.log(data[i]);
-			} */
 			ponerMarcadores(data);
 		});
 		setInterval(function() {
 			$.getJSON('/mapeoDeMercancia', function(data) {
-				/* for (var i = 0; i < data.length; i++) {
-					console.log(data[i]);
-				} */
 				ponerMarcadores(data);
 			});
 		}, 5000);
-		
-		$(document).ready(function(){
-
-			$('#myModalButton').click(function(){
-				console.log('hi');
-				window.open('/envios/listar.jsp?search='+$('#myModalTitle').html(), '_blank');
-			});
-		
-		});
-	</script>
-
-	<script src="/js/map.js">
-		
-	</script>
-
-	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwUOXR0TZ7pyQhLJAuA6_U6Ffg92YMkLk&callback=initMap">
 		
 	</script>
 
