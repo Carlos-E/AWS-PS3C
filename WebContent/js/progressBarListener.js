@@ -3,7 +3,7 @@ $(document).ready(function() {
 	
 	let href = ['index.jsp'];
 
-	let urls = ['/mapeoDeMercancia','/getNumReports','/disponibilidadDeTrailers','/disponibilidadDeVehiculos','/usuarios/conductoresDisponibles','http://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json']
+	let urls = ['/mapeoDeMercancia','/getNumReports','/disponibilidadDeTrailers','/disponibilidadDeVehiculos','/usuarios/conductoresDisponibles','/vehiculos/remolquesDisponibles','http://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json']
 
 
 $(document).ajaxSend(function(event, xhr, settings ){

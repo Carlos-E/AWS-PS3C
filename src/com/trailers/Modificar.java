@@ -72,7 +72,7 @@ public class Modificar extends HttpServlet {
 
 		String camion = null;
 
-		if (request.getParameter("remolque").equals("null")) {
+		if (request.getParameter("remolque").equals("")) {
 			camion = request.getParameter("remolqueAsignado").toLowerCase();
 		} else {
 			camion = request.getParameter("remolque").toLowerCase();

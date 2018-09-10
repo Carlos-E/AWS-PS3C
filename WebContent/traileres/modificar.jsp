@@ -139,7 +139,7 @@
 						<div class="col-md-4">
 							<!-- 							<input class="form-control" type="text" name="vehiculo" placeholder="vehiculo" id="vehiculo" required>
  -->
-							<select class="form-control" name="remolque" id="remolque" required>
+							<select class="form-control" name="remolque" id="remolque">
 							</select>
 						</div>
 					</div>
