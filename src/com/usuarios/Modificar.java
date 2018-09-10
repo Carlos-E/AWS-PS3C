@@ -59,13 +59,13 @@ public class Modificar extends HttpServlet {
 			HttpSession session = request.getSession();
 			usuario = (clases.Usuario) ControladorBD.getItem("usuarios", "usuario", request.getParameter("usuario"));
 			String rol = request.getParameter("rol").toLowerCase().replaceAll(" ", "");
-			String nombre = request.getParameter("nombre").toLowerCase().replaceAll(" ", "");
-			String apellido = request.getParameter("apellido").toLowerCase().replaceAll(" ", "");
+			String nombre = request.getParameter("nombre").replaceAll("  ", " ");
+			String apellido = request.getParameter("apellido").replaceAll("  ", " ");
 			String claveOld = request.getParameter("claveOld").toLowerCase().replaceAll(" ", "");
 			String clave1 = request.getParameter("clave").toLowerCase().replaceAll(" ", "");
 			String clave2 = request.getParameter("repita clave").toLowerCase().replaceAll(" ", "");
 			String telefono = request.getParameter("telefono").toLowerCase().replaceAll(" ", "");
-			String direccion = request.getParameter("direccion").toLowerCase().replaceAll(" ", "");
+			String direccion = request.getParameter("direccion").replaceAll("  ", " ");
 			String correo = request.getParameter("correo").toLowerCase().replaceAll(" ", "");
 			boolean cambio = false;
 			if (claveOld.isEmpty() && clave1.isEmpty() && clave2.isEmpty()) {
