@@ -426,23 +426,22 @@
 			$('#spinner2').fadeIn('slow');
 			$('#camion').hide();
 			$('#trailer').hide();
-
+			
+			/* document.getElementById('peso').readOnly = true;
+			document.getElementById('espacio').readOnly = true;
+			document.getElementById('origen').readOnly = true;
+ */
 			var peso = document.getElementById('peso').value;
 			var espacio = document.getElementById('espacio').value;
+			var latlon = document.getElementById('origenLatLong').value;
+			
 			if (peso != "" && espacio != "") {
-				setTimeout(
-						function() {
-							var latlon = document
-									.getElementById('origenLatLong').value;
-							if (latlon != "") {
-
-								setVehiculos(latlon, parseFloat(peso),
-										parseFloat(espacio));
-								setTrailers(latlon, parseFloat(peso),
-										parseFloat(espacio));
-
-							}
-						}, 1000);
+				setTimeout(function() {
+					if (latlon != "") {
+						setVehiculos(latlon, parseFloat(peso),parseFloat(espacio));
+						setTrailers(latlon, parseFloat(peso),parseFloat(espacio));
+					}
+				}, 0);
 			}
 		}
 	</script>
