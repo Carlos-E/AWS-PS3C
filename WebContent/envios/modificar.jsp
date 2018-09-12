@@ -385,37 +385,24 @@
 	<script type="text/javascript">
 		google.maps.event.addDomListener(window, 'load', intilize);
 		function intilize() {
-			var autocomplete = new google.maps.places.Autocomplete(document
-					.getElementById("destino"));
-			google.maps.event
-					.addListener(
-							autocomplete,
-							'place_changed',
-							function() {
-								var place = autocomplete.getPlace();
-								var latlon = place.geometry.location.lat()
-										+ "," + place.geometry.location.lng();
-
-								document.getElementById('destinoLatLong').value = latlon;
-							});
+			var autocomplete = new google.maps.places.Autocomplete(document.getElementById("destino"));
+			google.maps.event.addListener(autocomplete,'place_changed',function() {
+				var place = autocomplete.getPlace();
+				var latlon = place.geometry.location.lat()+ "," + place.geometry.location.lng();
+				document.getElementById('destinoLatLong').value = latlon;
+			});
 		};
 	</script>
 	<script>
 		google.maps.event.addDomListener(window, 'load', intilize);
 		function intilize() {
-			var autocomplete = new google.maps.places.Autocomplete(document
-					.getElementById("origen"));
-			google.maps.event
-					.addListener(
-							autocomplete,
-							'place_changed',
-							function() {
-								var place = autocomplete.getPlace();
-								var latlon = place.geometry.location.lat()
-										+ "," + place.geometry.location.lng();
-
-								document.getElementById('origenLatLong').value = latlon;
-							});
+			var autocomplete = new google.maps.places.Autocomplete(document.getElementById("origen"));
+			
+			google.maps.event.addListener(autocomplete,'place_changed',function() {
+				var place = autocomplete.getPlace();
+				var latlon = place.geometry.location.lat()+ "," + place.geometry.location.lng();
+				document.getElementById('origenLatLong').value = latlon;
+			});
 		};
 	</script>
 	<script type="text/javascript">
@@ -430,7 +417,7 @@
 			/* document.getElementById('peso').readOnly = true;
 			document.getElementById('espacio').readOnly = true;
 			document.getElementById('origen').readOnly = true;
- */
+	 		*/
 			var peso = document.getElementById('peso').value;
 			var espacio = document.getElementById('espacio').value;
 			var latlon = document.getElementById('origenLatLong').value;
