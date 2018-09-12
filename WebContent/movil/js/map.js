@@ -142,7 +142,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
         }
       } else {
         if (typeof Android != 'undefined') {
-          Android.showToast('Directions request failed due to ' + status);
+          Android.showToast('El servicio de direcciones ha fallado, inténtelo de nuevo.');
         }
       }
 	  $('#spinner').removeClass('fa-spin');

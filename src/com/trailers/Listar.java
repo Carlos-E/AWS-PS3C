@@ -38,7 +38,6 @@ public class Listar extends HttpServlet {
 
 		List<Trailer> trailers = DB.scan(Trailer.class, new DynamoDBScanExpression());
 		List<Empresa> empresas = DB.scan(Empresa.class, new DynamoDBScanExpression());
-
 		
 		List<HashMap<String,Object>> results = new ArrayList<HashMap<String, Object>>();
 		
@@ -56,8 +55,8 @@ public class Listar extends HttpServlet {
 			@SuppressWarnings("unchecked")
 			HashMap<String,Object> result = new ObjectMapper().convertValue(trailers.get(i), HashMap.class);
 			
-			double pesoOcupado = DB.getPesoVehiculo(trailers.get(i).getPatente());
-			double espacioOcupado = DB.getEspacioVehiculo(trailers.get(i).getPatente());
+			double pesoOcupado = DB.getPesoTrailer(trailers.get(i).getPatente());
+			double espacioOcupado = DB.getEspacioTrailer(trailers.get(i).getPatente());
 			
 			double pesoDisponible = trailers.get(i).getPesoMax() -  pesoOcupado;
 			double espacioDisponible = trailers.get(i).getEspacioMax() - espacioOcupado;
@@ -70,7 +69,6 @@ public class Listar extends HttpServlet {
 		} // for
 
 		response.setContentType("application/json");
-		//response.getWriter().print(new ObjectMapper().writeValueAsString(trailers));
 		response.getWriter().print(new ObjectMapper().writeValueAsString(results));
 		response.getWriter().close();
 
