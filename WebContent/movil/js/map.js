@@ -25,18 +25,10 @@ function initMap() {
   });
 
   directionsDisplay.setMap(map);
+}
 
   document.getElementById('sync').addEventListener('click', function() {
-	  
-	  getEnvios(()=>{
-    	directionsDisplay.setMap(map);
-        if (document.getElementById('entregado').checked) {
-          directionsDisplay.setMap(null);
-        } else {
-          calculateAndDisplayRoute(directionsService, directionsDisplay);
-        }
-    });
-
+	  getEnvios();
   });
 
   document.getElementById('envios').addEventListener('change', function() {
@@ -131,7 +123,7 @@ function initMap() {
       calculateAndDisplayRoute(directionsService, directionsDisplay);
     }
   });
-}
+
 
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
   directionsService.route(
@@ -165,9 +157,9 @@ document.getElementById('goMaps').addEventListener('click', function() {
     '&travelmode=driving&dir_action=navigate';
 });
 
-function getEnvios(callback) {
+function getEnvios() {
 	
-	$('#spinner').addClass('fa-spin');
+$('#spinner').addClass('fa-spin');
 	
   $.getJSON('/getEnvios', function(response, textStatus, jqXHR) {
 	  
@@ -210,15 +202,25 @@ function getEnvios(callback) {
       } else {
         document.getElementById('entregado').checked = false;
       }
-    } else {
-      if (typeof Android != 'undefined') {
-        Android.showToast('No tienes envíos asignados');
+      
+      
+      //Calcular ruta del envio seleccionado
+      directionsDisplay.setMap(map);
+      if (document.getElementById('entregado').checked) {
+        directionsDisplay.setMap(null);
       } else {
-        alert('No tienes envíos asignados');
+        calculateAndDisplayRoute(directionsService, directionsDisplay);
       }
+      
+    } else {
+    	$('#spinner').removeClass('fa-spin');
+    	if (typeof Android != 'undefined') {
+    		Android.showToast('No tienes envíos asignados');
+    	} else {
+    		alert('No tienes envíos asignados');
+    	}
     }
     
-    callback();
   });
 }
 
@@ -260,11 +262,4 @@ if (typeof Android != 'undefined') {
   }, 1000);
 }
 
-getEnvios(()=>{
-	directionsDisplay.setMap(map);
-    if (document.getElementById('entregado').checked) {
-      directionsDisplay.setMap(null);
-    } else {
-      calculateAndDisplayRoute(directionsService, directionsDisplay);
-    }
-});
+getEnvios();
