@@ -314,8 +314,6 @@
 
 			let selectedIndex = $('#select').prop('selectedIndex');
 	
-			console.log(lista[selectedIndex]);
-
 			let objeto = lista[selectedIndex];
 
 			let asignado = "ninguno";
@@ -425,8 +423,12 @@
 			if (peso != "" && espacio != "") {
 				setTimeout(function() {
 					if (latlon != "") {
-						setVehiculos(latlon, parseFloat(peso),parseFloat(espacio));
-						setTrailers(latlon, parseFloat(peso),parseFloat(espacio));
+						
+						$.when(setVehiculos(latlon, parseFloat(peso),parseFloat(espacio)),
+								setTrailers(latlon, parseFloat(peso),parseFloat(espacio)))
+								.done(function(cb1,cb2){
+									console.log('SetVehiculos y seTrailers Ajax terminado',cb1,cb2);							
+								});
 					}
 				}, 0);
 			}

@@ -8,17 +8,16 @@ var setTrailer;
 var pesoEnvioG = 0;
 var espacioEnvioG = 0;
 var validacion = 0;
+
 function initMap() {
   directionsService = new google.maps.DirectionsService();
   console.log('Servicio de rutas inicializado');
 }
 
-
 function setVehiculos(origenEnvio, pesoEnvio, espacioEnvio){
     console.log('Calculando Rutas Con Origen De Envio');
-
-    $(document).ready(function() {
-      setVehiculo = $.ajax({
+        
+    return $.ajax({
         url: '/disponibilidadDeVehiculos',
         data: { 
         	origenEnvio: origenEnvio,
@@ -28,7 +27,7 @@ function setVehiculos(origenEnvio, pesoEnvio, espacioEnvio){
         type: 'POST',
         dataType: 'json'
       }).done(function(vehiculos) {
-          console.log('Vehiculos: ' + JSON.stringify(vehiculos, null, 2));
+          //console.log('Vehiculos: ' + JSON.stringify(vehiculos, null, 2));
           pesoEnvioG = pesoEnvio;
           espacioEnvioG = espacioEnvio;
           // Limpiar select
@@ -115,12 +114,12 @@ function setVehiculos(origenEnvio, pesoEnvio, espacioEnvio){
         }).fail(function(xhr, status, errorThrown) {
           console.log('Failed getRoutes');
         });
-    });
   }
 
 
-function setTrailers(origenEnvio, pesoEnvio, espacioEnvio) {    
-        setTrailer = $.ajax({
+function setTrailers(origenEnvio, pesoEnvio, espacioEnvio) {   
+		
+        return $.ajax({
 	      url: '/disponibilidadDeTrailers',
 	      data: {
             origenEnvio: origenEnvio,
@@ -130,9 +129,9 @@ function setTrailers(origenEnvio, pesoEnvio, espacioEnvio) {
 	      type: 'POST',
 	      dataType: 'json'
 	    }).done(function(trailers) {
-          console.log('Trailers: ' + JSON.stringify(trailers, null, 2));
-          pesoEnvioG = pesoEnvio;
-          espacioEnvioG = espacioEnvio;
+          //console.log('Trailers: ' + JSON.stringify(trailers, null, 2));
+	    	pesoEnvioG = pesoEnvio;
+	    	espacioEnvioG = espacioEnvio;
 	        // Borrar select completo
             $('#trailer').find('option').remove();
 	        let select = document.getElementById('trailer');
@@ -207,8 +206,8 @@ function setTrailers(origenEnvio, pesoEnvio, espacioEnvio) {
                 
                 if(i==trailers.length-1){
                 	$('#spinner2').hide();
-                  $('#trailer').show();
-              }
+                	$('#trailer').show();
+                }
                 
               });
           } // for
@@ -219,66 +218,145 @@ function setTrailers(origenEnvio, pesoEnvio, espacioEnvio) {
 }
 
 
-function validacionDeDisponibilidad(pesoEnvio, espacioEnvio){
-  $.when(setTrailer, setVehiculo).then(function(){
-    //if(validacion<=0){
-      
-      validacion++;
-    //}else{
-      sugerir(pesoEnvio, espacioEnvio);
-      validacion=0;
-    //}
-    
-  });
+
+//Sugerencias
+
+function sugerirVehiculos(pesoEnvio, espacioEnvio){
+	
+	return $.ajax({
+		url: '/vehiculos/sugerir/carlos',
+	    data: {
+	    pesoEnvio: pesoEnvio, 
+	    espacioEnvio: espacioEnvio 
+	    },
+	    type: 'GET',
+	    dataType: 'json'
+	    }).done(function(lista) {
+	    		    	
+	    	document.getElementById("labelSugerenciaVehiculo").innerHTML = "Sugerencia:";
+	    	label = document.getElementById("pSugerenciaVehiculo");
+	    	
+	    	if(lista.length!=0){
+	    		var aux = "Se sugiere dividir el envío en "+lista.length+" paquetes, agrup&aacute;ndolos de la siguiente forma:<br>";       
+	        
+	    		for (let i = 0; i < lista.length; i++) { 
+	    			aux += (i+1)+" - En: "+lista[i].id+", ~"+lista[i].pesoAAsignar+"Kg, ~"+lista[i].espacioAAsignar+"m<sup>3</sup><br>";
+	    		} 
+	        	
+	    		label.innerHTML = aux;
+	    	}else{
+	    		label.innerHTML = "Se sugiere esperar a que uno o varios camiones se encuentren disponibles, ya que no hay una configuraci&oacute;n posible de embalaje en este momento.";
+	    	}
+	   
+	    }).fail(function(xhr, status, errorThrown) {
+	    	console.log('Failed getRoutesTrailer');	    
+	    }); 
 }
 
-function sugerir(pesoEnvio, espacioEnvio){
-  console.log("ejecucion de funcion sugerir()"); 
-  console.log("los trailers son: "+trailersDisponibles+" los vehiculos son: "+ vehiculosDisponibles); 
-  if(!trailersDisponibles&&!vehiculosDisponibles){
-    $.ajax({
-      url: '/sugerir',
+
+function sugerirTrailers(pesoEnvio, espacioEnvio){
+	 
+   return $.ajax({
+      url: '/traileres/sugerir/carlos',
       data: {
         pesoEnvio: pesoEnvio, 
         espacioEnvio: espacioEnvio 
         },
       type: 'GET',
       dataType: 'json'
-    }).done(function(lista) {
-      label = document.getElementById("sugerencia");
-      if(lista.length!=0){
-        var aux = "Se sugiere dividir el envío en "+lista.length+" paquetes, agrupandolos de la siguiente forma:<br>";       
-        for (let i = 0; i < lista.length; i++) { 
-          console.log(lista[i].id);     
-           aux += (i+1)+" - En: "+lista[i].id+", "+lista[i].pesoAAsignar+"Kg, "+lista[i].espacioAAsignar+"m<sup>3</sup><br>";
-        } 
-        label.innerHTML = aux;
-      }else{
-        label.innerHTML = "Se sugiere esperar a que un cami&oacute;n se encuentre disponible, ya que no hay una configuraci&oacute;n posible de embalaje";
-      }
-      console.log('segun aqui debe mandarla lista');	
-      console.log(JSON.stringify(lista.length, null, 2)); 
-      pesoEnvio=0;   
-      espacioEnvio=0;
+    }).done(function(lista) {	    	
+    	document.getElementById("labelSugerenciaTrailer").innerHTML = "Sugerencia:";
+      
+    	label = document.getElementById("pSugerenciaTrailer");
+      
+    	if(lista.length!=0){
+    	  var aux = "Se sugiere dividir el envío en "+lista.length+" paquetes, agrup&aacute;ndolos de la siguiente forma:<br>";       
+       
+    	  for (let i = 0; i < lista.length; i++) { 
+    		  aux += (i+1)+" - En: "+lista[i].id+", ~"+lista[i].pesoAAsignar+"Kg, ~"+lista[i].espacioAAsignar+"m<sup>3</sup><br>";
+    	  } 
+       
+    	  label.innerHTML = aux;
+     
+    	}else{
+    		label.innerHTML = "Se sugiere esperar a que uno o varios tr&aacute;ileres se encuentren disponibles, ya que no hay una configuraci&oacute;n posible de embalaje en este momento.";
+    	}
+      
       }).fail(function(xhr, status, errorThrown) {
         console.log('Failed getRoutesTrailer');	    
       });
-  }else{
-    console.log("Por lo menos hay un camion o trailer disponible"); 
-  }
+ 
 }
 
 
-function llenadoDeVehiculos(vehiculos){
-  listVehiculos = vehiculos;
-  console.log(listVehiculos);
-} 
-function llenadoDeTrailers(trtailers){
-  listTrailers = trtailers;
-  console.log(listTrailers);
-} 
 
 
+
+
+
+
+
+//
+//function validacionDeDisponibilidad(pesoEnvio, espacioEnvio){
+//  $.when(setTrailer, setVehiculo).then(function(){
+//    //if(validacion<=0){
+//      
+//      validacion++;
+//    //}else{
+//      sugerir(pesoEnvio, espacioEnvio);
+//      validacion=0;
+//    //}
+//    
+//  });
+//}
+//
+//function sugerir(pesoEnvio, espacioEnvio){
+//  console.log("ejecucion de funcion sugerir()"); 
+//  console.log("los trailers son: "+trailersDisponibles+" los vehiculos son: "+ vehiculosDisponibles); 
+//  if(!trailersDisponibles&&!vehiculosDisponibles){
+//    $.ajax({
+//      url: '/sugerir',
+//      data: {
+//        pesoEnvio: pesoEnvio, 
+//        espacioEnvio: espacioEnvio 
+//        },
+//      type: 'GET',
+//      dataType: 'json'
+//    }).done(function(lista) {
+//      label = document.getElementById("sugerencia");
+//      if(lista.length!=0){
+//        var aux = "Se sugiere dividir el envío en "+lista.length+" paquetes, agrupandolos de la siguiente forma:<br>";       
+//        for (let i = 0; i < lista.length; i++) { 
+//          console.log(lista[i].id);     
+//           aux += (i+1)+" - En: "+lista[i].id+", "+lista[i].pesoAAsignar+"Kg, "+lista[i].espacioAAsignar+"m<sup>3</sup><br>";
+//        } 
+//        label.innerHTML = aux;
+//      }else{
+//        label.innerHTML = "Se sugiere esperar a que un cami&oacute;n se encuentre disponible, ya que no hay una configuraci&oacute;n posible de embalaje";
+//      }
+//      console.log('segun aqui debe mandarla lista');	
+//      console.log(JSON.stringify(lista.length, null, 2)); 
+//      pesoEnvio=0;   
+//      espacioEnvio=0;
+//      }).fail(function(xhr, status, errorThrown) {
+//        console.log('Failed getRoutesTrailer');	    
+//      });
+//  }else{
+//    console.log("Por lo menos hay un camion o trailer disponible"); 
+//  }
+//}
+//
+//
+//function llenadoDeVehiculos(vehiculos){
+//  listVehiculos = vehiculos;
+//  console.log(listVehiculos);
+//} 
+//function llenadoDeTrailers(trtailers){
+//  listTrailers = trtailers;
+//  console.log(listTrailers);
+//} 
+//
+//
 
 
 // QuickSort
@@ -331,70 +409,3 @@ function quickSort(items, left, right, criteria) {
   return items;
 }
 */
-
-
-
-
-//Sugerencias
-
-function sugerirVehiculos(pesoEnvio, espacioEnvio){
-	 $.ajax({
-		url: '/vehiculos/sugerir/carlos',
-	    data: {
-	    pesoEnvio: pesoEnvio, 
-	    espacioEnvio: espacioEnvio 
-	    },
-	    type: 'GET',
-	    dataType: 'json'
-	    }).done(function(lista) {
-	    	document.getElementById("labelSugerenciaVehiculo").innerHTML = "Sugerencia:";
-	      label = document.getElementById("pSugerenciaVehiculo");
-	      if(lista.length!=0){
-	        var aux = "Se sugiere dividir el envío en "+lista.length+" paquetes, agrup&aacute;ndolos de la siguiente forma:<br>";       
-	        
-	        for (let i = 0; i < lista.length; i++) { 
-	           aux += (i+1)+" - En: "+lista[i].id+", ~"+lista[i].pesoAAsignar+"Kg, ~"+lista[i].espacioAAsignar+"m<sup>3</sup><br>";
-	        } 
-	        label.innerHTML = aux;
-	      }else{
-	        label.innerHTML = "Se sugiere esperar a que uno o varios camiones se encuentren disponibles, ya que no hay una configuraci&oacute;n posible de embalaje en este momento.";
-	      }
-	   
-	    }).fail(function(xhr, status, errorThrown) {
-	    	console.log('Failed getRoutesTrailer');	    
-	    }); 
-}
-
-
-function sugerirTrailers(pesoEnvio, espacioEnvio){
-	 
-    $.ajax({
-      url: '/traileres/sugerir/carlos',
-      data: {
-        pesoEnvio: pesoEnvio, 
-        espacioEnvio: espacioEnvio 
-        },
-      type: 'GET',
-      dataType: 'json'
-    }).done(function(lista) {	    	
-    document.getElementById("labelSugerenciaTrailer").innerHTML = "Sugerencia:";
-      label = document.getElementById("pSugerenciaTrailer");
-      
-      if(lista.length!=0){
-    	  var aux = "Se sugiere dividir el envío en "+lista.length+" paquetes, agrup&aacute;ndolos de la siguiente forma:<br>";       
-       
-    	  for (let i = 0; i < lista.length; i++) { 
-           aux += (i+1)+" - En: "+lista[i].id+", ~"+lista[i].pesoAAsignar+"Kg, ~"+lista[i].espacioAAsignar+"m<sup>3</sup><br>";
-    	  } 
-       
-    	  label.innerHTML = aux;
-     
-      }else{
-        label.innerHTML = "Se sugiere esperar a que uno o varios tr&aacute;ileres se encuentren disponibles, ya que no hay una configuraci&oacute;n posible de embalaje en este momento.";
-      }
-      
-      }).fail(function(xhr, status, errorThrown) {
-        console.log('Failed getRoutesTrailer');	    
-      });
- 
-}
