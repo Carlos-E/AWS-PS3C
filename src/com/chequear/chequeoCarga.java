@@ -63,15 +63,6 @@ public class chequeoCarga extends HttpServlet {
 
 						envios.get(i).setEstado("asignado");
 
-						// si no tiene camion y no tiene trailer entonces poner
-						// todo falso y no asignado
-						if (envios.get(i).getCamion().equals("ninguno")
-								&& envios.get(i).getTrailer().equals("ninguno")) {
-							envios.get(i).setChequeoDescarga(false);
-							envios.get(i).setChequeoCarga(false);
-							envios.get(i).setEstado("no asignado");
-						}
-
 					} else {
 
 						if (!envios.get(i).isChequeoCarga()) {
@@ -86,15 +77,15 @@ public class chequeoCarga extends HttpServlet {
 						envios.get(i).setChequeoCarga(true);
 						envios.get(i).setEstado("en tránsito");
 
-						// si no tiene camion y no tiene trailer entonces poner
-						// todo falso y no asignado
-						if (envios.get(i).getCamion().equals("ninguno")
-								&& envios.get(i).getTrailer().equals("ninguno")) {
-							envios.get(i).setChequeoDescarga(false);
-							envios.get(i).setChequeoCarga(false);
-							envios.get(i).setEstado("no asignado");
-						}
-
+					}
+					
+					// si no tiene camion y no tiene trailer entonces poner
+					// todo falso y no asignado
+					if (envios.get(i).getCamion().equals("ninguno")
+							&& envios.get(i).getTrailer().equals("ninguno")) {
+						envios.get(i).setChequeoDescarga(false);
+						envios.get(i).setChequeoCarga(false);
+						envios.get(i).setEstado("no asignado");
 					}
 
 					System.out.println("Guardando envio");

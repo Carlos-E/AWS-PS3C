@@ -28,18 +28,18 @@ public class Entrega extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		response.setContentType("application/json");
 
 		DB DB = new DB();
-		
+
 		System.out.println("Cambiando estado de envio");
 		System.out.println(request.getParameter("client"));
 		System.out.println(request.getParameter("date"));
 
 		Envio envio = DB.load(Envio.class, request.getParameter("client"), request.getParameter("date"));
-		
-		if(envio==null){
+
+		if (envio == null) {
 			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 				private static final long serialVersionUID = 1L;
 				{
@@ -53,28 +53,36 @@ public class Entrega extends HttpServlet {
 		String valor = request.getParameter("value");
 
 		if (valor.equals("true")) {
-			
+
 			envio.setChequeoDescarga(true);
 			envio.setChequeoCarga(true);
 			envio.setEstado("entregado");
-			
+
 			new Thread(() -> {
 				new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Envío Entregado",
 						"Hemos entregado su envío.", envio);
-				}).start();		
-			
+			}).start();
+
 		} else if (valor.equals("false")) {
-			
+
 			envio.setChequeoDescarga(false);
 			envio.setEstado("en tránsito");
-			
+
 			new Thread(() -> {
 				new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Envío Revertido",
 						"Hemos revertido el estado de su envio.", envio);
-				}).start();
-			
+			}).start();
+
 		}
-		
+
+		// si no tiene camion y no tiene trailer entonces poner
+		// todo falso y no asignado
+		if (envio.getCamion().equals("ninguno") && envio.getTrailer().equals("ninguno")) {
+			envio.setChequeoDescarga(false);
+			envio.setChequeoCarga(false);
+			envio.setEstado("no asignado");
+		}
+
 		DB.save(envio);
 
 		response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
@@ -82,7 +90,7 @@ public class Entrega extends HttpServlet {
 			{
 				put("title", "Operaci&oacute;n exitosa");
 				put("message", "Env&iacute;o actualizado");
-				put("estadoNuevo",envio.getEstado());
+				put("estadoNuevo", envio.getEstado());
 			}
 		}));
 		return;

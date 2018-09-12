@@ -29,7 +29,7 @@ public class Recogida extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		response.setContentType("application/json");
 
 		DB DB = new DB();
@@ -39,35 +39,44 @@ public class Recogida extends HttpServlet {
 		String valor = request.getParameter("value");
 
 		if (valor.equals("true")) {
-			
+
 			envio.setChequeoCarga(true);
 			envio.setEstado("en tránsito");
-			
+
 			new Thread(() -> {
 				new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Envío En Tránsito",
 						"Su envío ha sido recogido y esta en tránsito hacia su destino.", envio);
-				}).start();
-			
+			}).start();
+
 		} else if (valor.equals("false")) {
-			
+
 			envio.setChequeoCarga(false);
 			envio.setChequeoDescarga(false);
 			envio.setEstado("asignado");
-			
+
 			new Thread(() -> {
 				new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Envío Revertido",
 						"Hemos revertido el estado de su envio.", envio);
-				}).start();
+			}).start();
+
+		}
+
+		// si no tiene camion y no tiene trailer entonces poner
+		// todo falso y no asignado
+		if (envio.getCamion().equals("ninguno") && envio.getTrailer().equals("ninguno")) {
+			envio.setChequeoDescarga(false);
+			envio.setChequeoCarga(false);
+			envio.setEstado("no asignado");
 		}
 
 		DB.save(envio);
-		
+
 		response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 			private static final long serialVersionUID = 1L;
 			{
 				put("title", "Operaci&oacute;n exitosa");
 				put("message", "Env&iacute;o actualizado");
-				put("estadoNuevo",envio.getEstado());
+				put("estadoNuevo", envio.getEstado());
 			}
 		}));
 		return;
