@@ -350,14 +350,14 @@ function sugerirVehiculos(pesoEnvio, espacioEnvio){
 	    	document.getElementById("labelSugerenciaVehiculo").innerHTML = "Sugerencia:";
 	      label = document.getElementById("pSugerenciaVehiculo");
 	      if(lista.length!=0){
-	        var aux = "Se sugiere dividir el envío en "+lista.length+" paquetes, agrupandolos de la siguiente forma:<br>";       
+	        var aux = "Se sugiere dividir el envío en "+lista.length+" paquetes, agrup&aacute;ndolos de la siguiente forma:<br>";       
 	        
 	        for (let i = 0; i < lista.length; i++) { 
 	           aux += (i+1)+" - En: "+lista[i].id+", ~"+lista[i].pesoAAsignar+"Kg, ~"+lista[i].espacioAAsignar+"m<sup>3</sup><br>";
 	        } 
 	        label.innerHTML = aux;
 	      }else{
-	        label.innerHTML = "Se sugiere esperar a que uno o varios camiones se encuentre disponibles, ya que no hay una configuraci&oacute;n posible de embalaje en este momento.";
+	        label.innerHTML = "Se sugiere esperar a que uno o varios camiones se encuentren disponibles, ya que no hay una configuraci&oacute;n posible de embalaje en este momento.";
 	      }
 	   
 	    }).fail(function(xhr, status, errorThrown) {
@@ -381,7 +381,7 @@ function sugerirTrailers(pesoEnvio, espacioEnvio){
       label = document.getElementById("pSugerenciaTrailer");
       
       if(lista.length!=0){
-    	  var aux = "Se sugiere dividir el envío en "+lista.length+" paquetes, agrupandolos de la siguiente forma:<br>";       
+    	  var aux = "Se sugiere dividir el envío en "+lista.length+" paquetes, agrup&aacute;ndolos de la siguiente forma:<br>";       
        
     	  for (let i = 0; i < lista.length; i++) { 
            aux += (i+1)+" - En: "+lista[i].id+", ~"+lista[i].pesoAAsignar+"Kg, ~"+lista[i].espacioAAsignar+"m<sup>3</sup><br>";
@@ -390,7 +390,7 @@ function sugerirTrailers(pesoEnvio, espacioEnvio){
     	  label.innerHTML = aux;
      
       }else{
-        label.innerHTML = "Se sugiere esperar a que uno o varios tr&aacute;ileres se encuentre disponibles, ya que no hay una configuraci&oacute;n posible de embalaje en este momento.";
+        label.innerHTML = "Se sugiere esperar a que uno o varios tr&aacute;ileres se encuentren disponibles, ya que no hay una configuraci&oacute;n posible de embalaje en este momento.";
       }
       
       }).fail(function(xhr, status, errorThrown) {
