@@ -34,8 +34,10 @@ public class chequeoDescarga extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		response.setContentType("text/html");
-
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("application/json");
+		response.setCharacterEncoding("utf-8");
+		
 		try {
 
 			DB DB = new DB();
@@ -44,7 +46,6 @@ public class chequeoDescarga extends HttpServlet {
 
 			for (int i = 0; i < envios.size(); i++) {
 
-				System.out.println(envios.get(i).getFecha());
 				try {
 
 					if (request.getParameter(envios.get(i).getFecha()) == null) {
@@ -56,6 +57,13 @@ public class chequeoDescarga extends HttpServlet {
 						
 						envios.get(i).setChequeoDescarga(false);
 						envios.get(i).setEstado("en tránsito");
+						
+						if (envios.get(i).getCamion().equals("ninguno")
+								&& envios.get(i).getTrailer().equals("ninguno")) {
+							envios.get(i).setChequeoDescarga(false);
+							envios.get(i).setChequeoCarga(false);
+							envios.get(i).setEstado("no asignado");
+						}
 
 					} else {
 						
@@ -68,6 +76,15 @@ public class chequeoDescarga extends HttpServlet {
 						envios.get(i).setChequeoCarga(true);
 						envios.get(i).setEstado("entregado");
 						
+						// si no tiene camion y no tiene trailer entonces poner
+						// todo falso y no asignado
+						if (envios.get(i).getCamion().equals("ninguno")
+								&& envios.get(i).getTrailer().equals("ninguno")) {
+							envios.get(i).setChequeoDescarga(false);
+							envios.get(i).setChequeoCarga(false);
+							envios.get(i).setEstado("no asignado");
+						}
+						
 					}
 
 					System.out.println("Guardando envio");
@@ -78,10 +95,6 @@ public class chequeoDescarga extends HttpServlet {
 				}
 
 			}
-
-			// com.logica.Dibujar.mensaje(response.getWriter(), "Operacion
-			// Exitosa",
-			// request.getContextPath() + "/chequeo/entregado.jsp");
 
 			response.setStatus(200);
 			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
@@ -94,10 +107,6 @@ public class chequeoDescarga extends HttpServlet {
 			return;
 
 		} catch (Exception e) {
-
-			// com.logica.Dibujar.mensaje(response.getWriter(),
-			// "Ocurrio un error al intentar chequear los envios cargados",
-			// request.getContextPath() + "/chequeo/entregado.jsp");
 
 			response.setStatus(200);
 			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {

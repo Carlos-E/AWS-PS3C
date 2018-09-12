@@ -112,7 +112,10 @@
 						chequeo = "checked";
 					}
 					
-					aux = '<input id="'+element.fecha+'" name="'+element.fecha+'" value="'+element.chequeoCarga+'" type="checkbox" '+chequeo+' >';
+					let elementEstadoId = element.usuario.replace(/\@/g,'').replace(/\./g,'')+element.fecha.replace(/\s+/g,'').replace(/\-/g,'').replace(/\:/g,'');
+					element.estado = '<span id="'+elementEstadoId+'">'+element.estado+'</span>';
+
+					aux = '<input class="chequeo" value="'+element.usuario+';'+element.fecha+'" type="checkbox" '+chequeo+' >';
 					element.fecha = '<a href="/envios/modificar.jsp?select='+element.usuario+' : '+element.fecha+'">'+element.fecha+'</a>';
 					element.usuario = '<a class="linkNegro" href="/usuarios/listar.jsp?search='+element.usuario+'">'+element.usuario+'</a>';
 					element.empresa = '<a class="linkNegro" href="/empresas/listar.jsp?search='+element.empresa+'">'+element.empresa+'</a>';
@@ -149,7 +152,39 @@
 			            { title: "Destino" },
 			            { title: "Descripci&oacute;n" },
 			            { title: "Chequeo" }
-			        ]
+			        ],initComplete: function(){
+							
+						$('input[type="checkbox"]').click(function() {
+															
+							let idEstadoEnvio = $(this).val().replace(/\@/g,'').replace(/\./g,'').replace(/\;/g,'').replace(/\s+/g,'').replace(/\-/g,'').replace(/\:/g,'');
+														
+							let url = '/chequeo/recogida';
+						
+							$.ajax({
+							    url: url,
+							    data: {
+							      client: $(this).val().split(';')[0],
+							      date: $(this).val().split(';')[1],
+							      value: $(this).prop('checked')
+							    },
+							    type: 'POST',
+							    dataType: 'json'
+							}).done(function(data, statusText, xhr) {
+
+								if (typeof xhr.responseJSON.estadoNuevo != 'undefined') {
+									$('#'+idEstadoEnvio).html(xhr.responseJSON.estadoNuevo);
+								}
+								
+							}).fail(function(xhr, statusText) {
+
+								$('#ModalTitle').html('C&oacute;digo de Estado: ' + xhr.status);
+								$('#ModalBody').html('Oopss a ocurrido un error');
+								$('#Modal').modal();
+								
+							});
+						});
+			        	
+					}
 			    } );
 							
 			}).fail(function(xhr, status, errorThrown) {

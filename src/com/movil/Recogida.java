@@ -1,6 +1,7 @@
 package com.movil;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,6 +29,8 @@ public class Recogida extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		response.setContentType("application/json");
 
 		DB DB = new DB();
 
@@ -40,8 +43,10 @@ public class Recogida extends HttpServlet {
 			envio.setChequeoCarga(true);
 			envio.setEstado("en tránsito");
 			
-			new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Envío En Tránsito",
-					"Su envío ha sido recogido y esta en tránsito hacia su destino.", envio);
+			new Thread(() -> {
+				new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Envío En Tránsito",
+						"Su envío ha sido recogido y esta en tránsito hacia su destino.", envio);
+				}).start();
 			
 		} else if (valor.equals("false")) {
 			
@@ -49,20 +54,23 @@ public class Recogida extends HttpServlet {
 			envio.setChequeoDescarga(false);
 			envio.setEstado("asignado");
 			
-			new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Envío Revertido",
-					"Hemos revertido el estado de su envio.", envio);
+			new Thread(() -> {
+				new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Envío Revertido",
+						"Hemos revertido el estado de su envio.", envio);
+				}).start();
 		}
 
 		DB.save(envio);
 		
-		
-		
-		System.out.println("Chequeo Recogida/Carga: " + envio.getUsuario() + " "
-				+ envio.getFecha() + " : " + envio.isChequeoCarga());
-
-		response.setContentType("application/json");
-		response.getWriter().print(new ObjectMapper().writer().writeValueAsString(true));
-		response.getWriter().close();
+		response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+			private static final long serialVersionUID = 1L;
+			{
+				put("title", "Operaci&oacute;n exitosa");
+				put("message", "Env&iacute;o actualizado");
+				put("estadoNuevo",envio.getEstado());
+			}
+		}));
+		return;
 	}
 
 }
