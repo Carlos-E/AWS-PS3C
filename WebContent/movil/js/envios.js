@@ -51,6 +51,10 @@ function initMap() {
 						miUbicacion = '10.3898543,-75.5058491';
 					}
 					
+					if(envios==null || 0==envios.length){
+						$("#spinner").fadeOut("slow");
+					}
+					
 					var newData = [];
 				
 					for(let i=0;i<envios.length;i++){
