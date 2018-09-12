@@ -50,6 +50,24 @@ public class Entrega extends HttpServlet {
 			return;
 		}
 
+		// si no tiene camion y no tiene trailer entonces poner
+		// todo falso y no asignado
+		if (envio.getCamion().equals("ninguno") && envio.getTrailer().equals("ninguno")) {
+			envio.setChequeoDescarga(false);
+			envio.setChequeoCarga(false);
+			envio.setEstado("no asignado");
+			
+			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
+				private static final long serialVersionUID = 1L;
+				{
+					put("title", "Operaci&oacute;n fallida");
+					put("message", "Env&iacute;o no asignado");
+					put("fail", "true");
+				}
+			}));
+			return;
+		}
+
 		String valor = request.getParameter("value");
 
 		if (valor.equals("true")) {
@@ -73,14 +91,6 @@ public class Entrega extends HttpServlet {
 						"Hemos revertido el estado de su envio.", envio);
 			}).start();
 
-		}
-
-		// si no tiene camion y no tiene trailer entonces poner
-		// todo falso y no asignado
-		if (envio.getCamion().equals("ninguno") && envio.getTrailer().equals("ninguno")) {
-			envio.setChequeoDescarga(false);
-			envio.setChequeoCarga(false);
-			envio.setEstado("no asignado");
 		}
 
 		DB.save(envio);

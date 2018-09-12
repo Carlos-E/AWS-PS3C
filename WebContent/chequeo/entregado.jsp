@@ -155,19 +155,20 @@
 			        ],initComplete: function(){
 							
 						$('input[type="checkbox"]').click(function() {
-															
-							let idEstadoEnvio = $(this).val().replace(/\@/g,'').replace(/\./g,'').replace(/\;/g,'').replace(/\s+/g,'').replace(/\-/g,'').replace(/\:/g,'');
+										
+							var element = $(this);
+
+							let idEstadoEnvio = element.val().replace(/\@/g,'').replace(/\./g,'').replace(/\;/g,'').replace(/\s+/g,'').replace(/\-/g,'').replace(/\:/g,'');
 							
 							console.log('idEstadoEnvio: '+idEstadoEnvio);
-							
 							let url = '/chequeo/entrega';
 						
 							$.ajax({
 							    url: url,
 							    data: {
-							      client: $(this).val().split(';')[0],
-							      date: $(this).val().split(';')[1],
-							      value: $(this).prop('checked')
+							      client: element.val().split(';')[0],
+							      date: element.val().split(';')[1],
+							      value: element.prop('checked')
 							    },
 							    type: 'POST',
 							    dataType: 'json'
@@ -175,6 +176,14 @@
 
 								if (typeof xhr.responseJSON.estadoNuevo != 'undefined') {
 									$('#'+idEstadoEnvio).html(xhr.responseJSON.estadoNuevo);
+								}
+								
+								if (typeof xhr.responseJSON.fail != 'undefined') {
+									$('#ModalTitle').html(xhr.responseJSON.title);
+									$('#ModalBody').html(xhr.responseJSON.message);
+									$('#ModalButton').hide();								
+									$('#Modal').modal();	
+									element.prop('checked',!element.prop('checked'));
 								}
 								
 							}).fail(function(xhr, statusText) {
