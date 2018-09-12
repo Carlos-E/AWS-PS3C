@@ -45,7 +45,7 @@
 				<h3 class="card-title">
 					<%
 						out.print(session.getAttribute("pagina").toString());
-					%>
+					%> <i id="spinner" class="fa fa-circle-notch fa-spin" style="font-size: 30px"></i>
 				</h3>
 
 				<div class="col-sm-12 ">
@@ -88,7 +88,7 @@
 	</div>
 	<script>
 		$(document).ready(function() {
-						
+									
 			$.ajax({
 				url : "/getReportesDeUsuario",
 				data : {
@@ -127,12 +127,13 @@
 			        info: false
 			    } );
 				
-		        $("#spinner").fadeOut("slow");
 			
 			}).fail(function(xhr, status, errorThrown) {
 				if (typeof Android != 'undefined') {
 						Android.showToast('Ha ocurrido un error');
 				}
+			}).always(function(){
+		        $("#spinner").fadeOut('slow');
 			});	
 			
 		});
