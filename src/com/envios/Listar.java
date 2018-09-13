@@ -1,7 +1,9 @@
 package com.envios;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import clases.DB;
@@ -32,10 +35,22 @@ public class Listar extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		DB DB = new DB();
 
-		List<Envio> envios = DB.scan(Envio.class, new DynamoDBScanExpression());
+		List<Envio> envios;
+
+		if (request.getParameter("filterBy") != null&&request.getParameter("filter")!=null&&request.getParameter("operator")!=null) {
+			Map<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
+			eav.put(":v1", new AttributeValue().withS(request.getParameter("filter")));
+
+			envios = DB.scan(Envio.class, new DynamoDBScanExpression().withFilterExpression(request.getParameter("filterBy")+request.getParameter("operator")+":v1")
+					.withExpressionAttributeValues(eav));
+
+		} else {
+			envios = DB.scan(Envio.class, new DynamoDBScanExpression());
+		}
+
 		List<Empresa> empresas = DB.scan(Empresa.class, new DynamoDBScanExpression());
 		List<Trailer> trailers = DB.scan(Trailer.class, new DynamoDBScanExpression());
 

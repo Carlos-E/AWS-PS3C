@@ -99,11 +99,22 @@ table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_des
 
 	<script>
 	
-				$(document).ready(function () {
+$(document).ready(function () {	
+	
+			let table = (getParameterByName('table') != null ? '&table='+getParameterByName('table') : "");
+			let filterBy = (getParameterByName('filterBy') != null ? '&filterBy='+getParameterByName('filterBy') : "");
+			let operator = (getParameterByName('operator') != null ? '&operator='+getParameterByName('operator') : "&operator==");
+			let filter = (getParameterByName('filter') != null ? '&filter='+getParameterByName('filter') : "");
+			
+			let expression = '?'+table + filterBy + operator + filter;
+			
+			console.log(expression);
+			
+			let url = "/envios/listar";
+			url = url + expression;
 					
-
-					$.ajax({
-						url: "/envios/listar",
+			$.ajax({
+						url: url,
 						data: {
 							tabla: 'envios'
 						},
