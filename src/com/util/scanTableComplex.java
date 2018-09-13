@@ -23,7 +23,7 @@ import com.amazonaws.services.dynamodbv2.document.Table;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.amazonaws.services.dynamodbv2.document.ScanOutcome;
 
-@WebServlet("/scanTable")
+@WebServlet("/read/all")
 public class scanTableComplex extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -43,7 +43,7 @@ public class scanTableComplex extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.sendRedirect("/404.jsp");
+		this.doPost(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -54,26 +54,20 @@ public class scanTableComplex extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 
 		try {
-			
-			System.out.println("Scanning table: " + request.getParameter("tabla"));
 
-			Table table = dynamoDB.getTable(request.getParameter("tabla"));
+			Table table = dynamoDB.getTable(request.getParameter("table"));
 			ItemCollection<ScanOutcome> result = table.scan();
 			ArrayList<String> Items = new ArrayList<String>();
 			Iterator<Item> iterator = result.iterator();
 			while (iterator.hasNext()) {
-				Items.add(iterator.next().toJSON().toString());
+				Items.add(iterator.next().toJSONPretty().toString());
 			}
-			response.setContentType("application/json");
+
 			response.getWriter().print(Items);
 			response.getWriter().close();
 
 		} catch (Exception e) {
-			// com.logica.Dibujar.mensaje(response.getWriter(),
-			// "Ocurrio un error al intentar escanear la tabla: " +
-			// request.getParameter("tabla"));
 
-			response.setStatus(500);
 			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 				private static final long serialVersionUID = 1L;
 				{

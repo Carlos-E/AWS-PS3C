@@ -64,16 +64,13 @@ public class scanTable extends HttpServlet {
 			while (iterator.hasNext()) {
 				Items.add(iterator.next().toJSON().toString());
 			}
-			response.setContentType("application/json");
+
 			response.getWriter().print(Items);
 			response.getWriter().close();
 
 		} catch (Exception e) {
-			// com.logica.Dibujar.mensaje(response.getWriter(),
-			// "Ocurrio un error al intentar escanear la tabla: " +
-			// request.getParameter("tabla"));
 
-			response.setStatus(500);
+			response.setStatus(200);
 			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 				private static final long serialVersionUID = 1L;
 				{
