@@ -116,8 +116,11 @@ public class Crear extends HttpServlet {
 		// GENERAR REPORTE
 
 		// ENVIAR CORREO
-		new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Envío Creado",
-				"Su envío ha sido creado y pronto sera asignado.", envio);
+		Envio envioAux = envio;
+		new Thread(() -> {
+			new Email(DB.load(Usuario.class, envioAux.getUsuario()).getCorreo(), "PS3C - Envío Creado",
+					"Su envío ha sido creado y pronto sera asignado.", envioAux);
+		}).start();
 		// ENVIAR CORREO
 
 		response.setStatus(201);

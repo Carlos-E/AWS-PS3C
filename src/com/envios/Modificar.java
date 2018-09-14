@@ -45,8 +45,6 @@ public class Modificar extends HttpServlet {
 		Envio envio = new DB().load(Envio.class, request.getParameter("cliente"), request.getParameter("fecha"));
 		// Si no encontro nada, soltar mensaje de error y recargar pagina
 		if (envio == null) {
-			// Dibujar.mensaje(response.getWriter(), "Envio no encontrado",
-			// "/envios/modificar.jsp");
 			response.setStatus(200);
 			response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 				private static final long serialVersionUID = 1L;
@@ -105,8 +103,6 @@ public class Modificar extends HttpServlet {
 
 			if ((vehiculo.getPesoMax() - DB.getPesoVehiculo(vehiculo.getPlaca())) < Double
 					.valueOf(request.getParameter("peso"))) {
-				// Dibujar.mensaje(response.getWriter(), "Peso muy grande para
-				// el camion: " +vehiculo.getPlaca(), "/envios/modificar.jsp");
 				response.setStatus(200);
 				response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 					private static final long serialVersionUID = 1L;
@@ -120,9 +116,6 @@ public class Modificar extends HttpServlet {
 
 			if (((vehiculo.getEspacioMax() - DB.getEspacioVehiculo(vehiculo.getPlaca())) < Double
 					.valueOf(request.getParameter("espacio")))) {
-				// Dibujar.mensaje(response.getWriter(), "Espacio muy grande
-				// para el camion: " +vehiculo.getPlaca(),
-				// "/envios/modificar.jsp");
 				response.setStatus(200);
 				response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 					private static final long serialVersionUID = 1L;
@@ -142,9 +135,6 @@ public class Modificar extends HttpServlet {
 
 			if ((trailer.getPesoMax() - DB.getPesoTrailer(trailer.getPatente())) < Double
 					.valueOf(request.getParameter("peso"))) {
-				// Dibujar.mensaje(response.getWriter(), "Peso muy grande para
-				// el trailer: " +trailer.getPatente(),
-				// "/envios/modificar.jsp");
 				response.setStatus(200);
 				response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 					private static final long serialVersionUID = 1L;
@@ -158,9 +148,6 @@ public class Modificar extends HttpServlet {
 
 			if (((trailer.getEspacioMax() - DB.getEspacioTrailer(trailer.getPatente())) < Double
 					.valueOf(request.getParameter("espacio")))) {
-				// Dibujar.mensaje(response.getWriter(), "Espacio muy grande
-				// para el trailer: " +trailer.getPatente(),
-				// "/envios/modificar.jsp");
 				response.setStatus(200);
 				response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 					private static final long serialVersionUID = 1L;
@@ -179,9 +166,10 @@ public class Modificar extends HttpServlet {
 		DB.save(envio);
 
 		if (envio.getEstado().equals("asignado")) {
-			new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Envío Asignado",
-					"Su envío ha sido asignado correctamente y pronto sera recogido.", envio);
-
+			new Thread(() -> {
+				new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Envío Asignado",
+						"Su envío ha sido asignado correctamente y pronto sera recogido.", envio);
+			}).start();
 		}
 
 		response.setStatus(200);
