@@ -113,6 +113,16 @@
 							<input class="form-control" type="text" name="estado" placeholder="estado" id="estado" readonly>
 						</div>
 					</div>
+					<div class="form-group row">
+						<label class="col-md-2 col-form-label text-capitalize">Cami&oacute;n</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="camion" placeholder="camion" id="camion" readonly>
+						</div>
+						<label class="col-md-2 col-form-label text-capitalize">Tr&aacute;iler</label>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="trailer" placeholder="trailer" id="trailer" readonly>
+						</div>
+					</div>
 					<input type="text" id="longitud_Destino" name="longitud_Destino" style="display: none">
 					<input type="text" id="latitud_Destino" name="latitud_Destino" style="display: none">
 					<input type="text" id="latitud_Origen" name="latitud_Origen" style="display: none">
@@ -238,7 +248,7 @@
 		scanTable = (table, callback) => {	
 	
 			$.ajax({
-				url : "/scanTable",
+				url : "/envios/listar",
 				data : {
 					tabla : table
 				},
@@ -288,6 +298,8 @@
 			$('#peso').val(objeto.peso);
 			$('#estado').val(objeto.estado);
 			$('#empresa').val(objeto.empresa);
+			$('#camion').val(objeto.camion);
+			$('#trailer').val(objeto.trailer);
 
 			$('#buscar-form').hide();
 			$('#form').removeAttr('hidden');
