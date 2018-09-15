@@ -100,8 +100,8 @@ public class Modificar extends HttpServlet {
 			envio.setEstado("asignado");
 
 			Vehiculo vehiculo = DB.load(Vehiculo.class, envio.getCamion());
-
-			if ((vehiculo.getPesoMax() - DB.getPesoVehiculo(vehiculo.getPlaca())) < Double
+			
+			if ((vehiculo.getPesoMax() - DB.getPesoVehiculo(vehiculo.getPlaca())+envio.getPeso()) < Double
 					.valueOf(request.getParameter("peso"))) {
 				response.setStatus(200);
 				response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
@@ -114,7 +114,7 @@ public class Modificar extends HttpServlet {
 				return;
 			}
 
-			if (((vehiculo.getEspacioMax() - DB.getEspacioVehiculo(vehiculo.getPlaca())) < Double
+			if (((vehiculo.getEspacioMax() - DB.getEspacioVehiculo(vehiculo.getPlaca())+envio.getEspacio()) < Double
 					.valueOf(request.getParameter("espacio")))) {
 				response.setStatus(200);
 				response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
@@ -133,7 +133,7 @@ public class Modificar extends HttpServlet {
 
 			Trailer trailer = DB.load(Trailer.class, envio.getTrailer());
 
-			if ((trailer.getPesoMax() - DB.getPesoTrailer(trailer.getPatente())) < Double
+			if ((trailer.getPesoMax() - DB.getPesoTrailer(trailer.getPatente())+envio.getPeso()) < Double
 					.valueOf(request.getParameter("peso"))) {
 				response.setStatus(200);
 				response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
@@ -146,7 +146,7 @@ public class Modificar extends HttpServlet {
 				return;
 			}
 
-			if (((trailer.getEspacioMax() - DB.getEspacioTrailer(trailer.getPatente())) < Double
+			if (((trailer.getEspacioMax() - DB.getEspacioTrailer(trailer.getPatente())+envio.getEspacio()) < Double
 					.valueOf(request.getParameter("espacio")))) {
 				response.setStatus(200);
 				response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
