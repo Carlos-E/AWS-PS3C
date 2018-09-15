@@ -1,0 +1,90 @@
+@charset "UTF-8";
+
+body {
+	background-color: #ffffff;
+	background-image: url("/img/pattern1.svg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial,
+		sans-serif;
+	font-size: 1rem;
+}
+
+.fa-circle-notch {
+	color: #ffcc01 !important;
+}
+
+.sidebar {
+	background-color: rgba(16, 21, 28, 0.9) !important;
+	box-shadow: 0px 0px 0px 0px;
+}
+
+.nav-pills .nav-link.active, .badge-primary[href]:focus, .badge-primary[href]:hover,
+	a.bg-primary:focus, a.bg-primary:hover {
+	background: rgba(255, 160, 1, 0.8) !important;
+	color: white;
+}
+
+.sidebar .nav ul.children li a {
+	background-color: rgb(70, 70, 70) !important;
+	color: white;
+}
+
+.sidebar a:focus {
+	background-color: rgba(0, 0, 0, 0) !important;
+	color: white;
+}
+
+.sidebar a:hover {
+	background-color: rgba(255, 204, 1, 0.8) !important;
+	color: white;
+	text-shadow: 1px 1px black;
+}
+
+.sidebar a:active {
+	background-color: rgba(0, 0, 0, 0);
+	color: white;
+}
+
+.sidebar .nav ul.children li a:hover {
+	background: rgb(70, 70, 70) !important;
+	color: rgb(214, 109, 63) !important;
+	text-shadow: 1px 1px black;
+}
+
+footer {
+	padding-top: 2rem;
+}
+
+footer a, p a {
+	color: rgb(213, 108, 62) !important;
+}
+
+.jumbotron span {
+	font-weight: bold;
+}
+
+canvas {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+
+.fa-spin {
+	-webkit-animation: fa-spin 0.8s infinite linear;
+	animation: fa-spin 0.8s infinite linear;
+}
+
+.quick {
+	-webkit-animation: fa-spin 0.1s infinite linear;
+	animation: fa-spin 0.1s infinite linear;
+}
+
+table a {
+	color: rgb(213, 130, 62) !important;
+}
+
+.linkNegro{
+	color:black !important;
+}

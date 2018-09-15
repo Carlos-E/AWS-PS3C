@@ -73,6 +73,7 @@ public class ControladorBD {
 			br.close();
 			connection.disconnect();
 		} catch (Exception e) {
+			System.out.println(e);
 			throw new RuntimeException(e.getMessage());
 		}
 		
@@ -149,28 +150,28 @@ public class ControladorBD {
 			ObjectMapper mapper = new ObjectMapper();
 
 			if (nombreTabla.equals("usuarios")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), usuario.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Usuario.class);
 			}
 
 			if (nombreTabla.equals("empresas")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), empresa.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Empresa.class);
 			}
 
-			if (nombreTabla.equals("camiones")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), camion.class);
+			if (nombreTabla.equals("vehiculos")) {
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Vehiculo.class);
 			}
 
 			if (nombreTabla.equals("trailers")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), trailer.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Trailer.class);
 			}
 
 			if (nombreTabla.equals("envios")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), envio.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Envio.class);
 			}
 			
-			if (nombreTabla.equals("ubicaciones")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), ubicacion.class);
-			}
+//			if (nombreTabla.equals("ubicaciones")) {
+//				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Ubicacion.class);
+//			}
 
 			System.out.println(objeto);
 			System.out.println("Success");
@@ -209,28 +210,28 @@ public class ControladorBD {
 			ObjectMapper mapper = new ObjectMapper();
 
 			if (nombreTabla.equals("usuarios")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), usuario.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Usuario.class);
 			}
 
 			if (nombreTabla.equals("empresas")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), empresa.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Empresa.class);
 			}
 
-			if (nombreTabla.equals("camiones")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), camion.class);
+			if (nombreTabla.equals("vehiculos")) {
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Vehiculo.class);
 			}
 
 			if (nombreTabla.equals("trailers")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), trailer.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Trailer.class);
 			}
 
 			if (nombreTabla.equals("envios")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), envio.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Envio.class);
 			}
 			
-			if (nombreTabla.equals("ubicaciones")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), ubicacion.class);
-			}
+//			if (nombreTabla.equals("ubicaciones")) {
+//				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Ubicacion.class);
+//			}
 
 			System.out.println(objeto);
 			System.out.println("Success");
@@ -270,28 +271,28 @@ public class ControladorBD {
 			ObjectMapper mapper = new ObjectMapper();
 
 			if (nombreTabla.equals("usuarios")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), usuario.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Usuario.class);
 			}
 
 			if (nombreTabla.equals("empresas")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), empresa.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Empresa.class);
 			}
 
-			if (nombreTabla.equals("camiones")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), camion.class);
+			if (nombreTabla.equals("vehiculos")) {
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Vehiculo.class);
 			}
 
 			if (nombreTabla.equals("trailers")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), trailer.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Trailer.class);
 			}
 
 			if (nombreTabla.equals("envios")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), envio.class);
+				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Envio.class);
 			}
 			
-			if (nombreTabla.equals("ubicaciones")) {
-				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), ubicacion.class);
-			}
+//			if (nombreTabla.equals("ubicaciones")) {
+//				objeto = mapper.readValue(obj.getJSONObject("Item").toString(), Ubicacion.class);
+//			}
 
 			System.out.println(objeto);
 			System.out.println("Success");
@@ -369,6 +370,77 @@ public class ControladorBD {
     					+ "\"payload\":{"
     						+ "\"Key\":{"
     							+ "\""+nombrellaveprimaria+"\":\""+valorllaveprimaria+"\""
+    						+ "},"
+    						//+ "\"ReturnValues\":\"ALL_NEW\""
+    						+ "\"ReturnValues\": \"ALL_OLD\""
+    					+ "}"
+    				+ "}";
+		
+		String response = postRequest(payload).toString();
+
+		JSONObject obj;
+
+		try {
+			obj = new JSONObject(response);
+			String valorllaveencontrada = obj.getJSONObject("Attributes").getString(nombrellaveprimaria);
+			// String valorencontrado =
+			// obj.getJSONObject("Attributes").getString(llave);
+			String statuscode = obj.getJSONObject("ResponseMetadata").get("HTTPStatusCode").toString();
+
+			System.out.println();
+
+			System.out.println("Codigo de estatus: " + statuscode);
+
+			System.out.println();
+
+			System.out.println("   Enviado: " + "\"" + nombrellaveprimaria + "\": " + "\"" + valorllaveprimaria + "\"");
+
+			System.out.println();
+
+			System.out
+					.println("   Borrado: " + "\"" + nombrellaveprimaria + "\": " + "\"" + valorllaveencontrada + "\"");
+
+			System.out.println();
+
+			// if(valorllave.equals(valorllaveencontrada) &&
+			// valorvalor.equals(valorvalorencontrado)){
+			if (valorllaveprimaria.equals(valorllaveencontrada)) {
+
+				System.out.println("Success");
+				return true;
+
+			} else {
+
+				System.out.println("Fail");
+				return false;
+			}
+
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+
+			System.out.println("\nError: " + e.getMessage());
+
+			System.out.println("Fail, error o no existe");
+			// throw new RuntimeException(e.getMessage());
+			return false;
+
+		}
+
+	}
+	
+	public static boolean borrarItem(String tabla, String nombrellaveprimaria, String valorllaveprimaria, String nombrellaveordenada, String valorllaveordenada) {
+
+		String nombretabla = tabla;// No cambiar
+		String operacion = "delete";
+		
+		String payload="{"
+    			+ "\"operation\":\""+operacion+"\","
+    			+ "\"tableName\":\""+nombretabla+"\","
+    					+ "\"payload\":{"
+    						+ "\"Key\":{"
+    							+ "\""+nombrellaveprimaria+"\":\""+valorllaveprimaria+"\","
+    							+ "\""+nombrellaveordenada+"\":\""+valorllaveordenada+"\""
     						+ "},"
     						//+ "\"ReturnValues\":\"ALL_NEW\""
     						+ "\"ReturnValues\": \"ALL_OLD\""
@@ -767,7 +839,7 @@ public class ControladorBD {
 				 
 				for(int i=0 ; i< obj.getJSONArray("Items").length(); i++){   // iterate through jsonArray 
 					
-					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), usuario.class));
+					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), Usuario.class));
 
 					System.out.println("Objeto " + i + ": " + objetos.get(i));
 				}
@@ -778,17 +850,17 @@ public class ControladorBD {
 				
 				for(int i=0 ; i< obj.getJSONArray("Items").length(); i++){   // iterate through jsonArray 
 					
-					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), empresa.class));
+					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), Empresa.class));
 
 					System.out.println("Objeto " + i + ": " + objetos.get(i));
 				}
 				
 			}
 			
-			if(nombreTabla.equals("camiones")){
+			if(nombreTabla.equals("vehiculos")){
 					for(int i=0 ; i< obj.getJSONArray("Items").length(); i++){   // iterate through jsonArray 
 					
-					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), camion.class));
+					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), Vehiculo.class));
 
 					System.out.println("Objeto " + i + ": " + objetos.get(i));
 				}				
@@ -798,7 +870,7 @@ public class ControladorBD {
 			if(nombreTabla.equals("trailers")){
 				for(int i=0 ; i< obj.getJSONArray("Items").length(); i++){   // iterate through jsonArray 
 					
-					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), trailer.class));
+					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), Trailer.class));
 
 					System.out.println("Objeto " + i + ": " + objetos.get(i));
 				}
@@ -807,7 +879,7 @@ public class ControladorBD {
 			if(nombreTabla.equals("envios")){
 				for(int i=0 ; i< obj.getJSONArray("Items").length(); i++){   // iterate through jsonArray 
 					
-					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), envio.class));
+					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), Envio.class));
 
 					System.out.println("Objeto " + i + ": " + objetos.get(i));
 				}				
@@ -817,22 +889,22 @@ public class ControladorBD {
 			if(nombreTabla.equals("reportes")){
 				for(int i=0 ; i< obj.getJSONArray("Items").length(); i++){   // iterate through jsonArray 
 					
-					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), reporte.class));
+					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), Reporte.class));
 
 					System.out.println("Objeto " + i + ": " + objetos.get(i));
 				}				
 				
 			}
 			
-			if(nombreTabla.equals("ubicaciones")){
-				for(int i=0 ; i< obj.getJSONArray("Items").length(); i++){   // iterate through jsonArray 
-					
-					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), ubicacion.class));
-
-					System.out.println("Objeto " + i + ": " + objetos.get(i));
-				}				
-				
-			}
+//			if(nombreTabla.equals("ubicaciones")){
+//				for(int i=0 ; i< obj.getJSONArray("Items").length(); i++){   // iterate through jsonArray 
+//					
+//					objetos.add(mapper.readValue(obj.getJSONArray("Items").get(i).toString(), Ubicacion.class));
+//
+//					System.out.println("Objeto " + i + ": " + objetos.get(i));
+//				}				
+//				
+//			}
 				
 			System.out.println("\nCantidad de Items encontrados: "+ obj.getInt("Count"));
 			System.out.println("Capacidad de lectura consumida: "+obj.getJSONObject("ConsumedCapacity").getInt("CapacityUnits"));
@@ -848,68 +920,20 @@ public class ControladorBD {
 		}
 	}
 	
-	
-	
-	
-	public static String buscaCamion (String destino, String origen, String espacio){
-		Double espacioTrailer = Double.parseDouble(espacio), espacioCamion = Double.parseDouble(espacio);
-		
-		String placa = "nada";
-		ArrayList<trailer> trailer = ControladorBD.escanearTabla("trailers");
-		ArrayList<camion> camionAll = ControladorBD.escanearTabla("camiones");
-		ArrayList<camion> camion = new ArrayList<camion>();
-		for(int i=0;i<camionAll.size();i++){
-			if(camionAll.get(i).getTipo().equals("camion")){
-				camion.add(camionAll.get(i));
-			}
-		}
-		for(int i=0;i<camion.size();i++){
-			System.out.println(destino + " = " + camion.get(i).getDestino());
-			double suma = Double.parseDouble(camion.get(i).getEspacio()) - espacioCamion;
-			if(suma >= 0){
-				if(camion.get(i).getDestino().equals(destino) && camion.get(i).getOrigen().equals(origen)){
-					System.out.println(destino + " : " + camion.get(i).getDestino());
-					return "1"+camion.get(i).getPlaca();
-				}
-			}else{
-				placa = "sinEspacio";
-			}	
-		}
-		for(int j=0;j<trailer.size();j++){
-			System.out.println(destino + " :: " + trailer.get(j).getDestino());
-			double suma = Double.parseDouble(trailer.get(j).getEspacio()) - espacioTrailer;
-			System.out.println(suma);
-			if(suma >= 0){
-				if(trailer.get(j).getDestino().equals(destino) && trailer.get(j).getOrigen().equals(origen)){
-					System.out.println(destino + " : " + trailer.get(j).getDestino());
-					return "0"+trailer.get(j).getPatente();
-				}
-			}else{
-				placa = "sinEspacio";				
-			}
-		}
-		if(placa == "sinEspacio"){
-			return placa;
-		}else{
-			return placa;
-		}
-	}
-	
-	
-	public static boolean estaOcupado(String nombre, String camion){
+	public static boolean estaOcupado(String nombre, String vehiculo){
 		boolean resultado = false;
-		ArrayList<camion> camiones = escanearTabla("camiones");
-		ArrayList<trailer> trailers = escanearTabla("trailers");
-		if(camion.equals("null")){
-			for (int i = 0; i < camiones.size() ; i++){
-				if(nombre.equals(camiones.get(i).getUsuario())){
+		ArrayList<Vehiculo> vehiculos = escanearTabla("vehiculos");
+		ArrayList<Trailer> trailers = escanearTabla("trailers");
+		if(vehiculo.equals("null")){
+			for (int i = 0; i < vehiculos.size() ; i++){
+				if(nombre.equals(vehiculos.get(i).getUsuario())){
 					System.out.println("sale");
 					return true;
 				}
 			}
 		}else if (nombre.equals("null")){
 			for (int i = 0; i < trailers.size() ; i++){
-				if(camion.equals(trailers.get(i).getCamion())){
+				if(vehiculo.equals(trailers.get(i).getCamion())){
 					return true;
 				}
 			}
@@ -917,5 +941,223 @@ public class ControladorBD {
 		return resultado;
 	}
 	
+	/*
+	public static ArrayList<Envio> getShipments(String key, String value) {
+
+
+		ArrayList<Envio> Envios = new ArrayList<>();
+
+        JSONObject jsonObject = null;
+
+        String operation = "query", tableName = "envios";
+
+        String payload = "{"
+                + "\"operation\":\"" + operation + "\","
+                + "\"tableName\":\"" + tableName + "\","
+                + "\"payload\":{"
+                + "\"IndexName\":" + "\"" + key + "\","
+                + "\"KeyConditionExpression\":" + "\"" + key + " = :v1\", "
+                + "\"ExpressionAttributeValues\": {"
+                + "\":v1\": \"" + value + "\"}"
+                + "}"
+                + "}";
+
+        StringBuffer response = postRequest(payload);
+
+        if (response != null) {
+
+            try {
+
+                jsonObject = new JSONObject(response.toString());
+
+                if (jsonObject.getDouble("Count") == 0) {
+                    return null;
+                }
+
+                // "I want to iterate though the objects in the array..."
+                JSONArray jsonArray = jsonObject.getJSONArray("Items");
+
+                for (int i = 0; i < jsonArray.length(); i++) {
+
+                    Envio envio = new Envio();
+
+                    //String id, fecha, destino, origen, estado, espacio, tipo, tiempoCarga, tiempoDescargausuario, usuario, camion, trailer, empresa;
+                    //String destinoLatLong, origenLatLong;
+                    //boolean chequeoCarga, chequeoDescarga;
+                    //15 en total.
+
+                    envio.setUsuario(jsonArray.getJSONObject(i).getString("usuario"));
+                    envio.setCamion(jsonArray.getJSONObject(i).getString("camion"));
+                    envio.setTrailer(jsonArray.getJSONObject(i).getString("trailer"));
+                    envio.setEmpresa(jsonArray.getJSONObject(i).getString("empresa"));
+                    envio.setFecha(jsonArray.getJSONObject(i).getString("fecha"));
+                    envio.setDestino(jsonArray.getJSONObject(i).getString("destino"));
+                    envio.setOrigen(jsonArray.getJSONObject(i).getString("origen"));
+                    envio.setEstado(jsonArray.getJSONObject(i).getString("estado"));
+                    envio.setEspacio(jsonArray.getJSONObject(i).getString("espacio"));
+                    envio.setTipo(jsonArray.getJSONObject(i).getString("tipo"));
+                    //envio.setTiempoCarga(jsonArray.getJSONObject(i).getString("tiempoCarga"));
+                    //envio.setTiempoDescargausuario(jsonArray.getJSONObject(i).getString("tiempoDescargausuario"));
+                    envio.setChequeoCarga(jsonArray.getJSONObject(i).getBoolean("chequeoCarga"));
+                    envio.setChequeoDescarga(jsonArray.getJSONObject(i).getBoolean("chequeoDescarga"));
+
+                    envio.setOrigenLatLong(jsonArray.getJSONObject(i).getString("origenLatLong"));
+                    envio.setDestinoLatLong(jsonArray.getJSONObject(i).getString("destinoLatLong"));
+
+                    Envios.add(envio);
+
+                }
+
+                return Envios;
+
+            } catch (Exception e) {
+                
+                return null;
+            }
+
+        } else {
+            return null;
+        }
+    }
+	
+	*/
+	
+	public static String checkPlaca(String usuario) {
+
+        String key = "usuario", tableName = "vehiculos", operation = "query";
+
+        String payload = "{"
+                + "\"operation\":\"" + operation + "\","
+                + "\"tableName\":\"" + tableName + "\","
+                + "\"payload\":{"
+                + "\"IndexName\":" + "\"" + key + "\","
+                + "\"KeyConditionExpression\":" + "\"" + key + " = :v1\","
+                + "\"ExpressionAttributeValues\": {"
+                + "\":v1\": \"" + usuario + "\"}"
+                + "}"
+                + "}";
+
+        StringBuffer response = postRequest(payload);
+
+        if (response != null) {
+
+        } else {
+            return null;
+        }
+
+        JSONObject jsonObject;
+
+        try {
+
+            jsonObject = new JSONObject(response.toString());
+
+            if (jsonObject.getDouble("Count") == 0) {
+                return null;
+            }
+
+            // "I want to iterate though the objects in the array..."
+            JSONArray jsonArray = jsonObject.getJSONArray("Items");
+            
+            String currentPlaca =null;
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                currentPlaca = jsonArray.getJSONObject(i).getString("placa");
+            }
+
+            return currentPlaca;
+
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            return null;
+        }
+    }
+	
+	public static boolean updateShipment(String primaryKeyValue, Object sortKeyValue, String key, Object value) {
+
+        JSONObject jsonObject = null;
+        
+        String operation = "update";
+        String tableName = "envios";
+        String primaryKey = "usuario";
+        String sortKey = "fecha";
+
+
+        String payload;
+
+        payload = "{"
+                + "\"operation\":\"" + operation + "\","
+                + "\"tableName\":\"" + tableName + "\","
+                + "\"payload\":{"
+                + "\"Key\":{"
+                + "\"" + primaryKey + "\":\"" + primaryKeyValue + "\","
+                + "\"" + sortKey + "\":\"" + sortKeyValue + "\""
+                + "},"
+                + "\"UpdateExpression\": \"set " + key + " = :val\","
+                + "\"ExpressionAttributeValues\": {"
+                + "\":val\":\"" + value + "\""
+                + "},"
+                //+ "\"ReturnValues\":\"ALL_NEW\""
+                + "\"ReturnValues\": \"UPDATED_NEW\""
+                + "}"
+                + "}";
+
+        StringBuffer response = postRequest(payload);
+        
+        System.out.println("\nRespuesta: "+response);
+
+        String objectFound;
+
+        if (response != null) {
+
+            try {
+
+                jsonObject = new JSONObject(response.toString());
+
+                String statuscode = jsonObject.getJSONObject("ResponseMetadata").get("HTTPStatusCode").toString();
+
+                try {
+                    objectFound = jsonObject.getJSONObject("Attributes").getString(key).toString();
+                    System.out.println("\nObjecto encontrado: "+objectFound);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return false;
+                }
+
+                if (value.equals(objectFound.toString())) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+
+            } catch (Exception e) {
+                return false;
+            }
+
+        } else {
+            return false;
+        }
+    }
+	
+	public static boolean putItem(String tableName, String objectJSON) {
+
+        String operation = "create";
+
+        String payload = "{"
+                + "\"operation\":\"" + operation + "\","
+                + "\"tableName\":\"" + tableName + "\","
+                + "\"payload\":{"
+                + "\"Item\":" + objectJSON
+                + "}"
+                + "}";
+
+        if (postRequest(payload) != null) {
+            return true;
+
+        } else {
+            return false;
+        }
+    }
 	
 }

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%
 	if (session.getAttribute("rol") == null) {
 		response.sendError(400, "Acceso incorrecto"); //cambiar
@@ -8,19 +8,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Reportar Problema</title>
+<title>Generar Reporte</title>
 
 <jsp:include page="/head.jsp" />
-<% session.setAttribute("pagina", "Generar Reporte"); %>
+<% session.setAttribute("pagina", "Generar reporte"); %>
 </head>
-<body>
+<body class="fondo">
+<!-- Header -->
+		<div class="container-fluid">
+			<jsp:include page="/header.jsp" />
+		</div>
 
-	<!-- Header  -->
-	<!--  Container de la Barra de navegacion -->
-	<jsp:include page="/navbar.jsp" />
-	<!-- Contenido -->
-	<div class="fondo">
-		<br> <br>
+		<!--  Barra de navegacion -->
+		<div class="container-fluid">
+			<jsp:include page="/navbar.jsp" />
+		</div>
+
 		<div class="container">
 
 			<form id="form" name="form" action="/reportarProblema" method="post"
@@ -28,18 +31,25 @@
 
 				<%
 					//Nombre de los campos del form
-					String[] inputs = { "nota" };
-					com.logica.Dibujar.inputs(out, inputs);
-				%>
+					//String[] inputs = { "nota" };
+					//com.logica.Dibujar.inputs(out, inputs);
+					
+					%>
+					
+					<div class="form-group">
+					<label class="control-label col-sm-1" for="name">Nota:</label>
+					<div class="col-sm-5">
+					  <textarea class="form-control" rows="5" id="nota" name="nota" placeholder="Nota"></textarea>
+					</div>
+					</div>
 
-				<div class="col-sm-2"></div>
+				<div class="col-sm-1"></div>
 
 				<button name="submit" id="submit" type="submit"
 					class="btn btn-primary">Reportar</button>
 			</form>
-
-		</div>
-		<br> <br> <br> <br> <br>
+		</div> 
+		<div class="container-fluid">
 		<jsp:include page="/footer.jsp" />
 	</div>
 </body>
