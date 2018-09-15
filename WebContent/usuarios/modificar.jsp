@@ -106,7 +106,7 @@
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Direcci&oacute;n</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="direccion" placeholder="direccion" id="direccion" required>
+							<input class="form-control" type="text" name="direccion" placeholder="direcci&oacute;n" id="direccion" required>
 						</div>
 					</div>
 					<div class="form-group row">
