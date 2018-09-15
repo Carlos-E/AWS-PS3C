@@ -228,8 +228,14 @@
 			</a>
 			<ul class="children collapse" id="sub-item-6">
 				<li class="nav-item">
-					<a class="nav-link" href="/envios/listar.jsp">
-						Env&iacute;os
+					<a class="nav-link" href="/envios/listar.jsp?filterBy=estado&filter=entregado&operator=<>" style="font-size: 60%;">
+						Env&iacute;os pendientes
+						<em class="fa fa-paper-plane">&nbsp;</em>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/envios/listar.jsp?filterBy=estado&filter=entregado&operator==" style="font-size: 60%;">
+						Env&iacute;os entregados
 						<em class="fa fa-paper-plane">&nbsp;</em>
 					</a>
 				</li>
