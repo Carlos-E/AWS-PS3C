@@ -21,6 +21,7 @@
 .odd {
 	word-break: break-all;
 }
+
 .even {
 	word-break: break-all;
 }
@@ -45,11 +46,12 @@
 				<h3 class="card-title">
 					<%
 						out.print(session.getAttribute("pagina").toString());
-					%> <i id="spinner" class="fa fa-circle-notch fa-spin" style="font-size: 30px"></i>
+					%>
+					<i id="spinner" class="fa fa-circle-notch fa-spin" style="font-size: 30px"></i>
 				</h3>
 
 				<div class="col-sm-12 ">
-					<table id="tabla" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%; font-size: 0.65rem;">
+					<table id="table" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%; font-size: 0.65rem;">
 						<thead>
 
 						</thead>
@@ -62,7 +64,7 @@
 					</table>
 				</div>
 
-				<form class="myForm" action="/reportes/crear" method="post">
+				<form id="myForm" action="/reportes/crear" method="post">
 					<br>
 					<div class="form-group">
 						<label class="col-12 control-label no-padding" for="message">Escriba su reporte</label>
@@ -72,9 +74,12 @@
 					</div>
 
 					<div class="modal-footer">
-						<button type="submit" id="submit" class="btn btn-primary btn-md float-right">Reportar</button>
-						<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger btn-md float-right">Cancelar</button>
-					</div>
+						<button type="reset" class="btn btn-secondary float-left">
+							<i class="fas fa-eraser fa-lg"></i>
+						</button>
+						<button id="submit" type="submit" class="btn btn-primary btn-md float-right">Confirmar</button>
+<!-- 						<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger btn-md float-right">Cancelar</button>
+ -->					</div>
 				</form>
 			</div>
 
@@ -86,6 +91,9 @@
 	<div class="container-fluid">
 		<jsp:include page="/movil/footer.jsp" />
 	</div>
+	
+	<script src="/js/form-modal.js"></script>
+	
 	<script>
 		$(document).ready(function() {
 									
@@ -112,7 +120,7 @@
 				
 				console.log(dataSet);
 					
-				$('#tabla').DataTable( {
+				$('#table').DataTable( {
 			        data: dataSet,
 			        language: {
 			            url: "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
@@ -138,7 +146,8 @@
 			
 		});
 		</script>
-	<script src="/js/form-modal.js"></script>
+
 	
+
 </body>
 </html>

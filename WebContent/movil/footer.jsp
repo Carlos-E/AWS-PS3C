@@ -23,11 +23,11 @@
 <div class="col-md-12 col-lg-12">
 	<section class="row">
 		<footer class="col-md-12 col-lg-12">
-		
+
 			<div class="row">
 
 				<div class="col-md-12 col-lg-9">
-				
+
 					<div class="row">
 						<div class="col-md-12 col-lg">
 							<p>© 2017-2018 - Proyecto con fines acad&eacute;micos</p>
@@ -54,10 +54,10 @@
 							</p>
 						</div>
 					</div>
-					
+
 					<div class="row">
 						<div class="col-md-12 col-lg">
-							<p style="font-size:10px;">
+							<p style="font-size: 10px;">
 								Plantilla base hecha por
 								<a href="https://www.medialoot.com/">Medialoot.</a>
 							</p>
