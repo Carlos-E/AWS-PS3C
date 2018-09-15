@@ -130,7 +130,7 @@
 			            { title: "RUT" },
 			            { title: "Correo" },
 			            { title: "Direcci&oacute;n" },
-			            { title: "Telefono" }
+			            { title: "Tel&eacute;fono" }
 			        ],
 			        search: {
 					    search: getParameterByName('search') != null ? getParameterByName('search') : ""

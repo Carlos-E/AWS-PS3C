@@ -73,25 +73,9 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Clave antigua</label>
+						<label class="col-md-2 col-form-label text-capitalize">Tel&eacute;fono</label>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="claveOld" placeholder="clave antigua" id="claveOld" readonly>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Clave</label>
-						<div class="col-md-4">
-							<input class="form-control" type="text" name="clave" placeholder="clave" id="clave" readonly>
-						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Repita clave</label>
-						<div class="col-md-4">
-							<input class="form-control" type="text" name="repita clave" placeholder="repita clave" id="repita-clave" readonly>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Telefono</label>
-						<div class="col-md-4">
-							<input class="form-control" type="text" name="telefono" placeholder="telefono" id="telefono" readonly>
+							<input class="form-control" type="text" name="telefono" placeholder="tel&eacute;fono" id="telefono" readonly>
 						</div>
 						<label class="col-md-2 col-form-label text-capitalize">Direcci&oacute;n</label>
 						<div class="col-md-4">

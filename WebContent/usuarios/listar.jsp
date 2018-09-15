@@ -113,6 +113,7 @@
 						element.apellido,
 						element.rol,
 						element.correo,
+						element.telefono,
 						element.direccion,
 					]);
 				});
@@ -130,6 +131,7 @@
 			            { title: "Apellido" },
 			            { title: "Rol" },
 			            { title: "Correo" },
+			            { title: "Tel&eacute;fono" },
 			            { title: "Direcci&oacute;n" }
 			        ],
 			        search: {

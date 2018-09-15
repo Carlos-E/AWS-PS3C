@@ -66,9 +66,9 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label text-capitalize">Telefono</label>
+						<label class="col-md-2 col-form-label text-capitalize">Tel&eacute;fono</label>
 						<div class="col-md-4">
-							<input class="form-control" type="number" name="telefono" placeholder="telefono" required>
+							<input class="form-control" type="number" name="telefono" placeholder="tel&eacute;fono" required>
 						</div>
 						<%
 							if (session.getAttribute("rol").equals("admin") || session.getAttribute("rol").equals("empleado")) {

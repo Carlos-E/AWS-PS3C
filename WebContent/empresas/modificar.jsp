@@ -86,9 +86,9 @@
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="direccion" placeholder="direcci&oacute;n" id="direccion" required>
 						</div>
-						<label class="col-md-2 col-form-label text-capitalize">Telefono</label>
+						<label class="col-md-2 col-form-label text-capitalize">tel&eacute;fono</label>
 						<div class="col-md-4">
-							<input class="form-control" type="number" name="telefono" placeholder="telefono" id="telefono" required>
+							<input class="form-control" type="number" name="telefono" placeholder="tel&eacute;fono" id="telefono" required>
 						</div>
 					</div>					
 					<div class="modal-footer">
