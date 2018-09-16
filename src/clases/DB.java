@@ -15,12 +15,12 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 public class DB extends DynamoDBMapper {
 
 	//ACCESS KEYS
-//	private final static String AccessKeyID = System.getenv("AWS_ACCESS_KEY_ID") != null ? System.getenv("AWS_ACCESS_KEY_ID") : System.getProperty("aws.accessKeyId");
-//	private final static String SecretKey = System.getenv("AWS_SECRET_ACCESS_KEY") != null ? System.getenv("AWS_SECRET_ACCESS_KEY") : System.getProperty("aws.secretKey");
+	//private final static String AccessKeyID = System.getenv("AWS_ACCESS_KEY_ID") != null ? System.getenv("AWS_ACCESS_KEY_ID") : System.getProperty("aws.accessKeyId");	
+	//private final static String SecretKey = System.getenv("AWS_SECRET_ACCESS_KEY") != null ? System.getenv("AWS_SECRET_ACCESS_KEY") : System.getProperty("aws.secretKey");
 	//ACCESS KEYS
 	
-//	private static BasicAWSCredentials basicCreds = new BasicAWSCredentials(AccessKeyID, SecretKey);
-//	private static AWSStaticCredentialsProvider staticCreds = new AWSStaticCredentialsProvider(basicCreds);
+	//private static BasicAWSCredentials basicCreds = new BasicAWSCredentials(AccessKeyID, SecretKey);
+	//private static AWSStaticCredentialsProvider staticCreds = new AWSStaticCredentialsProvider(basicCreds);
 
 	private static DefaultAWSCredentialsProviderChain chainCreds = new DefaultAWSCredentialsProviderChain();
 	
@@ -28,6 +28,10 @@ public class DB extends DynamoDBMapper {
 	
 	public DB() {
 		super(AmazonDynamoDBClientBuilder.standard().withRegion(region).withCredentials(chainCreds).build());
+	}
+	
+	public String getAccessKeyId(){
+		return chainCreds.getCredentials().getAWSAccessKeyId();
 	}
 
 	public double getEspacioTrailer(String patente) {

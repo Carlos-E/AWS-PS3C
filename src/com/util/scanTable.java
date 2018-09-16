@@ -27,14 +27,6 @@ import com.amazonaws.services.dynamodbv2.document.ScanOutcome;
 public class scanTable extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	//ACCESS KEYS
-//	private final static String AccessKeyID = System.getenv("AWS_ACCESS_KEY_ID") != null ? System.getenv("AWS_ACCESS_KEY_ID") : System.getProperty("AWS_ACCESS_KEY_ID");
-//	private final static String SecretKey = System.getenv("AWS_SECRET_ACCESS_KEY") != null ? System.getenv("AWS_SECRET_ACCESS_KEY") : System.getProperty("AWS_SECRET_ACCESS_KEY");
-	//ACCESS KEYS
-	
-//	private static BasicAWSCredentials basicCreds = new BasicAWSCredentials(AccessKeyID, SecretKey);
-//	private static AWSStaticCredentialsProvider staticCreds = new AWSStaticCredentialsProvider(basicCreds);
-
 	private static DefaultAWSCredentialsProviderChain chainCreds = new DefaultAWSCredentialsProviderChain();
 
 	AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard().withRegion(Regions.US_EAST_1)
