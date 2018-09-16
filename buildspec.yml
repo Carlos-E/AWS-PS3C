@@ -1,9 +1,11 @@
 # version: 0.2
 
 # phases:
-#   post_build:
+#   build:
 #     commands:
 #       - mvn compile war:war
+#   post_build:
+#     commands:
 #       - mv target/ps3c.war ./
 # artifacts:
 #   packaging: NONE
@@ -13,9 +15,11 @@
 version: 0.2
 
 phases:
-  post_build:
+  build:
     commands:
       - mvn compile war:war
+  post_build:
+    commands:
       - mv target/my-web-app.war my-web-app.war
       - ls
 artifacts:
