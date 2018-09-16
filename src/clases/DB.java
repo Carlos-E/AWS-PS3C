@@ -4,8 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
@@ -15,18 +14,12 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
 public class DB extends DynamoDBMapper {
 
-	//VARIABLES
-	private final static String AccessKeyID = "AKIAJSINT4F7K5BSGDRA";
-	private final static String SecretKey = "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";
-	//VARIABLES
+	private static DefaultAWSCredentialsProviderChain chainCreds = new DefaultAWSCredentialsProviderChain();
 
 	private static Regions region = Regions.US_EAST_1;
-
-	private static BasicAWSCredentials basicCreds = new BasicAWSCredentials(AccessKeyID, SecretKey);
-	private static AWSStaticCredentialsProvider staticCreds = new AWSStaticCredentialsProvider(basicCreds);
-
+	
 	public DB() {
-		super(AmazonDynamoDBClientBuilder.standard().withRegion(region).withCredentials(staticCreds).build());
+		super(AmazonDynamoDBClientBuilder.standard().withRegion(region).withCredentials(chainCreds).build());
 	}
 
 	public double getEspacioTrailer(String patente) {
