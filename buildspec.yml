@@ -11,4 +11,4 @@ phases:
       - mvn compile war:war
 artifacts:
   files:
-    - target/ps3c.war
+    - ps3c.war
