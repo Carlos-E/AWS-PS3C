@@ -21,6 +21,9 @@ import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.ItemCollection;
 import com.amazonaws.services.dynamodbv2.document.Table;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import clases.DB;
+
 import com.amazonaws.services.dynamodbv2.document.ScanOutcome;
 
 @WebServlet("/scanTable")
@@ -28,11 +31,23 @@ public class scanTable extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	// CODIGO DE PRUEBA
-	BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAJSINT4F7K5BSGDRA",
-			"512NOFNfUl4hAZMyFEHpt7ygdmksBVzmfXr6xLsR");
+	// VARIABLES
+	private final static String AccessKeyID = "AKIAIE7FDFA4OUA4AEOQ";
+	private final static String SecretKey = "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";
+	// private final static String AccessKeyID =
+	// System.getenv("AWS_ACCESS_KEY_ID") != null ?
+	// System.getenv("AWS_ACCESS_KEY_ID") :
+	// System.getProperty("AWS_ACCESS_KEY_ID");
+	// private final static String SecretKey =
+	// System.getenv("AWS_SECRET_ACCESS_KEY") != null ?
+	// System.getenv("AWS_SECRET_ACCESS_KEY") :
+	// System.getProperty("AWS_SECRET_ACCESS_KEY");
+	// VARIABLES
+
+	private static BasicAWSCredentials basicCreds = new BasicAWSCredentials(AccessKeyID, SecretKey);
 
 	AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard().withRegion(Regions.US_EAST_1)
-			.withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build();
+			.withCredentials(new AWSStaticCredentialsProvider(basicCreds)).build();
 
 	DynamoDB dynamoDB = new DynamoDB(client);
 	// CODIGO DE PRUEBA
@@ -54,7 +69,7 @@ public class scanTable extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 
 		try {
-			
+
 			System.out.println("Scanning table: " + request.getParameter("tabla"));
 
 			Table table = dynamoDB.getTable(request.getParameter("tabla"));
