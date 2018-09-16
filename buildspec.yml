@@ -3,6 +3,7 @@ version: 0.2
 phases:
   post_build:
     commands:
+      - ls
       - mvn package
       - mv target/my-web-app.war my-web-app.war
 artifacts:
