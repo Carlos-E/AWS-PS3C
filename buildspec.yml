@@ -7,5 +7,4 @@ phases:
       - unzip target/ps3c.war -d ./ps3c
 artifacts:
   files:
-    - ./ps3c/*
-    # - .ebextensions/**/*
+    - ./ps3c/**/*
