@@ -28,11 +28,23 @@ public class scanTableComplex extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	// CODIGO DE PRUEBA
-	BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAJSINT4F7K5BSGDRA",
-			"512NOFNfUl4hAZMyFEHpt7ygdmksBVzmfXr6xLsR");
+	// VARIABLES
+	private final static String AccessKeyID = "AKIAIE7FDFA4OUA4AEOQ";
+	private final static String SecretKey = "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";
+	// private final static String AccessKeyID =
+	// System.getenv("AWS_ACCESS_KEY_ID") != null ?
+	// System.getenv("AWS_ACCESS_KEY_ID") :
+	// System.getProperty("AWS_ACCESS_KEY_ID");
+	// private final static String SecretKey =
+	// System.getenv("AWS_SECRET_ACCESS_KEY") != null ?
+	// System.getenv("AWS_SECRET_ACCESS_KEY") :
+	// System.getProperty("AWS_SECRET_ACCESS_KEY");
+	// VARIABLES
+
+	private static BasicAWSCredentials basicCreds = new BasicAWSCredentials(AccessKeyID, SecretKey);
 
 	AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard().withRegion(Regions.US_EAST_1)
-			.withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build();
+			.withCredentials(new AWSStaticCredentialsProvider(basicCreds)).build();
 
 	DynamoDB dynamoDB = new DynamoDB(client);
 	// CODIGO DE PRUEBA
