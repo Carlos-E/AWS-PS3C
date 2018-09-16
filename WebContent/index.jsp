@@ -23,7 +23,7 @@
 <!--  HEAD -->
 <jsp:include page="/head.jsp" />
 <!--  ./HEAD -->
-<title>PS3C v2.0.i.0</title>
+<title>PS3C</title>
 
 </head>
 
@@ -46,7 +46,7 @@
 				<button type="button" class="close" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h1 class="mb-1">Hola, bienvenido!</h1>
+				<h1 class="mb-1">Hola, bienvenidos! a la santa zona</h1>
 				<p class="lead">
 					Prototipo Software de Control de Carga Compartida (<span>PS3C</span>)
 				</p>
