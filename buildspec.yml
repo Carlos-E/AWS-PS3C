@@ -11,7 +11,7 @@
 #   files:
 #     - ./ps3c
 
-version: 0.3
+version: 0.2
 
 phases:
   build:
