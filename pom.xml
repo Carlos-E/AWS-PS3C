@@ -8,7 +8,7 @@
 	<name>AWS_PS3C</name>
 	<description>MAVEN</description>
 	<build>
-		<finalName>ps3c</finalName>
+		<finalName>my-web-app</finalName>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
 			<plugin>

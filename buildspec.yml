@@ -1,10 +1,23 @@
+# version: 0.2
+
+# phases:
+#   post_build:
+#     commands:
+#       - mvn compile war:war
+#       - mv target/ps3c.war ./
+# artifacts:
+#   packaging: NONE
+#   files:
+#     - ps3c.war
+
 version: 0.2
 
 phases:
   post_build:
     commands:
       - mvn compile war:war
-      - unzip target/ps3c.war -d ./ps3c
+      - mv target/my-web-app.war my-web-app.war
 artifacts:
   files:
-    - ./ps3c/**/*
+    - my-web-app.war
+    - .ebextensions/**/*
