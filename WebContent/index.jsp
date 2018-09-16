@@ -23,7 +23,7 @@
 <!--  HEAD -->
 <jsp:include page="/head.jsp" />
 <!--  ./HEAD -->
-<title>PS3C</title>
+<title>PS3C v2.0.i.0</title>
 
 </head>
 
