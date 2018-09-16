@@ -47,7 +47,7 @@ public class Tester extends HttpServlet {
 		
 		//Prueba de scan
 		//DB.scan(Usuario.class, new DynamoDBScanExpression());
-		result.put("scan1",DB.scan(Usuario.class, new DynamoDBScanExpression()).size());
+		result.put("scanBeforeDelete",DB.scan(Usuario.class, new DynamoDBScanExpression()).size());
 		
 		//prueba de Email
 		new Email("carloseduardoperezmeza@outlook.com","Prueba","Prueba Exitosa");
@@ -58,7 +58,7 @@ public class Tester extends HttpServlet {
 		result.put("delete", usuario.getUsuario());
 		
 		//Prueba de scan2 despues de borrar
-		result.put("scan2",DB.scan(Usuario.class, new DynamoDBScanExpression()).size());
+		result.put("scanAfterDelete",DB.scan(Usuario.class, new DynamoDBScanExpression()).size());
 		
 		response.getWriter().print(new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT).writer().writeValueAsString(result));
 		response.getWriter().close();
