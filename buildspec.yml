@@ -11,7 +11,7 @@
 #   files:
 #     - ./ps3c
 
-version: 0.2
+version: 0.3
 
 phases:
   build:
@@ -21,8 +21,9 @@ phases:
     commands:
       - ls target/
       - mv target/my-web-app.war my-web-app.war
-      - ls
+      - ls target/
       - ls .ebextensions/
+      - ls
 artifacts:
   files:
     - my-web-app.war
