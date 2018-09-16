@@ -4,8 +4,9 @@ phases:
   post_build:
     commands:
       - mvn compile war:war
-      - mv target/ps3c.war ps3c.war
+      - mv target/ps3c.war ROOT.war
+      - unzip ps3c.war -d ./ps3c
 artifacts:
   files:
-    - ps3c.war
-    - .ebextensions/**/*
+    - ./ps3c/*
+    # - .ebextensions/**/*
