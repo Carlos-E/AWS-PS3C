@@ -17,6 +17,7 @@ phases:
     commands:
       - mvn compile war:war
       - mv target/my-web-app.war my-web-app.war
+      - ls
 artifacts:
   files:
     - my-web-app.war
