@@ -1,0 +1,13 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - mvn compile war:war
+  post_build:
+    commands:
+      - mv target/my-web-app.war my-web-app.war
+artifacts:
+  files:
+    - my-web-app.war
+    - .ebextensions/**/*
