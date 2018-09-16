@@ -1,16 +1,3 @@
-# version: 0.2
-
-# phases:
-#   build:
-#     commands:
-#       - mvn compile war:war
-#   post_build:
-#     commands:
-#       - unzip target/ps3c.war ./ps3c
-# artifacts:
-#   files:
-#     - ./ps3c
-
 version: 0.2
 
 phases:
@@ -19,11 +6,7 @@ phases:
       - mvn compile war:war
   post_build:
     commands:
-      - ls target/
       - mv target/my-web-app.war my-web-app.war
-      - ls target/
-      - ls .ebextensions/
-      - ls
 artifacts:
   files:
     - my-web-app.war
