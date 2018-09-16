@@ -3,10 +3,9 @@ version: 0.2
 phases:
   post_build:
     commands:
-      - ls
-      - mvn package
-      - mv target/my-web-app.war my-web-app.war
+      - mvn compile war:war
+      - mv target/ps3c.war ps3c.war
 artifacts:
   files:
-    - my-web-app.war
+    - ps3c.war
     - .ebextensions/**/*
