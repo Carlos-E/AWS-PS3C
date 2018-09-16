@@ -31,10 +31,13 @@ public class login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		System.out.println("System.getenv(\"AWS_ACCESS_KEY_ID\"): " + System.getenv("AWS_ACCESS_KEY_ID"));
+		System.out.println("System.getProperty(\"AWS_ACCESS_KEY_ID\"): " + System.getProperty("AWS_ACCESS_KEY_ID"));
+
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
-		
+
 		String uname = request.getParameter("username");
 		String pass = request.getParameter("password");
 
@@ -45,9 +48,9 @@ public class login extends HttpServlet {
 			session.setMaxInactiveInterval(60 * 60 * 4);
 
 			session.setAttribute("username", uname);
-			
+
 			Usuario usuario = new Usuario();
-			
+
 			usuario.setUsuario(uname);
 
 			usuario = new DB().load(usuario);
@@ -64,7 +67,7 @@ public class login extends HttpServlet {
 					{
 						put("sendRedirect", "/index.jsp");
 					}
-				}));				
+				}));
 				break;
 			case "empleado":
 				session.setAttribute("rol", "empleado");
@@ -74,7 +77,7 @@ public class login extends HttpServlet {
 					{
 						put("sendRedirect", "/index.jsp");
 					}
-				}));				
+				}));
 				break;
 			case "admin":
 				session.setAttribute("rol", "admin");
@@ -93,7 +96,7 @@ public class login extends HttpServlet {
 
 				if (placa != null) {
 					session.setAttribute("placa", placa);
-					
+
 					response.setStatus(200);
 					response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 						private static final long serialVersionUID = 1L;
@@ -102,7 +105,7 @@ public class login extends HttpServlet {
 						}
 					}));
 				} else {
-					
+
 					response.setStatus(200);
 					response.getWriter().write(new ObjectMapper().writeValueAsString(new HashMap<String, String>() {
 						private static final long serialVersionUID = 1L;
