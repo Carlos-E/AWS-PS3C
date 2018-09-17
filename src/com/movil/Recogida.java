@@ -85,7 +85,7 @@ public class Recogida extends HttpServlet {
 
 			new Thread(() -> {
 				new Email(DB.load(Usuario.class, envio.getUsuario()).getCorreo(), "PS3C - Envío Revertido",
-						"Hemos revertido el estado de su envio.", envio);
+						"Hemos revertido el estado de su env&iacute;o.", envio);
 			}).start();
 
 		}
