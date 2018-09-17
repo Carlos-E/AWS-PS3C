@@ -1,11 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="clases.DB"%>
 
 <%
 System.out.println("New Login");
-System.out.println("System.getenv(\"AWS_ACCESS_KEY_ID\"): " + System.getenv("AWS_ACCESS_KEY_ID"));
-System.out.println("System.getProperty(\"AWS_ACCESS_KEY_ID\"): " + System.getProperty("AWS_ACCESS_KEY_ID"));
-System.out.println("System.getenv(\"aws.accessKeyId\"): " + System.getenv("aws.accessKeyId"));
-System.out.println("System.getProperty(\"aws.accessKeyId\"): " + System.getProperty("aws.accessKeyId"));
+System.out.println("AccessKeyId: " + new DB().getAccessKeyId());
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
