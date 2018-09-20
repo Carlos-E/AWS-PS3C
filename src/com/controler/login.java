@@ -31,9 +31,6 @@ public class login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		System.out.println("System.getenv(\"AWS_ACCESS_KEY_ID\"): " + System.getenv("AWS_ACCESS_KEY_ID"));
-		System.out.println("System.getProperty(\"AWS_ACCESS_KEY_ID\"): " + System.getProperty("AWS_ACCESS_KEY_ID"));
-
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
