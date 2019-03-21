@@ -50,7 +50,7 @@ public class Tester extends HttpServlet {
 		result.put("scan1",DB.scan(Usuario.class, new DynamoDBScanExpression()).size());
 		
 		//prueba de Email
-		new Email("carloseduardoperezmeza@outlook.com","Prueba","Prueba Exitosa");
+		new Email("he-he@outlook.com","Prueba","Prueba Exitosa");
 		result.put("email", "Enviado");
 
 		//prueba delete
